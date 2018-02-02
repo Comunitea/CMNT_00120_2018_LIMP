@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+
+        <record id="building_site_services_tree" model="ir.ui.view">
+            <field name="name">building.site.services.tree</field>
+            <field name="model">building.site.services</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Building sites/Services">
+                    <field name="name"/>
+                    <field name="holder_builder" />
+                    <field name="producer_promoter"/>
+                    <field name="address_producer"/>
+                    <field name="vat_producer"/>
+                    <field name="city_producer"/>
+                    <field name="province_producer"/>
+                    <field name="address_holder" />
+                    <field name="vat_holder"/>
+                    <field name="city_holder"/>
+                    <field name="province_holder"/>
+                    <field name="contact_id"/>
+                    <field name="address_building_site"/>
+                    <field name="building_site_license"/>
+                    <field name="city_building_site"/>
+                    <field name="code"/>
+                    <field name="serial"/>
+                    <!--<field name="identification_manager"/>
+                    <field name="authorization_no"/>-->
+                    <field name="show"/>
+                    <field name="pricelist_id"/>
+                    <field name="admission_no"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="building_site_services_form" model="ir.ui.view">
+            <field name="name">building.site.services.form</field>
+            <field name="model">building.site.services</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Building sites/Services">
+                    <field name="name"/>
+                    <field name="show" />
+                    <field name="description" />
+                    <field name="code"/>
+                    <field name="serial"/>
+                    <field name="active"/>
+                    <separator string="Producer/Promoter" colspan="4"/>
+                    <field name="producer_promoter"/>
+                    <field name="address_producer"/>
+                    <field name="vat_producer"/>
+                    <field name="city_producer"/>
+                    <field name="province_producer"/>
+                    <newline />
+                    <group colspan="4" attrs="{'invisible':[('show','=','service')]}">
+                    <separator string="Holder/Builder" colspan="4"/>
+                    <field name="holder_builder"/>
+                    <field name="address_holder"/>
+                    <field name="vat_holder"/>
+                    <field name="city_holder"/>
+                    <field name="province_holder"/>
+                    </group>
+                    <group colspan="4" attrs="{'invisible':[('show','=','service')]}">
+                    <separator string="Building site" colspan="4"/>
+                    </group>
+                    <group colspan="4" attrs="{'invisible':[('show','=','building')]}">
+                    <separator string="Service" colspan="4"/>
+                    </group>
+                        <field name="address_building_site" context="{'form_view_ref':'base.view_partner_address_form2','tree_view_ref':'base.view_partner_address_tree'}" attrs="{'required':[('show','!=','service')]}"/>
+                        <field name="building_site_license" attrs="{'invisible':[('show','=','service')]}" />
+                        <field name="city_building_site"/>
+                        <field name="admission_no"/>
+                        <field name="pricelist_id"/>
+                        <field name="contact_id" attrs="{'invisible':[('show','!=','service')]}" />
+                    <!--<newline/>
+                        <field name="identification_manager"/>
+                        <field name="authorization_no"/>-->
+
+                </form>
+            </field>
+        </record>
+
+        <record id="building_site_services_search" model="ir.ui.view">
+            <field name="name">building.site.services.search</field>
+            <field name="model">building.site.services</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Building sites/Services">
+                    <group col="14" colspan="4">
+                        <field name="producer_promoter" select="1"/>
+                        <field name="holder_builder" select="1"/>
+                        <field name="contact_id"/>
+                        <field name="show"/>
+                        <field name="code"/>
+                        <field name="serial"/>
+                        <field name="description"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Producer/Promoter" icon="terp-folder-green" domain="[]" context="{'group_by':'producer_promoter'}"/>
+                        <filter string="Holder/Builder" icon="terp-folder-green" domain="[]" context="{'group_by':'holder_builder'}"/>
+                        <filter string="Building site city" icon="terp-folder-green" domain="[]" context="{'group_by':'city_building_site'}"/>
+                        <filter string="Contact" icon="terp-folder-green" domain="[]" context="{'group_by':'contact_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="building_site_services_action" model="ir.actions.act_window">
+            <field name="name">Building sites/Services</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">building.site.services</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="building_site_services_action" id="menu_building_site_services_form"
+            groups="base.group_extended"
+            parent="base.menu_address_book" sequence="40"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_concept_tree" model="ir.ui.view">
+            <field name="name">invoice.concept.tree</field>
+            <field name="model">account.analytic.invoice.concept</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Invoice concepts">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="invoice_concept_form" model="ir.ui.view">
+            <field name="name">invoice.concept.form</field>
+            <field name="model">account.analytic.invoice.concept</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Invoice concept">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="product_id"/>
+                    <field name="company_id"/>
+                    <separator colspan="4" string="Replacements"/>
+                    <group col="6" colspan="4">
+                        <label colspan="2" string="Current Year with Century: %%(year)s"/>
+                        <label colspan="2" string="Current Month: %%(month)s"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="invoice_concept_search" model="ir.ui.view">
+            <field name="name">invoice.concept.search</field>
+            <field name="model">account.analytic.invoice.concept</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Invoice concepts">
+                    <field name="name" select="1"/>
+                    <field name="code" select="1"/>
+                    <field name="product_id" select="2"/>
+                    <field name="company_id" select="1"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_invoice_concepts" model="ir.actions.act_window">
+            <field name="name">Invoice concepts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.invoice.concept</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_invoice_concept" parent="base.menu_base_config" name="Invoice concepts"/>
+
+        <menuitem action="action_invoice_concepts" id="menu_invoice_concepts_open" parent="menu_invoice_concept" name="Invoice concepts"/>
+
+    </data>
+</openerp>

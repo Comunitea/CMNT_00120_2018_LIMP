@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="costs_journal" model="account.analytic.journal">
+            <field name="code">GS</field>
+            <field name="name">Gasoil</field>
+            <field name="type">general</field>
+        </record>
+
+    </data>
+</openerp>

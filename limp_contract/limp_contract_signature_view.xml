@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+      <record id="action_contract_sign" model="ir.actions.act_window">
+            <field name="name">Contract signature</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">limp.contract.signature</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_limp_contract_signature" model="ir.ui.view">
+            <field name="name">Contract signature</field>
+            <field name="model">limp.contract.signature</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Contract signature">
+                    <separator colspan="4" string="Signature date"/>
+                    <field name="contract_date" nolabel="1"/>
+                    <group col="4" colspan="4">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" name="set_signature" string="Sign" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

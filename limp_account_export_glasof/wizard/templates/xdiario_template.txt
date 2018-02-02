@@ -1,0 +1,16 @@
+<%
+        count = 1000000
+        last_move = False
+
+        def get_amount_base(line):
+            res = 0.0
+            if line.tax_amount and line.tax_code_id and line.invoice:
+                for tax_line in line.invoice.tax_line:
+                    if tax_line.tax_code_id.id == line.tax_code_id.id:
+                        res = tax_line.base_amount
+                        break
+            return str(res)
+%>\
+%for l in objects:
+<% if l.move_id.name != last_move: last_move = l.move_id.name; count -=1 %>${ str(count).rjust(6,"0") }${ l.date.replace('-',"") or "00000000"}${ acc_numbers[l.id].ljust(12," ")}${ (l.account_id.user_type.code == "tax" and l.invoice and l.partner_id) and formatAccount(l.invoice.account_id.code, l.partner_id.ref).ljust(12," ") or "".ljust(12, " ") }${ "0.00".rjust(16," ")}${ l.ref and l.ref.ljust(25," ") or "".ljust(25," ")}${ "0.00".rjust(16," ")}${ l.invoice_ref.rjust(8," ")}${ "0.00".rjust(16," ")}${ (l.tax_code_id and pool.get('account.tax').search(cr, uid, [('tax_code_id','=',l.tax_code_id.id)])) and str(pool.get('account.tax').browse(cr, uid, pool.get('account.tax').search(cr, uid, [('tax_code_id','=',l.tax_code_id.id)])[0]).amount * 100.0).ljust(5,"0") or "0.00".rjust(5," ")}${ "0.00".rjust(5," ")}${ l.invoice_ref.rjust(10," ")}${ "00".rjust(17," ")}${ "0".rjust(6," ")}${ "0.000000".rjust(16," ")}${ "0.00".rjust(16," ")}${ "0.00".rjust(16," ")}${ "1".rjust(2," ")}${ "0.002".rjust(24," ")}${ l.debit and str(l.debit).rjust(16," ") or "0.00".rjust(16," ")}${ l.credit and str(l.credit).rjust(16," ") or "0.00".rjust(16," ")}${ get_amount_base(l).rjust(16," ")}${ "F".ljust(20," ") }${ "0.00".rjust(16," ")}${ "0.00".rjust(16," ")}${ "F".ljust(9," ") }
+%endfor

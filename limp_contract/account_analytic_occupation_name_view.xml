@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="account_analytic_occupation_name_tree" model="ir.ui.view">
+            <field name="name">account.analytic.occupation.name.tree</field>
+            <field name="model">account.analytic.occupation.name</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Occupation names">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="account_analytic_occupation_name_form" model="ir.ui.view">
+            <field name="name">account.analytic.occupation.name.form</field>
+            <field name="model">account.analytic.occupation.name</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Occupation name">
+                    <field name="name" colspan="4"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_analytic_occupation_name_search" model="ir.ui.view">
+            <field name="name">account.analytic.occupation.name.search</field>
+            <field name="model">account.analytic.occupation.name</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Occupation names">
+                    <group col="4" colspan="4">
+                        <field name="name" select="1"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_account_analytic_occupation_name" model="ir.actions.act_window">
+            <field name="name">Occupation names</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.analytic.occupation.name</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_account_analytic_occupation_name" parent="menu_limp_contract_conf" name="Occupation name" groups="limp_contract.group_limp_administrative"/>
+
+        <menuitem action="action_account_analytic_occupation_name" id="menu_account_analytic_occupation_name_open" parent="menu_account_analytic_occupation_name" name="Occupation names"/>
+
+    </data>
+</openerp>

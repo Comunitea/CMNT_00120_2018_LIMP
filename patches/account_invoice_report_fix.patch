@@ -1,0 +1,22 @@
+=== modified file 'account/report/account_invoice_report.py'
+--- account/report/account_invoice_report.py    2011-04-07 12:29:55 +0000
++++ account/report/account_invoice_report.py    2013-05-15 18:17:07 +0000
+@@ -162,16 +162,7 @@
+                       ai.residual * -1
+                     else
+                       ai.residual
+-                    end)/ (CASE WHEN 
+-                        (select count(l.id) from account_invoice_line as l
+-                         left join account_invoice as a ON (a.id=l.invoice_id)
+-                         where a.id=ai.id) <> 0 
+-                       THEN
+-                        (select count(l.id) from account_invoice_line as l
+-                         left join account_invoice as a ON (a.id=l.invoice_id)
+-                         where a.id=ai.id) 
+-                       ELSE 1 
+-                       END) / cr.rate as residual
++                    end) / cr.rate as residual
+                 from account_invoice_line as ail
+                 left join account_invoice as ai ON (ai.id=ail.invoice_id)
+                 left join product_template pt on (pt.id=ail.product_id)
+

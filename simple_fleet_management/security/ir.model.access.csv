@@ -1,0 +1,6 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_fleet","fleet user","model_fleet","base.group_user",1,1,0,0
+"access_fleet_manager","fleet manager","model_fleet","stock.group_stock_manager",1,1,1,1
+"access_fleet_expense","fleet expense user","model_fleet_expense","base.group_user",1,1,1,1
+"access_fleet_expense_type","fleet expense type manager","model_fleet_expense_type","stock.group_stock_manager",1,1,1,1
+"access_fleet_expense_type_user","fleet expense type user","model_fleet_expense_type","base.group_user",1,0,0,0

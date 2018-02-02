@@ -1,0 +1,1874 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#   * limp_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.4\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2014-12-26 15:04+0000\n"
+"PO-Revision-Date: 2014-12-26 15:04+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,thursday:0
+msgid "Thursday"
+msgstr "Jueves"
+
+#. module: limp_contract
+#: view:limp.incidencek:0
+msgid "Incidence"
+msgstr "Incidencia"
+
+#. module: limp_contract
+#: view:limp.contract.line.employee.task:0
+msgid "Load order tasks"
+msgstr "Cargar tareas venta"
+
+#. module: limp_contract
+#: constraint:account.analytic.account:0
+msgid "Error! The currency has to be the same as the currency of the selected company"
+msgstr "¡Error! La divisa tiene que ser la misma que la establecida en la compañía seleccionada"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Consumption"
+msgstr "Consumo"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract
+msgid "Limpergal Contracts"
+msgstr "Contratos Limpergal"
+
+#. module: limp_contract
+#: selection:limp.incidence,periodicity:0
+#: selection:maintenance.task,interval:0
+msgid "Monthly"
+msgstr "Mensual"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_task
+msgid "Limpergal contract tasks"
+msgstr "Tarea de contrato Limpergal"
+
+#. module: limp_contract
+#: field:limp.contract.line.waste,picking_line_ids:0
+msgid "Pickings"
+msgstr "Albaranes"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_analytic_invoice_concept
+msgid "Analytic account invoice concepts"
+msgstr "Conceptos de factura en cuentas analíticas"
+
+#. module: limp_contract
+#: field:account.analytic.account,address_invoice_id:0
+msgid "Address invoice"
+msgstr "Dirección factura"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Total extra hours"
+msgstr "Total horas extra"
+
+#. module: limp_contract
+#: view:limp.contract.line.employee.task:0
+msgid "Employee tasks"
+msgstr "Tareas de empleados"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,sunday:0
+msgid "Sunday"
+msgstr "Domingo"
+
+#. module: limp_contract
+#: field:limp.contract,stock_sporadic_service_picking_ids:0
+msgid "Sporadic picking lines"
+msgstr "Lineas albaranes esporádicos"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Active remunerations"
+msgstr "Remuneraciones activas"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Invoice history"
+msgstr "Historial de facturas"
+
+#. module: limp_contract
+#: view:account.analytic.occupation:0
+#: field:account.analytic.occupation,department_id:0
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,department_id:0
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: field:limp.contract.line.employee.task,department_id:0
+#: view:limp.contract.line.home.help:0
+#: field:limp.contract.objectives,department_id:0
+#: view:limp.contract.task:0
+#: field:limp.contract.task,department_id:0
+#: view:limp.incidence:0
+#: field:limp.incidence,department_id:0
+msgid "Department"
+msgstr "Departamento"
+
+#. module: limp_contract
+#: code:addons/limp_contract/limp_contract_line_cleaning.py:131
+#: code:addons/limp_contract/limp_contract_line_home_help.py:123
+#: code:addons/limp_contract/limp_contract_line_waste.py:81
+#, python-format
+msgid "Not contract defined for this line"
+msgstr "Sin contrato definido para esta línea"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Waste"
+msgstr "Residuos"
+
+#. module: limp_contract
+#: field:limp.contract.line,incidences_text:0
+msgid "Incidences description"
+msgstr "Descripción incidencias"
+
+#. module: limp_contract
+#: selection:limp.contract,state:0
+msgid "Opened"
+msgstr "Abierto"
+
+#. module: limp_contract
+#: field:account.analytic.account,state_id:0
+#: view:account.analytic.occupation:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Province"
+msgstr "Provincia"
+
+#. module: limp_contract
+#: field:limp.contract,upamount_date:0
+msgid "Upamount date"
+msgstr "Fecha subida"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Sign contract"
+msgstr "Firmar contrato"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "March"
+msgstr "Marzo"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Inactive timesheets"
+msgstr "Partes de horas inactivos"
+
+#. module: limp_contract
+#: view:limp.contract.task:0
+msgid "Parent"
+msgstr "Padre"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Home help"
+msgstr "Ayuda a domicilio"
+
+#. module: limp_contract
+#: help:limp.incidence,amount:0
+msgid "Amount per hours"
+msgstr "Importe por horas"
+
+#. module: limp_contract
+#: view:account.analytic.occupation:0
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,company_id:0
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+#: view:limp.contract.task:0
+#: field:limp.contract.task,company_id:0
+#: field:limp.incidence,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,friday:0
+msgid "Friday"
+msgstr "Viernes"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Timesheet"
+msgstr "Parte de horas"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_line
+msgid "Limpergal's contract lines"
+msgstr "Lineas de contrato Limpergal"
+
+#. module: limp_contract
+#: selection:limp.contract.line.task.rel,freq:0
+#: selection:limp.incidence,periodicity:0
+msgid "Two months"
+msgstr "Bimensual"
+
+#. module: limp_contract
+#: field:limp.contract,amount:0
+msgid "Total annual amount"
+msgstr "Importe total anual"
+
+#. module: limp_contract
+#: selection:limp.contract.line.task.rel,freq:0
+msgid "Diary"
+msgstr "Diaria"
+
+#. module: limp_contract
+#: help:limp.contract,prorogation_date:0
+msgid "Estimate prorogation date"
+msgstr "Fecha de prórroga estimada"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.contract_hom_help_lines_link
+#: field:limp.contract,cleaning_line_ids:0
+msgid "Cleaning lines"
+msgstr "Lineas de limpieza"
+
+#. module: limp_contract
+#: field:maintenance.task,interval_count:0
+msgid "Repeat each"
+msgstr "Repetir cada"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,day:0
+msgid "Day"
+msgstr "Día"
+
+#. module: limp_contract
+#: field:limp.contract.upamount.history,upamount_percent:0
+msgid "Upamount percent"
+msgstr "% subida"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+msgid "Refund"
+msgstr "Rectificativa"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,account_id:0
+#: field:limp.contract,analytic_account_id:0
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,uom_name:0
+msgid "Reference UoM"
+msgstr "UdM referencia"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,date_due:0
+msgid "Due Date"
+msgstr "Fecha vencimiento"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_line_waste
+msgid "Limpergal's contract lines for waste"
+msgstr "Lineas de contrato de Limpergal para residuos"
+
+#. module: limp_contract
+#: field:limp.contract.upamount.history,previous_amount:0
+msgid "Previous amount"
+msgstr "Importe anterior"
+
+#. module: limp_contract
+#: view:limp.center.type:0
+#: view:limp.contract.task:0
+#: field:limp.contract.task,center_type_id:0
+msgid "Center type"
+msgstr "Tipo centro"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: field:limp.contract,contract_note_ids:0
+#: field:limp.contract,prorogation_notes:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+#: field:limp.incidence,note:0
+#: view:limp.incidencek:0
+msgid "Notes"
+msgstr "Notas"
+
+#. module: limp_contract
+#: field:account.analytic.account,address_id:0
+msgid "Address"
+msgstr "Dirección"
+
+#. module: limp_contract
+#: view:account.analytic.occupation:0
+msgid "Based of incidence"
+msgstr "Basada en incidencia"
+
+#. module: limp_contract
+#: field:limp.contract.task,sale_id:0
+msgid "Sale"
+msgstr "Venta"
+
+#. module: limp_contract
+#: field:account.analytic.account,maintenance_task_ids:0
+#: view:limp.contract:0
+msgid "Maintenance tasks"
+msgstr "Tareas mantenimiento"
+
+#. module: limp_contract
+#: field:account.analytic.occupation,customer_contact_id:0
+#: field:limp.contract.line.home.help,customer_contact_id:0
+#: field:limp.contract.note,user_id:0
+msgid "User"
+msgstr "Usuario"
+
+#. module: limp_contract
+#: code:addons/limp_contract/limp_contract.py:178
+#: code:addons/limp_contract/limp_contract_line_cleaning.py:60
+#: code:addons/limp_contract/limp_contract_line_cleaning.py:131
+#: code:addons/limp_contract/limp_contract_line_cleaning.py:177
+#: code:addons/limp_contract/limp_contract_line_employee_task.py:68
+#: code:addons/limp_contract/limp_contract_line_home_help.py:123
+#: code:addons/limp_contract/limp_contract_line_home_help.py:170
+#: code:addons/limp_contract/limp_contract_line_waste.py:81
+#: code:addons/limp_contract/limp_contract_line_waste.py:93
+#: code:addons/limp_contract/wizard/service_order_toinvoice.py:34
+#, python-format
+msgid "Error!"
+msgstr "¡Error!"
+
+#. module: limp_contract
+#: field:limp.contract.line,amount:0
+#: field:limp.incidence,amount:0
+msgid "Amount"
+msgstr "Importe"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Set to draft"
+msgstr "Volver a borrador"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+msgid "Invoices Analysis"
+msgstr "Análisis de facturas"
+
+#. module: limp_contract
+#: view:account.analytic.occupation:0
+#: selection:account.invoice.report.custom,state:0
+#: selection:limp.contract,state:0
+msgid "Cancelled"
+msgstr "Canceladas"
+
+#. module: limp_contract
+#: field:limp.contract.line.cleaning,contract_line_id:0
+#: field:limp.contract.line.employee.task,contract_line_id:0
+#: field:limp.contract.line.home.help,contract_line_id:0
+#: field:limp.contract.line.waste,contract_line_id:0
+#: field:limp.incidence,contract_line_id:0
+#: field:stock.service.picking,contract_line_id:0
+msgid "Contract line"
+msgstr "Línea de contrato"
+
+#. module: limp_contract
+#: view:limp.contract.line.cleaning:0
+#: field:maintenance.task,contract_line_id:0
+msgid "Workcenter"
+msgstr "Centro de trabajo"
+
+#. module: limp_contract
+#: field:account.analytic.account,invoice_limit_hours:0
+msgid "Invoice limit hours"
+msgstr "Horas límite factura"
+
+#. module: limp_contract
+#: selection:limp.contract.line.task.rel,freq:0
+#: selection:limp.incidence,periodicity:0
+msgid "Bimonthly"
+msgstr "Quincenal"
+
+#. module: limp_contract
+#: field:limp.contract,periodicity:0
+#: field:limp.contract.line.task.rel,freq:0
+msgid "Periodicity"
+msgstr "Periodicidad"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+#: view:limp.contract.task:0
+#: view:limp.incidence:0
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: limp_contract
+#: field:limp.contract.upamount.history,new_amount:0
+msgid "New amount"
+msgstr "Nuevo importe"
+
+#. module: limp_contract
+#: field:account.analytic.account,invoice_by_high:0
+msgid "Invoice by high"
+msgstr "Facturar por mayor"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,period_id:0
+msgid "Force Period"
+msgstr "Forzar periodo"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "To upamount"
+msgstr "Para subir"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,nbr:0
+msgid "# of Lines"
+msgstr "# lineas"
+
+#. module: limp_contract
+#: field:update.last.invoice.date,new_date:0
+msgid "New date"
+msgstr "Nueva fecha"
+
+#. module: limp_contract
+#: field:account.analytic.invoice.concept.rel,sunday_amount:0
+msgid "Sunday amount"
+msgstr "Importe domingo"
+
+#. module: limp_contract
+#: field:stock.service.picking,maintenace_task_id:0
+msgid "Maintenance task"
+msgstr "Tarea mantenimiento"
+
+#. module: limp_contract
+#: field:account.analytic.invoice.concept.rel,per_hours:0
+#: selection:limp.contract,periodicity:0
+#: selection:limp.contract.line.task.rel,freq:0
+msgid "Per hours"
+msgstr "Por horas"
+
+#. module: limp_contract
+#: field:account.analytic.account,location_id:0
+#: view:account.analytic.occupation:0
+#: field:account.analytic.occupation,location_id:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Council"
+msgstr "Ayuntamiento"
+
+#. module: limp_contract
+#: view:limp.contract.line.employee.task:0
+#: view:limp.contract.line.task.rel:0
+#: view:limp.contract.task:0
+msgid "Contract task"
+msgstr "Tareas del contrato"
+
+#. module: limp_contract
+#: constraint:account.analytic.account:0
+msgid "Error! You can not create recursive analytic accounts."
+msgstr "¡Error! No puede crear cuentas analíticas recursivas."
+
+#. module: limp_contract
+#: view:account.analytic.invoice.concept:0
+msgid "Related workcenter: %(center)s"
+msgstr "Centro relacionado: %(center)s"
+
+#. module: limp_contract
+#: field:limp.contract.line.home.help,administration_amount:0
+msgid "Administration amount"
+msgstr "Importe Administración"
+
+#. module: limp_contract
+#: view:limp.contract.line.employee.task:0
+msgid "Employees Task"
+msgstr "Tareas de empleados"
+
+#. module: limp_contract
+#: view:update.last.invoice.date:0
+msgid "Update last invoice date wizard"
+msgstr "Asistente actualización últ. fecha factura"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Total Pending"
+msgstr "Total Pendiente"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: limp_contract
+#: field:limp.contract.line.home.help,social_worker_id:0
+msgid "Social worker"
+msgstr "Trabajador social"
+
+#. module: limp_contract
+#: field:limp.contract.line,objective_ids:0
+#: view:limp.contract.line.home.help:0
+msgid "Objectives"
+msgstr "Objetivos"
+
+#. module: limp_contract
+#: field:limp.incidence,department_code:0
+msgid "Dep."
+msgstr "Dep."
+
+#. module: limp_contract
+#: constraint:res.company:0
+msgid "Error! You can not create recursive companies."
+msgstr "¡Error! No puede crear compañías recursivas."
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_analytic_occupation_name
+msgid "account.analytic.occupation.name"
+msgstr "account.analytic.occupation.name"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+msgid "Period"
+msgstr "Periodo"
+
+#. module: limp_contract
+#: field:limp.contract.line.cleaning,analytic_acc_id:0
+#: field:limp.contract.line.home.help,analytic_acc_id:0
+#: field:limp.contract.line.waste,analytic_acc_id:0
+msgid "Analytic account"
+msgstr "Cuenta analítica"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity:0
+#: selection:limp.contract.line.task.rel,freq:0
+#: selection:limp.incidence,periodicity:0
+msgid "Quarterly"
+msgstr "Trimestral"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:limp.contract,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: limp_contract
+#: field:account.analytic.occupation,state_id:0
+msgid "State"
+msgstr "Provincia"
+
+#. module: limp_contract
+#: sql_constraint:hr.employee:0
+msgid "The Glasof code must be unique !"
+msgstr "¡El código de Glasof debe de ser único!"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_hr_employee
+#: view:limp.contract.line.employee.task:0
+#: view:limp.incidence:0
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Invoice General"
+msgstr "General"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,product_qty:0
+msgid "Qty"
+msgstr "Cant."
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: limp_contract
+#: model:ir.module.module,description:limp_contract.module_meta_information
+msgid "Add contract model for Limpergal."
+msgstr "Añade el modelo de contrato para Limpergal."
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_upamount_contract_wz
+msgid "Upamount wizard"
+msgstr "Asistente de subida"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: selection:account.invoice.report.custom,state:0
+msgid "Pro-forma"
+msgstr "Pro-forma"
+
+#. module: limp_contract
+#: selection:limp.contract,state:0
+msgid "Waiting signature"
+msgstr "Esperando firma"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Service Picking"
+msgstr "Albaranes de servicio"
+
+#. module: limp_contract
+#: field:limp.incidence,employee_id:0
+msgid "Worker"
+msgstr "Trabajador"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_service_order_toinvoice
+msgid "service.order.toinvoice"
+msgstr "service.order.toinvoice"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Are you sure of close this contract and his lines?"
+msgstr "¿Está seguro de cerrar este contrato y sus lineas?"
+
+#. module: limp_contract
+#: selection:account.analytic.account,privacy:0
+#: selection:account.invoice.report.custom,privacy:0
+msgid "Public"
+msgstr "Público"
+
+#. module: limp_contract
+#: field:account.invoice.line,hours:0
+#: field:limp.incidence,hours:0
+msgid "Hours"
+msgstr "Horas"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_update_last_invoice_wz
+msgid "Update last invoice date"
+msgstr "Actualizar últ. fecha factura"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.contract_toinvoice_wzd_action
+msgid "Create invoice"
+msgstr "Crear factura"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_upamount_history
+msgid "Contract upamount history"
+msgstr "Historial subidas contratos"
+
+#. module: limp_contract
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Unactive occupations"
+msgstr "Ocupaciones inactivas"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,fiscal_position:0
+msgid "Fiscal Position"
+msgstr "Posición fiscal"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "July"
+msgstr "Julio"
+
+#. module: limp_contract
+#: model:ir.ui.menu,name:limp_contract.menu_limp_contract_conf
+#: view:res.company:0
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: limp_contract
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Inci."
+msgstr "Inci."
+
+#. module: limp_contract
+#: view:account.analytic.occupation.name:0
+#: model:ir.actions.act_window,name:limp_contract.action_account_analytic_occupation_name
+#: model:ir.ui.menu,name:limp_contract.menu_account_analytic_occupation_name_open
+msgid "Occupation names"
+msgstr "Nombres ocupación"
+
+#. module: limp_contract
+#: field:account.analytic.account,concept_amount:0
+msgid "Concepts amount"
+msgstr "Importe conceptos"
+
+#. module: limp_contract
+#: view:limp.contract.line.employee.task:0
+msgid "Load tasks"
+msgstr "Cargar tareas"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Total hours"
+msgstr "Horas Totales"
+
+#. module: limp_contract
+#: view:account.analytic.occupation.name:0
+#: model:ir.ui.menu,name:limp_contract.menu_account_analytic_occupation_name
+msgid "Occupation name"
+msgstr "Nombre ocupación"
+
+#. module: limp_contract
+#: view:account.analytic.invoice.concept:0
+msgid "Related contact: %(contact)s"
+msgstr "Contacto relacionado: %(contact)s"
+
+#. module: limp_contract
+#: selection:account.analytic.account,privacy:0
+#: selection:account.invoice.report.custom,privacy:0
+msgid "Private"
+msgstr "Privado"
+
+#. module: limp_contract
+#: model:ir.ui.menu,name:limp_contract.menu_hr_department
+msgid "Departments"
+msgstr "Departamentos"
+
+#. module: limp_contract
+#: field:stock.service.picking,planified:0
+msgid "Planified"
+msgstr "Planificado"
+
+#. module: limp_contract
+#: field:limp.contract,request_prorogation_date:0
+msgid "Req. prorogation date"
+msgstr "Solicitud prórroga"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,state:0
+msgid "Open"
+msgstr "Abierto"
+
+#. module: limp_contract
+#: field:limp.contract,contact_id:0
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: limp_contract
+#: field:maintenance.task,next_execution_date:0
+msgid "Next execution date"
+msgstr "Sigu. ejecución"
+
+#. module: limp_contract
+#: selection:maintenance.task,interval:0
+msgid "Daily"
+msgstr "Diaria"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_contract_sign
+#: model:ir.model,name:limp_contract.model_limp_contract_signature
+#: view:limp.contract.signature:0
+msgid "Contract signature"
+msgstr "Firma contrato"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,partner_id:0
+#: view:limp.incidence:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Active timesheets"
+msgstr "Partes de horas activos"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_limp_center_type
+#: model:ir.ui.menu,name:limp_contract.menu_limp_center_type
+#: model:ir.ui.menu,name:limp_contract.menu_limp_center_type_open
+#: view:limp.center.type:0
+msgid "Center types"
+msgstr "Tipos centro"
+
+#. module: limp_contract
+#: field:limp.contract.line,incidences_amount:0
+msgid "Incid. amount"
+msgstr "Importe incid."
+
+#. module: limp_contract
+#: field:account.invoice,invoice_header:0
+#: field:limp.contract,invoice_header:0
+msgid "Invoice header"
+msgstr "Cabecera factura"
+
+#. module: limp_contract
+#: field:limp.contract.line,num:0
+msgid "Num."
+msgstr "Núm."
+
+#. module: limp_contract
+#: code:addons/limp_contract/limp_contract.py:279
+#, python-format
+msgid "Cannot close the contract without a final date less or equal today."
+msgstr "No puede cerrar el contrato sin una fecha final menor o igual a hoy."
+
+#. module: limp_contract
+#: code:addons/limp_contract/wizard/service_order_toinvoice.py:35
+#, python-format
+msgid "Picking %s is part of contract %s. You cannot invoice it  manually."
+msgstr "El albarán %s es parte del contrato %s. No puede facturarlo manualmente."
+
+#. module: limp_contract
+#: field:limp.contract.line,incidences:0
+msgid "Contents incidences"
+msgstr "Contiene incidencias"
+
+#. module: limp_contract
+#: view:account.analytic.occupation:0
+#: field:account.analytic.occupation,task_ids:0
+#: field:limp.contract.line.employee.task,task_ids:0
+msgid "Tasks"
+msgstr "Tareas"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_line_home_help
+msgid "Limpergal's contract lines for home help"
+msgstr "Líneas de contrato de Limpergal para ayuda a domicilio."
+
+#. module: limp_contract
+#: field:account.analytic.account,invoice_ids:0
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "December"
+msgstr "Diciembre"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,tuesday:0
+msgid "Tuesday"
+msgstr "Martes"
+
+#. module: limp_contract
+#: model:ir.module.module,shortdesc:limp_contract.module_meta_information
+msgid "Limpergal contracts"
+msgstr "Contratos Limpergal"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Linea de factura"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,month:0
+msgid "Month"
+msgstr "Mes"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,currency_id:0
+msgid "Currency"
+msgstr "Divisa"
+
+#. module: limp_contract
+#: view:limp.contract.upamount.history:0
+msgid "Upamount history"
+msgstr "Historial de subida"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,categ_id:0
+msgid "Category of Product"
+msgstr "Categoría de producto"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_limp_contract_task
+#: model:ir.ui.menu,name:limp_contract.menu_limp_contract_task
+#: model:ir.ui.menu,name:limp_contract.menu_limp_contract_task_open
+#: view:limp.contract.line.employee.task:0
+#: view:limp.contract.line.task.rel:0
+#: view:limp.contract.task:0
+msgid "Contract tasks"
+msgstr "Tareas contrato"
+
+#. module: limp_contract
+#: view:account.analytic.occupation:0
+msgid "Replaced"
+msgstr "Sustituídas"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Associated Partner"
+msgstr "Empresa asociada"
+
+#. module: limp_contract
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Open line"
+msgstr "Abrir línea"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_update_last_invoice_date
+msgid "update.last.invoice.date"
+msgstr "update.last.invoice.date"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+msgid "Invoiced"
+msgstr "Facturado"
+
+#. module: limp_contract
+#: field:limp.contract.line.home.help,check_amount:0
+msgid "Check amount"
+msgstr "Importe cheque"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,type:0
+msgid "Customer Refund"
+msgstr "Rectificativa cliente"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Reopen"
+msgstr "Reabrir"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+msgid "Invoice Date"
+msgstr "Fecha factura"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_invoice_report_custom
+msgid "account.invoice.report.custom"
+msgstr "account.invoice.report.custom"
+
+#. module: limp_contract
+#: field:limp.contract,last_invoice_date:0
+msgid "Last invoice date"
+msgstr "Última fecha factura"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_line_task_rel
+msgid "Limpergal's contract lines and contract_tasks relationship"
+msgstr "Relación entre las líneas de contrato y las tareas Limpergal"
+
+#. module: limp_contract
+#: field:account.analytic.account,privacy:0
+#: field:account.invoice.report.custom,privacy:0
+msgid "Privacy"
+msgstr "Privacidad"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,residual:0
+msgid "Total Residual"
+msgstr "Total Residual"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Inactive remunerations"
+msgstr "Remeneraciones inactivas"
+
+#. module: limp_contract
+#: field:account.analytic.invoice.concept.rel,saturday_afternoon_amount:0
+msgid "Sat. aftno. amount"
+msgstr "Imp. sáb. tarde"
+
+#. module: limp_contract
+#: field:limp.contract,monthly_amount:0
+msgid "Monthly amount"
+msgstr "Importe mensual"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Note"
+msgstr "Notas"
+
+#. module: limp_contract
+#: field:limp.contract,offered_hours:0
+msgid "Offered hours"
+msgstr "Horas ofertadas"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: selection:account.invoice.report.custom,state:0
+#: view:limp.contract:0
+#: selection:limp.contract,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: selection:limp.contract,state:0
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: limp_contract
+#: code:addons/limp_contract/limp_contract_line_cleaning.py:177
+#: code:addons/limp_contract/limp_contract_line_home_help.py:170
+#: code:addons/limp_contract/limp_contract_line_waste.py:93
+#, python-format
+msgid "Only contract lines in draft or cancelled states can be deleted."
+msgstr "Sólo líneas de contrato en borrador o canceladas pueden ser borradas."
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Consumptions"
+msgstr "Consumos"
+
+#. module: limp_contract
+#: view:account.analytic.occupation:0
+msgid "Recurrency Option"
+msgstr "Opciones recurrencia"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,employee_task_line_id:0
+msgid "Employee Task"
+msgstr "Tareas de empleado"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,price_total_tax:0
+msgid "Total With Tax"
+msgstr "Total con impuestos"
+
+#. module: limp_contract
+#: field:maintenance.task,picking_ids:0
+msgid "Picking history"
+msgstr "Historial albaranes"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: limp_contract
+#: field:limp.contract,contract_duration:0
+msgid "Contract duration"
+msgstr "Duración contrato"
+
+#. module: limp_contract
+#: field:limp.contract,payment_term_id:0
+msgid "Payment term"
+msgstr "Plazo de pago"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Línea analítica"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "August"
+msgstr "Agosto"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,monday:0
+msgid "Monday"
+msgstr "Lunes"
+
+#. module: limp_contract
+#: view:limp.contract.line.cleaning:0
+msgid "Cleaning contract line"
+msgstr "Línea contrato limpiezas"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_limp_contract
+#: model:ir.ui.menu,name:limp_contract.menu_limp_contract
+#: model:ir.ui.menu,name:limp_contract.menu_limp_contract_contract
+#: model:ir.ui.menu,name:limp_contract.menu_limp_contract_open
+#: view:limp.contract:0
+msgid "Contracts"
+msgstr "Contratos"
+
+#. module: limp_contract
+#: field:limp.contract,prorogation_end_date:0
+#: help:limp.contract,prorogation_end_date:0
+msgid "Prorogation end date"
+msgstr "Fin prórroga"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "June"
+msgstr "Junio"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_contract_to_invoice
+msgid "contract.to_invoice"
+msgstr "contrato.a_factura"
+
+#. module: limp_contract
+#: field:hr.employee,title:0
+msgid "Title"
+msgstr "Título"
+
+#. module: limp_contract
+#: field:limp.incidence,next_date:0
+msgid "Next date"
+msgstr "Próx. fecha"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Cleaning"
+msgstr "Limpiezas"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_maintenance_task
+msgid "maintenance.task"
+msgstr "maintenance.task"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_analytic_invoice_concept_rel
+msgid "Relationship between analytic account and invoice concepts"
+msgstr "Relación entre cuentas analíticas y conceptos de factura"
+
+#. module: limp_contract
+#: field:limp.contract,active:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "November"
+msgstr "Noviembre"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+msgid "Extended Filters..."
+msgstr "Filtros extendidos..."
+
+#. module: limp_contract
+#: constraint:hr.employee:0
+msgid "Error ! You cannot create recursive Hierarchy of Employees."
+msgstr "¡Error! No se puede crear una jerarquía recursiva de empleados."
+
+#. module: limp_contract
+#: field:limp.contract.line.employee.task,project_date:0
+msgid "Project date"
+msgstr "Fecha proyecto"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity:0
+#: selection:limp.contract.line.task.rel,freq:0
+msgid "Monthy"
+msgstr "Mensual"
+
+#. module: limp_contract
+#: selection:limp.incidence,periodicity:0
+msgid "Exception"
+msgstr "Excepción"
+
+#. module: limp_contract
+#: help:limp.contract,bank_account_id:0
+msgid "Income bank account"
+msgstr "Cuenta bancaria de entrada"
+
+#. module: limp_contract
+#: view:account.analytic.occupation:0
+msgid "Center"
+msgstr "Centro"
+
+#. module: limp_contract
+#: field:limp.contract,hours_per_week:0
+msgid "Hours per week"
+msgstr "Horas por semana"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.contract_home_help_lines_link
+#: field:limp.contract,home_help_line_ids:0
+msgid "Home help lines"
+msgstr "Lineas ayuda a domicilio"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "January"
+msgstr "Enero"
+
+#. module: limp_contract
+#: field:maintenance.task,interval:0
+msgid "Interval"
+msgstr "Intervalo"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: limp_contract
+#: code:addons/limp_contract/limp_contract_task.py:62
+#: constraint:limp.contract.task:0
+#, python-format
+msgid "Error! You can not create recursive tasks."
+msgstr "¡Error! No puede crear tareas recursivas."
+
+#. module: limp_contract
+#: field:account.invoice,contract_id:0
+#: view:limp.contract:0
+#: field:limp.contract.line,contract_id:0
+#: field:limp.contract.line.employee.task,contract_id:0
+#: field:limp.contract.note,contract_id:0
+#: field:limp.contract.upamount.history,contract_id:0
+#: field:maintenance.task,contract_id:0
+#: field:stock.service.picking,contract_id:0
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: limp_contract
+#: view:account.analytic.account:0
+#: field:account.analytic.account,is_picking:0
+msgid "Is picking"
+msgstr "Es albarán"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,date:0
+#: field:limp.contract.note,date:0
+#: field:limp.contract.upamount.history,date:0
+#: field:limp.incidence,incidence_date:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: limp_contract
+#: view:account.analytic.account:0
+#: field:account.analytic.account,is_contract:0
+msgid "Is contract"
+msgstr "Es contrato"
+
+#. module: limp_contract
+#: field:limp.contract.line,employee_task_ids:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Employees Tasks"
+msgstr "Tareas de empleado"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_ir_sequence
+msgid "ir.sequence"
+msgstr "ir.secuencia"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_upamount_contract_wzd
+msgid "upamount.contract.wzd"
+msgstr "upamount.contract.wzd"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_objectives
+msgid "Contract objectives"
+msgstr "Objetivos contrato"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_invoice_concept
+msgid "Invoice Concept"
+msgstr "Concepto de factura"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Invoice Concepts"
+msgstr "Conceptos de factura"
+
+#. module: limp_contract
+#: help:limp.contract,upamount_date:0
+msgid "Estimate up amount date"
+msgstr "Fecha de subida estimada"
+
+#. module: limp_contract
+#: field:limp.contract,prorogation_date:0
+msgid "Prorogation date"
+msgstr "Inicio prórroga"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: field:limp.contract,upamount_history_ids:0
+#: view:limp.contract.upamount.history:0
+msgid "Upamounts history"
+msgstr "Historial de subidas"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_incidence
+#: field:limp.contract.line,incidence_ids:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+#: view:limp.incidence:0
+msgid "Incidences"
+msgstr "Incidencias"
+
+#. module: limp_contract
+#: field:limp.contract,contract_end_date:0
+#: field:limp.contract.line.employee.task,end_date:0
+msgid "End date"
+msgstr "Fecha fin"
+
+#. module: limp_contract
+#: field:limp.center.type,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,price_total:0
+msgid "Total Without Tax"
+msgstr "Base imponible"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,type:0
+msgid "Supplier Refund"
+msgstr "Rectificativa proveedor"
+
+#. module: limp_contract
+#: view:account.analytic.invoice.concept:0
+msgid "Related hours: %(hours)s"
+msgstr "Horas relacionadas: %(hours)s"
+
+#. module: limp_contract
+#: constraint:res.company:0
+msgid "Invalid SEPA Creditor Identifier."
+msgstr "Identificador SEPA del acreedor no válido."
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,type:0
+msgid "Supplier Invoice"
+msgstr "Factura proveedor"
+
+#. module: limp_contract
+#: view:limp.contract.line.home.help:0
+#: field:limp.contract.line.home.help,partner_social_worker_id:0
+msgid "Partner social worker"
+msgstr "Trabajador social cliente"
+
+#. module: limp_contract
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Occupations"
+msgstr "Ocupaciones"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_limp_contract_home_help_line
+#: model:ir.ui.menu,name:limp_contract.menu_limp_contract_line_home_help_open
+#: view:limp.contract.line.home.help:0
+msgid "Home help contract lines"
+msgstr "Lineas de contrato ayuda a domicilio"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "General"
+msgstr "General"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "September"
+msgstr "Septiembre"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Total qty."
+msgstr "Cant. total"
+
+#. module: limp_contract
+#: field:limp.incidence,periodicity:0
+msgid "Frequency"
+msgstr "Frecuencia"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,state:0
+msgid "Done"
+msgstr "Hecho"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: model:ir.model,name:limp_contract.model_account_invoice
+#: view:limp.contract:0
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.signature:0
+#: view:upamount.contract.wzd:0
+#: view:update.last.invoice.date:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,address_contact_id:0
+msgid "Contact Address Name"
+msgstr "Dirección contacto"
+
+#. module: limp_contract
+#: model:ir.ui.menu,name:limp_contract.menu_invoice_concept_open
+msgid "Invoice concept"
+msgstr "Concepto de factura"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Canceled"
+msgstr "Cancelado"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,currency_rate:0
+msgid "Currency Rate"
+msgstr "Ratio divisa"
+
+#. module: limp_contract
+#: view:limp.contract.line.task.rel:0
+#: field:limp.contract.line.task.rel,observations:0
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_analytic_occupation
+msgid "Calendar Event"
+msgstr "Evento de calendario"
+
+#. module: limp_contract
+#: help:maintenance.task,interval_count:0
+msgid "Repeat with interval (Days/Week/Month)"
+msgstr "Repetir con intervalo (Días/Semanas/Meses)"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,type:0
+msgid "Customer Invoice"
+msgstr "Factura cliente"
+
+#. module: limp_contract
+#: field:account.analytic.account,manager_id:0
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,manager_id:0
+#: view:stock.service.picking:0
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: limp_contract
+#: field:limp.contract.task,parent_id:0
+msgid "Parent Task"
+msgstr "Tarea padre"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Execute"
+msgstr "Ejecutar"
+
+#. module: limp_contract
+#: code:addons/limp_contract/limp_contract.py:178
+#, python-format
+msgid "Only contracts in draft or cancelled states can be deleted."
+msgstr "Sólo contratos en borrador o cancelados pueden ser borrados."
+
+#. module: limp_contract
+#: field:limp.contract.line.home.help,beneficiary_amount:0
+msgid "Beneficiary amount"
+msgstr "Importe beneficiario"
+
+#. module: limp_contract
+#: view:account.analytic.account:0
+#: view:account.analytic.occupation:0
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Current"
+msgstr "Actual"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "October"
+msgstr "Octubre"
+
+#. module: limp_contract
+#: view:limp.contract.line.home.help:0
+msgid "Home help contract line"
+msgstr "Línea de contrato ayuda a domicilio"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_note
+msgid "limp.contract.note"
+msgstr "limp.contract.note"
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Are you sure you want to cancel this contract?"
+msgstr "¿Está seguro de que quiere cancelar este contrato?"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_account_invoice_report
+msgid "Invoices Statistics"
+msgstr "Estadísticas de facturas"
+
+#. module: limp_contract
+#: view:limp.contract.signature:0
+msgid "Sign"
+msgstr "Firmar"
+
+#. module: limp_contract
+#: field:maintenance.task,start_date:0
+msgid "Start date"
+msgstr "Fecha inicio"
+
+#. module: limp_contract
+#: field:contract.to_invoice,journal_id:0
+msgid "Destination Journal"
+msgstr "Diario destino"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_line_cleaning
+msgid "Limpergal's contract lines for cleaning"
+msgstr "Lineas de contrato de Limpergal para limpiezas."
+
+#. module: limp_contract
+#: code:addons/limp_contract/limp_contract_line_cleaning.py:60
+#: code:addons/limp_contract/limp_contract_line_employee_task.py:68
+#, python-format
+msgid "Not department defined for this contract line"
+msgstr "Sin departamento definido para esta linea de contrato"
+
+#. module: limp_contract
+#: field:account.analytic.occupation,occupation_name_id:0
+#: view:limp.contract:0
+#: field:limp.contract,note:0
+#: field:limp.contract.line,note:0
+#: field:limp.contract.note,name:0
+#: field:limp.contract.upamount.history,name:0
+#: field:limp.incidence,name:0
+#: field:maintenance.task,name:0
+msgid "Description"
+msgstr "Descripción"
+
+#. module: limp_contract
+#: view:res.company:0
+#: field:res.company,afternoon_time:0
+msgid "Afternoon time"
+msgstr "Hora inicio tarde"
+
+#. module: limp_contract
+#: field:account.analytic.account,analytic_distribution_id:0
+msgid "Analytic Distribution"
+msgstr "Distribución analítica"
+
+#. module: limp_contract
+#: field:limp.contract,stock_service_picking_ids:0
+msgid "Picking lines"
+msgstr "Lineas de servicio"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: limp_contract
+#: field:limp.contract,bank_account_id:0
+msgid "Bank account"
+msgstr "Cuenta bancaria"
+
+#. module: limp_contract
+#: field:limp.contract.line.employee.task,id:0
+msgid "id"
+msgstr "id"
+
+#. module: limp_contract
+#: field:maintenance.task,last_execution_date:0
+msgid "Last execution date"
+msgstr "Últ. ejecución"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,contract_task_id:0
+msgid "Task"
+msgstr "Tarea"
+
+#. module: limp_contract
+#: model:ir.actions.act_window,name:limp_contract.action_limp_contract_cleaning_line
+#: model:ir.ui.menu,name:limp_contract.menu_limp_contract_line_cleaning_open
+#: view:limp.contract.line.cleaning:0
+msgid "Cleaning contract lines"
+msgstr "Lineas de contrato limpiezas"
+
+#. module: limp_contract
+#: field:limp.incidence,picking_id:0
+msgid "Picking"
+msgstr "Albarán"
+
+#. module: limp_contract
+#: field:limp.contract,signature_date:0
+#: view:limp.contract.signature:0
+#: field:limp.contract.signature,contract_date:0
+msgid "Signature date"
+msgstr "Fecha firma"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+#: field:limp.incidence,partner_id:0
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "February"
+msgstr "Febrero"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity:0
+#: selection:limp.contract.line.task.rel,freq:0
+msgid "Annual"
+msgstr "Anual"
+
+#. module: limp_contract
+#: field:account.analytic.occupation.name,name:0
+#: field:limp.center.type,name:0
+#: view:limp.contract:0
+#: field:limp.contract.line.task.rel,name:0
+#: field:limp.contract.objectives,name:0
+#: field:limp.contract.task,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: limp_contract
+#: field:upamount.contract.wzd,upamount_percent:0
+msgid "Upamount (%)"
+msgstr "Subida (%)"
+
+#. module: limp_contract
+#: constraint:hr.employee:0
+msgid "Error ! You cannot select a department for which the employee is the manager."
+msgstr "¡Error! No puede seleccionar un departamento que tenga el empleado como responsable."
+
+#. module: limp_contract
+#: view:limp.contract.line.employee.task:0
+#: field:limp.contract.line.employee.task,employee_ids:0
+#: field:limp.contract.line.employee.task,employee_str:0
+msgid "Employees"
+msgstr "Empleados"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,partner_bank_id:0
+msgid "Bank Account"
+msgstr "Cuenta bancaria"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,product_id:0
+msgid "Product"
+msgstr "Producto"
+
+#. module: limp_contract
+#: field:account.analytic.invoice.concept.rel,holyday_amount:0
+msgid "Holyday amount"
+msgstr "Importe en festivo"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,wednesday:0
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "April"
+msgstr "Abril"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,state:0
+msgid "Invoice State"
+msgstr "Estado factura"
+
+#. module: limp_contract
+#: field:contract.to_invoice,invoice_date:0
+msgid "Invoiced date"
+msgstr "Fecha factura"
+
+#. module: limp_contract
+#: view:upamount.contract.wzd:0
+msgid "Contract upamount wizard"
+msgstr "Asistente de subida contratos"
+
+#. module: limp_contract
+#: field:limp.contract,request_upamount_date:0
+msgid "Req. upamount date"
+msgstr "Solicitud subida"
+
+#. module: limp_contract
+#: field:limp.contract,include_pickings:0
+msgid "Include pickings"
+msgstr "Incluir albaranes"
+
+#. module: limp_contract
+#: field:account.analytic.account,region_id:0
+#: field:account.analytic.occupation,region_id:0
+msgid "Autonomous"
+msgstr "Comunidad autónoma"
+
+#. module: limp_contract
+#: field:limp.contract.line.home.help,contact_identification_id:0
+msgid "ID"
+msgstr "N.I.F./N.I.E."
+
+#. module: limp_contract
+#: view:limp.contract:0
+msgid "Invoicing"
+msgstr "Facturación"
+
+#. module: limp_contract
+#: field:limp.contract,payment_type_id:0
+msgid "Payment type"
+msgstr "Tipo de pago"
+
+#. module: limp_contract
+#: view:account.analytic.account:0
+#: field:account.analytic.account,is_picking_in_contract:0
+msgid "Is picking in contract"
+msgstr "Es albarán en contrato"
+
+#. module: limp_contract
+#: constraint:account.invoice:0
+msgid "Invoice date is previous to an existing invoice."
+msgstr "La fecha de la factura es anterior a una factura existente."
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,address_invoice_id:0
+msgid "Invoice Address Name"
+msgstr "Dirección factura"
+
+#. module: limp_contract
+#: field:limp.contract,seq_lines_id:0
+#: field:limp.contract.line.task.rel,task_sequence:0
+#: field:limp.contract.task,sequence:0
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: limp_contract
+#: view:update.last.invoice.date:0
+msgid "Update"
+msgstr "Actualizar"
+
+#. module: limp_contract
+#: field:account.invoice.report.custom,payment_term:0
+msgid "Payment Term"
+msgstr "Forma de pago"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity:0
+#: selection:limp.contract.line.task.rel,freq:0
+msgid "Biannual"
+msgstr "Semestral"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_stock_service_picking
+msgid "Service pickings"
+msgstr "Albaranes servicio"
+
+#. module: limp_contract
+#: field:account.analytic.account,delegation_id:0
+#: field:account.analytic.line,delegation_id:0
+#: view:account.analytic.occupation:0
+#: field:account.analytic.occupation,delegation_id:0
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,delegation_id:0
+#: field:ir.sequence,delegation_id:0
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+#: field:limp.incidence,delegation_id:0
+msgid "Delegation"
+msgstr "Delegación"
+
+#. module: limp_contract
+#: selection:account.invoice.report.custom,month:0
+msgid "May"
+msgstr "Mayo"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: limp_contract
+#: view:limp.contract.line.employee.task:0
+#: field:limp.contract.line.employee.task,timetable:0
+msgid "Timetable"
+msgstr "Horarios"
+
+#. module: limp_contract
+#: view:account.invoice.report.custom:0
+#: field:account.invoice.report.custom,year:0
+msgid "Year"
+msgstr "Año"
+
+#. module: limp_contract
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Active occupations"
+msgstr "Ocupaciones activas"
+
+#. module: limp_contract
+#: view:upamount.contract.wzd:0
+msgid "Apply"
+msgstr "Aplicar"
+
+#. module: limp_contract
+#: selection:limp.contract.line.task.rel,freq:0
+#: selection:limp.incidence,periodicity:0
+#: selection:maintenance.task,interval:0
+msgid "Weekly"
+msgstr "Semanal"
+
+#. module: limp_contract
+#: field:limp.contract.line.task.rel,saturday:0
+msgid "Saturday"
+msgstr "Sábado"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_limp_contract_line_employee_task
+msgid "Contract employees tasks relationship"
+msgstr "Relacion contratos empleados y tareas"
+
+#. module: limp_contract
+#: view:limp.contract:0
+#: view:limp.contract.line.cleaning:0
+#: view:limp.contract.line.home.help:0
+msgid "Remunerations"
+msgstr "Remuneraciones"
+

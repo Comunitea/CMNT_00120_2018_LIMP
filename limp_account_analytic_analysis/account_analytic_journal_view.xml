@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_analytic_journal_form_add_targets" model="ir.ui.view">
+                <field name="name">account.analytic.journal.form_add_targets</field>
+                <field name="model">account.analytic.journal</field>
+                <field name="inherit_id" ref="account.view_account_analytic_journal_form"/>
+                <field name="type">form</field>
+                <field name="arch" type="xml">
+                    <field name="company_id" position="after">
+                        <separator string="Analytic targets" colspan="4"/>
+                        <field name="analytic_target_ids" nolabel="1" colspan="4">
+                            <tree string="Targets" editable="1">
+                                <field name="fiscalyear_id"/>
+                                <field name="company_id"/>
+                                <field name="delegation_id"/>
+                                <field name="department_id"/>
+                                <field name="manager_id"/>
+                                <field name="target_percent"/>
+                            </tree>
+                            <form string="Target">
+                                <field name="fiscalyear_id"/>
+                                <field name="company_id"/>
+                                <field name="delegation_id"/>
+                                <field name="department_id"/>
+                                <field name="manager_id"/>
+                                <field name="target_percent"/>
+                            </form>
+                        </field>
+                    </field>
+                </field>
+            </record>
+
+    </data>
+</openerp>

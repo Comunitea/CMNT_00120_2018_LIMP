@@ -1,0 +1,79 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#       * city_council
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2013-04-04 19:33+0000\n"
+"PO-Revision-Date: 2013-04-04 19:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: city_council
+#: model:ir.model,name:city_council.model_city_city
+msgid "City"
+msgstr "Ciudad"
+
+#. module: city_council
+#: model:ir.model,name:city_council.model_res_partner_address
+msgid "Partner Addresses"
+msgstr "Direcciones de empresa"
+
+#. module: city_council
+#: wizard_button:city_council.asscociate_zipcode,init,end:0
+msgid "Ok"
+msgstr "Ok"
+
+#. module: city_council
+#: field:city.council,city_ids:0
+msgid "Zipcodes"
+msgstr "Cód. postales"
+
+#. module: city_council
+#: view:city.council:0
+#: wizard_view:city_council.asscociate_zipcode,init:0
+#: model:ir.ui.menu,name:city_council.menu_city_council_partner
+msgid "Councils"
+msgstr "Ayuntamientos"
+
+#. module: city_council
+#: wizard_view:city_council.asscociate_zipcode,init:0
+msgid "The councils has been associated successfully to the Spanish zip codes."
+msgstr "Los ayuntamientos han sido asociados satisfactoriamente a los códifos postales españoles."
+
+#. module: city_council
+#: model:ir.actions.wizard,name:city_council.wizard_associate_zipcode_coucil
+#: model:ir.ui.menu,name:city_council.wizard_associate_zipcode_coucil_menu
+msgid "Associate council with zipcode"
+msgstr "Asociar ayuntamiento con cód. postal"
+
+#. module: city_council
+#: model:ir.model,name:city_council.model_city_council
+msgid "city.council"
+msgstr "city.council"
+
+#. module: city_council
+#: field:city.city,council_id:0
+#: view:city.council:0
+#: field:city.council,name:0
+#: model:ir.actions.act_window,name:city_council.action_city_council
+#: field:res.partner.address,council_id:0
+msgid "Council"
+msgstr "Ayuntamiento"
+
+#. module: city_council
+#: wizard_view:city_council.asscociate_zipcode,init:0
+msgid "Result:"
+msgstr "Resultado:"
+
+#. module: city_council
+#: view:city.council:0
+msgid "Cities"
+msgstr "Ciudades"
+

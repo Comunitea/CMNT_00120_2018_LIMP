@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_create_service_pick_wzd" model="ir.ui.view">
+              <field name="name">create_service_picking_wzd</field>
+              <field name="model">create.service.picking.from.sale</field>
+              <field name="type">form</field>
+              <field name="arch" type="xml">
+                <form string="Pricelist">
+                    <separator colspan="4" string="Select the service picking type to create:"/>
+                    <field name="picking_type"/>
+                    <separator colspan="4"/>
+                    <group col="2" colspan="4">
+                         <button icon="gtk-cancel" special="cancel" string="Close"/>
+                         <button name="action_create_picking" string="Create"  type="object"  icon="gtk-print"/>
+                    </group>
+                </form>
+              </field>
+        </record>
+
+        <record id="action_view_create_service_pick_wzd" model="ir.actions.act_window">
+            <field name="name">Create service picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">create.service.picking.from.sale</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

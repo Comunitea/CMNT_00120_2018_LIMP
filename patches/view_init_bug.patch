@@ -1,0 +1,31 @@
+=== modified file 'stock/wizard/stock_return_picking.py'
+--- stock/wizard/stock_return_picking.py        2011-01-18 13:41:41 +0000
++++ stock/wizard/stock_return_picking.py        2013-11-06 11:18:19 +0000
+@@ -85,9 +85,9 @@
+                     if m.product_qty * m.product_uom.factor >= return_history[m.id]:
+                         valid_lines += 1
+                         if 'return%s'%(m.id) not in self._columns:
+-                            self._columns['return%s'%(m.id)] = fields.float(string=m.name, required=True)
++                            self._columns['return%s'%(m.id)] = fields.float(string=m.name)
+                         if 'invoice_state' not in self._columns:
+-                            self._columns['invoice_state'] = fields.selection([('2binvoiced', 'To be refunded/invoiced'), ('none', 'No invoicing')], string='Invoicing', required=True)
++                            self._columns['invoice_state'] = fields.selection([('2binvoiced', 'To be refunded/invoiced'), ('none', 'No invoicing')], string='Invoicing')
+             if not valid_lines:
+                 raise osv.except_osv(_('Warning !'), _("There are no products to return (only lines in Done state and not fully returned yet can be returned)!"))
+         return res
+@@ -119,11 +119,11 @@
+                     return_history[m.id] += rec.product_qty
+                 quantity = m.product_qty
+                 if m.state=='done' and quantity > return_history[m.id]:
+-                    arch_lst.append('<field name="return%s"/>\n<newline/>' % (m.id,))
+-                    res['fields']['return%s' % m.id]={'string':m.name, 'type':'float', 'required':True}
++                    arch_lst.append('<field name="return%s" required="1"/>\n<newline/>' % (m.id,))
++                    res['fields']['return%s' % m.id]={'string':m.name, 'type':'float'}
+                     res.setdefault('returns', []).append(m.id)
+             arch_lst.append('<field name="invoice_state"/>\n<newline/>')
+-            res['fields']['invoice_state']={'string':_('Invoicing'), 'type':'selection','required':True, 'selection':[('2binvoiced', _('To be refunded/invoiced')), ('none', _('No invoicing'))]}
++            res['fields']['invoice_state']={'string':_('Invoicing'), 'type':'selection', 'selection':[('2binvoiced', _('To be refunded/invoiced')), ('none', _('No invoicing'))]}
+             arch_lst.append('<group col="2" colspan="4">')
+             arch_lst.append('<button icon="gtk-cancel" special="cancel" string="Cancel" />')
+             arch_lst.append('<button name="create_returns" string="Return" colspan="1" type="object" icon="gtk-apply" />')
+

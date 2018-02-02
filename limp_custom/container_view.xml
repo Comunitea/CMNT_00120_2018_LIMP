@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="container_tree_add_delegation" model="ir.ui.view">
+            <field name="name">container.tree</field>
+            <field name="model">container</field>
+            <field name="inherit_id" ref="containers_management.container_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="delegation_id"/>
+                    <field name="delegation_owner_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="container_form_add_delegation" model="ir.ui.view">
+            <field name="name">container.form</field>
+            <field name="model">container</field>
+            <field name="inherit_id" ref="containers_management.container_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="delegation_id"/>
+                    <field name="delegation_owner_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="container_search_add_delegation" model="ir.ui.view">
+            <field name="name">container.search</field>
+            <field name="model">container</field>
+            <field name="inherit_id" ref="containers_management.container_search"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="delegation_id"/>
+                    <field name="delegation_owner_id"/>
+                </field>
+                <filter string="Placement" position="after">
+                    <filter string="Delegation" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Owner" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'delegation_owner_id'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>

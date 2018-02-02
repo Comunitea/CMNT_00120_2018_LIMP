@@ -1,0 +1,284 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#       * containers_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2013-02-22 13:30+0000\n"
+"PO-Revision-Date: 2013-02-22 13:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 30"
+msgstr "Patera 30"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 1,5"
+msgstr "Patera 1,5"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 3"
+msgstr "Patera 3"
+
+#. module: containers_management
+#: field:container,container_placement:0
+msgid "Container placement"
+msgstr "Colocación contenedor"
+
+#. module: containers_management
+#: view:container:0
+#: view:container.move:0
+#: field:container.move,container_id:0
+msgid "Container"
+msgstr "Contenedor"
+
+#. module: containers_management
+#: field:container,dimensions:0
+msgid "Dimensions"
+msgstr "Dimensiones"
+
+#. module: containers_management
+#: model:ir.model,name:containers_management.model_container_move
+msgid "History of container moves"
+msgstr "Historial de movimiento del contenedor"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Trapezoidal 8"
+msgstr "Trapezoidal 8"
+
+#. module: containers_management
+#: help:container,situation_id:0
+msgid "Current situation, customer address or available in company addresses"
+msgstr "Ubicación actual, dirección de cliente o disponible en ubicación de la compañía"
+
+#. module: containers_management
+#: view:container:0
+#: view:container.move:0
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Other"
+msgstr "Otro"
+
+#. module: containers_management
+#: view:container:0
+#: field:container,note:0
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: containers_management
+#: selection:container,shape:0
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: containers_management
+#: view:container:0
+#: view:container.move:0
+#: model:ir.actions.act_window,name:containers_management.action_container_move
+#: model:ir.ui.menu,name:containers_management.menu_containers_move_open
+msgid "Container moves"
+msgstr "Movimientos contenedor"
+
+#. module: containers_management
+#: view:container:0
+#: field:container,type:0
+#: view:container.move:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: containers_management
+#: view:container:0
+#: model:ir.actions.act_window,name:containers_management.container_action
+#: model:ir.model,name:containers_management.model_container
+#: model:ir.ui.menu,name:containers_management.menu_containers
+#: model:ir.ui.menu,name:containers_management.menu_containers_open
+msgid "Containers"
+msgstr "Contenedores"
+
+#. module: containers_management
+#: selection:container,shape:0
+msgid "Opened"
+msgstr "Abierto"
+
+#. module: containers_management
+#: field:container,partner_id:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: containers_management
+#: view:container.move:0
+msgid "Outputs"
+msgstr "Salidas"
+
+#. module: containers_management
+#: field:container,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 9"
+msgstr "Patera 9"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 18"
+msgstr "Patera 18"
+
+#. module: containers_management
+#: field:container.move,move_date:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: containers_management
+#: model:ir.model,name:containers_management.model_res_partner_address
+msgid "Partner Addresses"
+msgstr "Direcciones de empresa"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 7"
+msgstr "Patera 7"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 12"
+msgstr "Patera 12"
+
+#. module: containers_management
+#: selection:container,container_placement:0
+msgid "On building"
+msgstr "En obra"
+
+#. module: containers_management
+#: view:container:0
+#: view:container.move:0
+msgid "Container move"
+msgstr "Movimiento contenedor"
+
+#. module: containers_management
+#: view:container:0
+msgid "Placement"
+msgstr "Colocación"
+
+#. module: containers_management
+#: selection:container.move,move_type:0
+msgid "In"
+msgstr "Entra"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Trapezoidal 6"
+msgstr "Trapezoidal 6"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Trapezoidal 4"
+msgstr "Trapezoidal 4"
+
+#. module: containers_management
+#: view:container.move:0
+#: field:container.move,type:0
+msgid "Container type"
+msgstr "Tipo contenedor"
+
+#. module: containers_management
+#: field:res.partner.address,containers_store:0
+msgid "Containers store"
+msgstr "Almacén contenedores"
+
+#. module: containers_management
+#: field:container,situation_id:0
+#: field:container.move,address_id:0
+msgid "Situation"
+msgstr "Ubicación"
+
+#. module: containers_management
+#: field:container.move,move_type:0
+msgid "Move type"
+msgstr "Tipo movimiento"
+
+#. module: containers_management
+#: view:container:0
+#: field:container,history_ids:0
+msgid "History"
+msgstr "Historial"
+
+#. module: containers_management
+#: field:container,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: containers_management
+#: view:container:0
+msgid "Placed"
+msgstr "Colocado"
+
+#. module: containers_management
+#: selection:container,container_placement:0
+msgid "On street"
+msgstr "En vía pública"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 14"
+msgstr "Patera 14"
+
+#. module: containers_management
+#: view:container:0
+#: field:container,shape:0
+msgid "Shape"
+msgstr "Forma"
+
+#. module: containers_management
+#: selection:container,type:0
+#: selection:container.move,type:0
+msgid "Flat Dumpster 4"
+msgstr "Patera 4"
+
+#. module: containers_management
+#: field:container,capacity:0
+msgid "Capacity (m³)"
+msgstr "Capacidad (m³)"
+
+#. module: containers_management
+#: view:container:0
+#: field:container,home:0
+msgid "Home"
+msgstr "En almacén"
+
+#. module: containers_management
+#: selection:container.move,move_type:0
+msgid "Out"
+msgstr "Sale"
+
+#. module: containers_management
+#: field:container,active:0
+msgid "Active"
+msgstr "Activo"
+

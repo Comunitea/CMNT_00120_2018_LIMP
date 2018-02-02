@@ -1,0 +1,193 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Omar <omar@pexego.es>, 2011.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-10 14:03+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /tmp/tmp.Js4iStyFXN:753 /tmp/tmp.Js4iStyFXN:1049 /tmp/tmp.Js4iStyFXN:1345
+msgid "Picking no.:"
+msgstr "Albarán Nº:"
+
+#: /tmp/tmp.Js4iStyFXN:773 /tmp/tmp.Js4iStyFXN:1069 /tmp/tmp.Js4iStyFXN:1365
+msgid "Quotation:"
+msgstr "Presupuesto:"
+
+#: /tmp/tmp.Js4iStyFXN:777 /tmp/tmp.Js4iStyFXN:1073 /tmp/tmp.Js4iStyFXN:1369
+msgid "VAT:"
+msgstr "NIF:"
+
+#: /tmp/tmp.Js4iStyFXN:785 /tmp/tmp.Js4iStyFXN:1081 /tmp/tmp.Js4iStyFXN:1377
+msgid "Phone:"
+msgstr "Teléfono:"
+
+#: /tmp/tmp.Js4iStyFXN:793 /tmp/tmp.Js4iStyFXN:1089 /tmp/tmp.Js4iStyFXN:1385
+msgid "Fax:"
+msgstr "Fax:"
+
+#: /tmp/tmp.Js4iStyFXN:801 /tmp/tmp.Js4iStyFXN:1097 /tmp/tmp.Js4iStyFXN:1393
+msgid "Address invoice:"
+msgstr "Domicilio de cobro:"
+
+#: /tmp/tmp.Js4iStyFXN:809 /tmp/tmp.Js4iStyFXN:1105 /tmp/tmp.Js4iStyFXN:1401
+msgid "Account no.:"
+msgstr "Número de cuenta:"
+
+#: /tmp/tmp.Js4iStyFXN:817 /tmp/tmp.Js4iStyFXN:1113 /tmp/tmp.Js4iStyFXN:1409
+#: /tmp/tmp.PYzM5nyKT2:693 /tmp/tmp.PYzM5nyKT2:761 /tmp/tmp.PYzM5nyKT2:829
+msgid "Name:"
+msgstr "Nombre:"
+
+#: /tmp/tmp.Js4iStyFXN:825 /tmp/tmp.Js4iStyFXN:1121 /tmp/tmp.Js4iStyFXN:1417
+msgid "Address:"
+msgstr "Domicilio:"
+
+#: /tmp/tmp.Js4iStyFXN:837 /tmp/tmp.Js4iStyFXN:1133 /tmp/tmp.Js4iStyFXN:1429
+msgid "Poblation:"
+msgstr "Población:"
+
+#: /tmp/tmp.Js4iStyFXN:841 /tmp/tmp.Js4iStyFXN:1137 /tmp/tmp.Js4iStyFXN:1433
+msgid "State:"
+msgstr "Provincia:"
+
+#: /tmp/tmp.Js4iStyFXN:849 /tmp/tmp.Js4iStyFXN:1145 /tmp/tmp.Js4iStyFXN:1441
+msgid "Zip:"
+msgstr "CP:"
+
+#: /tmp/tmp.Js4iStyFXN:857 /tmp/tmp.Js4iStyFXN:1153 /tmp/tmp.Js4iStyFXN:1449
+msgid "Customer data"
+msgstr "Datos del cliente"
+
+#: /tmp/tmp.Js4iStyFXN:861 /tmp/tmp.Js4iStyFXN:1157 /tmp/tmp.Js4iStyFXN:1453
+msgid "Services data"
+msgstr "Datos del servicio"
+
+#: /tmp/tmp.Js4iStyFXN:873 /tmp/tmp.Js4iStyFXN:1169 /tmp/tmp.Js4iStyFXN:1465
+msgid "Employees"
+msgstr "Operarios"
+
+#: /tmp/tmp.Js4iStyFXN:885 /tmp/tmp.Js4iStyFXN:1181 /tmp/tmp.Js4iStyFXN:1477
+msgid "Waste"
+msgstr "Residuo"
+
+#: /tmp/tmp.Js4iStyFXN:889 /tmp/tmp.Js4iStyFXN:1185 /tmp/tmp.Js4iStyFXN:1481
+msgid "Description:"
+msgstr "Descripción:"
+
+#: /tmp/tmp.Js4iStyFXN:897 /tmp/tmp.Js4iStyFXN:1193 /tmp/tmp.Js4iStyFXN:1489
+msgid "Dangerous:"
+msgstr "Peligroso:"
+
+#: /tmp/tmp.Js4iStyFXN:901 /tmp/tmp.Js4iStyFXN:913 /tmp/tmp.Js4iStyFXN:1197
+#: /tmp/tmp.Js4iStyFXN:1209 /tmp/tmp.Js4iStyFXN:1493 /tmp/tmp.Js4iStyFXN:1505
+msgid "Yes"
+msgstr "Si"
+
+#: /tmp/tmp.Js4iStyFXN:901 /tmp/tmp.Js4iStyFXN:913 /tmp/tmp.Js4iStyFXN:1197
+#: /tmp/tmp.Js4iStyFXN:1209 /tmp/tmp.Js4iStyFXN:1493 /tmp/tmp.Js4iStyFXN:1505
+msgid "No"
+msgstr "No"
+
+#: /tmp/tmp.Js4iStyFXN:909 /tmp/tmp.Js4iStyFXN:1205 /tmp/tmp.Js4iStyFXN:1501
+msgid "Waste transfer:"
+msgstr "Traslado residuo:"
+
+#: /tmp/tmp.Js4iStyFXN:917 /tmp/tmp.Js4iStyFXN:1213 /tmp/tmp.Js4iStyFXN:1509
+msgid "Manager:"
+msgstr "Gestor:"
+
+#: /tmp/tmp.Js4iStyFXN:925 /tmp/tmp.Js4iStyFXN:1221 /tmp/tmp.Js4iStyFXN:1517
+msgid "Gross:"
+msgstr "Bruto:"
+
+#: /tmp/tmp.Js4iStyFXN:933 /tmp/tmp.Js4iStyFXN:1229 /tmp/tmp.Js4iStyFXN:1525
+msgid "Tare:"
+msgstr "Tara:"
+
+#: /tmp/tmp.Js4iStyFXN:941 /tmp/tmp.Js4iStyFXN:1237 /tmp/tmp.Js4iStyFXN:1533
+msgid "Net:"
+msgstr "Neto:"
+
+#: /tmp/tmp.Js4iStyFXN:949 /tmp/tmp.Js4iStyFXN:1245 /tmp/tmp.Js4iStyFXN:1541
+msgid "Volume:"
+msgstr "Volumen:"
+
+#: /tmp/tmp.Js4iStyFXN:957 /tmp/tmp.Js4iStyFXN:1253 /tmp/tmp.Js4iStyFXN:1549
+msgid "DCS no.:"
+msgstr "Nº DCS:"
+
+#: /tmp/tmp.Js4iStyFXN:965 /tmp/tmp.Js4iStyFXN:1261 /tmp/tmp.Js4iStyFXN:1557
+msgid "Amount"
+msgstr "Importe"
+
+#: /tmp/tmp.Js4iStyFXN:969 /tmp/tmp.Js4iStyFXN:1265 /tmp/tmp.Js4iStyFXN:1561
+msgid "Service amount:"
+msgstr "Importe servicio:"
+
+#: /tmp/tmp.Js4iStyFXN:973 /tmp/tmp.Js4iStyFXN:1269 /tmp/tmp.Js4iStyFXN:1565
+msgid "Tax:"
+msgstr "Iva:"
+
+#: /tmp/tmp.Js4iStyFXN:977 /tmp/tmp.Js4iStyFXN:1273 /tmp/tmp.Js4iStyFXN:1569
+msgid "Amount total:"
+msgstr "Total servicio:"
+
+#: /tmp/tmp.Js4iStyFXN:981 /tmp/tmp.Js4iStyFXN:1277 /tmp/tmp.Js4iStyFXN:1573
+msgid "Page "
+msgstr "Página "
+
+#: /tmp/tmp.Js4iStyFXN:981 /tmp/tmp.Js4iStyFXN:1277 /tmp/tmp.Js4iStyFXN:1573
+msgid " of"
+msgstr " de"
+
+#: /tmp/tmp.PYzM5nyKT2:701 /tmp/tmp.PYzM5nyKT2:769 /tmp/tmp.PYzM5nyKT2:837
+msgid "Hours:"
+msgstr "Horas:"
+
+#: /tmp/tmp.2Dq8AZ4efI:707 /tmp/tmp.2Dq8AZ4efI:831 /tmp/tmp.2Dq8AZ4efI:955
+msgid "Service:"
+msgstr "Servicio:"
+
+#: /tmp/tmp.2Dq8AZ4efI:715 /tmp/tmp.2Dq8AZ4efI:839 /tmp/tmp.2Dq8AZ4efI:963
+msgid "Vehicle:"
+msgstr "Vehículo:"
+
+#: /tmp/tmp.2Dq8AZ4efI:723 /tmp/tmp.2Dq8AZ4efI:847 /tmp/tmp.2Dq8AZ4efI:971
+msgid "Departure kms.:"
+msgstr "Km. salida:"
+
+#: /tmp/tmp.2Dq8AZ4efI:731 /tmp/tmp.2Dq8AZ4efI:855 /tmp/tmp.2Dq8AZ4efI:979
+msgid "Arrival:"
+msgstr "Km. llegada:"
+
+#: /tmp/tmp.2Dq8AZ4efI:739 /tmp/tmp.2Dq8AZ4efI:863 /tmp/tmp.2Dq8AZ4efI:987
+msgid "Departure hour:"
+msgstr "Hora salida:"
+
+#: /tmp/tmp.2Dq8AZ4efI:747 /tmp/tmp.2Dq8AZ4efI:871 /tmp/tmp.2Dq8AZ4efI:995
+msgid "Displacement hours:"
+msgstr "Horas desplazamiento:"
+
+#: /tmp/tmp.2Dq8AZ4efI:755 /tmp/tmp.2Dq8AZ4efI:879 /tmp/tmp.2Dq8AZ4efI:1003
+msgid "Work hours:"
+msgstr "Horas trabajo:"
+
+#: /tmp/tmp.2Dq8AZ4efI:763 /tmp/tmp.2Dq8AZ4efI:887 /tmp/tmp.2Dq8AZ4efI:1011
+msgid "Transfer hours:"
+msgstr "Horas traslado:"
+
+#: /tmp/tmp.2Dq8AZ4efI:771 /tmp/tmp.2Dq8AZ4efI:895 /tmp/tmp.2Dq8AZ4efI:1019
+msgid "Arrival hours:"
+msgstr "Horas llegada:"

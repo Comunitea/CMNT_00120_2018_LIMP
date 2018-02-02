@@ -1,0 +1,7 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_account_analytic_invoice_concept_account","account.analytic.invoice.concept","model_account_analytic_invoice_concept","base.group_user",1,0,0,0
+"access_account_analytic_invoice_concept_accountant","account.analytic.invoice.concept accountant","model_account_analytic_invoice_concept","account.group_account_user",1,1,1,0
+"access_account_analytic_invoice_concept_account_manager","account.analytic.invoice.concept","model_account_analytic_invoice_concept","account.group_account_manager",1,1,1,1
+"access_account_analytic_concept_rel_account","account.analytic.invoice.concept.rel","model_account_analytic_invoice_concept_rel","base.group_user",1,0,0,0
+"access_account_analytic_concept_rel_accountant","account.analytic.invoice.concept.rel accountant","model_account_analytic_invoice_concept_rel","account.group_account_user",1,1,1,1
+"access_account_analytic_concept_rel_account_manager","account.analytic.invoice.concept.rel","model_account_analytic_invoice_concept_rel","account.group_account_manager",1,1,1,1

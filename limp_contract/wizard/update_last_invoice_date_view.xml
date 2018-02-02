@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="update_last_invoice_date_wzd_form" model="ir.ui.view">
+            <field name="name">update.last_invoice_date.wzd.form</field>
+            <field name="model">update.last.invoice.date</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Update last invoice date wizard">
+                    <field name="new_date"/>
+                    <group colspan="4">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" name="update_date" string="Update" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <act_window
+            id="action_update_last_invoice_wz" name="Update last invoice date"
+            res_model="update.last.invoice.date"
+            src_model="limp.contract"
+            view_type="form"
+            view_mode="form"
+            target="new"
+            view_id="update_last_invoice_date_wzd_form"
+            key2="client_action_multi"
+            />
+
+    </data>
+</openerp>

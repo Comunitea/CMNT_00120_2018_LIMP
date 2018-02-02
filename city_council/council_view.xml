@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+    <record model="ir.ui.view" id="view_city_council_tree">
+        <field name="name">city.council.tree</field>
+        <field name="model">city.council</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Councils">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_city_council_form">
+        <field name="name">city.council.form</field>
+        <field name="model">city.council</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Council">
+                <field name="name"/>
+                <separator string="Cities" colspan="4"/>
+                <field name="city_ids" colspan="4" nolabel="1">
+                    <tree editable="top">
+                        <field name="zipcode"/>
+                        <field name="name"/>
+                        <field name="state_id"/>
+                    </tree>
+                    <form>
+                        <field name="zipcode"/>
+                        <field name="name"/>
+                        <field name="state_id"/>
+                    </form>
+                </field>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_city_council">
+        <field name="name">Council</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">city.council</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem name="Councils" groups="base.group_system" action="action_city_council" parent="base.menu_localisation" id="menu_city_council_partner"/>
+    
+    <record model="ir.ui.view" id="city.partners_form_add_location">
+        <field name="name">partners_form_add_location</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
+        <field name="arch" type="xml">
+            <field name="city" position="before">
+                <field name="council_id"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="partners_form_del_zip">
+        <field name="name">partners_form_del_zip</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
+        <field name="arch" type="xml">
+            <field name="zip" position="replace">
+                <field name="zip" on_change="on_change_fields(zip)"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="city.partners_form_add_location1">
+        <field name="name">partners_form_add_location1</field>
+        <field name="model">res.partner.address</field>
+        <field name="inherit_id" ref="base.view_partner_address_form1"/>
+        <field name="arch" type="xml">
+            <field name="city" position="before">
+                <field name="council_id"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="partners_form_del_zip1">
+        <field name="name">partners_form_del_zip1</field>
+        <field name="model">res.partner.address</field>
+        <field name="inherit_id" ref="base.view_partner_address_form1"/>
+        <field name="arch" type="xml">
+            <field name="zip" position="replace">
+                <field name="zip" on_change="on_change_fields(zip)"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="city.partners_form_add_location2">
+        <field name="name">partners_form_add_location2</field>
+        <field name="model">res.partner.address</field>
+        <field name="inherit_id" ref="base.view_partner_address_form2"/>
+        <field name="arch" type="xml">
+            <field name="city" position="before">
+                <field name="council_id"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="partners_form_del_zip2">
+        <field name="name">partners_form_del_zip2</field>
+        <field name="model">res.partner.address</field>
+        <field name="inherit_id" ref="base.view_partner_address_form2"/>
+        <field name="arch" type="xml">
+            <field name="zip" position="replace">
+                <field name="zip" on_change="on_change_fields(zip)"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_city_form_add_council">
+        <field name="name">city.city.form.add_council</field>
+        <field name="model">city.city</field>
+        <field name="inherit_id" ref="city.view_city_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="council_id" required="1"/>
+            </field>
+        </field>
+    </record>
+        
+    </data>
+</openerp>

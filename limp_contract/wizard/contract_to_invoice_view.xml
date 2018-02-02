@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <act_window
+            id="contract_toinvoice_wzd_action" name="Create invoice"
+            res_model="contract.to_invoice"
+            src_model="limp.contract"
+            view_type="form"
+            view_mode="form"
+            target="new"
+            view_id="invoice_concept.contract_toinvoice_wzd_form"
+            key2="client_action_multi"
+            />
+        
+    </data>
+</openerp>

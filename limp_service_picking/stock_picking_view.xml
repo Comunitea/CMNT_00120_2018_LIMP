@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_picking_in_form_add_from_spicking" model="ir.ui.view">
+            <field name="name">stock.picking.in.form.add_from_spicking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="backorder_id" position="after">
+                    <field name="from_spicking"/>
+                </field>
+                <xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="after">
+                    <field name="description"/>
+                </xpath>
+                <xpath expr="//field[@name='move_lines']/form/group[1]" position="before">
+                    <field name="description" colspan="4"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_picking_out_form_rep_buttons" model="ir.ui.view">
+            <field name="name">stock.picking.out.form.rep_buttons</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="invoice_state" position="after">
+                    <field name="invoice_type"/>
+                </field>
+                <field name="auto_picking" position="before">
+                    <field name="waste_or_arid"/>
+                    <field name="manager_or_productor"/>
+                    <group colspan="4" col="6">
+                        <field name="carrier_id"/>
+                        <field name="driver_id"/>
+                        <field name="license_plate"/>
+                        <field name="delivery_kms"/>
+                        <field name="arrival_kms"/>
+                        <field name="delivery_hours" widget="float_time"/>
+                        <field name="displacement_hours" widget="float_time"/>
+                        <field name="work_hours" widget="float_time"/>
+                        <field name="tranfer_hours" widget="float_time"/>
+                        <field name="arrival_hours" widget="float_time"/>
+                    </group>
+                </field>
+                <button name="draft_force_assign" position="replace">
+                    <button name="draft_force_assign" states="draft" string="Confirm" type="object" icon="gtk-ok"/>
+                </button>
+                <button name="draft_validate" position="replace">
+                </button>
+                <xpath expr="//field[@name='move_lines']/tree/field[@name='product_id']" position="after">
+                    <field name="description"/>
+                </xpath>
+                <xpath expr="//field[@name='move_lines']/form/group[1]" position="before">
+                    <field name="description" colspan="4"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_picking_out_search_add_invoice_type" model="ir.ui.view">
+            <field name="name">stock.picking.out.search.add_invoice_type</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="invoice_type"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_move_search_reception_incoming_picking_add_dates" model="ir.ui.view">
+            <field name="name">stock.move.incoming.search2.add_dates</field>
+            <field name="model">stock.move</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="stock.view_move_search_reception_incoming_picking"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="date"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_picking_form_add_memory_field" model="ir.ui.view">
+            <field name="name">stock.picking.form.add_memory_field</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="backorder_id" position="after">
+                    <field name="memory_include"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_picking_out_form_add_memory_field" model="ir.ui.view">
+            <field name="name">stock.picking.out.form.add_memory_field</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="backorder_id" position="after">
+                    <field name="memory_include"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_picking_in_form_add_memory_field" model="ir.ui.view">
+            <field name="name">stock.picking.in.form.add_memory_field</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_in_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="backorder_id" position="after">
+                    <field name="memory_include"/>
+                </field>
+            </field>
+        </record>
+
+         <record id="view_picking_out_search_add_memory_field" model="ir.ui.view">
+            <field name="name">stock.picking.out.search.add_memory_field</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_out_search"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="memory_include"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_picking_in_search_add_memory_field" model="ir.ui.view">
+            <field name="name">stock.picking.in.search.add_memory_field</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_in_search"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="memory_include"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

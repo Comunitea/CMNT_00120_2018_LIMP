@@ -1,0 +1,91 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* limp_account_export_glasof
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.4\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2013-07-16 11:09+0000\n"
+"PO-Revision-Date: 2013-07-16 11:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: limp_account_export_glasof
+#: view:export.account.to.glasof:0
+msgid "Export Account moves to glasof"
+msgstr "Exportar asientos contables a Glasof"
+
+#. module: limp_account_export_glasof
+#: field:res.company,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: limp_account_export_glasof
+#: field:export.account.to.glasof,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: limp_account_export_glasof
+#: field:export.account.to.glasof,file_xsubcta:0
+msgid "File xSubCta"
+msgstr "Fichero xSubCta"
+
+#. module: limp_account_export_glasof
+#: view:export.account.to.glasof:0
+msgid "Do you want to export the selected account moves?"
+msgstr "¿Desea exportar los apuntes de los asientos contables selecionados?"
+
+#. module: limp_account_export_glasof
+#: model:ir.model,name:limp_account_export_glasof.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: limp_account_export_glasof
+#: constraint:res.company:0
+msgid "Error! You can not create recursive companies."
+msgstr "¡Error! No puede crear compañías recursivas."
+
+#. module: limp_account_export_glasof
+#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:65
+#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:81
+#, python-format
+msgid "The partner %s has not field ref. Please fill this field and try again."
+msgstr "La empresa %s no tiene campo referencia. Por favor rellena este campo y prueba de nuevo."
+
+#. module: limp_account_export_glasof
+#: view:export.account.to.glasof:0
+msgid "Export"
+msgstr "Exportar"
+
+#. module: limp_account_export_glasof
+#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:65
+#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:81
+#, python-format
+msgid "Error"
+msgstr "Error"
+
+#. module: limp_account_export_glasof
+#: view:export.account.to.glasof:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: limp_account_export_glasof
+#: field:export.account.to.glasof,file_xdiario:0
+msgid "File xDiario"
+msgstr "Fichero xDiario"
+
+#. module: limp_account_export_glasof
+#: model:ir.actions.act_window,name:limp_account_export_glasof.act_export_to_glasof
+msgid "Export to Glasof"
+msgstr "Exportar a Glasof"
+
+#. module: limp_account_export_glasof
+#: model:ir.model,name:limp_account_export_glasof.model_export_account_to_glasof
+msgid "export.account.to.glasof"
+msgstr "export.account.to.glasof"
+

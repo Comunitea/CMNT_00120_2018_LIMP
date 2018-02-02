@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+        <record id="absence_tree" model="ir.ui.view">
+            <field name="name">absence.tree</field>
+            <field name="model">absence</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Absence">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="absence_form" model="ir.ui.view">
+            <field name="name">absence.form</field>
+            <field name="model">absence</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Absence">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="incidence_id"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_absence" model="ir.actions.act_window">
+            <field name="name">Absences</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">absence</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem action="action_absence" id="menu_absence_open" parent="hr.menu_hr_configuration" name="Absences"/>
+
+
+
+    </data>
+</openerp>

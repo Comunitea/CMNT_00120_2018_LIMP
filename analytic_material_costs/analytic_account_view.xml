@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_account_analytic_account_form_add_consumptions" model="ir.ui.view">
+            <field name="name">account.analytic.account.form.add_consumptions</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="account.view_account_analytic_account_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <page string="Account Data" position="after">
+                    <page string="Consumptions">
+                        <field name="analytic_move_ids" nolabel="1" colspan="4">
+                           <tree string="Consumptions" editable="top">
+                                <field name="employee_id"/>
+                                <field name="product_id"/>
+                                <field name="product_qty"/>
+                                <field name="date"/>
+                                <field name="state" invisible="1"/>
+                           </tree>
+                           <form string="Consumption">
+                                <field name="employee_id"/>
+                                <newline/>
+                                <field name="product_id"/>
+                                <field name="product_qty"/>
+                                <field name="move_id"/>
+                                <field name="date"/>
+                                <field name="state"/>
+                           </form>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

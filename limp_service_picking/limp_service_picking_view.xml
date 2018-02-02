@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_service_picking_tree" model="ir.ui.view">
+            <field name="name">stock.service.picking.tree</field>
+            <field name="model">stock.service.picking</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Service pickings" colors="grey:invoice_type == 'noinvoice'">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="building_site_address_id"/>
+                    <field name="delivery_proof_no"/>
+                    <field name="description"/>
+                    <field name="department_id" invisible="1"/>
+                    <field name="delegation_id" invisible="1"/>
+                    <field name="container_id" invisible="1"/>
+                    <field name="picking_date"/>
+                    <field name="retired_date"/>
+                    <field name="amount_untaxed" sum="Total untaxed"/>
+                    <field name="building_site" invisible="1"/>
+                    <field name="storage" invisible="1"/>
+                    <field name="state"/>
+                    <field name="sale_id"/>
+                    <field name="invoice_id"/>
+                    <field name="taxes" invisible="1"/>
+                    <field name="invoice_line_ids" invisible="1"/>
+                    <field name="intercompany" invisible="1"/>
+                    <field name="invoice_delegation_id" invisible="1"/>
+                    <field name="invoice_department_id" invisible="1"/>
+                    <field name="invoice_responsible_id" invisible="1"/>
+                    <field name="invoice_type" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_service_picking_form" model="ir.ui.view">
+            <field name="name">stock.service.picking.form</field>
+            <field name="model">stock.service.picking</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Service picking">
+                    <group colspan="4" col="6">
+                        <field name="partner_id" required="1" on_change="onchange_partner_id(partner_id, service_id)" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
+                        <field name="intercompany"/>
+                        <field name="address_id" required="1" domain="[('partner_id', '=', partner_id)]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
+                    </group>
+                    <group colspan="4" col="6" attrs="{'invisible': [('intercompany', '=', False)]}">
+                        <field name="invoice_delegation_id" attrs="{'required': [('intercompany', '=', True)]}"/>
+                        <field name="invoice_department_id" attrs="{'required': [('intercompany', '=', True)]}"/>
+                        <field name="invoice_responsible_id" attrs="{'required': [('intercompany', '=', True)]}"/>
+                    </group>
+                    <field name="name" readonly="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
+                    <field name="address_invoice_id" domain="[('partner_id', '=', partner_id)]" attrs="{'readonly':[('state','in',['cancelled'])]}" required="1"/>
+                    <field name="delegation_id" widget="selection" required="1"/>
+                    <field name="department_id" widget="selection" required="1"/>
+                    <group colspan="2" col="4">
+                        <field name="building_site"/>
+                        <field name="quality"/>
+                    </group>
+                    <field name="description" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" widget="char" size="255"/>
+                    <field name="service_type" on_change="onchange_service_type(service_type)" string="Service hours" attrs="{'invisible': [('older', '=', False)]}"/>
+                    <field name="carrier_id" attrs="{'required':[('building_site','=',False)],'invisible':[('building_site','=',True)]}" />
+                    <field name="manager_partner_id" on_change="onchange_manager_partner_id(manager_partner_id)" domain="[('destination_manager', '=', True)]" widget="selection"/>
+                    <field name="manager_address_id"/>
+                    <field name="picking_date" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
+                    <field name="retired_date"/>
+                    <field name="producer_mark" invisible="1"/>
+                    <group string="Building site" colspan="4" col="6">
+                    <field name="building_site_id" on_change="onchange_building_site_id(building_site_id)" domain="[('partner_ids', 'in', partner_id)]" context="{'partner_id': partner_id}"/>
+                    <field name="container_placement"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Service">
+                            <separator string="Transports" colspan="4"/>
+                            <field name="container_id" domain="['|',('home','=',True),('partner_id', '=',partner_id)]" context="{'search_default_home': True}"/>
+                            <field name="container_situation_id" invisible="1"/>
+                            <field name="service_ids" colspan="4" nolabel="1" context="{'parent_company_id':company_id,'parent_man_addr_id':manager_address_id,'parent_building_addr_id': building_site_address_id,'parent_name':description}"/>
+                        </page>
+                        <page string="Waste" attrs="{'invisible': [('older', '=', False)]}">
+                            <field name="older" invisible="1"/>
+                            <separator string="Waste" colspan="4"/>
+                            <field name="product_id" on_change="onchange_product_id(product_id)" readonly="1"/>
+                            <field name="ler_code_id" on_change="onchange_ler_code_id(ler_code_id)" readonly="1"/>
+                            <field name="ler_name" readonly="1"/>
+                            <field name="ler_dangerous" readonly="1"/>
+                            <separator string="Weight" colspan="4"/>
+                            <group col="8" colspan="4">
+                                <field name="gross_weight" readonly="1"/>
+                                <field name="tare" readonly="1"/>
+                                <field name="net_weight" readonly="1"/>
+                                <field name="volume" readonly="1"/>
+                            </group>
+                            <group col="8" colspan="4">
+                                <field name="valorization" default="1" readonly="1"/>
+                                <field name="storage" attrs="{'invisible':[('manager_partner_id','=',1)]}" readonly="1"/>
+                                <field name="overload_qty" readonly="1"/>
+                                <field name="hours" widget="float_time" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Wastes" attrs="{'invisible': [('picking_type', '!=', 'wastes')]}">
+                            <field name="delivery_proof_no"/>
+                            <field name="not_print_acceptation"/>
+                            <field name="service_picking_valorization_ids" nolabel="1" colspan="4" context="{'default_delegation_id': delegation_id, 'default_company_id': company_id}">
+                                <tree string="Wastes" editable="top">
+                                    <field name="product_id" on_change="onchange_product_id_warning(product_id, parent.manager_partner_id)" context="{'search_default_department_id': parent.department_id}"/>
+                                    <field name="name"/>
+                                    <field name="ler_code"/>
+                                    <field name="product_qty" on_change="onchange_volume(product_qty, product_id, no_compute)"/>
+                                    <field name="volume" on_change="onchange_volume(volume, product_id, no_compute)"/>
+                                    <field name="gross_weight"/>
+                                    <field name="tare"/>
+                                    <field name="net_weight" on_change="onchange_net_weight(net_weight, product_id, no_compute)"/>
+                                    <field name="no_compute"/>
+                                    <field name="overload_qty"/>
+                                    <field name="billable"/>
+                                    <field name="memory_include" groups="limp_service_picking.group_waste_memory"/>
+                                    <field name="delegation_id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                </tree>
+                                <form string="Waste">
+                                    <field name="product_id" on_change="onchange_product_id_warning(product_id, parent.manager_partner_id)" context="{'search_default_department_id': parent.department_id}"/>
+                                    <field name="name"/>
+                                    <field name="ler_code"/>
+                                    <field name="product_qty" on_change="onchange_volume(product_qty, product_id, no_compute)"/>
+                                    <field name="volume" on_change="onchange_volume(volume, product_id, no_compute)"/>
+                                    <field name="gross_weight"/>
+                                    <field name="tare"/>
+                                    <field name="net_weight" on_change="onchange_net_weight(net_weight, product_id, no_compute)"/>
+                                    <field name="no_compute"/>
+                                    <field name="overload_qty"/>
+                                    <field name="billable"/>
+                                    <field name="memory_include" groups="limp_service_picking.group_waste_memory"/>
+                                    <field name="delegation_id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Other concepts">
+                            <field name="other_concepts_ids" colspan="4" nolabel="1">
+                                <tree string="Other concepts" editable="top">
+                                    <field name="product_id" on_change="onchange_product_id_warning(product_id)" context="{'search_default_department_id': parent.department_id}"/>
+                                    <field name="name"/>
+                                    <field name="product_qty"/>
+                                    <field name="billable"/>
+                                </tree>
+                                <form string="Other concept">
+                                    <field name="product_id" on_change="onchange_product_id_warning(product_id)" context="{'search_default_department_id': parent.department_id}"/>
+                                    <field name="name"/>
+                                    <field name="product_qty"/>
+                                    <field name="billable"/>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Other data">
+                            <group col="6" colspan="4">
+                                <field name="dcs_no"/>
+                                <field name="parent_id"/>
+                                <field name="picking_type" invisible="1"/>
+                                <field name="sale_id"/>
+                                <field name="nima_no" string="NIMA Gestor"/>
+                                <field name="rd_code" colspan="4" attrs="{'invisible':[('ler_dangerous','=',False)]}"/>
+                                <field name="name_manager" invisible="1"/>
+                                <field name="authorization_manager" invisible="1"/>
+                                <field name="service_id" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company" required="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
+                                <newline/>
+                                <!--<field name="analytic_acc_id"/>-->
+                            </group>
+                            <separator string="Observations" colspan="4"/>
+                            <field name="note" nolabel="1" colspan="4"/>
+                            <separator string="Notas internas" colspan="4"/>
+                            <field name="internal_notes" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Other expenses">
+                            <field name="other_expense_ids" colspan="4" nolabel="1">
+                                <tree string="Other expenses" editable="top">
+                                    <field name="name"/>
+                                    <field name="prod_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal" sum="Total expenses"/>
+                                </tree>
+                                <form string="Other expense">
+                                    <field name="name" colspan="4"/>
+                                    <field name="prod_qty"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal"/>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Building site" attrs="{'invisible':[('building_site','=',False)]}">
+                            <group  colspan="4">
+                                <field name="building_site_license"/>
+                                <field name="building_site_address_id"/>
+                                <field name="building_site_city"/>
+                                <field name="holder_partner" attrs="{'invisible':[('building_site','=',False)]}"/>
+                                <field name="holder_address" attrs="{'invisible':[('building_site','=',False)]}"/>
+                                <field name="producer_partner" attrs="{'invisible':[('building_site','=',False)]}"/>
+                                <field name="producer_address" attrs="{'invisible':[('building_site','=',False)]}"/>
+                            </group>
+                        </page>
+                        <page string="Employees">
+                            <field name="employee_ids" colspan="4" nolabel="1" context="{'default_delegation_id': delegation_id, 'default_responsible_id': manager_id, 'default_department_id': department_id}">
+                                <tree string="Timesheet" editable="top">
+                                    <field name="date"/>
+                                    <field name="employee_id"/>
+                                    <field name="hours" widget="float_time" sum="Total hours" on_change="onchange_qtys(0.0,0.0,hours,price_hours,extra_hours,quantity)"/>
+                                    <field name="extra_hours" widget="float_time" sum="Total extra hours" on_change="onchange_qtys(0.0,0.0,hours,price_hours,extra_hours,quantity)"/>
+                                    <field name="price_hours" on_change="onchange_qtys(0.0,0.0,hours,price_hours,extra_hours,quantity)"/>
+                                    <field name="quantity" sum="Total qty." on_change="onchange_qtys(0.0,0.0,hours,price_hours,extra_hours,quantity)"/>
+                                    <field name="pending_qty"/>
+                                    <field name="pending_distribute_qty" sum="Total Pending"/>
+                                    <field name="done" readonly="1"/>
+                                    <field name="delegation_id"/>
+                                    <field name="department_id"/>
+                                    <field name="responsible_id"/>
+                                </tree>
+                                <form string="Timesheet">
+                                    <field name="name" readonly="1"/>
+                                    <field name="date"/>
+                                    <field name="employee_id"/>
+                                    <field name="extra_hours" widget="float_time" on_change="onchange_qtys(0.0,0.0,hours,price_hours,extra_hours,quantity)"/>
+                                    <field name="price_hours" on_change="onchange_qtys(0.0,0.0,hours,price_hours,extra_hours,quantity)"/>
+                                    <field name="hours" widget="float_time" on_change="onchange_qtys(0.0,0.0,hours,price_hours,extra_hours,quantity)"/>
+                                    <field name="quantity" on_change="onchange_qtys(0.0,0.0,hours,price_hours,extra_hours,quantity)"/>
+                                    <field name="pending_qty"/>
+                                    <field name="pending_distribute_qty"/>
+                                    <field name="done" readonly="1"/>
+                                    <field name="delegation_id"/>
+                                    <field name="department_id"/>
+                                    <field name="responsible_id"/>
+                                </form>
+                             </field>
+                        </page>
+                        <page string="Remunerations">
+                            <notebook colspan="4">
+                                <page string="Active remunerations">
+                                    <field name="active_remuneration_ids" nolabel="1" colspan="4"/>
+                                </page>
+                                <page string="Inactive remunerations">
+                                    <field name="inactive_remuneration_ids" nolabel="1" colspan="4"/>
+                                </page>
+                            </notebook>
+                        </page>
+                        <page string="Accounting">
+                            <field name="ccc_account_id" colspan="4" domain="[('partner_id', '=', partner_id]"/>
+                            <field name="fiscal_position" widget="selection"/>
+                            <field name="payment_term" widget="selection"/>
+                            <field name="payment_type" widget="selection"/>
+                            <field name="invoice_type"/>
+                            <field name="invoice_date"/>
+                        </page>
+                        <page string="History">
+                            <separator string="Stock picking" colspan="4"/>
+                            <field name="stock_picking_id" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Warnings" attrs="{'invisible': [('warning', '=', False)]}">
+                            <field name="warning" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Invoicing">
+                            <field name="product_tax_id" context="{'search_default_department_id': department_id}"/>
+                            <field name="taxes"/>
+                            <field name="product_sand_id" context="{'search_default_department_id': department_id}"/>
+                            <field name="sand_amount"/>
+                            <field name="service_invoice_concept_ids" nolabel="1" colspan="4">
+                                <tree string="Invoice concepts" editable="top">
+                                    <field name="sequence"/>
+                                    <field name="product_id" on_change="product_id_change(product_id,
+                                      product_qty,product_uom, name, parent.address_id, parent.fiscal_position, parent.picking_date)" context="{'search_default_department_id': parent.department_id}"/>
+                                    <field name="name" />
+                                    <field name="price" on_change="on_change_price(product_qty,price)"/>
+                                    <field name="product_qty" on_change="product_id_change(product_id,
+                                      product_qty,product_uom, name, parent.address_id, parent.fiscal_position, parent.picking_date)"/>
+                                    <field name="product_uom"/>
+                                    <field name="subtotal" />
+                                    <field name="tax_ids"/>
+                                </tree>
+                                <form string="Invoice concepts">
+                                    <field name="sequence"/>
+                                    <field name="product_id" on_change="product_id_change(product_id,
+                                      product_qty,product_uom, name, parent.address_id, parent.fiscal_position, parent.picking_date)" context="{'search_default_department_id': parent.department_id}"/>
+                                    <field name="name" />
+                                    <field name="price" />
+                                    <field name="product_qty" on_change="product_id_change(product_id,
+                                      product_qty,product_uom, name, parent.address_id, parent.fiscal_position, parent.picking_date)"/>
+                                    <field name="product_uom" />
+                                    <field name="subtotal" />
+                                    <separator string="Notes" colspan="4"/>
+                                    <field name="notes" colspan="4" nolabel="1"/>
+                                    <separator string="Taxes" colspan="4"/>
+                                    <field name="tax_ids" colspan="4" nolabel="1"/>
+                                </form>
+                            </field>
+                            <field name="amount_untaxed"/>
+                            <field name="amount_tax"/>
+                            <field name="amount_total"/>
+                            <button name="create_concept_lines" type="object" string="See Invoice Concepts" icon="gtk-undo" states="active,draft,cancelled"/>
+                        </page>
+                    </notebook>
+                    <group col="6" colspan="4">
+                        <field name="state" readonly="1"/>
+                        <button name="action_active" type="object" string="Active" icon="gtk-ok" states="draft"/>
+                        <button name="action_close" type="object" string="Close" icon="gtk-close" confirm="It is all right?" states="active" />
+                        <button name="action_cancel" type="object" string="Cancel" icon="gtk-cancel" states="active"/>
+                        <button name="action_draft" type="object" string="Set to draft" icon="gtk-undo" states="cancelled"/>
+                        <group  attrs="{'invisible':['|',('state', 'in', ['draft','active','cancelled']),('invoice_type','=','invoiced')]}">
+                            <button name="%(action_service_order_toinvoice)d" string="Create Invoice"  type="action" icon="terp-gtk-go-back-rtl"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_service_picking_search" model="ir.ui.view">
+            <field name="name">stock.service.picking.search</field>
+            <field name="model">stock.service.picking</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Service pickings">
+                    <group col="14" colspan="4">
+                        <filter icon="terp-camera_test" string="Current" domain="[('state','=','active')]" help="Active pickings"/>
+                        <filter icon="terp-folder-green" string="To invoice" domain="[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice')]" help="To invoice pickings"/>
+                        <separator orientation="vertical"/>
+                        <field name="name" select="1"/>
+                        <field name="container_id" select="1"/>
+                        <field name="state" select="1"/>
+                        <field name="picking_date" select="1"/>
+                        <field name="retired_date" select="1"/>
+                        <field name="sale_id"/>
+                        <newline/>
+                        <field name="partner_id" select="1"/>
+                        <field name="building_site" select="1"/>
+                        <field name="storage" select="1"/>
+                        <field name="description"/>
+                        <field name="delegation_id" widget="selection"/>
+                        <field name="department_id" widget="selection"/>
+                        <field name="intercompany"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Extended Filters...">
+                        <filter string="Invoice delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'invoice_delegation_id'}"/>
+                        <filter string="Invoice department" icon="terp-folder-orange" domain="[]" context="{'group_by':'invoice_department_id'}"/>
+                        <filter string="Invoice responsible" icon="terp-partner" domain="[]" context="{'group_by':'invoice_responsible_id'}"/>
+                        <separator orientation="vertical"/>
+                        <field name="invoice_delegation_id"/>
+                        <field name="invoice_department_id"/>
+                        <field name="invoice_responsible_id"/>
+                   </group>
+                   <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Delegation" icon="terp-folder-orange" domain="[]" context="{'group_by':'delegation_id'}"/>
+                        <filter string="Department" icon="terp-folder-orange" domain="[]" context="{'group_by':'department_id'}"/>
+                        <filter string="Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="service_pickings_action" model="ir.actions.act_window">
+            <field name="name">Service pickings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.service.picking</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('picking_type','=','wastes')]</field>
+            <field name="context">{'type': 'wastes'}</field>
+            <field name="search_view_id" ref="stock_service_picking_search"/>
+        </record>
+
+        <record id="ir_actions_act_window_view_limp_service_picking" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="service_pickings_action" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="stock_service_picking_form" />
+            <field eval="1" name="sequence" />
+        </record>
+
+        <record id="ir_actions_act_window_view_limp_service_picking_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="service_pickings_action" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="stock_service_picking_tree" />
+            <field eval="0" name="sequence" />
+        </record>
+
+        <menuitem id="menu_waste_man" name="Waste management" sequence="2" groups="limp_service_picking.group_waste_manager"/>
+
+        <menuitem action="service_pickings_action" id="menu_service_pickings_open" parent="menu_waste_man" name="Service pickings"/>
+
+        <menuitem id="menu_waste_configuration" parent="menu_waste_man" name="Configuration" sequence="20"/>
+
+        <menuitem action="waste_management.ler_action" id="waste_management.menu_ler_open" parent="menu_waste_configuration" name="LER" sequence="1"/>
+
+        <menuitem id="simple_fleet_management.menu_fleet" name="Fleet"/>
+
+        <menuitem id="containers_management.menu_containers" parent="menu_waste_configuration" name="Containers"/>
+
+    </data>
+</openerp>

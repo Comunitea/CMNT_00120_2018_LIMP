@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="fleet_expense_tree" model="ir.ui.view">
+            <field name="name">fleet.expense.tree</field>
+            <field name="model">fleet.expense</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fleet expenses">
+                    <field name="expense_date"/>
+                    <field name="name"/>
+                    <field name="fleet_id"/>
+                    <field name="expense_type"/>
+                    <field name="partner_id"/>
+                    <field name="km"/>
+                    <field name="liter" sum="Total liters"/>
+                    <field name="consumption" avg="Medium consumption"/>
+                    <field name="net_amount" sum="Net total"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="department_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="fleet_expense_form" model="ir.ui.view">
+            <field name="name">fleet.expense.form</field>
+            <field name="model">fleet.expense</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fleet expense">
+                    <field name="name"/>
+                    <field name="expense_date"/>
+                    <field name="partner_id"/>
+                    <field name="fleet_id"/>
+                    <field name="expense_type" widget="selection" required="1"/>
+                    <field name="amount"/>
+                    <field name="department_id"/>
+                    <separator string="Price" colspan="4"/>
+                    <field name="labor"/>
+                    <field name="parts_price"/>
+                    <field name="liter"/>
+                    <field name="km"/>
+                    <field name="consumption"/>
+                    <field name="distribute"/>
+                    <newline/>
+                    <separator string="Observations" colspan="4"/>
+                    <field name="note" colspan="4" nolabel="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="fleet_expense_search" model="ir.ui.view">
+            <field name="name">fleet.expense.search</field>
+            <field name="model">fleet.expense</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Fleet expenses">
+                    <field name="name" select="1"/>
+                    <field name="expense_date" select="1"/>
+                    <field name="fleet_id" select="1"/>
+                    <field name="expense_type" widget="selection"/>
+                    <field name="partner_id"/>
+                    <field name="distribute"/>
+                    <field name="department_id"/>
+                    <newline/>
+                    <group  expand='0' string='Group by...' groups="base.group_extended">
+                       <filter string='Type' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'expense_type'}" />
+                       <filter string='Vehicle' icon="terp-stock_symbol-selection" context="{'group_by' : 'fleet_id'}"/>
+                       <filter string='Supplier' icon="terp-partner" context="{'group_by' : 'partner_id'}"/>
+                       <filter string='Department' icon="terp-partner" context="{'group_by' : 'department_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="fleet_expense_action" model="ir.actions.act_window">
+            <field name="name">Fleet expenses</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fleet.expense</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem action="fleet_expense_action" id="menu_fleet_expense_open" parent="menu_fleet" name="Fleet expenses"/>
+
+    </data>
+</openerp>

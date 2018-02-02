@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+
+        <record id="employee_set_laboral_incidence_wzd_form" model="ir.ui.view">
+            <field name="name">employee.set.laboral.incidence.wzd.form</field>
+            <field name="model">employee.set.laboral.incidence.wzd</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Set incidence">
+                    <field name="date" />
+                    <field name="date_to"/>
+                    <field name="absence_id_tp"/>
+                    <newline />
+                    <field name="conditions"/>
+                    <newline/>
+                    <group attrs="{'invisible':[('conditions', '=', 'equal_condition')]}" col="5" colspan="4">
+                        <field name="with_contract" colspan="4"/>
+                        <field name="contract_hours"/>
+                        <field name="with_hour_price"/>
+                        <field name="price" colspan="1"/>
+                        <field name="hour_price_hours"/>
+                        <field name="with_fix_qty" colspan="4"/>
+                        <field name="quantity"/>
+                        <field name="effective"/>
+                        <newline/>
+                        <field name="distribute_bt_remuneration"/>
+                        <newline/>
+                        <separator string="Social security" colspan="5"/>
+                        <field name="ss_hours"/>
+                        <field name="ss_no_hours"/>
+                    </group>
+                    <separator string="" colspan="4"/>
+                    <label string=""  colspan="2" />
+                    <group colspan="4">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" name="set_incidence" string="Set incidence" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <act_window context="{'employee_id': active_id}"
+            id="action_set_laboral_incidence_wzd" name="Set incidence"
+            res_model="employee.set.laboral.incidence.wzd"
+            src_model="hr.employee"
+            view_type="form"
+            view_mode="form"
+            target="new"
+            view_id="employee_set_laboral_incidence_wzd_form"
+            key2="client_action_multi"
+            />
+
+    </data>
+</openerp>

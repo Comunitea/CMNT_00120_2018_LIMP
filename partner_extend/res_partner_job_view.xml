@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_partner_contact_form_add_default_get">
+        <field name="name">res.partner.contact.form.add_default_get</field>
+        <field name="model">res.partner.contact</field>
+        <field name="inherit_id" ref="base_contact.view_partner_contact_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="job_ids" position="replace">
+                <field name="job_ids" colspan="4" nolabel="1" mode="tree,form" default_get="{'lines': job_ids}">
+                    <form string="Functions and Addresses">
+                       <group colspan="4" col="4">
+                           <field name="sequence_contact" />
+                           <field name="function"/>
+                           <field name="name" on_change="onchange_name(name,address_id)"/> 
+                           <field name="address_id"/>                                   
+                           <field name="date_start" />
+                           <field name="date_stop" />
+                           <field name="state" />
+                           
+                       </group>
+                        <separator string="Communication" colspan="4"/>
+                       <group colspan="4" col="4">
+                           <field name="phone"/>
+                           <field name="fax"/>
+                           <field name="email" widget="email"/>
+                           <field name="extension"/>
+                           <field name="other"/>
+                       </group>
+                    </form>
+                    <tree string="Functions and Addresses">
+                        <field name="sequence_contact" string="Seq."/>
+                        <field name="function"/>
+                        <field name="name" on_change="onchange_partner(name)"/> 
+                                                        <field name="address_id" attrs="{'required': [('name', '!=', False)]}" on_change="onchange_address(name,address_id)"/>
+                        <field name="phone"/>
+                        <field name="fax"/>
+                        <field name="extension"/>
+                        <field name="other"/>
+                        <field name="email"/>
+                        <field name="state" />
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+    </data>
+</openerp>

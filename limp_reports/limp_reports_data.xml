@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Picking"
+            model="stock.service.picking"
+            auto="True"
+            name="stock.service.picking"
+            rml="limp_reports/report/service_picking.jrxml"
+            id="service_picking"
+            menu="True"
+            header="False"
+            />
+
+        <report
+            string="Valued picking"
+            model="stock.service.picking"
+            auto="True"
+            name="stock.service.valued.picking"
+            rml="limp_reports/report/service_picking_valued.jrxml"
+            id="service_picking_valued"
+            menu="True"
+            header="False"
+            />
+
+       <report
+            string="Cleaning picking"
+            model="stock.service.picking"
+            auto="True"
+            name="stock.service.picking.cleaning"
+            rml="limp_reports/report/service_picking_cleaning.jrxml"
+            id="service_picking_cleaning"
+            menu="True"
+            header="False"
+            />
+
+       <report
+            string="Discharge picking"
+            model="stock.service.picking"
+            auto="True"
+            name="discharge.picking"
+            rml="limp_reports/report/discharge_picking.jrxml"
+            id="discharge_picking"
+            menu="True"
+            header="False"
+            />
+
+       <report
+            string="Delivery req. build waste"
+            model="stock.service.picking"
+            auto="True"
+            name="delivery.req.build.waste"
+            rml="limp_reports/report/delivery_req_build_waste.jrxml"
+            id="delivery_req_build_waste"
+            menu="True"
+            header="False"
+            />
+
+       <report
+            string="Build picking"
+            model="stock.service.picking"
+            auto="True"
+            name="build.picking"
+            rml="limp_reports/report/picking.jrxml"
+            id="build_picking"
+            menu="True"
+            header="False"
+            />
+
+       <report
+            string="Valorization build picking"
+            model="stock.service.picking"
+            auto="True"
+            name="valorization.picking"
+            rml="limp_reports/report/valorization_picking.jrxml"
+            id="valorization_picking"
+            menu="True"
+            header="False"
+            />
+
+      <report
+            string="Delivery waste check"
+            model="stock.service.picking"
+            auto="True"
+            name="delivery.waste.check"
+            rml="limp_reports/report/delivery_waste_check.jrxml"
+            id="delivery_waste_check"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Limpergal Invoice"
+            model="account.invoice"
+            auto="True"
+            name="limpergal_invoice"
+            rml="limp_reports/report/limpergal_invoice.jrxml"
+            id="limpergal_invoice"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Limpergal Waste Invoice"
+            model="account.invoice"
+            auto="True"
+            name="limpergal_waste_invoice"
+            rml="limp_reports/report/limpergal_waste_invoice.jrxml"
+            id="limpergal_waste_invoice"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Limpergal Waste Invoice Copy"
+            model="account.invoice"
+            auto="True"
+            name="limpergal_waste_invoice_copy"
+            rml="limp_reports/report/limpergal_waste_invoice_copy.jrxml"
+            id="limpergal_waste_invoice_copy"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Limpergal Invoice Copy"
+            model="account.invoice"
+            auto="True"
+            name="limpergal_invoice_copy"
+            rml="limp_reports/report/limpergal_invoice_copy.jrxml"
+            id="limpergal_invoice_copy"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Limpergal Servital Invoice Copy"
+            model="account.invoice"
+            auto="True"
+            name="limpergal_servital_invoice_copy"
+            rml="limp_reports/report/limpergal_servital_invoice_copy.jrxml"
+            id="limpergal_servital_invoice_copy"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Limpergal Servital Invoice"
+            model="account.invoice"
+            auto="True"
+            name="limpergal_servital_invoice"
+            rml="limp_reports/report/limpergal_servital_invoice.jrxml"
+            id="limpergal_servital_invoice"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Servital Invoice"
+            model="account.invoice"
+            auto="True"
+            name="servital_invoice"
+            rml="limp_reports/report/servital_invoice.jrxml"
+            id="servital_invoice"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Servital Invoice Copy"
+            model="account.invoice"
+            auto="True"
+            name="servital_invoice_copy"
+            rml="limp_reports/report/servital_invoice_copy.jrxml"
+            id="servital_invoice_copy"
+            menu="True"
+            header="False"
+            />
+         <report
+            string="Cyrgal Invoice"
+            model="account.invoice"
+            auto="True"
+            name="cyrgal_invoice"
+            rml="limp_reports/report/cyrgal_invoice.jrxml"
+            id="cyrgal_invoice"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Cyrgal Invoice Copy"
+            model="account.invoice"
+            auto="True"
+            name="cyrgal_invoice_copy"
+            rml="limp_reports/report/cyrgal_invoice_copy.jrxml"
+            id="cyrgal_invoice_copy"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Cissman Invoice"
+            model="account.invoice"
+            auto="True"
+            name="cissman_invoice"
+            rml="limp_reports/report/cissman_invoice.jrxml"
+            id="cissman_invoice"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Cissman Invoice Copy"
+            model="account.invoice"
+            auto="True"
+            name="cissman_invoice_copy"
+            rml="limp_reports/report/cissman_invoice_copy.jrxml"
+            id="cissman_invoice_copy"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Scont Invoice"
+            model="account.invoice"
+            auto="True"
+            name="scont_invoice"
+            rml="limp_reports/report/scont_invoice.jrxml"
+            id="scont_invoice"
+            menu="True"
+            header="False"
+            />
+        <report
+            string="Tasks Report"
+            model="limp.contract"
+            auto="True"
+            name="task_report"
+            rml="limp_reports/report/employee_task.jrxml"
+            id="employee_task_report"
+            multi="False"
+            menu="True"
+            header="False"
+            />
+
+        <report
+            string="UTE Invoice"
+            model="account.invoice"
+            auto="True"
+            name="ute_invoice"
+            rml="limp_reports/report/ute_limpergal_cissman_invoice.jrxml"
+            id="ute_invoice"
+            menu="True"
+            header="False"
+            />
+
+        <report
+            string="UTE Invoice Copy"
+            model="account.invoice"
+            auto="True"
+            name="ute_invoice_copy"
+            rml="limp_reports/report/ute_limpergal_cissman_invoice_copy.jrxml"
+            id="ute_invoice_copy"
+            menu="True"
+            header="False"
+            />
+
+        <report
+            string="Outgoing report"
+            model="stock.picking"
+            auto="True"
+            name="outgoing_report"
+            rml="limp_reports/report/stock_picking_out.jrxml"
+            id="outgoing_report"
+            menu="True"
+            header="False"
+            />
+
+    <report auto="False" id="account_analytic_account_details_report"
+            menu="False" model="account.analytic.account"
+            name="account.analytic.account.details.report"
+            rml="limp_reports/report/analytic_account_details.rml"
+            string="Analytic accounts details"/>
+
+    <record id="aeroo_contract_hours_report" model="ir.actions.report.xml">
+        <field name="name">Contract hours report</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">limp.contract</field>
+        <field name="report_name">contract_hours_report</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-odt</field>
+        <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_doc_odt"/>
+        <field name="parser_loc">limp_reports/hours_report_parser.py</field>
+        <field name="report_rml">limp_reports/report/contract_hours_report.odt</field>
+        <field name="parser_state">loc</field>
+        <field name="tml_source">file</field>
+        <field name="multi" eval="0"/>
+    </record>
+
+    <record id="aeroo_acceptance_doc_report" model="ir.actions.report.xml">
+        <field name="name">Acceptance document</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">acceptance.document</field>
+        <field name="report_name">acceptance_document</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-odt</field>
+        <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_doc_odt"/>
+        <field name="report_rml">limp_reports/report/acceptance_document.odt</field>
+        <field name="tml_source">file</field>
+        <field name="multi" eval="0"/>
+        <field name="parser_state">default</field>
+    </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-11 15:02+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /tmp/tmp.1JMAJabRaL:751 /tmp/tmp.1JMAJabRaL:979 /tmp/tmp.1JMAJabRaL:1207
+msgid "DISCHARGE PICKING"
+msgstr "ALBARÁN DE DESCARGA"
+
+#: /tmp/tmp.1JMAJabRaL:759 /tmp/tmp.1JMAJabRaL:987 /tmp/tmp.1JMAJabRaL:1215
+msgid "Picking no."
+msgstr "Nº albarán"
+
+#: /tmp/tmp.1JMAJabRaL:767 /tmp/tmp.1JMAJabRaL:995 /tmp/tmp.1JMAJabRaL:1223
+msgid "Discharge date"
+msgstr "Fecha descarga"
+
+#: /tmp/tmp.1JMAJabRaL:775 /tmp/tmp.1JMAJabRaL:1003 /tmp/tmp.1JMAJabRaL:1231
+msgid "Admission document no."
+msgstr "Nº documento admisión"
+
+#: /tmp/tmp.1JMAJabRaL:779 /tmp/tmp.1JMAJabRaL:1007 /tmp/tmp.1JMAJabRaL:1235
+msgid "Waste data:"
+msgstr "Datos del residuo"
+
+#: /tmp/tmp.1JMAJabRaL:783 /tmp/tmp.1JMAJabRaL:1011 /tmp/tmp.1JMAJabRaL:1239
+msgid "Description"
+msgstr "Descripción"
+
+#: /tmp/tmp.1JMAJabRaL:791 /tmp/tmp.1JMAJabRaL:1019 /tmp/tmp.1JMAJabRaL:1247
+msgid "LER code"
+msgstr "Código LER"
+
+#: /tmp/tmp.1JMAJabRaL:803 /tmp/tmp.1JMAJabRaL:1031 /tmp/tmp.1JMAJabRaL:1259
+msgid "Place of origin"
+msgstr "Lugar de procedencia"
+
+#: /tmp/tmp.1JMAJabRaL:807 /tmp/tmp.1JMAJabRaL:1035 /tmp/tmp.1JMAJabRaL:1263
+msgid "Client"
+msgstr "Cliente"
+
+#: /tmp/tmp.1JMAJabRaL:815 /tmp/tmp.1JMAJabRaL:1043 /tmp/tmp.1JMAJabRaL:1271
+msgid "Carrier data:"
+msgstr "Datos del transportista"
+
+#: /tmp/tmp.1JMAJabRaL:823 /tmp/tmp.1JMAJabRaL:1051 /tmp/tmp.1JMAJabRaL:1279
+msgid "License plate"
+msgstr "Matrícula"
+
+#: /tmp/tmp.1JMAJabRaL:831 /tmp/tmp.1JMAJabRaL:1059 /tmp/tmp.1JMAJabRaL:1287
+msgid "Carrier"
+msgstr "Transportista"
+
+#: /tmp/tmp.1JMAJabRaL:835 /tmp/tmp.1JMAJabRaL:1063 /tmp/tmp.1JMAJabRaL:1291
+msgid "Transport type"
+msgstr "Tipo Transporte"
+
+#: /tmp/tmp.1JMAJabRaL:847 /tmp/tmp.1JMAJabRaL:1075 /tmp/tmp.1JMAJabRaL:1303
+msgid "Gross:"
+msgstr "Bruto"
+
+#: /tmp/tmp.1JMAJabRaL:851 /tmp/tmp.1JMAJabRaL:1079 /tmp/tmp.1JMAJabRaL:1307
+msgid "Tare:"
+msgstr "Tara"
+
+#: /tmp/tmp.1JMAJabRaL:863 /tmp/tmp.1JMAJabRaL:1091 /tmp/tmp.1JMAJabRaL:1319
+msgid "Net:"
+msgstr "Neto"
+
+#: /tmp/tmp.1JMAJabRaL:871 /tmp/tmp.1JMAJabRaL:1099 /tmp/tmp.1JMAJabRaL:1327
+msgid "Volume M³:"
+msgstr "Volumen M³"
+
+#: /tmp/tmp.1JMAJabRaL:875 /tmp/tmp.1JMAJabRaL:1103 /tmp/tmp.1JMAJabRaL:1331
+msgid "Firm shipping responsible"
+msgstr "Firma responsable de envío"
+
+#: /tmp/tmp.1JMAJabRaL:879 /tmp/tmp.1JMAJabRaL:1107 /tmp/tmp.1JMAJabRaL:1335
+msgid "Treatment"
+msgstr "Tratamiento"
+
+#: /tmp/tmp.1JMAJabRaL:883 /tmp/tmp.1JMAJabRaL:1111 /tmp/tmp.1JMAJabRaL:1339
+msgid "Firm explotation responsible"
+msgstr "Firma responsable explotación"
+
+#: /tmp/tmp.1JMAJabRaL:891 /tmp/tmp.1JMAJabRaL:1119 /tmp/tmp.1JMAJabRaL:1347
+msgid "Incidences"
+msgstr "Incidencias"
+
+#: /tmp/tmp.1JMAJabRaL:895 /tmp/tmp.1JMAJabRaL:1123 /tmp/tmp.1JMAJabRaL:1351
+msgid "Valorization"
+msgstr "Valorización"
+
+#: /tmp/tmp.1JMAJabRaL:899 /tmp/tmp.1JMAJabRaL:1127 /tmp/tmp.1JMAJabRaL:1355
+msgid "Storage"
+msgstr "Almacenamiento"
+
+#: /tmp/tmp.1JMAJabRaL:903 /tmp/tmp.1JMAJabRaL:1131 /tmp/tmp.1JMAJabRaL:1359
+msgid "Prices"
+msgstr "Precios"
+
+#: /tmp/tmp.1JMAJabRaL:907 /tmp/tmp.1JMAJabRaL:1135 /tmp/tmp.1JMAJabRaL:1363
+msgid "Price Base:"
+msgstr "Precio base"
+
+#: /tmp/tmp.1JMAJabRaL:907 /tmp/tmp.1JMAJabRaL:1135 /tmp/tmp.1JMAJabRaL:1363
+msgid "Total:"
+msgstr "Total"

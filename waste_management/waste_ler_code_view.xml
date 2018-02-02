@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="ler_tree" model="ir.ui.view">
+            <field name="name">ler.tree</field>
+            <field name="model">waste.ler.code</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="LER" colors="red:dangerous == True">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="dangerous"/>
+                    <field name="cpa"/>
+                    <field name="density"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="ler_form" model="ir.ui.view">
+            <field name="name">ler.form</field>
+            <field name="model">waste.ler.code</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="LER">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="dangerous"/>
+                    <field name="cpa"/>
+                    <field name="density"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="ler_search" model="ir.ui.view">
+            <field name="name">ler.search</field>
+            <field name="model">waste.ler.code</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="LER">
+                    <field name="code" select="1"/>
+                    <field name="name" select="1"/>
+                    <field name="dangerous" select="1"/>
+                    <field name="cpa" select="1"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="ler_action" model="ir.actions.act_window">
+            <field name="name">LER</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">waste.ler.code</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem action="ler_action" id="menu_ler_open" parent="stock.menu_product_in_config_stock" name="LER" sequence="1"/>
+
+    </data>
+</openerp>

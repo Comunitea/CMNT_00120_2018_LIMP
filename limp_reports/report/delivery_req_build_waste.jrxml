@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="505" leftMargin="40" rightMargin="50" topMargin="43" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[/data/record]]>
+	</queryString>
+	<field name="Calle-street" class="java.lang.String">
+		<fieldDescription><![CDATA[Direccion_obra-building_site_address_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="Ciudad-building_site_city" class="java.lang.String">
+		<fieldDescription><![CDATA[Ciudad-building_site_city]]></fieldDescription>
+	</field>
+	<field name="Licencia-building_site_license" class="java.lang.String">
+		<fieldDescription><![CDATA[Licencia-building_site_license]]></fieldDescription>
+	</field>
+	<field name="No_autorizacion-authorization_no" class="java.lang.String">
+		<fieldDescription><![CDATA[Gestor-manager_partner_id/No_autorizacion-authorization_no]]></fieldDescription>
+	</field>
+	<field name="Nombre-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[Gestor-manager_partner_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Fecha-picking_date" class="java.util.Date">
+		<fieldDescription><![CDATA[Fecha-picking_date]]></fieldDescription>
+	</field>
+	<field name="Calle-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[Direccion-holder_address_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="Nombre_provincia-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Direccion-holder_address_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="Nombre-name3" class="java.lang.String">
+		<fieldDescription><![CDATA[Transportes_de_retirada-remove_service_ids/Direccion_origen-orig_address_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Calle-street3" class="java.lang.String">
+		<fieldDescription><![CDATA[Transportes_de_retirada-remove_service_ids/Direccion_origen-orig_address_id/Calle-street]]></fieldDescription>
+	</field>
+	<field name="CIF_NIF-vat2" class="java.lang.String">
+		<fieldDescription><![CDATA[Transportes_de_retirada-remove_service_ids/Direccion_origen-orig_address_id/Nombre_de_empresa-partner_id/CIF_NIF-vat]]></fieldDescription>
+	</field>
+	<field name="Nombre_provincia-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[Transportes_de_retirada-remove_service_ids/Direccion_origen-orig_address_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+	</field>
+	<field name="Poseedor_Constructor-holder_builder" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Poseedor_Constructor-holder_builder]]></fieldDescription>
+	</field>
+	<field name="Vat-vat_holder" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Vat-vat_holder]]></fieldDescription>
+	</field>
+	<field name="Direccion-address_holder" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Direccion-address_holder]]></fieldDescription>
+	</field>
+	<field name="Provincia-province_holder" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Provincia-province_holder]]></fieldDescription>
+	</field>
+	<field name="Productor_Promotor-producer_promoter" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Productor_Promotor-producer_promoter]]></fieldDescription>
+	</field>
+	<field name="Provincia-province_producer" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Provincia-province_producer]]></fieldDescription>
+	</field>
+	<field name="Vat-vat_producer" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Vat-vat_producer]]></fieldDescription>
+	</field>
+	<field name="Direccion-address_producer" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Direccion-address_producer]]></fieldDescription>
+	</field>
+	<field name="Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[Compania-company_id/Compania_matriz-parent_id/Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Scont-no_quality" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[Scont-no_quality]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="77" width="505" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SOLICITUD ENTREGA RESIDUOS DE CONSTRUCCION Y DEMOLICION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="107" width="505" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[(SEGÚN REAL DECRETO 59/2009 DEL 26 FEBRERO 2009)]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="0" y="0" width="179" height="66"/>
+				<imageExpression class="java.lang.String"><![CDATA[!$F{Scont-no_quality} ? $F{Logo-logo} : null]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="585" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="25" width="115" height="30" backcolor="#C4C4C4"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="25" width="390" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="55" width="153" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[PRODUCTOR / PROMOTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="55" width="352" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="85" width="115" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="85" width="390" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="115" width="39" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NIF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="115" width="193" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="115" width="87" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[PROVINCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="115" width="186" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="145" width="153" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[POSEEDOR / CONSTRUCTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="145" width="352" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="175" width="115" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="175" width="390" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="205" width="39" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NIF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="205" width="193" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="205" width="87" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[PROVINCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="205" width="186" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="235" width="505" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[OBRA PROCEDENCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="265" width="115" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="265" width="390" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="295" width="115" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NUMERO LICENCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="295" width="136" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="295" width="81" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CONCELLO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="295" width="173" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="325" width="505" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="355" width="505" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="385" width="505" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="415" width="505" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="445" width="505" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="475" width="505" height="30"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="505" width="252" height="30" backcolor="#C4C4C4"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[IDENTIFICACION GESTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="252" y="505" width="253" height="30" backcolor="#C4C4C4"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[IDENTIFICACION GESTOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="535" width="252" height="30" backcolor="#C4C4C4"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="252" y="535" width="253" height="30" backcolor="#C4C4C4"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{No_autorizacion-authorization_no}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

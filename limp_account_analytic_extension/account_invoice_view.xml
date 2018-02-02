@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_supplier_form_add_department_delegation" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.add_department_delegation</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="delegation_id" required="1"/>
+                    <field name="department_id" required="1"/>
+                    <field name="manager_id" required="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_form_add_department_delegation" model="ir.ui.view">
+            <field name="name">account.invoice.form.add_department_delegation</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="delegation_id" required="1"/>
+                    <field name="department_id" required="1"/>
+                    <field name="manager_id" required="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_tree_add_department_delegation" model="ir.ui.view">
+            <field name="name">account.invoice.tree.add_department_delegation</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="delegation_id" invisible="1"/>
+                    <field name="department_id" invisible="1"/>
+                    <field name="manager_id" required="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter_add_sec_filter_groups" model="ir.ui.view">
+            <field name="name">account.invoice.select.add_sec_filter_groups</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="after">
+                    <field name="delegation_id" widget="selection"/>
+                    <field name="department_id" widget="selection"/>
+                    <field name="manager_id" widget="selection"/>
+                </field>
+                <filter string="Due Date" position="after">
+                    <separator orientation="vertical"/>
+                    <filter string="Company" icon="terp-folder-orange" domain="[]" context="{'group_by':'company_id'}"/>
+                    <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" icon="terp-folder-blue" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Responsible" icon="terp-folder-blue" domain="[]" context="{'group_by':'manager_id'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>

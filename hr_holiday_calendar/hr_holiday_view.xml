@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="hr_holiday_tree" model="ir.ui.view">
+            <field name="name">hr.holiday.tree</field>
+            <field name="model">hr.holiday</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Holidays">
+                    <field name="calendar_id"/>
+                    <field name="holiday_date"/>
+                    <field name="name"/>
+                    <field name="scope"/>
+                    <field name="country_id"/>
+                    <field name="state_id"/>
+                    <field name="location_id"/>
+                    <field name="region_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_holiday_form" model="ir.ui.view">
+            <field name="name">hr.holiday.form</field>
+            <field name="model">hr.holiday</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Holiday">
+                    <field name="calendar_id"/>
+                    <field name="holiday_date"/>
+                    <field name="name"/>
+                    <field name="scope"/>
+                    <field name="country_id"/>
+                    <field name="state_id"/>
+                    <field name="location_id"/>
+                    <field name="region_id"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_holiday_filter" model="ir.ui.view">
+        <field name="name">hr.holiday.search</field>
+        <field name="model">hr.holiday</field>
+        <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search holiday">
+                       <group col="8" colspan="4">
+                           <field name="name" select="1"/>
+                           <field name="holiday_date" select="1"/>
+                           <field name="calendar_id" select="1"/>
+                           <field name="scope" select="1"/>
+                       </group>
+                       <newline/>
+                       <group colspan="4">
+                           <field name="country_id" select="2"/>
+                           <field name="state_id" select="2"/>
+                           <field name="location_id" select="2"/>
+                       </group>
+                       <newline/>
+                       <group expand="0" string="Group By...">
+                            <filter string="Calendar" icon="terp-folder-orange" domain="[]" context="{'group_by':'calendar_id'}"/>
+                            <filter string="Country" icon="terp-folder-blue" domain="[]" context="{'group_by':'country_id'}"/>
+                            <filter string="State" icon="terp-folder-green" domain="[]" context="{'group_by':'state_id'}"/>
+                            <filter string="Council" icon="terp-forlder-yellow" domain="[]" context="{'group_by':'location_id'}"/>
+                       </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hr_holiday_open" model="ir.actions.act_window">
+            <field name="name">Holidays</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.holiday</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Holidays"
+            action="action_hr_holiday_open"
+            id="menu_hr_holiday"
+            parent="menu_holidays_management"
+            sequence="60"/>
+
+    </data>
+</openerp>

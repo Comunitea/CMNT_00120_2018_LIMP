@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record id="delegation_comp_rule" model="ir.rule">
+            <field name="name">Delegations</field>
+            <field ref="model_res_delegation" name="model_id"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">[('id','child_of',[x.id for x in user.delegation_ids])]</field>
+        </record>
+        
+    </data>
+</openerp>

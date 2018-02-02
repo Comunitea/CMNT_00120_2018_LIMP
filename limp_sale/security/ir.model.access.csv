@@ -1,0 +1,8 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_price_rule_manager","price_rule_manager","model_price_rule","base.group_sale_manager",1,1,1,1
+"access_price_rule_user","price_rule_user","model_price_rule","base.group_user",1,0,0,0
+"access_sale_periodicity_manager","sale_periodicity_manager","model_sale_order_periodicity","base.group_sale_manager",1,1,1,1
+"access_sale_periodicity_user","sale_periodicity_user","model_sale_order_periodicity","base.group_user",1,1,1,1
+"access_task_frequency_manager","task_frequency_manager","model_task_frequency","base.group_sale_manager",1,1,1,1
+"access_task_frequency_user","task_frequency_user","model_task_frequency","base.group_user",1,1,1,1
+

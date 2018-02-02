@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Omar <omar@pexego.es>, 2011.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-11 12:28+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /tmp/tmp.YSG60RpSse:727 /tmp/tmp.YSG60RpSse:923 /tmp/tmp.YSG60RpSse:1119
+msgid "Customer / Carrier"
+msgstr "Cliente / Transportista"
+
+#: /tmp/tmp.YSG60RpSse:731 /tmp/tmp.YSG60RpSse:775 /tmp/tmp.YSG60RpSse:791
+#: /tmp/tmp.YSG60RpSse:827 /tmp/tmp.YSG60RpSse:927 /tmp/tmp.YSG60RpSse:971
+#: /tmp/tmp.YSG60RpSse:987 /tmp/tmp.YSG60RpSse:1023 /tmp/tmp.YSG60RpSse:1123
+#: /tmp/tmp.YSG60RpSse:1167 /tmp/tmp.YSG60RpSse:1183 /tmp/tmp.YSG60RpSse:1219
+msgid "Name:"
+msgstr "Nombre:"
+
+#: /tmp/tmp.YSG60RpSse:739 /tmp/tmp.YSG60RpSse:839 /tmp/tmp.YSG60RpSse:935
+#: /tmp/tmp.YSG60RpSse:1035 /tmp/tmp.YSG60RpSse:1131 /tmp/tmp.YSG60RpSse:1231
+msgid "Address:"
+msgstr "Dirección:"
+
+#: /tmp/tmp.YSG60RpSse:747 /tmp/tmp.YSG60RpSse:943 /tmp/tmp.YSG60RpSse:1139
+msgid "Locality:"
+msgstr "Localidad:"
+
+#: /tmp/tmp.YSG60RpSse:755 /tmp/tmp.YSG60RpSse:951 /tmp/tmp.YSG60RpSse:1147
+msgid "License plate:"
+msgstr "Matrícula:"
+
+#: /tmp/tmp.YSG60RpSse:767 /tmp/tmp.YSG60RpSse:847 /tmp/tmp.YSG60RpSse:963
+#: /tmp/tmp.YSG60RpSse:1043 /tmp/tmp.YSG60RpSse:1159 /tmp/tmp.YSG60RpSse:1239
+msgid "VAT:"
+msgstr "NIF:"
+
+#: /tmp/tmp.YSG60RpSse:771 /tmp/tmp.YSG60RpSse:967 /tmp/tmp.YSG60RpSse:1163
+msgid "Holder data"
+msgstr "Datos poseedor"
+
+#: /tmp/tmp.YSG60RpSse:783 /tmp/tmp.YSG60RpSse:979 /tmp/tmp.YSG60RpSse:1175
+msgid "Producer center"
+msgstr "Centro productor"
+
+#: /tmp/tmp.YSG60RpSse:795 /tmp/tmp.YSG60RpSse:991 /tmp/tmp.YSG60RpSse:1187
+msgid "Waste:"
+msgstr "Residuo:"
+
+#: /tmp/tmp.YSG60RpSse:807 /tmp/tmp.YSG60RpSse:1003 /tmp/tmp.YSG60RpSse:1199
+msgid "MT:"
+msgstr "TM:"
+
+#: /tmp/tmp.YSG60RpSse:815 /tmp/tmp.YSG60RpSse:1011 /tmp/tmp.YSG60RpSse:1207
+msgid "Quantity:"
+msgstr "Cantidad:"
+
+#: /tmp/tmp.YSG60RpSse:823 /tmp/tmp.YSG60RpSse:1019 /tmp/tmp.YSG60RpSse:1215
+msgid "Receiver data"
+msgstr "Datos destinatario"
+
+#: /tmp/tmp.YSG60RpSse:855 /tmp/tmp.YSG60RpSse:1051 /tmp/tmp.YSG60RpSse:1247
+msgid "Delivery date:"
+msgstr "Fecha entrega:"
+
+#: /tmp/tmp.YSG60RpSse:859 /tmp/tmp.YSG60RpSse:1055 /tmp/tmp.YSG60RpSse:1251
+msgid "Observations"
+msgstr "Observaciones"

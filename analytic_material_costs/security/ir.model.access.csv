@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_account_analytic_stock_move","account.analytic.stock.move user","model_account_analytic_stock_move","base.group_user",1,0,0,0
+"access_account_analytic_stock_move_manager","account.analytic.stock.move","model_account_analytic_stock_move","account.group_account_manager",1,1,0,0
+"access_account_analytic_stock_move_accountant","account.analytic.stock.move accountant","model_account_analytic_stock_move","account.group_account_user",1,1,0,0
+"access_account_analytic_stock_move_stock_manager","account.analytic.stock.move manager","model_account_analytic_stock_move","stock.group_stock_manager",1,1,1,0

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="545" leftMargin="30" rightMargin="20" topMargin="60" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/opt/openerp/hg/limpergal/limp_reports/report/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_SERV" class="java.lang.Object"/>
+	<queryString language="xPath">
+		<![CDATA[/data/record]]>
+	</queryString>
+	<field name="Telefono-phone" class="java.lang.String">
+		<fieldDescription><![CDATA[Direccion_obra-building_site_address_id/Telefono-phone]]></fieldDescription>
+	</field>
+	<field name="Nombre-name" class="java.lang.String">
+		<fieldDescription><![CDATA[Transportista-carrier_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Codigo-code" class="java.lang.String">
+		<fieldDescription><![CDATA[Contenedor-container_id/Codigo-code]]></fieldDescription>
+	</field>
+	<field name="Matricula-license_plate" class="java.lang.String">
+		<fieldDescription><![CDATA[Servicios-service_ids/Vehiculo-vehicle_id/Matricula-license_plate]]></fieldDescription>
+	</field>
+	<field name="Nombre-name5" class="java.lang.String">
+		<fieldDescription><![CDATA[Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Sobrecarga-overload_qty2" class="java.lang.Float">
+		<fieldDescription><![CDATA[Sobrecarga-overload_qty]]></fieldDescription>
+	</field>
+	<field name="Volumen__m3-volume" class="java.lang.Float">
+		<fieldDescription><![CDATA[Volumen__m3-volume]]></fieldDescription>
+	</field>
+	<field name="Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[Compania-company_id/Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Pie_informes_jasper-jasper_report_footer" class="java.lang.String">
+		<fieldDescription><![CDATA[Compania-company_id/Pie_informes_jasper-jasper_report_footer]]></fieldDescription>
+	</field>
+	<field name="No_autorizacion-authorization_no" class="java.lang.String">
+		<fieldDescription><![CDATA[Gestor-manager_partner_id/No_autorizacion-authorization_no]]></fieldDescription>
+	</field>
+	<field name="Capacidad__m3-capacity" class="java.lang.Float">
+		<fieldDescription><![CDATA[Contenedor-container_id/Capacidad__m3-capacity]]></fieldDescription>
+	</field>
+	<field name="Tipo-type" class="java.lang.Object">
+		<fieldDescription><![CDATA[Contenedor-container_id/Tipo-type]]></fieldDescription>
+	</field>
+	<field name="Idioma-context_lang" class="java.lang.String">
+		<fieldDescription><![CDATA[Usuario-User/Idioma-context_lang]]></fieldDescription>
+	</field>
+	<field name="Poseedor_Constructor-holder_builder" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Poseedor_Constructor-holder_builder]]></fieldDescription>
+	</field>
+	<field name="Nombre-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Nombre-name3" class="java.lang.String">
+		<fieldDescription><![CDATA[Empresa-partner_id/Nombre-name]]></fieldDescription>
+	</field>
+	<field name="Code-code" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Code-code]]></fieldDescription>
+	</field>
+	<field name="Serial-serial" class="java.lang.String">
+		<fieldDescription><![CDATA[Obra_Servicio-building_site_id/Serial-serial]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="No_autorizacion_transporte-transport_authorization_no" class="java.lang.String">
+		<fieldDescription><![CDATA[Compania-company_id/Empresa-partner_id/No_autorizacion_transporte-transport_authorization_no]]></fieldDescription>
+	</field>
+	<field name="Impuestos-amount_tax" class="java.lang.Float">
+		<fieldDescription><![CDATA[Impuestos-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.Float">
+		<fieldDescription><![CDATA[Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Precio_base-amount_untaxed" class="java.lang.Float">
+		<fieldDescription><![CDATA[Precio_base-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Container_placement-container_placement" class="java.lang.String">
+		<fieldDescription><![CDATA[Container_placement-container_placement]]></fieldDescription>
+	</field>
+	<field name="CIF_NIF-vat" class="java.lang.String">
+		<fieldDescription><![CDATA[Cliente-partner_id/CIF_NIF-vat]]></fieldDescription>
+	</field>
+	<field name="No_calidad-no_quality" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[No_calidad-no_quality]]></fieldDescription>
+	</field>
+	<field name="Scont-no_quality" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[Scont-no_quality]]></fieldDescription>
+	</field>
+	<group name="PICKING" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="214">
+				<image onErrorType="Blank">
+					<reportElement x="5" y="0" width="94" height="76">
+						<printWhenExpression><![CDATA[!$F{Scont-no_quality}]]></printWhenExpression>
+					</reportElement>
+					<imageExpression class="java.lang.String"><![CDATA[$F{Logo-logo}]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="0" y="76" width="99" height="48">
+						<printWhenExpression><![CDATA[!$F{Scont-no_quality}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="6"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Pie_informes_jasper-jasper_report_footer}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="345" y="0" width="100" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ALBARAN Nº]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="445" y="0" width="100" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name5}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="122" y="29" width="53" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[CLIENTE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="122" y="54" width="37" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[OBRA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="389" y="54" width="37" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[TFNO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="336" y="79" width="98" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[Nº CONTENEDOR]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement positionType="Float" x="175" y="28" width="223" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name3}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="159" y="53" width="230" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="426" y="53" width="118" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Telefono-phone}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="434" y="79" width="110" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Codigo-code}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="122" y="80" width="102" height="20"/>
+					<textElement/>
+					<text><![CDATA[TIPO CONTENEDOR]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="224" y="80" width="112" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Tipo-type}.get($F{Idioma-context_lang})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="122" y="105" width="87" height="20"/>
+					<textElement/>
+					<text><![CDATA[CAPACIDAD]]></text>
+				</staticText>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement x="209" y="105" width="100" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$F{Capacidad__m3-capacity}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="122" y="131" width="87" height="20"/>
+					<textElement/>
+					<text><![CDATA[REF/PEDIDO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="343" y="131" width="55" height="20"/>
+					<textElement/>
+					<text><![CDATA[CODIGO]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="false">
+					<reportElement x="398" y="131" width="146" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Serial-serial}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="false">
+					<reportElement x="209" y="131" width="134" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Code-code}]]></textFieldExpression>
+				</textField>
+				<subreport>
+					<reportElement x="0" y="156" width="545" height="54"/>
+					<subreportParameter name="PICKING_ID">
+						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[$P{SUBREPORT_SERV}]]></dataSourceExpression>
+					<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "picking_transports.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement x="324" y="105" width="100" height="20"/>
+					<textElement/>
+					<text><![CDATA[COL. VIA PUBLICA]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="false">
+					<reportElement x="424" y="105" width="20" height="20"/>
+					<box leftPadding="2">
+						<topPen lineWidth="0.25" lineStyle="Solid"/>
+						<leftPen lineWidth="0.25" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Container_placement-container_placement} == "on_street" ? "X" : ""]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="false">
+					<reportElement x="523" y="105" width="20" height="20"/>
+					<box leftPadding="2">
+						<topPen lineWidth="0.25" lineStyle="Solid"/>
+						<leftPen lineWidth="0.25" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Container_placement-container_placement} == "on_building" ? "X" : ""]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="454" y="105" width="69" height="20"/>
+					<textElement/>
+					<text><![CDATA[COL.OBRA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="398" y="29" width="46" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[CIF/NIF]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="444" y="29" width="101" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CIF_NIF-vat}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="205">
+				<staticText>
+					<reportElement x="279" y="48" width="19" height="20"/>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[M³]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="309" y="49" width="58" height="20"/>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[TOTALES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="203" y="75" width="33" height="20">
+						<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[I.V.A.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="339" y="75" width="60" height="20">
+						<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="209" y="102" width="336" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{No_autorizacion_transporte-transport_authorization_no}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="236" y="122" width="153" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[TRANSPORTISTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="389" y="122" width="156" height="20"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[CLIENTE]]></text>
+				</staticText>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement x="79" y="48" width="200" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$F{Sobrecarga-overload_qty2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement x="367" y="48" width="177" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$F{Volumen__m3-volume}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="49" width="79" height="20"/>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[SOBRECARGA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="75" width="60" height="20"/>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[IMPORTE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="102" width="209" height="20"/>
+					<textElement/>
+					<text><![CDATA[EMPRESA GESTORA DE RESIDUOS, Nº ]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement mode="Transparent" x="0" y="71" width="545" height="26"/>
+				</rectangle>
+				<textField>
+					<reportElement x="0" y="122" width="236" height="78"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA["EL CLIENTE ES CONOCEDOR DE QUE NO\nPUEDE DEPOSITAR EN EL CONTENEDOR\nRESIDUOS CATALOGADOS COMO TOXICOS\n O PELIGROSOSOS SEGUN EL CATALOGO DE\nRESIDUOS DE GALICIA.\nDECRETO 154/1998 DE 28 DE MAYO."]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="60" height="20"/>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[LIMPIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="108" y="0" width="60" height="20"/>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[SUCIO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="23" width="269" height="20"/>
+					<box leftPadding="2"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[* Pendiente de valorización en planta]]></text>
+				</staticText>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement x="60" y="75" width="143" height="20"/>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$F{Precio_base-amount_untaxed}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement x="236" y="75" width="103" height="20">
+						<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$F{Impuestos-amount_tax}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###0.00" isBlankWhenNull="true">
+					<reportElement x="399" y="75" width="145" height="20">
+						<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="2">
+						<bottomPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Bottom"/>
+					<textFieldExpression class="java.lang.Float"><![CDATA[$F{Total-amount_total}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="63" y="20" width="34" height="1"/>
+				</line>
+				<line>
+					<reportElement x="171" y="20" width="34" height="1"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+</jasperReport>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+        <record id="view_employee_form_add_glasof_code" model="ir.ui.view">
+            <field name="name">hr.employee.form.add_glasof_code</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="glasof_code"/>
+                    <field name="responsible"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_employee_tree_add_glasof_code" model="ir.ui.view">
+            <field name="name">hr.employee.tree.add_glasof_code</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="glasof_code"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_employee_filter_add_glasof_code" model="ir.ui.view">
+            <field name="name">Employees add glasof code</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="glasof_code"/>
+                </field>
+             </field>
+         </record>
+
+        <record id="view_partner_tree2_add_glasof_code" model="ir.ui.view">
+            <field name="name">hr.employee.tree.add_glasof_code</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_partner_tree2"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="ssnid" position="replace">
+                    <field name="glasof_code"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_users_form_add_laboral">
+            <field name="name">res.users.form_add_laboral</field>
+            <field name="type">form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <field name="user_email" position="after">
+                    <field name="laboral"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

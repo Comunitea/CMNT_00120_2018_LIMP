@@ -1,0 +1,16 @@
+=== modified file 'server-modules/jasper_reports/JasperReports/BrowseDataGenerator.py'
+--- server-modules/jasper_reports/JasperReports/BrowseDataGenerator.py	2011-07-06 10:32:49 +0000
++++ server-modules/jasper_reports/JasperReports/BrowseDataGenerator.py	2011-08-11 19:16:37 +0000
+@@ -81,8 +81,13 @@
+ 				context['lang'] = False
+ 			else:
+ 				context['lang'] = language                       
+ 			value = model.read(self.cr, self.uid, [id], [field], context=context)
+			values[ language ] = value[0][field] or ''
++
++			if model._columns[field]._type == 'selection' and model._columns[field].selection:
++				field_data = model.fields_get(self.cr, self.uid, fields=[field], context=context)
++				values[ language ] = dict(field_data[field]['selection']).get(values[ language ],values[ language ])
+ 
+ 		result = []
+ 		for key, value in values.iteritems():

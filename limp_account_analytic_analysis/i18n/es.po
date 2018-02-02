@@ -1,0 +1,145 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#       * limp_account_analytic_analysis
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.4\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2016-04-06 16:44+0000\n"
+"PO-Revision-Date: 2016-04-06 16:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.actions.act_window,name:limp_account_analytic_analysis.action_analytic_balance_by_department
+#: model:ir.ui.menu,name:limp_account_analytic_analysis.analytic_balance_by_department_menu
+msgid "Analytic balance by department"
+msgstr "Balance analítico por departamento"
+
+#. module: limp_account_analytic_analysis
+#: field:analytic.balance,privacy:0
+#: field:analytic.balance.by.department.wzd,privacy:0
+msgid "Privacy"
+msgstr "Privacidad"
+
+#. module: limp_account_analytic_analysis
+#: field:account.analytic.target,manager_id:0
+#: field:analytic.balance,manager_id:0
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: limp_account_analytic_analysis
+#: field:account.analytic.target,department_id:0
+#: field:analytic.balance,department_id:0
+msgid "Department"
+msgstr "Departamento"
+
+#. module: limp_account_analytic_analysis
+#: selection:analytic.balance,privacy:0
+#: selection:analytic.balance.by.department.wzd,privacy:0
+msgid "Public"
+msgstr "Pública"
+
+#. module: limp_account_analytic_analysis
+#: field:account.analytic.target,fiscalyear_id:0
+#: field:analytic.balance,fiscalyear_id:0
+#: field:analytic.balance.by.department.wzd,fiscalyear_id:0
+msgid "Fiscalyear"
+msgstr "Año fiscal"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model,name:limp_account_analytic_analysis.model_account_analytic_journal
+msgid "Analytic Journal"
+msgstr "Diario analítico"
+
+#. module: limp_account_analytic_analysis
+#: field:account.analytic.target,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model,name:limp_account_analytic_analysis.model_account_analytic_target
+msgid "account.analytic.target"
+msgstr "account.analytic.target"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.actions.act_window,name:limp_account_analytic_analysis.action_analytic_balance
+#: model:ir.ui.menu,name:limp_account_analytic_analysis.analytic_balance_menu
+msgid "Analytic balance by targets"
+msgstr "Balance analítico por objetivos"
+
+#. module: limp_account_analytic_analysis
+#: view:account.analytic.journal:0
+msgid "Target"
+msgstr "Objetivo"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model,name:limp_account_analytic_analysis.model_analytic_balance_by_department_wzd
+msgid "analytic.balance.by.department.wzd"
+msgstr "analytic.balance.by.department.wzd"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model,name:limp_account_analytic_analysis.model_analytic_balance
+msgid "analytic.balance"
+msgstr "analytic.balance"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.actions.report.xml,name:limp_account_analytic_analysis.analytic_analysis_xls
+msgid "Analytic analysis"
+msgstr "Análisis analítico"
+
+#. module: limp_account_analytic_analysis
+#: view:account.analytic.journal:0
+msgid "Analytic targets"
+msgstr "Objetivos analíticos"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.actions.report.xml,name:limp_account_analytic_analysis.analytic_analysis_by_department_xls
+msgid "Analytic department analysis"
+msgstr "Análisis analítico por departamento"
+
+#. module: limp_account_analytic_analysis
+#: field:account.analytic.target,target_percent:0
+msgid "Percent target"
+msgstr "Porcentaje ojetivo"
+
+#. module: limp_account_analytic_analysis
+#: selection:analytic.balance,privacy:0
+#: selection:analytic.balance.by.department.wzd,privacy:0
+msgid "Private"
+msgstr "Privada"
+
+#. module: limp_account_analytic_analysis
+#: view:account.analytic.journal:0
+#: field:account.analytic.journal,analytic_target_ids:0
+msgid "Targets"
+msgstr "Objetivos"
+
+#. module: limp_account_analytic_analysis
+#: field:account.analytic.target,delegation_id:0
+#: field:analytic.balance,delegation_id:0
+#: field:analytic.balance.by.department.wzd,delegation_id:0
+msgid "Delegation"
+msgstr "Delegación"
+
+#. module: limp_account_analytic_analysis
+#: view:analytic.balance:0
+#: view:analytic.balance.by.department.wzd:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: limp_account_analytic_analysis
+#: view:analytic.balance:0
+#: view:analytic.balance.by.department.wzd:0
+msgid "Print balance"
+msgstr "Imprimir balance"
+
+#. module: limp_account_analytic_analysis
+#: field:account.analytic.target,analytic_journal_id:0
+msgid "Journal"
+msgstr "Diario"

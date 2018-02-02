@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="import_ics_wzd_form" model="ir.ui.view">
+            <field name="name">import.ics.wzd.form</field>
+            <field name="model">import.ics.wzd</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import ics file">
+                    <field name="state" invisible="1"/>
+                    <field name="file" attrs="{'readonly':[('state','!=','first')]}"/>
+                    <group col="6" colspan="4">
+                        <field name="scope" attrs="{'readonly':[('state','!=','first')]}"/>
+                        <field name="country_id" attrs="{'readonly':[('state','!=','first')]}"/>
+                        <field name="state_id" attrs="{'readonly':[('state','!=','first')]}"/>
+                    </group>
+                    <separator colspan="4" string="Description of holiday calendar to be created."/>
+                    <field name="name" colspan="4" nolabel="1" attrs="{'readonly':[('state','!=','first')]}"/>
+                    <group attrs="{'invisible':[('state','=','first')]}">
+                        <label colspan="4" string="Has been created correctly a new holiday calendar"/>
+                    </group>
+                    <button name="import_file" type="object" string="Import" states="first" icon="gtk-apply"/>
+                    <button special="cancel" string="Cancel" states="first" icon="gtk-cancel"/>
+                    <button special="cancel" string="Close" states="second" icon="gtk-close"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_ics" model="ir.actions.act_window">
+            <field name="name">Import ics file</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">import.ics.wzd</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="import_ics_wzd_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            icon="STOCK_EXECUTE"
+            name="Import ics file"
+            action="action_import_ics"
+            id="menu_import_ics"
+            parent="menu_holidays_management"
+            sequence="80"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="material_journal" model="account.analytic.journal">
+            <field name="code">MT</field>
+            <field name="name">Material</field>
+            <field name="type">general</field>
+        </record>
+
+    </data>
+</openerp>

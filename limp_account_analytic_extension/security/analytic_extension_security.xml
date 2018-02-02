@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp><data>
+
+    <record id="account.analytic_journal_comp_rule" model="ir.rule">
+        <field name="name">Analytic journal multi-company</field>
+        <field model="ir.model" name="model_id" ref="account.model_account_analytic_journal"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|','|',('company_id','child_of',[user.company_id.id]),('company_id','=',False),('company_id.child_ids','child_of',[user.company_id.id])]</field>
+    </record>
+
+    <record id="account.analytic_journal_comp_rule_false" model="ir.rule">
+        <field name="name">Analytic journal multi-company</field>
+        <field model="ir.model" name="model_id" ref="account.model_account_analytic_journal"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|','|',('company_id','child_of',[user.company_id.id]),('company_id','=',False),('company_id.child_ids','child_of',[user.company_id.id])]</field>
+    </record>
+    
+    <record id="analytic_line_comp_rule" model="ir.rule">
+        <field name="name">Analytic line multi-company</field>
+        <field model="ir.model" name="model_id" ref="analytic.model_account_analytic_line"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id.child_ids','child_of',[user.company_id.id]),'|','|',('delegation_id', '=', False),('delegation_id','in',[x.id for x in user.delegation_ids]),('delegation_id','child_of',[x.id for x in user.delegation_ids]),'|','|',('department_id','=',False),('department_id','in',[x.id for x in user.department_ids]),('department_id','child_of',[x.id for x in user.department_ids])]</field>
+    </record>
+    
+
+    <record id="analytic_plan_instance_comp_rule" model="ir.rule">
+        <field name="name">Analytic plan instance multi-company</field>
+        <field ref="account_analytic_plans.model_account_analytic_plan_instance" name="model_id"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id.child_ids','child_of',[user.company_id.id])]</field>
+    </record>
+
+    
+</data></openerp>

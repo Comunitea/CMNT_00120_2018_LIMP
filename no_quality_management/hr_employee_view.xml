@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_employee_form_add_scont" model="ir.ui.view">
+            <field name="name">hr.employee.form.add_scont</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="scont"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

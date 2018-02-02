@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+        <record id="price_rule_tree" model="ir.ui.view">
+            <field name="name">price.rule.tree</field>
+            <field name="model">price.rule</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Price rules" editable="top">
+                    <field name="name"/>
+                    <field name="product_id" required="1"/>
+                    <field name="range"/>
+                    <field name="price"/>
+                    <field name="cost_price"/>
+                    <field name="province"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="sale_order_periodicity_form" model="ir.ui.view">
+            <field name="name">price.rule.form</field>
+            <field name="model">price.rule</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Price rule">
+                    <field name="name"/>
+                    <field name="product_id" required="1"/>
+                    <field name="range"/>
+                    <field name="price"/>
+                    <field name="cost_price"/>
+                    <field name="province"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="price_rule_search" model="ir.ui.view">
+            <field name="name">price_rule.search</field>
+            <field name="model">price.rule</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Price rules">
+                    <field name="name" select="1"/>
+                    <field name="product_id" select="1"/>
+                    <field name="province" select="1"/>
+                    <newline/>
+                    <group  expand='0' string='Group by...' groups="base.group_extended">
+                        <filter string='Product' icon="terp-accessories-archiver" domain="[]" context="{'group_by' : 'product_id'}" />
+                        <filter string='State' icon="terp-go-home" domain="[]" context="{'group_by' : 'province'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_price_rule" model="ir.actions.act_window">
+            <field name="name">Price rules</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">price.rule</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem action="action_price_rule" id="menu_price_rule_open" parent="product.menu_product_pricelist_main" name="Price rules"/>
+        
+    </data>
+</openerp>

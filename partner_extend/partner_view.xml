@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_res_partner_filter_add_comercial_field" model="ir.ui.view">
+            <field name="name">res.partner.select.add_comercial_field</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="country" position="before">
+                    <field name="comercial"/>
+                    <field name="vat"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_partner_tree_add_comercial_field" model="ir.ui.view">
+            <field name="name">res.partner.tree.add.comercial.field</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="type">tree</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="comercial"/>
+                </field>
+                <field name="ref" position="after">
+                    <field name="vat"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

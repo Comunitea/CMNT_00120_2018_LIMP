@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_export_account_glasof_wizard" model="ir.ui.view">
+            <field name="name">Export account moves to glasof</field>
+            <field name="model">export.account.to.glasof</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Export Account moves to glasof">
+                    <group colspan="4" attrs="{'invisible':[('state','=','export')]}">
+                        <label string="Do you want to export the selected account moves?" colspan="4" />
+                        <separator string="" colspan="4" />
+                        <field name="account_length"/>
+                        <field name="no_department"/>
+                        <button name="export_account_moves" string="Export" colspan="4" type="object" icon="gtk-ok" />
+                        <button icon='gtk-cancel' special="cancel" colspan="4" string="Cancel" />
+                        <separator string="" colspan="4" />
+                        <field name="state" invisible="1"/>
+                    </group>
+                    <group colspan="4" attrs="{'invisible':[('state','=','no_export')]}">
+                        <field name="xdiario_name" invisible="1"/>
+                        <field name="file_xdiario" colspan="4" filename="xdiario_name"/>
+                        <field name="xsubcta_name" invisible="1"/>
+                        <field name="file_xsubcta" colspan="4" filename="xsubcta_name"/>
+                        <button icon='gtk-close' special="cancel" string="Close" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+     </data>
+</openerp>

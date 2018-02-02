@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="timesheet_tree_add_scont" model="ir.ui.view">
+            <field name="name">timesheet.tree.add_scont</field>
+            <field name="model">timesheet</field>
+            <field name="inherit_id" ref="limp_distribution_costs.timesheet_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="responsible_id" position="after">
+                    <field name="scont" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="timesheet_search" model="ir.ui.view">
+            <field name="name">timesheet.search</field>
+            <field name="model">timesheet</field>
+            <field name="inherit_id" ref="limp_distribution_costs.timesheet_search"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="analytic_id" position="after">
+                    <field name="scont"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

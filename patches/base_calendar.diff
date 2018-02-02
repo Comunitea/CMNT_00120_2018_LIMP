@@ -1,0 +1,365 @@
+=== modified file 'base_calendar/base_calendar.py'
+--- base_calendar/base_calendar.py  2011-02-02 14:35:57 +0000
++++ base_calendar/base_calendar.py  2014-08-27 08:45:48 +0000
+@@ -52,6 +52,8 @@
+         startdate = datetime.now()
+     if not exdate:
+         exdate = []
++    if not "COUNT" in rrulestring and not "UNTIL" in rrulestring:
++        rrulestring+=";COUNT=100"
+     rset1 = rrule.rrulestr(str(rrulestring), dtstart=startdate, forceset=True)
+
+     for date in exdate:
+@@ -411,7 +413,7 @@
+         cal = vobject.iCalendar()
+         event = cal.add('vevent')
+         if not event_obj.date_deadline or not event_obj.date:
+-              raise osv.except_osv(_('Warning !'),_("Couldn't Invite because date is not specified!"))
++              raise osv.except_osv(_('Warning !'),_("Couldn't Invite because date is not specified!"))
+         event.add('created').value = ics_datetime(time.strftime('%Y-%m-%d %H:%M:%S'))
+         event.add('dtstart').value = ics_datetime(event_obj.date)
+         event.add('dtend').value = ics_datetime(event_obj.date_deadline)
+@@ -456,7 +458,7 @@
+             trigger.value = delta
+             # Compute other details
+             valarm.add('DESCRIPTION').value = alarm_data['name'] or 'OpenERP'
+-
++
+         for attendee in event_obj.attendee_ids:
+             attendee_add = event.add('attendee')
+             attendee_add.params['CUTYPE'] = [str(attendee.cutype)]
+@@ -674,7 +676,7 @@
+                     new_res_alarm = alarm_ids[0]
+                 cr.execute('UPDATE %s ' % model_obj._table + \
+                             ' SET base_calendar_alarm_id=%s, alarm_id=%s ' \
+-                            ' WHERE id=%s',
++                            ' WHERE id=%s',
+                             (cal_alarm.id, new_res_alarm, data.id))
+
+             self.do_alarm_unlink(cr, uid, [data.id], model)
+@@ -966,7 +968,7 @@
+             value['date_deadline'] = end.strftime("%Y-%m-%d %H:%M:%S")
+         elif end_date and duration and not allday:
+             # we have both, keep them synchronized:
+-            # set duration based on end_date (arbitrary decision: this avoid
++            # set duration based on end_date (arbitrary decision: this avoid
+             # getting dates like 06:31:48 instead of 06:32:00)
+             end = datetime.strptime(end_date, "%Y-%m-%d %H:%M:%S")
+             diff = end - start
+@@ -1130,9 +1132,9 @@
+         FREQ=MONTHLY;INTERVAL=2;COUNT=10;BYDAY=-1SU'),
+         'rrule_type': fields.selection([('none', ''), ('daily', 'Daily'), \
+                             ('weekly', 'Weekly'), ('monthly', 'Monthly'), \
+-                            ('yearly', 'Yearly'),],
++                            ('yearly', 'Yearly'),],
+                             'Recurrency', states={'done': [('readonly', True)]},
+-                            help="Let the event automatically repeat at that interval"),
++                            help="Let the event automatically repeat at that interval", required=True),
+         'alarm_id': fields.many2one('res.alarm', 'Alarm', states={'done': [('readonly', True)]},
+                         help="Set an alarm at this time, before the event occurs" ),
+         'base_calendar_alarm_id': fields.many2one('calendar.alarm', 'Alarm'),
+@@ -1148,7 +1150,7 @@
+                                 ('weekly', 'Weeks'),
+                                 ('monthly', 'Months'),
+                                 ('yearly', 'Years'), ], 'Frequency'),
+-
++
+         'end_type' : fields.selection([('forever', 'Forever'), ('count', 'Fix amout of times'), ('end_date','End date')], 'Way to end reccurency'),
+         'interval': fields.integer('Repeat every', help="Repeat every (Days/Week/Month/Year)"),
+         'count': fields.integer('Repeat', help="Repeat x times"),
+@@ -1159,7 +1161,7 @@
+         'fr': fields.boolean('Fri'),
+         'sa': fields.boolean('Sat'),
+         'su': fields.boolean('Sun'),
+-        'select1': fields.selection([('date', 'Date of month'),
++        'select1': fields.selection([('date', 'Date of month'),
+                                     ('day', 'Day of month')], 'Option'),
+         'day': fields.integer('Date of month'),
+         'week_list': fields.selection([('MO', 'Monday'), ('TU', 'Tuesday'), \
+@@ -1176,8 +1178,8 @@
+         'allday': fields.boolean('All Day', states={'done': [('readonly', True)]}),
+         'active': fields.boolean('Active', help="If the active field is set to \
+          true, it will allow you to hide the event alarm information without removing it."),
+-        'recurrency': fields.boolean('Recurrent', help="Recurrent Meeting"),
+-        'edit_all': fields.boolean('Edit All', help="Edit all Occurrences  of recurrent Meeting."),
++        'recurrency': fields.boolean('Recurrent', help="Recurrent Meeting"),
++        'edit_all': fields.boolean('Edit All', help="Edit all Occurrences  of recurrent Meeting."),
+     }
+     def default_organizer(self, cr, uid, context=None):
+         user_pool = self.pool.get('res.users')
+@@ -1199,17 +1201,18 @@
+             'user_id': lambda self, cr, uid, ctx: uid,
+             'organizer': default_organizer,
+             'edit_all' : False,
++            'rrule_type': 'none'
+     }
+
+     def onchange_edit_all(self, cr, uid, ids, rrule_type,edit_all, context=None):
+         if not context:
+             context = {}
+-
++
+         value = {}
+         if edit_all and rrule_type:
+             for id in ids:
+               base_calendar_id2real_id(id)
+-        return value
++        return value
+
+     def modify_all(self, cr, uid, event_ids, defaults, context=None, *args):
+         """
+@@ -1250,26 +1253,27 @@
+         if not limit:
+             limit = 100
+         if isinstance(select, (str, int, long)):
+-            ids = [select]
+-        else:
+-            ids = select
++            select = [select]
++
+         result = []
++        ids = []
+         recur_dict = []
+-        if ids and (base_start_date or base_until_date):
++        if select and (base_start_date or base_until_date):
+             cr.execute("select m.id, m.rrule, m.date, m.date_deadline, m.duration, \
+-                            m.exdate, m.exrule, m.recurrent_id, m.recurrent_uid from " + self._table + \
+-                            " m where m.id = ANY(%s)", (ids,) )
++                            m.exdate, m.exrule, m.recurrent_id, m.recurrent_uid, m.recurrency from " + self._table + \
++                            " m where m.id = ANY(%s)", (select,) )
+
+             count = 0
+             for data in cr.dictfetchall():
+-                start_date = base_start_date and datetime.strptime(base_start_date[:10]+ ' 00:00:00' , "%Y-%m-%d %H:%M:%S") or False
+-                until_date = base_until_date and datetime.strptime(base_until_date[:10]+ ' 23:59:59', "%Y-%m-%d %H:%M:%S") or False
++                start_date = base_start_date and datetime.strptime(base_start_date[:10] + data['date'][10:] , "%Y-%m-%d %H:%M:%S") or False
++                until_date = base_until_date and datetime.strptime(base_until_date[:10] + data['date_deadline'][10:], "%Y-%m-%d %H:%M:%S") or False
+                 if count > limit:
+                     break
+                 event_date = datetime.strptime(data['date'], "%Y-%m-%d %H:%M:%S")
+ #                To check: If the start date is replace by event date .. the event date will be changed by that of calendar code
+-                start_date = event_date
+-                if not data['rrule']:
++                if start_date and start_date <= event_date:
++                    start_date = event_date
++                if not data['recurrency']:
+                     if start_date and (event_date < start_date):
+                         continue
+                     if until_date and (event_date > until_date):
+@@ -1296,11 +1300,13 @@
+                         if name == "UNTIL":
+                             is_until = True
+                             value = parser.parse(value)
+-                            rrule_until_date = parser.parse(value.strftime("%Y-%m-%d"))
++                            rrule_until_date = parser.parse(value.strftime("%Y%m%d%H%M%S"))
+                             if until_date and until_date >= rrule_until_date:
+                                 until_date = rrule_until_date
+                             if until_date:
+                                 value = until_date.strftime("%Y%m%d%H%M%S")
++                            else:
++                                value = rrule_until_date.strftime("%Y%m%d%H%M%S")
+                         new_rule = '%s=%s' % (name, value)
+                         new_rrule_str.append(new_rule)
+                     if not is_until and until_date:
+@@ -1309,7 +1315,7 @@
+                         new_rule = '%s=%s' % (name, value)
+                         new_rrule_str.append(new_rule)
+                     new_rrule_str = ';'.join(new_rrule_str)
+-                    rdates = get_recurrent_dates(str(new_rrule_str), exdate, start_date, data['exrule'])
++                    rdates = get_recurrent_dates(str(new_rrule_str), exdate, event_date, data['exrule'])
+                     for r_date in rdates:
+                         if start_date and r_date < start_date:
+                             continue
+@@ -1318,9 +1324,12 @@
+                         idval = real_id2base_calendar_id(data['id'], r_date.strftime("%Y-%m-%d %H:%M:%S"))
+                         result.append(idval)
+                         count += 1
++        else:
++            ids = select
++
+         if result:
+             ids = list(set(result)-set(recur_dict))
+-        if isinstance(select, (str, int, long)):
++        if isinstance(ids, (str, int, long)):
+             return ids and ids[0] or False
+         return ids
+
+@@ -1342,7 +1351,7 @@
+         freq=datas.get('rrule_type')
+         if  freq == 'none':
+             return ''
+-
++
+         interval_srting = datas.get('interval') and (';INTERVAL=' + str(datas.get('interval'))) or ''
+
+         if freq == 'weekly':
+@@ -1358,7 +1367,7 @@
+             elif datas.get('select1')=='date':
+                 monthstring = ';BYMONTHDAY=' + str(datas.get('day'))
+
+-
++
+         if datas.get('end_date'):
+             datas['end_date'] = ''.join((re.compile('\d')).findall(datas.get('end_date'))) + 'T235959Z'
+         enddate = (datas.get('count') and (';COUNT=' + str(datas.get('count'))) or '') +\
+@@ -1382,14 +1391,16 @@
+         @param count: If its True the method returns number of records instead of ids
+         @return: List of id
+         """
++        if not limit:
++            limit = 100
++        res = []
+         args_without_date = []
+         start_date = False
+         until_date = False
++        recur_res = []
+
+         for arg in args:
+-            if arg[0] not in ('date', unicode('date'), 'date_deadline', unicode('date_deadline')):
+-                args_without_date.append(arg)
+-            else:
++            if arg[0] in ('date', unicode('date'), 'date_deadline', unicode('date_deadline')):
+                 if arg[1] in ('>', '>='):
+                     if start_date:
+                         continue
+@@ -1398,12 +1409,28 @@
+                     if until_date:
+                         continue
+                     until_date = arg[2]
+-        res = super(calendar_event, self).search(cr, uid, args_without_date, \
+-                                 offset, limit, order, context, count)
+-
+-        res = self.get_recurrent_ids(cr, uid, res, start_date, until_date, limit)
+-        return res
+-
++            else:
++                args_without_date.append(arg)
++
++        res = super(calendar_event, self).search(cr, uid, args, offset, limit, order, context, count)
++        if start_date and until_date:
++            recur_args = [('rrule_type', '!=', 'none'), ('date', '<=', until_date), '|', ('end_date', '=', False), ('end_date', '>=', start_date)]
++            recur_args.extend(args_without_date)
++            recur_res = super(calendar_event, self).search(cr, uid, recur_args, offset, limit, order, context, count)
++        elif start_date:
++            recur_args = [('rrule_type', '!=', 'none'),('end_type', 'in', ['forever','end_date']), '|', ('end_date', '=', False), ('end_date', '>=', start_date)]
++            recur_args.extend(args_without_date)
++            recur_res = super(calendar_event, self).search(cr, uid, recur_args, offset, limit, order, context, count)
++
++
++        if not isinstance(res, list):
++            res = [res]
++        if not isinstance(recur_res, list):
++            recur_res = [recur_res]
++
++        res.extend(recur_res)
++        res = list(set(res))
++        return self.get_recurrent_ids(cr, uid, res, start_date, until_date, limit)
+
+     def get_edit_all(self, cr, uid, id, vals=None):
+         """
+@@ -1414,10 +1441,10 @@
+         if(vals and 'edit_all' in vals): #we jsut check edit_all
+             return vals['edit_all']
+         else: #it's a recurrent event and edit_all is already check
+-            return meeting['recurrency'] and meeting['edit_all']
+-
+-
+-
++            return meeting['recurrency'] and meeting['edit_all']
++
++
++
+
+     def write(self, cr, uid, ids, vals, context=None, check=True, update_check=True):
+         """
+@@ -1440,12 +1467,12 @@
+         res = False
+         for event_id in select:
+             real_event_id = base_calendar_id2real_id(event_id)
+-
++
+
+             if(self.get_edit_all(cr, uid, event_id, vals=vals)):
+                 event_id = real_event_id
+-
+-
++
++
+             if len(str(event_id).split('-')) > 1:
+                 data = self.read(cr, uid, event_id, ['date', 'date_deadline', \
+                                                     'rrule', 'duration', 'exdate'])
+@@ -1459,15 +1486,15 @@
+                         'edit_all': False,
+                         'recurrency' : False,
+                         })
+-
++
+                     new_id = self.copy(cr, uid, real_event_id, default=data, context=context)
+-
++
+                     date_new = event_id.split('-')[1]
+                     date_new = time.strftime("%Y%m%dT%H%M%S", \
+                                  time.strptime(date_new, "%Y%m%d%H%M%S"))
+                     exdate = (data['exdate'] and (data['exdate'] + ',')  or '') + date_new
+                     res = self.write(cr, uid, [real_event_id], {'exdate': exdate})
+-
++
+                     context.update({'active_id': new_id, 'active_ids': [new_id]})
+                     continue
+             if not real_event_id in new_ids:
+@@ -1544,12 +1571,16 @@
+         if fields and 'duration' not in fields:
+             fields.append('duration')
+
++        real_data = {}
++        real_data = super(calendar_event, self).read(cr, uid,
++                    [real_id for base_calendar_id, real_id in select],
++                    fields=fields, context=context, load=load)
++        real_data = dict(zip([x['id'] for x in real_data], real_data))
++
+
+         for base_calendar_id, real_id in select:
+-            #REVET: Revision ID: olt@tinyerp.com-20100924131709-cqsd1ut234ni6txn
+-            res = super(calendar_event, self).read(cr, uid, real_id, fields=fields, context=context, load=load)
+-            if not res :
+-                continue
++            res = real_data[real_id].copy()
++
+             ls = base_calendar_id2real_id(base_calendar_id, with_date=res and res.get('duration', 0) or 0)
+             if not isinstance(ls, (str, int, long)) and len(ls) >= 2:
+                 res['date'] = ls[1]
+@@ -1590,10 +1621,10 @@
+         res = False
+         for event_datas in self.read(cr, uid, ids, ['date', 'rrule', 'exdate'], context=context):
+             event_id = event_datas['id']
+-
++
+             if self.get_edit_all(cr, uid, event_id, vals=None):
+                 event_id = base_calendar_id2real_id(event_id)
+-
++
+             if isinstance(event_id, (int, long)):
+                 res = super(calendar_event, self).unlink(cr, uid, event_id, context=context)
+                 self.pool.get('res.alarm').do_alarm_unlink(cr, uid, [event_id], self._name)
+@@ -1711,7 +1742,7 @@
+         @param args: list of tuples of form [(‘name_of_the_field’, ‘operator’, value), ...].
+         @param context: A standard dictionary for contextual values
+         """
+-
++
+         assert name == 'date'
+         return self.write(cr, uid, id, { 'date_start': value }, context=context)
+
+@@ -1743,9 +1774,9 @@
+         for arg in args:
+             args1.append(map(lambda x:str(x).split('-')[0], arg))
+         return super(ir_attachment, self).search_count(cr, user, args1, context)
+-
+-
+-
++
++
++
+     def create(self, cr, uid, vals, context=None):
+         if context:
+             id = context.get('default_res_id', False)

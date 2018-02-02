@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="fleet_tree" model="ir.ui.view">
+            <field name="name">fleet.tree</field>
+            <field name="model">fleet</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fleet">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="license_plate"/>
+                    <field name="avg_consumption"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="fleet_form" model="ir.ui.view">
+            <field name="name">fleet.form</field>
+            <field name="model">fleet</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Vehicle">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="license_plate"/>
+                    <field name="avg_consumption"/>
+                    <field name="active"/>
+                    <field name="company_id"/>
+                    <notebook colspan="4">
+                        <page string="Expenses">
+                            <field name="expense_ids" nolabel="1" colspan="4">
+                                <tree string="Fleet expenses" editable="top">
+                                    <field name="expense_date"/>
+                                    <field name="name"/>
+                                    <field name="expense_type" required="1"/>
+                                    <field name="partner_id"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="labor"/>
+                                    <field name="liter"/>
+                                    <field name="km"/>
+                                    <field name="note"/>
+                                    <field name="net_amount"/>
+                                </tree>
+                                <form string="Fleet expense">
+                                    <field name="name"/>
+                                    <field name="expense_date"/>
+                                    <field name="expense_type" widget="selection" required="1"/>
+                                    <field name="partner_id"/>
+                                    <field name="amount"/>
+                                    <separator string="Price" colspan="4"/>
+                                    <field name="labor"/>
+                                    <field name="liter"/>
+                                    <field name="km"/>
+                                    <newline/>
+                                    <separator string="Observations" colspan="4"/>
+                                    <field name="note" colspan="4" nolabel="1"/>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="No distribute expenses">
+                            <field name="expense_no_distribute_ids" nolabel="1" colspan="4" context="{'default_distribute': False}">
+                                <tree string="Fleet expenses" editable="top">
+                                    <field name="expense_date"/>
+                                    <field name="name"/>
+                                    <field name="expense_type" required="1"/>
+                                    <field name="partner_id"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="labor"/>
+                                    <field name="liter"/>
+                                    <field name="km"/>
+                                    <field name="note"/>
+                                    <field name="net_amount"/>
+                                    <field name="distribute" invisible="1"/>
+                                </tree>
+                                <form string="Fleet expense">
+                                    <field name="name"/>
+                                    <field name="expense_date"/>
+                                    <field name="expense_type" widget="selection" required="1"/>
+                                    <field name="partner_id"/>
+                                    <field name="amount"/>
+                                    <separator string="Price" colspan="4"/>
+                                    <field name="labor"/>
+                                    <field name="liter"/>
+                                    <field name="km"/>
+                                    <field name="distribute" invisible="1"/>
+                                    <newline/>
+                                    <separator string="Observations" colspan="4"/>
+                                    <field name="note" colspan="4" nolabel="1"/>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Observations">
+                            <field name="note" nolabel="1" colspan="4"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="fleet_search" model="ir.ui.view">
+            <field name="name">fleet.search</field>
+            <field name="model">fleet</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Fleet">
+                    <filter string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}"/>
+                    <separator orientation="vertical"/>
+                    <field name="name" select="1"/>
+                    <field name="license_plate" select="1"/>
+                    <field name="active" select="2"/>
+                    <newline/>
+                    <group expand="0" string="Context..." groups="base.group_extended">
+                       <field name="start_date" context="{'start_date': self}" />
+                       <field name="end_date" context="{'end_date': self}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="fleet_action" model="ir.actions.act_window">
+            <field name="name">Fleet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fleet</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_fleet" parent="stock.menu_stock_configuration" name="Fleet"/>
+
+        <menuitem action="fleet_action" id="menu_fleet_open" parent="menu_fleet" name="Fleet"/>
+
+    </data>
+</openerp>

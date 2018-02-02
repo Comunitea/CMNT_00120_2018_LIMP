@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="sale_order_periodicity_tree" model="ir.ui.view">
+            <field name="name">sale.order.periodicity.tree</field>
+            <field name="model">sale.order.periodicity</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Periodicities">
+                    <field name="name"/>
+                    <field name="multiplier"/>
+                    <field name="rounding"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sale_order_periodicity_form" model="ir.ui.view">
+            <field name="name">sale.order.periodicity.form</field>
+            <field name="model">sale.order.periodicity</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Periodicity">
+                    <field name="name"/>
+                    <field name="multiplier"/>
+                    <field name="rounding"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="sale_order_periodicity_search" model="ir.ui.view">
+            <field name="name">sale_order_periodicity.search</field>
+            <field name="model">sale.order.periodicity</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Periodicities">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_sale_order_periodicity" model="ir.actions.act_window">
+            <field name="name">Sale order periodicities</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.periodicity</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem action="action_sale_order_periodicity" id="menu_sale_order_periodicity_open" parent="base.menu_sale_config_sales" name="Sale order periodicities"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        
+        <record id="sale.sale_order_comp_rule" model="ir.rule">
+            <field name="name">Sale Order multi-company</field>
+            <field ref="model_sale_order" name="model_id"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),'|','|',('delegation_id', '=', False),('delegation_id','in',[x.id for x in user.delegation_ids]),('delegation_id','child_of',[x.id for x in user.delegation_ids]),'|','|',('department_id','=',False),('department_id','in',[x.id for x in user.department_ids]),('department_id','child_of',[x.id for x in user.department_ids])]</field>
+        </record>
+        
+        <record id="account.invoice_comp_rule" model="ir.rule">
+            <field name="name">Invoice multi-company</field>
+            <field ref="model_account_invoice" name="model_id"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),'|','|',('delegation_id', '=', False),('delegation_id','in',[x.id for x in user.delegation_ids]),('delegation_id','child_of',[x.id for x in user.delegation_ids]),'|','|',('department_id','=',False),('department_id','in',[x.id for x in user.department_ids]),('department_id','child_of',[x.id for x in user.department_ids])]</field>
+        </record>
+        
+    </data>
+</openerp>

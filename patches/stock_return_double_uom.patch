@@ -1,0 +1,40 @@
+=== modified file 'stock/wizard/stock_return_picking.py'
+--- stock/wizard/stock_return_picking.py    2011-01-18 13:41:41 +0000
++++ stock/wizard/stock_return_picking.py    2014-06-05 12:05:09 +0000
+@@ -133,7 +133,7 @@
+         return res
+
+     def create_returns(self, cr, uid, ids, context=None):
+-        """
++        """
+          Creates return picking.
+          @param self: The object pointer.
+          @param cr: A database cursor
+@@ -143,13 +143,13 @@
+          @return: A dictionary which of fields with values.
+         """
+         if context is None:
+-            context = {}
++            context = {}
+         record_id = context and context.get('active_id', False) or False
+         move_obj = self.pool.get('stock.move')
+         pick_obj = self.pool.get('stock.picking')
+         uom_obj = self.pool.get('product.uom')
+         wf_service = netsvc.LocalService("workflow")
+-
++
+         pick = pick_obj.browse(cr, uid, record_id, context=context)
+         data = self.read(cr, uid, ids[0])
+         new_picking = None
+@@ -183,8 +183,8 @@
+                     returned_lines += 1
+                     new_move=move_obj.copy(cr, uid, move.id, {
+                         'product_qty': new_qty,
+-                        'product_uos_qty': uom_obj._compute_qty(cr, uid, move.product_uom.id,
+-                            new_qty, move.product_uos.id),
++                        'product_uos_qty': (move.product_uom.category_id == move.product_uos.category_id) and uom_obj._compute_qty(cr, uid, move.product_uom.id,
++                            new_qty, move.product_uos.id) or (move.product_id.uos_coeff and new_qty * move.product_id.uos_coeff or new_qty),
+                         'picking_id':new_picking, 'state':'draft',
+                         'location_id':new_location, 'location_dest_id':move.location_id.id,
+                         'date':date_cur,})
+

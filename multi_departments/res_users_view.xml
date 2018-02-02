@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_users_form_add_new_departments_relationship">
+            <field name="name">res.users.form.add_new_departments_relationship</field>
+            <field name="type">form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="hr.view_users_form_inherit"/>
+            <field name="arch" type="xml">
+                <field name="context_department_id" position="after">
+                    <separator string="Related departments" colspan="4"/>
+                    <field name="department_ids" nolabel="1" colspan="4"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

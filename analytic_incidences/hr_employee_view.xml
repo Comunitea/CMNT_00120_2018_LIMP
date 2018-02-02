@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_employee_form_add_incidences" model="ir.ui.view">
+            <field name="name">hr.employee.form.add_incidences_field</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <page string="Personal Information" position="after">
+                    <page string="Laboral incidences" groups="base.group_hr_manager">
+                        <field name="laboral_incidence_ids" colspan="4" nolabel="1"/>
+                    </page>
+                </page>
+                <field name="parent_id" position="after">
+                    <field name="work_council_id"/>
+                </field>
+            </field>
+        </record>
+
+        <act_window
+        id="remuneration_employee_link"
+        name="Remunerations"
+        res_model="remuneration"
+        src_model="hr.employee"
+        view_mode="tree,form"
+        domain="[('employee_id', '=', active_id)]"
+        context="{'search_default_actives':1}"
+    />
+
+    <record id="view_employee_tree_add_color" model="ir.ui.view">
+            <field name="name">hr.employee.tree.add_color</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active_remunerations" invisible="1"/>
+                </field>
+                <tree position="attributes">
+                    <attribute name="colors">red:not active_remunerations;</attribute>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_partner_tree2_add_color" model="ir.ui.view">
+            <field name="name">hr.employee.tree.add_color</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_partner_tree2"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active_remunerations" invisible="1"/>
+                </field>
+                <tree position="attributes">
+                    <attribute name="colors">red:not active_remunerations;</attribute>
+                </tree>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

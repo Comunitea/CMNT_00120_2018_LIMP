@@ -1,0 +1,79 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#       * base_contact_extend
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.2\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-09-21 08:18+0000\n"
+"PO-Revision-Date: 2012-09-21 08:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_contact_extend
+#: field:res.partner.contact,passport_id:0
+msgid "Passport No"
+msgstr "Nº Pasaporte"
+
+#. module: base_contact_extend
+#: code:addons/base_contact_extend/partner_contact.py:48
+#, python-format
+msgid "Warning!"
+msgstr "¡Aviso!"
+
+#. module: base_contact_extend
+#: code:addons/base_contact_extend/partner_contact.py:49
+#, python-format
+msgid "Another contact with this identification number"
+msgstr "Otro contacto con este mismo nif/nie"
+
+#. module: base_contact_extend
+#: help:res.partner.contact,ssnid:0
+msgid "Social Security Number"
+msgstr "Número de la seguridad social"
+
+#. module: base_contact_extend
+#: field:res.partner.contact,gender:0
+msgid "Gender"
+msgstr "Sexo"
+
+#. module: base_contact_extend
+#: help:res.partner.contact,sinid:0
+msgid "Social Insurance Number"
+msgstr "Número del seguro social"
+
+#. module: base_contact_extend
+#: field:res.partner.contact,identification_no:0
+msgid "Identification No"
+msgstr "N.I.F./N.I.E."
+
+#. module: base_contact_extend
+#: model:ir.model,name:base_contact_extend.model_res_partner_contact
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: base_contact_extend
+#: selection:res.partner.contact,gender:0
+msgid "Female"
+msgstr "Mujer"
+
+#. module: base_contact_extend
+#: field:res.partner.contact,sinid:0
+msgid "SIN No"
+msgstr "Nº Seg. S."
+
+#. module: base_contact_extend
+#: field:res.partner.contact,ssnid:0
+msgid "SSN No"
+msgstr "N.S.S."
+
+#. module: base_contact_extend
+#: selection:res.partner.contact,gender:0
+msgid "Male"
+msgstr "Hombre"
+

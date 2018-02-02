@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record model="ir.sequence.type" id="seq_type_stock_service_picking">
+            <field name="name">Service pickings</field>
+            <field name="code">stock.service.picking</field>
+        </record>
+
+        <record id="seq_stock_service_picking" model="ir.sequence">
+            <field name="name">Service pickings</field>
+            <field name="code">stock.service.picking</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="prefix">C-</field>
+        </record>
+
+        <record model="ir.sequence.type" id="seq_type_service_picking_maintenance">
+            <field name="name">Maitenance service pickings</field>
+            <field name="code">service.picking.maintenance</field>
+        </record>
+
+        <record id="seq_service_picking_maintenance" model="ir.sequence">
+            <field name="name">Maitenance service pickings</field>
+            <field name="code">service.picking.maintenance</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="prefix">M-</field>
+        </record>
+
+        <record model="ir.sequence.type" id="seq_type_waste_service">
+            <field name="name">Waste service</field>
+            <field name="code">waste.service</field>
+        </record>
+
+        <record id="seq_waste_service_picking" model="ir.sequence">
+            <field name="name">Waste service</field>
+            <field name="code">waste.service</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="prefix">S-</field>
+        </record>
+
+        <record model="ir.sequence.type" id="seq_type_admission_no">
+            <field name="name">Admission no.</field>
+            <field name="code">waste.admission.number</field>
+        </record>
+
+        <record id="seq_admission_no" model="ir.sequence">
+            <field name="name">Admission no.</field>
+            <field name="code">waste.admission.number</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="prefix">DAR</field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,93 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#   * limp_multi_delegations
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.4\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-11-08 16:10+0000\n"
+"PO-Revision-Date: 2012-11-08 16:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: limp_multi_delegations
+#: field:res.delegation,user_ids:0
+msgid "Related users"
+msgstr "Usuarios relacionados"
+
+#. module: limp_multi_delegations
+#: sql_constraint:res.users:0
+msgid "You can not have two users with the same login !"
+msgstr "¡No puede tener dos usuarios con el mismo identificador de usuario!"
+
+#. module: limp_multi_delegations
+#: view:res.delegation:0
+#: field:res.delegation,description:0
+msgid "Description"
+msgstr "Descripción"
+
+#. module: limp_multi_delegations
+#: view:res.users:0
+msgid "Current Activity"
+msgstr "Actividad actual"
+
+#. module: limp_multi_delegations
+#: field:res.delegation,parent_id:0
+msgid "Parent delegation"
+msgstr "Delegación padre"
+
+#. module: limp_multi_delegations
+#: code:addons/limp_multi_delegations/res_delegation.py:56
+#: constraint:res.delegation:0
+#, python-format
+msgid "Error! You can not create recursive delegations."
+msgstr "¡Error! No puede crear delegaciones de forma recursiva."
+
+#. module: limp_multi_delegations
+#: field:res.delegation,child_ids:0
+msgid "Child delegations"
+msgstr "Delegaciones hijas"
+
+#. module: limp_multi_delegations
+#: model:ir.model,name:limp_multi_delegations.model_res_delegation
+#: view:res.delegation:0
+#: field:res.delegation,name:0
+#: field:res.users,context_delegation_id:0
+msgid "Delegation"
+msgstr "Delegación"
+
+#. module: limp_multi_delegations
+#: field:res.delegation,address_id:0
+msgid "Delegation Address"
+msgstr "Dirección Delegación"
+
+#. module: limp_multi_delegations
+#: model:ir.actions.act_window,name:limp_multi_delegations.action_res_delegation
+#: model:ir.ui.menu,name:limp_multi_delegations.menu_res_delegation_base
+#: model:ir.ui.menu,name:limp_multi_delegations.menu_res_delegation_open
+#: view:res.delegation:0
+#: view:res.users:0
+#: field:res.users,delegation_ids:0
+msgid "Delegations"
+msgstr "Delegaciones"
+
+#. module: limp_multi_delegations
+#: model:ir.model,name:limp_multi_delegations.model_res_users
+msgid "res.users"
+msgstr "res.usuarios"
+
+#. module: limp_multi_delegations
+#: constraint:res.users:0
+msgid "The chosen company is not in the allowed companies for this user"
+msgstr "La compañía seleccionada no está en las compañías permitidas para este usuario"
+
+#. module: limp_multi_delegations
+#: view:res.delegation:0
+msgid "Users"
+msgstr "Usuarios"
+

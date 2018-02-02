@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+      <record id="view_users_form_simple_modif_work_address" model="ir.ui.view">
+          <field name="name">res.users.form.modif.work_address</field>
+          <field name="model">res.users</field>
+          <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+          <field name="arch" type="xml">
+              <xpath expr="//page[@string='Preferences']/field[@name='menu_tips']" position="after">
+                <separator string="Address" colspan="4"/>
+                <field name="work_address_id"/>
+              </xpath>
+          </field>
+      </record>
+
+        <record model="ir.ui.view" id="view_users_form_add_responsible">
+            <field name="name">res.users.form_add_responsible</field>
+            <field name="type">form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <field name="user_email" position="after">
+                    <field name="context_responsible_id"/>
+                </field>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_delegation_form_simple_add_responsible">
+            <field name="name">view.delegation.form.add_responsible</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form_simple_modif" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <page string="Current Activity" position="inside">
+                    <field name="context_responsible_id" widget="selection" readonly="0"/>
+                </page>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

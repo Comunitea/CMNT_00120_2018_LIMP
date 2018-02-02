@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+
+         <record model="ir.ui.view" id="view_service_picking_agent_comision_tree">
+            <field name="name">service.picking.agent.comision.tree</field>
+            <field name="model">service.picking.agent</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Agents">
+                    <field name="picking_id"/>
+                    <field name="partner_id"/>
+                    <field name="agent_id" on_change="onchange_agent_id(agent_id)"/>
+                    <field name="commission_id" on_change="onchange_commission_id(agent_id,commission_id)"/>
+                    <field name="invoice_settle"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="service_picking_agent_comision_form">
+            <field name="name">service.picking.agent.comision.form.</field>
+            <field name="model">service.picking.agent</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Agents">
+                    <field name="agent_id" on_change="onchange_agent_id(agent_id)"/>
+                    <field name="commission_id" on_change="onchange_commission_id(agent_id,commission_id)"/>
+                    <field name="invoice_settle"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="stock_sporadic_service_picking_form_add_comissions" model="ir.ui.view">
+            <field name="name">stock.sporadic.service.picking.form.add_comissions</field>
+            <field name="model">stock.service.picking</field>
+            <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <page string="Accounting" position="after">
+                    <page string="Commissions">
+                        <field name="picking_agent_ids" nolabel="1" colspan="4">
+                            <tree string="Agents and Commissions" editable="top">
+                                <field name="agent_id" on_change="onchange_agent_id(agent_id)"/>
+                                <field name="commission_id" on_change="onchange_commission_id(agent_id,commission_id)"/>
+                                <field name="invoice_settle"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+        
+        <record id="stock_service_picking_form_add_comissions" model="ir.ui.view">
+            <field name="name">stock.service.picking.form.add_comissions</field>
+            <field name="model">stock.service.picking</field>
+            <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <page string="Accounting" position="after">
+                    <page string="Commissions">
+                        <field name="picking_agent_ids" nolabel="1" colspan="4">
+                            <tree string="Agents and Commissions" editable="top">
+                                <field name="agent_id" on_change="onchange_agent_id(agent_id)"/>
+                                <field name="commission_id" on_change="onchange_commission_id(agent_id,commission_id)"/>
+                                <field name="invoice_settle"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</openerp>

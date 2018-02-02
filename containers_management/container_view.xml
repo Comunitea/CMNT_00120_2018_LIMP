@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="container_tree" model="ir.ui.view">
+            <field name="name">container.tree</field>
+            <field name="model">container</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Containers">
+                    <field name="code"/>
+                    <field name="type"/>
+                    <field name="shape"/>
+                    <field name="dimensions"/>
+                    <field name="capacity"/>
+                    <field name="situation_id"/>
+                    <field name="container_placement"/>
+                    <field name="partner_id"/>
+                    <field name="home" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="container_form" model="ir.ui.view">
+            <field name="name">container.form</field>
+            <field name="model">container</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Container">
+                    <field name="code"/>
+                    <field name="type"/>
+                    <field name="shape"/>
+                    <field name="dimensions"/>
+                    <field name="capacity"/>
+                    <field name="container_placement"/>
+                    <field name="situation_id" required="1"/>
+                    <field name="partner_id"/>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                    <notebook colspan="4">
+                        <page string="History">
+                            <field name="history_ids" nolabel="1" colspan="4">
+                                <tree string="Container moves">
+                                    <field name="move_date"/>
+                                    <field name="address_id"/>
+                                    <field name="move_type"/>
+                                </tree>
+                                <form string="Container move">
+                                    <field name="move_date"/>
+                                    <field name="address_id"/>
+                                    <field name="move_type"/>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Observations">
+                            <field name="note" nolabel="1" colspan="4"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="container_search" model="ir.ui.view">
+            <field name="name">container.search</field>
+            <field name="model">container</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Containers">
+                    <filter string="Home" name="home" icon="terp-go-home" domain="[('home', '=', True)]"/>
+                    <filter string="Placed" icon="gtk-execute" domain="[('home', '=', False)]"/>
+                    <separator orientation="vertical"/>
+                    <field name="partner_id"/>
+                    <field name="code" select="1"/>
+                    <field name="capacity" select="1"/>
+                    <field name="situation_id" select="1"/>
+                    <field name="active" select="2"/>
+                    <field name="container_placement"/>
+                    <newline/>
+                    <group expand="1" string="Group By..." colspan="10" col="12">
+                        <filter string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}"/>
+                        <filter string="Shape" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'shape'}"/>
+                        <filter string="Placement" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'container_placement'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="container_action" model="ir.actions.act_window">
+            <field name="name">Containers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">container</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_home': True}</field>
+        </record>
+
+        <menuitem id="menu_containers" parent="stock.menu_stock_configuration" name="Containers"/>
+
+        <menuitem action="container_action" id="menu_containers_open" parent="menu_containers" name="Containers"/>
+
+    </data>
+</openerp>

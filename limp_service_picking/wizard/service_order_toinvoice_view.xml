@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+        <record id="view_service_order_toinvoice" model="ir.ui.view">
+            <field name="name">Service order to invoice</field>
+            <field name="model">service.order.toinvoice</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <form string="Create invoice">
+                    <separator colspan="4" string="Create invoice" />
+                    <field name="journal_id"/>
+                    <newline/>
+                    <field name="group_partner"/>
+                    <newline/>
+                    <field name="group_building_site"/>
+                    <newline/>
+                    <field name="invoice_date" />
+                    <separator string="" colspan="4" />
+                    <button special="cancel" string="Cancel" icon='gtk-cancel'/>
+                    <button name="open_invoice" string="Create" type="object" icon="terp-gtk-go-back-rtl"/>
+             </form>
+            </field>
+        </record>
+
+
+        <act_window name="Create invoice"
+            res_model="service.order.toinvoice"
+            src_model="stock.service.picking"
+            key2="client_action_multi"
+            multi="True"
+            view_mode="form"
+            view_type="form"
+            target="new"
+            id="action_service_order_toinvoice"/>
+    </data>
+</openerp>

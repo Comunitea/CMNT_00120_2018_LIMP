@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="group_waste_manager" model="res.groups">
+            <field name="name">Waste manager</field>
+        </record>
+        <record id="group_waste_memory" model="res.groups">
+            <field name="name">Waste memory</field>
+        </record>
+        <record id="group_building_site_services_manager" model="res.groups">
+            <field name="name">Building site services</field>
+        </record>
+        <record id="group_cleaning_user" model="res.groups">
+            <field name="name">Cleaning user</field>
+        </record>
+
+        <record id="building_site_comp_rule" model="ir.rule">
+            <field name="name">Building site multi company rule</field>
+            <field ref="model_building_site_services" name="model_id"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
+        <record id="valorization_lines_comp_rule" model="ir.rule">
+            <field name="name">Valorization lines</field>
+            <field model="ir.model" name="model_id" ref="model_valorization_lines"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id.child_ids','child_of',[user.company_id.id])]</field>
+        </record>
+
+    </data>
+</openerp>

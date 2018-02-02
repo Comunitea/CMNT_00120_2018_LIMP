@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="fleet_expense_type_tree" model="ir.ui.view">
+            <field name="name">fleet.expense.type.tree</field>
+            <field name="model">fleet.expense.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Fleet expense types">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="fleet_expense_type_form" model="ir.ui.view">
+            <field name="name">fleet.expense.type.form</field>
+            <field name="model">fleet.expense.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Fleet expense type">
+                    <field name="name"/>
+                    <field name="product_id" required="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="fleet_expense_type_search" model="ir.ui.view">
+            <field name="name">fleet.expense.type.search</field>
+            <field name="model">fleet.expense.type</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Fleet expense types">
+                    <field name="name"/>
+                    <field name="product_id" />
+                </search>
+            </field>
+        </record>
+
+        <record id="fleet_expense_type_action" model="ir.actions.act_window">
+            <field name="name">Fleet expense types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">fleet.expense.type</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem action="fleet_expense_type_action" id="menu_fleet_expense_type_open" parent="menu_fleet" name="Fleet expense type" sequence="80"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_supplier_form_add_department_delegation" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.add_department_delegation</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="company_id" position="before">
+                    <field name="invoice_header" colspan="4"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_form_add_department_delegation" model="ir.ui.view">
+            <field name="name">account.invoice.form.add_department_delegation</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <field name="company_id" position="before">
+                    <field name="invoice_header"/>
+                    <field name="contract_id" readonly="0"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_tree_add_privacy" model="ir.ui.view">
+            <field name="name">account.invoice.tree.add_privacy</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="privacy"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter_add_privacy" model="ir.ui.view">
+            <field name="name">account.invoice.select.add_privacy</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="period_id" position="after">
+                    <field name="privacy"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

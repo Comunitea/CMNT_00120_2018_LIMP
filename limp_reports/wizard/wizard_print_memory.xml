@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="wizard_print_memory" model="ir.ui.view">
+            <field name="name">wizard print annual memory</field>
+            <field name="model">wizard.print.memory</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="year"/>
+                    <field name="company_id"/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                <button name="print_report" string="Print Annual Memory" type="object" icon="gtk-print" default_focus="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_print_memory" model="ir.actions.act_window">
+            <field name="name">Print annual memory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.print.memory</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="reports_folder_id" parent="limp_service_picking.menu_waste_man" name="Reports"/>
+        <menuitem action="action_print_memory" id="view_wizard_print_memory"  name="Print Annual Memory" parent="reports_folder_id"/>
+        <menuitem action="limp_service_picking.valorization_lines_action_tree" id="limp_service_picking.valorization_lines_view_open" parent="reports_folder_id" name="View Valorization lines"/>
+        <menuitem action="limp_service_picking.all_picking_wastes_action_tree" id="limp_service_picking.all_picking_wastes_view_open" parent="reports_folder_id" name="All picking wastes"/>
+    </data>
+</openerp>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_analytic_balance" model="ir.ui.view">
+            <field name="name">analytic.balance.wizard</field>
+            <field name="model">analytic.balance</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="fiscalyear_id"/>
+                    <field name="delegation_id"/>
+                    <field name="department_id"/>
+                    <field name="manager_id"/>
+                    <field name="privacy"/>
+                    <newline/>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="print_report" string="Print balance" type="object" icon="gtk-print" default_focus="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_analytic_balance" model="ir.actions.act_window">
+            <field name="name">Analytic balance by targets</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">analytic.balance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_analytic_balance" id="analytic_balance_menu"  name="Analytic balance by targets" parent="account.menu_finance_statistic_report_statement"/>
+
+    </data>
+</openerp>

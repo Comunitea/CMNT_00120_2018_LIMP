@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="limp_contract_line_waste_tree" model="ir.ui.view">
+            <field name="name">limp.contract.line.waste.tree</field>
+            <field name="model">limp.contract.line.waste</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Waste contract lines">
+                    <field name="num"/>
+                    <field name="state_id" string="Province"/>
+                    <field name="location_id"/>
+                    <field name="region_id" invisible="1"/>
+                    <field name="manager_id" string="Manager"/>
+                    <field name="description"/>
+                    <field name="date_start"/>
+                    <field name="concept_amount"/>
+                    <field name="state"/>
+                    <field name="date"/>
+                    <field name="company_id"/>
+                    <field name="delegation_id"/>
+                    <field name="department_id"/>
+                    <button name="open_line" type="object" string="Open line" icon="gtk-ok" states="draft"/>
+                    <button name="reopen_line" type="object" string="Reopen" states="close" icon="gtk-undo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="limp_contract_line_waste_form" model="ir.ui.view">
+            <field name="name">limp.contract.line.waste.form</field>
+            <field name="model">limp.contract.line.waste</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Waste contract line">
+                    <field name="num"/>
+                    <field name="partner_id" required="1"/>
+                    <field name="state_id" invisible="1" string="Province"/>
+                    <field name="location_id" invisible="1"/>
+                    <field name="region_id" invisible="1"/>
+                    <field name="manager_id" string="Manager"/>
+                    <field name="concept_amount"/>
+                    <field name="description" widget="char" colspan="4" size="255"/>
+                    <field name="date_start" required="1"/>
+                    <field name="date"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="delegation_id">
+                    <field name="department_id"/>
+                    <notebook colspan="4">
+                        <page string="Services">
+                            <field name="picking_line_ids" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Consumptions">
+                           <field name="analytic_move_ids" nolabel="1" colspan="4" context="{'employee_id': manager_id}">
+                               <tree string="Consumptions" editable="top">
+                                    <field name="employee_id"/>
+                                    <field name="location_id"/>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="date"/>
+                                    <field name="state" invisible="1"/>
+                               </tree>
+                               <form string="Consumption">
+                                    <field name="employee_id"/>
+                                    <field name="location_id"/>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="move_id"/>
+                                    <field name="date"/>
+                                    <field name="state"/>
+                               </form>
+                           </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="note" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Timesheet">
+                            <separator string="Timesheet" colspan="4"/>
+                            <field name="employee_ids" nolabel="1" colspan="4" context="{'default_delegation_id': delegation_id, 'default_responsible_id': manager_id, 'default_department_id': department_id}">
+                                <tree string="Timesheet" editable="top">
+                                        <field name="date"/>
+                                        <field name="employee_id"/>
+                                        <field name="description"/>
+                                        <field name="hours" sum="Total hours" on_change="onchange_hours(effective,fix_qty,hours,price_hours,extra_hours,0.0)"/>
+                                        <field name="extra_hours" sum="Total extra hours"/>
+                                        <field name="price_hours"/>
+                                        <field name="contract"/>
+                                        <field name="fix_qty" sum="Total fixed"/>
+                                        <field name="effective"/>
+                                        <field name="delegation_id"/>
+                                        <field name="department_id"/>
+                                        <field name="responsible_id"/>
+                                    </tree>
+                                    <form string="Timesheet">
+                                        <field name="name" readonly="1"/>
+                                        <field name="date"/>
+                                        <field name="employee_id"/>
+                                        <field name="description" colspan="4"/>
+                                        <field name="extra_hours"/>
+                                        <field name="price_hours"/>
+                                        <field name="hours" on_change="onchange_hours(effective,fix_qty,hours,price_hours,extra_hours,0.0)"/>
+                                        <field name="contract"/>
+                                        <field name="fix_qty"/>
+                                        <field name="effective"/>
+                                        <field name="delegation_id"/>
+                                        <field name="department_id"/>
+                                        <field name="responsible_id"/>
+                                    </form>
+                            </field>
+                        </page>
+                    </notebook>
+                    <field name="state" readonly="1"/>
+                    <button name="open_line" type="object" string="Open line" icon="gtk-ok" states="draft"/>
+                    <button name="reopen_line" type="object" string="Reopen" states="close" icon="gtk-undo"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="limp_contract_line_waste_search" model="ir.ui.view">
+            <field name="name">limp.contract.line.waste.search</field>
+            <field name="model">limp.contract.line.waste</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Waste contract lines">
+                    <group col="8" colspan="4">
+                        <filter icon="terp-gtk-media-pause" string="Pending" domain="[('state','=','pending')]" help="Pending contracts"/>
+                        <filter icon="terp-camera_test" string="Current" domain="[('state','=','open')]" help="Current contracts"/>
+                        <separator orientation="vertical"/>
+                        <field name="name" select="1"/>
+                        <field name="partner_id" select="1" string="Customer"/>
+                        <field name="state_id" select="1" string="Province"/>
+                        <field name="location_id" select="1"/>
+                        <field name="description"/>
+                        <newline/>
+                        <field name="manager_id" widget="selection" select="2" string="Manager"/>
+                        <field name="date_start"/>
+                        <field name="date" select="2"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by':'manager_id'}"/>
+                        <filter string="Province" icon="terp-go-home" domain="[]" context="{'group_by': 'state_id'}"/>
+                        <filter string="Council" icon="terp-go-home" domain="[]" context="{'group_by': 'location_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Company" icon="terp-folder-orange" domain="[]" context="{'group_by':'company_id'}"/>
+                        <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
+                        <filter string="Department" icon="terp-folder-blue" domain="[]" context="{'group_by':'department_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_limp_contract_line_waste" model="ir.actions.act_window">
+            <field name="name">Waste contract lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">limp.contract.line.waste</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="limp_service_picking.menu_limp_sporadic_stock_service_picking" parent="menu_limp_contract" name="Sporadic service picking"/>
+
+        <menuitem action="action_limp_contract_line_waste" id="menu_limp_contract_line_waste_open" parent="menu_limp_contract_contract" name="Waste contract lines" groups="limp_service_picking.group_waste_manager"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_waste_ler_code_all","waste_ler_code all","model_waste_ler_code",,1,0,0,0
+"access_waste_ler_code_manager","waste_ler_code manager","model_waste_ler_code","stock.group_stock_manager",1,1,1,1

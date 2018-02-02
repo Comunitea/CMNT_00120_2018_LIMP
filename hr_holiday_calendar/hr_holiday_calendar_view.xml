@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+       <record id="hr_holiday_calendar_tree" model="ir.ui.view">
+            <field name="name">hr.holiday.calendar.tree</field>
+            <field name="model">hr.holiday.calendar</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Holidays calendars">
+                    <field name="name"/>
+                    <field name="holiday_date_start"/>
+                    <field name="holiday_date_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_holiday_calendar_form" model="ir.ui.view">
+            <field name="name">hr.holiday.calendar.form</field>
+            <field name="model">hr.holiday.calendar</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Holiday calendar">
+                    <field name="name" colspan="4"/>
+                    <field name="holiday_date_start"/>
+                    <field name="holiday_date_end"/>
+                    <separator string="Holidays" colspan="4"/>
+                    <field name="holiday_ids" colspan="4" nolabel="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="hr_holiday_calendar_filter" model="ir.ui.view">
+        <field name="name">hr.holiday.calendar.search</field>
+        <field name="model">hr.holiday.calendar</field>
+        <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search holiday calendar">
+                       <group col="8" colspan="4">
+                           <field name="name" select="1"/>
+                           <field name="holiday_date_start" select="1"/>
+                           <field name="holiday_date_end" select="1"/>
+                           <field name="active" select="1"/>
+                       </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_hr_holiday_calendar_open" model="ir.actions.act_window">
+            <field name="name">Holidays calendars</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.holiday.calendar</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            name="Holidays calendars"
+            action="action_hr_holiday_calendar_open"
+            id="menu_hr_holiday_calendar"
+            parent="menu_holidays_management"
+            sequence="30"/>
+
+    </data>
+</openerp>

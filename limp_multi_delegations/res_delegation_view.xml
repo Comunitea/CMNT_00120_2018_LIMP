@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="res_delegation_tree" model="ir.ui.view">
+            <field name="name">res.delegation.tree</field>
+            <field name="model">res.delegation</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Delegations">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_delegation_form" model="ir.ui.view">
+            <field name="name">res.delegation.form</field>
+            <field name="model">res.delegation</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Delegation">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                    <field name="address_id"/>
+                    <separator string="Description" colspan="4"/>
+                    <field name="description" nolabel="1" colspan="4"/>
+                    <separator string="Users" colspan="4"/>
+                    <field name="user_ids" colspan="4" nolabel="1"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="res_delegation_search" model="ir.ui.view">
+            <field name="name">res.delegation.search</field>
+            <field name="model">res.delegation</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Delegations">
+                    <field name="code"/>
+                    <field name="name" select="1"/>
+                    <field name="parent_id" select="1" widget="selection"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_res_delegation" model="ir.actions.act_window">
+            <field name="name">Delegations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.delegation</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_res_delegation_base" parent="base.menu_administration" sequence="50" name="Delegations"/>
+
+        <menuitem action="action_res_delegation" id="menu_res_delegation_open" parent="menu_res_delegation_base" name="Delegations"/>
+
+    </data>
+</openerp>

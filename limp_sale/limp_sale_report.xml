@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            id="product.report_product_pricelist"
+            string="Pricelist"
+            model="product.product"
+            name="product.pricelist.onprice.rule'"
+            rml="limp_sale/report/product_pricelist_onprice_rule.rml"
+            menu="False"
+            auto="False"/>
+
+        <report auto="False" id="sale.report_sale_order" model="sale.order" name="sale.order"
+                rml="limp_sale/report/limp_sale.rml" string="Quotation / Order" header="False"/>
+
+        <report auto="True" id="sale_frequencey_table" model="sale.order" name="sale.order.freq.table"
+                rml="limp_sale/report/limp_sale_frequency_table.rml" string="Frequency table" header="False"/>
+
+    </data>
+</openerp>

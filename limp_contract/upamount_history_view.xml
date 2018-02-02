@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="upamount_history_tree" model="ir.ui.view">
+            <field name="name">upamount.history.tree</field>
+            <field name="model">limp.contract.upamount.history</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Upamounts history">
+                    <field name="date"/>
+                    <field name="name"/>
+                    <field name="upamount_percent"/>
+                    <field name="previous_amount"/>
+                    <field name="new_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="upamount_history_form" model="ir.ui.view">
+            <field name="name">upamount.history.form</field>
+            <field name="model">limp.contract.upamount.history</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Upamount history">
+                    <field name="name" colspan="4"/>
+                    <field name="date"/>
+                    <field name="upamount_percent"/>
+                    <field name="previous_amount"/>
+                    <field name="new_amount"/>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

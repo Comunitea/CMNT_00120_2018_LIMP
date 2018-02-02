@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="OPENERP_RELATIONS" value="[&apos;report_employee_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[/data/record]]>
+	</queryString>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleados-report_employee_ids/Empleado-employee_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="No_identificacion-identification_id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleados-report_employee_ids/Empleado-employee_id/No_identificacion-identification_id]]></fieldDescription>
+	</field>
+	<field name="Hours-hours" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleados-report_employee_ids/Hours-hours]]></fieldDescription>
+	</field>
+	<field name="Extra_hours-extra_hours" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Empleados-report_employee_ids/Extra_hours-extra_hours]]></fieldDescription>
+	</field>
+	<variable name="L" class="java.util.Locale">
+		<variableExpression><![CDATA[$P{REPORT_LOCALE}]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{REPORT_LOCALE}]]></initialValueExpression>
+	</variable>
+	<variable name="hours" class="java.lang.String">
+		<variableExpression><![CDATA[Double.toString(($F{Extra_hours-extra_hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Extra_hours-extra_hours})) + ($F{Hours-hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Hours-hours})))]]></variableExpression>
+		<initialValueExpression><![CDATA[Double.toString(($F{Extra_hours-extra_hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Extra_hours-extra_hours})) + ($F{Hours-hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Hours-hours})))]]></initialValueExpression>
+	</variable>
+	<detail>
+		<band height="20" splitType="Prevent">
+			<staticText>
+				<reportElement x="0" y="0" width="51" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="51" y="0" width="269" height="20"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="0" width="57" height="20"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[DNI/CIF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="377" y="0" width="79" height="20"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{No_identificacion-identification_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="456" y="0" width="45" height="20"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<text><![CDATA[Horas:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="501" y="0" width="53" height="20"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{hours}.length() != 0 ? $V{hours}.substring(0,$V{hours}.indexOf(".")) + ":" + String.format("%-2s",Integer.toString(((Integer.parseInt($V{hours}.substring($V{hours}.indexOf(".")+1))/100)*60).intValue())).replace(' ', '0') : "0:00"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,21 @@
+=== modified file 'l10n_es_account_asset/account_asset.py'
+--- l10n_es_account_asset/account_asset.py      2013-01-03 19:14:54 +0000
++++ l10n_es_account_asset/account_asset.py      2013-12-17 13:03:02 +0000
+@@ -316,8 +316,14 @@
+         result = []
+         period_obj = self.pool.get('account.period')
+         depreciation_obj = self.pool.get('account.asset.depreciation.line')
+-        period = period_obj.browse(cr, uid, period_id, context=context) 
+-        depreciation_ids = depreciation_obj.search(cr, uid, [('asset_id', 'in', ids), ('depreciation_date', '>=', period.date_start), ('depreciation_date', '<=', period.date_stop), ('move_check', '=', False)], context=context)
++        period = period_obj.browse(cr, uid, period_id, context=context)
++        if period.date_start[5:7] != period.date_stop[5:7]:
++            domain = [('depreciation_date', '<', time.strftime("%Y-%m-%d")),('depreciation_date', '>=', period.date_start)]
++        else:
++            domain = [('depreciation_date', '>=', period.date_start), ('depreciation_date', '<=', period.date_stop)]
++        
++        domain.extend([('asset_id', 'in', ids), ('move_check', '=', False)])
++        depreciation_ids = depreciation_obj.search(cr, uid, domain, context=context)
+         return depreciation_obj.create_move(cr, uid, depreciation_ids, context=context)
+         
+     def create(self, cr, uid, vals, context=None):
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<record model="ir.actions.wizard" id="wizard_associate_zipcode_coucil">
+    <field name="name">Associate council with zipcode</field>
+    <field name="wiz_name">city_council.asscociate_zipcode</field>
+</record>
+
+<menuitem
+    name="Associate council with zipcode"
+    parent="base.menu_localisation"
+    action="wizard_associate_zipcode_coucil"
+    type="wizard"
+    id="wizard_associate_zipcode_coucil_menu"/>
+
+</data>
+</openerp>

@@ -1,0 +1,434 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#   * limp_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.0.4\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2014-06-25 16:17+0000\n"
+"PO-Revision-Date: 2014-06-25 16:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: limp_reports
+#: model:ir.ui.menu,name:limp_reports.view_wizard_print_memory
+#: view:wizard.print.memory:0
+msgid "Print Annual Memory"
+msgstr "Imprimir memoria anual"
+
+#. module: limp_reports
+#: model:ir.actions.act_window,name:limp_reports.action_print_memory
+msgid "Print annual memory"
+msgstr "Imprimir memoria anual"
+
+#. module: limp_reports
+#: model:ir.actions.report.xml,name:limp_reports.aeroo_annual_memory_id
+msgid "Annual Memory Report"
+msgstr "Informe memoria anual"
+
+#. module: limp_reports
+#: view:print.acceptance.document.report:0
+msgid "Print Acceptance Document"
+msgstr "Imprimir documento aceptación"
+
+#. module: limp_reports
+#: field:print.acceptance.document.report,building_site_id:0
+msgid "Building Site / Service"
+msgstr "Obra / Servicio"
+
+#. module: limp_reports
+#: model:ir.module.module,shortdesc:limp_reports.module_meta_information
+msgid "Limpergal reports"
+msgstr "Informes Limpergal"
+
+#. module: limp_reports
+#: field:print.acceptance.document.report,print_date:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: limp_reports
+#: view:print.acceptance.document.report:0
+msgid "Wastes"
+msgstr "Residuos"
+
+#. module: limp_reports
+#: field:account.analytic.account.details,detail:0
+msgid "Show details"
+msgstr "Mostrar detalles"
+
+#. module: limp_reports
+#: field:account.analytic.account.details,without_pickings:0
+msgid "Without pickings in contract"
+msgstr "Sin albaranes de contrato"
+
+#. module: limp_reports
+#: model:ir.actions.report.xml,name:limp_reports.aeroo_acceptance_doc_report
+msgid "Acceptance document"
+msgstr "Documento aceptación"
+
+#. module: limp_reports
+#: model:ir.actions.act_window,name:limp_reports.action_print_acceptance_doc
+#: model:ir.ui.menu,name:limp_reports.menu_print_acceptance_doc
+msgid "Print acceptance document"
+msgstr "Imprimir documento aceptación"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:37
+#, python-format
+msgid "Junio"
+msgstr "Junio"
+
+#. module: limp_reports
+#: field:account.analytic.account.details,manager_id:0
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: limp_reports
+#: constraint:res.company:0
+msgid "Error! You can not create recursive companies."
+msgstr "¡Error! No puede crear compañías recursivas."
+
+#. module: limp_reports
+#: view:account.analytic.account.details:0
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: limp_reports
+#: view:wizard.print.hours.report:0
+msgid "Print Report"
+msgstr "Imprimir informe"
+
+#. module: limp_reports
+#: view:res.company:0
+#: field:res.company,jasper_report_header:0
+msgid "Jasper report header"
+msgstr "Cabecera informes jasper"
+
+#. module: limp_reports
+#: field:account.analytic.account.details,department_id:0
+msgid "Department"
+msgstr "Departamento"
+
+#. module: limp_reports
+#: field:wizard.print.hours.report,month:0
+msgid "Month"
+msgstr "Mes"
+
+#. module: limp_reports
+#: model:ir.actions.act_window,name:limp_reports.action_account_analytic_account_details
+msgid "Account Analytic Details"
+msgstr "Cuentas analíticas detalladas"
+
+#. module: limp_reports
+#: model:ir.module.module,description:limp_reports.module_meta_information
+msgid "Jasper Server reports for Limpergal."
+msgstr "Informe de Jasper Server para Limpergal."
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:41
+#, python-format
+msgid "Octubre"
+msgstr "Octubre"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:40
+#, python-format
+msgid "Septiembre"
+msgstr "Septiembre"
+
+#. module: limp_reports
+#: report:account.analytic.account.details.report:0
+msgid "%"
+msgstr "%"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:15
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "August"
+msgstr "Agosto"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:39
+#, python-format
+msgid "Agosto"
+msgstr "Agosto"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:12
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "May"
+msgstr "Mayo"
+
+#. module: limp_reports
+#: field:wizard.print.memory,company_id:0
+msgid "Company"
+msgstr "Compañia"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:13
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "June"
+msgstr "Junio"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:36
+#, python-format
+msgid "Mayo"
+msgstr "Mayo"
+
+#. module: limp_reports
+#: model:ir.actions.act_window,name:limp_reports.contract_hours_report_print
+#: model:ir.actions.report.xml,name:limp_reports.aeroo_contract_hours_report
+msgid "Contract hours report"
+msgstr "Informe horas contrato"
+
+#. module: limp_reports
+#: view:wizard.print.hours.report:0
+#: field:wizard.print.hours.report,holiday_text:0
+msgid "Holidays"
+msgstr "Festivos"
+
+#. module: limp_reports
+#: model:ir.model,name:limp_reports.model_account_analytic_account_details
+msgid "account.analytic.account.details"
+msgstr "account.analytic.account.details"
+
+#. module: limp_reports
+#: field:account.analytic.account.details,header:0
+msgid "Title of report"
+msgstr "Título del informe"
+
+#. module: limp_reports
+#: help:res.company,jasper_report_header:0
+msgid "Text to write in jasper reports header."
+msgstr "Texto para escribir en la cabecera de los informes jasper."
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:14
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "July"
+msgstr "Julio"
+
+#. module: limp_reports
+#: view:res.company:0
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: limp_reports
+#: view:account.analytic.account.details:0
+msgid "Select Period"
+msgstr "Seleccione el periodo"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:9
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "February"
+msgstr "Febrero"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:17
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "October"
+msgstr "Octubre"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:42
+#, python-format
+msgid "Noviembre"
+msgstr "Noviembre"
+
+#. module: limp_reports
+#: model:ir.model,name:limp_reports.model_wizard_print_memory
+msgid "wizard.print.memory"
+msgstr "wizard.print.memory"
+
+#. module: limp_reports
+#: report:account.analytic.account.details.report:0
+msgid "Real %"
+msgstr "% Real"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:8
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "January"
+msgstr "Enero"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:32
+#, python-format
+msgid "Enero"
+msgstr "Enero"
+
+#. module: limp_reports
+#: model:ir.model,name:limp_reports.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: limp_reports
+#: model:ir.ui.menu,name:limp_reports.reports_folder_id
+msgid "Reports"
+msgstr "Informes"
+
+#. module: limp_reports
+#: model:ir.actions.report.xml,name:limp_reports.account_analytic_account_details_report
+msgid "Analytic accounts details"
+msgstr "Cuentas analíticas detalladas"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:11
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "April"
+msgstr "Abril"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_analytic_details.py:41
+#, python-format
+msgid "Analytic Details"
+msgstr "Analítica detallada"
+
+#. module: limp_reports
+#: view:res.company:0
+#: field:res.company,signature_image:0
+msgid "Signature"
+msgstr "Firma"
+
+#. module: limp_reports
+#: field:account.analytic.account.details,date2:0
+msgid "End of period"
+msgstr "Fecha final"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:10
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "March"
+msgstr "Marzo"
+
+#. module: limp_reports
+#: report:account.analytic.account.details.report:0
+msgid "Balance"
+msgstr "Balance"
+
+#. module: limp_reports
+#: report:account.analytic.account.details.report:0
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:18
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "November"
+msgstr "Noviembre"
+
+#. module: limp_reports
+#: field:account.analytic.account.details,date1:0
+msgid "Start of period"
+msgstr "Fecha inicial"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:38
+#, python-format
+msgid "Julio"
+msgstr "Julio"
+
+#. module: limp_reports
+#: view:res.company:0
+#: field:res.company,jasper_report_footer:0
+msgid "Jasper report footer"
+msgstr "Pie informes jasper"
+
+#. module: limp_reports
+#: report:account.analytic.account.details.report:0
+msgid "Code"
+msgstr "Código"
+
+#. module: limp_reports
+#: constraint:res.company:0
+msgid "Invalid SEPA Creditor Identifier."
+msgstr "Identificador SEPA del acreedor no válido."
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:16
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "September"
+msgstr "Septiembre"
+
+#. module: limp_reports
+#: code:addons/limp_reports/wizard/wizard_print_hours_report.py:19
+#: selection:wizard.print.hours.report,month:0
+#, python-format
+msgid "December"
+msgstr "Diciembre"
+
+#. module: limp_reports
+#: model:ir.model,name:limp_reports.model_wizard_print_hours_report
+msgid "wizard.print.hours.report"
+msgstr "wizard.print.hours.report"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:35
+#, python-format
+msgid "Abril"
+msgstr "Abril"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:33
+#, python-format
+msgid "Febrero"
+msgstr "Febrero"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:34
+#, python-format
+msgid "Marzo"
+msgstr "Marzo"
+
+#. module: limp_reports
+#: field:account.analytic.account.details,delegation_id:0
+msgid "Delegation"
+msgstr "Delegación"
+
+#. module: limp_reports
+#: help:res.company,jasper_report_footer:0
+msgid "Text to write in jasper reports footer."
+msgstr "Texto para escribir en el pie de los informes jasper."
+
+#. module: limp_reports
+#: field:wizard.print.hours.report,year:0
+#: field:wizard.print.memory,year:0
+msgid "Year"
+msgstr "Año"
+
+#. module: limp_reports
+#: view:account.analytic.account.details:0
+#: view:wizard.print.hours.report:0
+#: view:wizard.print.memory:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: limp_reports
+#: report:account.analytic.account.details.report:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: limp_reports
+#: code:addons/limp_reports/hours_report_parser.py:43
+#, python-format
+msgid "Diciembre"
+msgstr "Diciembre"
+

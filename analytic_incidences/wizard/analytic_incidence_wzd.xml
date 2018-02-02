@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+       <record id="view_analytic_incidence_wizard" model="ir.ui.view">
+            <field name="name">Make child remunerations</field>
+            <field name="model">analytic.incidence.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Make child remunerations">
+                    <field name="date" />
+                    <field name="date_to"/>
+                    <field name="incidence_id_tp" domain="[('selecttable', '=', 'True')]"/>
+                    <field name="absence_id_tp"/>
+                    <newline />
+                    <field name="conditions"/>
+                    <newline/>
+                    <group attrs="{'invisible':[('conditions', '=', 'equal_condition')]}" col="5" colspan="4">
+                        <field name="with_contract" colspan="4"/>
+                        <field name="contract_hours"/>
+                        <field name="with_hour_price"/>
+                        <field name="price" colspan="1"/>
+                        <field name="hour_price_hours"/>
+                        <field name="with_fix_qty" colspan="4"/>
+                        <field name="quantity"/>
+                        <field name="effective"/>
+                        <separator string="Social security" colspan="4"/>
+                        <field name="ss_hours"/>
+                        <field name="ss_no_hours"/>
+                    </group>
+                    <separator string="" colspan="4"/>
+                    <label string=""  colspan="2" />
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="make_child_remunerations" string="Make child remuneration" type="object" icon="gtk-go-forward"/>
+                </form>
+            </field>
+        </record>
+        <record id="action_view_child_remuneration_wizard" model="ir.actions.act_window">
+            <field name="name">Set child remuneration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">analytic.incidence.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>
