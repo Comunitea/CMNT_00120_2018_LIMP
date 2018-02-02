@@ -30,7 +30,7 @@ class wizard_print_hours_reports(osv.osv_memory):
     }
     _defaults = {
         'year' : lambda *x: int(time.strftime('%Y')),
-        'company_id': lambda *x: str(int(time.strftime('%m'))),
+        # 'company_id': lambda *x: str(int(time.strftime('%m'))), MIGRACION: Campo eliminado
     }
 
     def print_report(self, cr, uid, ids, context=None):

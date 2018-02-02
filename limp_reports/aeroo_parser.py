@@ -71,7 +71,6 @@ class Parser(report_sxw.rml_parse):
         domain = [('date','<=',str(self.localcontext['data']['form']['year']) + '-12-31'),
         ('date','>=',str(self.localcontext['data']['form']['year']) + '-01-01')]
         ids = self.pool.get('invoice.lines').search(self.cr,self.uid,domain)
-        #import ipdb; ipdb.set_trace()
         for obj in self.pool.get('invoice.lines').browse(self.cr,self.uid,ids):
             if eval(cpa):
                 check = obj.ler_code_id and obj.ler_code_id.cpa
@@ -91,7 +90,6 @@ class Parser(report_sxw.rml_parse):
         domain = [('date','<=',str(self.localcontext['data']['form']['year']) + '-12-31'),
         ('date','>=',str(self.localcontext['data']['form']['year']) + '-01-01'),('memory_include', '=', True),('stock_picking_id', '!=', False)]
         ids = self.pool.get('valorization.lines').search(self.cr,self.uid,domain)
-        #import ipdb; ipdb.set_trace()
         total_qty = 0.0
         for obj in self.pool.get('valorization.lines').browse(self.cr,self.uid,ids):
             if obj.ler_code_id and not obj.ler_code_id.cpa:
@@ -102,7 +100,6 @@ class Parser(report_sxw.rml_parse):
         domain = [('date','<=',str(self.localcontext['data']['form']['year']) + '-12-31'),
         ('date','>=',str(self.localcontext['data']['form']['year']) + '-01-01')]
         ids = self.pool.get('invoice.lines').search(self.cr,self.uid,domain)
-        #import ipdb; ipdb.set_trace()
         total_qty = 0.0
         for obj in self.pool.get('invoice.lines').browse(self.cr,self.uid,ids):
             if obj.ler_code_id and not obj.ler_code_id.cpa:
@@ -137,7 +134,6 @@ class Parser(report_sxw.rml_parse):
         domain = [('date','<=',str(self.localcontext['data']['form']['year']) + '-12-31'),
         ('date','>=',str(self.localcontext['data']['form']['year']) + '-01-01'),('memory_include', '=', True),('stock_picking_id', '!=', False)]
         ids = self.pool.get('valorization.lines').search(self.cr,self.uid,domain)
-        #import ipdb; ipdb.set_trace()
         for obj in self.pool.get('valorization.lines').browse(self.cr,self.uid,ids):
             if obj.ler_code_id.code == ler and not obj.ler_code_id.cpa:
                 res += obj.qty
@@ -169,7 +165,6 @@ class Parser(report_sxw.rml_parse):
         domain = [('date','<=',str(self.localcontext['data']['form']['year']) + '-12-31'),
         ('date','>=',str(self.localcontext['data']['form']['year']) + '-01-01')]
         ids = self.pool.get('invoice.lines').search(self.cr,self.uid,domain)
-        #import ipdb; ipdb.set_trace()
         for obj in self.pool.get('invoice.lines').browse(self.cr,self.uid,ids):
             if eval(cpa):
                 check = obj.ler_code_id and obj.ler_code_id.cpa
@@ -179,5 +174,3 @@ class Parser(report_sxw.rml_parse):
                 if obj.ler_code_id.code == ler:
                     res += obj.quantity
         return res
-
-

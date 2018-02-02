@@ -30,8 +30,8 @@
             'base',
             'limp_service_picking',
             'limp_contract',
-            'jasper_reports',
-            'report_aeroo_ooo',
+            #'jasper_reports', MIGRACION: eliminadas dependencias
+            #'report_aeroo_ooo',
             'limp_custom',
             'analytic',
             'stock',

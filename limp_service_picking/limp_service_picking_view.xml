@@ -68,8 +68,8 @@
                     <field name="retired_date"/>
                     <field name="producer_mark" invisible="1"/>
                     <group string="Building site" colspan="4" col="6">
-                    <field name="building_site_id" on_change="onchange_building_site_id(building_site_id)" domain="[('partner_ids', 'in', partner_id)]" context="{'partner_id': partner_id}"/>
-                    <field name="container_placement"/>
+                        <field name="building_site_id" on_change="onchange_building_site_id(building_site_id)" domain="[('partner_ids', 'in', partner_id)]" context="{'partner_id': partner_id}"/>
+                        <field name="container_placement"/>
                     </group>
                     <notebook colspan="4">
                         <page string="Service">
@@ -93,7 +93,7 @@
                                 <field name="volume" readonly="1"/>
                             </group>
                             <group col="8" colspan="4">
-                                <field name="valorization" default="1" readonly="1"/>
+                                <field name="valorization" readonly="1"/>
                                 <field name="storage" attrs="{'invisible':[('manager_partner_id','=',1)]}" readonly="1"/>
                                 <field name="overload_qty" readonly="1"/>
                                 <field name="hours" widget="float_time" readonly="1"/>

@@ -131,7 +131,7 @@
                             <!--<field name="analytic_acc_id"/>-->
                         </page>
                         <page string="Consumptions">
-                            <field name="service_move_ids" colspan="4" nolabel="1" editable="top"/>
+                            <field name="service_move_ids" colspan="4" nolabel="1"/> <!-- MIGRACION: El campo tenia editable="top" -->
                         </page>
                         <page string="Other data">
                             <field name="older" invisible="1"/>

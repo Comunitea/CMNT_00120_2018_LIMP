@@ -31,8 +31,8 @@ class limp_contract_line_cleaning(osv.osv):
     _inherits = {'limp.contract.line': "contract_line_id", 'account.analytic.account': 'analytic_acc_id'}
 
     _columns = {
-        'contract_line_id': fields.many2one('limp.contract.line', 'Contract line', readonly=True, required=True),
-        'analytic_acc_id': fields.many2one('account.analytic.account', 'Analytic account', readonly=True, required=True)
+        'contract_line_id': fields.many2one('limp.contract.line', 'Contract line', readonly=True, required=True, ondelete='cascade'),
+        'analytic_acc_id': fields.many2one('account.analytic.account', 'Analytic account', readonly=True, required=True, ondelete='cascade')
     }
 
     _defaults = {

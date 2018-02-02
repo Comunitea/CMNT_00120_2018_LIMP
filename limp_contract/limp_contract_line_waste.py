@@ -32,8 +32,8 @@ class limp_contract_line_waste(osv.osv):
     _inherits = {'limp.contract.line': "contract_line_id", 'account.analytic.account': 'analytic_acc_id'}
 
     _columns = {
-        'contract_line_id': fields.many2one('limp.contract.line', 'Contract line', readonly=True, required=True, ondelete="cascade"),
-        'analytic_acc_id': fields.many2one('account.analytic.account', 'Analytic account', readonly=True, required=True, ondelete="cascade"),
+        'contract_line_id': fields.many2one('limp.contract.line', 'Contract line', readonly=True, required=True, ondelete="cascade"), # MIGRACION: ondelete
+        'analytic_acc_id': fields.many2one('account.analytic.account', 'Analytic account', readonly=True, required=True, ondelete="cascade"), # MIGRACION: ondelete
         'picking_line_ids': fields.one2many('stock.service.picking', 'contract_line_id', 'Pickings'),
     }
 

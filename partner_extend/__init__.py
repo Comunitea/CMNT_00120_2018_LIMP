@@ -21,4 +21,4 @@
 
 import partner_address
 import res_partner
-import res_partner_job
+#import res_partner_job MIGRACION: Modelo res.partner.job eliminado

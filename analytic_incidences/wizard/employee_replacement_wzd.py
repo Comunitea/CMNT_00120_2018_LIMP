@@ -69,7 +69,7 @@ class employee_replacement_wzd(osv.osv_memory):
     }
 
     _defaults = {
-        'equal_condition': True,
+        # 'equal_condition': True, MIGRACION: Campo no existe
         'price': 0.0,
         'quantity': 0.0,
         'hour_price_hours': 0.0,
@@ -174,7 +174,6 @@ class employee_replacement_wzd(osv.osv_memory):
                         'effective': effective,
                         'incidence': True,
                         })
-                #import ipdb; ipdb.set_trace()
                 #~ if line_remuneration.date_to:
                     #~ occupation_ids = self.pool.get('account.analytic.occupation').search(cr, uid, [('state', 'in', ['incidence']), ('date', '<=',  line_remuneration.date_to), ('date', '>=', line_remuneration.date), ('employee_id', '=', line_remuneration.employee_id.id)])
                 #~ else:

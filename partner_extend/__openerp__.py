@@ -38,7 +38,7 @@
         "update_xml" : [
             'partner_view.xml',
             'partner_address_view.xml',
-            'res_partner_job_view.xml'
+            #'res_partner_job_view.xml' MIGRACION: Modelo res.partner.job eliminado
         ],
         "installable": True,
         'active': False

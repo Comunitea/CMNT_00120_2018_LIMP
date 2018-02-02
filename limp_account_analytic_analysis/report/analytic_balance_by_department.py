@@ -20,7 +20,7 @@
 ##############################################################################
 
 import xlwt
-from addons.report_xls.report_xls import report_xls
+from openerp.addons.report_xls.report_xls import report_xls
 from datetime import datetime
 import calendar
 from report import report_sxw
@@ -166,4 +166,3 @@ class analytic_balance_by_department_xls(report_xls):
 analytic_balance_by_department_xls('report.analytic_balance_by_department_xls',
     'analytic.balance.by.department.wzd',
     parser=analytic_balance_by_department)
-

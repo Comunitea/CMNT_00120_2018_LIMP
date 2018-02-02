@@ -20,7 +20,7 @@
 ##############################################################################
 
 import xlwt
-from addons.report_xls.report_xls import report_xls
+from openerp.addons.report_xls.report_xls import report_xls
 from datetime import datetime
 import calendar
 from report import report_sxw
@@ -293,4 +293,3 @@ class account_balance_xls(report_xls):
 account_balance_xls('report.analytic_balance_xls',
     'analytic.balance',
     parser=analytic_balance)
-
