@@ -117,7 +117,7 @@ class sale_order(osv.osv):
     }
     _defaults = {
         #'freq_table': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid).freq_table,
-        'department_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id,
+        # 'department_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id, MIGRACION: El campo context_department_id no existe
         'delegation_id': lambda s, cr, uid, c: s.pool.get('res.users').browse(cr, uid, uid).context_delegation_id.id,
         'name': lambda *a: "/",
         'show_total': lambda *a: True,

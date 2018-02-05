@@ -34,7 +34,7 @@ class account_analytic_plan_instance_line(osv.osv):
 
     _defaults = {
         'delegation_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).context_delegation_id.id,
-        'department_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,
+        # 'department_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,  MIGRACION: El campo context_department_id no existe
         'manager_id': lambda self, cr, uid, context: self.pool.get('hr.employee').search(cr, uid, [('user_id','=',uid)]) and self.pool.get('hr.employee').search(cr, uid, [('user_id','=',uid)])[0] or False,
     }
 

@@ -20,4 +20,4 @@
 
 """Initial file to import each classes in this module"""
 
-import partner_contact
+# import partner_contact MIGRACION: Modelo eliminado

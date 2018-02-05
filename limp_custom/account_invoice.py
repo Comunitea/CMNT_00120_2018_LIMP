@@ -51,7 +51,7 @@ class account_invoice(osv.osv):
     _columns = {
         'add_info':fields.related('partner_id', 'add_info', string="Additional Information", readonly=True, type="boolean"),
         'amount_taxes': fields.function(_amount_taxes, method=True, digits_compute=dp.get_precision('Account'), string='Tax amount'),
-        'address_contact_id': fields.many2one('res.partner.address', 'Contact Address')
+        # 'address_contact_id': fields.many2one('res.partner', 'Contact Address') MIGRACION: Este campo ya no existe
     }
 
     def onchange_partner_id(self, cr, uid, ids, type, partner_id,\

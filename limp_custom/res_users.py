@@ -25,7 +25,7 @@ class res_users(osv.osv):
     _inherit = "res.users"
 
     _columns = {
-        'work_address_id': fields.many2one('res.partner.address', string='Work Address'),
+        'work_address_id': fields.many2one('res.partner', string='Work Address'),
         'context_responsible_id': fields.many2one('hr.employee', 'Resposible', domain=[('responsible', '=', True)])
     }
 

@@ -31,13 +31,13 @@ WARNING_MESSAGE = [
 
 WARNING_HELP = _('Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.')
 
-class res_partner_address(osv.osv):
+'''class res_partner_address(osv.osv):
     _inherit = "res.partner.address"
     _columns = {
         'type': fields.selection( [ ('default','Default'),('invoice','Invoice'), ('delivery','Delivery'), ('contact','Contact'), ('management_plant', 'Management plant'), ('other','Other'), ('tramit', 'Tramit')],'Address Type', help="Used to select automatically the right address according to the context in sales and purchases documents."),
         'attention_of': fields.char('A/A', size=255)
     }
-res_partner_address()
+res_partner_address()'''
 
 class res_partner(osv.osv):
     _inherit = "res.partner"

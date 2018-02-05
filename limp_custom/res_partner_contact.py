@@ -22,15 +22,15 @@
 from osv import osv, fields
 
 class res_partner_contact(osv.osv):
-    
+
     _inherit = "res.partner.contact"
-    
+
     _columns = {
         'first_name': fields.char('First Name', size=64, required=True),
-        'address': fields.related('job_ids','address_id',type='many2one',relation='res.partner.address',string='Address'),
+        'address': fields.related('job_ids','address_id',type='many2one',relation='res.partner',string='Address'),
         'colege_num': fields.char('Colege number', size=64)
     }
-    
+
     def name_get(self, cr, user, ids, context=None):
         if not len(ids):
             return []
@@ -45,6 +45,6 @@ class res_partner_contact(osv.osv):
             _contact += contact.name or ""
             res.append((contact.id, _contact))
         return res
-    
-    
+
+
 res_partner_contact()

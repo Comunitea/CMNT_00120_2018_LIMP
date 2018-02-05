@@ -85,7 +85,7 @@ class fleet_expense(osv.osv):
         'amount': 0.0,
         'distribute': True,
         'expense_date': lambda *a: time.strftime("%Y-%m-%d"),
-        'department_id': lambda self, cr, uid, context: context.get('c_department_id', False) or context.get('department_id', False) or self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,
+        # 'department_id': lambda self, cr, uid, context: context.get('c_department_id', False) or context.get('department_id', False) or self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,  MIGRACION: El campo context_department_id no existe
     }
 
 fleet_expense()

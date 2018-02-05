@@ -41,7 +41,7 @@ class container_move(osv.osv):
 
     _columns = {
         'container_id': fields.many2one('container', 'Container', required=True),
-        'address_id': fields.many2one('res.partner.address', 'Situation', required=True),
+        'address_id': fields.many2one('res.partner', 'Situation', required=True),
         'move_type': fields.selection([('in','In'),('out', 'Out')], 'Move type', required=True),
         'move_date': fields.datetime('Date', required=True),
         'type': fields.related('container_id', 'type', selection=[('flat_dumpster4', 'Flat Dumpster 4'), ('flat_dumpster7', 'Flat Dumpster 7'), ('flat_dumpster9', 'Flat Dumpster 9'), ('flat_dumpster12', 'Flat Dumpster 12'),
@@ -58,5 +58,3 @@ class container_move(osv.osv):
     }
 
 container_move()
-
-

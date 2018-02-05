@@ -92,7 +92,7 @@ class limp_contract(osv.osv):
         'stock_sporadic_service_picking_ids': fields.one2many('stock.service.picking', 'contract_id', 'Sporadic picking lines', states={'cancelled':[('readonly',True)], 'close':[('readonly',True)]}, domain=[('picking_type','=','sporadic')]),
         'payment_term_id': fields.many2one('account.payment.term', 'Payment term'),
         'payment_type_id': fields.many2one('payment.type', 'Payment type'),
-        'contact_id': fields.many2one('res.partner.contact', 'Contact'),
+        'contact_id': fields.many2one('res.partner', 'Contact'),
         'note': fields.text('Description'),
         'include_pickings': fields.boolean('Include pickings'),
         'signature_date': fields.date('Signature date', readonly=True),

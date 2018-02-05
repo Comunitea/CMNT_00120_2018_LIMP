@@ -72,7 +72,7 @@ class building_site_services(osv.osv):
         'vat_holder': fields.char('Vat', size=32),
         'city_holder': fields.char('City', size=64),
         'province_holder': fields.char('Province', size=64),
-        'address_building_site': fields.many2one('res.partner.address','Address'),
+        'address_building_site': fields.many2one('res.partner','Address'),
         'contact_id': fields.many2one('res.partner.contact', 'Contact'),
         'building_site_license': fields.char('License nº', size=64),
         'city_building_site': fields.char('City', size=64),

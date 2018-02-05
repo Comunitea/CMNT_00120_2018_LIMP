@@ -36,7 +36,7 @@ class res_delegation(osv.osv):
         'parent_id': fields.many2one('res.delegation', 'Parent delegation'),
         'child_ids': fields.one2many('res.delegation', 'parent_id', 'Child delegations'),
         'user_ids': fields.many2many('res.users', 'res_delegation_users_rel', 'delegation_id', 'user_id', 'Related users'),
-        'address_id': fields.many2one('res.partner.address','Delegation Address')
+        'address_id': fields.many2one('res.partner','Delegation Address')
     }
 
     def _check_recursion(self, cr, uid, ids, context=None):

@@ -27,43 +27,43 @@ import pooler
 
 
 class city_council(osv.osv):
-    
+
     _name = 'city.council'
-    
+
     _columns = {
         'name': fields.char('Council', size=64, required=True, select=1),
     }
-    
+
 city_council()
 
 class city(osv.osv):
-    
+
     _inherit = "city.city"
-    
+
     _columns = {
         'council_id': fields.many2one('city.council', 'Council')
     }
-    
+
 city()
 
 class city_council2(osv.osv):
-    
+
     _inherit = 'city.council'
-    
+
     _columns = {
         'city_ids': fields.one2many('city.city', 'council_id', 'Zipcodes'),
     }
-    
+
 city_council2()
 
 
-class res_partner_address(osv.osv):
+'''class res_partner_address(osv.osv):
     _inherit = "res.partner.address"
 
     _columns = {
         'council_id': fields.many2one('city.council', 'Council'),
     }
-    
+
     def on_change_fields(self, cr, uid, ids, zipcode):
         if zipcode:
             cities = self.pool.get('city.city').search(cr, uid, [('zipcode', '=', zipcode)])
@@ -78,8 +78,8 @@ class res_partner_address(osv.osv):
                                     }}
 
         return {}
-    
-res_partner_address()
+
+res_partner_address() MIGRACION: Eliminado modelo res.partner.address'''
 
 council_end_form = '''<?xml version="1.0" encoding="utf-8"?>
 <form string="Councils">
@@ -97,11 +97,11 @@ class l10n_es_associate_council_city(wizard.interface):
             else:
                 council_id = ids[0]
             c.write({'council_id': council_id})
-                
+
             address_ids = pool.get('res.partner.address').search(cr, uid, [('location', '=', c.id)])
             if address_ids:
                 pool.get('res.partner.address').write(cr, uid, address_ids, {'council_id': council_id})
-            
+
         return {}
 
     states = {

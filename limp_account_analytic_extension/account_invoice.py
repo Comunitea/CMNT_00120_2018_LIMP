@@ -33,7 +33,7 @@ class account_invoice(osv.osv):
     }
 
     _defaults = {
-        'department_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id,
+        # 'department_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id,  MIGRACION: El campo context_department_id no existe
         'delegation_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).context_delegation_id.id,
         'manager_id': lambda self, cr, uid, context: self.pool.get('hr.employee').search(cr, uid, [('user_id','=',uid)]) and self.pool.get('hr.employee').search(cr, uid, [('user_id','=',uid)])[0] or False,
     }

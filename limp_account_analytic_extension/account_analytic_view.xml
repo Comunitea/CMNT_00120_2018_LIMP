@@ -10,12 +10,12 @@
             <field name="arch" type="xml">
                 <xpath expr="/search/group/field[@name='user_id']" position="after">
                     <newline/>
-                    <field name="manager_id" widget="selection"/>
+                    <field name="custom_manager_id" widget="selection"/>
                     <field name="delegation_id" widget="selection"/>
                     <field name="description"/>
                 </xpath>
                 <xpath expr="/search/group/filter[@string='Manager']" position="after">
-                    <filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by': 'manager_id'}"/>
+                    <filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by': 'custom_manager_id'}"/>
                     <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
                 </xpath>
             </field>
@@ -31,7 +31,7 @@
                     <field name="date_start"/>
                     <field name="description"/>
                     <field name="code" invisible="1"/>
-                    <field name="manager_id"/>
+                    <field name="custom_manager_id"/>
                     <field name="delegation_id"/>
                 </field>
                 <field name="quantity_max" position="replace"/>
@@ -82,7 +82,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="/form/notebook/page/field[@name='partner_id']" position="after">
-                    <field name="manager_id"/>
+                    <field name="custom_manager_id"/>
                     <field name="delegation_id" />
                 </xpath>
             </field>

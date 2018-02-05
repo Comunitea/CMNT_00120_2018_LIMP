@@ -23,6 +23,6 @@
 
 import country
 import wizard
-import partner
+# import partner MIGRACION: Eliminado modelo res.partner.address
 import invoice
 import res_company

@@ -29,13 +29,13 @@ class account_analytic_account(osv.osv):
 
     _columns = {
         'delegation_id': fields.many2one('res.delegation', 'Delegation', change_default=1),
-        'manager_id': fields.many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)]),
+        'custom_manager_id': fields.many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)]), # MIGRACION: Se cambia el nombre de la columna, ya que el modulo project añade otra con el mismo nombre
     }
 
     _defaults = {
         'delegation_id': lambda self, cr, uid, context: context.get('delegation_id', False) or self.pool.get('res.users').browse(cr, uid, uid, context).context_delegation_id.id,
-        'department_id': lambda s,cr,uid,c: c.get('department_id', False) or s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id,
-        'manager_id': lambda self, cr, uid, context: context.get('c_manager_id',False) or self.pool.get('hr.employee').search(cr, uid, [('user_id', '=', uid)], context=context) and self.pool.get('hr.employee').search(cr, uid, [('user_id', '=', uid)], context=context)[0] or False,
+        # 'department_id': lambda s,cr,uid,c: c.get('department_id', False) or s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id,  MIGRACION: El campo context_department_id no existe
+        'custom_manager_id': lambda self, cr, uid, context: context.get('c_manager_id',False) or self.pool.get('hr.employee').search(cr, uid, [('user_id', '=', uid)], context=context) and self.pool.get('hr.employee').search(cr, uid, [('user_id', '=', uid)], context=context)[0] or False,
     }
 
 account_analytic_account()

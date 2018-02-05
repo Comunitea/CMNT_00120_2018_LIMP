@@ -55,14 +55,14 @@ class account_analytic_occupation(osv.osv):
         'task_ids': fields.many2many('limp.contract.task', 'account_analytic_occupation_contract_task_rel', 'occupation_id', 'task_id', 'Tasks'),
         'state': fields.selection([('draft', 'Draft'), ('active', 'Active'), ('incidence', 'Based of incidence'), ('replaced', 'Replaced'), ('replacement', 'Replacement'), ('cancelled', 'Cancelled')], 'State', readonly=True),
         'region_id': fields.many2one('res.country.region', 'Autonomous'),
-        'customer_contact_id': fields.function(_get_customer_contact_id, method=True, relation='res.partner.contact', string='User', readonly=True, type="many2one", fnct_search=_search_customer_contact)
+        'customer_contact_id': fields.function(_get_customer_contact_id, method=True, relation='res.partner', string='User', readonly=True, type="many2one", fnct_search=_search_customer_contact)
     }
 
     _defaults = {
         'delegation_id': lambda self, cr, uid, context: context.get('c_delegation_id', False) or context.get('delegation_id', False),
         'department_id': lambda self, cr, uid, context: context.get('c_department_id', False) or context.get('department_id', False) or self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,
         'state': 'draft',
-        'company_id': lambda self, cr, uid, context: context.get('company_id', False) or self.pool.get('res.users').browse(cr, uid, uid).company_id.id,
+        # 'company_id': lambda self, cr, uid, context: context.get('company_id', False) or self.pool.get('res.users').browse(cr, uid, uid).company_id.id,  MIGRACION: El campo context_department_id no existe
     }
 
     def create(self, cr, uid, vals, context=None):

@@ -56,7 +56,7 @@ class container(osv.osv):
         #'product_id': fields.many2one('product.product', 'Product', required=True),
         #'product_tmpl_id': fields.related('product_id', 'product_tmpl_id', type="many2one", relation="product.template", string="Product template", readonly=True),
         #'amount': fields.related('product_tmpl_id','list_price',string='Amount', digits_compute=dp.get_precision('Account'), readonly=True, type="float"),
-        'situation_id': fields.many2one('res.partner.address', 'Situation', help="Current situation, customer address or available in company addresses"),
+        'situation_id': fields.many2one('res.partner', 'Situation', help="Current situation, customer address or available in company addresses"),
         'partner_id': fields.related('situation_id', 'partner_id', type="many2one", relation="res.partner", string="Partner", readonly=True),
         'home': fields.related('situation_id', 'containers_store', type="boolean", readonly=True, string="Home"),
         'container_placement': fields.selection([('on_street', 'On street'),('on_building', 'On building')], string="Container placement")

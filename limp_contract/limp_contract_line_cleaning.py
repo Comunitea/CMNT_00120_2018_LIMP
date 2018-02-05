@@ -40,7 +40,7 @@ class limp_contract_line_cleaning(osv.osv):
         'partner_id': lambda self, cr, uid, context: context.get('partner_id', False),
         'parent_id': lambda self, cr, uid, context: context.get('parent_id', False),
         'company_id': lambda self, cr, uid, context: context.get('company_id', False) or self.pool.get('res.users').browse(cr, uid, uid).company_id.id,
-        'department_id': lambda self, cr, uid, context: context.get('c_department_id', False) or context.get('department_id', False) or self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,
+        # 'department_id': lambda self, cr, uid, context: context.get('c_department_id', False) or context.get('department_id', False) or self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id, MIGRACION: El campo context_department_id no existe
     }
 
     def open_line(self, cr, uid, ids, context=None):

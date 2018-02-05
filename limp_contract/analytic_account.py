@@ -198,8 +198,8 @@ class account_analytic_account(osv.osv):
         'state_id': fields.many2one('res.country.state', 'Province'),
         'location_id': fields.many2one('city.council', 'Council'),
         'concept_amount': fields.function(_get_total_amount, method=True, string="Concepts amount", readonly=True, type="float", digits_compute=dp.get_precision('Account')),
-        'address_invoice_id': fields.many2one('res.partner.address', 'Address invoice'),
-        'address_id': fields.many2one('res.partner.address', 'Address'),
+        'address_invoice_id': fields.many2one('res.partner', 'Address invoice'),
+        'address_id': fields.many2one('res.partner', 'Address'),
         'region_id': fields.many2one('res.country.region', 'Autonomous'),
         'privacy': fields.selection([('public', 'Public'), ('private', 'Private')], 'Privacy'),
         'is_contract': fields.function(_get_is_contract, method=True, fnct_search=_search_is_contract, type="boolean", readonly=True, string="Is contract"),
@@ -208,7 +208,7 @@ class account_analytic_account(osv.osv):
         'invoice_limit_hours': fields.float('Invoice limit hours', digits=(7, 2)),
         'invoice_by_high': fields.boolean('Invoice by high'),
         'analytic_distribution_id': fields.many2one('account.analytic.plan.instance','Analytic Distribution'),
-        'address_tramit_id': fields.many2one('res.partner.address', "Tramit address"),
+        'address_tramit_id': fields.many2one('res.partner', "Tramit address"),
         'partner_name': fields.related('partner_id', 'name', type="char", size=256, readonly=True, store=True, string="Partner name")
     }
 

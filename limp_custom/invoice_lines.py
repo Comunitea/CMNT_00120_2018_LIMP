@@ -7,7 +7,7 @@ class invoice_lines(osv.osv):
     _columns = {
         'date': fields.date('Date'),
         'partner_id':fields.many2one('res.partner','Custumer/Supplier',readonly=True),
-        'address_id':fields.many2one('res.partner.address', 'Address', readonly=True),
+        #'address_id':fields.many2one('res.partner.address', 'Address', readonly=True),
         'quantity':fields.float("Quantity",readonly=True),
         'ler_code_id':fields.many2one('waste.ler.code',string="LER", readonly=True),
         'product_id':fields.many2one('product.product','Product',readonly=True),
@@ -15,17 +15,17 @@ class invoice_lines(osv.osv):
         'subtotal':fields.float("subtotal",readonly=True),
         'nif':fields.related('partner_id','vat',string="N.I.F/C.I.F", readonly=True, type="char", size=256),
         'company_id':fields.many2one('res.company', "Company", readonly=True),
-        'city':fields.related('address_id','city',string="City", readonly=True, type="char", size=128),
-        'state_id':fields.related('address_id','state_id',string="State", readonly=True, type="many2one",relation="res.country.state"),
+        'city':fields.related('partner_id','city',string="City", readonly=True, type="char", size=128),
+        'state_id':fields.related('partner_id','state_id',string="State", readonly=True, type="many2one",relation="res.country.state"),
 
     }
 
     def init(self, cr):
         tools.sql.drop_view_if_exists(cr,  "invoice_lines")
-
+        #MIGRACION: se elimina address_id de la query
         cr.execute("""
             create or replace view invoice_lines as (
-            SELECT SM.id AS id,SP.date,SP.partner_id,SP.address_id,SM.product_uos_qty AS quantity,P2.ler_code_id,SM.product_id,SM.product_qty AS m3, AIL.price_unit*AIL.quantity AS subtotal, SP.company_id
+            SELECT SM.id AS id,SP.date,SP.partner_id,SM.product_uos_qty AS quantity,P2.ler_code_id,SM.product_id,SM.product_qty AS m3, AIL.price_unit*AIL.quantity AS subtotal, SP.company_id
             FROM stock_move AS SM
                 INNER JOIN stock_picking AS SP  ON SM.picking_id = SP.id
                 INNER JOIN product_product AS P ON SM.product_id = P.id

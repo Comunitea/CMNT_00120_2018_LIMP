@@ -21,5 +21,4 @@
 #
 ##############################################################################
 
-import create_facturae
-
+# import create_facturae MIGRACION: wizard.interface

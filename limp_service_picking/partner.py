@@ -26,7 +26,7 @@ class res_partner(osv.osv):
     _inherit = 'res.partner'
 
     _columns = {
-        'partner_contact_id': fields.many2one('res.partner.contact', 'Partner contact'),
+        'partner_contact_id': fields.many2one('res.partner', 'Partner contact'),
         'authorization_no': fields.char('Authorization no.', size=32),
         'manager_authorization_no': fields.text('Manager authorization no.'),
         'transport_authorization_no': fields.char('Transport authorization no.', size=32),

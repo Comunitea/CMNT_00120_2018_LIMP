@@ -27,7 +27,7 @@ class account_invoice(osv.osv):
     _inherit = "account.invoice"
 
     _columns = {
-        'address_tramit_id': fields.many2one('res.partner.address', "Tramit address")
+        'address_tramit_id': fields.many2one('res.partner', "Tramit address")
     }
 
 account_invoice()

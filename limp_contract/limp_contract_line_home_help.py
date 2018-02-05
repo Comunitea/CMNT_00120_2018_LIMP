@@ -33,12 +33,12 @@ class limp_contract_line_home_help(osv.osv):
 
     _columns = {
         'contract_line_id': fields.many2one('limp.contract.line', 'Contract line', readonly=True, required=True, ondelete="cascade"),
-        'customer_contact_id': fields.many2one('res.partner.contact', 'User', required=True),
-        'contact_identification_id': fields.related('customer_contact_id', 'identification_no', type="char", size=32, readonly=True, string="ID"),
+        'customer_contact_id': fields.many2one('res.partner', 'User', required=True),
+        # 'contact_identification_id': fields.related('customer_contact_id', 'identification_no', type="char", size=32, readonly=True, string="ID"), MIGRACION: Pendiente de migrar campos de contact a res.partner
         'beneficiary_amount': fields.float('Beneficiary amount', digits_compute=dp.get_precision('Account')),
         'check_amount': fields.float('Check amount', digits_compute=dp.get_precision('Account')),
         'administration_amount': fields.float('Administration amount', digits_compute=dp.get_precision('Account')),
-        'partner_social_worker_id': fields.many2one('res.partner.contact', 'Partner social worker'),
+        'partner_social_worker_id': fields.many2one('res.partner', 'Partner social worker'),
         'analytic_acc_id': fields.many2one('account.analytic.account', 'Analytic account', readonly=True, required=True, ondelete="cascade"),
         'social_worker_id': fields.many2one('hr.employee', 'Social worker')
     }
@@ -48,7 +48,7 @@ class limp_contract_line_home_help(osv.osv):
         'partner_id': lambda self, cr, uid, context: context.get('partner_id', False),
         'parent_id': lambda self, cr, uid, context: context.get('parent_id', False),
         'company_id': lambda self, cr, uid, context: context.get('company_id', False),
-        'department_id': lambda self, cr, uid, context: context.get('c_department_id', False) or context.get('department_id', False) or self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,
+        # 'department_id': lambda self, cr, uid, context: context.get('c_department_id', False) or context.get('department_id', False) or self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id, MIGRACION: El campo context_department_id no existe
     }
 
     def open_line(self, cr, uid, ids, context=None):

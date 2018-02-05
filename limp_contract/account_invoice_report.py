@@ -65,8 +65,8 @@ class account_invoice_report_custom(osv.osv):
             ('cancel','Cancelled')
             ], 'Invoice State', readonly=True),
         'date_due': fields.date('Due Date', readonly=True),
-        'address_contact_id': fields.many2one('res.partner.address', 'Contact Address Name', readonly=True),
-        'address_invoice_id': fields.many2one('res.partner.address', 'Invoice Address Name', readonly=True),
+        #'address_contact_id': fields.many2one('res.partner.address', 'Contact Address Name', readonly=True), MIGRACION: Ya no existen
+        #'address_invoice_id': fields.many2one('res.partner.address', 'Invoice Address Name', readonly=True),
         'account_id': fields.many2one('account.account', 'Account',readonly=True),
         'partner_bank_id': fields.many2one('res.partner.bank', 'Bank Account',readonly=True),
         'residual': fields.float('Total Residual', readonly=True),
@@ -79,6 +79,9 @@ class account_invoice_report_custom(osv.osv):
 
     def init(self, cr):
         tools.drop_view_if_exists(cr, 'account_invoice_report_custom')
+        # MIGRACION: Se elimina:
+        # ai.address_contact_id as address_contact_id, ai.address_invoice_id as address_invoice_id,
+        # de select y group by
         cr.execute("""
             create or replace view account_invoice_report_custom as (
                  select min(ail.id) as id,
@@ -108,8 +111,6 @@ class account_invoice_report_custom(osv.osv):
                     ai.state,
                     pt.categ_id,
                     ai.date_due as date_due,
-                    ai.address_contact_id as address_contact_id,
-                    ai.address_invoice_id as address_invoice_id,
                     ai.account_id as account_id,
                     ai.no_quality as no_quality,
                     ai.partner_bank_id as partner_bank_id,
@@ -172,8 +173,6 @@ class account_invoice_report_custom(osv.osv):
                     aa.privacy,
                     pt.categ_id,
                     ai.date_due,
-                    ai.address_contact_id,
-                    ai.address_invoice_id,
                     ai.account_id,
                     ai.partner_bank_id,
                     ai.amount_total,
