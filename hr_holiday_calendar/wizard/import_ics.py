@@ -23,10 +23,10 @@
 ICS Files importation Wizard
 """
 
-from osv import osv, fields
+from openerp import models, fields
 import base64
 
-class import_ics_wzd(osv.osv_memory):
+class import_ics_wzd(models.TransientModel):
     """ Object to import ICS Files """
 
     _name = "import.ics.wzd"
@@ -45,7 +45,7 @@ class import_ics_wzd(osv.osv_memory):
         'state': 'first',
         'scope': 'national'
     }
-    
+
     def import_file(self, cr, uid, ids, context=None):
         """ Import method """
         if context is None: context = {}
@@ -63,11 +63,11 @@ class import_ics_wzd(osv.osv_memory):
             unicode(file, 'utf8')
         except Exception, e:
             file = unicode(file, 'iso-8859-1').encode('utf-8')
-            
+
         for line in file.split("\n"):
             if len(line) == 0:
                 continue
-           
+
             if (line[0:12]=='BEGIN:VEVENT'): # Holiday begin statement
                 holiday = []
                 flag = True

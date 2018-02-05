@@ -1,6 +1,6 @@
-from osv import fields,osv
+from openerp import models, fields
 import tools
-class invoice_lines(osv.osv):
+class invoice_lines(models.Model):
     _name = "invoice.lines"
     _auto = False
     _rec_name = 'ler_code_id'

@@ -30,7 +30,7 @@
             'analytic',
             'account',
             'hr',
-            'base_calendar'
+            'calendar'
             ],
         "init_xml" : [],
         "demo_xml" : [],

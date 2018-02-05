@@ -25,7 +25,7 @@ from tools.translate import _
 
 ###Se comenta la restricción desde el __init__.py
 
-class service_order_toinvoice(osv.osv_memory):
+class service_order_toinvoice(models.TransientModel):
     _inherit = 'service.order.toinvoice'
 
     def create_invoice(self, cr, uid, ids, context=None):

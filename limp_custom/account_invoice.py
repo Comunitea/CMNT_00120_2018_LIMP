@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 
-class account_invoice_line(osv.osv):
+class account_invoice_line(models.Model):
 
     _inherit = "account.invoice.line"
 
@@ -32,7 +32,7 @@ class account_invoice_line(osv.osv):
 
 account_invoice_line()
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
 
     _inherit = "account.invoice"
 

@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class res_partner_job(osv.osv):
-    
+class res_partner_job(models.Model):
+
     _inherit = "res.partner.job"
-    
+
     def default_get(self, cr, uid, fields, context=None):
         if context is None: context = {}
         data = super(res_partner_job, self).default_get(cr, uid, fields, context=context)
@@ -34,12 +34,12 @@ class res_partner_job(osv.osv):
             if f not in fields:
                 del data[f]
         return data
-    
+
     def _default_get(self, cr, uid, fields, context=None):
         if context is None: context = {}
         data = {}
         sequence = 0
-        
+
         if context.get('lines',[]):
             line_selected = False
 
@@ -48,7 +48,7 @@ class res_partner_job(osv.osv):
                     line_record_detail = self.read(cr, uid, line_record, ['sequence_contact'])
                 else:
                     line_record_detail = line_record[2]
-                
+
                 if line_record_detail['sequence_contact'] and line_record_detail['sequence_contact'] >= sequence:
                     line_selected = line_record_detail
                     sequence = line_record_detail['sequence_contact']
@@ -56,5 +56,5 @@ class res_partner_job(osv.osv):
         data["sequence_contact"] = sequence + 1
 
         return data
-    
+
 res_partner_job()

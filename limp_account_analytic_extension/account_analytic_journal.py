@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class account_analytic_journal(osv.osv):
+class account_analytic_journal(models.Model):
     _inherit = 'account.analytic.journal'
 
     _columns = {

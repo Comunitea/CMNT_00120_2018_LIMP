@@ -21,10 +21,10 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp import models, fields
 
 
-class Country(osv.osv):
+class Country(models.Model):
     _inherit = 'res.country'
     _columns = {
         'code_3166': fields.char('Country Code', size=3,help='The ISO 3166 country code in three chars.', required=True),

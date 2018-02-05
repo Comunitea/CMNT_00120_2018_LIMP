@@ -18,9 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 
-class account_invoice_line(osv.osv):
+class account_invoice_line(models.Model):
     _inherit = "account.invoice.line"
     _columns = {
         'building_site_id': fields.many2one('building.site.services', 'Building Site'),
@@ -30,7 +30,7 @@ class account_invoice_line(osv.osv):
     }
 account_invoice_line()
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
 
     _inherit = "account.invoice"
 
@@ -49,7 +49,7 @@ class account_invoice(osv.osv):
 
 account_invoice()
 
-class stock_service_picking(osv.osv):
+class stock_service_picking(models.Model):
 
     _inherit = 'stock.service.picking'
 
@@ -60,7 +60,7 @@ class stock_service_picking(osv.osv):
 
 stock_service_picking()
 
-class account_journal(osv.osv):
+class account_journal(models.Model):
 
     _inherit = "account.journal"
 

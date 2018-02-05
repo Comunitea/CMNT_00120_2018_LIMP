@@ -21,7 +21,7 @@
 
 """Service pickings for Limpergal"""
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 import decimal_precision as dp
 import netsvc
@@ -49,7 +49,7 @@ def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
 
     return base_calendar_id and int(base_calendar_id) or base_calendar_id
 
-class stock_service_picking(osv.osv):
+class stock_service_picking(models.Model):
     """Service pickings for Limpergal"""
 
     _name = "stock.service.picking"

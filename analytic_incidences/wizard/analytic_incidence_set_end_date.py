@@ -20,11 +20,11 @@
 ##############################################################################
 
 
-from osv import osv, fields
+from openerp import models, fields
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
-class analytic_incidence_set_end_date(osv.osv_memory):
+class analytic_incidence_set_end_date(models.TransientModel):
 
     _name = "analytic.incidence.set.end.date"
 

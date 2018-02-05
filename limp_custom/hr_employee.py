@@ -19,20 +19,20 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class hr_employee(osv.osv):
-    
+class hr_employee(models.Model):
+
     _inherit = 'hr.employee'
-    
+
     _columns = {
         'delegation_id': fields.many2one('res.delegation', 'Delegation'),
         'colege_num': fields.char('Colege number', size=64),
         'private_address': fields.char('Private address', size=255)
     }
-    
+
     _defaults = {
         'delegation_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).context_delegation_id.id
     }
-    
+
 hr_employee()

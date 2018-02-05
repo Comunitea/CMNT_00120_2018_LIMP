@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 import calendar
 
-class contract_to_invoice(osv.osv_memory):
+class contract_to_invoice(models.TransientModel):
     
     _name = "contract.to_invoice"
     

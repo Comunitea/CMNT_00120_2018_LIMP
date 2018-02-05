@@ -20,9 +20,9 @@
 
 """Extends this object with specific fields to Limpergal"""
 
-from osv import osv, fields
+from openerp import models, fields
 
-class account_analytic_occupation(osv.osv):
+class account_analytic_occupation(models.Model):
     """Extends this object with specific fields to Limpergal"""
 
     _inherit = 'account.analytic.occupation'

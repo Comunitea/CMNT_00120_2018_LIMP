@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class waste_service(osv.osv):
+class waste_service(models.Model):
 
     _name = "waste.service"
     _description = "Waste services"

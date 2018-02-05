@@ -22,12 +22,12 @@
 
 """Wizard to set a laboral incidence from an employee's form"""
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
-class employee_set_laboral_incidence_wzd(osv.osv_memory):
+class employee_set_laboral_incidence_wzd(models.TransientModel):
     """Wizard to set a laboral incidence from an employee's form"""
 
     _name = "employee.set.laboral.incidence.wzd"

@@ -18,14 +18,14 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 import time
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 
-class maintenance_task(osv.osv):
+class maintenance_task(models.Model):
 
     _name = "maintenance.task"
 
@@ -127,7 +127,7 @@ class maintenance_task(osv.osv):
 
 maintenance_task()
 
-class account_analytic_account(osv.osv):
+class account_analytic_account(models.Model):
 
     _inherit = "account.analytic.account"
 
@@ -137,7 +137,7 @@ class account_analytic_account(osv.osv):
 
 account_analytic_account()
 
-class stock_service_picking(osv.osv):
+class stock_service_picking(models.Model):
 
     _inherit = "stock.service.picking"
 

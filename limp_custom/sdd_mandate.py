@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv
+from openerp import models
 
-class sdd_mandate(osv.osv):
+class sdd_mandate(models.Model):
 
     _inherit = "sdd.mandate"
 

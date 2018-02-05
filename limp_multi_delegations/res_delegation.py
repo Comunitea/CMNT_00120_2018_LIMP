@@ -20,10 +20,10 @@
 
 """Add new object as dimension of multi-company rules"""
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
-class res_delegation(osv.osv):
+class res_delegation(models.Model):
     """Add new object as dimension of multi-company rules"""
 
     _name = "res.delegation"

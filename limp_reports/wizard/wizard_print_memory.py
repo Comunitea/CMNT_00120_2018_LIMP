@@ -1,7 +1,7 @@
-from osv import fields, osv
+from openerp import models, fields
 import time
 
-class wizard_print_memory(osv.osv_memory):
+class wizard_print_memory(models.TransientModel):
 
     _name = "wizard.print.memory"
     _columns = {

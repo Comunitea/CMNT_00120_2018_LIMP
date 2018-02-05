@@ -20,12 +20,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 from time import mktime
 import time
 from datetime import datetime
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
 
     _inherit = "account.invoice"
 

@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import tools
 
-class account_invoice_report_custom(osv.osv):
+class account_invoice_report_custom(models.Model):
 
     _name = "account.invoice.report.custom"
     _auto = False

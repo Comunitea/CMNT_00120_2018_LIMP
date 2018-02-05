@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import tools
 
-class analytic_account_employees(osv.osv):
+class analytic_account_employees(models.Model):
 
     _name = "analytic.account.employees"
     _auto = False
@@ -48,7 +48,7 @@ class analytic_account_employees(osv.osv):
 analytic_account_employees()
 
 
-class account_analytic_account(osv.osv):
+class account_analytic_account(models.Model):
     _inherit = 'account.analytic.account'
 
     def _get_distinct_employee_ids(self, cr, uid, ids, field_name, arg, context=None):

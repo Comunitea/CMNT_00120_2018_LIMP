@@ -20,11 +20,11 @@
 ##############################################################################
 """new model between stock_move and service_picking"""
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 from tools.translate import _
 
-class service_picking_stock_move(osv.osv):
+class service_picking_stock_move(models.Model):
     """new model between stock_move and service_picking"""
 
     _name = "service.picking.stock.move"

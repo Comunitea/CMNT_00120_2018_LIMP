@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp import models, fields
 import time
 
-class account_analytic_default(osv.osv):
+class account_analytic_default(models.Model):
 
     _inherit = "account.analytic.default"
 
@@ -70,7 +70,7 @@ class account_analytic_default(osv.osv):
 
 account_analytic_default()
 
-class account_invoice_line(osv.osv):
+class account_invoice_line(models.Model):
     _inherit = "account.invoice.line"
     _description = "Invoice Line"
 

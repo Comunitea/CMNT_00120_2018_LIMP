@@ -31,7 +31,7 @@
             'base_contact',
             'l10n_es_partner',
             'base_vat_unique',
-            'base_calendar'
+            'calendar'
             ],
         "init_xml" : [],
         "demo_xml" : [],

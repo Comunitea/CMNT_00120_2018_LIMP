@@ -18,9 +18,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
 
     _inherit = "account.invoice"
 
@@ -42,7 +42,7 @@ class account_invoice(osv.osv):
 
 account_invoice()
 
-class account_invoice_line(osv.osv):
+class account_invoice_line(models.Model):
 
      _inherit = "account.invoice.line"
 

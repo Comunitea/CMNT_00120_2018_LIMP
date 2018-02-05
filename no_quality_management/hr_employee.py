@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class hr_employee(osv.osv):
+class hr_employee(models.Model):
 
     _inherit = "hr.employee"
 

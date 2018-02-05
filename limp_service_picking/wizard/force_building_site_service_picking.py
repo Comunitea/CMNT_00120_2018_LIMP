@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class force_building_site_service_picking(osv.osv_memory):
+class force_building_site_service_picking(models.TransientModel):
     
     _name = "force.building.site.service.picking"
     

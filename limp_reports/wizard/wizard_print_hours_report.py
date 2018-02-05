@@ -1,4 +1,4 @@
-from osv import fields, osv
+from openerp import models, fields
 import time
 from tools.translate import _
 import calendar
@@ -19,7 +19,7 @@ MONTHS = [
     ('12', _("December"))
 ]
 
-class wizard_print_hours_reports(osv.osv_memory):
+class wizard_print_hours_reports(models.TransientModel):
 
     _name = "wizard.print.hours.report"
 

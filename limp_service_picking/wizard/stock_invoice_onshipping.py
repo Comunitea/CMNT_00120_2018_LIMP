@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class stock_invoice_onshipping(osv.osv_memory):
+class stock_invoice_onshipping(models.TransientModel):
     
     _inherit = "stock.invoice.onshipping"
     

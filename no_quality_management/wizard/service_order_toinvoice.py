@@ -21,7 +21,7 @@
 
 from osv import osv
 
-class service_order_toinvoice(osv.osv_memory):
+class service_order_toinvoice(models.TransientModel):
 
     _inherit = 'service.order.toinvoice'
 

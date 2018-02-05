@@ -19,10 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 
 
-class analytic_incidence_wizard(osv.osv_memory):
+class analytic_incidence_wizard(models.TransientModel):
 
     _name = "analytic.incidence.wizard"
 

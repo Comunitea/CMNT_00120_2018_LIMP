@@ -19,9 +19,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 
-class building_site_services(osv.osv):
+class building_site_services(models.Model):
     _name = "building.site.services"
     _description = "Building sites/Services."
 

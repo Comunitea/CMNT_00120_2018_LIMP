@@ -19,11 +19,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 from datetime import datetime
 from tools.translate import _
 
-class search_employee_replacemenet(osv.osv_memory):
+class search_employee_replacemenet(models.TransientModel):
 
     _name = "search.employee.replacement"
     _description = "Search for possible replacement"

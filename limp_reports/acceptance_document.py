@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
 
-class acceptance_document(osv.osv):
+class acceptance_document(models.Model):
 
     _name = "acceptance.document"
     _rec_name = "number"

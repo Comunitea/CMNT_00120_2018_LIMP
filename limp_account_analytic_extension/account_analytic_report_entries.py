@@ -18,10 +18,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import tools
 
-class analytic_entries_report(osv.osv):
+class analytic_entries_report(models.Model):
 
     _inherit = "analytic.entries.report"
 

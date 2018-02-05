@@ -19,10 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
-class service_picking_invoice_concept(osv.osv):
+class service_picking_invoice_concept(models.Model):
 
     _order = "sequence asc"
 

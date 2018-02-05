@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class create_service_picking_from_sale(osv.osv_memory):
+class create_service_picking_from_sale(models.TransientModel):
 
     _name = "create.service.picking.from.sale"
 

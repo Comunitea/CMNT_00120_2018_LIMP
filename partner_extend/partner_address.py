@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp import models, fields
 
 
-class res_partner_address(osv.osv):
-    
+class res_partner_address(models.Model):
+
     _inherit = "res.partner.address"
-    
+
     def name_get(self, cr, user, ids, context=None):
         """
             @param self: The object pointer
@@ -48,6 +48,6 @@ class res_partner_address(osv.osv):
                                     or '', r.get('city', '') or '')
                 res.append((r['id'], addr.strip() or '/'))
         return res
-        
-        
+
+
 res_partner_address()

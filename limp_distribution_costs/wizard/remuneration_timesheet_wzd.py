@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 import calendar
 import datetime
 
-class remuneration_timesheet_wzd(osv.osv_memory):
+class remuneration_timesheet_wzd(models.TransientModel):
     _name = "remuneration.timesheet.wzd"
     _columns = {
         'month': fields.selection([

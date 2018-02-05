@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 import time
 from tools.translate import _
 
 
-class timesheet(osv.osv):
+class timesheet(models.Model):
     _name = 'timesheet'
 
     def _get_pending_qty(self, cr, uid, ids, name, args, context=None):

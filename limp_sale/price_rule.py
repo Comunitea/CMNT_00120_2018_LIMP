@@ -19,10 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 
-class price_rule(osv.osv):
+class price_rule(models.Model):
     
     _name = 'price.rule'
     _description = 'Price rules'

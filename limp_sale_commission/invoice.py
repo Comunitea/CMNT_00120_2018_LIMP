@@ -22,11 +22,11 @@
 
 """invoice agents"""
 
-from osv import fields, osv
+from openerp import models, fields
 from tools.translate import _
 
 
-class invoice_line_agent(osv.osv):
+class invoice_line_agent(models.Model):
     """invoice agents"""
 
     _name = "invoice.line.agent"
@@ -100,7 +100,7 @@ class invoice_line_agent(osv.osv):
 
 invoice_line_agent()
 
-class account_invoice_line(osv.osv):
+class account_invoice_line(models.Model):
     """Enlazamos las comisiones a la factura"""
 
     _inherit = "account.invoice.line"
@@ -111,7 +111,7 @@ class account_invoice_line(osv.osv):
 
 account_invoice_line()
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
     """heredamos las facturas para añadirles el representante de venta"""
 
     _inherit = "account.invoice"

@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class res_partner_address(osv.osv):
+class res_partner_address(models.Model):
 
     _inherit = "res.partner.address"
 
@@ -32,7 +32,7 @@ class res_partner_address(osv.osv):
 
 res_partner_address()
 
-class res_partner_address(osv.osv):
+class res_partner_address(models.Model):
 
     _inherit = "res.partner.address"
 

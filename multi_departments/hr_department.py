@@ -20,9 +20,9 @@
 
 """inherits hr_department to create new relationship from departments to users in many2many behaviour"""
 
-from osv import osv, fields
+from openerp import models, fields
 
-class hr_department(osv.osv):
+class hr_department(models.Model):
     """inherits hr_department to create new relationship from departments to users in many2many behaviour"""
 
     _inherit = "hr.department"

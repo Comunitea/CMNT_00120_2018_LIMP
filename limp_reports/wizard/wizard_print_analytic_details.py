@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 from tools.translate import _
 
-class account_analytic_account_details(osv.osv_memory):
+class account_analytic_account_details(models.TransientModel):
     _name = "account.analytic.account.details"
 
     _columns = {

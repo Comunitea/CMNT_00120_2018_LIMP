@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class purchase_order(osv.osv):
+class purchase_order(models.Model):
 
     _inherit = "purchase.order"
-    
+
     _defaults = {
         'warehouse_id': lambda *a: False,
     }

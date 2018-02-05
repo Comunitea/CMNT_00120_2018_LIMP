@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class stock_service_other_expenses(osv.osv):
+class stock_service_other_expenses(models.Model):
 
     _name = "stock.service.other.expenses"
 

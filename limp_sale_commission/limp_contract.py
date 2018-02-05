@@ -18,10 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
-class limp_contract_agent(osv.osv):
+class limp_contract_agent(models.Model):
     _name = 'limp.contract.agent'
     _columns = {
         'contract_id':fields.many2one('limp.contract', 'Contract', required=False, ondelete='cascade', help=''),
@@ -59,7 +59,7 @@ class limp_contract_agent(osv.osv):
         return result
 limp_contract_agent()
 
-class limp_contract(osv.osv):
+class limp_contract(models.Model):
     _inherit = 'limp.contract'
     _columns = {
         'contract_agent_ids':fields.one2many('limp.contract.agent', 'contract_id', 'Agents', states={'draft': [('readonly', False)]})

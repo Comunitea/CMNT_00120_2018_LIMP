@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
-class service_picking_agent(osv.osv):
+class service_picking_agent(models.Model):
     _name = 'service.picking.agent'
     _columns = {
         'picking_id':fields.many2one('stock.service.picking', 'Picking', required=False, ondelete='cascade', help=''),
@@ -62,7 +62,7 @@ class service_picking_agent(osv.osv):
 
 service_picking_agent()
 
-class stock_service_picking(osv.osv):
+class stock_service_picking(models.Model):
 
     _inherit = "stock.service.picking"
 
@@ -125,7 +125,7 @@ class stock_service_picking(osv.osv):
 
 stock_service_picking()
 
-class service_order_toinvoice(osv.osv_memory):
+class service_order_toinvoice(models.TransientModel):
 
     _inherit = "service.order.toinvoice"
 
@@ -150,7 +150,7 @@ class service_order_toinvoice(osv.osv_memory):
 
 service_order_toinvoice()
 
-class add_to_invoice(osv.osv_memory):
+class add_to_invoice(models.TransientModel):
 
     _inherit = "add.to.invoice"
 

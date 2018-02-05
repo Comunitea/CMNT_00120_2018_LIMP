@@ -19,16 +19,15 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class fleet_expense_type(osv.osv):
-    
+class fleet_expense_type(models.Model):
+
     _name = "fleet.expense.type"
-    
+
     _columns = {
         'name': fields.char('Name', size=128, required=True, translate=True),
         'product_id': fields.many2one('product.product', 'Related product')
     }
-    
+
 fleet_expense_type()
-    

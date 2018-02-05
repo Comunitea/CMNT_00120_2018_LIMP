@@ -20,10 +20,10 @@
 
 """Add new no-generic fields"""
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 
-class account_analytic_invoice_concept(osv.osv):
+class account_analytic_invoice_concept(models.Model):
 
     _inherit = "account.analytic.invoice.concept"
 
@@ -33,7 +33,7 @@ class account_analytic_invoice_concept(osv.osv):
 
 account_analytic_invoice_concept()
 
-class analytic_account_invoice_concept_rel(osv.osv):
+class analytic_account_invoice_concept_rel(models.Model):
     """Add new no-generic fields"""
 
     _inherit = "account.analytic.invoice.concept.rel"

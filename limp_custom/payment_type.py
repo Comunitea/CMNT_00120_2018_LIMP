@@ -18,14 +18,14 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp import models, fields
 
-class payment_type(osv.osv):
-    
+class payment_type(models.Model):
+
     _inherit = "payment.type"
-    
+
     _columns = {
         'company_id': fields.many2one('res.company', 'Company', required=False),
     }
-    
+
 payment_type()

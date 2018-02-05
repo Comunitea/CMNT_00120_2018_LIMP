@@ -18,11 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 from tools.translate import _
 
-class service_picking_other_concepts_rel(osv.osv):
+class service_picking_other_concepts_rel(models.Model):
     _name = 'service.picking.other.concepts.rel'
     _columns = {
         'product_id': fields.many2one('product.product', 'Product', required=True),

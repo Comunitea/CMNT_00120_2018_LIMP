@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import os
 import datetime,time
 from mako.template import Template
@@ -30,7 +30,7 @@ import pooler
 import base64
 from tools import config
 
-class export_account_to_glasof(osv.osv_memory):
+class export_account_to_glasof(models.TransientModel):
 
     _name = "export.account.to.glasof"
 

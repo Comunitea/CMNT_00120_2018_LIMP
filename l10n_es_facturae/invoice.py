@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
 
     _inherit = "account.invoice"
 
@@ -33,7 +33,7 @@ class account_invoice(osv.osv):
 account_invoice()
 
 
-class payment_type_face_code(osv.osv):
+class payment_type_face_code(models.Model):
 
     _name = "payment.type.face.code"
 
@@ -44,7 +44,7 @@ class payment_type_face_code(osv.osv):
 
 payment_type_face_code()
 
-class payment_type(osv.osv):
+class payment_type(models.Model):
 
     _inherit = "payment.type"
 

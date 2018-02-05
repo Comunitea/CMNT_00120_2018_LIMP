@@ -20,9 +20,9 @@
 
 """Relationship between contract line and contract task"""
 
-from osv import osv, fields
+from openerp import models, fields
 
-class limp_contract_line_task_rel(osv.osv):
+class limp_contract_line_task_rel(models.Model):
     """Relationship between contract line and contract task"""
 
     _name = "limp.contract.line.task.rel"

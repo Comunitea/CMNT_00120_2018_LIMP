@@ -21,9 +21,9 @@
 
 """History of employee's laboral incidences"""
 
-from osv import osv, fields
+from openerp import models, fields
 
-class hr_laboral_incidence(osv.osv):
+class hr_laboral_incidence(models.Model):
     """History of employee's laboral incidences"""
 
     _name = "hr.laboral.incidence"

@@ -21,7 +21,7 @@
 
 from osv import osv
 
-class account_analytic_account(osv.osv):
+class account_analytic_account(models.Model):
     _inherit = 'account.analytic.account'
 
     def create_concept_invoice_line(self, cr, uid, analytic, concept, invoice_id, end_date, context=None):

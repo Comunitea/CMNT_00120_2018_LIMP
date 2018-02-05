@@ -20,12 +20,12 @@
 
 """Base model to manage Limpergal's contracts"""
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 from tools.translate import _
 from datetime import datetime
 
-class limp_contract(osv.osv):
+class limp_contract(models.Model):
     """Base model to manage Limpergal's contracts"""
 
     _name = 'limp.contract'

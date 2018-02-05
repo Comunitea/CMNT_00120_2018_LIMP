@@ -20,9 +20,9 @@
 ##############################################################################
 
 
-from osv import osv, fields
+from openerp import models, fields
 
-class timesheet(osv.osv):
+class timesheet(models.Model):
 
     _inherit = 'timesheet'
 

@@ -18,9 +18,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class account_analytic_occupation_name(osv.osv):
+class account_analytic_occupation_name(models.Model):
     
     _name = "account.analytic.occupation.name"
     

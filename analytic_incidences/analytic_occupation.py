@@ -21,7 +21,7 @@
 
 """Extends this object to add state field"""
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
@@ -48,7 +48,7 @@ def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
 
     return base_calendar_id and int(base_calendar_id) or base_calendar_id
 
-class account_analytic_occupation(osv.osv):
+class account_analytic_occupation(models.Model):
     """Extends this object to add state field"""
 
     _inherit = 'account.analytic.occupation'

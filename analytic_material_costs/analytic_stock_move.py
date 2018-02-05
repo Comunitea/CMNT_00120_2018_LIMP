@@ -21,12 +21,12 @@
 
 """new model between stock_move and analytic_account"""
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 from tools.translate import _
 import time
 
-class account_analytic_stock_move(osv.osv):
+class account_analytic_stock_move(models.Model):
     """new model between stock_move and analytic_account"""
 
     _name = "account.analytic.stock.move"

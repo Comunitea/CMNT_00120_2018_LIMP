@@ -25,11 +25,11 @@ import decimal_precision as dp
 
 import netsvc
 import pooler
-from osv import fields, osv, orm
+from openerp import models, fields, orm
 from tools.translate import _
 
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
     _inherit = 'account.invoice'
 
     _columns= {
@@ -105,7 +105,7 @@ class account_invoice(osv.osv):
 
 account_invoice()
 
-class account_invoice_refund(osv.osv_memory):
+class account_invoice_refund(models.TransientModel):
 
     """Refunds invoice"""
 

@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 
-class service_picking_employees_rel(osv.osv):
+class service_picking_employees_rel(models.Model):
 
     _name = "stock.service.picking.employees.rel"
     _description = "Relationship between services pickings and employees"

@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 import netsvc
 
 
-class remove_no_quality(osv.osv_memory):
+class remove_no_quality(models.TransientModel):
 
     _name = "remove.no.quality"
 

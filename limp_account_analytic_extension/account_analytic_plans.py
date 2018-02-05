@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class account_analytic_plan_instance_line(osv.osv):
+class account_analytic_plan_instance_line(models.Model):
 
     _inherit = "account.analytic.plan.instance.line"
 
@@ -40,7 +40,7 @@ class account_analytic_plan_instance_line(osv.osv):
 
 account_analytic_plan_instance_line()
 
-class account_analytic_plan_instance(osv.osv):
+class account_analytic_plan_instance(models.Model):
 
     _inherit = "account.analytic.plan.instance"
 

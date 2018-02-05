@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
 
-class print_product_pricelist(osv.osv_memory):
+class print_product_pricelist(models.TransientModel):
     _name = 'print.product.pricelist'
     _description = 'Print product pricelist'
 

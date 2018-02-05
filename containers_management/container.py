@@ -21,11 +21,11 @@
 
 """Model to register containers"""
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 import time
 
-class container(osv.osv):
+class container(models.Model):
     """Model to register containers"""
 
     _name = "container"

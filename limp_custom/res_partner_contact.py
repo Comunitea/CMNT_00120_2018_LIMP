@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class res_partner_contact(osv.osv):
+class res_partner_contact(models.Model):
 
     _inherit = "res.partner.contact"
 

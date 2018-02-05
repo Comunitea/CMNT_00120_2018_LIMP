@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
 
-class limp_center_type(osv.osv):
+class limp_center_type(models.Model):
 
     _name = "limp.center.type"
 

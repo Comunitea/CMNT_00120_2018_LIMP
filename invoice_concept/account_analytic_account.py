@@ -20,7 +20,7 @@
 
 """Add concepts field to analytic account"""
 
-from osv import osv, fields
+from openerp import models, fields
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import time
@@ -33,7 +33,7 @@ def intersect(la, lb):
     l = filter(lambda x: x in lb, la)
     return l
 
-class account_analytic_account(osv.osv):
+class account_analytic_account(models.Model):
     """Add concepts field to analytic account"""
 
     _inherit = "account.analytic.account"

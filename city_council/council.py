@@ -21,12 +21,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import wizard
 import pooler
 
 
-class city_council(osv.osv):
+class city_council(models.Model):
 
     _name = 'city.council'
 
@@ -36,7 +36,7 @@ class city_council(osv.osv):
 
 city_council()
 
-class city(osv.osv):
+class city(models.Model):
 
     _inherit = "city.city"
 
@@ -46,7 +46,7 @@ class city(osv.osv):
 
 city()
 
-class city_council2(osv.osv):
+class city_council2(models.Model):
 
     _inherit = 'city.council'
 
@@ -57,7 +57,7 @@ class city_council2(osv.osv):
 city_council2()
 
 
-'''class res_partner_address(osv.osv):
+'''class res_partner_address(models.Model):
     _inherit = "res.partner.address"
 
     _columns = {

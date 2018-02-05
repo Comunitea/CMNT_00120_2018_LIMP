@@ -20,7 +20,7 @@
 
 """Adds new fields to analytics accounts"""
 
-from osv import osv, fields
+from openerp import models, fields
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from dateutil import rrule
@@ -28,7 +28,7 @@ import decimal_precision as dp
 import time
 import calendar
 
-class account_analytic_account(osv.osv):
+class account_analytic_account(models.Model):
     """Adds new fields to analytics accounts"""
 
     _inherit = "account.analytic.account"

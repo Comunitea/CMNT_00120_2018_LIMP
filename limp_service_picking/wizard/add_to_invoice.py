@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
-class add_to_invoice(osv.osv_memory):
+class add_to_invoice(models.TransientModel):
 
     _name = "add.to.invoice"
 

@@ -24,12 +24,12 @@ from datetime import datetime
 from operator import itemgetter
 
 import netsvc
-from osv import fields, osv
+from openerp import models, fields
 from tools.translate import _
 import decimal_precision as dp
 import tools
 
-class account_move(osv.osv):
+class account_move(models.Model):
     _inherit = 'account.move'
     
     def write(self, cr, uid, ids, vals, context=None):
@@ -67,7 +67,7 @@ class account_move(osv.osv):
 			vals['line_id'] = []
                         for line in reg.line_id:
                             vals['line_id'].append((1, line.id, {'period_id': period_line, 'date': date_line, 'journal_id': journal_line}))
-            result = super(osv.osv, self).write(cr, uid, ids, vals, c)
+            result = super(models.Model, self).write(cr, uid, ids, vals, c)
             self.validate(cr, uid, ids, context=context)
             return result
 

@@ -21,12 +21,12 @@
 
 """Wizard to increase prices in contracts"""
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
-class upamount_contract_wzd(osv.osv_memory):
+class upamount_contract_wzd(models.TransientModel):
     """Wizard to increase prices in contracts"""
 
     _name = "upamount.contract.wzd"

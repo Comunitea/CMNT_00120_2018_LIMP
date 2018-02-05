@@ -23,7 +23,7 @@
 from osv import osv,fields
 
 
-class res_company(osv.osv):
+class res_company(models.Model):
     _name = 'res.company'
     _inherit = 'res.company'
 

@@ -19,9 +19,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 
-class absence(osv.osv):
+class absence(models.Model):
     _name = "absence"
     _description = "absences for work"
     _columns = {

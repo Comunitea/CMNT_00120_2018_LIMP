@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 
-class product_template(osv.osv):
+class product_template(models.Model):
 
     _inherit = "product.template"
 
@@ -34,7 +34,7 @@ class product_template(osv.osv):
 
 
 product_template()
-class product_product(osv.osv):
+class product_product(models.Model):
     _inherit = 'product.product'
     
     def get_price_product(self, cr, uid, ids, address_id=False, measure=False, pricelist=False, context=None):

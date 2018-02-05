@@ -20,10 +20,10 @@
 
 """Relationship between invoice concepts and analytic accounts"""
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 
-class account_analytic_invoice_concept_rel(osv.osv):
+class account_analytic_invoice_concept_rel(models.Model):
     """Relationship between invoice concepts and analytic accounts"""
 
     _name = 'account.analytic.invoice.concept.rel'

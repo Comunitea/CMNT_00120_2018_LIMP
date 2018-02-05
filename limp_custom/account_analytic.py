@@ -18,10 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
-class account_analytic_account(osv.osv):
+class account_analytic_account(models.Model):
     _name = "account.analytic.account"
     _inherit = "account.analytic.account"
 
@@ -44,7 +44,7 @@ class account_analytic_account(osv.osv):
 
 account_analytic_account()
 
-class account_analytic_line(osv.osv):
+class account_analytic_line(models.Model):
     _name ="account.analytic.line"
     _inherit = "account.analytic.line"
 

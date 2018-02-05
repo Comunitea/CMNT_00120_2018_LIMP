@@ -23,7 +23,7 @@ from tools.translate import _
 import datetime
 import time
 
-class account_analytic_occupation(osv.osv):
+class account_analytic_occupation(models.Model):
     """Object to manage employee's occupations in analytic accounts"""
 
     _name = "account.analytic.occupation"

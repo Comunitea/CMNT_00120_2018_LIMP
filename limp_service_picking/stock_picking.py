@@ -20,11 +20,11 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 import netsvc
 
-class stock_picking(osv.osv):
+class stock_picking(models.Model):
     _inherit = "stock.picking"
     _columns = {
         'stock_service_picking_id': fields.many2one('stock.service.picking','Stock service picking'),

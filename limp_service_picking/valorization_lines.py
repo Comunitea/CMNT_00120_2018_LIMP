@@ -22,7 +22,7 @@
 from osv import fields,osv
 import tools
 
-class valorization_lines(osv.osv):
+class valorization_lines(models.Model):
     _name = "valorization.lines"
     _auto = False
     _rec_name = 'ler_code_id'

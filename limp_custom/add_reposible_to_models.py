@@ -18,9 +18,9 @@
 #
 ##############################################################################
 
-from osv import osv
+from openerp import models
 
-class account_move_line(osv.osv):
+class account_move_line(models.Model):
 
     _inherit = "account.move.line"
 
@@ -30,7 +30,7 @@ class account_move_line(osv.osv):
 
 account_move_line()
 
-class account_invoice(osv.osv):
+class account_invoice(models.Model):
 
     _inherit = "account.invoice"
 
@@ -40,7 +40,7 @@ class account_invoice(osv.osv):
 
 account_invoice()
 
-class account_analytic_plan_instance_line(osv.osv):
+class account_analytic_plan_instance_line(models.Model):
 
     _inherit = "account.analytic.plan.instance.line"
 
@@ -50,7 +50,7 @@ class account_analytic_plan_instance_line(osv.osv):
 
 account_analytic_plan_instance_line()
 
-class account_analytic_account(osv.osv):
+class account_analytic_account(models.Model):
 
     _inherit = "account.analytic.account"
 
@@ -60,7 +60,7 @@ class account_analytic_account(osv.osv):
 
 account_analytic_account()
 
-class account_analytic_line(osv.osv):
+class account_analytic_line(models.Model):
 
     _inherit = "account.analytic.line"
 

@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 from tools.translate import _
 
-class stock_service_picking_line(osv.osv):
+class stock_service_picking_line(models.Model):
 
     _name = "stock.service.picking.line"
     _description = "Service picking line"

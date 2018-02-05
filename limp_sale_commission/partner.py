@@ -22,9 +22,9 @@
 
 """añadimos algún campo relacionado con el intrastat"""
 
-from osv import fields, osv
+from openerp import models, fields
 
-class res_partner(osv.osv):
+class res_partner(models.Model):
     """añadimos algún campo relacionado con elas comisiones"""
 
     _name = "res.partner"

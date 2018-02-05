@@ -20,9 +20,9 @@
 
 """Add new departments relationship to users"""
 
-from osv import osv, fields
+from openerp import models, fields
 
-class res_users(osv.osv):
+class res_users(models.Model):
     """Add new departments relationship to users"""
 
     _inherit = "res.users"

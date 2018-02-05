@@ -24,12 +24,12 @@ from datetime import datetime
 from operator import itemgetter
 
 import netsvc
-from osv import fields, osv
+from openerp import models, fields
 from tools.translate import _
 import decimal_precision as dp
 import tools
 
-class account_move_line(osv.osv):
+class account_move_line(models.Model):
     
     _inherit = 'account.move.line'
     

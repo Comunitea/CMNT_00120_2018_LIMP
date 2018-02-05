@@ -22,12 +22,12 @@
 
 """Objetos sobre las liquidación"""
 
-from osv import fields, osv
+from openerp import models, fields
 from tools.translate import _
 import time
 import tools
 
-class settled_wizard (osv.osv_memory):
+class settled_wizard (models.TransientModel):
     """settled.wizard"""
     
     _name = 'settled.wizard'
@@ -72,7 +72,7 @@ class settled_wizard (osv.osv_memory):
 settled_wizard()
 
 
-class recalculate_commision_wizard (osv.osv_memory):
+class recalculate_commision_wizard (models.TransientModel):
     """settled.wizard"""
 
     _name = 'recalculate.commission.wizard'
@@ -123,7 +123,7 @@ recalculate_commision_wizard()
 
 
 
-class settlement (osv.osv):
+class settlement (models.Model):
     """Objeto Liquidación"""
 
     _name = 'settlement'
@@ -194,7 +194,7 @@ class settlement (osv.osv):
 settlement()
 
 
-class settlement_agent (osv.osv):
+class settlement_agent (models.Model):
     """Liquidaciones de Agentes"""
 
     _name = 'settlement.agent'
@@ -414,7 +414,7 @@ class settlement_agent (osv.osv):
 
 settlement_agent()
 
-class settlement_line (osv.osv):
+class settlement_line (models.Model):
     """Línea de las liquidaciones de los agentes
      Una línea por línea de factura 
     """
@@ -462,7 +462,7 @@ settlement_line()
 
 
 
-class settled_invoice_agent(osv.osv):
+class settled_invoice_agent(models.Model):
     _name = "settled.invoice.agent"
     _description = "Resumen de facturas liquidadas"
     _auto = False

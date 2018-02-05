@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import time
 import calendar
 import tools
 
-class distribution_effective_costs(osv.osv_memory):
+class distribution_effective_costs(models.TransientModel):
     _name = "distribution.effective.costs"
 
     _columns = {

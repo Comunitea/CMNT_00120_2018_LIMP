@@ -18,10 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 
-class limp_service_picking(osv.osv):
+class limp_service_picking(models.Model):
     _inherit = 'stock.service.picking'
 
     _columns = {
@@ -35,7 +35,7 @@ class limp_service_picking(osv.osv):
 
 limp_service_picking()
 
-class service_picking_invoice_concept(osv.osv):
+class service_picking_invoice_concept(models.Model):
 
     _inherit = "service.picking.invoice.concept"
 
@@ -95,7 +95,7 @@ class service_picking_invoice_concept(osv.osv):
 
 service_picking_invoice_concept()
 
-class service_picking_other_concepts_rel(osv.osv):
+class service_picking_other_concepts_rel(models.Model):
     _inherit = 'service.picking.other.concepts.rel'
 
     _columns = {

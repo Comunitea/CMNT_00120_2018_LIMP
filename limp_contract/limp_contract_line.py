@@ -20,11 +20,11 @@
 
 """Limpergal's contract lines, base object to support adding extension all Limpergal' sections"""
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 import time
 
-class limp_contract_line(osv.osv):
+class limp_contract_line(models.Model):
     """Limpergal's contract lines, base object to support adding extension all Limpergal' sections"""
 
     _name = "limp.contract.line"

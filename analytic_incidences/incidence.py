@@ -19,9 +19,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from osv import osv, fields
+from openerp import models, fields
 
-class incidence(osv.osv):
+class incidence(models.Model):
     _name = "incidence"
     _description = "Incidens for various reasons"
     _columns = {

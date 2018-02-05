@@ -20,11 +20,11 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 import decimal_precision as dp
 from datetime import datetime,timedelta
 
-class sale_order(osv.osv):
+class sale_order(models.Model):
 
     _inherit = 'sale.order'
     _order = "date_order desc"
@@ -287,7 +287,7 @@ class sale_order(osv.osv):
 
 sale_order()
 
-class sale_order_line(osv.osv):
+class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
     def _product_margin(self, cr, uid, ids, field_name, arg, context=None):

@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp import models, fields
 
-class container(osv.osv):
+class container(models.Model):
 
     _inherit = "container"
 

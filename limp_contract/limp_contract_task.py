@@ -20,10 +20,10 @@
 
 """Master table of contract task by section or department"""
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
-class limp_contract_task(osv.osv):
+class limp_contract_task(models.Model):
     """Master table of contract task by section or department"""
 
     _name = "limp.contract.task"

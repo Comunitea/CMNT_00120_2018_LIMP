@@ -21,10 +21,10 @@
 
 """Extension of Limpergal's contract lines for waste case"""
 
-from osv import osv, fields
+from openerp import models, fields
 from tools.translate import _
 
-class limp_contract_line_waste(osv.osv):
+class limp_contract_line_waste(models.Model):
     """Extension of Limpergal's contract lines for waste case"""
 
     _name = "limp.contract.line.waste"
@@ -102,7 +102,7 @@ class limp_contract_line_waste(osv.osv):
 
 limp_contract_line_waste()
 
-class stock_service_picking(osv.osv):
+class stock_service_picking(models.Model):
 
     _inherit = "stock.service.picking"
 

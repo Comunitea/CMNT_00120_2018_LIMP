@@ -22,7 +22,7 @@
 
 import base64
 import datetime
-from osv import osv, fields
+from openerp import models, fields
 import xlrd
 import StringIO
 import calendar
@@ -45,7 +45,7 @@ def float_format(value):
 
     return value
 
-class distribution_costs_import(osv.osv_memory):
+class distribution_costs_import(models.TransientModel):
     _name = "distribution.costs.import"
     _columns = {
         'name': fields.char('Name',size=64,required=True),
