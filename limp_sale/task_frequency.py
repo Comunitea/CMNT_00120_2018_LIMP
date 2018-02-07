@@ -23,7 +23,7 @@ from osv import osv, fields
 class task_frequency(osv.osv):
     _name = 'task.frequency'
     _description = 'o2m to limp.contract.task'
-    _rec_name = 'sale_id,task_id'
+    # _rec_name = 'sale_id,task_id' MIGRACION: Error
     _order = "sequence asc"
     _columns = {
         'sale_id': fields.many2one('sale.order', 'Sale'),

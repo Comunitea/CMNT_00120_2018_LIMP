@@ -27,7 +27,7 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem action="action_analytic_balance_by_department" id="analytic_balance_by_department_menu"  name="Analytic balance by department" parent="account.menu_finance_statistic_report_statement"/>
+        <menuitem action="action_analytic_balance_by_department" id="analytic_balance_by_department_menu"  name="Analytic balance by department" parent="account.menu_finance_reporting"/>
 
     </data>
 </openerp>

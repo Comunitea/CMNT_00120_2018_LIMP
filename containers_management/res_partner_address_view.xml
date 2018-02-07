@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record id="view_partner_address_form1_add_containers_store" model="ir.ui.view">
+        <!--record id="view_partner_address_form1_add_containers_store" model="ir.ui.view">
             <field name="name">res.partner.address.form1.add_containers_store</field>
             <field name="model">res.partner.address</field>
             <field name="inherit_id" ref="base.view_partner_address_form1"/>
@@ -12,9 +12,9 @@
                     <field name="containers_store"/>
                 </field>
             </field>
-        </record>
+        </record-->
 
-        <record id="view_partner_address_form2_add_containers_store" model="ir.ui.view">
+        <!--record id="view_partner_address_form2_add_containers_store" model="ir.ui.view">
             <field name="name">res.partner.address.form2.add_containers_store</field>
             <field name="model">res.partner.address</field>
             <field name="inherit_id" ref="base.view_partner_address_form2"/>
@@ -23,8 +23,8 @@
                 <field name="title" position="replace">
                     <field name="containers_store"/>
                 </field>
-            </field>
-        </record>
+            </field> MIGRACION:
+        </record-->
 
         <!--record id="view_partner_form_add_containers_store" model="ir.ui.view">
             <field name="name">res.partner.form.add_containers_store</field>

@@ -91,7 +91,7 @@
                    <field name="no_quality"/>
                 </group>
                 <newline/>
-                <group expand="0" string="Extended Filters..." groups="base.group_extended">
+                <group expand="0" string="Extended Filters..." groups="base.group_no_one">
                     <field name="product_id"/>
                     <separator orientation="vertical"/>
                     <field name="journal_id" widget="selection"/>

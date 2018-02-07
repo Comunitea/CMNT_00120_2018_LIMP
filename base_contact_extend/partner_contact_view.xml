@@ -14,7 +14,7 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_partner_contact_form_add_extra_fields">
+        <!--record model="ir.ui.view" id="view_partner_contact_form_add_extra_fields">
             <field name="name">res.partner.contact.form.add_extra_fields</field>
             <field name="model">res.partner.contact</field>
             <field name="inherit_id" ref="base_contact.view_partner_contact_form"/>
@@ -27,8 +27,8 @@
                     <field name="sinid"/>
                     <field name="passport_id"/>
                 </field>
-            </field>
-        </record>
+            </field> MIGRACION:
+        </record-->
 
     <record model="ir.ui.view" id="view_partner_contact_search_add_new_fields">
         <field name="name">res.partner.contact.search.add_new_fields</field>

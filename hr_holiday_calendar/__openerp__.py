@@ -29,7 +29,6 @@
             'base',
             'hr',
             'l10n_es_toponyms',
-            'l10n_es_toponyms_region',
             'city_council'
             ],
         "init_xml" : [],

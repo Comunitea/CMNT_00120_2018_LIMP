@@ -200,7 +200,7 @@ class account_analytic_account(osv.osv):
         'concept_amount': fields.function(_get_total_amount, method=True, string="Concepts amount", readonly=True, type="float", digits_compute=dp.get_precision('Account')),
         'address_invoice_id': fields.many2one('res.partner', 'Address invoice'),
         'address_id': fields.many2one('res.partner', 'Address'),
-        'region_id': fields.many2one('res.country.region', 'Autonomous'),
+        #'region_id': fields.many2one('res.country.region', 'Autonomous'), MIGRACION: Region eliminado
         'privacy': fields.selection([('public', 'Public'), ('private', 'Private')], 'Privacy'),
         'is_contract': fields.function(_get_is_contract, method=True, fnct_search=_search_is_contract, type="boolean", readonly=True, string="Is contract"),
         'is_picking': fields.function(_get_is_picking, method=True, fnct_search=_search_is_picking, type="boolean", readonly=True, string="Is picking"),

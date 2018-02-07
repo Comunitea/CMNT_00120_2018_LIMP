@@ -45,7 +45,6 @@
             'limp_service_picking',
             'limp_distribution_costs',
             'city_council',
-            'city',
             'limp_account_analytic_extension',
             'l10n_es_facturae'
             ],

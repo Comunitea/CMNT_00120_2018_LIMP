@@ -22,8 +22,8 @@
 ##############################################################################
 
 from osv import osv, fields
-import wizard
-import pooler
+#import wizard
+#import pooler
 
 
 class city_council(osv.osv):
@@ -36,22 +36,22 @@ class city_council(osv.osv):
 
 city_council()
 
-class city(osv.osv):
+class res_better_zip(osv.osv):
 
-    _inherit = "city.city"
+    _inherit = "res.better.zip"
 
     _columns = {
         'council_id': fields.many2one('city.council', 'Council')
     }
 
-city()
+res_better_zip()
 
 class city_council2(osv.osv):
 
     _inherit = 'city.council'
 
     _columns = {
-        'city_ids': fields.one2many('city.city', 'council_id', 'Zipcodes'),
+        'zip_ids': fields.one2many('res.better.zip', 'council_id', 'Zipcodes'),
     }
 
 city_council2()
@@ -86,7 +86,7 @@ council_end_form = '''<?xml version="1.0" encoding="utf-8"?>
     <separator string="Result:" colspan="4"/>
     <label string="The councils has been associated successfully to the Spanish zip codes." colspan="4" align="0.0"/>
 </form>'''
-
+'''
 class l10n_es_associate_council_city(wizard.interface):
     def _associate_zipcode(self, cr, uid, data, context):
         pool = pooler.get_pool(cr.dbname)
@@ -116,4 +116,4 @@ class l10n_es_associate_council_city(wizard.interface):
         }
 
     }
-l10n_es_associate_council_city('city_council.asscociate_zipcode')
+l10n_es_associate_council_city('city_council.asscociate_zipcode')'''

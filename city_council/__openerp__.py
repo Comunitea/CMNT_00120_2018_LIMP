@@ -25,7 +25,7 @@
     "author" : "Pexego",
     "category" : "Generic Modules/Base",
     "description": """Council to classify cities (zipcodes)""",
-    "depends" : ["base","city", "base_contact", "l10n_es_toponyms_region"],
+    "depends" : ["base", "base_contact", "base_location"],
     "init_xml" : [],
     "update_xml" : [
         'council_view.xml',

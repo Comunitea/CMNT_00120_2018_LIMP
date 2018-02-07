@@ -36,7 +36,7 @@ class hr_holiday(osv.osv):
         'scope': fields.selection([('local', 'Local'), ('state', 'State'), ('autonomic', 'Autonomic'), ('national', 'National')], 'Scope'),
         'country_id': fields.many2one('res.country', 'Country'),
         'state_id': fields.many2one('res.country.state', 'State'),
-        'region_id': fields.many2one('res.country.region', 'Autonomous')
+        #'region_id': fields.many2one('res.country.region', 'Autonomous') MIGRACION: Region eliminado
     }
 
     _defaults = {

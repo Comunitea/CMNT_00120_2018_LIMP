@@ -67,7 +67,7 @@
                             <field name="address_id" domain="[('partner_id', '=', partner_id)]" required="1"/>
                             <field name="prorogation_notes" colspan="4"/>
                         </page>
-                        <page string="Invoicing" groups="base.group_extended">
+                        <page string="Invoicing" groups="base.group_no_one">
 
                             <notebook colspan="4">
                                 <page string="Invoice General">

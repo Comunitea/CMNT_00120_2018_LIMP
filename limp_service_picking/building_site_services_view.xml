@@ -116,9 +116,9 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="building_site_services_action" id="menu_building_site_services_form"
-            groups="base.group_extended"
-            parent="base.menu_address_book" sequence="40"/>
+        <!--menuitem action="building_site_services_action" id="menu_building_site_services_form"
+            groups="base.group_no_one" MIGRACION: Comentado temporalmente
+            parent="base.menu_address_book" sequence="40"/-->
 
     </data>
 </openerp>
