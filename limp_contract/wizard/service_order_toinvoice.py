@@ -20,12 +20,12 @@
 #
 ##############################################################################
 
-from osv import osv
-from tools.translate import _
+from openerp.osv import osv
+from openerp.tools.translate import _
 
 ###Se comenta la restricción desde el __init__.py
 
-class service_order_toinvoice(models.TransientModel):
+class service_order_toinvoice(osv.osv_memory):
     _inherit = 'service.order.toinvoice'
 
     def create_invoice(self, cr, uid, ids, context=None):

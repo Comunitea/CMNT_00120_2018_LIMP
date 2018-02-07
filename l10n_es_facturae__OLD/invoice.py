@@ -19,25 +19,36 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class res_partner_address(models.Model):
 
-    _inherit = "res.partner.address"
+class account_invoice(osv.osv):
 
-    _columns = {
-        'dir3': fields.char('DIR3', size=10, help="Field required for Face facturae format"),
-        'sef': fields.char('SEF', size=10)
-    }
-
-res_partner_address()
-
-class res_partner_address(models.Model):
-
-    _inherit = "res.partner.address"
+    _inherit = "account.invoice"
 
     _columns = {
-        'type': fields.selection( [ ('default','Default'),('invoice','Invoice'), ('delivery','Delivery'), ('contact','Contact'), ('other','Other'), ('tramit', 'Tramit')],'Address Type', help="Used to select automatically the right address according to the context in sales and purchases documents."),
+        'address_tramit_id': fields.many2one('res.partner', "Tramit address")
     }
 
-res_partner_address()
+account_invoice()
+
+
+class payment_type_face_code(osv.osv):
+
+    _name = "payment.type.face.code"
+
+    _columns = {
+        "code": fields.char("Code", size=2, required=True),
+        "name": fields.char("Name", size=128, required=True)
+    }
+
+payment_type_face_code()
+
+class payment_mode(osv.osv):
+# MIGRACION: Se mueve face_code_id de payment_type a payment_mode
+    _inherit = "payment.mode"
+
+    _columns = {
+        #'related_bank_account_id': fields.many2one("res.partner.bank", "Related bank account", help="Company bank account if it is set in paynment name"),
+        'face_code_id': fields.many2one("payment.type.face.code", "FACe code")
+    }

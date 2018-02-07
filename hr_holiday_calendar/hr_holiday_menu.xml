@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <menuitem id="menu_holidays_management" name="Holidays" parent="hr.menu_hr_management"/>
+        <menuitem id="menu_holidays_management" name="Holidays" parent="hr.menu_hr_root"/>
 
     </data>
 </openerp>

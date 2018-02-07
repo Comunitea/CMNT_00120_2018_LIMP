@@ -22,9 +22,9 @@
 
 """Add new departments relationship to employees"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class hr_employee(models.Model):
+class hr_employee(osv.osv):
     """Add new departments relationship to employees"""
 
     _inherit = "hr.employee"

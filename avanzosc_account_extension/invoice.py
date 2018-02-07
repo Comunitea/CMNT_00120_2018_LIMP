@@ -21,15 +21,15 @@
 
 import time
 from lxml import etree
-import decimal_precision as dp
+from openerp.addons.decimal_precision import decimal_precision as dp
 
-import netsvc
-import pooler
-from openerp import models, fields, orm
-from tools.translate import _
+# # import netsvc MIGRACION: Comentado MIGRACION: Comentado
+# # import pooler MIGRACION: Comentado MIGRACION: Comentado
+from openerp.osv import osv, fields, orm
+from openerp.tools.translate import _
 
 
-class account_invoice(models.Model):
+class account_invoice(osv.osv):
     _inherit = 'account.invoice'
 
     _columns= {
@@ -105,7 +105,7 @@ class account_invoice(models.Model):
 
 account_invoice()
 
-class account_invoice_refund(models.TransientModel):
+class account_invoice_refund(osv.osv_memory):
 
     """Refunds invoice"""
 

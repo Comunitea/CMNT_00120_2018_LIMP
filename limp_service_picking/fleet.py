@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class fleet(models.Model):
+class fleet(osv.osv):
     
     _inherit = "fleet"
     

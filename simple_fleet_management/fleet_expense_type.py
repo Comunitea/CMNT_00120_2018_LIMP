@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class fleet_expense_type(models.Model):
+class fleet_expense_type(osv.osv):
 
     _name = "fleet.expense.type"
 

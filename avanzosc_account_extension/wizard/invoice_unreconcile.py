@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 import time
 
-class invoice_unreconcile(models.TransientModel):
+class invoice_unreconcile(osv.osv_memory):
 
     _name = 'invoice.unreconcile'
 

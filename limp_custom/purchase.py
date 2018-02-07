@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class purchase_order(models.Model):
+class purchase_order(osv.osv):
 
     _inherit = "purchase.order"
 

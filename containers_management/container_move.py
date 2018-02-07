@@ -21,10 +21,10 @@
 
 """History of container moves"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 
-class container_move(models.Model):
+class container_move(osv.osv):
     """History of container moves"""
 
     _name = "container.move"

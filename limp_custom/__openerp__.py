@@ -43,7 +43,7 @@
             'account_analytic_plans',
             'limp_multi_delegations',
             'limp_account_analytic_extension',
-            'account_payment_sepa_direct_debit',
+            # 'account_payment_sepa_direct_debit',
             'containers_management',
             'limp_contract',
             'l10n_es_facturae',

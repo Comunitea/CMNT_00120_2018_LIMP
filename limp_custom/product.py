@@ -20,8 +20,8 @@
 ##############################################################################
 
 import time
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
 WARNING_MESSAGE = [
                    ('no-message','No Message'),
@@ -32,7 +32,7 @@ WARNING_MESSAGE = [
 
 WARNING_HELP = _('Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.')
 
-class product_template(models.Model):
+class product_template(osv.osv):
 
     _inherit = "product.template"
 
@@ -42,7 +42,7 @@ class product_template(models.Model):
 
 product_template()
 
-class product_product(models.Model):
+class product_product(osv.osv):
     _inherit = 'product.product'
     _columns = {
          'picking_warn': fields.selection(WARNING_MESSAGE, 'Picking Warning',

@@ -20,9 +20,9 @@
 
 """Represents an holiday"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class hr_holiday(models.Model):
+class hr_holiday(osv.osv):
     """Represents an holiday"""
 
     _name = 'hr.holiday'

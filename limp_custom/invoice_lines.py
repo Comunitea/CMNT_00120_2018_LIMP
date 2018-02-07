@@ -1,6 +1,6 @@
-from openerp import models, fields
-import tools
-class invoice_lines(models.Model):
+from openerp.osv import osv, fields
+from openerp.tools import drop_view_if_exists
+class invoice_lines(osv.osv):
     _name = "invoice.lines"
     _auto = False
     _rec_name = 'ler_code_id'
@@ -21,7 +21,7 @@ class invoice_lines(models.Model):
     }
 
     def init(self, cr):
-        tools.sql.drop_view_if_exists(cr,  "invoice_lines")
+        drop_view_if_exists(cr,  "invoice_lines")
         #MIGRACION: se elimina address_id de la query
         cr.execute("""
             create or replace view invoice_lines as (

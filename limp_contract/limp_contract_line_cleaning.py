@@ -20,10 +20,10 @@
 
 """Extension of Limpergal's contract lines for cleanings case"""
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
-class limp_contract_line_cleaning(models.Model):
+class limp_contract_line_cleaning(osv.osv):
     """Extension of Limpergal's contract lines for cleanings case"""
 
     _name = "limp.contract.line.cleaning"

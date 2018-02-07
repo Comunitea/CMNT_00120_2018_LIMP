@@ -21,11 +21,11 @@
 
 """Service pickings for Limpergal"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
-import decimal_precision as dp
-import netsvc
-from tools.translate import _
+from openerp.addons.decimal_precision import decimal_precision as dp
+# import netsvc MIGRACION: Comentado
+from openerp.tools.translate import _
 
 def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
     """
@@ -49,7 +49,7 @@ def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
 
     return base_calendar_id and int(base_calendar_id) or base_calendar_id
 
-class stock_service_picking(models.Model):
+class stock_service_picking(osv.osv):
     """Service pickings for Limpergal"""
 
     _name = "stock.service.picking"
@@ -166,7 +166,7 @@ class stock_service_picking(models.Model):
         'stock_picking_id': fields.one2many('stock.picking','stock_service_picking_id',string='Stock picking',states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
         'fiscal_position': fields.many2one('account.fiscal.position', 'Fiscal position',states={'cancelled':[('readonly',True)]}),
         'payment_term': fields.many2one('account.payment.term', 'Payment term',states={'cancelled':[('readonly',True)]}),
-        'payment_type': fields.many2one('payment.type', 'Payment type',states={'cancelled':[('readonly',True)]}),
+        'payment_mode': fields.many2one('payment.mode', 'Payment type',states={'cancelled':[('readonly',True)]}),
         'hours': fields.float('Hours',states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
         'service_invoice_concept_ids': fields.one2many('service.picking.invoice.concept', 'service_picking_id', 'Invoice concepts'),
         'other_concepts_ids': fields.one2many('service.picking.other.concepts.rel', 'service_picking_id', 'Other concepts'),
@@ -216,7 +216,7 @@ class stock_service_picking(models.Model):
         'maintenance': fields.boolean('Maintenance'),
     }
 
-    def browse(self, cr, uid, select, context=None, list_class=None, fields_process=None):
+    '''def browse(self, cr, uid, select, context=None, list_class=None, fields_process=None): MIGRACION: Parametros raros, logica imposible en nueva api?
         res = super(stock_service_picking,self).browse(cr, uid, select, context, list_class, fields_process)
         if isinstance(select, (int, long)):
             if res.invoice_delegation_id:
@@ -225,7 +225,7 @@ class stock_service_picking(models.Model):
             for pick in res:
                 if pick.invoice_delegation_id:
                     pick.invoice_delegation_id = self.pool.get('res.delegation').browse(cr, 1, int(pick.invoice_delegation_id), context)
-        return res
+        return res'''
 
     _defaults = {
         #'partner_id': lambda self, cr, uid, context: context.get('partner_id', False),

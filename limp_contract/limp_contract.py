@@ -20,12 +20,12 @@
 
 """Base model to manage Limpergal's contracts"""
 
-from openerp import models, fields
-import decimal_precision as dp
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.addons.decimal_precision import decimal_precision as dp
+from openerp.tools.translate import _
 from datetime import datetime
 
-class limp_contract(models.Model):
+class limp_contract(osv.osv):
     """Base model to manage Limpergal's contracts"""
 
     _name = 'limp.contract'
@@ -91,7 +91,7 @@ class limp_contract(models.Model):
         'stock_service_picking_ids': fields.one2many('stock.service.picking', 'contract_id', 'Picking lines', states={'cancelled':[('readonly',True)], 'close':[('readonly',True)]}, domain=[('picking_type','=','wastes')]),
         'stock_sporadic_service_picking_ids': fields.one2many('stock.service.picking', 'contract_id', 'Sporadic picking lines', states={'cancelled':[('readonly',True)], 'close':[('readonly',True)]}, domain=[('picking_type','=','sporadic')]),
         'payment_term_id': fields.many2one('account.payment.term', 'Payment term'),
-        'payment_type_id': fields.many2one('payment.type', 'Payment type'),
+        'payment_mode_id': fields.many2one('payment.mode', 'Payment type'), # MIGRACION: Movido a payment.mode
         'contact_id': fields.many2one('res.partner', 'Contact'),
         'note': fields.text('Description'),
         'include_pickings': fields.boolean('Include pickings'),

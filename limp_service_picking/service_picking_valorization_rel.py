@@ -18,11 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
-import decimal_precision as dp
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.addons.decimal_precision import decimal_precision as dp
+from openerp.tools.translate import _
 
-class service_picking_valorization_rel(models.Model):
+class service_picking_valorization_rel(osv.osv):
     _name = 'service.picking.valorization.rel'
     _columns = {
         'product_id': fields.many2one('product.product', 'Product', required=True),

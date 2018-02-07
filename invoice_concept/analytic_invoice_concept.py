@@ -20,10 +20,10 @@
 
 """Concepts to invoice analytic accounts"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 from datetime import datetime
-from tools.translate import _
+from openerp.tools.translate import _
 
 MONTHS = {
     '1': _("Enero"),
@@ -40,7 +40,7 @@ MONTHS = {
     '12': _("Diciembre")
 }
 
-class account_analytic_invoice_concept(models.Model):
+class account_analytic_invoice_concept(osv.osv):
     """Concepts to invoice analytic accounts"""
 
     _name = "account.analytic.invoice.concept"

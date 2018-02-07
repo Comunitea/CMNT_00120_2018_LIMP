@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class waste_service(models.Model):
+class waste_service(osv.osv):
 
     _name = "waste.service"
     _description = "Waste services"
@@ -32,7 +32,7 @@ class waste_service(models.Model):
         'active': fields.boolean('Active'),
         'fiscal_position': fields.many2one('account.fiscal.position', 'Fiscal position'),
         'payment_term': fields.many2one('account.payment.term', 'Payment term'),
-        'payment_type': fields.many2one('payment.type', 'Payment type'),
+        'payment_mode': fields.many2one('payment.mode', 'Payment type'),
         'partner_bank_id': fields.many2one('res.partner.bank', 'Bank account'),
         'partner_shipping_id': fields.many2one('res.partner.address', 'Service address'),
         'service_picking_ids': fields.one2many('stock.service.picking','service_id','Stock Service Picking',)

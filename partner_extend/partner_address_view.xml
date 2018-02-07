@@ -2,10 +2,10 @@
 <openerp>
     <data>
 
-        <record id="view_res_partner_address_filter_add_more_filters" model="ir.ui.view">
+        <!--record id="view_res_partner_address_filter_add_more_filters" model="ir.ui.view">
             <field name="name">res.partner.address.select</field>
             <field name="inherit_id" ref="base.view_res_partner_address_filter"/>
-            <field name="model">res.partner.address</field>
+            <field name="model">res.partner.address</field> MIGRACION: Comentado
             <field name="type">search</field>
             <field name="arch" type="xml">
                 <field name="country_id" position="after">
@@ -29,7 +29,7 @@
                     <field name="state_id"/>
                 </field>
             </field>
-        </record>
+        </record-->
 
     </data>
 </openerp>

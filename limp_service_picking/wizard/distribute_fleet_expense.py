@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 import calendar
-from tools.translate import _
+from openerp.tools.translate import _
 
-class distribute_fleet_expense(models.TransientModel):
+class distribute_fleet_expense(osv.osv_memory):
 
     _name = "distribute.fleet.expense"
 

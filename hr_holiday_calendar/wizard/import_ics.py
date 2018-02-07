@@ -23,10 +23,10 @@
 ICS Files importation Wizard
 """
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import base64
 
-class import_ics_wzd(models.TransientModel):
+class import_ics_wzd(osv.osv_memory):
     """ Object to import ICS Files """
 
     _name = "import.ics.wzd"

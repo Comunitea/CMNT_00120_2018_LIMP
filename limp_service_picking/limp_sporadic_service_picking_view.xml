@@ -125,7 +125,7 @@
                             <field name="ccc_account_id" colspan="4" domain="[('partner_id', 'in', (partner_id,holder_partner_id)]"/>
                             <field name="fiscal_position" widget="selection"/>
                             <field name="payment_term" widget="selection"/>
-                            <field name="payment_type" widget="selection"/>
+                            <field name="payment_mode" widget="selection"/>
                             <field name="invoice_type"/>
                             <field name="invoice_date"/>
                             <!--<field name="analytic_acc_id"/>-->

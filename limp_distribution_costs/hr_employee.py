@@ -21,10 +21,10 @@
 ##############################################################################
 """Adds code Glasof field"""
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
-class hr_employee(models.Model):
+class hr_employee(osv.osv):
     """Adds code Glasof field"""
 
     _inherit = "hr.employee"
@@ -52,7 +52,7 @@ class hr_employee(models.Model):
 hr_employee()
 
 
-class res_users(models.Model):
+class res_users(osv.osv):
 
     _inherit = "res.users"
 

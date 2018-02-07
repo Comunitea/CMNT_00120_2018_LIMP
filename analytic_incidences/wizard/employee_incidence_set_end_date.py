@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 import time
 
 
-class employee_incidence_set_end_date_wzd(models.TransientModel):
+class employee_incidence_set_end_date_wzd(osv.osv_memory):
 
     _name = "employee.incidence.set.end.date.wzd"
 

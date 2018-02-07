@@ -20,10 +20,10 @@
 
 """Limpergal's service pickings"""
 
-from openerp import models, fields
-import decimal_precision as dp
+from openerp.osv import osv, fields
+from openerp.addons.decimal_precision import decimal_precision as dp
 
-class stock_service_picking(models.Model):
+class stock_service_picking(osv.osv):
 
     _inherit = "stock.service.picking"
 

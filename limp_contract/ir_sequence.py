@@ -20,9 +20,9 @@
 
 """Add delegation to sequence model"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class ir_sequence(models.Model):
+class ir_sequence(osv.osv):
     """Add delegation to sequence model"""
 
     _inherit = "ir.sequence"

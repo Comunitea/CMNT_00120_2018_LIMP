@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record model="ir.ui.view" id="base_contact.view_partner_address_tree_inherited1">
+        <!--record model="ir.ui.view" id="base_contact.view_partner_address_tree_inherited1">
             <field name="name">Partner addresses inherited</field>
             <field name="model">res.partner.address</field>
             <field name="inherit_id" ref="base.view_partner_address_tree"/>
@@ -11,25 +11,25 @@
                 <field name="name" position="after">
                     <field name='job_ids' string='# of Contacts'/>
                 </field>
-            </field>
-        </record>
+            </field> MIGRACION: Comentado
+        </record-->
 
         <delete model="ir.ui.view" id="base_contact.view_partner_address_form_inherited1"/>
 
-        <record model="ir.ui.view" id="view_partner_form_inherit_add_name">
-        <field name="name">Partner form inherited add name</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='address']/form/group[1]/field[@name='type']" position="before">
-                <field name="name"/>
-            </xpath>
-            <xpath expr="//field[@name='address']/tree/field[@name='type']" position="before">
-                <field name="name"/>
-            </xpath>
-        </field>
-    </record>
+        <!--record model="ir.ui.view" id="view_partner_form_inherit_add_name">
+            <field name="name">Partner form inherited add name</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='address']/form/group[1]/field[@name='type']" position="before">
+                    <field name="name"/>
+                </xpath>
+                <xpath expr="//field[@name='address']/tree/field[@name='type']" position="before">
+                    <field name="name"/>
+                </xpath>
+            </field> MIGRACION: Comentado
+        </record-->
 
 
     </data>

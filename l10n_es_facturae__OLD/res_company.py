@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
-#                       Alejandro Sanchez <alejandro@asr-oss.com>
-#    $Id$
+#    Tecon Soluciones Informáticas, S.L.
+#    http://www.tecon.es
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -17,19 +16,20 @@
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
 
-class Country(models.Model):
-    _inherit = 'res.country'
+class res_company(osv.osv):
+    _name = 'res.company'
+    _inherit = 'res.company'
+
     _columns = {
-        'code_3166': fields.char('Country Code', size=3,help='The ISO 3166 country code in three chars.', required=True),
-    }
-Country()
+              'facturae_cert':fields.binary(string='Certificado firma electrónica',filters='*.pfx'),
+              'facturae_cert_password':fields.char('Contraseña certificado',size=64),
+              }
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
+res_company()

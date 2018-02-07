@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-import tools
+from openerp.osv import osv, fields
+from openerp.tools import drop_view_if_exists
 
-class analytic_account_employees(models.Model):
+class analytic_account_employees(osv.osv):
 
     _name = "analytic.account.employees"
     _auto = False
@@ -36,7 +36,7 @@ class analytic_account_employees(models.Model):
     }
 
     def init(self, cr):
-        tools.sql.drop_view_if_exists(cr,  "analytic_account_employees")
+        drop_view_if_exists(cr,  "analytic_account_employees")
 
         cr.execute("""
             create or replace view analytic_account_employees as (
@@ -48,7 +48,7 @@ class analytic_account_employees(models.Model):
 analytic_account_employees()
 
 
-class account_analytic_account(models.Model):
+class account_analytic_account(osv.osv):
     _inherit = 'account.analytic.account'
 
     def _get_distinct_employee_ids(self, cr, uid, ids, field_name, arg, context=None):

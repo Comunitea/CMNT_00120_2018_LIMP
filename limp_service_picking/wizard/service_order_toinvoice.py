@@ -20,11 +20,11 @@
 #
 ##############################################################################
 
-from tools.translate import _
-from openerp import models, fields
+from openerp.tools.translate import _
+from openerp.osv import osv, fields
 import time
 
-class service_order_toinvoice(models.TransientModel):
+class service_order_toinvoice(osv.osv_memory):
     _name = 'service.order.toinvoice'
 
     def _get_journal_id(self, cr, uid, context=None):

@@ -19,8 +19,8 @@
 #
 ##############################################################################
 import time
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
 WARNING_MESSAGE = [
                    ('no-message','No Message'),
@@ -31,7 +31,7 @@ WARNING_MESSAGE = [
 
 WARNING_HELP = _('Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.')
 
-'''class res_partner_address(models.Model):
+'''class res_partner_address(osv.osv):
     _inherit = "res.partner.address"
     _columns = {
         'type': fields.selection( [ ('default','Default'),('invoice','Invoice'), ('delivery','Delivery'), ('contact','Contact'), ('management_plant', 'Management plant'), ('other','Other'), ('tramit', 'Tramit')],'Address Type', help="Used to select automatically the right address according to the context in sales and purchases documents."),
@@ -39,7 +39,7 @@ WARNING_HELP = _('Selecting the "Warning" option will notify user with the messa
     }
 res_partner_address()'''
 
-class res_partner(models.Model):
+class res_partner(osv.osv):
     _inherit = "res.partner"
 
     def _partner_byref_search(self, cr, uid, obj, name, args, context=None):
@@ -106,7 +106,7 @@ class res_partner(models.Model):
 
 res_partner()
 
-class res_partner_bank(models.Model):
+class res_partner_bank(osv.osv):
 
     _inherit = "res.partner.bank"
 

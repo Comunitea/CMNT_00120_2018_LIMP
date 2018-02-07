@@ -21,11 +21,11 @@
 
 """Contract upamounts history"""
 
-from openerp import models, fields
-import decimal_precision as dp
+from openerp.osv import osv, fields
+from openerp.addons.decimal_precision import decimal_precision as dp
 import time
 
-class limp_contract_upamount_history(models.Model):
+class limp_contract_upamount_history(osv.osv):
     """Contract upamounts history"""
 
     _name = "limp.contract.upamount.history"
@@ -47,7 +47,7 @@ class limp_contract_upamount_history(models.Model):
 
 limp_contract_upamount_history()
 
-class limp_contract(models.Model):
+class limp_contract(osv.osv):
     """Add new field to contract"""
 
     _inherit = 'limp.contract'

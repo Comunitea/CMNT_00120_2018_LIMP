@@ -21,9 +21,9 @@
 ##############################################################################
 """Adds remunerations fields to analytic account's columns"""
 
-from osv import osv,fields
+from openerp.osv import osv, fields
 
-class account_analytic_account(models.Model):
+class account_analytic_account(osv.osv):
     """Adds remuneration fiels to analytic account's columns"""
 
     _inherit = "account.analytic.account"

@@ -22,12 +22,12 @@
 
 """Wizard to set a laboral incidence from an employee's form"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
-class employee_set_laboral_incidence_wzd(models.TransientModel):
+class employee_set_laboral_incidence_wzd(osv.osv_memory):
     """Wizard to set a laboral incidence from an employee's form"""
 
     _name = "employee.set.laboral.incidence.wzd"
@@ -45,7 +45,7 @@ class employee_set_laboral_incidence_wzd(models.TransientModel):
         'date': fields.date('Date',required=True),
         'analytic_account_id': fields.many2one('account.analytic.account', 'Account', readonly=True),
         'child_ids': fields.many2one('remuneration','Childs remunerations',readonly=True),
-        'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True),
+        # 'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True), MIGRACION:
         'date_to': fields.date('Date to'),
         'incidence_id_tp': fields.many2one('incidence','Type'),
         'absence_id_tp': fields.many2one('absence', 'Type absence'),

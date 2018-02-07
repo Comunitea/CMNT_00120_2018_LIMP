@@ -74,7 +74,7 @@
                                     <field name="bank_account_id" domain="[('partner_id', '=', partner_id)]"/>
                                     <field name="currency_id"/>
                                     <field name="payment_term_id"/>
-                                    <field name="payment_type_id"/>
+                                    <field name="payment_mode_id"/>
                                     <field name="last_invoice_date"/>
                                     <field name="analytic_account_id" required="0" readonly="1"/>
                                     <field name="parent_id"/>

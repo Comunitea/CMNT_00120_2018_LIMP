@@ -20,9 +20,9 @@
 ##############################################################################
 
 import time
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class print_acceptance_document_report(models.TransientModel):
+class print_acceptance_document_report(osv.osv_memory):
 
     _name = "print.acceptance.document.report"
 

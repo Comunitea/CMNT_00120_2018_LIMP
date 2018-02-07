@@ -20,9 +20,9 @@
 
 """Group of holidays"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class hr_holiday_calendar(models.Model):
+class hr_holiday_calendar(osv.osv):
     """Group of holidays"""
 
     _name = "hr.holiday.calendar"

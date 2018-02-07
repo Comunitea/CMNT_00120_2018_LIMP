@@ -22,9 +22,9 @@
 
 """Modificamos la creación de factura desde albarán para incluir el comportamiento de comisiones"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class product_product(models.Model):
+class product_product(osv.osv):
     _inherit = 'product.product'
 
     _columns = {
@@ -35,7 +35,7 @@ class product_product(models.Model):
     }
 product_product()
 
-class stock_picking(models.Model):
+class stock_picking(osv.osv):
     """Modificamos la creación de factura desde albarán para incluir el comportamiento de comisiones"""
 
     _inherit = 'stock.picking'

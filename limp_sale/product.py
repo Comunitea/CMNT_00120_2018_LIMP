@@ -19,9 +19,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class product_product(models.Model):
+class product_product(osv.osv):
     _inherit = "product.product"
     _columns = {
         'price_rule_ids': fields.one2many('price.rule', 'product_id', 'Price rules')

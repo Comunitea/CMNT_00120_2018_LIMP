@@ -47,7 +47,7 @@
                         <page string="Accounting">
                             <field name="fiscal_position" widget="selection"/>
                             <field name="payment_term" widget="selection"/>
-                            <field name="payment_type" widget="selection"/>
+                            <field name="payment_mode" widget="selection"/>
                             <field name="partner_bank_id"/>
                             <field name="address_invoice_id" domain="[('partner_id', '=', partner_id)]"/>
                         </page>

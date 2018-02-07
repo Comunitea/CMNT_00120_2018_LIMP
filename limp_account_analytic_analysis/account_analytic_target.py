@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class account_analytic_target(models.Model):
+class account_analytic_target(osv.osv):
     _name = "account.analytic.target"
     _rec_name = "fiscalyear_id"
     _order = "fiscalyear_id desc"

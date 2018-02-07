@@ -22,10 +22,10 @@
 
 """Modificamos las ventas para incluir el comportamiento de comisiones"""
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
-class sale_order_agent(models.Model):
+class sale_order_agent(osv.osv):
     _name = "sale.order.agent"
 
     def name_get(self, cr, uid, ids, context=None):
@@ -74,7 +74,7 @@ class sale_order_agent(models.Model):
 
 sale_order_agent()
 
-class sale_order(models.Model):
+class sale_order(osv.osv):
     """Modificamos las ventas para incluir el comportamiento de comisiones"""
 
     _inherit = "sale.order"
@@ -189,7 +189,7 @@ class sale_order(models.Model):
 sale_order()
 
 
-class sale_order_line(models.Model):
+class sale_order_line(osv.osv):
     """Modificamos las lineas ventas para incluir las comisiones en las facturas creadas desde ventas"""
 
     _inherit = "sale.order.line"

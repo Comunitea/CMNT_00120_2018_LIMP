@@ -18,9 +18,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class payment_type(models.Model):
+class payment_type(osv.osv):
 
     _inherit = "payment.type"
 

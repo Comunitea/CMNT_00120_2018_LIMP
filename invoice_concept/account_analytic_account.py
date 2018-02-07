@@ -20,11 +20,11 @@
 
 """Add concepts field to analytic account"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import time
-import netsvc
+# import netsvc MIGRACION: Comentado
 import calendar
 from dateutil.rrule import *
 
@@ -33,7 +33,7 @@ def intersect(la, lb):
     l = filter(lambda x: x in lb, la)
     return l
 
-class account_analytic_account(models.Model):
+class account_analytic_account(osv.osv):
     """Add concepts field to analytic account"""
 
     _inherit = "account.analytic.account"

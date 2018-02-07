@@ -5,10 +5,10 @@
         <record id="view_account_analytic_account_form_add_consumptions" model="ir.ui.view">
             <field name="name">account.analytic.account.form.add_consumptions</field>
             <field name="model">account.analytic.account</field>
-            <field name="inherit_id" ref="account.view_account_analytic_account_form"/>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <page string="Account Data" position="after">
+                <page string="Contract Information" position="after">
                     <page string="Consumptions">
                         <field name="analytic_move_ids" nolabel="1" colspan="4">
                            <tree string="Consumptions" editable="top">

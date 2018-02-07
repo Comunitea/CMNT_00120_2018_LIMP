@@ -18,10 +18,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-import tools
+from openerp.osv import osv, fields
+from openerp.tools import drop_view_if_exists
 
-class analytic_entries_report(models.Model):
+class analytic_entries_report(osv.osv):
 
     _inherit = "analytic.entries.report"
 
@@ -32,7 +32,7 @@ class analytic_entries_report(models.Model):
     }
 
     def init(self, cr):
-        tools.drop_view_if_exists(cr, 'analytic_entries_report')
+        drop_view_if_exists(cr, 'analytic_entries_report')
         cr.execute("""
             create or replace view analytic_entries_report as (
                  select

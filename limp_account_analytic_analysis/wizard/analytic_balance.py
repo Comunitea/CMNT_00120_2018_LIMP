@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class analytic_balance(models.TransientModel):
+class analytic_balance(osv.osv_memory):
     _name = "analytic.balance"
 
     _columns = {

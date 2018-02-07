@@ -19,18 +19,17 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import os
 import datetime,time
 from mako.template import Template
 from mako.lookup import TemplateLookup
-import tools
-from tools.translate import _
-import pooler
+from openerp.tools.translate import _
+# import pooler MIGRACION: Comentado
 import base64
-from tools import config
+from openerp.tools import config
 
-class export_account_to_glasof(models.TransientModel):
+class export_account_to_glasof(osv.osv_memory):
 
     _name = "export.account.to.glasof"
 

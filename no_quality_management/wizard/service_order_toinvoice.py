@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from osv import osv
+from openerp.osv import osv
 
-class service_order_toinvoice(models.TransientModel):
+class service_order_toinvoice(osv.osv_memory):
 
     _inherit = 'service.order.toinvoice'
 

@@ -21,9 +21,9 @@
 
 import time
 from report import report_sxw
-from osv import osv
-import pooler
-from tools.translate import _
+from openerp.osv import osv
+# import pooler MIGRACION: Comentado
+from openerp.tools.translate import _
 
 class frequency_table_parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):

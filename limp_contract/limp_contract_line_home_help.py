@@ -20,11 +20,11 @@
 
 """Extension of Limpergal's contract lines for home help case"""
 
-from openerp import models, fields
-import decimal_precision as dp
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.addons.decimal_precision import decimal_precision as dp
+from openerp.tools.translate import _
 
-class limp_contract_line_home_help(models.Model):
+class limp_contract_line_home_help(osv.osv):
     """Extension of Limpergal's contract lines for home help case"""
 
     _name = "limp.contract.line.home.help"

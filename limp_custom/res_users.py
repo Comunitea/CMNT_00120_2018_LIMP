@@ -18,9 +18,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class res_users(models.Model):
+class res_users(osv.osv):
 
     _inherit = "res.users"
 

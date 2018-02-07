@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 
-class contract_to_invoice(models.TransientModel):
+class contract_to_invoice(osv.osv_memory):
     
     _inherit = "contract.to_invoice"
     

@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class account_asset(models.Model):
+class account_asset(osv.osv):
 
     _inherit = "account.asset.asset"
     
@@ -32,7 +32,7 @@ class account_asset(models.Model):
     
 account_asset()
 
-class account_asset_depreciation_line(models.Model):
+class account_asset_depreciation_line(osv.osv):
     
     _inherit = "account.asset.depreciation.line"
     

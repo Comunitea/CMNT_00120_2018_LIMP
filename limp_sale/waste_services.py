@@ -19,9 +19,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class waste_services(models.Model):
+class waste_services(osv.osv):
     _inherit = 'waste.service'
     _columns = {
         'sale_id': fields.many2one('sale.order', 'Sale', readonly=True),

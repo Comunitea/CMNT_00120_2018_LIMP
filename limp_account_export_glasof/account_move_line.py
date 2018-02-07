@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class account_move_line(models.Model):
+class account_move_line(osv.osv):
 
     _inherit = "account.move.line"
 

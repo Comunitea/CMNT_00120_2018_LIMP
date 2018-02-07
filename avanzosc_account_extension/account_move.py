@@ -23,15 +23,14 @@ import time
 from datetime import datetime
 from operator import itemgetter
 
-import netsvc
-from openerp import models, fields
-from tools.translate import _
-import decimal_precision as dp
-import tools
+# import netsvc MIGRACION: Comentado
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
+from openerp.addons.decimal_precision import decimal_precision as dp
 
-class account_move(models.Model):
+class account_move(osv.osv):
     _inherit = 'account.move'
-    
+
     def write(self, cr, uid, ids, vals, context=None):
         # Overload write method to be able to force date, period and/or journal changes in account move lines
         # when these fields are written on account moves.
@@ -64,10 +63,10 @@ class account_move(models.Model):
                                 l[2]['date'] = date_line
                                 l[2]['journal_id'] = journal_line
                     else:
-			vals['line_id'] = []
+                        vals['line_id'] = []
                         for line in reg.line_id:
                             vals['line_id'].append((1, line.id, {'period_id': period_line, 'date': date_line, 'journal_id': journal_line}))
-            result = super(models.Model, self).write(cr, uid, ids, vals, c)
+            result = super(osv.osv, self).write(cr, uid, ids, vals, c)
             self.validate(cr, uid, ids, context=context)
             return result
 
@@ -78,8 +77,8 @@ class account_move(models.Model):
         lines = []
         account_move_line_obj = self.pool.get('account.move.line')
         account_move = self.browse(cr, uid, ids)[0]
-	if account_move:
-        	line_ids = account_move_line_obj.search(cr,uid,[('move_id', '=', account_move.id)])
-        	account_move_line_obj.write(cr, uid, line_ids, {'journal_id': account_move.journal_id.id, 'period_id':account_move.period_id.id, 'date':account_move.date})
+        if account_move:
+            line_ids = account_move_line_obj.search(cr,uid,[('move_id', '=', account_move.id)])
+            account_move_line_obj.write(cr, uid, line_ids, {'journal_id': account_move.journal_id.id, 'period_id':account_move.period_id.id, 'date':account_move.date})
         return True
 account_move()

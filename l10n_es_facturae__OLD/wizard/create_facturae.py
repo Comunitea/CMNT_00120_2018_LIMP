@@ -21,13 +21,13 @@
 #
 ##############################################################################
 
-import pooler
+# import pooler MIGRACION: Comentado
 import wizard
 import base64
-import netsvc
+# import netsvc MIGRACION: Comentado
 import os
 import subprocess
-from tools.translate import _
+from openerp.tools.translate import _
 
 logger = netsvc.Logger()
 

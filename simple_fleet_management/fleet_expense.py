@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-import decimal_precision as dp
+from openerp.osv import osv, fields
+from openerp.addons.decimal_precision import decimal_precision as dp
 import time
 
-class fleet_expense(models.Model):
+class fleet_expense(osv.osv):
     """Model to registry fleet expenses"""
 
     _name = "fleet.expense"

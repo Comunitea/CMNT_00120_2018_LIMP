@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from osv import fields,osv
-import tools
+from openerp.osv import osv, fields
+from openerp.tools import drop_view_if_exists
 
-class valorization_lines(models.Model):
+class valorization_lines(osv.osv):
     _name = "valorization.lines"
     _auto = False
     _rec_name = 'ler_code_id'
@@ -53,7 +53,7 @@ class valorization_lines(models.Model):
     }
 
     def init(self, cr):
-        tools.sql.drop_view_if_exists(cr,  "valorization_lines")
+        drop_view_if_exists(cr,  "valorization_lines")
 
         cr.execute("""
             create or replace view valorization_lines as (

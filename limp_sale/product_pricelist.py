@@ -20,11 +20,11 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
-from tools.translate import _
+from openerp.tools.translate import _
 
-class product_pricelist(models.Model):
+class product_pricelist(osv.osv):
 
     _inherit = "product.pricelist"
 

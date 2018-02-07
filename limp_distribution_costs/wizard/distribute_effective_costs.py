@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 import calendar
-import tools
+from openerp.tools import ustr
 
-class distribution_effective_costs(models.TransientModel):
+class distribution_effective_costs(osv.osv_memory):
     _name = "distribution.effective.costs"
 
     _columns = {
@@ -61,14 +61,14 @@ class distribution_effective_costs(models.TransientModel):
                 if timesheet.analytic_id:
                     ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
                     [('timesheet_id','=',timesheet.id),('account_id','=',timesheet.analytic_id.id),
-                    ('name','=',tools.ustr(obj.name)+u" (effective)/ "+month+u"/"+year+u"/ "+ employee.name)]) # borramos duplicados
+                    ('name','=',ustr(obj.name)+u" (effective)/ "+month+u"/"+year+u"/ "+ employee.name)]) # borramos duplicados
                     if ids_delete:
                         self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
                     amount = timesheet.effective
                     if amount:
                         vals = {
                             'amount': -(amount),
-                            'name':  tools.ustr(obj.name)+u" (effective)/ "+month+u"/"+year+u"/ "+ employee.name,
+                            'name':  ustr(obj.name)+u" (effective)/ "+month+u"/"+year+u"/ "+ employee.name,
                             'journal_id': sueldos_journal_id[0],
                             'timesheet_id': timesheet.id,
                             'account_id': timesheet.analytic_id.id,

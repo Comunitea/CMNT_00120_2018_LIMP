@@ -18,12 +18,12 @@
 #
 ##############################################################################
 
-from osv import osv,fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 import datetime
 import time
 
-class account_analytic_occupation(models.Model):
+class account_analytic_occupation(osv.osv):
     """Object to manage employee's occupations in analytic accounts"""
 
     _name = "account.analytic.occupation"

@@ -19,10 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp.osv import osv, fields
 
 
-class analytic_incidence_wizard(models.TransientModel):
+class analytic_incidence_wizard(osv.osv_memory):
 
     _name = "analytic.incidence.wizard"
 
@@ -31,7 +31,7 @@ class analytic_incidence_wizard(models.TransientModel):
         'date': fields.date('Date',required=True),
         'analytic_account_id': fields.many2one('account.analytic.account', 'Account', readonly=True),
         'child_ids': fields.many2one('remuneration','Childs remunerations',readonly=True),
-        'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True),
+        #'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True), MIGRACION: Revisar campos
         'date_to': fields.date('Date to'),
         'incidence_id_tp': fields.many2one('incidence','Type'),
         'absence_id_tp': fields.many2one('absence', 'Type absence'),

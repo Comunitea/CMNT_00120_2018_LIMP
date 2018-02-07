@@ -20,10 +20,10 @@
 
 """Extends contact with new fields"""
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
-class res_partner_contact(models.Model):
+class res_partner_contact(osv.osv):
     """Extends contact with new fields"""
 
     _inherit = "res.partner.contact"

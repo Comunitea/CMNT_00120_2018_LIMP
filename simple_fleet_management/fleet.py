@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
 
-class fleet(models.Model):
+class fleet(osv.osv):
     """Model to manage vehicles"""
 
     _name = "fleet"

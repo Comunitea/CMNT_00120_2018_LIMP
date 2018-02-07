@@ -20,10 +20,10 @@
 
 """wizard to sign contract"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 
-class limp_contract_signature(models.TransientModel):
+class limp_contract_signature(osv.osv_memory):
     """wizard to sign contract"""
 
     _name = 'limp.contract.signature'

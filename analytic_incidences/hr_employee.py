@@ -21,10 +21,10 @@
 
 """Adds fields to employee object"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 from datetime import datetime
 
-class hr_employee(models.Model):
+class hr_employee(osv.osv):
     """Adds fields to employee object"""
 
     _inherit = "hr.employee"

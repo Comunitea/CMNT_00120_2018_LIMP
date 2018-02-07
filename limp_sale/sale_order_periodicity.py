@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class sale_order_periodicity(models.Model):
+class sale_order_periodicity(osv.osv):
 
     _name = "sale.order.periodicity"
 

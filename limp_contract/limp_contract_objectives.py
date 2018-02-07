@@ -20,9 +20,9 @@
 
 """Master table of objectives by department"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class limp_contract_objectives(models.Model):
+class limp_contract_objectives(osv.osv):
     """Master table of objectives by department"""
 
     _name = "limp.contract.objectives"
@@ -35,7 +35,7 @@ class limp_contract_objectives(models.Model):
 
 limp_contract_objectives()
 
-class limp_contract_line(models.Model):
+class limp_contract_line(osv.osv):
     """Adds objectives relationship in contract"""
 
     _inherit = "limp.contract.line"

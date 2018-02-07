@@ -18,8 +18,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
-class res_company(models.Model):
+from openerp.osv import osv, fields
+class res_company(osv.osv):
     
     _inherit = 'res.company'
     

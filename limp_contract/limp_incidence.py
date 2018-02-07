@@ -20,11 +20,11 @@
 
 """Object to register incidences"""
 
-from openerp import models, fields
-import decimal_precision as dp
+from openerp.osv import osv, fields
+from openerp.addons.decimal_precision import decimal_precision as dp
 import time
 
-class limp_incidence(models.Model):
+class limp_incidence(osv.osv):
     """Object to register incidences"""
 
     _name = "limp.incidence"

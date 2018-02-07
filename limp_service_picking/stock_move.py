@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class stock_move(models.Model):
+class stock_move(osv.osv):
 
     _inherit = "stock.move"
 

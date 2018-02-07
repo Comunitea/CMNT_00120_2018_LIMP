@@ -19,11 +19,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
-from tools.translate import _
+from openerp.tools.translate import _
 
 def daterange(start_date, end_date):
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
@@ -53,7 +53,7 @@ def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
 
     return base_calendar_id and int(base_calendar_id) or base_calendar_id
 
-class remuneration(models.Model):
+class remuneration(osv.osv):
     _name = "remuneration"
     _description = "Remunerations"
 
@@ -430,7 +430,7 @@ class remuneration(models.Model):
 
 remuneration()
 
-class incidence(models.Model):
+class incidence(osv.osv):
 
     _inherit = "incidence"
 
@@ -441,7 +441,7 @@ class incidence(models.Model):
 
 incidence()
 
-class absence(models.Model):
+class absence(osv.osv):
 
     _inherit = "absence"
 
@@ -451,7 +451,7 @@ class absence(models.Model):
 
 absence()
 
-class remuneration2(models.Model):
+class remuneration2(osv.osv):
 
     _inherit = "remuneration"
 

@@ -22,12 +22,12 @@
 
 import base64
 import datetime
-from openerp import models, fields
+from openerp.osv import osv, fields
 import xlrd
 import StringIO
 import calendar
 import time
-import tools
+from openerp.tools import ustr
 
 def string_format(value):
     if isinstance(value, float):
@@ -45,7 +45,7 @@ def float_format(value):
 
     return value
 
-class distribution_costs_import(models.TransientModel):
+class distribution_costs_import(osv.osv_memory):
     _name = "distribution.costs.import"
     _columns = {
         'name': fields.char('Name',size=64,required=True),
@@ -270,7 +270,7 @@ class distribution_costs_import(models.TransientModel):
                                             if not type in ("with_contract","with_ss_contract") and new_valor: # si no es con contrato y hay importe
                                                 ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
                                                 [('remuneration_id','=',int(remuneration)),('account_id','=', analytic or analytic_obj.analytic_account_id.id),
-                                                ('name','=',tools.ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
+                                                ('name','=',ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
                                                 ('department_id','=',analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 ('delegation_id','=',analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                 ('manager_id','=',analytic_obj.manager_id and analytic_obj.manager_id.id or False)]) # se borrar todos los apunets ya existenetes con el mismo formato para no duplicar
@@ -280,7 +280,7 @@ class distribution_costs_import(models.TransientModel):
 
                                                 vals = {
                                                     'amount': -(new_valor),
-                                                    'name':  tools.ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
+                                                    'name':  ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
                                                     'journal_id': journal_id[0],
                                                     'remuneration_id': int(remuneration),
                                                     'account_id': analytic or analytic_obj.analytic_account_id.id,
@@ -295,7 +295,7 @@ class distribution_costs_import(models.TransientModel):
                                             elif type == "with_contract" and new_valor: # si es con contrato y hay importe
                                                 ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
                                                 [('remuneration_id','=',int(remuneration)),('account_id','=',analytic or analytic_obj.analytic_account_id.id),
-                                                ('name','=',tools.ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
+                                                ('name','=',ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
                                                 ('department_id','=',analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 ('delegation_id','=',analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                 ('manager_id','=',analytic_obj.manager_id and analytic_obj.manager_id.id or False)]) # evitamos suplicados
@@ -308,7 +308,7 @@ class distribution_costs_import(models.TransientModel):
                                                 #cost_contract = (remu_total_cost*valor)/with_contract_contract # repartimos la proporción del coste del contrato según las horas
                                                 vals = {
                                                     'amount': -(remu_total_cost),
-                                                    'name':  tools.ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
+                                                    'name':  ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
                                                     'journal_id': journal_id[0],
                                                     'remuneration_id': int(remuneration),
                                                     'account_id': analytic or analytic_obj.analytic_account_id.id,
@@ -324,7 +324,7 @@ class distribution_costs_import(models.TransientModel):
                                             elif new_valor and ss_total: # si hay seguridad social a repartir
                                                 ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
                                                 [('remuneration_id','=',int(remuneration)),('account_id','=',analytic or analytic_obj.analytic_account_id.id),
-                                                ('name','=',tools.ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
+                                                ('name','=',ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
                                                 ('department_id','=',analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 ('delegation_id','=',analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                 ('manager_id','=',analytic_obj.manager_id and analytic_obj.manager_id.id or False)]) # evitamos suplicados
@@ -335,7 +335,7 @@ class distribution_costs_import(models.TransientModel):
                                                 #cost_contract_ss = (remu_total_cost_ss*valor)/with_ss_contract # repartimos la proporción del coste de ss según las horas
                                                 vals = {
                                                         'amount': -(remu_total_cost_ss),
-                                                        'name':  tools.ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
+                                                        'name':  ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
                                                         'journal_id': social_journal_id[0],
                                                         'remuneration_id': int(remuneration),
                                                         'account_id': analytic or analytic_obj.analytic_account_id.id,
@@ -357,13 +357,13 @@ class distribution_costs_import(models.TransientModel):
                                         if type not in ("with_contract","with_ss_contract") and valor: # si no es con contrato y hay importe
                                             ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
                                             [('timesheet_id','=',int(remuneration[:-1])),('account_id','=',int(analytic)),
-                                            ('name','=',tools.ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) #borramos los duplicados
+                                            ('name','=',ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) #borramos los duplicados
                                             if ids_delete:
                                                 self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
                                                 ids_delete = []
                                             vals = {
                                                 'amount': -(valor),
-                                                'name':  tools.ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
+                                                'name':  ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
                                                 'journal_id': journal_id[0],
                                                 'timesheet_id': int(remuneration[:-1]),
                                                 'account_id': analytic,
@@ -378,7 +378,7 @@ class distribution_costs_import(models.TransientModel):
                                         elif type == "with_contract" and valor:
                                             ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
                                             [('timesheet_id','=',int(remuneration[:-1])),('account_id','=',int(analytic)),
-                                            ('name','=',tools.ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) # borramos duplicados
+                                            ('name','=',ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) # borramos duplicados
                                             if ids_delete:
                                                 self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
                                                 ids_delete = []
@@ -388,7 +388,7 @@ class distribution_costs_import(models.TransientModel):
                                             #cost_contract = (timesheet_total_cost*valor)/with_contract_timesheet
                                             vals = {
                                                 'amount': -(timesheet_total_cost),
-                                                'name':  tools.ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
+                                                'name':  ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
                                                 'journal_id': journal_id[0],
                                                 'timesheet_id': int(remuneration[:-1]),
                                                 'account_id': analytic,
@@ -404,7 +404,7 @@ class distribution_costs_import(models.TransientModel):
                                         elif valor and ss_total: # si hay seguridad social
                                             ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
                                             [('timesheet_id','=',int(remuneration[:-1])),('account_id','=',int(analytic)),
-                                            ('name','=',tools.ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) # borramos duplicados
+                                            ('name','=',ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) # borramos duplicados
                                             if ids_delete:
                                                 self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
                                                 ids_delete = []
@@ -412,7 +412,7 @@ class distribution_costs_import(models.TransientModel):
                                             #cost_contract_ss = (timesheet_total_cost_ss*valor)/ss_total_timesheet # calculamos el coste proporcionado a las horas
                                             vals = {
                                                     'amount': -(timesheet_total_cost_ss),
-                                                    'name':  tools.ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
+                                                    'name':  ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
                                                     'journal_id': social_journal_id[0],
                                                     'timesheet_id': int(remuneration[:-1]),
                                                     'account_id': analytic,

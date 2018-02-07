@@ -11,7 +11,7 @@
            <xpath expr="/form/notebook/page/field[@name='line_id']/tree/field[@name='analytic_account_id']" position="after">
                <field name="analytics_id" groups="analytic.group_analytic_accounting"/>
            </xpath>
-           <xpath expr="/form/notebook/page/field[@name='line_id']/form/notebook/page/group/field[@name='analytic_account_id']" position="after">
+           <xpath expr="/form/notebook/page/field[@name='line_id']/form/notebook/page/group/group/field[@name='analytic_account_id']" position="after">
                <field name="analytics_id" groups="analytic.group_analytic_accounting"/>
            </xpath>
        </field>
@@ -108,7 +108,7 @@
             </field>
         </record>
 
-        <record id="account_analytic_plans.view_bank_statement_inherit_form" model="ir.ui.view">
+        <!-- record id="account_analytic_plans.view_bank_statement_inherit_form" model="ir.ui.view">
             <field name="name">account.bank.statement.form.inherit</field>
             <field name="model">account.bank.statement</field>
             <field name="type">form</field>
@@ -120,8 +120,8 @@
                 <xpath expr="/form/notebook/page/field[@name='line_ids']/form/field[@name='analytic_account_id']" position="after">
                     <field name="analytics_id" groups="analytic.group_analytic_accounting"/>
                 </xpath>
-            </field>
-        </record>
+            </field> MIGRACION: Los campos ya no parecen existir
+        </record-->
 
         <record model="ir.ui.view" id="account_analytic_plan_instance_form_add_department_delegation">
             <field name="name">account.analytic.plan.instance.form.add_department_delgation</field>
@@ -151,7 +151,8 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="account_analytic_plan_instance_line_form_add_department_delegation">
+        <record model="ir.ui.view" id="account_analytic_plan_instance_line_form_department_delegation">
+            <!-- MIGRACION: Se cambia id, xmlid max size 64 -->
             <field name="name">account.analytic.plan.instance.line.form.add_department_delegation</field>
             <field name="model">account.analytic.plan.instance.line</field>
             <field name="inherit_id" ref="account_analytic_plans.account_analytic_plan_instance_line_form"/>
@@ -166,7 +167,8 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="account_analytic_plan_instance_line_tree_add_department_delegation">
+        <record model="ir.ui.view" id="account_analytic_plan_instance_line_tree_department_delegation">
+            <!-- MIGRACION: Se cambia id, xmlid max size 64 -->
             <field name="name">account.analytic.plan.instance.line.tree.add_department_delegation</field>
             <field name="model">account.analytic.plan.instance.line</field>
             <field name="inherit_id" ref="account_analytic_plans.account_analytic_plan_instance_line_tree"/>

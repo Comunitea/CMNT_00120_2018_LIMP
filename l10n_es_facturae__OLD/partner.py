@@ -19,38 +19,25 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
+class res_partner_address(osv.osv):
 
-class account_invoice(models.Model):
-
-    _inherit = "account.invoice"
-
-    _columns = {
-        'address_tramit_id': fields.many2one('res.partner', "Tramit address")
-    }
-
-account_invoice()
-
-
-class payment_type_face_code(models.Model):
-
-    _name = "payment.type.face.code"
+    _inherit = "res.partner.address"
 
     _columns = {
-        "code": fields.char("Code", size=2, required=True),
-        "name": fields.char("Name", size=128, required=True)
+        'dir3': fields.char('DIR3', size=10, help="Field required for Face facturae format"),
+        'sef': fields.char('SEF', size=10)
     }
 
-payment_type_face_code()
+res_partner_address()
 
-class payment_type(models.Model):
+class res_partner_address(osv.osv):
 
-    _inherit = "payment.type"
+    _inherit = "res.partner.address"
 
     _columns = {
-        'related_bank_account_id': fields.many2one("res.partner.bank", "Related bank account", help="Company bank account if it is set in paynment name"),
-        'face_code_id': fields.many2one("payment.type.face.code", "FACe code")
+        'type': fields.selection( [ ('default','Default'),('invoice','Invoice'), ('delivery','Delivery'), ('contact','Contact'), ('other','Other'), ('tramit', 'Tramit')],'Address Type', help="Used to select automatically the right address according to the context in sales and purchases documents."),
     }
 
-payment_type()
+res_partner_address()

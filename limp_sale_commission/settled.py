@@ -22,14 +22,14 @@
 
 """Objetos sobre las liquidación"""
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 import time
-import tools
+from openerp.tools import drop_view_if_exists
 
-class settled_wizard (models.TransientModel):
+class settled_wizard (osv.osv_memory):
     """settled.wizard"""
-    
+
     _name = 'settled.wizard'
     _columns = {
         #'settlement':fields.selection((('m', 'Monthly'),('t', 'Quarterly'),('s', 'Semiannual'),('a', 'Annual')), 'Settlement period', required=True),
@@ -46,7 +46,7 @@ class settled_wizard (models.TransientModel):
 
             pool_liq = self.pool.get('settlement')
             liq_id = pool_liq.search(cr, uid, [('date_to', '>=', o.date_from)])
-            
+
             vals={
                 'name': o.date_from+ " // " + o.date_to,
                 'date_from':o.date_from,
@@ -60,19 +60,19 @@ class settled_wizard (models.TransientModel):
             'type': 'ir.actions.act_window_close',
         }
 
-      
+
     def action_cancel(self, cr, uid, ids, conect=None):
         """CANCEL LIQUIDACIÓN"""
         return {
             'type': 'ir.actions.act_window_close',
         }
 
-        
+
 
 settled_wizard()
 
 
-class recalculate_commision_wizard (models.TransientModel):
+class recalculate_commision_wizard (osv.osv_memory):
     """settled.wizard"""
 
     _name = 'recalculate.commission.wizard'
@@ -123,7 +123,7 @@ recalculate_commision_wizard()
 
 
 
-class settlement (models.Model):
+class settlement (osv.osv):
     """Objeto Liquidación"""
 
     _name = 'settlement'
@@ -152,7 +152,7 @@ class settlement (models.Model):
             res[settlement.id] = invoices_agent.values()
         return res
 
-            
+
 
 
     def calcula(self, cr, uid, ids, agent_ids, date_from, date_to):
@@ -168,7 +168,7 @@ class settlement (models.Model):
             self.pool.get('settlement.agent').calcula(cr, uid, liq_agent_id, date_from, date_to)
             liq_agent = self.pool.get('settlement.agent').browse(cr, uid, liq_agent_id)
             total = total + liq_agent.total
-            
+
         return self.write (cr, uid, ids, {'total': total})
 
     def action_cancel(self, cr, uid, ids, context=None):
@@ -194,7 +194,7 @@ class settlement (models.Model):
 settlement()
 
 
-class settlement_agent (models.Model):
+class settlement_agent (osv.osv):
     """Liquidaciones de Agentes"""
 
     _name = 'settlement.agent'
@@ -215,7 +215,7 @@ class settlement_agent (models.Model):
         '''Call after the creation of the invoice'''
         return
 
-    
+
     _columns = {
         'agent_id': fields.many2one('sale.agent', 'Agent', required=True, select=1),
         'total_per': fields.float('Total percentages', readonly=True),
@@ -254,16 +254,16 @@ class settlement_agent (models.Model):
                         'date' : invoice.invoice_id.date_invoice,
                         'hours': 0.0,
                     }
-                    self.pool.get("timesheet").create(cursor,user,data)                    
+                    self.pool.get("timesheet").create(cursor,user,data)
             else:
                #El tipo es de facura de proveedor
                 account_id = partner.property_account_payable.id
-    
+
                 address_contact_id, address_invoice_id = \
                         self._get_address_invoice(cursor, user, settlement).values()
-    
+
                 # No se agrupa
-    
+
                 invoice_vals = {
                     'name': settlement.settlement_id.name,
                     'origin': (settlement.settlement_id.name or '') ,
@@ -283,8 +283,8 @@ class settlement_agent (models.Model):
                     invoice_vals['journal_id'] = journal_id
                 invoice_id = invoice_obj.create(cursor, user, invoice_vals,
                         context=context)
-    
-    
+
+
                 res[settlement.id] = invoice_id
                 # El producto se selecciona en el wizard correspondiente
                 product = self.pool.get('product.product').browse(cursor,user,product_id)
@@ -292,9 +292,9 @@ class settlement_agent (models.Model):
                 if not account_id:
                     account_id = product.categ_id.property_account_expense_categ.id
                 # Cálculo de los impuestos a aplicar
-    
+
                 taxes = product.supplier_taxes_id
-    
+
                 # se añade la retención seleccionada de la ficha del agente
                 if settlement.agent_id and settlement.agent_id.retention_id:
                     taxes.append(settlement.agent_id.retention_id)
@@ -312,10 +312,10 @@ class settlement_agent (models.Model):
                     name = invoice.invoice_number
                     price_unit = invoice.settled_amount
                     discount = 0
-    
+
                     #set UoS if it's a sale and the picking doesn't have one
                     uos_id =  False
-    
+
                     account_id = self.pool.get('account.fiscal.position').map_account(cursor, user, partner.property_account_position, account_id)
                     invoice_line_id = invoice_line_obj.create(cursor, user, {
                         'name': name,
@@ -331,7 +331,7 @@ class settlement_agent (models.Model):
                         'account_analytic_id': invoice.account_analytic_id and invoice.account_analytic_id.id or False,
                         }, context=context)
                     self._invoice_line_hook(cursor, user, invoice, invoice_line_id)
-    
+
                 invoice_obj.button_compute(cursor, user, [invoice_id], context=context,
                         set_total=(type in ('in_invoice', 'in_refund')))
                 self._invoice_hook(cursor, user, settlement, invoice_id)
@@ -363,7 +363,7 @@ class settlement_agent (models.Model):
               'AND account_invoice.state<>\'draft\' AND account_invoice.type=\'out_invoice\''\
               'AND account_invoice.date_invoice >= \'' + date_from + '\' AND account_invoice.date_invoice <= \'' + date_to +'\''\
               ' AND account_invoice.company_id = ' + str(user.company_id.id)
-       
+
         cr.execute(sql)
         res = cr.fetchall()
         inv_line_ids = [x[0] for x in res]
@@ -379,7 +379,7 @@ class settlement_agent (models.Model):
 
             # Marca la comision en la factura como liquidada y establece la cantidad
             # Si es por tramos la cantidad será cero, pero se reflejará sobre el tramo del Agente
-            
+
 
             if line.commission_id.type == "fijo":
                 total_per = total_per + line.commission
@@ -394,29 +394,29 @@ class settlement_agent (models.Model):
                     else:
                         sections[line.commission_id.id] = {'type': line.commission_id, 'base':line.invoice_line_id.price_subtotal, 'lines':[line]}
 
-        #Tramos para cada tipo de comisión creados 
+        #Tramos para cada tipo de comisión creados
 
         for tramo in sections:
             #Cálculo de la comisión  para cada tramo
             sections[tramo].update({'commission': sections[tramo]['type'].calcula_tramos(sections[tramo]['base'])})
             total_sections = total_sections+sections[tramo]['commission']
             # reparto de la comisión para cada linea
-            
+
             for linea_tramo in  sections[tramo]['lines']:
                 com_por_linea = sections[tramo]['commission']* (linea_tramo.invoice_line_id.price_subtotal/sections[tramo]['base'])
                 linea_tramo.write({'commission':com_por_linea})
                 inv_ag_ids = self.pool.get('invoice.line.agent').search(cr, uid, [('invoice_line_id', '=', linea_tramo.invoice_line_id.id), ('agent_id', '=', set_agent.agent_id.id)])
                 self.pool.get('invoice.line.agent').write(cr, uid, inv_ag_ids, {'settled': True, 'quantity': com_por_linea})
-            
+
 
         total = total_per + total_sections
         self.write (cr, uid, ids, {'total_per': total_per, 'total_sections': total_sections, 'total': total})
 
 settlement_agent()
 
-class settlement_line (models.Model):
+class settlement_line (osv.osv):
     """Línea de las liquidaciones de los agentes
-     Una línea por línea de factura 
+     Una línea por línea de factura
     """
 
     _name = 'settlement.line'
@@ -462,7 +462,7 @@ settlement_line()
 
 
 
-class settled_invoice_agent(models.Model):
+class settled_invoice_agent(osv.osv):
     _name = "settled.invoice.agent"
     _description = "Resumen de facturas liquidadas"
     _auto = False
@@ -479,8 +479,8 @@ class settled_invoice_agent(models.Model):
 
 
     def init(self, cr):
-        tools.sql.drop_view_if_exists(cr,  "settled_invoice_agent")
-        
+        drop_view_if_exists(cr,  "settled_invoice_agent")
+
         cr.execute("""
             create or replace view settled_invoice_agent as (
             SELECT  min(account_invoice_line.id+10000+settlement_agent.agent_id) as id, settlement_agent.id as settlement_agent_id,
@@ -490,7 +490,7 @@ class settled_invoice_agent(models.Model):
             FROM settlement_agent
               INNER JOIN settlement_line ON settlement_agent.id = settlement_line.settlement_agent_id
               INNER JOIN account_invoice_line ON account_invoice_line.id = settlement_line.invoice_line_id
-              GROUP BY account_invoice_line.invoice_id, settlement_agent.agent_id, settlement_agent.id, account_invoice_line.account_analytic_id 
+              GROUP BY account_invoice_line.invoice_id, settlement_agent.agent_id, settlement_agent.id, account_invoice_line.account_analytic_id
 
            )""")
 

@@ -18,9 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class task_frequency(models.Model):
+class task_frequency(osv.osv):
     _name = 'task.frequency'
     _description = 'o2m to limp.contract.task'
     _rec_name = 'sale_id,task_id'

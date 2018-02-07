@@ -30,7 +30,6 @@
             'base',
             'base_contact',
             'l10n_es_partner',
-            'base_vat_unique',
             'calendar'
             ],
         "init_xml" : [],

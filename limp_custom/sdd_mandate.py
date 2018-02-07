@@ -21,7 +21,7 @@
 
 from openerp import models
 
-class sdd_mandate(models.Model):
+class sdd_mandate(osv.osv):
 
     _inherit = "sdd.mandate"
 

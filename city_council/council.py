@@ -21,12 +21,12 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-import wizard
-import pooler
+from openerp.osv import osv, fields
+# import wizard
+# # import pooler MIGRACION: Comentado
 
 
-class city_council(models.Model):
+class city_council(osv.osv):
 
     _name = 'city.council'
 
@@ -36,7 +36,7 @@ class city_council(models.Model):
 
 city_council()
 
-class city(models.Model):
+class city(osv.osv):
 
     _inherit = "city.city"
 
@@ -46,7 +46,7 @@ class city(models.Model):
 
 city()
 
-class city_council2(models.Model):
+class city_council2(osv.osv):
 
     _inherit = 'city.council'
 
@@ -57,7 +57,7 @@ class city_council2(models.Model):
 city_council2()
 
 
-'''class res_partner_address(models.Model):
+'''class res_partner_address(osv.osv):
     _inherit = "res.partner.address"
 
     _columns = {
@@ -86,7 +86,7 @@ council_end_form = '''<?xml version="1.0" encoding="utf-8"?>
     <separator string="Result:" colspan="4"/>
     <label string="The councils has been associated successfully to the Spanish zip codes." colspan="4" align="0.0"/>
 </form>'''
-
+'''
 class l10n_es_associate_council_city(wizard.interface):
     def _associate_zipcode(self, cr, uid, data, context):
         pool = pooler.get_pool(cr.dbname)
@@ -116,4 +116,4 @@ class l10n_es_associate_council_city(wizard.interface):
         }
 
     }
-l10n_es_associate_council_city('city_council.asscociate_zipcode')
+l10n_es_associate_council_city('city_council.asscociate_zipcode') MIGRACION: Comentado temporalmente'''

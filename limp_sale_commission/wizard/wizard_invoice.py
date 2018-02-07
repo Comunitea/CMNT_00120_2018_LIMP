@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 
-class settled_invoice_wizard (models.TransientModel):
+class settled_invoice_wizard (osv.osv_memory):
     """settled.invoice.wizard"""
 
     _name = 'settled.invoice.wizard'

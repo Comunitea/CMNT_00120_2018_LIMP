@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import analytic_balance_parser
-import analytic_balance_by_department
+# import analytic_balance_parser <!-- MIGRACION: -->
+# import analytic_balance_by_department

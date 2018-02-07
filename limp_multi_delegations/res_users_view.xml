@@ -15,7 +15,7 @@
                 </notebook>
             </field>
         </record>
-        <record model="ir.ui.view" id="view_delegation_form_simple_modif_inherited1">
+        <!--record model="ir.ui.view" id="view_delegation_form_simple_modif_inherited1">
             <field name="name">view.delegation.form.hr.inherited1</field>
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form_simple_modif" />
@@ -25,8 +25,8 @@
                     <field name="context_delegation_id" widget="selection" readonly="0"/>
                 </page>
             </field>
-        </record>
-       
+        </record MIGRACION: comentado -->
+
 
     </data>
 </openerp>

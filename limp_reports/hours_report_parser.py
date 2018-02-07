@@ -27,7 +27,7 @@ from datetime import datetime
 import time
 from dateutil import rrule
 import tools
-from tools.translate import _
+from openerp.tools.translate import _
 
 MONTHS = {
     '1': _("Enero"),

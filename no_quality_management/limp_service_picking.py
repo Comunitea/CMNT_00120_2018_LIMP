@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class limp_service_picking(models.Model):
+class limp_service_picking(osv.osv):
 
     _inherit = "stock.service.picking"
 

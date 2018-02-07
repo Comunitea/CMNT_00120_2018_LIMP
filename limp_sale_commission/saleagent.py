@@ -20,10 +20,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
 
-class commission(models.Model):
+class commission(osv.osv):
     """Objeto comisión"""
 
     _name = "commission"
@@ -51,7 +51,7 @@ class commission(models.Model):
 commission()
 
 
-class commission_section(models.Model):
+class commission_section(osv.osv):
     """periodo de las comisiones"""
 
     _name = "commission.section"
@@ -66,7 +66,7 @@ class commission_section(models.Model):
 
 commission_section()
 
-class sale_agent(models.Model):
+class sale_agent(osv.osv):
     """Agente de ventas"""
 
     _name = "sale.agent"

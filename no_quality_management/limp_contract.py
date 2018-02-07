@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class limp_contract(models.Model):
+class limp_contract(osv.osv):
 
     _inherit = "limp.contract"
 

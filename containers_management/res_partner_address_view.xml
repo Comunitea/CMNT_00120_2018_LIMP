@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record id="view_partner_address_form1_add_containers_store" model="ir.ui.view">
+        <!--record id="view_partner_address_form1_add_containers_store" model="ir.ui.view">
             <field name="name">res.partner.address.form1.add_containers_store</field>
             <field name="model">res.partner.address</field>
             <field name="inherit_id" ref="base.view_partner_address_form1"/>
@@ -10,7 +10,7 @@
             <field name="arch" type="xml">
                 <field name="street" position="before">
                     <field name="containers_store"/>
-                </field>
+                </field> MIGRACION: Comentado
             </field>
         </record>
 
@@ -24,7 +24,7 @@
                     <field name="containers_store"/>
                 </field>
             </field>
-        </record>
+        </record-->
 
         <!--record id="view_partner_form_add_containers_store" model="ir.ui.view">
             <field name="name">res.partner.form.add_containers_store</field>
@@ -38,7 +38,7 @@
             </field>
         </record-->
 
-        <record model="ir.ui.view" id="view_partner_form_inherit_add_containers_store">
+        <!--record model="ir.ui.view" id="view_partner_form_inherit_add_containers_store"> MIGRACION: Comentado
             <field name="name">Partner form inherited add_containers_store</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
@@ -48,7 +48,7 @@
                     <field name="containers_store"/>
                 </xpath>
             </field>
-        </record>
+        </record-->
 
     </data>
 </openerp>

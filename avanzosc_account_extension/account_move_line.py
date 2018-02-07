@@ -23,23 +23,22 @@ import time
 from datetime import datetime
 from operator import itemgetter
 
-import netsvc
-from openerp import models, fields
-from tools.translate import _
-import decimal_precision as dp
-import tools
+# # import netsvc MIGRACION: Comentado MIGRACION: Comentado
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
+from openerp.addons.decimal_precision import decimal_precision as dp
 
-class account_move_line(models.Model):
-    
+class account_move_line(osv.osv):
+
     _inherit = 'account.move.line'
-    
+
     #def _default_get(self, cr, uid, fields, context=None):
     #    res = {}
     #    journal_obj = self.pool.get('account.journal')
     #    res = super(account_move_line, self)._default_get(cr, uid, fields, context=context)
     #    if res:
     #        if res.has_key('journal_id'):
-    #          	journal = journal_obj.browse(cr,uid,[res['journal_id']])
+    #           journal = journal_obj.browse(cr,uid,[res['journal_id']])
     #            if journal:
     #                journal = journal[0]
     #                acc = journal.default_debit_account_id.id
@@ -63,5 +62,5 @@ class account_move_line(models.Model):
                 if check:
                     move_obj.validate(cr, uid, [line.move_id.id], context=context)
             return result
-        
+
 account_move_line()

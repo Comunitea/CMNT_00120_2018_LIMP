@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-import tools
+from openerp.osv import osv, fields
+from openerp.tools import drop_view_if_exists
 
-class account_invoice_report_custom(models.Model):
+class account_invoice_report_custom(osv.osv):
 
     _name = "account.invoice.report.custom"
     _auto = False
@@ -78,7 +78,7 @@ class account_invoice_report_custom(models.Model):
     }
 
     def init(self, cr):
-        tools.drop_view_if_exists(cr, 'account_invoice_report_custom')
+        drop_view_if_exists(cr, 'account_invoice_report_custom')
         # MIGRACION: Se elimina:
         # ai.address_contact_id as address_contact_id, ai.address_invoice_id as address_invoice_id,
         # de select y group by

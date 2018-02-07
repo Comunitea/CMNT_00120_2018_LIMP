@@ -24,7 +24,7 @@ import res_partner
 import invoice_lines
 import account_invoice
 # mport res_partner_contact MIGRACION: Modelo eliminado
-import payment_type
+# import payment_type
 import hr_employee
 import stock
 import container

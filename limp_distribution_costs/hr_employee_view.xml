@@ -33,7 +33,7 @@
             <field name="inherit_id" ref="hr.view_employee_filter"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <field name="parent_id" position="after">
+                <field name="department_id" position="after">
                     <field name="glasof_code"/>
                 </field>
              </field>
@@ -45,7 +45,7 @@
             <field name="inherit_id" ref="hr.view_partner_tree2"/>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <field name="ssnid" position="replace">
+                <field name="department_id" position="replace"> <!-- MIGRACION: ssnid -->
                     <field name="glasof_code"/>
                 </field>
             </field>
@@ -57,7 +57,7 @@
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
-                <field name="user_email" position="after">
+                <field name="tz" position="after">
                     <field name="laboral"/>
                 </field>
             </field>

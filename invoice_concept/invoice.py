@@ -20,9 +20,9 @@
 
 """Add to invoices a contract relationship"""
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class account_invoice(models.Model):
+class account_invoice(osv.osv):
     """Add to invoices a contract relationship"""
 
     _inherit = 'account.invoice'

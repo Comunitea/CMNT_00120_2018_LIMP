@@ -22,4 +22,4 @@
 
 import res_delegation
 import res_users
-import add_delegation
+# import add_delegation MIGRACION: import report

@@ -19,10 +19,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
 
-class analytic_balance_by_department(models.TransientModel):
+class analytic_balance_by_department(osv.osv_memory):
     _name = "analytic.balance.by.department.wzd"
 
     _columns = {

@@ -22,8 +22,8 @@
 
 """Wizard to replace employee of selected remunerations"""
 
-from openerp import models, fields
-from tools.translate import _
+from openerp.osv import osv, fields
+from openerp.tools.translate import _
 import time
 from datetime import datetime
 def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
@@ -47,7 +47,7 @@ def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
             return int(real_id)
 
     return base_calendar_id and int(base_calendar_id) or base_calendar_id
-class employee_replacement_wzd(models.TransientModel):
+class employee_replacement_wzd(osv.osv_memory):
     """Wizard to replace employee of selected remuneratons"""
 
     _name = "employee.replacement.wzd"

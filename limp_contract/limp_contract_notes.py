@@ -18,10 +18,10 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 import time
 
-class limp_contract_note(models.Model):
+class limp_contract_note(osv.osv):
     
     _name = "limp.contract.note"
     _order = "date desc"

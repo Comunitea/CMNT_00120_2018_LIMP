@@ -19,9 +19,9 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import osv, fields
 
-class update_last_invoice_date(models.TransientModel):
+class update_last_invoice_date(osv.osv_memory):
 
     _name = "update.last.invoice.date"
 
