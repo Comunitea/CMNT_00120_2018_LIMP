@@ -12,9 +12,9 @@
                     <field name="containers_store"/>
                 </field> MIGRACION: Comentado
             </field>
-        </record>
+        </record-->
 
-        <record id="view_partner_address_form2_add_containers_store" model="ir.ui.view">
+        <!--record id="view_partner_address_form2_add_containers_store" model="ir.ui.view">
             <field name="name">res.partner.address.form2.add_containers_store</field>
             <field name="model">res.partner.address</field>
             <field name="inherit_id" ref="base.view_partner_address_form2"/>
@@ -23,7 +23,7 @@
                 <field name="title" position="replace">
                     <field name="containers_store"/>
                 </field>
-            </field>
+            </field> MIGRACION:
         </record-->
 
         <!--record id="view_partner_form_add_containers_store" model="ir.ui.view">

@@ -31,4 +31,4 @@ import container
 import res_users
 import add_reposible_to_models
 import account_analytic
-import sdd_mandate
+# import sdd_mandate MIGRACION: Modelo eliminado

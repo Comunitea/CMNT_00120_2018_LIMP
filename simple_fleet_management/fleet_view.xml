@@ -111,7 +111,7 @@
                     <field name="license_plate" select="1"/>
                     <field name="active" select="2"/>
                     <newline/>
-                    <group expand="0" string="Context..." groups="base.group_extended">
+                    <group expand="0" string="Context..." groups="base.group_no_one">
                        <field name="start_date" context="{'start_date': self}" />
                        <field name="end_date" context="{'end_date': self}"/>
                    </group>

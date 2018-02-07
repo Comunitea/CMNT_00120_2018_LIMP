@@ -34,7 +34,7 @@ class waste_service(osv.osv):
         'payment_term': fields.many2one('account.payment.term', 'Payment term'),
         'payment_mode': fields.many2one('payment.mode', 'Payment type'),
         'partner_bank_id': fields.many2one('res.partner.bank', 'Bank account'),
-        'partner_shipping_id': fields.many2one('res.partner.address', 'Service address'),
+        'partner_shipping_id': fields.many2one('res.partner', 'Service address'),
         'service_picking_ids': fields.one2many('stock.service.picking','service_id','Stock Service Picking',)
         }
 

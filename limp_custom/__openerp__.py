@@ -34,7 +34,7 @@
             'warning',
             'product',
             'hr',
-            'base_iban',
+            # 'base_iban',
             'multi_departments',
             'base_contact',
             'limp_service_picking',

@@ -110,7 +110,7 @@
                 <field name="zip" on_change="on_change_fields(zip)"/>
             </field>
         </field>
-    </record-->
+    </record>
 
     <record model="ir.ui.view" id="view_city_form_add_council">
         <field name="name">city.city.form.add_council</field>
@@ -122,7 +122,7 @@
                 <field name="council_id" required="1"/>
             </field>
         </field>
-    </record>
+    </record-->
 
     </data>
 </openerp>

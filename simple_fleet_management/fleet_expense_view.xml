@@ -64,7 +64,7 @@
                     <field name="distribute"/>
                     <field name="department_id"/>
                     <newline/>
-                    <group  expand='0' string='Group by...' groups="base.group_extended">
+                    <group  expand='0' string='Group by...' groups="base.group_no_one">
                        <filter string='Type' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'expense_type'}" />
                        <filter string='Vehicle' icon="terp-stock_symbol-selection" context="{'group_by' : 'fleet_id'}"/>
                        <filter string='Supplier' icon="terp-partner" context="{'group_by' : 'partner_id'}"/>

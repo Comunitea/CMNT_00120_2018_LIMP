@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="base.view_res_partner_filter"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <field name="name" position="before">
+                <field name="name" position="after">
                     <field name="comercial"/>
                     <field name="vat"/>
                 </field>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record id="view_partner_bank_iban_form_inherit" model="ir.ui.view">
+        <!--record id="view_partner_bank_iban_form_inherit" model="ir.ui.view">
             <field name="name">res.partner.bank.form.iban.inherit</field>
             <field name="model">res.partner.bank</field>
-            <field name="inherit_id" ref="base_iban.view_partner_bank_iban_form"/>
+            <field name="inherit_id" ref="base_iban.view_partner_bank_iban_form"/> MIGRACION:
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="iban" position="replace">
                     <field name="iban" on_change="onchange_iban(iban)"/>
                 </field>
             </field>
-          </record>
+          </record
 
         <record id="view_partner_iban_form_imp" model="ir.ui.view">
             <field name="name">res.partner.form.iban.inherit.imp</field>
@@ -23,7 +23,7 @@
                     <field name="iban" on_change="onchange_iban(iban)"/>
                 </xpath>
             </field>
-        </record>
+        </record-->
 
         <!--record id="view_partner_address_tree_add_field" model="ir.ui.view">
             <field name="name">res.partner.address.tree.add.field</field>
@@ -130,7 +130,7 @@
             <field name="inherit_id" ref="base.view_res_partner_filter"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <field name="address" position="after">
+                <field name="name" position="after">
                     <field name="company_id"/>
                     <field name="ref"/>
                 </field>
@@ -140,7 +140,7 @@
             </field>
         </record>
 
-        <record id="view_partner_contact_form_limpergal" model="ir.ui.view">
+        <!--record id="view_partner_contact_form_limpergal" model="ir.ui.view">
             <field name="name">res.partner.contact.form.limpergal</field>
             <field name="model">res.partner.contact</field>
             <field name="inherit_id" ref="base_contact.view_partner_contact_form"/>
@@ -149,8 +149,8 @@
                  <field name="birthdate" position="after">
                     <field name="colege_num"/>
                 </field>
-            </field>
-        </record>
+            </field> MIGRACION:
+        </record-->
 
         <record id="view_partner_bank_form_add_ative_field" model="ir.ui.view">
             <field name="name">res.partner.bank.form.add_ative_field</field>
@@ -164,7 +164,7 @@
             </field>
         </record>
 
-        <record id="view_partner_property_form_add_active" model="ir.ui.view">
+        <!--record id="view_partner_property_form_add_active" model="ir.ui.view"> MIGRACION: Comentado
             <field name="name">res.partner.property.form.inherit.add_active</field>
             <field name="model">res.partner</field>
             <field name="type">form</field>
@@ -174,7 +174,7 @@
                     <field name="active"/>
                 </xpath>
             </field>
-        </record>
+        </record-->
 
         <record id="view_partner_form_add_cif_label" model="ir.ui.view">
             <field name="name">res.partner.property.form.inherit.add_active</field>

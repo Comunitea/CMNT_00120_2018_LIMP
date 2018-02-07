@@ -20,7 +20,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.osv import osv, fields
 # import wizard
 # # import pooler MIGRACION: Comentado
@@ -36,22 +35,22 @@ class city_council(osv.osv):
 
 city_council()
 
-class city(osv.osv):
+class res_better_zip(osv.osv):
 
-    _inherit = "city.city"
+    _inherit = "res.better.zip"
 
     _columns = {
         'council_id': fields.many2one('city.council', 'Council')
     }
 
-city()
+res_better_zip()
 
 class city_council2(osv.osv):
 
     _inherit = 'city.council'
 
     _columns = {
-        'city_ids': fields.one2many('city.city', 'council_id', 'Zipcodes'),
+        'zip_ids': fields.one2many('res.better.zip', 'council_id', 'Zipcodes'),
     }
 
 city_council2()
@@ -116,4 +115,4 @@ class l10n_es_associate_council_city(wizard.interface):
         }
 
     }
-l10n_es_associate_council_city('city_council.asscociate_zipcode') MIGRACION: Comentado temporalmente'''
+l10n_es_associate_council_city('city_council.asscociate_zipcode')'''

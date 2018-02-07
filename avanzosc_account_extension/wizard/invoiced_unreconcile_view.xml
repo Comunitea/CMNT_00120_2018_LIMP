@@ -23,6 +23,7 @@
             target="new"
             multi="True"
             key2="client_action_multi"
+            groups="base.group_no_one"
             id="action_invoice_reconcile"/>
 
     </data>
