@@ -40,9 +40,9 @@
         "init_xml" : [],
         "demo_xml" : [],
         "update_xml" : [
-                'limp_reports_data.xml',
+                # 'limp_reports_data.xml', MIGRACION:
                 'res_company_view.xml',
-                'annual_memory.xml',
+                # 'annual_memory.xml', MIGRACION:
                 'menu_reports.xml',
                 'wizard/wizard_print_memory.xml',
                 'wizard/wizard_print_hours_report_view.xml',

@@ -52,11 +52,11 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : ['stock_picking_view.xml',
+        "update_xml" : [#'stock_picking_view.xml', MIGRACION: Vistas stock
                         'product_view.xml',
                         'security/limp_custom_data.xml',
                         'res_partner_view.xml',
-                        'purchase_view.xml',
+                        # 'purchase_view.xml', MIGRACION: warehouse_id ya no existe cambiar por picking_type_id?
                         'invoice_lines_view.xml',
                         'account_invoice_view.xml',
                         'security/ir.model.access.csv',

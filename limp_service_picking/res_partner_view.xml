@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <page string="Notes" position="before">
+                <page name="internal_notes" position="before">
                     <page string="Other data">
                         <field name="partner_contact_id" domain="[('partner_id', '=', active_id)]"/>
                         <field name="authorization_no"/>
@@ -40,6 +40,6 @@
             </field>
         </record>
 
-       
+
     </data>
 </openerp>

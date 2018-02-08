@@ -83,13 +83,14 @@ class res_partner(osv.osv):
         'add_info': fields.boolean('Aditional Info'),
         'picking_warn_type' : fields.selection(WARNING_MESSAGE,'Picking warning', help=WARNING_HELP),
         'picking_warn_message' : fields.text('Message for Picking'),
-        'ref': fields.property('res.partner',
+        'ref': fields.property(#'res.partner', MIGRACION: Antiguo campo funcion con parametros innecesarios??
             type='char',
             string='Reference',
-            method=True,
-            view_load=True,
+            #method=True,
+            #view_load=True,
             required=False,
-            fnct_search=_partner_byref_search),
+            #fnct_search=_partner_byref_search
+            ),
         'with_ref': fields.function(_get_with_ref, method=True, string="With ref", readonly=True, type="boolean", fnct_search=_search_with_ref)
      }
 

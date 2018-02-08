@@ -14,7 +14,7 @@
                 <field name="warranty" position="after">
                     <field name="tax_product"/>
                 </field>
-                <page string="Packaging" position="after">
+                <notebook position="inside">
                     <page string="DDD">
                         <field name="registration_no"/>
                         <field name="biocide_type"/>
@@ -23,7 +23,7 @@
                         <field name="active_matter_percent"/>
                         <field name="dosis"/>
                     </page>
-                </page>
+                </notebook>
             </field>
         </record>
 

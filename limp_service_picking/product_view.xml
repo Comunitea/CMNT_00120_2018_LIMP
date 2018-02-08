@@ -11,7 +11,7 @@
                 <field name="product_manager" position="after">
                     <field name="ler_code_id"/>
                 </field>
-                <field name="price_extra" position="after">
+                <field name="standard_price" position="after">
                     <field name="overload_price"/>
                 </field>
             </field>
@@ -26,7 +26,7 @@
                 <field name="product_manager" position="after">
                     <field name="ler_code_id"/>
                 </field>
-                <field name="price_extra" position="after">
+                <field name="standard_price" position="after">
                     <field name="overload_price"/>
                 </field>
             </field>

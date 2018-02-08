@@ -63,9 +63,9 @@
             <field name="view_type">form</field>
         </record>
 
-        <menuitem id="menu_analytic_stock_move" parent="stock.menu_stock_products_moves" name="Consumptions"/>
+        <!-- MIGRACION: menuitem id="menu_analytic_stock_move" parent="stock.menu_stock_products_moves" name="Consumptions"/>
 
-        <menuitem action="analytic_stock_move_concepts" id="menu_analytic_stock_move_open" parent="menu_analytic_stock_move" name="Consumptions"/>
+        <menuitem action="analytic_stock_move_concepts" id="menu_analytic_stock_move_open" parent="menu_analytic_stock_move" name="Consumptions"/-->
 
     </data>
 </openerp>

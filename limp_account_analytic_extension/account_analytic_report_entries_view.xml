@@ -2,7 +2,7 @@
 <openerp>
 <data>
 
-    <record id="view_analytic_entries_report_tree_add_fields" model="ir.ui.view">
+    <!--record id="view_analytic_entries_report_tree_add_fields" model="ir.ui.view">
         <field name="name">analytic.entries.report.tree.add_fields</field>
         <field name="model">analytic.entries.report</field>
         <field name="inherit_id" ref="account.view_analytic_entries_report_tree"/>
@@ -13,8 +13,8 @@
                 <field name="department_id" invisible="1"/>
                 <field name="manager_id" invisible="1"/>
             </field>
-        </field>
-    </record>
+        </field> MIGRACION: Eliminada vista padre?
+    </record-->
 
     <record id="view_analytic_entries_report_search_add_fields" model="ir.ui.view">
         <field name="name">analytic.entries.report.search.add_fields</field>

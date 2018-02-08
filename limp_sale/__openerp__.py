@@ -45,7 +45,7 @@
             'wizard/create_service_picking_from_sale_view.xml',
             'data/price_rule_sequence.xml',
             'sale_order_periodicity_view.xml',
-            'sale_order_view.xml',
+            # 'sale_order_view.xml', MIGRACION:
             'security/ir.model.access.csv',
             'limp_sale_report.xml',
             'price_rule_view.xml',

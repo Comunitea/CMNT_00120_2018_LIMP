@@ -32,7 +32,7 @@
             <field name="inherit_id" ref="account.view_account_analytic_account_search" />
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <filter string="Current" position="after">
+                <filter string="Pending" position="after">
                     <separator orientation="vertical"/>
                     <filter icon="terp-dolar" string="Is contract" domain="[('is_contract','=',True)]" help="This account is contract"/>
                     <filter icon="terp-dolar" string="Is picking" domain="[('is_picking','=',True)]" help="This account is picking w/o contract"/>

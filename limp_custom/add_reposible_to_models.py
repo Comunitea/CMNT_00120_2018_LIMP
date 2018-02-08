@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models
+from openerp.osv import osv
 
 class account_move_line(osv.osv):
 

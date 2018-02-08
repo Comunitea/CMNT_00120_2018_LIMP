@@ -52,8 +52,8 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="invoice_form4_replace_payment_type">
-            <field name="name">account.invoice.form4.payment_type.replace_payment_type</field>
+        <!--record model="ir.ui.view" id="invoice_form4_replace_payment_type">
+            <field name="name">account.invoice.form4.payment_type.replace_payment_type</field> MIGRACION:
             <field name="model">account.invoice</field>
             <field name="type">form</field>
             <field name="inherit_id" ref="account_payment_extension.invoice_form4"/>
@@ -74,7 +74,7 @@
                     <field name="payment_type" on_change="onchange_payment_type(payment_type, partner_id)" />
                 </field>
             </field>
-        </record>
+        </record-->
 
     </data>
 </openerp>

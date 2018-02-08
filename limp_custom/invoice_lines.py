@@ -31,6 +31,7 @@ class invoice_lines(osv.osv):
                 INNER JOIN product_product AS P ON SM.product_id = P.id
                 INNER JOIN product_template AS P2 ON P.product_tmpl_id = P2.id
                 LEFT JOIN account_invoice_line as AIL on AIL.move_id = SM.id
-            WHERE SP.type = 'out' AND P2.ler_code_id is not null and SP.state = 'done' and SP.memory_include = true
+            WHERE P2.ler_code_id is not null and SP.state = 'done' and SP.memory_include = true
             )""")
+            # MIGRACION: WHERE SP.type = 'out' eliminado, cambiar por picking_type_id
 invoice_lines()

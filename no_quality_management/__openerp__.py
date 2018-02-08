@@ -40,7 +40,7 @@
                         'account_invoice_view.xml',
                         'limp_service_picking_view.xml',
                         'wizard/remove_no_quality_view.xml',
-                        'stock_picking_view.xml',
+                        # 'stock_picking_view.xml', MIGRACION:
                         'account_journal_view.xml',
                         'hr_employee_view.xml',
                         'timesheet_view.xml'],

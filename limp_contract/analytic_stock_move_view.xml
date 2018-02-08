@@ -26,7 +26,7 @@
             </field>
         </record>
 
-        <menuitem id="analytic_material_costs.menu_analytic_stock_move" parent="stock.menu_stock_products_moves" name="Consumptions" groups="group_limp_administrative"/>
+        <!--menuitem id="analytic_material_costs.menu_analytic_stock_move" parent="stock.menu_stock_products_moves" name="Consumptions" groups="group_limp_administrative"/ MIGRACION: -->
 
     </data>
 </openerp>

@@ -27,7 +27,7 @@ class account_invoice_line(osv.osv):
     _inherit = "account.invoice.line"
 
     _columns = {
-        'tax_product': fields.related('product_id', 'tax_product', string='Tax product', readonly=True, type="booolean")
+        'tax_product': fields.related('product_id', 'tax_product', string='Tax product', readonly=True, type="boolean")
     }
 
 account_invoice_line()

@@ -67,7 +67,7 @@
                         'fleet_view.xml',
                         'data/analytic_journal_data.xml',
                         'wizard/distribute_fleet_expense_view.xml',
-                        'stock_picking_view.xml',
+                        #'stock_picking_view.xml',
                         'wizard/force_building_site_service_picking_view.xml',
                         'res_company_view.xml',
                         'timesheet_view.xml',

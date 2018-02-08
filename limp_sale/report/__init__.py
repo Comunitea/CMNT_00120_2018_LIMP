@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import pricelist_onprice_rule_parser
-import limp_sale_frequency_table_parser
+# import pricelist_onprice_rule_parser
+# import limp_sale_frequency_table_parser MIGRACION:
