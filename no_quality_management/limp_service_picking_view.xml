@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record id="stock_service_picking_form_add_no_quality" model="ir.ui.view">
+        <!--record id="stock_service_picking_form_add_no_quality" model="ir.ui.view">
             <field name="name">stock.service.picking.form.add_no_quality</field>
             <field name="model">stock.service.picking</field>
             <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
@@ -14,10 +14,10 @@
                 <field name="intercompany" position="replace">
                     <field name="intercompany" on_change="onchange_intercompany(intercompany)"/>
                 </field>
-            </field>
-        </record>
+            </field> MIGRACION:
+        </record-->
 
-        <record id="stock_sporadic_service_picking_form_add_no_quality" model="ir.ui.view">
+        <!--record id="stock_sporadic_service_picking_form_add_no_quality" model="ir.ui.view">
             <field name="name">stock.sporadic.service.picking.form.add_no_quality</field>
             <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
             <field name="model">stock.service.picking</field>
@@ -28,11 +28,11 @@
                 </field>
                 <field name="intercompany" position="replace">
                     <field name="intercompany" on_change="onchange_intercompany(intercompany)"/>
-                </field>
+                </field> MIGRACION:
             </field>
-        </record>
+        </record-->
 
-        <record id="stock_sporadic_service_picking_search_add_no_quality" model="ir.ui.view">
+        <!--record id="stock_sporadic_service_picking_search_add_no_quality" model="ir.ui.view">
             <field name="name">stock.sporadic.service.picking.search.add_no_quality</field>
             <field name="model">stock.service.picking</field>
             <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_search"/>
@@ -42,10 +42,10 @@
                     <field name="no_quality"/>
                 </field>
             </field>
-        </record>
+        </record-->
 
-        <record id="stock_service_picking_search_add_no_quality" model="ir.ui.view">
-            <field name="name">stock.service.picking.search.add_no_quality</field>
+        <!--record id="stock_service_picking_search_add_no_quality" model="ir.ui.view">
+            <field name="name">stock.service.picking.search.add_no_quality</field> MIGRACION:
             <field name="model">stock.service.picking</field>
             <field name="inherit_id" ref="limp_service_picking.stock_service_picking_search"/>
             <field name="type">search</field>
@@ -54,7 +54,7 @@
                         <field name="no_quality"/>
                 </field>
             </field>
-        </record>
+        </record-->
 
     </data>
 </openerp>

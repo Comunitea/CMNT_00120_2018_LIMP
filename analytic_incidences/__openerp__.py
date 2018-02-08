@@ -50,7 +50,7 @@
             'security/ir.model.access.csv',
             'hr_employee_view.xml',
             'laboral_incidences_view.xml',
-            'analytic_occupation_view.xml',
+            # 'analytic_occupation_view.xml', MIGRACION:
             'security/analytic_incidences_security.xml',
             'wizard/employee_incidence_set_end_date_view.xml'
         ],

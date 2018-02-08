@@ -25,7 +25,7 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem action="action_print_acceptance_doc" id="menu_print_acceptance_doc"  name="Print acceptance document" parent="reports_folder_id" groups="limp_service_picking.group_waste_manager"/>
+        <!-- menuitem action="action_print_acceptance_doc" id="menu_print_acceptance_doc"  name="Print acceptance document" parent="reports_folder_id" groups="limp_service_picking.group_waste_manager"/ MIGRACION: -->
 
     </data>
 </openerp>

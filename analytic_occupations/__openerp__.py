@@ -36,7 +36,7 @@
         "demo_xml" : [],
         "update_xml" : [
                         'security/ir.model.access.csv',
-                        'analytic_occupation_view.xml',
+                        # 'analytic_occupation_view.xml',
                         'security/analytic_occupation_security.xml'],
         "installable": True,
         'active': False

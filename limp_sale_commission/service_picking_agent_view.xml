@@ -17,7 +17,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <record model="ir.ui.view" id="service_picking_agent_comision_form">
             <field name="name">service.picking.agent.comision.form.</field>
             <field name="model">service.picking.agent</field>
@@ -30,8 +30,8 @@
                 </form>
             </field>
         </record>
-        
-        <record id="stock_sporadic_service_picking_form_add_comissions" model="ir.ui.view">
+
+        <!--record id="stock_sporadic_service_picking_form_add_comissions" model="ir.ui.view">
             <field name="name">stock.sporadic.service.picking.form.add_comissions</field>
             <field name="model">stock.service.picking</field>
             <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
@@ -47,11 +47,11 @@
                             </tree>
                         </field>
                     </page>
-                </page>
+                </page> MIGRACION:
             </field>
-        </record>
-        
-        <record id="stock_service_picking_form_add_comissions" model="ir.ui.view">
+        </record-->
+
+        <!--record id="stock_service_picking_form_add_comissions" model="ir.ui.view">
             <field name="name">stock.service.picking.form.add_comissions</field>
             <field name="model">stock.service.picking</field>
             <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
@@ -68,8 +68,8 @@
                         </field>
                     </page>
                 </page>
-            </field>
-        </record>
+            </field> MIGRACION:
+        </record-->
 
     </data>
 </openerp>

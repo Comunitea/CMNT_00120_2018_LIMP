@@ -28,7 +28,7 @@
                     'base',
                     'account',
                     'product',
-                    'sale', 
+                    'sale',
                     'hr',
                     'stock',
                     'analytic',
@@ -46,7 +46,7 @@
                     'wizard/wizard_invoice.xml',
                     'partner_view.xml',
                     'settled_view.xml',
-                    'invoice_view.xml',
+                    # 'invoice_view.xml', MIGRACION:
                     'sale_order_view.xml',
                     'product_view.xml',
                     'stock_picking_view.xml',
@@ -60,4 +60,3 @@
     'installable': True
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

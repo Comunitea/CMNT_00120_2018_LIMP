@@ -53,6 +53,6 @@
             <field name="view_id" ref="view_invoice_lines"/>
         </record>
 
-        <menuitem action="invoice_lines_action_tree" id="invoice_lines_view_open" parent="limp_service_picking.menu_waste_man" name="View Invoice lines"/>
+        <!--menuitem action="invoice_lines_action_tree" id="invoice_lines_view_open" parent="limp_service_picking.menu_waste_man" name="View Invoice lines"/MIGRACION: -->
     </data>
 </openerp>

@@ -30,7 +30,7 @@
                     <field name="total_hours" sum="Total hours"/>
                     <field name="name"/>
                     <field name="contract"/>
-                    <separator string="Employee Data" colspan="4"/>
+                    <!--separator string="Employee Data" colspan="4"/-->
                     <field name="employee_delegation_id"/>
                     <field name="employee_department_id"/>
                 </tree>

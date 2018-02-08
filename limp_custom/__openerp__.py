@@ -57,8 +57,8 @@
                         'security/limp_custom_data.xml',
                         'res_partner_view.xml',
                         # 'purchase_view.xml', MIGRACION: warehouse_id ya no existe cambiar por picking_type_id?
-                        'invoice_lines_view.xml',
-                        'account_invoice_view.xml',
+                        # 'invoice_lines_view.xml',
+                        # 'account_invoice_view.xml',
                         'security/ir.model.access.csv',
                         'hr_employee_view.xml',
                         'container_view.xml',

@@ -289,9 +289,9 @@
             <field eval="0" name="sequence" />
         </record>
 
-        <menuitem id="menu_limp_sporadic_stock_service_picking" parent="menu_waste_man" name="Service picking"/>
+        <!--menuitem id="menu_limp_sporadic_stock_service_picking" parent="menu_waste_man" name="Service picking"/>
         <menuitem action="sporadic_service_pickings_action" id="menu_sporadic_service_pickings_open" parent="menu_limp_sporadic_stock_service_picking" name="Sporadic service pickings"/>
-        <menuitem action="planified_service_pickings_action" id="menu_planified_service_pickings_open" parent="menu_limp_sporadic_stock_service_picking" name="Maintenance service pickings"/>
+        <menuitem action="planified_service_pickings_action" id="menu_planified_service_pickings_open" parent="menu_limp_sporadic_stock_service_picking" name="Maintenance service pickings"/ MIGRACION: -->
 
     </data>
 </openerp>

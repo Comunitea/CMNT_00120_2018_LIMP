@@ -72,7 +72,7 @@
             <field name="domain">[('memory_include', '=', True),('stock_picking_id', '!=', False),('ler_code_id', '!=', False)]</field>
         </record>
 
-        <menuitem action="valorization_lines_action_tree" id="valorization_lines_view_open" parent="menu_waste_man" name="View Valorization lines"/>
+        <!-- menuitem action="valorization_lines_action_tree" id="valorization_lines_view_open" parent="menu_waste_man" name="View Valorization lines"/ MIGRACION: -->
 
         <record id="all_picking_wastes_action_tree" model="ir.actions.act_window">
             <field name="name">All picking wastes</field>
@@ -83,6 +83,6 @@
             <field name="view_id" ref="view_valorization_lines"/>
         </record>
 
-        <menuitem action="all_picking_wastes_action_tree" id="all_picking_wastes_view_open" parent="menu_waste_man" name="All picking wastes"/>
+        <!-- menuitem action="all_picking_wastes_action_tree" id="all_picking_wastes_view_open" parent="menu_waste_man" name="All picking wastes"/ MIGRACION -->
     </data>
 </openerp>

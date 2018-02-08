@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-        <record id="stock_service_picking_form_add_sale_id" model="ir.ui.view">
+        <!--record id="stock_service_picking_form_add_sale_id" model="ir.ui.view"> MIGRACION:
             <field name="name">stock.service.picking.form.add_sale_id</field>
             <field name="model">stock.service.picking</field>
             <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
@@ -47,9 +47,9 @@
                     <field name="price_unit"/>
                 </xpath>
             </field>
-        </record>
+        </record-->
 
-        <record id="stock_sporadic_service_picking_form_add_pricelist_changes" model="ir.ui.view">
+        <!--record id="stock_sporadic_service_picking_form_add_pricelist_changes" model="ir.ui.view">
             <field name="name">stock.sporadic.service.picking.form.add_pricelist_changes</field>
             <field name="model">stock.service.picking</field>
             <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
@@ -101,8 +101,8 @@
                 <xpath expr="//field[@name='other_concepts_ids']/tree/field[@name='product_qty']" position="after">
                     <field name="price_unit"/>
                 </xpath>
-            </field>
-        </record>
+            </field> MIGRACION:
+        </record-->
 
     </data>
 </openerp>

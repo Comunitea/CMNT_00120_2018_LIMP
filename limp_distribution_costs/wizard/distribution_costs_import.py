@@ -23,7 +23,7 @@
 import base64
 import datetime
 from openerp.osv import osv, fields
-import xlrd
+# import xlrd
 import StringIO
 import calendar
 import time

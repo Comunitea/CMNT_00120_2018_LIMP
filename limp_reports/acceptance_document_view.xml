@@ -36,7 +36,7 @@
             <field name="view_id" ref="acceptance_doc_tree"/>
         </record>
 
-        <menuitem action="action_acceptance_docs_open" id="menu_acceptance_docs"  name="Acceptance documents" parent="reports_folder_id" groups="limp_service_picking.group_waste_manager"/>
+        <!-- menuitem action="action_acceptance_docs_open" id="menu_acceptance_docs"  name="Acceptance documents" parent="reports_folder_id" groups="limp_service_picking.group_waste_manager"/ MIGRACION: -->
 
     </data>
 </openerp>

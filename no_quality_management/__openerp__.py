@@ -37,7 +37,7 @@
         "init_xml" : [],
         "demo_xml" : [],
         "update_xml" : ['limp_contract_view.xml',
-                        'account_invoice_view.xml',
+                        # 'account_invoice_view.xml',
                         'limp_service_picking_view.xml',
                         'wizard/remove_no_quality_view.xml',
                         # 'stock_picking_view.xml', MIGRACION:

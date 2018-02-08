@@ -323,7 +323,7 @@
             <field name="search_view_id" ref="limp_contract_search"/>
         </record>
 
-        <menuitem id="menu_limp_contract" sequence="10" name="Contracts"/>
+        <menuitem id="menu_limp_contract" sequence="100" name="Contracts"/>
 
         <menuitem id="menu_limp_contract_contract" parent="menu_limp_contract" name="Contracts"/>
 

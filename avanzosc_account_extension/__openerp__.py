@@ -27,7 +27,7 @@
         Account move: - When create lines, copies the previous line as before, without name and the account set as journals debit account.
                       - New button to apply moves changes into lines.
                       - New constraint to verify if the date is in the period specified.
-        """,    
+        """,
     "author": "Avanzosc (Ainara Galdona)",
     "website" : "www.avanzosc.com",
     "depends" : ["account_payment"],
@@ -35,8 +35,8 @@
     "init_xml" : [],
     "demo_xml" : [],
     "update_xml" : ["wizard/invoiced_unreconcile_view.xml",
-                    "account_move.xml",
+                    # "account_move.xml", MIGRACION:
                     "account_invoice_view.xml"],
     "active" : False,
-    "installable" : True  
+    "installable" : True
 }

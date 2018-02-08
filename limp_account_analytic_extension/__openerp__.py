@@ -42,7 +42,7 @@
         "demo_xml" : [],
         "update_xml" : ['security/analytic_extension_security.xml',
                         'security/ir.model.access.csv',
-                        'account_invoice_view.xml',
+                        # 'account_invoice_view.xml', MIGRACION:
                         'account_analytic_plans_view.xml',
                         'account_analytic_view.xml',
                         'account_analytic_report_entries_view.xml',

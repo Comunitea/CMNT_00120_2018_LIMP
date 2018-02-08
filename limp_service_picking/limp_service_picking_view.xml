@@ -381,7 +381,7 @@
             <field eval="0" name="sequence" />
         </record>
 
-        <menuitem id="menu_waste_man" name="Waste management" sequence="2" groups="limp_service_picking.group_waste_manager"/>
+        <!--menuitem id="menu_waste_man" name="Waste management" sequence="2" groups="limp_service_picking.group_waste_manager"/>
 
         <menuitem action="service_pickings_action" id="menu_service_pickings_open" parent="menu_waste_man" name="Service pickings"/>
 
@@ -391,7 +391,7 @@
 
         <menuitem id="simple_fleet_management.menu_fleet" name="Fleet"/>
 
-        <menuitem id="containers_management.menu_containers" parent="menu_waste_configuration" name="Containers"/>
+        <menuitem id="containers_management.menu_containers" parent="menu_waste_configuration" name="Containers"/ MIGRACION: -->
 
     </data>
 </openerp>

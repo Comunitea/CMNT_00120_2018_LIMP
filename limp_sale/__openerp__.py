@@ -52,7 +52,7 @@
             'wizard/print_product_pricelist_view.xml',
             'security/limp_sale_data.xml',
             'limp_service_picking_view.xml',
-            'waste_services_view.xml',
+            # 'waste_services_view.xml',
             'limp_contract_view.xml'
             ],
         "installable": True,

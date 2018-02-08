@@ -53,14 +53,14 @@
                          'wizard/service_order_toinvoice_view.xml',
                         'limp_service_picking_data.xml',
                         'limp_service_picking_line_view.xml',
-                        'limp_service_picking_view.xml',
+                        # 'limp_service_picking_view.xml', MIGRACION:
                         'product_view.xml',
                         'res_partner_view.xml',
-                        'waste_services_view.xml',
-                        'service_picking_employees_rel_view.xml',
+                        # 'waste_services_view.xml',
+                        # 'service_picking_employees_rel_view.xml', MIGRACION:
                         'product_data.xml',
                         'building_site_services_view.xml',
-                        'limp_sporadic_service_picking_view.xml',
+                        # 'limp_sporadic_service_picking_view.xml', MIGRACION:
                         'valorization_lines_view.xml',
                         'stock_service_picking_seq.xml',
                         'wizard/add_to_invoice_view.xml',
@@ -70,9 +70,9 @@
                         #'stock_picking_view.xml',
                         'wizard/force_building_site_service_picking_view.xml',
                         'res_company_view.xml',
-                        'timesheet_view.xml',
+                        # 'timesheet_view.xml', MIGRACION:
                         'account_journal_view.xml',
-                        'account_invoice_view.xml',
+                        # 'account_invoice_view.xml', MIGRACION:
                        ],
         "installable": True,
         'active': False

@@ -10,13 +10,13 @@
                 <tree string="Occupations">
                     <field name="name" string="Occupation"/>
                     <field name="employee_id"/>
-                    <field name="date" string="Start Date"/>
+                    <!-- field name="date" string="Start Date"/ MIGRACION: -->
                     <field name="duration"/>
-                    <field name="end_date" string="Recur. end date" invisible="1"/>
+                    <!--field name="end_date" string="Recur. end date" invisible="1"/ MIGRACION: -->
                     <field name="toshow_end_date"/>
                     <field name="state"/>
                     <field name="partner_id"/>
-                    <field name="freq"/>
+                    <!-- field name="freq"/ MIGRACION: -->
                     <field name="interval"/>
                     <field name="end_type"/>
                     <field name="company_id"/>
@@ -27,7 +27,7 @@
             </field>
         </record>
 
-        <record id="analytic_occupation_form" model="ir.ui.view">
+        <!-- record id="analytic_occupation_form" model="ir.ui.view"> MIGRACION:
             <field name="name">account.analytic.occupation.form</field>
             <field name="model">account.analytic.occupation</field>
             <field name="type">form</field>
@@ -132,7 +132,7 @@
                     </notebook>
                 </form>
             </field>
-        </record>
+        </record -->
 
         <record model="ir.ui.view" id="analytic_occupation_calendar">
             <field name="name">analytic.occupation.calendar</field>
