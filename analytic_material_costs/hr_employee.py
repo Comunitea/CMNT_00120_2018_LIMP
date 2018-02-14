@@ -19,15 +19,11 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class hr_employee(osv.osv):
+class HrEmployee(models.Model):
     """Add new field to employees (location)"""
 
     _inherit = 'hr.employee'
 
-    _columns = {
-        'location_id': fields.many2one('stock.location', 'Associated location', help="Associated output location, origin of material consumptions in analytic accounts.")
-    }
-
-hr_employee()
+    location_id = fields.Many2one('stock.location', 'Associated location', help="Associated output location, origin of material consumptions in analytic accounts.")

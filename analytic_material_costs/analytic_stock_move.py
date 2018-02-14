@@ -21,39 +21,45 @@
 
 """new model between stock_move and analytic_account"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api, _
 from openerp.addons.decimal_precision import decimal_precision as dp
-from openerp.tools.translate import _
-import time
 
-class account_analytic_stock_move(osv.osv):
+
+class AccountAnalyticStockMove(models.Model):
     """new model between stock_move and analytic_account"""
 
     _name = "account.analytic.stock.move"
     _description = "Model between stock_move and analytic_account"
     _rec_name = "move_id"
 
-    _columns = {
-        'employee_id': fields.many2one('hr.employee', 'Manager', required=True, states={'second':[('readonly',True)]}),
-        'location_id': fields.many2one('stock.location', 'Location', required=True, states={'second':[('readonly',True)]}),
-        'product_id': fields.many2one('product.product', 'Product', required=True, states={'second':[('readonly',True)]}),
-        'product_qty': fields.float('Quantity', required=True, digits_compute=dp.get_precision('Product UoM'), states={'second':[('readonly',True)]}),
-        'move_id': fields.many2one('stock.move', 'Move', readonly=True),
-        'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic'),
-        'state': fields.selection([('first', 'First'), ('second', 'Second')], 'State', readonly=True),
-        'date': fields.date("Date", required=True)
-    }
+    @api.model
+    def _get_default_employee_id(self):
+        employee_id = False
+        if self._context.get('employee_id', False):
+            employee_id = self._context['employee_id']
+        elif self.env.user.employee_ids:
+            employee_id = self.env.user.employee_ids[0].id
+        return employee_id
 
-    _defaults = {
-        'product_qty': 1.0,
-        'state': 'first',
-        'employee_id': lambda s, c, u, ctx: ctx.get('employee_id', False) or s.pool.get('hr.employee').search(c, u, [('user_id', '=', u)]) and s.pool.get('hr.employee').search(c, u, [('user_id', '=', u)])[0] or False,
-        'location_id': lambda s, c, u, ctx: ctx.get('employee_id', False) and s.pool.get('hr.employee').browse(c, u, ctx['employee_id']).location_id and s.pool.get('hr.employee').browse(c, u, ctx['employee_id']).location_id.id or s.pool.get('hr.employee').search(c, u, [('user_id', '=', u)]) and s.pool.get('hr.employee').browse(c, u, s.pool.get('hr.employee').search(c, u, [('user_id', '=', u)])[0]).location_id and s.pool.get('hr.employee').browse(c, u, s.pool.get('hr.employee').search(c, u, [('user_id', '=', u)])[0]).location_id.id or False,
-        'date': lambda *a: time.strftime('%Y-%m-%d')
-    }
+    @api.model
+    def _get_default_location_id(self):
+        employee = self.env['hr.employee'].browse(self._get_default_employee_id())
+        return employee.location_id.id
 
-    def create(self, cr, uid, vals, context=None):
+    employee_id = fields.Many2one('hr.employee', 'Manager', required=True, states={'second':[('readonly',True)]}, default=_get_default_employee_id)
+    location_id = fields.Many2one('stock.location', 'Location', required=True, states={'second':[('readonly',True)]}, default=_get_default_location_id)
+    product_id = fields.Many2one('product.product', 'Product', required=True, states={'second':[('readonly',True)]})
+    product_qty = fields.Float('Quantity', required=True, digits_compute=dp.get_precision('Product UoM'), states={'second':[('readonly',True)]}, default=1.0)
+    move_id = fields.Many2one('stock.move', 'Move', readonly=True)
+    analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic')
+    state = fields.Selection([('first', 'First'), ('second', 'Second')], 'State', readonly=True, default='first')
+    date = fields.Date("Date", required=True, default=fields.Date.today)
+
+    @api.model
+    def create(self):
         """creates stock_move and add cost in analytic_account"""
+        return super(AccountAnalyticStockMove,self).create()
+        '''MIGRACION: Solo firma
         if context is None: context = {}
 
         id = super(account_analytic_stock_move, self).create(cr, uid, vals, context=context)
@@ -104,10 +110,9 @@ class account_analytic_stock_move(osv.osv):
 
         self.write(cr, uid, [id], {'state': 'second', 'move_id': move_id})
 
-        return id
+        return id'''
 
-    def unlink(self, cr, uid, ids, context=None):
+    @api.multi
+    def unlink(self):
         """Avoid delete an analytic entry"""
-        raise osv.except_osv(_('Error !'), _('Cannot delete any record.'))
-
-account_analytic_stock_move()
+        raise exceptions.Warning(_('Error !'), _('Cannot delete any record.'))

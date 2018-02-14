@@ -33,8 +33,6 @@
             'stock',
             'hr'
             ],
-        "init_xml" : [],
-        "demo_xml" : [],
         "data" : ['analytic_material_costs_data.xml',
                     'analytic_stock_move_view.xml',
                     'hr_employee_view.xml',

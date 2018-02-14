@@ -19,33 +19,11 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class account_analytic_account(osv.osv):
+class AccountAnalyticAccount(models.Model):
     """Add new field to analytic accounts"""
 
     _inherit = 'account.analytic.account'
 
-    _columns = {
-        'analytic_move_ids': fields.one2many('account.analytic.stock.move', 'analytic_account_id', 'Consumptions')
-    }
-
-    def copy(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        default.update({
-            'analytic_move_ids': [],
-        })
-
-        return super(account_analytic_account, self).copy(cr, uid, id, default, context)
-
-    def copy_data(self, cr, uid, id, default=None, context=None):
-        if not default:
-            default = {}
-        default.update({
-            'analytic_move_ids': [],
-        })
-
-        return super(account_analytic_account, self).copy_data(cr, uid, id, default, context)
-
-account_analytic_account()
+    analytic_move_ids = fields.One2many('account.analytic.stock.move', 'analytic_account_id', 'Consumptions', copy=False)
