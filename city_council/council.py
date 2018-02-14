@@ -20,65 +20,25 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp import models, fields
 # import wizard
 # # import pooler MIGRACION: Comentado
 
 
-class city_council(osv.osv):
+class CityCouncil(models.Model):
 
     _name = 'city.council'
 
-    _columns = {
-        'name': fields.char('Council', size=64, required=True, select=1),
-    }
+    name = fields.Char('Council', required=True)
+    zip_ids = fields.One2many('res.better.zip', 'council_id', 'Zipcodes')
 
-city_council()
 
-class res_better_zip(osv.osv):
+class ResBetterZip(models.Model):
 
     _inherit = "res.better.zip"
 
-    _columns = {
-        'council_id': fields.many2one('city.council', 'Council')
-    }
+    council_id = fields.Many2one('city.council', 'Council')
 
-res_better_zip()
-
-class city_council2(osv.osv):
-
-    _inherit = 'city.council'
-
-    _columns = {
-        'zip_ids': fields.one2many('res.better.zip', 'council_id', 'Zipcodes'),
-    }
-
-city_council2()
-
-
-'''class res_partner_address(osv.osv):
-    _inherit = "res.partner.address"
-
-    _columns = {
-        'council_id': fields.many2one('city.council', 'Council'),
-    }
-
-    def on_change_fields(self, cr, uid, ids, zipcode):
-        if zipcode:
-            cities = self.pool.get('city.city').search(cr, uid, [('zipcode', '=', zipcode)])
-            if cities:
-                city = self.pool.get('city.city').browse(cr, uid, cities[0])
-                return {'value': {'location': city.id,
-                                    'council_id': city.council_id and city.council_id.id or False,
-                                    'city': city.name,
-                                    'state_id': city.state_id.id,
-                                    'country_id':city.state_id.country_id.id,
-                                    'region': city.state_id.region_id and city.state_id.region_id.id or False
-                                    }}
-
-        return {}
-
-res_partner_address() MIGRACION: Eliminado modelo res.partner.address'''
 
 council_end_form = '''<?xml version="1.0" encoding="utf-8"?>
 <form string="Councils">

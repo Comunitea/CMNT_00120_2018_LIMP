@@ -46,73 +46,7 @@
 
     <menuitem name="Councils" groups="base.group_system" action="action_city_council" parent="base.menu_localisation" id="menu_city_council_partner"/>
 
-    <!--record model="ir.ui.view" id="city.partners_form_add_location">
-        <field name="name">partners_form_add_location</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
-        <field name="arch" type="xml">
-            <field name="city" position="before">
-                <field name="council_id"/>
-            </field> MIGRACION: Comentado
-        </field>
-    </record-->
-
-    <!--record model="ir.ui.view" id="partners_form_del_zip">
-        <field name="name">partners_form_del_zip</field>
-        <field name="model">res.partner</field> MIGRACION: Comentado
-        <field name="inherit_id" ref="base_contact.view_partner_form_inherit"/>
-        <field name="arch" type="xml">
-            <field name="zip" position="replace">
-                <field name="zip" on_change="on_change_fields(zip)"/>
-            </field>
-        </field>
-    </record-->
-
-    <!-- record model="ir.ui.view" id="city.partners_form_add_location1"> MIGRACION: Comentado
-        <field name="name">partners_form_add_location1</field>
-        <field name="model">res.partner.address</field>
-        <field name="inherit_id" ref="base.view_partner_address_form1"/>
-        <field name="arch" type="xml">
-            <field name="city" position="before">
-                <field name="council_id"/>
-            </field>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="partners_form_del_zip1">
-        <field name="name">partners_form_del_zip1</field>
-        <field name="model">res.partner.address</field>
-        <field name="inherit_id" ref="base.view_partner_address_form1"/>
-        <field name="arch" type="xml">
-            <field name="zip" position="replace">
-                <field name="zip" on_change="on_change_fields(zip)"/>
-            </field>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="city.partners_form_add_location2">
-        <field name="name">partners_form_add_location2</field>
-        <field name="model">res.partner.address</field>
-        <field name="inherit_id" ref="base.view_partner_address_form2"/>
-        <field name="arch" type="xml">
-            <field name="city" position="before">
-                <field name="council_id"/>
-            </field>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="partners_form_del_zip2">
-        <field name="name">partners_form_del_zip2</field>
-        <field name="model">res.partner.address</field>
-        <field name="inherit_id" ref="base.view_partner_address_form2"/>
-        <field name="arch" type="xml">
-            <field name="zip" position="replace">
-                <field name="zip" on_change="on_change_fields(zip)"/>
-            </field>
-        </field>
-    </record>
-
-    <record model="ir.ui.view" id="view_city_form_add_council">
+    <!--record model="ir.ui.view" id="view_city_form_add_council"> MIGRACION:
         <field name="name">city.city.form.add_council</field>
         <field name="model">city.city</field>
         <field name="inherit_id" ref="city.view_city_form"/>

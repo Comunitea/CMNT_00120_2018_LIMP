@@ -26,11 +26,11 @@
     "category" : "Generic Modules/Base",
     "description": """Council to classify cities (zipcodes)""",
     "depends" : ["base", "base_contact", "base_location"],
-    "init_xml" : [],
     "data" : [
         #'council_view.xml', MIGRACION:
         #'city_council_wizard.xml',
-        'security/ir.model.access.csv'
+        'security/ir.model.access.csv',
+        'views/res_partner.xml'
         ],
     "active": False,
     "installable": True
