@@ -34,7 +34,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
                         'security/ir.model.access.csv',
                         # 'analytic_occupation_view.xml',
                         'security/analytic_occupation_security.xml'],

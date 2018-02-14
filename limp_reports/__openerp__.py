@@ -39,7 +39,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
                 # 'limp_reports_data.xml', MIGRACION:
                 'res_company_view.xml',
                 # 'annual_memory.xml', MIGRACION:

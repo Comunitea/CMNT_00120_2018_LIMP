@@ -34,7 +34,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
             'partner_view.xml',
             'partner_address_view.xml',
             #'res_partner_job_view.xml' MIGRACION: Modelo res.partner.job eliminado

@@ -36,7 +36,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
                 'hr_employee_view.xml',
                 'timesheet_view.xml',
                 'wizard/distribution_costs_import_view.xml',

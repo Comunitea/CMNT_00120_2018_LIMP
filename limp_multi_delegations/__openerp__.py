@@ -30,7 +30,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
             'security/ir.model.access.csv',
             'res_delegation_view.xml',
             'res_users_view.xml',

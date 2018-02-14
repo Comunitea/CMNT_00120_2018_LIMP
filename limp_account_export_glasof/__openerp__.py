@@ -32,7 +32,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : ['res_company_view.xml',
+        "data" : ['res_company_view.xml',
                         'wizard/export_to_glasof_wizard.xml',
                         'wizard/export_account_to_glasof_view.xml'
         ],

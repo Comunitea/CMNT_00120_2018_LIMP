@@ -36,7 +36,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : ['container_view.xml',
+        "data" : ['container_view.xml',
                         'container_move_view.xml',
                         'res_partner_address_view.xml',
                         'security/ir.model.access.csv',

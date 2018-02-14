@@ -36,7 +36,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [#'partner_contact_view.xml',
+        "data" : [#'partner_contact_view.xml',
                         #'partner_address_view.xml'
                        ],
         "installable": True,

@@ -31,7 +31,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
             'res_users_view.xml',
             'hr_department_view.xml',
             'hr_employee_view.xml',
@@ -41,5 +41,3 @@
         'active': False
 
 }
-
-

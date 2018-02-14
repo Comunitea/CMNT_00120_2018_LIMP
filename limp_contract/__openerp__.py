@@ -50,7 +50,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
             'security/groups.xml',
             'security/ir.model.access.csv',
             'contract_seq.xml',

@@ -33,7 +33,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
                 'hr_holiday_menu.xml',
                 'hr_holiday_calendar_view.xml',
                 'hr_holiday_view.xml',

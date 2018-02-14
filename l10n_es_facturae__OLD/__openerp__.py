@@ -36,7 +36,7 @@ Successfully passes format and account validation tests from AEAT: http://sedeap
     "depends" : ["base","account","base_contact","account_payment_extension"],
     "init_xml" : ["data_res_country.xml"],
     "demo_xml" : [],
-    "update_xml" : [
+    "data" : [
         "account_wizard.xml",
         "country_view.xml",
         "partner_view.xml",

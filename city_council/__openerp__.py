@@ -27,7 +27,7 @@
     "description": """Council to classify cities (zipcodes)""",
     "depends" : ["base", "base_contact", "base_location"],
     "init_xml" : [],
-    "update_xml" : [
+    "data" : [
         #'council_view.xml', MIGRACION:
         #'city_council_wizard.xml',
         'security/ir.model.access.csv'

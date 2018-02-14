@@ -33,7 +33,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
                         'security/ir.model.access.csv',
                         'security/invoice_concept_security.xml',
                         'analytic_invoice_concept_view.xml',

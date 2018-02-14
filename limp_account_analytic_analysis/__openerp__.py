@@ -37,7 +37,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : ['account_analytic_journal_view.xml',
+        "data" : ['account_analytic_journal_view.xml',
                         'analytic_analysis_report.xml',
                         'wizard/analytic_balance_view.xml',
                         'security/ir.model.access.csv',

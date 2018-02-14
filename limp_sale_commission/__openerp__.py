@@ -39,7 +39,7 @@
                 ],
     'description': 'Sales commissions',
     'init_xml' : [],
-    'update_xml': [
+    'data': [
                     'security/ir.model.access.csv',
                     'saleagent_view.xml',
                     'partner_agent_view.xml',

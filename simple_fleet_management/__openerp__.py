@@ -33,7 +33,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : ['fleet_view.xml',
+        "data" : ['fleet_view.xml',
                         'fleet_expense_view.xml',
                         'fleet_expense_type_view.xml',
                         'security/ir.model.access.csv',

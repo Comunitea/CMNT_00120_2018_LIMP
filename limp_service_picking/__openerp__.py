@@ -47,7 +47,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : ['security/groups.xml',
+        "data" : ['security/groups.xml',
                         'service_picking_stock_move_view.xml',
                         'security/ir.model.access.csv',
                          'wizard/service_order_toinvoice_view.xml',

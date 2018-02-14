@@ -52,7 +52,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [#'stock_picking_view.xml', MIGRACION: Vistas stock
+        "data" : [#'stock_picking_view.xml', MIGRACION: Vistas stock
                         'product_view.xml',
                         'security/limp_custom_data.xml',
                         'res_partner_view.xml',

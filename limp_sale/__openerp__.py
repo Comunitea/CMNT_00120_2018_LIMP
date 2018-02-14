@@ -40,7 +40,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
             'product_view.xml',
             'wizard/create_service_picking_from_sale_view.xml',
             'data/price_rule_sequence.xml',
