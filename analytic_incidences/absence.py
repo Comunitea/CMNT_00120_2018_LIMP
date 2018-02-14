@@ -19,15 +19,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class absence(osv.osv):
+class Absence(models.Model):
     _name = "absence"
     _description = "absences for work"
-    _columns = {
-        'name': fields.char('Name',size=64, required=True),
-        'code': fields.char('Code',size=64),
-        "incidence_id": fields.many2one('incidence', 'Incidence'),
-    }
 
-absence()
+    name = fields.Char(required=True)
+    code = fields.Char()
+    incidence_id = fields.Many2one('incidence', 'Incidence')

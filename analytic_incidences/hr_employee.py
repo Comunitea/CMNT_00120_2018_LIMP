@@ -21,15 +21,17 @@
 
 """Adds fields to employee object"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 from datetime import datetime
 
-class hr_employee(osv.osv):
+class HrEmployee(models.Model):
     """Adds fields to employee object"""
 
     _inherit = "hr.employee"
 
-    def _get_active_remunerations(self, cr, uid, ids, fields, arg, context=None):
+    def _compute_active_remunerations(self):
+        pass
+        ''' MIGRACION: Solo se modifica la firma.
         res = {}
         current_date = datetime.now().strftime("%Y-%m-%d")
         for employee_id in ids:
@@ -38,12 +40,9 @@ class hr_employee(osv.osv):
                 res[employee_id] = True
             else:
                 res[employee_id] = False
-        return res
+        return res'''
 
-    _columns = {
-        'laboral_incidence_ids': fields.one2many('hr.laboral.incidence', 'employee_id', 'Incidences', readonly=True),
-        'work_council_id': fields.many2one('city.council', 'Work council'),
-        'active_remunerations': fields.function(_get_active_remunerations, method=True, type="boolean", string="Active remunerations", readonly=True)
-    }
 
-hr_employee()
+    laboral_incidence_ids = fields.One2many('hr.laboral.incidence', 'employee_id', 'Incidences', readonly=True)
+    work_council_id = fields.Many2one('city.council', 'Work council')
+    active_remunerations = fields.Boolean(compute='_compute_active_remunerations')

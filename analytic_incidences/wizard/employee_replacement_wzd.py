@@ -22,11 +22,11 @@
 
 """Wizard to replace employee of selected remunerations"""
 
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
+from openerp import models, fields, api, _
 import time
 from datetime import datetime
-def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
+
+'''def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
     """
     This function converts virtual event id into real id of actual event
     @param base_calendar_id: Id of calendar
@@ -46,39 +46,31 @@ def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
                 return (int(real_id), real_date, end.strftime("%Y-%m-%d %H:%M:%S"))
             return int(real_id)
 
-    return base_calendar_id and int(base_calendar_id) or base_calendar_id
-class employee_replacement_wzd(osv.osv_memory):
+    return base_calendar_id and int(base_calendar_id) or base_calendar_id'''
+
+class employee_replacement_wzd(models.TransientModel):
     """Wizard to replace employee of selected remuneratons"""
 
     _name = "employee.replacement.wzd"
 
-    _columns = {
-        'employee_id': fields.many2one('hr.employee', 'Substitute'),
-        'conditions': fields.selection([('equal_condition', 'Equal conditions'), ('diff_condition', 'Different conditions')], 'Conditions', required=True),
-        'with_contract': fields.boolean('With contract'),
-        'contract_hours': fields.float('Hours', digits=(12,2)),
-        'with_hour_price': fields.boolean('With hour price'),
-        'hour_price_hours': fields.float('Hours', digits=(12,2)),
-        'with_fix_qty': fields.boolean('With fix qty'),
-        'price': fields.float('Price',digits=(12,2)),
-        'quantity': fields.float('Quantity',digits=(12,2)),
-        'ss_hours': fields.float('SS hours', digits=(4,2)),
-        'ss_no_hours': fields.float('No ss hours', digits=(4,2)),
-        'effective': fields.float('Effective', digits=(12,2)),
-        'distribute_bt_remuneration': fields.boolean('Distribute between remunerations', help="Distribute quantities between all selected remuneration proportionally to original hours")
-    }
+    employee_id = fields.Many2one('hr.employee', 'Substitute')
+    conditions = fields.Selection([('equal_condition', 'Equal conditions'), ('diff_condition', 'Different conditions')], 'Conditions', required=True, default='equal_condition')
+    with_contract = fields.Boolean('With contract')
+    contract_hours = fields.Float('Hours', digits=(12, 2))
+    with_hour_price = fields.Boolean('With hour price')
+    hour_price_hours = fields.Float('Hours', digits=(12, 2))
+    with_fix_qty = fields.Boolean('With fix qty')
+    price = fields.Float('Price', digits=(12, 2))
+    quantity = fields.Float('Quantity', digits=(12, 2))
+    ss_hours = fields.Float('SS hours', digits=(4, 2))
+    ss_no_hours = fields.Float('No ss hours', digits=(4, 2))
+    effective = fields.Float('Effective', digits=(12, 2))
+    distribute_bt_remuneration = fields.Boolean('Distribute between remunerations', help="Distribute quantities between all selected remuneration proportionally to original hours")
 
-    _defaults = {
-        # 'equal_condition': True, MIGRACION: Campo no existe
-        'price': 0.0,
-        'quantity': 0.0,
-        'hour_price_hours': 0.0,
-        'contract_hours': 0.0,
-        'conditions': 'equal_condition'
-    }
-
-    def open_search(self, cr, uid, ids, context=None):
+    @api.multi
+    def open_search(self):
         """Opens search repalcements view"""
+        '''MIGRACION: Solo firma
         if context is None: context = {}
 
 
@@ -99,10 +91,12 @@ class employee_replacement_wzd(osv.osv_memory):
         result.update({'target': 'new',
                         'nodestroy': True})
 
-        return result
+        return result'''
 
-    def action_replace(self, cr, uid, ids, context=None):
+    @api.multi
+    def action_replace(self):
         """Replace employee of active occupations by employee in wizard"""
+        '''MIGRACION: Solo firma
         if context is None: context = {}
 
         obj = self.browse(cr, uid, ids[0])
@@ -206,6 +200,4 @@ class employee_replacement_wzd(osv.osv_memory):
 
         return {
         'type': 'ir.actions.act_window_close',
-        }
-
-employee_replacement_wzd()
+        }'''

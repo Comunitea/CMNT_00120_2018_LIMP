@@ -22,55 +22,47 @@
 
 """Wizard to set a laboral incidence from an employee's form"""
 
-from openerp.osv import osv, fields
-import time
-from dateutil.relativedelta import relativedelta
-from datetime import datetime
+from openerp import models, fields, api
 
-class employee_set_laboral_incidence_wzd(osv.osv_memory):
+
+class employee_set_laboral_incidence_wzd(models.TransientModel):
     """Wizard to set a laboral incidence from an employee's form"""
 
     _name = "employee.set.laboral.incidence.wzd"
 
-    def _get_default_employee(self, cr, uid, context=None):
+    @api.model
+    def _get_default_employee(self):
         """returns current location ID"""
-        if context is None: context = {}
-
-        if context.get('employee_id', False):
+        if self._context.get('employee_id', False):
             return int(context['active_id'])
         return False
 
-    _columns = {
-        'employee_id':fields.many2one('hr.employee','Employee',required=True),#No se muestra
-        'date': fields.date('Date',required=True),
-        'analytic_account_id': fields.many2one('account.analytic.account', 'Account', readonly=True),
-        'child_ids': fields.many2one('remuneration','Childs remunerations',readonly=True),
-        # 'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True), MIGRACION:
-        'date_to': fields.date('Date to'),
-        'incidence_id_tp': fields.many2one('incidence','Type'),
-        'absence_id_tp': fields.many2one('absence', 'Type absence'),
-        'conditions': fields.selection([('equal_condition', 'Equal conditions'), ('diff_condition', 'Different conditions')], 'Conditions', required=True),
-        'with_contract': fields.boolean('With contract'),
-        'contract_hours': fields.float('Hours', digits=(12,2)),
-        'with_hour_price': fields.boolean('With hour price'),
-        'hour_price_hours': fields.float('Hours', digits=(12,2)),
-        'with_fix_qty': fields.boolean('With fix qty'),
-        'price': fields.float('Price',digits=(12,2)),
-        'quantity': fields.float('Quantity',digits=(12,2)),
-        'ss_hours': fields.float('SS hours', digits=(4,2)),
-        'ss_no_hours': fields.float('No ss hours', digits=(4,2)),
-        'effective': fields.float('Effective', digits=(12,2)),
-        'distribute_bt_remuneration': fields.boolean('Distribute between remunerations', help="Distribute quantities between all selected remuneration proportionally to original hours")
-    }
+    employee_id = fields.Many2one('hr.employee', 'Employee', required=True, default=_get_default_employee) #No se muestra
+    date = fields.Date('Date', required=True, default=fields.Date.today)
+    analytic_account_id = fields.Many2one('account.analytic.account', 'Account', readonly=True)
+    child_ids = fields.Many2one('remuneration', 'Childs remunerations', readonly=True)
+    # 'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True), MIGRACION:
+    date_to = fields.Date('Date to')
+    incidence_id_tp = fields.Many2one('incidence','Type')
+    absence_id_tp = fields.Many2one('absence', 'Type absence')
+    conditions = fields.Selection([('equal_condition', 'Equal conditions'), ('diff_condition', 'Different conditions')], 'Conditions', required=True, default='equal_condition')
+    with_contract = fields.Boolean('With contract')
+    contract_hours = fields.Float('Hours', digits=(12,2))
+    with_hour_price = fields.Boolean('With hour price')
+    hour_price_hours = fields.Float('Hours', digits=(12,2))
+    with_fix_qty = fields.Boolean('With fix qty')
+    price = fields.Float('Price',digits=(12,2))
+    quantity = fields.Float('Quantity',digits=(12,2))
+    ss_hours = fields.Float('SS hours', digits=(4,2))
+    ss_no_hours = fields.Float('No ss hours', digits=(4,2))
+    effective = fields.Float('Effective', digits=(12,2))
+    distribute_bt_remuneration = fields.Boolean('Distribute between remunerations', help="Distribute quantities between all selected remuneration proportionally to original hours")
 
-    _defaults = {
-        'date': lambda *a: time.strftime('%Y-%m-%d'),
-        'employee_id': _get_default_employee,
-        'conditions': 'equal_condition'
-    }
-
-    def set_incidence(self, cr, uid, ids, context=None):
+    @api.multi
+    def set_incidence(self):
         """set incidence state in found occupations"""
+        pass
+        '''MIGRACION: Solo firma
         vals = {}
         employees_ids = context.get('active_ids', [])
         if employees_ids:
@@ -120,7 +112,4 @@ class employee_set_laboral_incidence_wzd(osv.osv_memory):
         result['domain'] = str([('employee_id', '=', obj.id),('date', '>=', line_child_remu.date),'|', ('date_to', '>=', line_child_remu.date_to), ('date_to', '=', False)])
 
 
-        return result
-
-
-employee_set_laboral_incidence_wzd()
+        return result'''

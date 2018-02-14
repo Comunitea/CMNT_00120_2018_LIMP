@@ -27,4 +27,4 @@ import account_analytic_account
 import wizard
 import hr_employee
 import hr_laboral_incidence
-import analytic_occupation
+# import analytic_occupation Se eliminan ocupaciones

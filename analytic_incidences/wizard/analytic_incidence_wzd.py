@@ -19,40 +19,36 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 
 
-class analytic_incidence_wizard(osv.osv_memory):
+class AnalyticIncidenceWizard(models.TransientModel):
 
     _name = "analytic.incidence.wizard"
 
-    _columns = {
-        'employee_id':fields.many2one('hr.employee','Employee',required=True),
-        'date': fields.date('Date',required=True),
-        'analytic_account_id': fields.many2one('account.analytic.account', 'Account', readonly=True),
-        'child_ids': fields.many2one('remuneration','Childs remunerations',readonly=True),
-        #'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True), MIGRACION: Revisar campos
-        'date_to': fields.date('Date to'),
-        'incidence_id_tp': fields.many2one('incidence','Type'),
-        'absence_id_tp': fields.many2one('absence', 'Type absence'),
-        'conditions': fields.selection([('equal_condition', 'Equal conditions'), ('diff_condition', 'Different conditions')], 'Conditions', required=True),
-        'with_contract': fields.boolean('With contract'),
-        'contract_hours': fields.float('Hours', digits=(12,2)),
-        'with_hour_price': fields.boolean('With hour price'),
-        'hour_price_hours': fields.float('Hours', digits=(12,2)),
-        'with_fix_qty': fields.boolean('With fix qty'),
-        'price': fields.float('Price',digits=(12,2)),
-        'quantity': fields.float('Quantity',digits=(12,2)),
-        'ss_hours': fields.float('SS hours', digits=(4,2)),
-        'ss_no_hours': fields.float('No ss hours', digits=(4,2)),
-        'effective': fields.float('Effective', digits=(12,2))
+    employee_id = fields.Many2one('hr.employee', 'Employee', required=True)
+    date = fields.Date(required=True)
+    analytic_account_id = fields.Many2one('account.analytic.account', 'Account', readonly=True)
+    child_ids = fields.Many2one('remuneration','Childs remunerations',readonly=True)
+    #'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True), MIGRACION: Revisar campos
+    date_to = fields.Date()
+    incidence_id_tp = fields.Many2one('incidence', 'Type')
+    absence_id_tp = fields.Many2one('absence', 'Type absence')
+    conditions = fields.Selection([('equal_condition', 'Equal conditions'), ('diff_condition', 'Different conditions')], 'Conditions', required=True, default='equal_condition')
+    with_contract = fields.Boolean('With contract')
+    contract_hours = fields.Float('Hours', digits=(12, 2))
+    with_hour_price = fields.Boolean('With hour price')
+    hour_price_hours = fields.Float('Hours', digits=(12, 2))
+    with_fix_qty = fields.Boolean('With fix qty')
+    price = fields.Float(digits=(12, 2))
+    quantity = fields.Float('Quantity', digits=(12, 2))
+    ss_hours = fields.Float('SS hours', digits=(4, 2))
+    ss_no_hours = fields.Float('No ss hours', digits=(4, 2))
+    effective = fields.Float('Effective', digits=(12, 2))
 
-    }
-    _defaults = {
-        'conditions': 'equal_condition'
-    }
-
-    def make_child_remunerations(self, cr, uid, ids, context=None):
+    @api.multi
+    def make_child_remunerations(self):
+        '''MIGRACION: Solo firma
         vals = {}
         if context is None:
             context = {}
@@ -81,6 +77,4 @@ class analytic_incidence_wizard(osv.osv_memory):
 
             return {
                 'type': 'ir.actions.act_window_close',
-            }
-
-analytic_incidence_wizard()
+            }'''

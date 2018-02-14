@@ -36,7 +36,7 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "update_xml" : [
+        "data" : [
             'remuneration_sequence.xml',
             'incidence_data.xml',
             'absence_view.xml',
@@ -50,7 +50,7 @@
             'security/ir.model.access.csv',
             'hr_employee_view.xml',
             'laboral_incidences_view.xml',
-            # 'analytic_occupation_view.xml', MIGRACION:
+            # 'analytic_occupation_view.xml', MIGRACION: Se elimina ocupacion
             'security/analytic_incidences_security.xml',
             'wizard/employee_incidence_set_end_date_view.xml'
         ],

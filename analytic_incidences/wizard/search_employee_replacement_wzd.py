@@ -19,17 +19,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp import models, fields, api, _
 from datetime import datetime
-from openerp.tools.translate import _
 
-class search_employee_replacemenet(osv.osv_memory):
+
+class SearchEmployeereplacement(models.TransientModel):
 
     _name = "search.employee.replacement"
     _description = "Search for possible replacement"
 
-    def _get_default_department(self, cr, uid, context=None):
+    @api.model
+    def _get_default_department(self):
         """returns employee department od occupation department"""
+        '''MIGRACION: Solo firma
         if context is None: context = {}
 
         if context.get('department', False):
@@ -38,30 +40,20 @@ class search_employee_replacemenet(osv.osv_memory):
             employee = self.pool.get('hr.employee').browse(cr, uid, context['employee_id'])
             if employee.department_ids:
                 return employee.department_ids[0].id
+        return False'''
 
-        return False
+    employee_ids = fields.Many2many('hr.employee', 'hr_employees_search_replacement_rel', 'replacement_id', 'employee_id', string="Possible replacements")
+    employee_id = fields.Many2one('hr.employee', 'Employee', readonly=True, help="Employee to replace", default=lambda r: r._context.get('employee_id', False))
+    start_date = fields.Date('Start date', required=True, default=lambda r: r._context.get('start_date', False))
+    end_date = fields.Date('End date', required=True, default=lambda r: r._context.get('end_date', False))
+    location = fields.Many2one('city.council', 'Council', default=lambda r: r._context.get('location', False))
+    department_id = fields.Many2one('hr.department', 'Department', default=_get_default_department)
+    hour_no = fields.Float('Number of hours', digits=(12, 2), required=True, help="Number of hours between dates take in account 8 per day")
 
-    _columns = {
-        'employee_ids': fields.many2many('hr.employee', 'hr_employees_search_replacement_rel', 'replacement_id', 'employee_id', string="Possible replacements"),
-        'employee_id': fields.many2one('hr.employee', 'Employee', readonly=True, help="Employee to replace"),
-        'start_date': fields.date('Start date', required=True),
-        'end_date': fields.date('End date', required=True),
-        'location': fields.many2one('city.council', 'Council'),
-        'department_id': fields.many2one('hr.department', 'Department'),
-        'hour_no': fields.float('Number of hours', digits=(12, 2), required=True, help="Number of hours between dates take in account 8 per day")
-    }
-
-    _defaults = {
-        'start_date': lambda s,c,u,ctx: ctx.get('start_date', False),
-        'end_date': lambda s,c,u,ctx: ctx.get('end_date', False),
-        'department_id': _get_default_department,
-        'location': lambda s,c,u,ctx: ctx.get('location', False),
-        'employee_id': lambda s,c,u,ctx: ctx.get('employee_id', False),
-        'hour_no': 0.0
-    }
-
-    def search_replacements(self, cr, uid, ids, context=None):
+    @api.multi
+    def search_replacements(self):
         """search for replacements"""
+        '''MIGRACION: Solo firma
         if context is None: context = {}
 
         obj = self.browse(cr, uid, ids[0])
@@ -99,6 +91,4 @@ class search_employee_replacemenet(osv.osv_memory):
 
         obj.write({'employee_ids': [(6, 0, real_possible_employees)]})
 
-        return True
-
-search_employee_replacemenet()
+        return True'''

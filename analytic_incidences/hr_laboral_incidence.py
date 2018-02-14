@@ -21,21 +21,18 @@
 
 """History of employee's laboral incidences"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class hr_laboral_incidence(osv.osv):
+class HrLaboralIncidence(models.Model):
     """History of employee's laboral incidences"""
 
     _name = "hr.laboral.incidence"
     _description = "Laboral Incidence"
     _rec_name = 'motive'
 
-    _columns = {
-        'initial_date': fields.date('Initial date', readonly=True),
-        'end_date': fields.date('End date', readonly=True),
-        'motive': fields.many2one('absence', 'Motive', readonly=True),
-        'employee_id': fields.many2one('hr.employee', 'Employee', readonly=True),
-        'occupation_ids': fields.one2many('account.analytic.occupation', 'incidence_id', 'Occupations', readonly=True)
-    }
 
-hr_laboral_incidence()
+    initial_date = fields.Date(readonly=True)
+    end_date = fields.Date(readonly=True)
+    motive = fields.Many2one('absence', 'Motive', readonly=True)
+    employee_id = fields.Many2one('hr.employee', readonly=True)
+    # occupation_ids = fields.One2many('account.analytic.occupation', 'incidence_id', 'Occupations', readonly=True) Migracion: Ocupaciones fuera

@@ -21,17 +21,13 @@
 ##############################################################################
 """Adds remunerations fields to analytic account's columns"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class account_analytic_account(osv.osv):
+class AccountAnalyticAccount(models.Model):
     """Adds remuneration fiels to analytic account's columns"""
 
     _inherit = "account.analytic.account"
 
-    _columns = {
-        'remuneration_ids': fields.one2many('remuneration', 'analytic_account_id', 'Remunerations'),
-        'active_remuneration_ids': fields.one2many('remuneration', 'analytic_account_id', 'Active remunerations', domain=[('old','=',False)]),
-        'inactive_remuneration_ids': fields.one2many('remuneration', 'analytic_account_id', 'Unactive remunerations', domain=[('old','=',True)])
-    }
-
-account_analytic_account()
+    remuneration_ids = fields.One2many('remuneration', 'analytic_account_id', 'Remunerations')
+    active_remuneration_ids = fields.One2many('remuneration', 'analytic_account_id', 'Active remunerations', domain=[('old','=',False)])
+    inactive_remuneration_ids = fields.One2many('remuneration', 'analytic_account_id', 'Unactive remunerations', domain=[('old','=',True)])

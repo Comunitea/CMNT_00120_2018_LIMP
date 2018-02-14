@@ -20,19 +20,19 @@
 ##############################################################################
 
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
-class analytic_incidence_set_end_date(osv.osv_memory):
+class AnalyticIncidenceSetEndDate(models.TransientModel):
 
     _name = "analytic.incidence.set.end.date"
 
-    _columns = {
-        'end_date': fields.date('End date', required=True)
-    }
+    end_date = fields.date(required=True)
 
-    def set_end_date(self, cr, uid, ids, context=None):
+    @api.multi
+    def set_end_date(self):
+        ''' MIGRACION: Solo firma
         if context is None: context = {}
         obj = self.browse(cr, uid, ids[0])
 
@@ -69,6 +69,4 @@ class analytic_incidence_set_end_date(osv.osv_memory):
 
         return {
                 'type': 'ir.actions.act_window_close',
-            }
-
-analytic_incidence_set_end_date()
+            }'''

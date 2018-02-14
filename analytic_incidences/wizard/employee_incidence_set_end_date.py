@@ -19,26 +19,21 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 from openerp.tools.translate import _
 import time
 
 
-class employee_incidence_set_end_date_wzd(osv.osv_memory):
+class employee_incidence_set_end_date_wzd(models.TransientModel):
 
     _name = "employee.incidence.set.end.date.wzd"
 
-    _columns = {
-        'date': fields.date('Date',required=True),
-        'only_incidences': fields.boolean('Only incidences', help="Sets end date in incidences only, if not check it sets the end date in all open remunerations.")
-    }
+    date = fields.Date(required=True, default=fields.Date.today)
+    only_incidences = fields.Boolean(help="Sets end date in incidences only, if not check it sets the end date in all open remunerations.", default=True)
 
-    _defaults = {
-        'only_incidences': True,
-        'date': lambda *a: time.strftime("%Y-%m-%d")
-    }
-
-    def act_set_end_date(self, cr, uid, ids, context=None):
+    @api.multi
+    def act_set_end_date(self):
+        '''MIGRACION: Solo firma
         if context is None: context = {}
         employee_id = context.get('active_id', False)
         obj = self.browse(cr, uid, ids[0])
@@ -56,6 +51,4 @@ class employee_incidence_set_end_date_wzd(osv.osv_memory):
 
         return {
         'type': 'ir.actions.act_window_close',
-        }
-
-employee_incidence_set_end_date_wzd()
+        }'''

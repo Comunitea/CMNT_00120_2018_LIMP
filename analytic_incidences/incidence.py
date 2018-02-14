@@ -19,20 +19,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class incidence(osv.osv):
+
+class incidence(models.Model):
+
     _name = "incidence"
     _description = "Incidens for various reasons"
-    _columns = {
-        'name': fields.char('Name',size=64, required=True, translate=True),
-        'code': fields.char('Code',size=64),
-        'selecttable':fields.boolean('Selectable'),
-        'is_absence': fields.boolean('Is absence?')
-        
-    }
-    _defaults = {
-        'selecttable': True
-    }
 
-incidence()
+    name = fields.Char(required=True, translate=True)
+    code = fields.Char()
+    selecttable = fields.Boolean('Selectable', default=True)
+    is_absence = fields.Boolean('Is absence?')

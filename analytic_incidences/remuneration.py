@@ -19,11 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from openerp import models, fields, api, _
 import time
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
-from openerp.tools.translate import _
 
 def daterange(start_date, end_date):
     start_date = datetime.strptime(start_date, "%Y-%m-%d")
@@ -53,58 +52,56 @@ def base_calendar_id2real_id(base_calendar_id=None, with_date=False):
 
     return base_calendar_id and int(base_calendar_id) or base_calendar_id
 
-class remuneration(osv.osv):
+class remuneration(models.Model):
     _name = "remuneration"
     _description = "Remunerations"
 
-    def _get_total_hours(self, cr, uid, ids, name, args, context=None):
+    def _compute_total_hours(self):
+        pass
+        '''MIGRACION: Solo se cambia la firma a nueva api
         if context is None:
             context = {}
         res = {}
         for remu in self.browse(cr, uid, ids):
             res[remu.id] = remu.ss_hours + remu.ss_no_hours
 
-        return res
+        return res'''
 
-    _columns = {
-        "name": fields.char("Name",size=8,readonly=True),
-        "employee_id": fields.many2one('hr.employee','Employee',required=True),
-        "incidence": fields.boolean('Incidence'),
-        "date": fields.date('Date',required=True),
-        "incidence_id_tp": fields.many2one('incidence','Type'),
-        "absence_id_tp": fields.many2one('absence', 'Type absence'),
-        "date_to": fields.date('Date to'),
-        'with_contract': fields.boolean('With contract'),
-        'contract_hours': fields.float('Hours', digits=(12,2)),
-        'with_hour_price': fields.boolean('With hour price'),
-        'hour_price_hours': fields.float('Hours', digits=(12,2)),
-        'with_fix_qty': fields.boolean('With fix qty'),
-        'price': fields.float('Price',digits=(12,2)),
-        'quantity': fields.float('Quantity',digits=(12,2)),
-        'analytic_account_id': fields.many2one('account.analytic.account', 'Account'),
-        'state': fields.related("analytic_account_id", "state",
-                selection=[('draft','Draft'),('open','Open'), ('pending','Pending'),('cancelled', 'Cancelled'),('close','Closed'),('template', 'Template')], string="State", readonly=True, type="selection"),
-        'parent_id': fields.many2one('remuneration','Parent remuneration',readonly=True, select=True),
-        'department_id': fields.many2one("hr.department", "Department"),
-        'location_id': fields.many2one('city.council', 'Council'),
-        'effective': fields.float('Effective',digits=(12,2)),
-        'ss_hours': fields.float('SS hours', digits=(4,2)),
-        'ss_no_hours': fields.float('No ss hours', digits=(4,2)),
-        'total_hours': fields.function(_get_total_hours, method=True, string="Total hours", readonly=True, type="float"),
-        'analytic_distribution_id': fields.many2one('account.analytic.plan.instance','Analytic Distribution'),
-        'company_id': fields.many2one('res.company', 'Company', required=False),
-        'old': fields.boolean('Old'),
-        'notes': fields.text('Notes')
+    name = fields.Char(size=8, readonly=True, default=lambda r: r.env['ir.sequence'].get('remuneration'))
+    employee_id = fields.Many2one('hr.employee', 'Employee', required=True)
+    incidence = fields.Boolean('Incidence')
+    date = fields.Date('Date', required=True)
+    incidence_id_tp = fields.Many2one('incidence', 'Type', default=lambda r: r.env['incidence'].search([('code', '=', 'def')])[0] or False)
+    absence_id_tp = fields.Many2one('absence', 'Type absence')
+    date_to = fields.Date('Date to')
+    with_contract = fields.Boolean('With contract')
+    contract_hours = fields.Float('Hours', digits=(12, 2))
+    with_hour_price = fields.Boolean('With hour price')
+    hour_price_hours = fields.Float('Hours', digits=(12, 2))
+    with_fix_qty = fields.Boolean()
+    price = fields.Float(digits=(12, 2))
+    quantity = fields.Float(digits=(12, 2))
+    analytic_account_id = fields.Many2one('account.analytic.account', 'Account')
+    state = fields.Selection(related='analytic_account_id.state')
+    # selection=[('draft','Draft'),('open','Open'), ('pending','Pending'),('cancelled', 'Cancelled'),('close','Closed'),('template', 'Template')]
 
-    }
-    _defaults = {
-        'department_id': lambda self, cr, uid, context: context.get('department_id', False),
-        'name':lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid,'remuneration'),
-        'incidence_id_tp': lambda obj, cr, uid, context: obj.pool.get('incidence').search(cr, uid, [('code', '=', 'def')], context=context)[0] or False,
-        'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid).company_id.id
-    }
+    parent_id = fields.Many2one('remuneration', 'Parent remuneration', readonly=True, select=True)
+    child_ids = fields.One2many('remuneration', 'parent_id', string='Childs remunerations', readonly=True)
+    department_id = fields.Many2one("hr.department", "Department", default=lambda r: r._context.get('department_id', False))
+    location_id = fields.Many2one('city.council', 'Council')
+    effective = fields.Float(digits=(12, 2))
+    ss_hours = fields.Float('SS hours', digits=(4, 2))
+    ss_no_hours = fields.Float('No ss hours', digits=(4, 2))
+    total_hours = fields.Float(compute='_compute_total_hours')
+    analytic_distribution_id = fields.Many2one('account.analytic.plan.instance', 'Analytic Distribution')
+    company_id = fields.Many2one('res.company', 'Company', required=False, default=lambda r: r.env.user.company_id.id)
+    old = fields.Boolean('Old')
+    notes = fields.Text('Notes')
 
-    def get_periods_remuneration(self, cr, uid, remuneration_id, start_date, end_date):
+    @api.multi
+    def get_periods_remuneration(self, remuneration_id, start_date, end_date):
+        pass
+        '''MIGRACION: Solo firma
         res = {}
         days_to_cover = []
         days_covered = set()
@@ -167,17 +164,17 @@ class remuneration(osv.osv):
                     end_date = rem_obj.date_to
                 key = start_date + "#" + end_date
                 res[key] = [rem_obj.id]
-        return res
+        return res'''
 
 
+    @api.multi
+    def action_open(self):
+        return self.write({'state': 'open'})
 
-    def action_open(self, cr, uid, ids, context=None):
-        if context is None: context = {}
-        self.write(cr, uid, ids, {'state': 'open'}, context=context)
-        return True
-
-    def check_is_absence(self, cr, uid, id=False,vals={}, context=None):
-
+    @api.model
+    def check_is_absence(self, id=False, vals={}):
+        pass
+        '''MIGRACION: Solo firma
         if vals.get('incidence_id_tp', False):
             incidence_obj = self.pool.get('incidence').browse(cr,uid, vals['incidence_id_tp'])
             if incidence_obj.is_absence == True:
@@ -189,9 +186,12 @@ class remuneration(osv.osv):
                 if remuneration_id.incidence == True and remuneration_id.incidence_id_tp.is_absence == True and not vals.get('absence_id_tp', False):
                     raise osv.except_osv(_('Error'), _('As the incidence of absence type must complete the type of absence !'))
 
-        return True
-    def create(self, cr, uid, vals, context=None):
+        return True'''
 
+    @api.model
+    def create(self, vals):
+
+        '''MIGRACION: Solo firma
         if context is None: context = {}
 
         if vals.get('incidence',False):
@@ -202,12 +202,14 @@ class remuneration(osv.osv):
             if not vals.get('department_id', False):
                 vals['department_id'] = account.department_id and account.department_id.id or False
             if not vals.get('location_id', False):
-                vals['location_id'] = account.location_id and account.location_id.id or False
+                vals['location_id'] = account.location_id and account.location_id.id or False'''
 
-        return super(remuneration, self).create(cr, uid, vals, context=context)
+        return super(remuneration, self).create(vals)
 
-    def write(self, cr, uid, ids, vals, context=None):
+    @api.multi
+    def write(self, vals):
         """When writing a end date in the remuneration, updating the child"""
+        '''MIGRACION: Solo firma
         if context is None: context = {}
         if not vals:
             return True
@@ -220,8 +222,8 @@ class remuneration(osv.osv):
             for remuneration_id in self.browse(cr, uid, ids):
                 for child in remuneration_id.child_ids:
                     if child.date_to == False:
-                        self.write(cr,uid,[child.id],{'date_to': vals['date_to']})
-#~
+                        self.write(cr,uid,[child.id],{'date_to': vals['date_to']})'''
+#~ CODIGO YA COMENTADO ANTES DE MIGRACION
                 #~ occupation_ids = self.pool.get('account.analytic.occupation').search(cr, uid, [('analytic_account_id', '=', remuneration_id.analytic_account_id.id),('state', 'in', ['active','incidence','replaced','replacement']), ('date', '<=',  vals['date_to']), ('date', '>=', remuneration_id.date), ('employee_id', '=', remuneration_id.employee_id.id)])
 #~
                 #~ if occupation_ids:
@@ -268,8 +270,9 @@ class remuneration(osv.osv):
                                                                                                         #~ 'end_type': 'end_date',})
 
 
-        return super(remuneration, self).write(cr, uid, ids, vals, context=context)
+        return super(remuneration, self).write(vals)
 
+    @api.one
     def copy_data(self, cr, uid, id, default=None, context=None):
         if not default:
             default = {}
@@ -282,8 +285,10 @@ class remuneration(osv.osv):
         default.update({'parent_id': False, 'date_to': False, 'child_ids': [(6,0,[])]})
         return super(remuneration, self).copy_data(cr, uid, id, default, context)
 
-    def make_child_inc_remuneration(self, cr, uid, ids, vals, context=None):
-
+    @api.multi
+    def make_child_inc_remuneration(self, vals):
+        pass
+        '''MIGRACION: Solo firma
         if context is None:
             context = {}
         visited_occupations = []
@@ -362,8 +367,8 @@ class remuneration(osv.osv):
                             'quantity': quantity,
                             'effective': effective,
                             'incidence': True,
-                            })
-
+                            })'''
+#~ COMENTADO ANTES DE MIGRACION
                 #~ if end_date:
                     #~ occupation_ids = self.pool.get('account.analytic.occupation').search(cr, uid, [('analytic_account_id','=',analytic_account_id),('state', 'in', ['active','replacement']), ('date', '<=', end_date), ('date', '>=', date), ('employee_id', '=', employee_id)])
                 #~ else:
@@ -426,37 +431,19 @@ class remuneration(osv.osv):
                                 #~ self.pool.get('account.analytic.occupation').write(cr, uid, real_id, {'state': 'incidence'})
 
 
-            return visited_occupations
+            # return visited_occupations MIGRACION:
 
-remuneration()
 
-class incidence(osv.osv):
+class Incidence(models.Model):
 
     _inherit = "incidence"
 
 
-    _columns = {
-        'remuneration_ids': fields.one2many('remuneration', 'incidence_id_tp', 'Remunerations', readonly=True),
-    }
+    remuneration_ids = fields.One2many('remuneration', 'incidence_id_tp', 'Remunerations', readonly=True)
 
-incidence()
 
-class absence(osv.osv):
+class Absence(models.Model):
 
     _inherit = "absence"
 
-    _columns = {
-        'remuneration_ids': fields.one2many('remuneration', 'absence_id_tp', 'Remunerations', readonly=True),
-    }
-
-absence()
-
-class remuneration2(osv.osv):
-
-    _inherit = "remuneration"
-
-    _columns = {
-        'child_ids': fields.one2many('remuneration', 'parent_id', string='Childs remunerations', readonly=True),
-    }
-
-remuneration2()
+    remuneration_ids = fields.One2many('remuneration', 'absence_id_tp', 'Remunerations', readonly=True)
