@@ -26,7 +26,6 @@
 "access_limp_contract_task_user","limp_contract_task_user","model_limp_contract_task","base.group_user",1,0,0,0
 "access_analytic_invoice_concept_administrative","analytic_invoice_conept_administrative","invoice_concept.model_account_analytic_invoice_concept","group_limp_administrative",1,1,1,1
 "access_analytic_acc_invoice_concept_rel_administrative","analytic_account_invoice_conept_rel_administrative","invoice_concept.model_account_analytic_invoice_concept_rel","group_limp_administrative",1,1,1,1
-"access_account_analytic_occupation_administrative","account.analytic.occupation administrative","analytic_occupations.model_account_analytic_occupation","group_limp_administrative",1,1,1,1
 "access_limp_contract_line_waste_administrative","limp_contract_line_waste_administrative","model_limp_contract_line_waste","group_limp_administrative",1,1,0,0
 "access_limp_contract_line_waste_user","limp_contract_line_waste_user","model_limp_contract_line_waste","base.group_user",1,0,0,0
 "access_limp_contract_line_waste_manager","limp_contract_line_waste_manager","model_limp_contract_line_waste","limp_service_picking.group_waste_manager",1,1,1,1
