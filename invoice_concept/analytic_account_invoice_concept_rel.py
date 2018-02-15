@@ -20,68 +20,48 @@
 
 """Relationship between invoice concepts and analytic accounts"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 from openerp.addons.decimal_precision import decimal_precision as dp
 
-class account_analytic_invoice_concept_rel(osv.osv):
+class AccountAnalyticInvoiceConceptRel(models.Model):
     """Relationship between invoice concepts and analytic accounts"""
 
     _name = 'account.analytic.invoice.concept.rel'
     _description = "Relationship between analytic account and invoice concepts"
     _order = "sequence asc"
 
-    _columns = {
-        'concept_id': fields.many2one('account.analytic.invoice.concept', 'Concept', required=True),
-        'analytic_id': fields.many2one('account.analytic.account', 'Account', readonly=True),
-        'amount': fields.float('Amount', digits_compute=dp.get_precision('Account'), required=True),
-        'freq': fields.selection([('q', 'Quarterly'), ('m', 'Monthly')], 'Frequency', required=True),
-        'last_invoice_date': fields.date('Last invoice date',),
-        'january': fields.boolean('January'),
-        'february': fields.boolean('February'),
-        'march': fields.boolean('March'),
-        'april': fields.boolean('April'),
-        'may': fields.boolean('May'),
-        'june': fields.boolean('June'),
-        'july': fields.boolean('July'),
-        'august': fields.boolean('August'),
-        'september': fields.boolean('September'),
-        'october': fields.boolean('October'),
-        'november': fields.boolean('November'),
-        'december': fields.boolean('December'),
-        'name': fields.char('Description', size=255),
-        'sequence': fields.integer('Sequence', required=True)
-    }
+    concept_id = fields.Many2one('account.analytic.invoice.concept', 'Concept', required=True)
+    analytic_id = fields.Many2one('account.analytic.account', 'Account', readonly=True)
+    amount = fields.Float('Amount', digits_compute=dp.get_precision('Account'), required=True)
+    freq = fields.Selection([('q', 'Quarterly'), ('m', 'Monthly')], 'Frequency', required=True, default='m')
+    last_invoice_date = fields.Date('Last invoice date', copy=False)
+    january = fields.Boolean('January', default=True)
+    february = fields.Boolean('February', default=True)
+    march = fields.Boolean('March', default=True)
+    april = fields.Boolean('April', default=True)
+    may = fields.Boolean('May', default=True)
+    june = fields.Boolean('June', default=True)
+    july = fields.Boolean('July', default=True)
+    august = fields.Boolean('August', default=True)
+    september = fields.Boolean('September', default=True)
+    october = fields.Boolean('October', default=True)
+    november = fields.Boolean('November', default=True)
+    december = fields.Boolean('December', default=True)
+    name = fields.Char('Description', default=True)
+    sequence = fields.Integer('Sequence', required=True, default=1)
 
-    def onchange_concept_id(self, cr, uid, ids, concept_id = False):
-        if concept_id:
-            concept_obj = self.pool.get('account.analytic.invoice.concept').browse(cr, uid, concept_id)
-            vals = {}
-            vals['name'] = concept_obj.name
+    @api.onchange('concept_id')
+    def onchange_concept_id(self):
+        for obj in self:
+            if obj.concept_id:
+                obj.name = obj.concept_id.name
 
-            return {'value': vals}
-
-        return {}
-
-
-    def copy_data(self, cr, uid, id, default=None, context=None):
-        if not default:
-            default = {}
-        default.update({'last_invoice_date': False})
-        return super(account_analytic_invoice_concept_rel, self).copy_data(cr, uid, id, default, context)
-
-    def copy(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        default.update({'last_invoice_date': False})
-
-        return super(account_analytic_invoice_concept_rel, self).copy(cr, uid, id, default, context)
-
-    def _get_except_months(self, cr, uid, ids, context=None):
+    @api.multi
+    def _get_except_months(self):
         """returns list of exception months"""
-        if context is None: context = {}
 
         res = {}
-        for record in self.browse(cr, uid, ids):
+        for record in self:
             res[record.id] = []
             if not record.january:
                 res[record.id].append(1)
@@ -109,23 +89,3 @@ class account_analytic_invoice_concept_rel(osv.osv):
                 res[record.id].append(12)
 
         return res
-
-    _defaults = {
-        'freq': 'm',
-        'amount': 0.0,
-        'january': True,
-        'february': True,
-        'march': True,
-        'april': True,
-        'may': True,
-        'june': True,
-        'july': True,
-        'august': True,
-        'september': True,
-        'october': True,
-        'november': True,
-        'december': True,
-        'sequence': 1
-    }
-
-account_analytic_invoice_concept_rel()

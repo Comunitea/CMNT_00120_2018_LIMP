@@ -23,4 +23,4 @@
 
 import container
 import container_move
-#import res_partner_address MIGRACION: Eliminado modelo res.partner.address
+import res_partner_address

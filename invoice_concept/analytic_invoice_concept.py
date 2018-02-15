@@ -20,7 +20,7 @@
 
 """Concepts to invoice analytic accounts"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 import time
 from datetime import datetime
 from openerp.tools.translate import _
@@ -40,14 +40,16 @@ MONTHS = {
     '12': _("Diciembre")
 }
 
-class account_analytic_invoice_concept(osv.osv):
+class AccountAnalyticInvoiceConcept(models.Model):
     """Concepts to invoice analytic accounts"""
 
     _name = "account.analytic.invoice.concept"
     _description = "Analytic account invoice concepts"
 
-    def name_search(self, cr, user, name='', args=None, operator='ilike', context=None, limit=80):
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
         """allows search by code too"""
+        '''MIGRACION: Solo firma
         if args is None: args=[]
         if context is None: context={}
 
@@ -61,7 +63,7 @@ class account_analytic_invoice_concept(osv.osv):
             ids = self.search(cr, user, args, limit=limit, context=context)
 
         result = self.name_get(cr, user, ids, context)
-        return result
+        return result'''
 
     def process_name(self, concept, description=False, date=False):
         """replaces time commands with its correspondent and currently timedata"""
@@ -73,14 +75,8 @@ class account_analytic_invoice_concept(osv.osv):
             res = concept.name.replace('%(year)s', str(date.year)).replace('%(month)s', MONTHS[str(date.month)])
         return res
 
-    _columns = {
-        'name': fields.char('Concept', size=255, translate=True, required=True),
-        'code': fields.char('Code', size=8, required=True),
-        'product_id': fields.many2one('product.product', 'Product', required=True, help="Product required to map invoice taxes."),
-        'company_id':fields.many2one('res.company','Company',required=True),
-    }
-    _defaults = {
-        'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
-    }
 
-account_analytic_invoice_concept()
+    name = fields.Char('Concept', translate=True, required=True)
+    code = fields.Char('Code', size=8, required=True)
+    product_id = fields.Many2one('product.product', 'Product', required=True, help="Product required to map invoice taxes.")
+    company_id = fields.Many2one('res.company','Company',required=True, default=lambda r: r.env.user.company_id.id)

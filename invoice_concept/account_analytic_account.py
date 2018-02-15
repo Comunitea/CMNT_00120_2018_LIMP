@@ -20,7 +20,7 @@
 
 """Add concepts field to analytic account"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import time
@@ -33,32 +33,31 @@ def intersect(la, lb):
     l = filter(lambda x: x in lb, la)
     return l
 
-class account_analytic_account(osv.osv):
+class AccountAnalyticAccount(models.Model):
     """Add concepts field to analytic account"""
 
     _inherit = "account.analytic.account"
 
-    _columns = {
-        'concept_ids': fields.one2many('account.analytic.invoice.concept.rel', 'analytic_id', 'Concepts'),
-        'group_concepts': fields.boolean('Group concepts', help="Groups concepts at invoice"),
-        'group_products': fields.boolean('Group products', help="Groups products at invoice"),
-        'group_products_each_invoice': fields.boolean('One for invoice', help="Groups products, one for invoice"),
-        'invoiceable': fields.boolean('Invoiceable', help="Visibility to invoce cron")
-    }
 
-    def _get_ids_hook(self, cr, uid, ids, context=None):
+    concept_ids = fields.One2many('account.analytic.invoice.concept.rel', 'analytic_id', 'Concepts')
+    group_concepts = fields.Boolean('Group concepts', help="Groups concepts at invoice")
+    group_products = fields.Boolean('Group products', help="Groups products at invoice")
+    group_products_each_invoice = fields.Boolean('One for invoice', help="Groups products, one for invoice")
+    invoiceable = fields.Boolean('Invoiceable', help="Visibility to invoce cron")
+
+    '''def _get_ids_hook(self, cr, uid, ids, context=None):
         """hook to manage ids list to process"""
         if context is None: context = {}
+        MIGRACION: ¿?¿?
+        return ids'''
 
-        return ids
-
-    def _invoice_hook(self, cr, uid, analytic, invoice_id, end_date, context=None):
+    '''def _invoice_hook(self, cr, uid, analytic, invoice_id, end_date, context=None):
         """hook to manage invoice creation"""
         if context is None: context = {}
+        MIGRACION: ¿?¿?
+        return'''
 
-        return
-
-    def _create_invoice(self, cr, uid, analytic, end_date, context=None):
+    '''def _create_invoice(self, cr, uid, analytic, end_date, context=None):
         """creates an invoice to an analytic account"""
         if context is None: context = {}
 
@@ -298,7 +297,4 @@ class account_analytic_account(osv.osv):
 
         created_invoices = self.run_invoice_cron_manual(cr, uid, ids, context)
 
-        return True
-
-
-account_analytic_account()
+        return True'''

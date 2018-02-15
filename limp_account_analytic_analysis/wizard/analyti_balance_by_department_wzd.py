@@ -19,19 +19,20 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 
 
-class analytic_balance_by_department(osv.osv_memory):
+class analytic_balance_by_department(models.TransientModel):
     _name = "analytic.balance.by.department.wzd"
 
-    _columns = {
-        'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fiscalyear', required=True),
-        'delegation_id': fields.many2one('res.delegation', 'Delegation'),
-        'privacy': fields.selection([('public', 'Public'), ('private', 'Private')], 'Privacy'),
-    }
+    fiscalyear_id = fields.Many2one('account.fiscalyear', 'Fiscalyear', required=True)
+    delegation_id = fields.Many2one('res.delegation', 'Delegation')
+    privacy = fields.Selection([('public', 'Public'), ('private', 'Private')], 'Privacy')
 
-    def print_report(self, cr, uid, ids, context=None):
+    @api.multi
+    def print_report(self):
+        pass
+        '''MIGRACION: solo firma
         if context is None: context = {}
 
         data = self.read(cr, uid, ids[0], [])
@@ -39,6 +40,4 @@ class analytic_balance_by_department(osv.osv_memory):
 
         return {'type': 'ir.actions.report.xml',
                  'report_name': 'analytic_balance_by_department_xls',
-                 'datas': data }
-
-analytic_balance_by_department()
+                 'datas': data }'''

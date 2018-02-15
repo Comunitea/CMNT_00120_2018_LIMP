@@ -31,7 +31,6 @@
             'hr',
             'account',
             'account_analytic_plans',
-            'analytic_occupations',
             'city_council'
             ],
         "init_xml" : [],

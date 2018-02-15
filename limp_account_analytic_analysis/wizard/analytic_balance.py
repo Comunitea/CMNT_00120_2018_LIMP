@@ -19,20 +19,21 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 
-class analytic_balance(osv.osv_memory):
+class analytic_balance(models.TransientModel):
     _name = "analytic.balance"
 
-    _columns = {
-        'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fiscalyear', required=True),
-        'delegation_id': fields.many2one('res.delegation', 'Delegation'),
-        'department_id': fields.many2one('hr.department', 'Department'),
-        'manager_id': fields.many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)]),
-        'privacy': fields.selection([('public', 'Public'), ('private', 'Private')], 'Privacy'),
-    }
+    fiscalyear_id = fields.Many2one('account.fiscalyear', 'Fiscalyear', required=True)
+    delegation_id = fields.Many2one('res.delegation', 'Delegation')
+    department_id = fields.Many2one('hr.department', 'Department')
+    manager_id = fields.Many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)])
+    privacy = fields.Selection([('public', 'Public'), ('private', 'Private')], 'Privacy')
 
-    def print_report(self, cr, uid, ids, context=None):
+    @api.multi
+    def print_report(self):
+        pass
+        '''MIGRACION: Solo firma
         if context is None: context = {}
         obj = self.browse(cr, uid, ids[0])
         selected_targets = []
@@ -81,8 +82,4 @@ class analytic_balance(osv.osv_memory):
 
         return {'type': 'ir.actions.report.xml',
                  'report_name': 'analytic_balance_xls',
-                 'datas': data }
-
-
-
-analytic_balance()
+                 'datas': data }'''

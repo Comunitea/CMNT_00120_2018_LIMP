@@ -20,18 +20,16 @@
 
 """Add to invoices a contract relationship"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class account_invoice(osv.osv):
+class AccountInvoice(models.Model):
     """Add to invoices a contract relationship"""
 
     _inherit = 'account.invoice'
 
-    _columns = {
-        'analytic_id': fields.many2one('account.analytic.account', 'Analytic account')
-    }
+    analytic_id = fields.Many2one('account.analytic.account', 'Analytic account')
 
-    def refund(self, cr, uid, ids, date=None, period_id=None, description=None, journal_id=None):
+    '''def refund(self, cr, uid, ids, date=None, period_id=None, description=None, journal_id=None):
         new_ids = super(account_invoice, self).refund(cr, uid, ids, date=date, period_id=period_id, description=description, journal_id=journal_id)
         orig_invoice_obj_id = self.browse(cr, uid, ids[0])
         if orig_invoice_obj_id.analytic_id:
@@ -39,6 +37,4 @@ class account_invoice(osv.osv):
                 'analytic_id': orig_invoice_obj_id.analytic_id.id
             })
 
-        return new_ids
-
-account_invoice()
+        return new_ids'''

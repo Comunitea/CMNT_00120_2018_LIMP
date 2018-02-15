@@ -20,24 +20,16 @@
 
 """Group of holidays"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class hr_holiday_calendar(osv.osv):
+class HrHolidayCalendar(models.Model):
     """Group of holidays"""
 
     _name = "hr.holiday.calendar"
     _description = "Holidays calendar"
 
-    _columns = {
-        'holiday_date_start': fields.date('Start date'),
-        'holiday_date_end': fields.date('End date'),
-        'name': fields.char('Name', size=255, required=True),
-        'holiday_ids': fields.one2many('hr.holiday', 'calendar_id', 'Holidays'),
-        'active': fields.boolean('Active')
-    }
-
-    _defaults = {
-        'active': True
-    }
-
-hr_holiday_calendar()
+    holiday_date_start = fields.Date('Start date')
+    holiday_date_end = fields.Date('End date')
+    name = fields.Char('Name', required=True)
+    holiday_ids = fields.One2many('hr.holiday', 'calendar_id', 'Holidays')
+    active = fields.Boolean('Active', default=True)

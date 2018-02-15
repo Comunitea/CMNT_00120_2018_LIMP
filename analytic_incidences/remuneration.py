@@ -272,7 +272,7 @@ class remuneration(models.Model):
 
         return super(remuneration, self).write(vals)
 
-    @api.one
+    '''
     def copy_data(self, cr, uid, id, default=None, context=None):
         if not default:
             default = {}
@@ -283,7 +283,7 @@ class remuneration(models.Model):
             if rem.parent_id or rem.date_to:
                 return {}
         default.update({'parent_id': False, 'date_to': False, 'child_ids': [(6,0,[])]})
-        return super(remuneration, self).copy_data(cr, uid, id, default, context)
+        return super(remuneration, self).copy_data(cr, uid, id, default, context)'''
 
     @api.multi
     def make_child_inc_remuneration(self, vals):

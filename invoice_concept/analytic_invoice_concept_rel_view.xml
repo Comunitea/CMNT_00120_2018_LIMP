@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <tree string="Invoice concepts" editable="top">
                     <field name="sequence"/>
-                    <field name="concept_id" on_change="onchange_concept_id(concept_id)"/>
+                    <field name="concept_id"/>
                     <field name="name"/>
                     <field name="amount"/>
                     <field name="freq"/>
@@ -24,7 +24,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Invoice concept">
-                    <field name="concept_id" colspan="4" on_change="onchange_concept_id(concept_id)"/>
+                    <field name="concept_id" colspan="4"/>
                     <field name="name"/>
                     <field name="amount"/>
                     <field name="freq"/>

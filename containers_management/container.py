@@ -21,61 +21,43 @@
 
 """Model to register containers"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 from openerp.addons.decimal_precision import decimal_precision as dp
 import time
 
-class container(osv.osv):
+class Container(models.Model):
     """Model to register containers"""
 
     _name = "container"
     _description = "Containers"
     _rec_name = "code"
 
-    def _get_current_user_company(self, cr, uid, context={}):
-        """
-            Obtiene la compañía del usuario activo
-        """
-        current_user = self.pool.get('res.users').browse(cr,uid,uid)
-        return current_user.company_id.id
+    code = fields.Char('Code', size=10, readonly=True)
+    type = fields.Selection([('flat_dumpster15', 'Flat Dumpster 1,5'), ('flat_dumpster3', 'Flat Dumpster 3'), ('flat_dumpster4', 'Flat Dumpster 4'), ('flat_dumpster7', 'Flat Dumpster 7'), ('flat_dumpster9', 'Flat Dumpster 9'), ('flat_dumpster12', 'Flat Dumpster 12'),
+                    ('flat_dumpster14', 'Flat Dumpster 14'), ('flat_dumpster18', 'Flat Dumpster 18'), ('flat_dumpster30', 'Flat Dumpster 30'), ('trapezoidal4', 'Trapezoidal 4'), ('trapezoidal6', 'Trapezoidal 6'),
+                    ('trapezoidal8', 'Trapezoidal 8'), ('other', 'Other')], 'Type', required=True, default='flat_dumpster9')
+    shape = fields.Selection([('opened', 'Opened'),('closed', 'Closed')], 'Shape', required=True, default='opened')
+    dimensions = fields.Char('Dimensions', size=32)
+    capacity = fields.Float('Capacity (m³)', digits=dp.get_precision('Product UoM'))
+    note = fields.Text('Observations')
+    active = fields.Boolean('Active', default=True)
+    history_ids = fields.One2many('container.move', 'container_id', 'History', readonly=True)
+    company_id = fields.Many2one('res.company', 'Company', default=lambda r: r.env.user.company_id.id)
+    last_move_date = fields.Datetime('Last move date', readonly=True)
+    last_responsible_id = fields.Many2one('hr.employee', 'Last driver', readonly=True)
+    #'product_id': fields.many2one('product.product', 'Product', required=True),
+    #'product_tmpl_id': fields.related('product_id', 'product_tmpl_id', type="many2one", relation="product.template", string="Product template", readonly=True),
+    #'amount': fields.related('product_tmpl_id','list_price',string='Amount', digits_compute=dp.get_precision('Account'), readonly=True, type="float"),
+    situation_id = fields.Many2one('res.partner', 'Situation', help="Current situation, customer address or available in company addresses", default=lambda r: r.env.user.company_id.partner_id.address_get()['default'])
+    partner_id = fields.Many2one('res.partner', 'Partner', related='situation_id.commercial_partner_id')
+    home = fields.Boolean('Home', related='situation_id.containers_store')
+    container_placement = fields.Selection([('on_street', 'On street'),('on_building', 'On building')], string="Container placement")
 
-    _columns = {
-        'code': fields.char('Code', size=10, readonly=True),
-        'type': fields.selection([('flat_dumpster15', 'Flat Dumpster 1,5'), ('flat_dumpster3', 'Flat Dumpster 3'), ('flat_dumpster4', 'Flat Dumpster 4'), ('flat_dumpster7', 'Flat Dumpster 7'), ('flat_dumpster9', 'Flat Dumpster 9'), ('flat_dumpster12', 'Flat Dumpster 12'),
-                        ('flat_dumpster14', 'Flat Dumpster 14'), ('flat_dumpster18', 'Flat Dumpster 18'), ('flat_dumpster30', 'Flat Dumpster 30'), ('trapezoidal4', 'Trapezoidal 4'), ('trapezoidal6', 'Trapezoidal 6'),
-                        ('trapezoidal8', 'Trapezoidal 8'), ('other', 'Other')], 'Type', required=True),
-        'shape': fields.selection([('opened', 'Opened'),('closed', 'Closed')], 'Shape', required=True),
-        'dimensions': fields.char('Dimensions', size=32),
-        'capacity': fields.float('Capacity (m³)', digits_compute=dp.get_precision('Product UoM')),
-        'note': fields.text('Observations'),
-        'active': fields.boolean('Active'),
-        'history_ids': fields.one2many('container.move', 'container_id', 'History', readonly=True),
-        'company_id': fields.many2one('res.company', 'Company'),
-        'last_move_date': fields.datetime('Last move date', readonly=True),
-        'last_responsible_id': fields.many2one('hr.employee', 'Last driver', readonly=True),
-        #'product_id': fields.many2one('product.product', 'Product', required=True),
-        #'product_tmpl_id': fields.related('product_id', 'product_tmpl_id', type="many2one", relation="product.template", string="Product template", readonly=True),
-        #'amount': fields.related('product_tmpl_id','list_price',string='Amount', digits_compute=dp.get_precision('Account'), readonly=True, type="float"),
-        'situation_id': fields.many2one('res.partner', 'Situation', help="Current situation, customer address or available in company addresses"),
-        'partner_id': fields.related('situation_id', 'partner_id', type="many2one", relation="res.partner", string="Partner", readonly=True),
-        'home': fields.related('situation_id', 'containers_store', type="boolean", readonly=True, string="Home"),
-        'container_placement': fields.selection([('on_street', 'On street'),('on_building', 'On building')], string="Container placement")
-    }
-
-    _defaults = {
-        #'amount': 0.0,
-        'type': 'flat_dumpster9',
-        'shape': 'opened',
-        'capacity': 0.0,
-        'active': True,
-        'situation_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid).company_id.partner_id.address_get()['default'],
-        'company_id': lambda self, cr, uid, context: self._get_current_user_company(cr, uid, context)
-    }
-
-
-
-    def write(self, cr, uid, ids, vals, context=None):
+    @api.multi
+    def write(self, vals):
         """creates the registry in the history"""
+        return super(Container, self).write(vals)
+        '''MIGRACION: Solo firma
         if context is None: context = {}
         if isinstance(ids, (int, long)):
             ids = [ids]
@@ -106,8 +88,11 @@ class container(osv.osv):
                                                             'responsible_id': vals.get('last_responsible_id', False)
                                                         })
 
-        return super(container, self).write(cr, uid, ids, vals, context=context)
-    def create(self, cr, uid, vals, context=None):
+        return super(container, self).write(cr, uid, ids, vals, context=context)'''
+
+    @api.model
+    def create(self, vals):
+        '''MIGRACION: Solo firma
         sequence = ''
         if vals.get('type', False):
             if 'flat_dumpster' in vals['type']:
@@ -118,10 +103,5 @@ class container(osv.osv):
                 sequence = self.pool.get('ir.sequence').get(cr, uid, 'container_other')
 
         if sequence:
-            vals['code'] = sequence
-
-
-        return super(container, self).create(cr, uid, vals, context)
-
-
-container()
+            vals['code'] = sequence'''
+        return super(Container, self).create(vals)

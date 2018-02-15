@@ -20,30 +20,27 @@
 
 """Represents an holiday"""
 
-from openerp.osv import osv, fields
+from openerp import models, fields, api
 
-class hr_holiday(osv.osv):
+class hr_holiday(models.Model):
     """Represents an holiday"""
 
     _name = 'hr.holiday'
     _description = "Holiday"
 
-    _columns = {
-        'calendar_id': fields.many2one('hr.holiday.calendar', 'Calendar'),
-        'holiday_date': fields.date('Date'),
-        'name': fields.char('Name', size=128),
-        'location_id': fields.many2one('city.council', 'Council'),
-        'scope': fields.selection([('local', 'Local'), ('state', 'State'), ('autonomic', 'Autonomic'), ('national', 'National')], 'Scope'),
-        'country_id': fields.many2one('res.country', 'Country'),
-        'state_id': fields.many2one('res.country.state', 'State'),
-        #'region_id': fields.many2one('res.country.region', 'Autonomous') MIGRACION: Region eliminado
-    }
+    calendar_id = fields.Many2one('hr.holiday.calendar', 'Calendar')
+    holiday_date = fields.Date('Date')
+    name = fields.Char('Name')
+    location_id = fields.Many2one('city.council', 'Council')
+    scope = fields.Selection([('local', 'Local'), ('state', 'State'), ('autonomic', 'Autonomic'), ('national', 'National')], 'Scope', default='national')
+    country_id = fields.Many2one('res.country', 'Country')
+    state_id = fields.Many2one('res.country.state', 'State')
+    #'region_id': fields.many2one('res.country.region', 'Autonomous') MIGRACION: Region eliminado
 
-    _defaults = {
-        'scope': 'national'
-    }
-    def get_holidays_dates(self, cr, uid, ids, location_id=False, state_id=False, region_id=False,context=None):
+    @api.multi
+    def get_holidays_dates(self, location_id=False, state_id=False, region_id=False):
         """returns holidays separated by semicolon for using rules"""
+        '''MIGRACION:
         if context is None: context = {}
         if isinstance(ids, (long, int)):
             ids = [ids]
@@ -86,7 +83,4 @@ class hr_holiday(osv.osv):
             else:
                 res[employee.id] = []
 
-        return res
-
-
-hr_holiday()
+        return res'''

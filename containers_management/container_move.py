@@ -20,11 +20,10 @@
 ##############################################################################
 
 """History of container moves"""
-
-from openerp.osv import osv, fields
+from openerp import models, fields
 import time
 
-class container_move(osv.osv):
+class ContainerMove(models.Model):
     """History of container moves"""
 
     _name = "container.move"
@@ -39,22 +38,9 @@ class container_move(osv.osv):
             result.extend(partner_agents_ids)
         return result
 
-    _columns = {
-        'container_id': fields.many2one('container', 'Container', required=True),
-        'address_id': fields.many2one('res.partner', 'Situation', required=True),
-        'move_type': fields.selection([('in','In'),('out', 'Out')], 'Move type', required=True),
-        'move_date': fields.datetime('Date', required=True),
-        'type': fields.related('container_id', 'type', selection=[('flat_dumpster4', 'Flat Dumpster 4'), ('flat_dumpster7', 'Flat Dumpster 7'), ('flat_dumpster9', 'Flat Dumpster 9'), ('flat_dumpster12', 'Flat Dumpster 12'),
-                        ('flat_dumpster14', 'Flat Dumpster 14'), ('flat_dumpster18', 'Flat Dumpster 18'), ('flat_dumpster30', 'Flat Dumpster 30'), ('trapezoidal4', 'Trapezoidal 4'), ('trapezoidal6', 'Trapezoidal 6'),
-                        ('trapezoidal8', 'Trapezoidal 8'), ('other', 'Other')], type="selection", readonly=True, string="Container type",
-                        store={'container': (_get_containers, ['type'], 10),
-                            'container.move': (lambda self, cr, uid, ids, c={}: ids, ['container_id'], 20)}),
-        'responsible_id': fields.many2one('hr.employee', 'Driver', readonly=True)
-    }
-
-    _defaults = {
-        'move_type': 'in',
-        'move_date': lambda *a: time.strftime("%Y-%m-%d %H:%M:%S")
-    }
-
-container_move()
+    container_id = fields.Many2one('container', 'Container', required=True)
+    address_id = fields.Many2one('res.partner', 'Situation', required=True)
+    move_type = fields.Selection([('in','In'),('out', 'Out')], 'Move type', required=True, default='in')
+    move_date = fields.Datetime('Date', required=True, default=fields.Datetime.now)
+    type = fields.Selection(related='container_id.type', store=True, string="Container type")
+    responsible_id = fields.Many2one('hr.employee', 'Driver', readonly=True)

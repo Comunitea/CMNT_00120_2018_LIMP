@@ -19,14 +19,10 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
 
-class account_analytic_journal(osv.osv):
+class AccountAnalyticJournal(models.Model):
     _inherit = 'account.analytic.journal'
 
-    _columns = {
-        'analytic_target_ids': fields.one2many('account.analytic.target', 'analytic_journal_id', 'Targets'),
-    }
-
-account_analytic_journal()
+    analytic_target_ids = fields.One2many('account.analytic.target', 'analytic_journal_id', 'Targets')

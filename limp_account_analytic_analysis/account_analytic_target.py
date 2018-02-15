@@ -19,26 +19,17 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class account_analytic_target(osv.osv):
+class AccountAnalyticTarget(models.Model):
     _name = "account.analytic.target"
     _rec_name = "fiscalyear_id"
     _order = "fiscalyear_id desc"
 
-    _columns = {
-        'analytic_journal_id': fields.many2one('account.analytic.journal', 'Journal'),
-        'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fiscalyear', required=True),
-        'company_id': fields.many2one('res.company', 'Company', required=True),
-        'delegation_id': fields.many2one('res.delegation', 'Delegation'),
-        'department_id': fields.many2one('hr.department', 'Department'),
-        'manager_id': fields.many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)]),
-        'target_percent': fields.float('Percent target', digits=(5,2), required=True)
-    }
-
-    _defaults = {
-        'company_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).company_id.id,
-    }
-
-
-account_analytic_target()
+    analytic_journal_id = fields.Many2one('account.analytic.journal', 'Journal')
+    fiscalyear_id = fields.Many2one('account.fiscalyear', 'Fiscalyear', required=True)
+    company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda r: r.env.user.company_id.id)
+    delegation_id = fields.Many2one('res.delegation', 'Delegation')
+    department_id = fields.Many2one('hr.department', 'Department')
+    manager_id = fields.Many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)])
+    target_percent = fields.Float('Percent target', digits=(5,2), required=True)

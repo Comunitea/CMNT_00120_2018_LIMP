@@ -19,18 +19,10 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from openerp import models, fields
 
-class res_partner_address(osv.osv):
+class ResPartner(models.Model):
 
-    _inherit = "res.partner.address"
+    _inherit = "res.partner"
 
-    _columns = {
-        'containers_store': fields.boolean('Containers store')
-    }
-
-    _defaults = {
-        'containers_store': False
-    }
-
-res_partner_address()
+    containers_store = fields.Boolean('Containers store')
