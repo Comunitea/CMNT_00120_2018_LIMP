@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-
-        <menuitem id="menu_holidays_management" name="Holidays" parent="hr.menu_hr_configuration"/>
-
-    </data>
-</openerp>
