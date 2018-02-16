@@ -30,13 +30,13 @@
             'base',
             'analytic',
             'account',
-            'analytic_department',
+            # 'analytic_department', MIGRACION:
             'limp_multi_delegations',
-            'account_analytic_plans',
+            # 'account_analytic_plans', MIGRACION: Eliminado
             'account_analytic_default',
-            'account_payment_extension',
+            #'account_payment_extension', MIGRACION: Modulo eliminado
             'l10n_es_account_asset',
-            'account_analytic_analysis'
+            #'account_analytic_analysis' MIGRACION: Eliminado
             ],
         "init_xml" : [],
         "demo_xml" : [],

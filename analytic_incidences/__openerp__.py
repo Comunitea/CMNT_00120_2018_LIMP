@@ -30,7 +30,7 @@
             'base',
             'hr',
             'account',
-            'account_analytic_plans',
+            # 'account_analytic_plans', MIGRACION: Modulo eliminado
             'city_council'
             ],
         "init_xml" : [],

@@ -3,10 +3,10 @@
 <openerp>
     <data noupdate="1">
         <!-- Sequences for remuneration -->
-        <record id="seq_type_remuneration" model="ir.sequence.type">
-            <field name="name">Remuneration</field>
+        <!--record id="seq_type_remuneration" model="ir.sequence.type">
+            <field name="name">Remuneration</field> MIGRACION:
             <field name="code">remuneration</field>
-        </record>
+        </record-->
         <record id="seq_remuneration" model="ir.sequence">
             <field name="name">Remuneration</field>
             <field name="code">remuneration</field>

@@ -33,10 +33,10 @@
             'stock',
             'account',
             'decimal_precision',
-            'base_contact',
+            # 'base_contact', MIGRACION: eliminado
             'base_contact_extend',
-            'analytic_department',
-            'account_payment_extension',
+            # 'analytic_department', MIGRACION:
+            #'account_payment_extension', MIGRACION: Modulo eliminado
             'invoice_concept',
             # 'hr_holiday_calendar',
             'analytic_incidences',
@@ -45,7 +45,7 @@
             'limp_distribution_costs',
             'city_council',
             'limp_account_analytic_extension',
-            'l10n_es_facturae'
+            #'l10n_es_facturae', MIGRACION: Modulo no en 9
             ],
         "init_xml" : [],
         "demo_xml" : [],

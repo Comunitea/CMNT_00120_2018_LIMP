@@ -31,7 +31,7 @@
             'base',
             'product',
             'stock',
-            'base_contact',
+            # 'base_contact', MIGRACION: eliminado
             'hr'
             ],
         "init_xml" : [],

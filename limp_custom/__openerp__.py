@@ -36,18 +36,18 @@
             'hr',
             # 'base_iban',
             'multi_departments',
-            'base_contact',
+            # 'base_contact', MIGRACION: eliminado
             'limp_service_picking',
             'purchase',
-            'account_payment_extension',
-            'account_analytic_plans',
+            #'account_payment_extension', MIGRACION: Modulo eliminado
+            # 'account_analytic_plans', MIGRACION: Modulo eliminado
             'limp_multi_delegations',
             'limp_account_analytic_extension',
             # 'account_payment_sepa_direct_debit',
             'containers_management',
             'limp_contract',
-            'l10n_es_facturae',
-            'account_analytic_analysis',
+            #'l10n_es_facturae', MIGRACION: Modulo no en 9
+            # 'account_analytic_analysis', MIGRACION: Eliminado
             'limp_distribution_costs'
             ],
         "init_xml" : [],

@@ -32,15 +32,15 @@
             'containers_management',
             'simple_fleet_management',
             'waste_management',
-            'base_contact',
+            # 'base_contact', MIGRACION: eliminado
             'product',
             'hr',
             'hr_timesheet',
             'analytic',
             'account',
-            "account_payment",
-            "account_payment_extension",
-            "account_analytic_plans",
+            # "account_payment", MIGRACION: Eliminado
+            #'account_payment_extension', MIGRACION: Modulo eliminado
+            # "account_analytic_plans", MIGRACION: Eliminado
             'limp_account_analytic_extension',
             'limp_distribution_costs',
             'limp_multi_delegations'

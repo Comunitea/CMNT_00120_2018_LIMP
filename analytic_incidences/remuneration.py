@@ -82,7 +82,7 @@ class remuneration(models.Model):
     price = fields.Float(digits=(12, 2))
     quantity = fields.Float(digits=(12, 2))
     analytic_account_id = fields.Many2one('account.analytic.account', 'Account')
-    state = fields.Selection(related='analytic_account_id.state')
+    # state = fields.Selection(related='analytic_account_id.state') MIGRACION: Campo eliminado
     # selection=[('draft','Draft'),('open','Open'), ('pending','Pending'),('cancelled', 'Cancelled'),('close','Closed'),('template', 'Template')]
 
     parent_id = fields.Many2one('remuneration', 'Parent remuneration', readonly=True, select=True)

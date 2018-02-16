@@ -33,10 +33,10 @@
             'account',
             'limp_multi_delegations',
             'limp_service_picking',
-            'analytic_department',
+            # 'analytic_department', MIGRACION:
             'limp_contract',
-            'sale_payment',
-            'hr_timesheet_invoice'
+            #'sale_payment', MIGRACION:
+            # 'hr_timesheet_invoice' MIGRACION:
             ],
         "init_xml" : [],
         "demo_xml" : [],

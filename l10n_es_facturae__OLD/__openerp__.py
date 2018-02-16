@@ -33,7 +33,12 @@ Successfully passes format and account validation tests from AEAT: http://sedeap
 """,
     "website" : "www.asr-oss.com",
     "license" : "GPL-3",
-    "depends" : ["base","account","base_contact","account_payment_extension"],
+    "depends" : [
+        "base",
+        "account",
+        # 'base_contact', MIGRACION: eliminado
+        #'account_payment_extension', MIGRACION: Modulo eliminado
+        ],
     "init_xml" : ["data_res_country.xml"],
     "demo_xml" : [],
     "data" : [

@@ -30,10 +30,10 @@
             'base',
             'account',
             'analytic',
-            'analytic_department',
+            # 'analytic_department', MIGRACION:
             'limp_multi_delegations',
             'limp_account_analytic_extension',
-            'report_xls'
+            #'report_xls' MIGRACION:
             ],
         "init_xml" : [],
         "demo_xml" : [],

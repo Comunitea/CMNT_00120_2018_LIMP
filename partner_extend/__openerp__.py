@@ -28,7 +28,7 @@
         "category" : "Base/Partner",
         "depends" : [
             'base',
-            'base_contact',
+            # 'base_contact', MIGRACION: eliminado
             'l10n_es_partner',
             'calendar'
             ],

@@ -3,142 +3,142 @@
 <openerp>
     <data noupdate="0">
         <!-- Sequences for courses -->
-        <record id="seq_type_containerflat4" model="ir.sequence.type">
+        <!--record id="seq_type_containerflat4" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 4</field>
             <field name="code">container_flat_dumpster4</field>
-        </record>
+        </record-->
         <record id="seq_containerflat4" model="ir.sequence">
             <field name="name">Container Flat Dumpster 4</field>
             <field name="code">container_flat_dumpster4</field>
             <field name="prefix">P4</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerflat7" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerflat7" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 7</field>
             <field name="code">container_flat_dumpster7</field>
-        </record>
+        </record-->
         <record id="seq_containerflat7" model="ir.sequence">
             <field name="name">Container Flat Dumpster 7</field>
             <field name="code">container_flat_dumpster7</field>
             <field name="prefix">P7</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerflat9" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerflat9" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 9</field>
             <field name="code">container_flat_dumpster9</field>
-        </record>
+        </record-->
         <record id="seq_containerflat9" model="ir.sequence">
             <field name="name">Container Flat Dumpster 9</field>
             <field name="code">container_flat_dumpster9</field>
             <field name="prefix">P9</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerflat12" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerflat12" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 12</field>
             <field name="code">container_flat_dumpster12</field>
-        </record>
+        </record-->
         <record id="seq_containerflat12" model="ir.sequence">
             <field name="name">Container Flat Dumpster 12</field>
             <field name="code">container_flat_dumpster12</field>
             <field name="prefix">P12</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerflat14" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerflat14" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 14</field>
             <field name="code">container_flat_dumpster14</field>
-        </record>
+        </record-->
         <record id="seq_containerflat14" model="ir.sequence">
             <field name="name">Container Flat Dumpster 14</field>
             <field name="code">container_flat_dumpster14</field>
             <field name="prefix">P14</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerflat18" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerflat18" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 18</field>
             <field name="code">container_flat_dumpster18</field>
-        </record>
+        </record-->
         <record id="seq_containerflat18" model="ir.sequence">
             <field name="name">Container Flat Dumpster 18</field>
             <field name="code">container_flat_dumpster18</field>
             <field name="prefix">P18</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerflat30" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerflat30" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 30</field>
             <field name="code">container_flat_dumpster30</field>
-        </record>
+        </record-->
         <record id="seq_containerflat30" model="ir.sequence">
             <field name="name">Container Flat Dumpster 30</field>
             <field name="code">container_flat_dumpster30</field>
             <field name="prefix">P30</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerflat15" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerflat15" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 1,5</field>
             <field name="code">container_flat_dumpster15</field>
-        </record>
+        </record-->
         <record id="seq_containerflat15" model="ir.sequence">
             <field name="name">Container Flat Dumpster 1,5</field>
             <field name="code">container_flat_dumpster15</field>
             <field name="prefix">P1.5</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerflat3" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerflat3" model="ir.sequence.type">
             <field name="name">Container Flat Dumpster 3</field>
             <field name="code">container_flat_dumpster3</field>
-        </record>
+        </record-->
         <record id="seq_containerflat3" model="ir.sequence">
             <field name="name">Container Flat Dumpster 3</field>
             <field name="code">container_flat_dumpster3</field>
             <field name="prefix">P3</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containertra4" model="ir.sequence.type">
+
+        <!--record id="seq_type_containertra4" model="ir.sequence.type">
             <field name="name">Container Trapezoidal 4</field>
             <field name="code">container_trapezoidal4</field>
-        </record>
+        </record-->
         <record id="seq_containertra4" model="ir.sequence">
             <field name="name">Container Trapezoidal 4</field>
             <field name="code">container_trapezoidal4</field>
             <field name="prefix">T4</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containertra6" model="ir.sequence.type">
+
+        <!--record id="seq_type_containertra6" model="ir.sequence.type">
             <field name="name">Container Trapezoidal 6</field>
             <field name="code">container_trapezoidal6</field>
-        </record>
+        </record-->
         <record id="seq_containertra6" model="ir.sequence">
             <field name="name">Container Trapezoidal 6</field>
             <field name="code">container_trapezoidal6</field>
             <field name="prefix">T6</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containertra8" model="ir.sequence.type">
+
+        <!--record id="seq_type_containertra8" model="ir.sequence.type">
             <field name="name">Container Trapezoidal 8</field>
             <field name="code">container_trapezoidal8</field>
-        </record>
+        </record-->
         <record id="seq_containertra8" model="ir.sequence">
             <field name="name">Container Trapezoidal 8</field>
             <field name="code">container_trapezoidal8</field>
             <field name="prefix">T8</field>
             <field name="padding">5</field>
         </record>
-        
-        <record id="seq_type_containerotr" model="ir.sequence.type">
+
+        <!--record id="seq_type_containerotr" model="ir.sequence.type">
             <field name="name">Container Othe</field>
             <field name="code">container_other</field>
-        </record>
+        </record-->
         <record id="seq_containerotr" model="ir.sequence">
             <field name="name">Container Other</field>
             <field name="code">container_other</field>

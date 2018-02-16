@@ -3,10 +3,10 @@
 <openerp>
     <data noupdate="1">
          <!-- Sequence for prices rules-->
-        <record id="seq_type_price_rule" model="ir.sequence.type">
+        <!--record id="seq_type_price_rule" model="ir.sequence.type">
             <field name="name">Price rule</field>
             <field name="code">price.rule</field>
-        </record>
+        </record-->
         <record id="seq_price_rule" model="ir.sequence">
             <field name="name">Price rule</field>
             <field name="code">price.rule</field>

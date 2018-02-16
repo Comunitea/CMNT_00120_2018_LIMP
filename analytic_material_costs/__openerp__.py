@@ -33,7 +33,7 @@
             'stock',
             'hr'
             ],
-        "data" : ['analytic_material_costs_data.xml',
+        "data" : [# 'analytic_material_costs_data.xml', MIGRACION: Modelo eliminado
                     'analytic_stock_move_view.xml',
                     'hr_employee_view.xml',
                     'analytic_account_view.xml',

@@ -32,7 +32,7 @@
         "category" : "Base/Contact",
         "depends" : [
             'base',
-            'base_contact'
+            # 'base_contact', MIGRACION: eliminado
             ],
         "init_xml" : [],
         "demo_xml" : [],
