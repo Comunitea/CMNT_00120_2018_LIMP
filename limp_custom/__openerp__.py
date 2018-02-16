@@ -31,7 +31,6 @@
             'account',
             'analytic',
             'stock',
-            'warning',
             'product',
             'hr',
             # 'base_iban',

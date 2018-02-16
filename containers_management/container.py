@@ -22,7 +22,7 @@
 """Model to register containers"""
 
 from openerp import models, fields, api
-from openerp.addons.decimal_precision import decimal_precision as dp
+from openerp.addons import decimal_precision as dp
 import time
 
 class Container(models.Model):
