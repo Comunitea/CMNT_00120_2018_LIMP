@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-import timesheet
-import account_analytic_line
-import hr_employee
-import wizard
+#  import timesheet
+#  import account_analytic_line
+#  import hr_employee
+#  import wizard

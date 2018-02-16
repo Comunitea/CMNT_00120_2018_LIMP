@@ -41,17 +41,17 @@
         "demo_xml" : [],
         "data" : [
                 # 'limp_reports_data.xml', MIGRACION:
-                'res_company_view.xml',
-                # 'annual_memory.xml', MIGRACION:
-                'menu_reports.xml',
-                'wizard/wizard_print_memory.xml',
-                'wizard/wizard_print_hours_report_view.xml',
-                'wizard/wizard_print_analytic_details_view.xml',
-                'wizard/print_acceptance_document_view.xml',
-                'acceptance_doc_seq.xml',
-                'acceptance_document_view.xml',
-                'security/ir.model.access.csv',
-                'res_users_view.xml'
+                #  'res_company_view.xml',
+                #  # 'annual_memory.xml', MIGRACION:
+                #  'menu_reports.xml',
+                #  'wizard/wizard_print_memory.xml',
+                #  'wizard/wizard_print_hours_report_view.xml',
+                #  'wizard/wizard_print_analytic_details_view.xml',
+                #  'wizard/print_acceptance_document_view.xml',
+                #  'acceptance_doc_seq.xml',
+                #  'acceptance_document_view.xml',
+                #  'security/ir.model.access.csv',
+                #  'res_users_view.xml'
             ],
         "installable": True,
         'active': False

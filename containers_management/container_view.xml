@@ -93,7 +93,7 @@
             <field name="context">{'search_default_home': True}</field>
         </record>
 
-        <menuitem id="menu_containers" parent="stock.menu_stock_configuration" name="Containers"/>
+        <menuitem id="menu_containers" parent="stock.menu_stock_inventory_control" name="Containers"/>
 
         <menuitem action="container_action" id="menu_containers_open" parent="menu_containers" name="Containers"/>
 

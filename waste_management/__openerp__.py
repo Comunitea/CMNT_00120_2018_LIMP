@@ -32,8 +32,10 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "data" : ['waste_ler_code_view.xml',
-                        'security/ir.model.access.csv'],
+        "data" : [
+        #  'waste_ler_code_view.xml',
+                        #  'security/ir.model.access.csv'
+                        ],
         "installable": True,
         'active': False
 

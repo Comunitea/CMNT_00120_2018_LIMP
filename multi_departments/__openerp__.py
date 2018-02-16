@@ -32,10 +32,10 @@
         "init_xml" : [],
         "demo_xml" : [],
         "data" : [
-            'res_users_view.xml',
-            'hr_department_view.xml',
-            'hr_employee_view.xml',
-            'security/multi_departments_security.xml'
+            #  'res_users_view.xml',
+            #  'hr_department_view.xml',
+            #  'hr_employee_view.xml',
+            #  'security/multi_departments_security.xml'
         ],
         "installable": True,
         'active': False

@@ -21,4 +21,4 @@
 
 """Initial file to import each classes in this module"""
 
-import waste_ler_code
+#  import waste_ler_code

@@ -20,6 +20,6 @@
 
 """Initial file to import each classes in this module"""
 
-import res_delegation
-import res_users
+#  import res_delegation
+#  import res_users
 # import add_delegation MIGRACION: import report

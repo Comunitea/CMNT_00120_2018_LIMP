@@ -37,12 +37,13 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "data" : ['account_analytic_journal_view.xml',
-                        'analytic_analysis_report.xml',
-                        'wizard/analytic_balance_view.xml',
-                        'security/ir.model.access.csv',
-                        'security/account_analytic_analysis_security.xml',
-                        'wizard/analyti_balance_by_department_wzd_view.xml'],
+        "data" : [#'account_analytic_journal_view.xml',
+                        #  'analytic_analysis_report.xml',
+                        #  'wizard/analytic_balance_view.xml',
+                        #  'security/ir.model.access.csv',
+                        #  'security/account_analytic_analysis_security.xml',
+                        #  'wizard/analyti_balance_by_department_wzd_view.xml'
+                        ],
         "installable": True,
         'active': False
 

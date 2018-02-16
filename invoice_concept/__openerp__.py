@@ -34,14 +34,14 @@
         "init_xml" : [],
         "demo_xml" : [],
         "data" : [
-                        'security/ir.model.access.csv',
-                        'security/invoice_concept_security.xml',
-                        'analytic_invoice_concept_view.xml',
-                        'analytic_invoice_concept_rel_view.xml',
-                        'account_invoice_view.xml',
-                        'analytic_account_view.xml',
-                        'wizard/contract_to_invoice_view.xml',
-                        'product_view.xml'
+                        #  'security/ir.model.access.csv',
+                        #  'security/invoice_concept_security.xml',
+                        #  'analytic_invoice_concept_view.xml',
+                        #  'analytic_invoice_concept_rel_view.xml',
+                        #  'account_invoice_view.xml',
+                        #  'analytic_account_view.xml',
+                        #  'wizard/contract_to_invoice_view.xml',
+                        #  'product_view.xml'
                         ],
         "installable": True,
         'active': False

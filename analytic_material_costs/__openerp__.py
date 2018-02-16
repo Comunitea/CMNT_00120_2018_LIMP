@@ -34,10 +34,11 @@
             'hr'
             ],
         "data" : [# 'analytic_material_costs_data.xml', MIGRACION: Modelo eliminado
-                    'analytic_stock_move_view.xml',
-                    'hr_employee_view.xml',
-                    'analytic_account_view.xml',
-                    'security/ir.model.access.csv'],
+                    #  'analytic_stock_move_view.xml',
+                    #  'hr_employee_view.xml',
+                    #  'analytic_account_view.xml',
+                    #  'security/ir.model.access.csv'
+                ],
         "installable": True,
         'active': False
 

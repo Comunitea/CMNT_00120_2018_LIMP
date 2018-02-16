@@ -19,12 +19,12 @@
 #
 ##############################################################################
 
-import limp_contract
-import account_journal
-import account_invoice
-import account_analytic_account
-import limp_service_picking
-import wizard
-import stock_picking
-import hr_employee
-import timesheet
+#  import limp_contract
+#  import account_journal
+#  import account_invoice
+#  import account_analytic_account
+#  import limp_service_picking
+#  import wizard
+#  import stock_picking
+#  import hr_employee
+#  import timesheet

@@ -33,12 +33,14 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "data" : ['fleet_view.xml',
-                        'fleet_expense_view.xml',
-                        'fleet_expense_type_view.xml',
-                        'security/ir.model.access.csv',
-                        'security/fleet_security.xml',
-                        'data/expense_type.xml'],
+        "data" : [
+        #  'fleet_view.xml',
+                        #  'fleet_expense_view.xml',
+                        #  'fleet_expense_type_view.xml',
+                        #  'security/ir.model.access.csv',
+                        #  'security/fleet_security.xml',
+                        #  'data/expense_type.xml'
+                        ],
         "installable": True,
         'active': False
 

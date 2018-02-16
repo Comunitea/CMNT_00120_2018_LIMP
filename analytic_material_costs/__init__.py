@@ -21,6 +21,6 @@
 
 """Initial file to import each classes in this module"""
 
-import hr_employee
-import analytic_stock_move
-import analytic_account
+#  import hr_employee
+#  import analytic_stock_move
+#  import analytic_account

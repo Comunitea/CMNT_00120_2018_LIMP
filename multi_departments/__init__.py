@@ -20,6 +20,6 @@
 
 """Initial file to import each classes in this module"""
 
-import hr_department
-import res_users
-import hr_employee
+#  import hr_department
+#  import res_users
+#  import hr_employee

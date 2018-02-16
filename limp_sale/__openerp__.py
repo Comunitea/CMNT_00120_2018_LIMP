@@ -41,19 +41,19 @@
         "init_xml" : [],
         "demo_xml" : [],
         "data" : [
-            'product_view.xml',
-            'wizard/create_service_picking_from_sale_view.xml',
-            'data/price_rule_sequence.xml',
-            'sale_order_periodicity_view.xml',
-            # 'sale_order_view.xml', MIGRACION:
-            'security/ir.model.access.csv',
-            'limp_sale_report.xml',
-            'price_rule_view.xml',
-            'wizard/print_product_pricelist_view.xml',
-            'security/limp_sale_data.xml',
-            'limp_service_picking_view.xml',
-            # 'waste_services_view.xml',
-            'limp_contract_view.xml'
+            #  'product_view.xml',
+            #  'wizard/create_service_picking_from_sale_view.xml',
+            #  'data/price_rule_sequence.xml',
+            #  'sale_order_periodicity_view.xml',
+            #  # 'sale_order_view.xml', MIGRACION:
+            #  'security/ir.model.access.csv',
+            #  'limp_sale_report.xml',
+            #  'price_rule_view.xml',
+            #  'wizard/print_product_pricelist_view.xml',
+            #  'security/limp_sale_data.xml',
+            #  'limp_service_picking_view.xml',
+            #  # 'waste_services_view.xml',
+            #  'limp_contract_view.xml'
             ],
         "installable": True,
         'active': False

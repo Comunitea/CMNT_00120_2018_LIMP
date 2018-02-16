@@ -19,11 +19,11 @@
 #
 ##############################################################################
 
-import account_analytic_account
-import account_invoice
-import account_analytic_journal
-import account_analytic_plans
-import account_move_line
-import account_analytic_report_entries
-import account_asset
-import account_analytic_default
+#  import account_analytic_account
+#  import account_invoice
+#  # import account_analytic_journal
+#  import account_analytic_plans
+#  import account_move_line
+#  import account_analytic_report_entries
+#  import account_asset
+#  import account_analytic_default

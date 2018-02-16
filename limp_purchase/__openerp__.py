@@ -31,8 +31,10 @@
             ],
         "init_xml" : [],
         "demo_xml" : [],
-        "data" : ['limp_purchase_report.xml',
-                        'purchase_view.xml'],
+        "data" : [
+            #  'limp_purchase_report.xml',
+            #  'purchase_view.xml'
+            ],
         "installable": True,
         'active': False
 }

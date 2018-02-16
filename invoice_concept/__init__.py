@@ -20,8 +20,8 @@
 
 """Initial file to import each classes in this module"""
 
-import analytic_invoice_concept
-import analytic_account_invoice_concept_rel
-import invoice
-import account_analytic_account
-import wizard
+#  import analytic_invoice_concept
+#  import analytic_account_invoice_concept_rel
+#  import invoice
+#  import account_analytic_account
+#  import wizard

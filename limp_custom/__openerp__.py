@@ -53,17 +53,18 @@
         "init_xml" : [],
         "demo_xml" : [],
         "data" : [#'stock_picking_view.xml', MIGRACION: Vistas stock
-                        'product_view.xml',
-                        'security/limp_custom_data.xml',
-                        'res_partner_view.xml',
-                        # 'purchase_view.xml', MIGRACION: warehouse_id ya no existe cambiar por picking_type_id?
-                        # 'invoice_lines_view.xml',
-                        # 'account_invoice_view.xml',
-                        'security/ir.model.access.csv',
-                        'hr_employee_view.xml',
-                        'container_view.xml',
-                        'res_users_view.xml',
-                        'account_analytic_view.xml'],
+                        #  'product_view.xml',
+                        #  'security/limp_custom_data.xml',
+                        #  'res_partner_view.xml',
+                        #  # 'purchase_view.xml', MIGRACION: warehouse_id ya no existe cambiar por picking_type_id?
+                        #  # 'invoice_lines_view.xml',
+                        #  # 'account_invoice_view.xml',
+                        #  'security/ir.model.access.csv',
+                        #  'hr_employee_view.xml',
+                        #  'container_view.xml',
+                        #  'res_users_view.xml',
+                        #  'account_analytic_view.xml'
+                        ],
         "installable": True,
         'active': False
 

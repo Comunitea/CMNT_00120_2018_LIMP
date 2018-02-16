@@ -31,10 +31,10 @@
         "init_xml" : [],
         "demo_xml" : [],
         "data" : [
-            'security/ir.model.access.csv',
-            'res_delegation_view.xml',
-            'res_users_view.xml',
-            'security/multi_delegations_security.xml'
+            #  'security/ir.model.access.csv',
+            #  'res_delegation_view.xml',
+            #  'res_users_view.xml',
+            #  'security/multi_delegations_security.xml'
             ],
         "installable": True,
         'active': False

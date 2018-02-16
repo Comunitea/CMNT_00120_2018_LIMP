@@ -37,15 +37,15 @@
         "init_xml" : [],
         "demo_xml" : [],
         "data" : [
-                'hr_employee_view.xml',
-                'timesheet_view.xml',
-                'wizard/distribution_costs_import_view.xml',
-                'wizard/remuneration_timesheet_wzd_view.xml',
-                'wizard/distribute_effective_costs_view.xml',
-                'data/timesheet_seq.xml',
-                'account_analytic_line_view.xml',
-                'security/ir.model.access.csv',
-                'security/limp_distribution_costs_security.xml'
+                #  'hr_employee_view.xml',
+                #  'timesheet_view.xml',
+                #  'wizard/distribution_costs_import_view.xml',
+                #  'wizard/remuneration_timesheet_wzd_view.xml',
+                #  'wizard/distribute_effective_costs_view.xml',
+                #  'data/timesheet_seq.xml',
+                #  'account_analytic_line_view.xml',
+                #  'security/ir.model.access.csv',
+                #  'security/limp_distribution_costs_security.xml'
         ],
         "installable": True,
         'active': False
