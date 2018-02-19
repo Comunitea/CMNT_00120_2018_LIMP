@@ -34,7 +34,6 @@
             'account',
             'decimal_precision',
             # 'base_contact', MIGRACION: eliminado
-            'base_contact_extend',
             # 'analytic_department', MIGRACION:
             #'account_payment_extension', MIGRACION: Modulo eliminado
             'invoice_concept',

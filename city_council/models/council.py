@@ -1,7 +1,10 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2004-2008 Tiny SPRL (<http://tiny.be>). All Rights Reserved
+#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -17,29 +20,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-{
-        "name" : "Base contact extend",
-        "description": """Add new general fields to contact:
-    * Identification Id
-    * Gender
-    * SSn No
-    * Sin No
-    * Passport No""",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Contact",
-        "depends" : [
-            'base',
-            # 'base_contact', MIGRACION: eliminado
-            ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : [#'partner_contact_view.xml',
-                        #'partner_address_view.xml'
-                       ],
-        "installable": True,
-        'active': False
 
-}
+class CityCouncil(models.Model):
+
+    _name = 'city.council'
+
+    name = fields.Char('Council', required=True)
+    zip_ids = fields.One2many('res.better.zip', 'council_id', 'Zipcodes')
+
+
+class ResBetterZip(models.Model):
+
+    _inherit = "res.better.zip"
+
+    council_id = fields.Many2one('city.council', 'Council')

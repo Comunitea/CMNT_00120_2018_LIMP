@@ -18,9 +18,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""Initial file to import each classes in this module"""
-
-import container
-import container_move
-import res_partner_address
+from . import models

@@ -2,30 +2,28 @@
 <!-- © 2018 Comunitea
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<openerp>
-    <data>
+<odoo>
 
-        <record id="res_partner_add_council" model="ir.ui.view">
-            <field name="name">res.partner.form</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="arch" type="xml">
-                <field name="country_id" position="after">
-                    <field name="council_id" placeholder="Council"/>
-                </field>
+    <record id="res_partner_add_council" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="country_id" position="after">
+                <field name="council_id" placeholder="Council"/>
             </field>
-        </record>
+        </field>
+    </record>
 
-        <record id="res_better_zip_add_council" model="ir.ui.view">
-            <field name="name">res.better.zip.form</field>
-            <field name="model">res.better.zip</field>
-            <field name="inherit_id" ref="base_location.better_zip_form"/>
-            <field name="arch" type="xml">
-                <field name="country_id" position="after">
-                        <field name="council_id"/>
-                </field>
+    <record id="res_better_zip_add_council" model="ir.ui.view">
+        <field name="name">res.better.zip.form</field>
+        <field name="model">res.better.zip</field>
+        <field name="inherit_id" ref="base_location.better_zip_form"/>
+        <field name="arch" type="xml">
+            <field name="country_id" position="after">
+                    <field name="council_id"/>
             </field>
-        </record>
+        </field>
+    </record>
 
-    </data>
-</openerp>
+</odoo>

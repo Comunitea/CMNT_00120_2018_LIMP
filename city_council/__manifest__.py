@@ -20,21 +20,17 @@
 #
 ##############################################################################
 {
-    "name" : "Council city",
-    "version" : "1.0",
-    "author" : "Pexego",
-    "category" : "Generic Modules/Base",
-    "description": """Council to classify cities (zipcodes)""",
-    "depends" : [
-        "base",
-        # 'base_contact', MIGRACION: eliminado
-        "base_location"],
-    "data" : [
-        #'council_view.xml', MIGRACION:
-        #'city_council_wizard.xml',
-        'security/ir.model.access.csv',
-        'views/res_partner.xml'
-        ],
-    "active": False,
-    "installable": True
+    'name': 'Council city',
+    'version': '1.0',
+    'author': 'Pexego',
+    'category': 'Generic Modules/Base',
+    'description': """Council to classify cities (zipcodes)""",
+    'depends': ['base', 'base_location', 'sales_team'],
+    'data': [
+        'views/res_partner.xml',
+        'views/council.xml',
+        'wizard/associate_council_better_zip.xml',
+        'security/ir.model.access.csv'
+    ],
+    'installable': True
 }

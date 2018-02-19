@@ -2,6 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,6 +19,27 @@
 #
 ##############################################################################
 
-"""Initial file to import each classes in this module"""
 
-# import partner_contact MIGRACION: Modelo eliminado
+{
+    'name': 'Containers management',
+    'description': """Allow to manage containers, move with customers and moves history.""",
+    'version': '1.0',
+    'author': 'Pexego',
+    'website': 'http://www.pexego.es',
+    'category': 'Base/Containers',
+    'depends': [
+        'base',
+        'product',
+        'stock',
+        'hr'
+    ],
+    'data': [
+        'views/container.xml',
+        'views/container_move.xml',
+        'views/res_partner.xml',
+        'security/ir.model.access.csv',
+        'data/containers_sequence.xml',
+        'security/container_security.xml'],
+    'installable': True,
+
+}

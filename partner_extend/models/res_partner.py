@@ -19,14 +19,14 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from odoo import models, fields, api
 
-class res_partner(osv.osv):
+class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    _columns = {
-        'name': fields.char('Name', size=255, required=True, select=True),
-    }
-
-res_partner()
+    @api.model
+    def _commercial_fields(self):
+        res = super(ResPartner, self)._commercial_fields()
+        res.remove('vat')
+        return res

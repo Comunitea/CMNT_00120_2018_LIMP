@@ -19,10 +19,19 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+{
+        "name" : "Partner extension",
+        "description": "Add some improvements in partners.",
+        "version" : "1.0",
+        "author" : "Pexego",
+        "website" : "http://www.pexego.es",
+        "category" : "Base/Partner",
+        "depends" : [
+            'base_vat'
+            ],
+        "data" : [
+            'views/res_partner.xml'
+        ],
+        "installable": True,
 
-class ResPartner(models.Model):
-
-    _inherit = "res.partner"
-
-    containers_store = fields.Boolean('Containers store')
+}

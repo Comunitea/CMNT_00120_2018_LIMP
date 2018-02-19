@@ -18,28 +18,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-{
-        "name" : "Partner extension",
-        "description": "Add some improvements in partners.",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Partner",
-        "depends" : [
-            'base',
-            # 'base_contact', MIGRACION: eliminado
-            'l10n_es_partner',
-            'calendar'
-            ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : [
-            #  'partner_view.xml',
-            #  'partner_address_view.xml',
-            #'res_partner_job_view.xml' MIGRACION: Modelo res.partner.job eliminado
-        ],
-        "installable": True,
-        'active': False
+class ContainerMove(models.Model):
 
-}
+    _name = "container.move"
+    _description = "History of container moves"
+    _order = "id desc"
+
+    container_id = fields.Many2one('container', 'Container', required=True)
+    address_id = fields.Many2one('res.partner', 'Situation', required=True)
+    move_type = fields.Selection([('in','In'),('out', 'Out')], 'Move type',
+                                 required=True, default='in')
+    move_date = fields.Datetime('Date', required=True,
+                                default=fields.Datetime.now)
+    type = fields.Selection(related='container_id.type', store=True,
+                            string="Container type")
+    responsible_id = fields.Many2one('hr.employee', 'Driver', readonly=True)

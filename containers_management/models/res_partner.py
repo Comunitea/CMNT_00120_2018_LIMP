@@ -19,30 +19,10 @@
 #
 ##############################################################################
 
+from odoo import models, fields
 
-{
-        "name" : "Containers management",
-        "description": """Allow to manage containers, move with customers and moves history.""",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Containers",
-        "depends" : [
-            'base',
-            'product',
-            'stock',
-            # 'base_contact', MIGRACION: eliminado
-            'hr'
-            ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : ['container_view.xml',
-                        'container_move_view.xml',
-                        'res_partner_address_view.xml',
-                        'security/ir.model.access.csv',
-                        'containers_sequence.xml',
-                        'security/container_security.xml'],
-        "installable": True,
-        'active': False
+class ResPartner(models.Model):
 
-}
+    _inherit = "res.partner"
+
+    containers_store = fields.Boolean('Containers store')

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="container_move_tree" model="ir.ui.view">
+        <field name="name">container.move.tree</field>
+        <field name="model">container.move</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Container moves">
+                <field name="container_id"/>
+                <field name="type" invisible="1"/>
+                <field name="move_date"/>
+                <field name="responsible_id"/>
+                <field name="address_id"/>
+                <field name="move_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="container_move_form" model="ir.ui.view">
+        <field name="name">container.move.form</field>
+        <field name="model">container.move</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Container move">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="container_id"/>
+                            <field name="move_date"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <group>
+                            <field name="address_id"/>
+                            <field name="move_type"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="container_move_search" model="ir.ui.view">
+        <field name="name">container.move.search</field>
+        <field name="model">container.move</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Container moves">
+                <filter icon="terp-go-home" string="Outputs" name="outputs" domain="[('move_type','=','out')]" help="Output moves"/>
+                <separator orientation="vertical"/>
+                <field name="container_id"/>
+                <field name="address_id"/>
+                <field name="move_date"/>
+                <field name="responsible_id"/>
+                <field name="move_type"/>
+                <field name="type"/>
+                <newline/>
+                <group expand="1" string="Group By..." >
+                    <filter string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'move_type'}"/>
+                    <filter string="Container" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'container_id'}"/>
+                    <filter string="Container type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}"/>
+                    <filter string="Driver" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'responsible_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_container_move" model="ir.actions.act_window">
+        <field name="name">Container moves</field>
+        <field name="res_model">container.move</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id"  ref="container_move_search"/>
+        <field name="context">{'search_default_outputs':1}</field>
+    </record>
+
+    <menuitem action="action_container_move" id="menu_containers_move_open" parent="menu_containers" name="Container moves"/>
+
+</odoo>
