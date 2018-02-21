@@ -18,4 +18,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import models
+
+{
+    'name' : 'Waste management',
+    'description': """Allow to manage waste""",
+    'version' : '1.0',
+    'author' : 'Pexego',
+    'website' : 'http://www.pexego.es',
+    'category' : 'Base/Waste',
+    'depends' : [
+        'base',
+        'stock'
+        ],
+    'data' : [
+        'views/waste_ler_code.xml',
+        'security/ir.model.access.csv'
+    ],
+    'installable': True,
+}

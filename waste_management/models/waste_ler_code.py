@@ -19,24 +19,31 @@
 #
 ##############################################################################
 
-{
-        "name" : "Waste management",
-        "description": """Allow to manage waste""",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Waste",
-        "depends" : [
-            'base',
-            'stock'
-            ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : [
-        #  'waste_ler_code_view.xml',
-                        #  'security/ir.model.access.csv'
-                        ],
-        "installable": True,
-        'active': False
+from odoo import models, fields, api, _
 
-}
+
+class WasteLerCode(models.Model):
+
+    _name = "waste.ler.code"
+    _description = "European list of waste"
+    _rec_name = "code"
+
+    name = fields.Char('Name', required=True)
+    code = fields.Char('Code', size=10, required=True)
+    dangerous = fields.Boolean('Dangerous')
+    cpa = fields.Boolean('cpa')
+    density = fields.Float('Density', digits=(16, 3), default=1.0)
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        if not args:
+            args=[]
+        if name:
+            # Be sure name_search is symetric to name_get
+            wlc = self.search([('code', 'ilike', name)] + args, limit=limit)
+            if not wlc:
+                name = name.split(' / ')[-1]
+                wlc = self.search([('name', operator, name)] + args, limit=limit)
+        else:
+            wlc = self.search(args, limit=limit)
+        return wlc.name_get()
