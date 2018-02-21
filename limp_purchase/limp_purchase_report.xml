@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-
-        <report auto="False" id="purchase.report_purchase_order" model="purchase.order" name="purchase.order" rml="limp_purchase/report/order.rml" string="Purchase Order"/>
-
-    </data>
-</openerp>
