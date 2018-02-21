@@ -17,19 +17,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-"""Add new delegation relationship to users"""
 
-from openerp.osv import osv, fields
+class ResUsers(models.Model):
 
-class res_users(osv.osv):
-    """Add new delegation relationship to users"""
+    _inherit = 'res.users'
 
-    _inherit = "res.users"
-
-    _columns = {
-        'delegation_ids': fields.many2many('res.delegation', 'res_delegation_users_rel', 'user_id', 'delegation_id', 'Delegations'),
-        'context_delegation_id': fields.many2one('res.delegation', 'Delegation')
-    }
-
-res_users()
+    delegation_ids = fields.Many2many(
+        'res.delegation', 'res_delegation_users_rel', 'user_id',
+        'delegation_id', 'Delegations')
+    context_delegation_id = fields.Many2one('res.delegation', 'Delegation')

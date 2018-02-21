@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record model="ir.ui.view" id="view_users_form_add_delegations_page">
             <field name="name">res.users.form_add_delegations_page</field>
@@ -10,23 +9,26 @@
             <field name="arch" type="xml">
                 <notebook position="inside">
                     <page string="Delegations" groups="base.group_no_one">
+                        <group>
+                            <field name="context_delegation_id" widget="selection" readonly="0"/>
+                        </group>
                         <field name="delegation_ids" nolabel="1" colspan="4"/>
                     </page>
                 </notebook>
             </field>
         </record>
-        <!--record model="ir.ui.view" id="view_delegation_form_simple_modif_inherited1">
+
+        <record model="ir.ui.view" id="view_delegation_form_simple_modif_inherited1">
             <field name="name">view.delegation.form.hr.inherited1</field>
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form_simple_modif" />
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <page string="Current Activity" position="inside">
+                <field name="company_id" position="after">
                     <field name="context_delegation_id" widget="selection" readonly="0"/>
-                </page>
+                </field>
             </field>
-        </record MIGRACION: comentado -->
+        </record>
 
 
-    </data>
-</openerp>
+</odoo>

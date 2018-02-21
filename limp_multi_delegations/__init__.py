@@ -17,9 +17,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""Initial file to import each classes in this module"""
-
-#  import res_delegation
-#  import res_users
-# import add_delegation MIGRACION: import report
+from . import models

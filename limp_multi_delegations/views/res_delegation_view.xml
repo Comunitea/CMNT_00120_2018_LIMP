@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="res_delegation_tree" model="ir.ui.view">
             <field name="name">res.delegation.tree</field>
@@ -21,14 +20,22 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Delegation">
-                    <field name="code"/>
-                    <field name="name"/>
-                    <field name="parent_id"/>
-                    <field name="address_id"/>
-                    <separator string="Description" colspan="4"/>
-                    <field name="description" nolabel="1" colspan="4"/>
-                    <separator string="Users" colspan="4"/>
-                    <field name="user_ids" colspan="4" nolabel="1"/>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="parent_id"/>
+                                <field name="address_id"/>
+                            </group>
+                            <separator string="Description" colspan="4"/>
+                            <field name="description" nolabel="1" colspan="4"/>
+                            <separator string="Users" colspan="4"/>
+                            <field name="user_ids" colspan="4" nolabel="1"/>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -40,8 +47,8 @@
             <field name="arch" type="xml">
                 <search string="Delegations">
                     <field name="code"/>
-                    <field name="name" select="1"/>
-                    <field name="parent_id" select="1" widget="selection"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
                 </search>
             </field>
         </record>
@@ -53,9 +60,6 @@
             <field name="view_type">form</field>
         </record>
 
-        <menuitem id="menu_res_delegation_base" parent="base.menu_administration" sequence="50" name="Delegations"/>
+        <menuitem action="action_res_delegation" id="menu_res_delegation_open" parent="base.menu_users" name="Delegations"/>
 
-        <menuitem action="action_res_delegation" id="menu_res_delegation_open" parent="menu_res_delegation_base" name="Delegations"/>
-
-    </data>
-</openerp>
+</odoo>

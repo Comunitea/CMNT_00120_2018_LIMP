@@ -19,24 +19,21 @@
 ##############################################################################
 
 {
-        "name" : "Multi Delegations",
-        "description": "Add new dimension for multi-company rules, delegations.",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Multi-company",
-        "depends" : [
-            'base',
-            ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : [
-            #  'security/ir.model.access.csv',
-            #  'res_delegation_view.xml',
-            #  'res_users_view.xml',
-            #  'security/multi_delegations_security.xml'
-            ],
-        "installable": True,
-        'active': False
+    'name' : 'Multi Delegations',
+    'description': 'Add new dimension for multi-company rules, delegations.',
+    'version' : '1.0',
+    'author' : 'Pexego',
+    'website' : 'http://www.pexego.es',
+    'category' : 'Base/Multi-company',
+    'depends' : [
+        'base',
+        ],
+    'data' : [
+        'views/res_delegation_view.xml',
+        'views/res_users_view.xml',
+        'security/ir.model.access.csv',
+        'security/multi_delegations_security.xml'
+        ],
+    'installable': True
 
 }
