@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data noupdate="1">
-        
+
         <record id="fleet_expense_type_refueling" model="fleet.expense.type">
             <field name="name">Refueling</field>
         </record>
-        
+
         <record id="fleet_expense_type_garage" model="fleet.expense.type">
             <field name="name">Garage</field>
         </record>
-        
+
         <record id="fleet_expense_type_other" model="fleet.expense.type">
             <field name="name">Other</field>
         </record>
-        
+
     </data>
-</openerp>
+</odoo>

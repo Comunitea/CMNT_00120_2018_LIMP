@@ -29,20 +29,32 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Fleet expense">
-                    <field name="name"/>
-                    <field name="expense_date"/>
-                    <field name="partner_id"/>
-                    <field name="fleet_id"/>
-                    <field name="expense_type" widget="selection" required="1"/>
-                    <field name="amount"/>
-                    <field name="department_id"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="expense_date"/>
+                            <field name="partner_id"/>
+                            <field name="fleet_id"/>
+                        </group>
+                        <group>
+                            <field name="expense_type" widget="selection" required="1"/>
+                            <field name="amount"/>
+                            <field name="department_id"/>
+                        </group>
+                    </group>
                     <separator string="Price" colspan="4"/>
-                    <field name="labor"/>
-                    <field name="parts_price"/>
-                    <field name="liter"/>
-                    <field name="km"/>
-                    <field name="consumption"/>
-                    <field name="distribute"/>
+                    <group>
+                        <group>
+                            <field name="labor"/>
+                            <field name="parts_price"/>
+                            <field name="liter"/>
+                        </group>
+                        <group>
+                            <field name="km"/>
+                            <field name="consumption"/>
+                            <field name="distribute"/>
+                        </group>
+                    </group>
                     <newline/>
                     <separator string="Observations" colspan="4"/>
                     <field name="note" colspan="4" nolabel="1"/>

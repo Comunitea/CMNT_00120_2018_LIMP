@@ -19,15 +19,26 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+{
+    'name' : 'Simple fleet management',
+    'description': """Allow to manege fleet registries""",
+    'version' : '1.0',
+    'author' : 'Pexego',
+    'website' : 'http://www.pexego.es',
+    'category' : 'Base/Fleet',
+    'depends' : [
+        'base',
+        'stock',
+        'hr'
+        ],
+    'data' : [
+        'views/fleet.xml',
+        'views/fleet_expense.xml',
+        'views/fleet_expense_type.xml',
+        'security/ir.model.access.csv',
+        'security/fleet_security.xml',
+        'data/expense_type.xml'
+    ],
+    'installable': True,
 
-class fleet_expense_type(osv.osv):
-
-    _name = "fleet.expense.type"
-
-    _columns = {
-        'name': fields.char('Name', size=128, required=True, translate=True),
-        'product_id': fields.many2one('product.product', 'Related product')
-    }
-
-fleet_expense_type()
+}

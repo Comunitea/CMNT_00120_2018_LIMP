@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <record model="ir.rule" id="fleet_comp_rule">
-            <field name="name">Fleet multi-company</field>
-            <field name="model_id" ref="model_fleet"/>
-            <field name="global" eval="True"/>
-            <field name="domain_force">['|','|',('company_id.child_ids','child_of',[user.company_id.id]),('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
-        </record>
-    </data>
-</openerp>    
+<odoo>
+    <record model="ir.rule" id="fleet_comp_rule">
+        <field name="name">Fleet multi-company</field>
+        <field name="model_id" ref="model_fleet"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|','|',('company_id.child_ids','child_of',[user.company_id.id]),('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
+    </record>
+</odoo>

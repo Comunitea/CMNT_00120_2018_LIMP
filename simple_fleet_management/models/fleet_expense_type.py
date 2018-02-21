@@ -18,30 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-{
-        "name" : "Simple fleet management",
-        "description": """Allow to manege fleet registries""",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Fleet",
-        "depends" : [
-            'base',
-            'stock',
-            'hr'
-            ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : [
-        #  'fleet_view.xml',
-                        #  'fleet_expense_view.xml',
-                        #  'fleet_expense_type_view.xml',
-                        #  'security/ir.model.access.csv',
-                        #  'security/fleet_security.xml',
-                        #  'data/expense_type.xml'
-                        ],
-        "installable": True,
-        'active': False
 
-}
+class FleetExpenseType(models.Model):
+
+    _name = 'fleet.expense.type'
+
+    name = fields.Char(required=True, translate=True)
+    product_id = fields.Many2one('product.product', 'Related product')
