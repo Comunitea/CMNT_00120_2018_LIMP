@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="material_cost_tag" model="account.analytic.tag">
+        <field name="name">Material</field>
+    </record>
+</odoo>

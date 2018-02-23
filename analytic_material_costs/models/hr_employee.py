@@ -18,28 +18,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-{
-        "name" : "Analytic account material costs",
-        "description": """Add intermediate object between analytic_account and stock_move to adding material costs in analytic lines""",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Contract",
-        "depends" : [
-            'base',
-            'analytic',
-            'account',
-            'stock',
-            'hr'
-            ],
-        "data" : [# 'analytic_material_costs_data.xml', MIGRACION: Modelo eliminado
-                    #  'analytic_stock_move_view.xml',
-                    #  'hr_employee_view.xml',
-                    #  'analytic_account_view.xml',
-                    #  'security/ir.model.access.csv'
-                ],
-        "installable": True,
-        'active': False
 
-}
+class HrEmployee(models.Model):
+
+    _inherit = 'hr.employee'
+
+    location_id = fields.Many2one(
+        'stock.location', 'Associated location',
+        help="Associated output location, origin of material consumptions in"
+        "analytic accounts.")

@@ -19,11 +19,27 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+{
+    'name' : 'Analytic account material costs',
+    'description': """Add intermediate object between analytic_account and stock_move to adding material costs in analytic lines""",
+    'version' : '1.0',
+    'author' : 'Pexego',
+    'website' : 'http://www.pexego.es',
+    'category' : 'Base/Contract',
+    'depends' : [
+        'base',
+        'analytic',
+        'account',
+        'stock',
+        'hr'
+        ],
+    'data' : [
+        'views/analytic_account.xml',
+        'views/analytic_stock_move.xml',
+        'views/hr_employee.xml',
+        'data/analytic_material_costs_data.xml',
+        'security/ir.model.access.csv',
+            ],
+    'installable': True,
 
-class HrEmployee(models.Model):
-    """Add new field to employees (location)"""
-
-    _inherit = 'hr.employee'
-
-    location_id = fields.Many2one('stock.location', 'Associated location', help="Associated output location, origin of material consumptions in analytic accounts.")
+}

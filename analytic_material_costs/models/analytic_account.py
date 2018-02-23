@@ -18,12 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp import models, fields
 
 class AccountAnalyticAccount(models.Model):
-    """Add new field to analytic accounts"""
 
     _inherit = 'account.analytic.account'
 
-    analytic_move_ids = fields.One2many('account.analytic.stock.move', 'analytic_account_id', 'Consumptions', copy=False)
+    analytic_move_ids = fields.One2many(
+        'account.analytic.stock.move', 'analytic_account_id',
+        'Consumptions', copy=False)
