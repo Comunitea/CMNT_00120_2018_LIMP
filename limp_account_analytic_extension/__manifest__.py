@@ -19,33 +19,32 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+{
+    'name': 'Analytic account extension',
+    'description': """Extends analytic accounting for doing analysis""",
+    'version': '1.0',
+    'author': 'Pexego',
+    'website': 'http://www.pexego.es',
+    'category': 'Account/Analytic',
+    'depends': [
+        'base',
+        'analytic',
+        'account',
+        'analytic_base_department',
+        'limp_multi_delegations',
+        'account_analytic_distribution',
+        'account_analytic_default',
+        'l10n_es_account_asset',
+        ],
+    'data': [
+        'views/account_analytic_plans.xml',
+        'views/account_analytic_default.xml',
+        'views/account_analytic.xml',
+        'views/account_asset.xml',
+        'views/account_invoice.xml',
+        'views/account_move_line.xml',
+        'security/analytic_extension_security.xml',
+    ],
+    'installable': True
 
-class account_asset(osv.osv):
-
-    _inherit = "account.asset.asset"
-    
-    
-    _columns = {
-        'analytic_distribution_id': fields.many2one('account.analytic.plan.instance', 'Analytic distribution')
-    }
-    
-account_asset()
-
-class account_asset_depreciation_line(osv.osv):
-    
-    _inherit = "account.asset.depreciation.line"
-    
-    def create_move(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        res = super(account_asset_depreciation_line, self).create_move(cr, uid, ids, context=context)
-
-        for move in self.pool.get('account.move').browse(cr, uid, res):
-            for line in move.line_id:
-                if line.asset_id and line.asset_id.analytic_distribution_id:
-                    line.write({'analytics_id': line.asset_id.analytic_distribution_id.id})
-                    
-        return res
-    
-account_asset_depreciation_line()
+}

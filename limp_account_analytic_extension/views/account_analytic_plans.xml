@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="account_analytic_distribution_form_add_department_delegation">
+        <field name="name">account.analytic.distribution.form.add_department_delgation</field>
+        <field name="model">account.analytic.distribution</field>
+        <field name="inherit_id" ref="account_analytic_distribution.account_analytic_distribution_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='rule_ids']/tree/field[@name='analytic_account_id']" position="before">
+                <field name="fix_amount"/>
+            </xpath>
+            <xpath expr="//field[@name='rule_ids']/tree/field[@name='analytic_account_id']" position="after">
+                <field name="delegation_id"/>
+                <field name="department_id"/>
+                <field name="manager_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

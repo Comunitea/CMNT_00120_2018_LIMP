@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_account_analytic_account_search_add_delegation_id" model="ir.ui.view">
+        <field name="name">account.analytic.account.search.add_delegation_id</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_search" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="custom_manager_id"/>
+                <field name="delegation_id"/>
+            </field>
+            <xpath expr="//group" position="inside">
+                <filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by': 'custom_manager_id'}"/>
+                <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_account_tree_add_delegation_id" model="ir.ui.view">
+        <field name="name">account.analytic.account.tree.add_delegation_id</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_list" />
+        <field name="arch" type="xml">
+            <field name='code' position="replace">
+                <!--field name="date_start"/-->
+                <field name="code" invisible="1"/>
+                <field name="custom_manager_id"/>
+                <field name="delegation_id"/>
+            </field>
+            <field name="debit" position="replace"/>
+            <field name="credit" position="replace"/>
+            <field name="balance" position="replace"/>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_line_form_add_delegation_id" model="ir.ui.view">
+        <field name="name">account.analytic.line.form.add_delegation_id</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_form" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="delegation_id" />
+                <field name="manager_id"/>
+                <field name="employee_id"/>
+                <field name="partner_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_line_tree_add_delegation_id" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree.add_delegation_id</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_tree" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="delegation_id" />
+                <field name="manager_id"/>
+                <field name="employee_id"/>
+                <field name="partner_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_line_filter_add_delegation_id" model="ir.ui.view">
+        <field name="name">account.analytic.line.select.add_delegation_id</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_filter" />
+        <field name="arch" type="xml">
+            <field name="account_id" position="before">
+                <field name="delegation_id" widget="selection" />
+                <field name="manager_id" widget="selection"/>
+                <field name="employee_id"/>
+                <field name="partner_id"/>
+            </field>
+            <filter name="group_date" position="after">
+                <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
+                <filter string="Responsible" icon="terp-folder-orange" domain="[]" context="{'group_by':'manager_id'}"/>
+                <filter string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                <filter string="Partner" icon="terp-folder-yellow" domain="[]" context="{'group_by':'partner_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

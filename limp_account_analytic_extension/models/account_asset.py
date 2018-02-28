@@ -18,14 +18,28 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
 
-class account_analytic_journal(osv.osv):
-    _inherit = 'account.analytic.journal'
+class AccountAssetAsset(models.Model):
 
-    _columns = {
-        'name': fields.char('Journal Name', size=64, required=True, translate=True),
-    }
+    _inherit = 'account.asset.asset'
 
-account_analytic_journal()
+    analytic_distribution_id = fields.Many2one(
+        'account.analytic.distribution', 'Analytic distribution')
+
+
+class AccountAssetDepreciationLine(models.Model):
+
+    _inherit = 'account.asset.depreciation.line'
+
+    def create_move(self, post_move=True):
+        res = super(AccountAssetDepreciationLine, self).create_move(post_move)
+
+        for move in self.env['account.move'].browse(res):
+            for line in move.line_id:
+                if line.asset_id and line.asset_id.analytic_distribution_id:
+                    line.write(
+                        {'analytic_distribution_id':
+                         line.asset_id.analytic_distribution_id.id})
+        return res

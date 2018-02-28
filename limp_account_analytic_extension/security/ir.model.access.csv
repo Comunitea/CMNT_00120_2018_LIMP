@@ -1,5 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_account_analytic_plan_analytic","account.analytic.plan.analytic","account_analytic_plans.model_account_analytic_plan","analytic.group_analytic_accounting",1,1,1,1
-"access_account_analytic_plan_line_analytic","account.analytic.plan.line.analytic","account_analytic_plans.model_account_analytic_plan_line","analytic.group_analytic_accounting",1,1,1,1
-"access_account_analytic_plan_instance_analytic","account.analytic.plan.instance.analytic","account_analytic_plans.model_account_analytic_plan_instance","analytic.group_analytic_accounting",1,1,1,1
-"access_account_analytic_plan_instance_line_analytic","account.analytic.plan.instance.line.analytic","account_analytic_plans.model_account_analytic_plan_instance_line","analytic.group_analytic_accounting",1,1,1,1

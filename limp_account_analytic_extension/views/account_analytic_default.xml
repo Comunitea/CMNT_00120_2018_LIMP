@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2018 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="account_analytic_default_form_add_inv_type" model="ir.ui.view">
+        <field name="name">account.analytic.default.form</field>
+        <field name="model">account.analytic.default</field>
+        <field name="inherit_id" ref="account_analytic_default.view_account_analytic_default_form"/>
+        <field name="arch" type="xml">
+            <field name="date_stop" position="after">
+                <field name="inv_type"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_analytic_default_tree_add_inv_type" model="ir.ui.view">
+        <field name="name">account.analytic.default.tree</field>
+        <field name="model">account.analytic.default</field>
+        <field name="inherit_id" ref="account_analytic_default.view_account_analytic_default_tree"/>
+        <field name="arch" type="xml">
+            <field name="date_stop" position="after">
+                <field name="inv_type"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

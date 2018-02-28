@@ -18,4 +18,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import models
+from odoo import models, fields
+
+
+class AccountAnalyticDistributionRule(models.Model):
+
+    _inherit = 'account.analytic.distribution.rule'
+
+    delegation_id = fields.Many2one(
+        'res.delegation', 'Delegation', required=True,
+        default=lambda r: r.env.user.context_delegation_id.id)
+    department_id = fields.Many2one('hr.department', 'Department',
+                                    required=True)
+    manager_id = fields.Many2one(
+        'hr.employee', 'Responsible', required=True,
+        domain=[('responsible', '=', True)],
+        default=lambda r: r.env.user.employee_ids and
+        r.env.user.employee_ids[0].id or False)
+    fix_amount = fields.Float(digits=(12, 2), required=True)
+
+    # 'department_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,  MIGRACION: El campo context_department_id no existe
