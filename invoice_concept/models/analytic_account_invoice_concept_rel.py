@@ -20,8 +20,9 @@
 
 """Relationship between invoice concepts and analytic accounts"""
 
-from openerp import models, fields, api
-from openerp.addons.decimal_precision import decimal_precision as dp
+from odoo import models, fields, api
+from odoo.addons import decimal_precision as dp
+
 
 class AccountAnalyticInvoiceConceptRel(models.Model):
     """Relationship between invoice concepts and analytic accounts"""
@@ -30,25 +31,29 @@ class AccountAnalyticInvoiceConceptRel(models.Model):
     _description = "Relationship between analytic account and invoice concepts"
     _order = "sequence asc"
 
-    concept_id = fields.Many2one('account.analytic.invoice.concept', 'Concept', required=True)
-    analytic_id = fields.Many2one('account.analytic.account', 'Account', readonly=True)
-    amount = fields.Float('Amount', digits_compute=dp.get_precision('Account'), required=True)
-    freq = fields.Selection([('q', 'Quarterly'), ('m', 'Monthly')], 'Frequency', required=True, default='m')
-    last_invoice_date = fields.Date('Last invoice date', copy=False)
-    january = fields.Boolean('January', default=True)
-    february = fields.Boolean('February', default=True)
-    march = fields.Boolean('March', default=True)
-    april = fields.Boolean('April', default=True)
-    may = fields.Boolean('May', default=True)
-    june = fields.Boolean('June', default=True)
-    july = fields.Boolean('July', default=True)
-    august = fields.Boolean('August', default=True)
-    september = fields.Boolean('September', default=True)
-    october = fields.Boolean('October', default=True)
-    november = fields.Boolean('November', default=True)
-    december = fields.Boolean('December', default=True)
+    concept_id = fields.Many2one(
+        'account.analytic.invoice.concept', 'Concept', required=True)
+    analytic_id = fields.Many2one(
+        'account.analytic.account', 'Account', readonly=True)
+    amount = fields.Float(digits=dp.get_precision('Account'), required=True)
+    freq = fields.Selection(
+        [('q', 'Quarterly'), ('m', 'Monthly')], 'Frequency',
+        required=True, default='m')
+    last_invoice_date = fields.Date(copy=False)
+    january = fields.Boolean(default=True)
+    february = fields.Boolean(default=True)
+    march = fields.Boolean(default=True)
+    april = fields.Boolean(default=True)
+    may = fields.Boolean(default=True)
+    june = fields.Boolean(default=True)
+    july = fields.Boolean(default=True)
+    august = fields.Boolean(default=True)
+    september = fields.Boolean(default=True)
+    october = fields.Boolean(default=True)
+    november = fields.Boolean(default=True)
+    december = fields.Boolean(default=True)
     name = fields.Char('Description', default=True)
-    sequence = fields.Integer('Sequence', required=True, default=1)
+    sequence = fields.Integer(required=True, default=1)
 
     @api.onchange('concept_id')
     def onchange_concept_id(self):

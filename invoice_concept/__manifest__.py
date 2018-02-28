@@ -18,23 +18,28 @@
 #
 ##############################################################################
 
-"""Add to invoices a contract relationship"""
-
-from openerp import models, fields
-
-class AccountInvoice(models.Model):
-    """Add to invoices a contract relationship"""
-
-    _inherit = 'account.invoice'
-
-    analytic_id = fields.Many2one('account.analytic.account', 'Analytic account')
-
-    '''def refund(self, cr, uid, ids, date=None, period_id=None, description=None, journal_id=None):
-        new_ids = super(account_invoice, self).refund(cr, uid, ids, date=date, period_id=period_id, description=description, journal_id=journal_id)
-        orig_invoice_obj_id = self.browse(cr, uid, ids[0])
-        if orig_invoice_obj_id.analytic_id:
-            self.write(cr, uid, new_ids, {
-                'analytic_id': orig_invoice_obj_id.analytic_id.id
-            })
-
-        return new_ids'''
+{
+    'name' : 'Analytic account invoiced by concepts',
+    'description': """Add new object invoice concept to analytic account to invoice by concepts""",
+    'version' : '1.0',
+    'author' : 'Pexego',
+    'website' : 'http://www.pexego.es',
+    'category' : 'Base/Invoice/Contract',
+    'depends' : [
+        'base',
+        'analytic',
+        'account',
+        'product',
+        'limp_account_analytic_extension'
+        ],
+    'data' : [
+        'security/ir.model.access.csv',
+        'security/invoice_concept_security.xml',
+        'views/analytic_invoice_concept_rel.xml',
+        'views/account_invoice.xml',
+        'views/analytic_account.xml',
+        'views/analytic_invoice_concept.xml',
+        'views/product.xml'
+    ],
+    'installable': True,
+}

@@ -20,10 +20,9 @@
 
 """Concepts to invoice analytic accounts"""
 
-from openerp import models, fields, api
-import time
+from odoo import models, fields, api, _
 from datetime import datetime
-from openerp.tools.translate import _
+from odoo.exceptions import UserError
 
 MONTHS = {
     '1': _("Enero"),
@@ -40,6 +39,7 @@ MONTHS = {
     '12': _("Diciembre")
 }
 
+
 class AccountAnalyticInvoiceConcept(models.Model):
     """Concepts to invoice analytic accounts"""
 
@@ -47,36 +47,36 @@ class AccountAnalyticInvoiceConcept(models.Model):
     _description = "Analytic account invoice concepts"
 
     @api.model
-    def name_search(self, name, args=None, operator='ilike', limit=100):
-        """allows search by code too"""
-        '''MIGRACION: Solo firma
-        if args is None: args=[]
-        if context is None: context={}
-
+    def name_search(self, name, args=[], operator='ilike', limit=100):
         if name:
-            ids = self.search(cr, user, [('code', '=', name)]+ args, limit=limit, context=context)
-            if not len(ids):
-                ids = self.search(cr, user, [('code', operator, name)]+ args, limit=limit, context=context)
-                ids += self.search(cr, user, [('name', operator, name)]+ args, limit=limit, context=context)
-                ids = list(set(ids))
+            concepts = self.search([('code', '=', name)] + args, limit=limit)
+            if not concepts:
+                concepts = self.search(
+                    [('code', operator, name)] + args, limit=limit)
+                concepts += self.search(
+                    [('name', operator, name)] + args, limit=limit)
         else:
-            ids = self.search(cr, user, args, limit=limit, context=context)
+            concepts = self.search(args, limit=limit)
 
-        result = self.name_get(cr, user, ids, context)
-        return result'''
+        return concepts.name_get()
 
-    def process_name(self, concept, description=False, date=False):
-        """replaces time commands with its correspondent and currently timedata"""
+    @api.model
+    def process_name(self, description=False, date=False):
+        if not description and not self:
+            raise UserError(_(''))
         if not date:
             date = datetime.now()
-        if description:
-            res = description.replace('%(year)s', str(date.year)).replace('%(month)s', MONTHS[str(date.month)])
-        else:
-            res = concept.name.replace('%(year)s', str(date.year)).replace('%(month)s', MONTHS[str(date.month)])
-        return res
-
+        if not description:
+            description = self.name
+        return description.replace(
+            '%(year)s', str(date.year)).replace(
+            '%(month)s', MONTHS[str(date.month)])
 
     name = fields.Char('Concept', translate=True, required=True)
-    code = fields.Char('Code', size=8, required=True)
-    product_id = fields.Many2one('product.product', 'Product', required=True, help="Product required to map invoice taxes.")
-    company_id = fields.Many2one('res.company','Company',required=True, default=lambda r: r.env.user.company_id.id)
+    code = fields.Char(size=8, required=True)
+    product_id = fields.Many2one(
+        'product.product', 'Product', required=True,
+        help="Product required to map invoice taxes.")
+    company_id = fields.Many2one(
+        'res.company', 'Company', required=True,
+        default=lambda r: r.env.user.company_id.id)

@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-import contract_to_invoice
+from . import contract_to_invoice
