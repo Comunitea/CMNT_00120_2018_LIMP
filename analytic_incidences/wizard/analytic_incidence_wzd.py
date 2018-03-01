@@ -19,22 +19,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class AnalyticIncidenceWizard(models.TransientModel):
 
     _name = "analytic.incidence.wizard"
 
-    employee_id = fields.Many2one('hr.employee', 'Employee', required=True)
     date = fields.Date(required=True)
-    analytic_account_id = fields.Many2one('account.analytic.account', 'Account', readonly=True)
-    child_ids = fields.Many2one('remuneration','Childs remunerations',readonly=True)
-    #'parent_id': fields.one2many('child_ids', 'remuneration', 'Remuneration parent', readonly=True), MIGRACION: Revisar campos
     date_to = fields.Date()
     incidence_id_tp = fields.Many2one('incidence', 'Type')
     absence_id_tp = fields.Many2one('absence', 'Type absence')
-    conditions = fields.Selection([('equal_condition', 'Equal conditions'), ('diff_condition', 'Different conditions')], 'Conditions', required=True, default='equal_condition')
+    conditions = fields.Selection(
+        [('equal_condition', 'Equal conditions'),
+         ('diff_condition', 'Different conditions')], 'Conditions',
+        required=True, default='equal_condition')
     with_contract = fields.Boolean('With contract')
     contract_hours = fields.Float('Hours', digits=(12, 2))
     with_hour_price = fields.Boolean('With hour price')
@@ -48,33 +47,31 @@ class AnalyticIncidenceWizard(models.TransientModel):
 
     @api.multi
     def make_child_remunerations(self):
-        '''MIGRACION: Solo firma
+        self.ensure_one()
         vals = {}
-        if context is None:
-            context = {}
-        for line_child_remu in self.browse(cr,uid,ids):
-            vals = {
-                'with_contract': line_child_remu.with_contract,
-                'contract_hours': line_child_remu.contract_hours,
-                'with_hour_price': line_child_remu.with_hour_price,
-                'hour_price_hours': line_child_remu.hour_price_hours,
-                'with_fix_qty': line_child_remu.with_fix_qty,
-                'price': line_child_remu.price,
-                'quantity': line_child_remu.quantity,
-                'date': line_child_remu.date,
-                'incidence_id_tp': line_child_remu.incidence_id_tp.id,
-                'absence_id_tp': line_child_remu.absence_id_tp.id,
-                'date_to': line_child_remu.date_to,
-                'conditions': line_child_remu.conditions,
-                'ss_hours': line_child_remu.ss_hours,
-                'ss_no_hours': line_child_remu.ss_no_hours,
-                'effective': line_child_remu.effective
-                }
+        vals = {
+            'with_contract': self.with_contract,
+            'contract_hours': self.contract_hours,
+            'with_hour_price': self.with_hour_price,
+            'hour_price_hours': self.hour_price_hours,
+            'with_fix_qty': self.with_fix_qty,
+            'price': self.price,
+            'quantity': self.quantity,
+            'date': self.date,
+            'incidence_id_tp': self.incidence_id_tp.id,
+            'absence_id_tp': self.absence_id_tp.id,
+            'date_to': self.date_to,
+            'conditions': self.conditions,
+            'ss_hours': self.ss_hours,
+            'ss_no_hours': self.ss_no_hours,
+            'effective': self.effective
+            }
 
-            remuneration_ids = context.get('active_ids', [])
-            if remuneration_ids:
-                visited_occupations = self.pool.get('remuneration').make_child_inc_remuneration(cr,uid,remuneration_ids,vals)
+        remunerations = self.env['remuneration'].browse(
+            self._context.get('active_ids', []))
+        if remunerations:
+            remunerations.make_child_inc_remuneration(vals)
 
-            return {
-                'type': 'ir.actions.act_window_close',
-            }'''
+        return {
+            'type': 'ir.actions.act_window_close',
+        }

@@ -196,7 +196,6 @@ class account_analytic_account(osv.osv):
     _columns = {
         'invoice_ids': fields.function(_get_invoice_ids, method =True, type="one2many", relation='account.invoice', string='Invoices', readonly=True),
         'state_id': fields.many2one('res.country.state', 'Province'),
-        'location_id': fields.many2one('city.council', 'Council'),
         'concept_amount': fields.function(_get_total_amount, method=True, string="Concepts amount", readonly=True, type="float", digits_compute=dp.get_precision('Account')),
         'address_invoice_id': fields.many2one('res.partner', 'Address invoice'),
         'address_id': fields.many2one('res.partner', 'Address'),
@@ -491,7 +490,7 @@ class account_analytic_account(osv.osv):
 
         return True
 
-    def _create_invoice(self, cr, uid, analytic, end_date, context=None):
+    def _create_invoice(self, cr, uid, analytic, end_date, context=None): # API.multi
         """creates an invoice to an analytic account"""
         if context is None: context = {}
 

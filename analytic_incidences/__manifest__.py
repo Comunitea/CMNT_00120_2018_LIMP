@@ -19,12 +19,34 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+{
+    'name': 'Analytic laboral incidences',
+    'description': """Allow creates laboral incidences""",
+    'version': '1.0',
+    'author': 'Pexego',
+    'website': 'http://www.pexego.es',
+    'category': 'Base/Laboral/Incidences',
+    'depends': [
+        'base',
+        'hr',
+        'account',
+        'city_council',
+        'invoice_concept'
+    ],
+    'data': [
+        'wizard/analytic_incidence_wzd.xml',
+        'views/absence.xml',
+        'views/hr_employee.xml',
+        'views/incidence.xml',
+        'views/remuneration.xml',
+        'wizard/employee_incidence_set_end_date_view.xml',
+        'wizard/employee_replacement_wzd.xml',
+        'data/incidence_data.xml',
+        'wizard/employee_set_laboral_incidence_wzd.xml',
+        'data/remuneration_sequence.xml',
+        'security/ir.model.access.csv',
+        'security/analytic_incidences_security.xml',
+    ],
+    'installable': True,
 
-class Absence(models.Model):
-    _name = "absence"
-    _description = "absences for work"
-
-    name = fields.Char(required=True)
-    code = fields.Char()
-    incidence_id = fields.Many2one('incidence', 'Incidence')
+}

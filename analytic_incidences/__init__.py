@@ -19,12 +19,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-# import incidence
-# import absence
-# import remuneration
-# import account_analytic_account
-# import wizard
-# import hr_employee
-# import hr_laboral_incidence
-# import analytic_occupation Se eliminan ocupaciones
+from . import models
+from . import wizard

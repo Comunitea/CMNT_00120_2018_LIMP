@@ -18,21 +18,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""History of employee's laboral incidences"""
-
-from openerp import models, fields
-
-class HrLaboralIncidence(models.Model):
-    """History of employee's laboral incidences"""
-
-    _name = "hr.laboral.incidence"
-    _description = "Laboral Incidence"
-    _rec_name = 'motive'
+from odoo import models, fields
 
 
-    initial_date = fields.Date(readonly=True)
-    end_date = fields.Date(readonly=True)
-    motive = fields.Many2one('absence', 'Motive', readonly=True)
-    employee_id = fields.Many2one('hr.employee', readonly=True)
-    # occupation_ids = fields.One2many('account.analytic.occupation', 'incidence_id', 'Occupations', readonly=True) Migracion: Ocupaciones fuera
+class HrEmployee(models.Model):
+
+    _inherit = "hr.employee"
+
+    def _compute_active_remunerations(self):
+        current_date = fields.Date.today()
+        for employee in self:
+            remunerations = self.env['remuneration'].search(
+                [('employee_id', '=', employee.id), '|',
+                 ('date_to', '=', False), ('date_to', '>=', current_date)])
+            employee.active_remunerations = remunerations and True or False
+
+    laboral_incidence_ids = fields.One2many(
+        'hr.laboral.incidence', 'employee_id', 'Incidences', readonly=True)
+    work_council_id = fields.Many2one('city.council', 'Work council')
+    active_remunerations = fields.Boolean(
+        compute='_compute_active_remunerations')

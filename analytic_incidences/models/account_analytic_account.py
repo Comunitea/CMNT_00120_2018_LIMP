@@ -19,15 +19,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-"""Adds remunerations fields to analytic account's columns"""
+from odoo import models, fields
 
-from openerp import models, fields
 
 class AccountAnalyticAccount(models.Model):
     """Adds remuneration fiels to analytic account's columns"""
 
     _inherit = "account.analytic.account"
 
-    remuneration_ids = fields.One2many('remuneration', 'analytic_account_id', 'Remunerations')
-    active_remuneration_ids = fields.One2many('remuneration', 'analytic_account_id', 'Active remunerations', domain=[('old','=',False)])
-    inactive_remuneration_ids = fields.One2many('remuneration', 'analytic_account_id', 'Unactive remunerations', domain=[('old','=',True)])
+    remuneration_ids = fields.One2many('remuneration', 'analytic_account_id',
+                                       'Remunerations')
+    active_remuneration_ids = fields.One2many(
+        'remuneration', 'analytic_account_id', 'Active remunerations',
+        domain=[('old', '=', False)])
+    inactive_remuneration_ids = fields.One2many(
+        'remuneration', 'analytic_account_id', 'Unactive remunerations',
+        domain=[('old', '=', True)])

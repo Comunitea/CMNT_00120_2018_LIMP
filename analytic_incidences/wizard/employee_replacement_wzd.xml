@@ -1,59 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="employee_replacement_wzd_form2" model="ir.ui.view">
-            <field name="name">employee.replacement.wzd.form</field>
-            <field name="model">employee.replacement.wzd</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Replace employee">
-                    <field name="employee_id"/>
-                    <button icon="gtk-find" name="open_search" string="Search replacements" type="object"/>
-                    <field name="conditions"/>
-                    <newline/>
-                    <group attrs="{'invisible':[('conditions', '=', 'equal_condition')]}" col="6" colspan="4">
-                        <field name="with_contract" colspan="4"/>
-                        <field name="contract_hours"/>
-                        <field name="with_hour_price"/>
-                        <field name="price"/>
-                        <field name="hour_price_hours"/>
-                        <field name="with_fix_qty" colspan="4"/>
-                        <field name="quantity"/>
-                        <field name="effective"/>
-                        <field name="distribute_bt_remuneration"/>
-                        <separator string="Social security" colspan="6"/>
-                        <field name="ss_hours"/>
-                        <field name="ss_no_hours"/>
-                    </group>
-                    <group colspan="4">
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-ok" name="action_replace" string="Replace" type="object"/>
-                    </group>
-                </form>
-            </field>
-        </record>
+    <record id="employee_replacement_wzd_form2" model="ir.ui.view">
+        <field name="name">employee.replacement.wzd.form</field>
+        <field name="model">employee.replacement.wzd</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Replace employee">
+                <sheet>
+                    <notebook>
+                        <page string="Replace">
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="conditions"/>
+                            </group>
+                            <newline/>
+                            <group attrs="{'invisible':[('conditions', '=', 'equal_condition')]}" col="6" colspan="4">
+                                <field name="with_contract" colspan="4"/>
+                                <field name="contract_hours"/>
+                                <field name="with_hour_price"/>
+                                <field name="price"/>
+                                <field name="hour_price_hours"/>
+                                <field name="with_fix_qty" colspan="4"/>
+                                <field name="quantity"/>
+                                <field name="effective"/>
+                                <field name="distribute_bt_remuneration"/>
+                                <separator string="Social security" colspan="6"/>
+                                <field name="ss_hours"/>
+                                <field name="ss_no_hours"/>
+                            </group>
+                        </page>
+                        <page string="search">
+                            <group>
+                                <group>
+                                    <field name="search_employee_id"/>
+                                    <field name="search_location"/>
+                                </group>
+                                <group>
+                                    <field name="search_department_id"/>
+                                </group>
+                            </group>
+                            <button name="search_replacements" type="object" string="search"/>
+                            <field name="search_employee_ids" colspan="4" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_replace" string="Replace" type="object" class="btn-primary"/>
+                <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
 
-        <record id="action_replace_employee_wizard" model="ir.actions.act_window">
-            <field name="name">Replace employee</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">employee.replacement.wzd</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="target">new</field>
-        </record>
+    <record id="action_replace_employee_wizard" model="ir.actions.act_window">
+        <field name="name">Replace employee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employee.replacement.wzd</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 
-        <act_window
-            id="action_employee_replacement_wz" name="Replace employee"
-            res_model="employee.replacement.wzd"
-            src_model="remuneration"
-            view_type="form"
-            view_mode="form"
-            target="new"
-            view_id="employee_replacement_wzd_form2"
-            key2="client_action_multi"
-            />
+    <act_window
+        id="action_employee_replacement_wz" name="Replace employee"
+        res_model="employee.replacement.wzd"
+        src_model="remuneration"
+        view_type="form"
+        view_mode="form"
+        target="new"
+        view_id="employee_replacement_wzd_form2"
+        key2="client_action_multi"
+        />
 
-    </data>
-</openerp>
-
+</odoo>

@@ -1,9 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2008 Tiny SPRL (<http://tiny.be>). All Rights Reserved
-#    $Id$
+#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    $Omar Castiéira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,18 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Council city',
-    'version': '1.0',
-    'author': 'Pexego',
-    'category': 'Generic Modules/Base',
-    'description': """Council to classify cities (zipcodes)""",
-    'depends': ['base', 'base_location', 'sales_team', 'analytic'],
-    'data': [
-        'views/res_partner.xml',
-        'views/council.xml',
-        'wizard/associate_council_better_zip.xml',
-        'security/ir.model.access.csv'
-    ],
-    'installable': True
-}
+from odoo import models, fields
+
+
+class HrLaboralIncidence(models.Model):
+
+    _name = "hr.laboral.incidence"
+    _description = "Laboral Incidence"
+    _rec_name = 'motive'
+
+    initial_date = fields.Date(readonly=True)
+    end_date = fields.Date(readonly=True)
+    motive = fields.Many2one('absence', 'Motive', readonly=True)
+    employee_id = fields.Many2one('hr.employee', readonly=True)

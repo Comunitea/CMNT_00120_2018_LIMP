@@ -19,9 +19,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import analytic_incidence_wzd
-import employee_replacement_wzd
-import search_employee_replacement_wzd
-import employee_set_laboral_incidence_wzd
-import employee_incidence_set_end_date
-#import analytic_incidence_set_end_date
+from . import analytic_incidence_wzd
+from . import employee_incidence_set_end_date
+from . import employee_replacement_wzd
+from . import employee_set_laboral_incidence_wzd

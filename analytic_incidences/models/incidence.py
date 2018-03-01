@@ -19,10 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from odoo import models, fields
 
 
-class incidence(models.Model):
+class Incidence(models.Model):
 
     _name = "incidence"
     _description = "Incidens for various reasons"

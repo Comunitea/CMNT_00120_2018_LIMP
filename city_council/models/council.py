@@ -36,3 +36,10 @@ class ResBetterZip(models.Model):
     _inherit = "res.better.zip"
 
     council_id = fields.Many2one('city.council', 'Council')
+
+
+class AccountAnalyticAccount(models.Model):
+
+    _inherit = 'account.analytic.account'
+
+    location_id = fields.Many2one('city.council', 'Council')

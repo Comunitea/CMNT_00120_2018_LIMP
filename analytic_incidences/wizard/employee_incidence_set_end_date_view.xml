@@ -1,34 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<odoo>
 
-<openerp>
-    <data>
-
-        <record id="employee_incidence_set_end_date_wzd_form" model="ir.ui.view">
-            <field name="name">employee.incidence.set.end.date.wzd.form</field>
-            <field name="model">employee.incidence.set.end.date.wzd</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Set end date">
+    <record id="employee_incidence_set_end_date_wzd_form" model="ir.ui.view">
+        <field name="name">employee.incidence.set.end.date.wzd.form</field>
+        <field name="model">employee.incidence.set.end.date.wzd</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Set end date">
+                <group colspan="4" col="2">
                     <field name="date" />
                     <field name="only_incidences"/>
-                    <group colspan="4">
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-ok" name="act_set_end_date" string="Set end date" type="object"/>
-                    </group>
-                </form>
-            </field>
-        </record>
+                </group>
+                <footer>
+                    <button class="btn-primary" name="act_set_end_date" string="Set end date" type="object"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
 
-        <act_window
-            id="action_set_end_date_incidence_wzd" name="Set end date"
-            res_model="employee.incidence.set.end.date.wzd"
-            src_model="hr.employee"
-            view_type="form"
-            view_mode="form"
-            target="new"
-            view_id="employee_incidence_set_end_date_wzd_form"
-            key2="client_action_multi"
-            />
-
-    </data>
-</openerp>
+    <act_window
+        id="action_set_end_date_incidence_wzd" name="Set end date"
+        res_model="employee.incidence.set.end.date.wzd"
+        src_model="hr.employee"
+        view_type="form"
+        view_mode="form"
+        target="new"
+        view_id="employee_incidence_set_end_date_wzd_form"
+        key2="client_action_multi"
+        />
+</odoo>

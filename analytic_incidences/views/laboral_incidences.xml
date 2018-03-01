@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="hr_laboral_incidence_tree" model="ir.ui.view">
+        <field name="name">hr.laboral.incidence.tree</field>
+        <field name="model">hr.laboral.incidence</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Incidences">
+                <field name="initial_date"/>
+                <field name="end_date"/>
+                <field name="motive"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_laboral_incidence_form" model="ir.ui.view">
+        <field name="name">hr.laboral.incidence.form</field>
+        <field name="model">hr.laboral.incidence</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Incidence">
+                <sheet>
+                    <group>
+                        <field name="initial_date"/>
+                        <field name="end_date"/>
+                        <field name="motive" colspan="4"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

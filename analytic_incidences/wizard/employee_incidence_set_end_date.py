@@ -19,36 +19,31 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
-from openerp.tools.translate import _
-import time
+from odoo import models, fields, api
 
 
-class employee_incidence_set_end_date_wzd(models.TransientModel):
+class EmployeeIncidenceSetEndDateWzd(models.TransientModel):
 
     _name = "employee.incidence.set.end.date.wzd"
 
     date = fields.Date(required=True, default=fields.Date.today)
-    only_incidences = fields.Boolean(help="Sets end date in incidences only, if not check it sets the end date in all open remunerations.", default=True)
+    only_incidences = fields.Boolean(
+        help="Sets end date in incidences only, if not check it sets the end date in all open remunerations.", default=True)
 
     @api.multi
     def act_set_end_date(self):
-        '''MIGRACION: Solo firma
-        if context is None: context = {}
-        employee_id = context.get('active_id', False)
-        obj = self.browse(cr, uid, ids[0])
-        domain = [('employee_id', '=', employee_id),('date_to','=',False)]
+        employee_id = self._context.get('active_id', False)
+        domain = [('employee_id', '=', employee_id), ('date_to', '=', False)]
 
-        if obj.only_incidences:
-            action_model, type_incidence_normal_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'analytic_incidences', 'incidence_normal')
-            domain.append(('incidence_id_tp', '!=', type_incidence_normal_id))
-        remunerations_ids = self.pool.get('remuneration').search(cr, uid, domain)
-        if remunerations_ids:
-            self.pool.get('remuneration').write(cr, uid, remunerations_ids, {'date_to': obj.date})
-        open_incidences_ids = self.pool.get('hr.laboral.incidence').search(cr, uid, [('employee_id', '=', employee_id),('end_date', '=', False)])
-        if open_incidences_ids:
-            self.pool.get('hr.laboral.incidence').write(cr, uid, open_incidences_ids, {'end_date': obj.date})
+        if self.only_incidences:
+            domain.append(('incidence_id_tp', '!=', self.env.ref(
+                'analytic_incidences.incidence_normal').id))
+        remunerations = self.env['remuneration'].search(domain)
+        if remunerations:
+            remunerations.write({'date_to': self.date})
+        open_incidences = self.env['hr.laboral.incidence'].search(
+            [('employee_id', '=', employee_id), ('end_date', '=', False)])
+        if open_incidences:
+            open_incidences.write({'end_date': self.date})
 
-        return {
-        'type': 'ir.actions.act_window_close',
-        }'''
+        return {'type': 'ir.actions.act_window_close'}

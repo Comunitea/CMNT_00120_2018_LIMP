@@ -1,9 +1,9 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_remuneration_hr_user","remuneration","model_remuneration","base.group_hr_user",1,0,0,0
-"access_remuneration_hr_manager","remuneration","model_remuneration","base.group_hr_manager",1,1,1,1
-"access_incidence_hr_user","incidence","model_incidence","base.group_hr_user",1,0,0,0
-"access_incidence_hr_manager","incidence","model_incidence","base.group_hr_manager",1,1,1,1
-"access_absence_hr_user","absence","model_absence","base.group_hr_user",1,0,0,0
-"access_absence_hr_manager","absence","model_absence","base.group_hr_manager",1,1,1,1
-"access_hr_laboral_incidence_hr_user","hr_laboral_incidence","model_hr_laboral_incidence","base.group_hr_user",1,0,0,0
-"access_hr_laboral_incidence_hr_manager","hr_laboral_incidence","model_hr_laboral_incidence","base.group_hr_manager",1,1,1,1
+"access_remuneration_hr_user","remuneration","model_remuneration","hr.group_hr_user",1,0,0,0
+"access_remuneration_hr_manager","remuneration","model_remuneration","hr.group_hr_manager",1,1,1,1
+"access_incidence_hr_user","incidence","model_incidence","hr.group_hr_user",1,0,0,0
+"access_incidence_hr_manager","incidence","model_incidence","hr.group_hr_manager",1,1,1,1
+"access_absence_hr_user","absence","model_absence","hr.group_hr_user",1,0,0,0
+"access_absence_hr_manager","absence","model_absence","hr.group_hr_manager",1,1,1,1
+"access_hr_laboral_incidence_hr_user","hr_laboral_incidence","model_hr_laboral_incidence","hr.group_hr_user",1,0,0,0
+"access_hr_laboral_incidence_hr_manager","hr_laboral_incidence","model_hr_laboral_incidence","hr.group_hr_manager",1,1,1,1
