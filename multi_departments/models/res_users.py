@@ -27,3 +27,5 @@ class ResUsers(models.Model):
     department_ids = fields.Many2many(
         'hr.department', 'hr_department_users_rel', 'user_id',
         'department_id', 'Departments')
+
+    context_department_id = fields.Many2one('hr.department', 'Department')

@@ -46,10 +46,10 @@ class FleetExpense(models.Model):
     km = fields.Float(digits=dp.get_precision('Account'))
     distribute = fields.Boolean(default=True)
     department_id = fields.Many2one(
-        'hr.department', 'Department', required=True)
-        #default=lambda r: r._context.get(
-        #    'c_department_id', r._context.get(
-        #     'department_id', r.env.user.context_department_id.id)))
+        'hr.department', 'Department', required=True,
+        default=lambda r: r._context.get(
+            'c_department_id', r._context.get(
+            'department_id', r.env.user.context_department_id.id)))
     consumption = fields.Float(
         'Consumption (l/100Km)', digits=(13, 2),
         help='Liters each 100 km. (Refuel liters / traveled km) * 100',

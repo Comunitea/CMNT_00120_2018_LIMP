@@ -37,8 +37,7 @@ class AccountAnalyticAccount(models.Model):
                                          r.env.user.employee_ids and
                                          r.env.user.employee_ids[0].id or
                                          False))
-
-    # 'department_id': lambda s,cr,uid,c: c.get('department_id', False) or s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id,  MIGRACION: El campo context_department_id no existe
+    department_id = fields.Many2one(default=lambda r: r.env.user.context_department_id.id)
 
 
 class AccountAnalyticLine(models.Model):

@@ -29,12 +29,11 @@ class AccountAnalyticDistributionRule(models.Model):
         'res.delegation', 'Delegation', required=True,
         default=lambda r: r.env.user.context_delegation_id.id)
     department_id = fields.Many2one('hr.department', 'Department',
-                                    required=True)
+                                    required=True,
+                                    default=lambda r: r.env.user.context_department_id.id)
     manager_id = fields.Many2one(
         'hr.employee', 'Responsible', required=True,
         domain=[('responsible', '=', True)],
         default=lambda r: r.env.user.employee_ids and
         r.env.user.employee_ids[0].id or False)
     fix_amount = fields.Float(digits=(12, 2), required=True)
-
-    # 'department_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).context_department_id.id,  MIGRACION: El campo context_department_id no existe

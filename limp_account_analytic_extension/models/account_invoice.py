@@ -30,14 +30,13 @@ class AccountInvoice(models.Model):
         change_default=True,
         default=lambda r: r.env.user.context_delegation_id.id)
     department_id = fields.Many2one(
-        'hr.department', 'Department', change_default=True)
+        'hr.department', 'Department', change_default=True,
+        default=lambda r: r.env.user.context_department_id.id)
     manager_id = fields.Many2one(
         'hr.employee', 'Responsible', change_default=True,
         domain=[('responsible', '=', True)],
         default=lambda r: r.env.user.employee_ids and
         r.env.user.employee_ids[0].id or False)
-
-    # 'department_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id,  MIGRACION: El campo context_department_id no existe
 
     @api.multi
     def finalize_invoice_move_lines(self, move_lines):

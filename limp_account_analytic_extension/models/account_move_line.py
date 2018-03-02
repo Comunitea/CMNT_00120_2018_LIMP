@@ -28,13 +28,12 @@ class AccountMoveLine(models.Model):
     delegation_id = fields.Many2one(
         'res.delegation', 'Delegation',
         default=lambda r: r.env.user.context_delegation_id.id)
-    department_id = fields.Many2one('hr.department', 'Department')
+    department_id = fields.Many2one('hr.department', 'Department',
+                                    default=lambda r: r.env.user.context_department_id.id)
     manager_id = fields.Many2one(
         'hr.employee', 'Responsible', domain=[('responsible', '=', True)],
         default=lambda r: r.env.user.employee_ids and
         r.env.user.employee_ids[0].id or False)
-
-    # 'department_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id, MIGRACION: El campo context_department_id no existe
 
     def _prepare_analytic_line(self):
         res = super(AccountMoveLine, self)._prepare_analytic_line()

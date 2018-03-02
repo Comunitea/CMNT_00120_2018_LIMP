@@ -8,6 +8,9 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Departments">
+                    <group>
+                        <field name="context_department_id"/>
+                    </group>
                     <field name="department_ids"/>
                 </page>
             </notebook>
