@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_department_form_add_code_field" model="ir.ui.view">
+        <field name="name">hr.department.form.add_code_field</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="code"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_department_tree_add_code_field" model="ir.ui.view">
+        <field name="name">hr.department.tree.add_code_field</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_tree"/>
+        <field name="arch" type="xml">
+            <field name="display_name" position="before">
+                <field name="code"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_department_filter_add_code_field" model="ir.ui.view">
+        <field name="name">Departments as code field</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="code"/>
+            </field>
+         </field>
+    </record>
+
+</odoo>

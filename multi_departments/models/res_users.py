@@ -17,27 +17,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-{
-        "name" : "Multi Departments",
-        "description": "*Many2many to relate departments and users.",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Multi-company",
-        "depends" : [
-            'base',
-            'hr'
-            ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : [
-            #  'res_users_view.xml',
-            #  'hr_department_view.xml',
-            #  'hr_employee_view.xml',
-            #  'security/multi_departments_security.xml'
-        ],
-        "installable": True,
-        'active': False
 
-}
+class ResUsers(models.Model):
+
+    _inherit = "res.users"
+
+    department_ids = fields.Many2many(
+        'hr.department', 'hr_department_users_rel', 'user_id',
+        'department_id', 'Departments')

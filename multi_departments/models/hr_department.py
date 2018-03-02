@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
-#    $Omar Castiñeira Saavedra$
-#    $Marta Vázquez Rodríguez$
+#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,18 +17,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-"""Add new departments relationship to employees"""
 
-from openerp.osv import osv, fields
+class HrDepartment(models.Model):
 
-class hr_employee(osv.osv):
-    """Add new departments relationship to employees"""
+    _inherit = "hr.department"
 
-    _inherit = "hr.employee"
-
-    _columns = {
-        'department_ids': fields.many2many('hr.department', 'hr_department_employee_rel', 'hr_employee_id', 'department_id', 'Departments')
-    }
-
-hr_employee()
+    user_ids = fields.Many2many(
+        'res.users', 'hr_department_users_rel',
+        'department_id', 'user_id', 'Related users')
+    code = fields.Char('Code', size=8)

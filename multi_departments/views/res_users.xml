@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_users_form_add_new_departments_relationship">
+        <field name="name">res.users.form.add_new_departments_relationship</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Departments">
+                    <field name="department_ids"/>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>

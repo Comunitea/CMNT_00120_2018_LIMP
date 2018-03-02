@@ -18,18 +18,22 @@
 #
 ##############################################################################
 
-"""inherits hr_department to create new relationship from departments to users in many2many behaviour"""
+{
+    'name' : 'Multi Departments',
+    'description': '*Many2many to relate departments and users.',
+    'version' : '1.0',
+    'author' : 'Pexego',
+    'website' : 'http://www.pexego.es',
+    'category' : 'Base/Multi-company',
+    'depends' : [
+        'base',
+        'hr'
+        ],
+    'data' : [
+        'views/hr_department.xml',
+        'views/res_users.xml',
+        'security/multi_departments_security.xml'
+    ],
+    'installable': True,
 
-from openerp.osv import osv, fields
-
-class hr_department(osv.osv):
-    """inherits hr_department to create new relationship from departments to users in many2many behaviour"""
-
-    _inherit = "hr.department"
-
-    _columns = {
-        'user_ids': fields.many2many('res.users', 'hr_department_users_rel', 'department_id', 'user_id', 'Related users'),
-        'code': fields.char('Code', size=8)
-    }
-
-hr_department()
+}

@@ -17,9 +17,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""Initial file to import each classes in this module"""
-
-#  import hr_department
-#  import res_users
-#  import hr_employee
+from . import models
