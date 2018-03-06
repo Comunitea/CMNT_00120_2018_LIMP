@@ -20,6 +20,6 @@
 #
 ##############################################################################
 
-import distribution_costs_import
-import remuneration_timesheet_wzd
-import distribute_effective_costs
+from . import distribution_costs_import
+from . import remuneration_timesheet_wzd
+from . import distribute_effective_costs

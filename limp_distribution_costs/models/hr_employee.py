@@ -19,26 +19,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-"""Adds code Glasof field"""
+from odoo import models, fields, api, _
 
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
 
-class hr_employee(osv.osv):
-    """Adds code Glasof field"""
+class HrEmployee(models.Model):
 
     _inherit = "hr.employee"
 
-    _columns = {
-        'glasof_code': fields.char('Code in Glasof', size=7),
-        'responsible': fields.boolean('Responsible')
-    }
+    glasof_code = fields.Char('Code in Glasof', size=7)
+    responsible = fields.Boolean()
 
-    def name_get(self, cr, user, ids, context=None):
-        if not len(ids):
-            return []
+    @api.multi
+    def name_get(self):
         res = []
-        for employee in self.browse(cr, user, ids, context=context):
+        for employee in self:
             name = employee.name
             if employee.glasof_code:
                 name = u"[" + employee.glasof_code + u"] " + name
@@ -46,18 +40,14 @@ class hr_employee(osv.osv):
         return res
 
     _sql_constraints = [
-        ('glasof_code_uniq', 'unique (glasof_code)', _('The Glasof code must be unique !')),
+        ('glasof_code_uniq', 'unique (glasof_code)',
+         _('The Glasof code must be unique !')),
     ]
 
-hr_employee()
 
-
-class res_users(osv.osv):
+class ResUsers(models.Model):
 
     _inherit = "res.users"
 
-    _columns = {
-        'laboral': fields.boolean('Laboral', help="Permite modificar partes de trabajo de otras personas")
-    }
-
-res_users()
+    laboral = fields.Boolean(
+        help="Permite modificar partes de trabajo de otras personas")

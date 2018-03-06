@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
+#    $Omar Castiñeira Saavedra$
+#    $Marta Vázquez Rodríguez$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -17,25 +19,32 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
-    'name' : 'Multi Delegations',
-    'description': 'Add new dimension for multi-company rules, delegations.',
-    'version' : '1.0',
-    'author' : 'Pexego',
-    'website' : 'http://www.pexego.es',
-    'category' : 'Base/Multi-company',
-    'depends' : [
+    'name': 'Distribution of costs',
+    'description': """Sharing the costs of workers""",
+    'version': '1.0',
+    'author': 'Pexego',
+    'website': 'http://www.pexego.es',
+    'category': 'Base/Laboral/Costs',
+    'depends': [
         'base',
         'hr',
-        ],
-    'data' : [
-        'views/res_delegation_view.xml',
-        'views/res_users_view.xml',
-        'views/hr_employee.xml',
+        'analytic',
+        'analytic_incidences',
+        'limp_account_analytic_extension',
+        'limp_multi_delegations',
+        'hr_timesheet'
+    ],
+    'data': [
+        'views/account_analytic_line_view.xml',
+        'views/hr_employee_view.xml',
+        'views/timesheet_view.xml',
+        'wizard/distribution_costs_import_view.xml',
+        'wizard/remuneration_timesheet_wzd_view.xml',
+        'wizard/distribute_effective_costs_view.xml',
         'security/ir.model.access.csv',
-        'security/multi_delegations_security.xml'
-        ],
+        'security/limp_distribution_costs_security.xml',
+        'data/timesheet_seq.xml',
+    ],
     'installable': True
-
 }

@@ -19,15 +19,13 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from odoo import models, fields
 
-class account_analytic_line(osv.osv):
-    
+class AccountAnalyticLine(models.Model):
+
     _inherit = "account.analytic.line"
-    
-    _columns = {
-        'remuneration_id': fields.many2one('remuneration', 'Remuneration', readonly=True),
-        'timesheet_id': fields.many2one('timesheet', 'Timesheet', readonly=True)
-    }
-    
-account_analytic_line()    
+
+    remuneration_id = fields.Many2one('remuneration', 'Remuneration',
+                                      readonly=True)
+    remuneration_incidence = fields.Boolean(related='remuneration_id.incidence')
+    timesheet_id = fields.Many2one('timesheet', 'Timesheet', readonly=True)

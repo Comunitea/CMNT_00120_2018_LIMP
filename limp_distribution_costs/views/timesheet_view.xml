@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="timesheet_tree" model="ir.ui.view">
+        <field name="name">timesheet.tree</field>
+        <field name="model">timesheet</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Timesheet" editable="top">
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="hours" sum="Total contract hours" on_change="onchange_hours(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="extra_hours" sum="Total extra hours" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="price_hours" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="quantity" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="pending_qty" sum="Total to distribute"/>
+                <field name="pending_distribute_qty" sum="Total Pending"/>
+                <field name="fix_qty" sum="Total fixed" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="effective" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)" sum="Total effective"/>
+                <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="base.group_hr_manager"/>
+                <field name="paid"/>
+                <field name="paid_date"/>
+                <field name="ss_hours" sum="Total ss hours"/>
+                <field name="ss_no_hours" sum="Total no ss hours"/>
+                <field name="analytic_id" required="1" on_change="on_change_analytic_id(analytic_id)"/>
+                <field name="delegation_id"/>
+                <field name="department_id"/>
+                <field name="responsible_id"/>
+                <field name="total_hours" sum="Total hours"/>
+                <field name="name"/>
+                <field name="contract"/>
+                <!--separator string="Employee Data" colspan="4"/-->
+                <field name="employee_delegation_id"/>
+                <field name="employee_department_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="timesheet_form" model="ir.ui.view">
+        <field name="name">timesheet.form</field>
+        <field name="model">timesheet</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Timesheet">
+                <field name="name" readonly="1"/>
+                <field name="date"/>
+                <field name="employee_id"/>
+                <field name="extra_hours" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="price_hours" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="hours" on_change="onchange_hours(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="quantity" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="analytic_id" required="1" on_change="on_change_analytic_id(analytic_id)"/>
+                <field name="delegation_id"/>
+                <field name="department_id"/>
+                <field name="responsible_id"/>
+                <field name="contract"/>
+                <field name="fix_qty" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="effective" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="pending_qty"/>
+                <field name="pending_distribute_qty"/>
+                <separator string="Social security" colspan="4"/>
+                <field name="ss_hours"/>
+                <field name="ss_no_hours"/>
+                <separator string="Process" colspan="4"/>
+                <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="base.group_hr_manager"/>
+                <field name="paid"/>
+                <field name="paid_date"/>
+                <separator string="Employee Data" colspan="4"/>
+                <field name="employee_delegation_id"/>
+                <field name="employee_department_id"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="timesheet_search" model="ir.ui.view">
+        <field name="name">timesheet.search</field>
+        <field name="model">timesheet</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Tiemsheet">
+                <group col="8" colspan="4">
+                    <filter string="To check" name="undone" icon="gtk-close" domain="[('done','!=',True),'|',('effective','!=',0.0),('contract','=',False)]"/>
+                    <separator orientation="vertical"/>
+                    <filter string="With extra hours" icon="gtk-ok" domain="[('extra_hours','&gt;',0.0)]"/>
+                    <filter string="Effective" icon="terp-dolar" domain="[('effective','!=',0.0)]"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Paid" icon="terp-folder-green" domain="[('paid','=',True)]"/>
+                    <filter string="No paid" icon="terp-folder-orange" domain="[('paid','=',False)]"/>
+                    <field name="date" select="1"/>
+                    <field name="employee_id"/>
+                    <field name="analytic_id"/>
+                    <newline/>
+                    <field name="name"/>
+                    <field name="delegation_id" widget="selection"/>
+                    <field name="department_id" widget="selection"/>
+                    <field name="responsible_id" widget="selection"/>
+                    <field name="employee_delegation_id" widget="selection" string="Employee Delegation"/>
+                    <field name="employee_department_id" widget="selection" string="Employee Department"/>
+                </group>
+                <newline/>
+                <group expand="0" string="Group By...">
+                    <filter string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Date" icon="terp-go-month" context="{'group_by': 'date'}"/>
+                    <filter string="Analytic account" icon="terp-folder-orange" domain="[]" context="{'group_by':'analytic_id'}"/>
+                    <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" icon="terp-personal" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Reponsible" icon="terp-folder-blue" domain="[]" context="{'group_by':'responsible_id'}"/>
+                    <filter string="Employee Department" icon="terp-personal" domain="[]" context="{'group_by':'employee_department_id'}"/>
+                    <filter string="Employee Delegation" icon="terp-folder-blue" domain="[]" context="{'group_by':'employee_delegation_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_timesheet" model="ir.actions.act_window">
+        <field name="name">Timesheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">timesheet</field>
+        <field name="view_type">form</field>
+        <field name="context">{'search_default_undone': 1}</field>
+    </record>
+
+    <menuitem id="menu_timesheet" sequence="30" name="Timesheet" parent="hr.menu_hr_main"/>
+
+    <menuitem action="action_timesheet" id="menu_timesheet_open" parent="menu_timesheet" name="Timesheet"/>
+</odoo>

@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<openerp>
+<odoo>
     <data noupdate="1">
-         <!-- Sequence for timesheet-->
-        <!--record id="seq_type_timesheet" model="ir.sequence.type">
-            <field name="name">Timesheet</field>
-            <field name="code">timesheet</field>
-        </record-->
         <record id="seq_timesheet" model="ir.sequence">
             <field name="name">Timesheet</field>
             <field name="code">timesheet</field>
@@ -15,11 +9,5 @@
             <field name="padding">6</field>
         </record>
 
-        <record id="analytic_social_security_journal" model="account.analytic.journal">
-            <field name="code">SSJ</field>
-            <field name="name">Social Security Journal</field>
-            <field name="type">general</field>
-        </record>
-
     </data>
-</openerp>
+</odoo>

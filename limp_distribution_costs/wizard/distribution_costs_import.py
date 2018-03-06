@@ -22,8 +22,8 @@
 
 import base64
 import datetime
-from openerp.osv import osv, fields
-# import xlrd
+from odoo import models, fields
+import xlrd
 import StringIO
 import calendar
 import time
@@ -45,28 +45,23 @@ def float_format(value):
 
     return value
 
-class distribution_costs_import(osv.osv_memory):
+class DistributionCostsImport(models.TransientModel):
+
     _name = "distribution.costs.import"
-    _columns = {
-        'name': fields.char('Name',size=64,required=True),
-        'month': fields.selection([
-            ('1','January'), ('2','February'),
-            ('3','March'), ('4','April'),
-            ('5','May'), ('6','June'),
-            ('7','July'), ('8','August'),
-            ('9','September'), ('10','October'),
-            ('11','November'), ('12','December')],'Month'),
-        'file': fields.binary('File',required=True),
-        'year': fields.integer('Year', required=True)
-    }
-    _defaults = {
-        'year': lambda *a: int(time.strftime("%Y"))
-    }
+
+    name = fields.Char('Name',size=64,required=True)
+    month = fields.Selection([
+        ('1','January'), ('2','February'),
+        ('3','March'), ('4','April'),
+        ('5','May'), ('6','June'),
+        ('7','July'), ('8','August'),
+        ('9','September'), ('10','October'),
+        ('11','November'), ('12','December')],'Month')
+    file = fields.Binary('File',required=True)
+    year = fields.Integer('Year', required=True, default=lambda r: int(time.strftime("%Y")))
 
     def import_distribution_costs(self, cr, uid, ids, context=None):
-
-        if context is None: context = {}
-        obj = self.browse(cr, uid, ids[0])
+        obj = self
         year = str(obj.year)
         month = ''
         file = base64.b64decode(obj.file)
@@ -82,13 +77,13 @@ class distribution_costs_import(osv.osv_memory):
         dates = []
         timesheets = []
 
-        remuneration_obj = self.pool.get('remuneration')
+        remuneration_obj = self.env['remuneration']
 
-        journal_id = self.pool.get('account.analytic.journal').search(cr, uid, [('name', '=', 'Timesheet Journal')])
-        social_journal_id = self.pool.get('account.analytic.journal').search(cr, uid, [('name', '=', 'Social Security Journal')])
-        sueldos_journal_id = self.pool.get('account.analytic.journal').search(cr, uid, [('name', '=', 'Sueldos')])
-        general_account_id_ss = self.pool.get('account.account').search(cr, uid, [('code','=',"64200000")])
-        general_account_id_suelsala = self.pool.get('account.account').search(cr, uid, [('code','=',"64000000")])
+        journal_id = self.env['account.analytic.tag'].search([('name', '=', 'Timesheet Journal')])
+        social_journal_id = self.env['account.analytic.tag'].search([('name', '=', 'Social Security Journal')])
+        sueldos_journal_id = self.env['account.analytic.tag'].search([('name', '=', 'Sueldos')])
+        general_account_id_ss = self.env['account.account'].search([('code','=',"64200000")])
+        general_account_id_suelsala = self.env['account.account'].search([('code','=',"64000000")])
         visited_rows = []
 
         for line in range(1, sh.nrows): #nos recorremos el fichero
@@ -144,23 +139,23 @@ class distribution_costs_import(osv.osv_memory):
 
                 if record['month'] and obj.month == record['month'] and year:
                     first_day, last_day = calendar.monthrange(int(year),int(month))
-                    id=self.pool.get('hr.employee').search(cr,uid,[('glasof_code','=',record['ref_employee'])]) #buscamos al empleado
+                    id=self.pool.env['hr.employee'].search([('glasof_code','=',record['ref_employee'])]) #buscamos al empleado
                     if id:
-                        hr_employee_obj = self.pool.get('hr.employee').browse(cr, uid, id[0])
+                        hr_employee_obj = id[0]
 
                         first_day, last_day = calendar.monthrange(int(year),int(month)) #obtenemos el último días del mes
                         #obtenemos las remuneraciones del empleado dentro del mes importado
-                        remunerations = remuneration_obj.search(cr, uid, [('employee_id','=', hr_employee_obj.id),'|',('date_to','>=',year+"-"+month+"-01"),('date_to','=',False),('date','<=',year+"-"+month+"-"+str(last_day)),'|',('parent_id', '=', False),('parent_id.employee_id','!=',hr_employee_obj.id)])
+                        remunerations = remuneration_obj.search([('employee_id','=', hr_employee_obj.id),'|',('date_to','>=',year+"-"+month+"-01"),('date_to','=',False),('date','<=',year+"-"+month+"-"+str(last_day)),'|',('parent_id', '=', False),('parent_id.employee_id','!=',hr_employee_obj.id)])
                         #obtenemos los parte de horas del empleado dentro del mes importado
-                        timesheets = self.pool.get('timesheet').search(cr, uid, [('employee_id','=', hr_employee_obj.id),('date','>=',year+"-"+month+"-01"),('date','<=',year+"-"+month+"-"+str(last_day)),('done','=',True)])
+                        timesheets = self.env['timesheet'].search([('employee_id','=', hr_employee_obj.id),('date','>=',year+"-"+month+"-01"),('date','<=',year+"-"+month+"-"+str(last_day)),('done','=',True)])
                         config = {}
                         if remunerations:
                             #nos recorremos las remuneraciones rellenando un diccionario con la forma {'cuenta analítica': [lista de remuneraciones]}
                             for remun_obj in remunerations:
-                                remuneration_periods = remuneration_obj.get_periods_remuneration(cr, uid, remun_obj, year+"-"+month+"-01", year+"-"+month+"-"+str(last_day))
+                                remuneration_periods = remun_obj.get_periods_remuneration(year+"-"+month+"-01", year+"-"+month+"-"+str(last_day))
                                 for period in remuneration_periods:
                                     start_date, end_date = period.split('#')
-                                    for remu in remuneration_obj.browse(cr, uid, remuneration_periods[period]):
+                                    for remu in remuneration_obj.browse(remuneration_periods[period]):
                                         code = ""
                                         if remu.analytic_account_id:
                                             code = str(remu.analytic_account_id.id)
@@ -224,8 +219,7 @@ class distribution_costs_import(osv.osv_memory):
 
                         if timesheets:
                             #nos recorremos los partes de horas y seguimos añadienod al mismo diccionario datos con la forma {'id_parte+t' {'id_cuenta-fixed': total fijo, 'id_cuenta-effective': total_efectivo, 'id_cuenta-with_contract': total horas contrato}
-                            for time in timesheets:
-                                obj_time = self.pool.get('timesheet').browse(cr, uid, time)
+                            for obj_time in timesheets:
                                 if obj_time.analytic_id:
                                     config[str(obj_time.id)+"t"] = {}
                                     #si hay cantidad fija, la sumamos a la cantidad fija total
@@ -252,11 +246,11 @@ class distribution_costs_import(osv.osv_memory):
 
                                         analytic = code.isdigit() and int(code) or False # id de cuenta analítica
                                         if analytic:
-                                            analytic_objs = self.pool.get('account.analytic.account').browse(cr, uid, [analytic])
+                                            analytic_objs = self.env['account.analytic.account'].browse([analytic])
 
                                         distribution = not code.isdigit() and int(code[1:]) or False
                                         if distribution:
-                                            distribution_obj = self.pool.get('account.analytic.plan.instance').browse(cr, uid, distribution)
+                                            distribution_obj = self.env['account.analytic.plan.instance'].browse(distribution)
                                             analytic_objs = distribution_obj.account_ids
 
                                         valor = config[remuneration][configuration] # importe a apuntar
@@ -268,20 +262,20 @@ class distribution_costs_import(osv.osv_memory):
                                                 new_valor = valor
 
                                             if not type in ("with_contract","with_ss_contract") and new_valor: # si no es con contrato y hay importe
-                                                ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
+                                                ids_delete = self.env['account.analytic.line'].search(
                                                 [('remuneration_id','=',int(remuneration)),('account_id','=', analytic or analytic_obj.analytic_account_id.id),
                                                 ('name','=',ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
                                                 ('department_id','=',analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 ('delegation_id','=',analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                 ('manager_id','=',analytic_obj.manager_id and analytic_obj.manager_id.id or False)]) # se borrar todos los apunets ya existenetes con el mismo formato para no duplicar
                                                 if ids_delete:
-                                                    self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
+                                                    ids_delete.unlink()
                                                     ids_delete = []
 
                                                 vals = {
                                                     'amount': -(new_valor),
                                                     'name':  ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                    'journal_id': journal_id[0],
+                                                    'analytic_tag_ids': [(4, journal_id[0].id)],
                                                     'remuneration_id': int(remuneration),
                                                     'account_id': analytic or analytic_obj.analytic_account_id.id,
                                                     'general_account_id': general_account_id_suelsala[0],
@@ -291,16 +285,16 @@ class distribution_costs_import(osv.osv_memory):
                                                     'manager_id': analytic_obj.manager_id and analytic_obj.manager_id.id or False,
                                                     'employee_id' : hr_employee_obj.id
                                                     }
-                                                self.pool.get('account.analytic.line').create(cr, uid, vals) # se crear un apunte según el tipo y el importe
+                                                self.env['account.analytic.line'].create(vals) # se crear un apunte según el tipo y el importe
                                             elif type == "with_contract" and new_valor: # si es con contrato y hay importe
-                                                ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
+                                                ids_delete = self.env['account.analytic.line'].search(
                                                 [('remuneration_id','=',int(remuneration)),('account_id','=',analytic or analytic_obj.analytic_account_id.id),
                                                 ('name','=',ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
                                                 ('department_id','=',analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 ('delegation_id','=',analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                 ('manager_id','=',analytic_obj.manager_id and analytic_obj.manager_id.id or False)]) # evitamos suplicados
                                                 if ids_delete:
-                                                    self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
+                                                    ids_delete.unlink()
                                                     ids_delete = []
                                                 cost_fixed = record['total_accrued'] - fixed # restamos del total bruto la cantidad fija, obteniendo el coste no fijo
                                                 cost_price_hour = cost_fixed - with_price_hour # restamos del coste que nos queda el coste por precio hora
@@ -309,7 +303,7 @@ class distribution_costs_import(osv.osv_memory):
                                                 vals = {
                                                     'amount': -(remu_total_cost),
                                                     'name':  ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                    'journal_id': journal_id[0],
+                                                    'analytic_tag_ids': [(4, journal_id[0].id)],
                                                     'remuneration_id': int(remuneration),
                                                     'account_id': analytic or analytic_obj.analytic_account_id.id,
                                                     'general_account_id': general_account_id_suelsala[0],
@@ -320,23 +314,23 @@ class distribution_costs_import(osv.osv_memory):
                                                     'employee_id' : hr_employee_obj.id
                                                     }
 
-                                                self.pool.get('account.analytic.line').create(cr, uid, vals) # creakos el apunte de con contrato
+                                                self.env['account.analytic.line'].create(vals) # creakos el apunte de con contrato
                                             elif new_valor and ss_total: # si hay seguridad social a repartir
-                                                ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
+                                                ids_delete = self.env['account.analytic.line'].search(
                                                 [('remuneration_id','=',int(remuneration)),('account_id','=',analytic or analytic_obj.analytic_account_id.id),
                                                 ('name','=',ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name),
                                                 ('department_id','=',analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 ('delegation_id','=',analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                 ('manager_id','=',analytic_obj.manager_id and analytic_obj.manager_id.id or False)]) # evitamos suplicados
                                                 if ids_delete:
-                                                    self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
+                                                    ids_delete.unlink()
                                                     ids_delete = []
                                                 remu_total_cost_ss = (ss_total*new_valor)/ss_total_hours # obtenemos el número de horas de la remuneración respecto a las horas totales
                                                 #cost_contract_ss = (remu_total_cost_ss*valor)/with_ss_contract # repartimos la proporción del coste de ss según las horas
                                                 vals = {
                                                         'amount': -(remu_total_cost_ss),
                                                         'name':  ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                        'journal_id': social_journal_id[0],
+                                                        'analytic_tag_ids': [(4, social_journal_id[0].id)],
                                                         'remuneration_id': int(remuneration),
                                                         'account_id': analytic or analytic_obj.analytic_account_id.id,
                                                         'general_account_id': general_account_id_ss[0],
@@ -346,25 +340,25 @@ class distribution_costs_import(osv.osv_memory):
                                                         'manager_id': analytic_obj.manager_id and analytic_obj.manager_id.id or False,
                                                         'employee_id' : hr_employee_obj.id
                                                         }
-                                                self.pool.get('account.analytic.line').create(cr, uid, vals)
+                                                self.env['account.analytic.line'].create()
                                 else: # si es un parte de horas
                                     for configuration in config[remuneration]:
                                         type = (configuration.split("-"))[1]
                                         analytic = int((configuration.split("-"))[0])
-                                        analytic_obj = self.pool.get('account.analytic.account').browse(cr, uid, analytic)
+                                        analytic_obj = self.env['account.analytic.account'].browse(analytic)
                                         valor = config[remuneration][configuration]
-                                        timesheet_obj_id = self.pool.get('timesheet').browse(cr, uid, int(remuneration[:-1]))
+                                        timesheet_obj_id = self.env['timesheet'].browse(int(remuneration[:-1]))
                                         if type not in ("with_contract","with_ss_contract") and valor: # si no es con contrato y hay importe
-                                            ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
+                                            ids_delete = self.env['account.analytic.line'].search(
                                             [('timesheet_id','=',int(remuneration[:-1])),('account_id','=',int(analytic)),
                                             ('name','=',ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) #borramos los duplicados
                                             if ids_delete:
-                                                self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
+                                                ids_delete.unlink()
                                                 ids_delete = []
                                             vals = {
                                                 'amount': -(valor),
                                                 'name':  ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                'journal_id': journal_id[0],
+                                                'analytic_tag_ids': [(4, journal_id[0].id)],
                                                 'timesheet_id': int(remuneration[:-1]),
                                                 'account_id': analytic,
                                                 'general_account_id': general_account_id_suelsala[0],
@@ -374,13 +368,13 @@ class distribution_costs_import(osv.osv_memory):
                                                 'manager_id': timesheet_obj_id.responsible_id and timesheet_obj_id.responsible_id.id or (analytic_obj.manager_id and analytic_obj.manager_id.id or False),
                                                 'employee_id' : hr_employee_obj.id
                                                 }
-                                            self.pool.get('account.analytic.line').create(cr, uid, vals)
+                                            self.env['account.analytic.line'].create(vals)
                                         elif type == "with_contract" and valor:
-                                            ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
+                                            ids_delete = self.env['account.analytic.line'].search(
                                             [('timesheet_id','=',int(remuneration[:-1])),('account_id','=',int(analytic)),
                                             ('name','=',ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) # borramos duplicados
                                             if ids_delete:
-                                                self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
+                                                ids_delete.unlink()
                                                 ids_delete = []
                                             cost_fixed = record['total_accrued'] - fixed # restamos del total el importe fijo
                                             cost_price_hour = cost_fixed - with_price_hour # retsmoa el importe por rpecio hora
@@ -389,7 +383,7 @@ class distribution_costs_import(osv.osv_memory):
                                             vals = {
                                                 'amount': -(timesheet_total_cost),
                                                 'name':  ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                'journal_id': journal_id[0],
+                                                'analytic_tag_ids': [(4, journal_id[0].id)],
                                                 'timesheet_id': int(remuneration[:-1]),
                                                 'account_id': analytic,
                                                 'general_account_id': general_account_id_suelsala[0],
@@ -400,20 +394,20 @@ class distribution_costs_import(osv.osv_memory):
                                                 'employee_id' : hr_employee_obj.id
                                                 }
 
-                                            self.pool.get('account.analytic.line').create(cr, uid, vals)
+                                            self.env['account.analytic.line'].create(vals)
                                         elif valor and ss_total: # si hay seguridad social
-                                            ids_delete = self.pool.get('account.analytic.line').search(cr, uid,
+                                            ids_delete = self.env['account.analytic.line'].search(
                                             [('timesheet_id','=',int(remuneration[:-1])),('account_id','=',int(analytic)),
                                             ('name','=',ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name)]) # borramos duplicados
                                             if ids_delete:
-                                                self.pool.get('account.analytic.line').unlink(cr, uid, ids_delete)
+                                                ids_delete.unlink()
                                                 ids_delete = []
                                             timesheet_total_cost_ss = (ss_total*valor)/ss_total_hours # obtenemos el coste respecto ala shoras del parte copntra las totales
                                             #cost_contract_ss = (timesheet_total_cost_ss*valor)/ss_total_timesheet # calculamos el coste proporcionado a las horas
                                             vals = {
                                                     'amount': -(timesheet_total_cost_ss),
                                                     'name':  ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                    'journal_id': social_journal_id[0],
+                                                    'analytic_tag_ids': [(4, social_journal_id[0].id)],
                                                     'timesheet_id': int(remuneration[:-1]),
                                                     'account_id': analytic,
                                                     'general_account_id': general_account_id_ss[0],
@@ -423,10 +417,5 @@ class distribution_costs_import(osv.osv_memory):
                                                     'manager_id': timesheet_obj_id.responsible_id and timesheet_obj_id.responsible_id.id or (analytic_obj.manager_id and analytic_obj.manager_id.id or False),
                                                     'employee_id' : hr_employee_obj.id
                                                     }
-                                            self.pool.get('account.analytic.line').create(cr, uid, vals)
-
-
-
+                                            self.env['account.analytic.line'].create(vals)
         return {'type': 'ir.actions.act_window_close'}
-
-distribution_costs_import()

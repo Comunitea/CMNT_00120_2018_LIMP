@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="view_account_analytic_line_form_add_fields" model="ir.ui.view">
+        <field name="name">account.analytic.line.form.add.fields</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_form" />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="remuneration_id"/>
+                <field name="timesheet_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_line_tree_add_rem_time" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree.add_rem_time</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_tree" />
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="remuneration_id" />
+                <field name="timesheet_id"/>
+                <field name="remuneration_incidence" invisible="1"/>
+            </field>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="colors">red:remuneration_incidence;</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

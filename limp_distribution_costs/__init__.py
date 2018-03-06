@@ -19,8 +19,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-#  import timesheet
-#  import account_analytic_line
-#  import hr_employee
-#  import wizard
+from . import models
+from . import wizard

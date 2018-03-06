@@ -19,47 +19,41 @@
 #
 ##############################################################################
 
-from openerp.osv import osv, fields
+from odoo import models, fields
 import time
 import calendar
 import datetime
 
-class remuneration_timesheet_wzd(osv.osv_memory):
+class RemunerationTimesheetWzd(models.TransientModel):
+
     _name = "remuneration.timesheet.wzd"
-    _columns = {
-        'month': fields.selection([
-            ('01', 'January'),
-            ('02', 'February'),
-            ('03', 'March'),
-            ('04', 'April'),
-            ('05', 'May'),
-            ('06', 'June'),
-            ('07', 'July'),
-            ('08', 'August'),
-            ('09', 'September'),
-            ('10', 'October'),
-            ('11', 'November'),
-            ('12', 'December')],
-           'Month', required = True),
-        'year' : fields.integer('Year', required=True),
-    }
 
-    _defaults = {
-        'year': lambda *a: int(time.strftime("%Y"))
-    }
+    month = fields.Selection([
+        ('01', 'January'),
+        ('02', 'February'),
+        ('03', 'March'),
+        ('04', 'April'),
+        ('05', 'May'),
+        ('06', 'June'),
+        ('07', 'July'),
+        ('08', 'August'),
+        ('09', 'September'),
+        ('10', 'October'),
+        ('11', 'November'),
+        ('12', 'December')],
+       'Month', required = True)
+    year = fields.Integer('Year', required=True, default=lambda r: int(time.strftime("%Y")))
 
-    def set_timesheet_lines(self,cr,uid,ids,context=None):
-        if context is None: context = {}
-        wzd = self.browse(cr,uid,ids,context)[0]
-        part_date = str(wzd.year)+'-'+str(wzd.month)
-        first_day, last_day = calendar.monthrange(int(wzd.year),int(wzd.month))
+    def set_timesheet_lines(self):
+        part_date = str(self.year)+'-'+str(self.month)
+        first_day, last_day = calendar.monthrange(int(self.year),int(self.month))
         start_date = part_date+'-01'
         end_date = part_date+'-'+str(last_day)
 
-        rem_ids = self.pool.get("remuneration").search(cr, uid, ['|',('date_to','>=',start_date),('date_to','=',False),('date','<=',end_date),('effective','!=',0.0)], context=context)
-        for rem_id in self.pool.get("remuneration").browse(cr, uid, rem_ids):
+        rem_ids = self.env["remuneration"].search(['|',('date_to','>=',start_date),('date_to','=',False),('date','<=',end_date),('effective','!=',0.0)])
+        for rem_id in rem_ids:
             if not rem_id.parent_id or rem_id.employee_id != rem_id.parent_id.employee_id:
-                remu_periods = self.pool.get("remuneration").get_periods_remuneration(cr, uid, rem_id.id, start_date, end_date)
+                remu_periods = rem_id.get_periods_remuneration(start_date, end_date)
                 for period in remu_periods:
                     rem_start_date, rem_end_date = period.split('#')
                     date1_format = datetime.datetime.strptime((rem_start_date + ' 00:00:00'),"%Y-%m-%d %H:%M:%S")
@@ -73,7 +67,7 @@ class remuneration_timesheet_wzd(osv.osv_memory):
                     days += days_diff
 
                     for remuneration_id in remu_periods[period]:
-                        rem = self.pool.get("remuneration").browse(cr, uid, remuneration_id)
+                        rem = self.env["remuneration"].browse(remuneration_id)
                         effective_amount = round((rem.effective * days) / 30.0, 2)
                         data = {
                             'name': 'Rem. ' + rem.name,
@@ -85,11 +79,11 @@ class remuneration_timesheet_wzd(osv.osv_memory):
                             'done': True,
                             'department_id': (rem.analytic_account_id and rem.analytic_account_id.department_id) and rem.analytic_account_id.department_id.id or False,
                             'delegation_id': (rem.analytic_account_id and rem.analytic_account_id.delegation_id) and rem.analytic_account_id.delegation_id.id or False,
-                            'responsible_id': (rem.analytic_account_id and rem.analytic_account_id.manager_id) and rem.analytic_account_id.manager_id.id or False
+                            'responsible_id': (rem.analytic_account_id and rem.analytic_account_id.custom_manager_id) and rem.analytic_account_id.custom_manager_id.id or False
                         }
                         if rem.analytic_account_id:
                             data.update({'analytic_id': rem.analytic_account_id.id})
-                            self.pool.get("timesheet").create(cr,uid,data)
+                            self.env["timesheet"].create(data)
                         elif rem.analytic_distribution_id:
                             for line in rem.analytic_distribution_id.account_ids:
                                 data.update({
@@ -98,11 +92,9 @@ class remuneration_timesheet_wzd(osv.osv_memory):
                                     'analytic_id': line.analytic_account_id.id,
                                     'department_id': line.department_id and line.department_id.id or False,
                                     'delegation_id': line.delegation_id and line.delegation_id.id or False,
-                                    'responsible_id': line.manager_id and line.manager_id.id or False
+                                    'responsible_id': line.custom_manager_id and line.custom_manager_id.id or False
                                 })
-                                self.pool.get("timesheet").create(cr, uid, data)
+                                self.env["timesheet"].create(data)
 
 
         return {'type' : 'ir.actions.act_window_close'}
-
-remuneration_timesheet_wzd()
