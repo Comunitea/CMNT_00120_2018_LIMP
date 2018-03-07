@@ -60,7 +60,7 @@ class DistributionCostsImport(models.TransientModel):
     file = fields.Binary('File',required=True)
     year = fields.Integer('Year', required=True, default=lambda r: int(time.strftime("%Y")))
 
-    def import_distribution_costs(self, cr, uid, ids, context=None):
+    def import_distribution_costs(self):
         obj = self
         year = str(obj.year)
         month = ''
@@ -85,7 +85,6 @@ class DistributionCostsImport(models.TransientModel):
         general_account_id_ss = self.env['account.account'].search([('code','=',"64200000")])
         general_account_id_suelsala = self.env['account.account'].search([('code','=',"64000000")])
         visited_rows = []
-
         for line in range(1, sh.nrows): #nos recorremos el fichero
             row = sh.row_values(line)
 
@@ -139,7 +138,7 @@ class DistributionCostsImport(models.TransientModel):
 
                 if record['month'] and obj.month == record['month'] and year:
                     first_day, last_day = calendar.monthrange(int(year),int(month))
-                    id=self.pool.env['hr.employee'].search([('glasof_code','=',record['ref_employee'])]) #buscamos al empleado
+                    id=self.env['hr.employee'].search([('glasof_code','=',record['ref_employee'])]) #buscamos al empleado
                     if id:
                         hr_employee_obj = id[0]
 
@@ -250,8 +249,8 @@ class DistributionCostsImport(models.TransientModel):
 
                                         distribution = not code.isdigit() and int(code[1:]) or False
                                         if distribution:
-                                            distribution_obj = self.env['account.analytic.plan.instance'].browse(distribution)
-                                            analytic_objs = distribution_obj.account_ids
+                                            distribution_obj = self.env['account.analytic.distribution'].browse(distribution)
+                                            analytic_objs = distribution_obj.rule_ids
 
                                         valor = config[remuneration][configuration] # importe a apuntar
 
@@ -275,10 +274,10 @@ class DistributionCostsImport(models.TransientModel):
                                                 vals = {
                                                     'amount': -(new_valor),
                                                     'name':  ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                    'analytic_tag_ids': [(4, journal_id[0].id)],
+                                                    'tag_ids': [(4, journal_id[0].id)],
                                                     'remuneration_id': int(remuneration),
                                                     'account_id': analytic or analytic_obj.analytic_account_id.id,
-                                                    'general_account_id': general_account_id_suelsala[0],
+                                                    'general_account_id': general_account_id_suelsala[0].id,
                                                     'date': ""+year+"/"+month+"/"+str(calendar.monthrange(int(year),int(month))[1]),
                                                     'department_id': analytic_obj.department_id and analytic_obj.department_id.id or False,
                                                     'delegation_id': analytic_obj.delegation_id and analytic_obj.delegation_id.id or False,
@@ -303,17 +302,16 @@ class DistributionCostsImport(models.TransientModel):
                                                 vals = {
                                                     'amount': -(remu_total_cost),
                                                     'name':  ustr(obj.name)+u"("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                    'analytic_tag_ids': [(4, journal_id[0].id)],
+                                                    'tag_ids': [(4, journal_id[0].id)],
                                                     'remuneration_id': int(remuneration),
                                                     'account_id': analytic or analytic_obj.analytic_account_id.id,
-                                                    'general_account_id': general_account_id_suelsala[0],
+                                                    'general_account_id': general_account_id_suelsala[0].id,
                                                     'date': ""+year+"/"+month+"/"+str(calendar.monthrange(int(year),int(month))[1]),
                                                     'department_id': analytic_obj.department_id and analytic_obj.department_id.id or False,
                                                     'delegation_id': analytic_obj.delegation_id and analytic_obj.delegation_id.id or False,
                                                     'manager_id': analytic_obj.manager_id and analytic_obj.manager_id.id or False,
                                                     'employee_id' : hr_employee_obj.id
                                                     }
-
                                                 self.env['account.analytic.line'].create(vals) # creakos el apunte de con contrato
                                             elif new_valor and ss_total: # si hay seguridad social a repartir
                                                 ids_delete = self.env['account.analytic.line'].search(
@@ -330,17 +328,17 @@ class DistributionCostsImport(models.TransientModel):
                                                 vals = {
                                                         'amount': -(remu_total_cost_ss),
                                                         'name':  ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                        'analytic_tag_ids': [(4, social_journal_id[0].id)],
+                                                        'tag_ids': [(4, social_journal_id[0].id)],
                                                         'remuneration_id': int(remuneration),
                                                         'account_id': analytic or analytic_obj.analytic_account_id.id,
-                                                        'general_account_id': general_account_id_ss[0],
+                                                        'general_account_id': general_account_id_ss[0].id,
                                                         'date': ""+year+"/"+month+"/"+str(calendar.monthrange(int(year),int(month))[1]),
                                                         'department_id': analytic_obj.department_id and analytic_obj.department_id.id or False,
                                                         'delegation_id': analytic_obj.delegation_id and analytic_obj.delegation_id.id or False,
                                                         'manager_id': analytic_obj.manager_id and analytic_obj.manager_id.id or False,
                                                         'employee_id' : hr_employee_obj.id
                                                         }
-                                                self.env['account.analytic.line'].create()
+                                                self.env['account.analytic.line'].create(vals)
                                 else: # si es un parte de horas
                                     for configuration in config[remuneration]:
                                         type = (configuration.split("-"))[1]
@@ -358,10 +356,10 @@ class DistributionCostsImport(models.TransientModel):
                                             vals = {
                                                 'amount': -(valor),
                                                 'name':  ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                'analytic_tag_ids': [(4, journal_id[0].id)],
+                                                'tag_ids': [(4, journal_id[0].id)],
                                                 'timesheet_id': int(remuneration[:-1]),
                                                 'account_id': analytic,
-                                                'general_account_id': general_account_id_suelsala[0],
+                                                'general_account_id': general_account_id_suelsala[0].id,
                                                 'date': ""+year+"/"+month+"/"+str(calendar.monthrange(int(year),int(month))[1]),
                                                 'department_id': timesheet_obj_id.department_id and timesheet_obj_id.department_id.id or (analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 'delegation_id': timesheet_obj_id.delegation_id and timesheet_obj_id.delegation_id.id or (analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
@@ -383,10 +381,10 @@ class DistributionCostsImport(models.TransientModel):
                                             vals = {
                                                 'amount': -(timesheet_total_cost),
                                                 'name':  ustr(obj.name)+u" ("+type+u")/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                'analytic_tag_ids': [(4, journal_id[0].id)],
+                                                'tag_ids': [(4, journal_id[0].id)],
                                                 'timesheet_id': int(remuneration[:-1]),
                                                 'account_id': analytic,
-                                                'general_account_id': general_account_id_suelsala[0],
+                                                'general_account_id': general_account_id_suelsala[0].id,
                                                 'date': ""+year+"/"+month+"/"+str(calendar.monthrange(int(year),int(month))[1]),
                                                 'department_id': timesheet_obj_id.department_id and timesheet_obj_id.department_id.id or (analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 'delegation_id': timesheet_obj_id.delegation_id and timesheet_obj_id.delegation_id.id or (analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
@@ -407,10 +405,10 @@ class DistributionCostsImport(models.TransientModel):
                                             vals = {
                                                     'amount': -(timesheet_total_cost_ss),
                                                     'name':  ustr(obj.name)+u"/ "+month+u"/"+year+u"/ "+ hr_employee_obj.name,
-                                                    'analytic_tag_ids': [(4, social_journal_id[0].id)],
+                                                    'tag_ids': [(4, social_journal_id[0].id)],
                                                     'timesheet_id': int(remuneration[:-1]),
                                                     'account_id': analytic,
-                                                    'general_account_id': general_account_id_ss[0],
+                                                    'general_account_id': general_account_id_ss[0].id,
                                                     'date': ""+year+"/"+month+"/"+str(calendar.monthrange(int(year),int(month))[1]),
                                                     'department_id': timesheet_obj_id.department_id and timesheet_obj_id.department_id.id or (analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                     'delegation_id': timesheet_obj_id.delegation_id and timesheet_obj_id.delegation_id.id or (analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),

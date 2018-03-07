@@ -77,7 +77,7 @@ class Remuneration(models.Model):
     ss_no_hours = fields.Float('No ss hours', digits=(4, 2))
     total_hours = fields.Float(compute='_compute_total_hours')
     analytic_distribution_id = fields.Many2one(
-        'account.analytic.plan.instance', 'Analytic Distribution')
+        'account.analytic.distribution', 'Analytic Distribution')
     company_id = fields.Many2one(
         'res.company', 'Company', required=False,
         default=lambda r: r.env.user.company_id.id)

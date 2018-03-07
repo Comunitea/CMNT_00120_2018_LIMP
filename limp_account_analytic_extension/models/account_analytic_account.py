@@ -31,7 +31,7 @@ class AccountAnalyticAccount(models.Model):
         'res.delegation', 'Delegation', change_default=1,
         default=lambda r: r._context.get('delegation_id',
                                          r.env.user.context_delegation_id.id))
-    custom_manager_id = fields.Many2one(
+    manager_id = fields.Many2one(
         'hr.employee', 'Responsible', domain=[('responsible', '=', True)],
         default=lambda r: r._context.get('c_manager_id',
                                          r.env.user.employee_ids and

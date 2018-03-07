@@ -79,7 +79,7 @@ class RemunerationTimesheetWzd(models.TransientModel):
                             'done': True,
                             'department_id': (rem.analytic_account_id and rem.analytic_account_id.department_id) and rem.analytic_account_id.department_id.id or False,
                             'delegation_id': (rem.analytic_account_id and rem.analytic_account_id.delegation_id) and rem.analytic_account_id.delegation_id.id or False,
-                            'responsible_id': (rem.analytic_account_id and rem.analytic_account_id.custom_manager_id) and rem.analytic_account_id.custom_manager_id.id or False
+                            'responsible_id': (rem.analytic_account_id and rem.analytic_account_id.manager_id) and rem.analytic_account_id.manager_id.id or False
                         }
                         if rem.analytic_account_id:
                             data.update({'analytic_id': rem.analytic_account_id.id})
@@ -92,7 +92,7 @@ class RemunerationTimesheetWzd(models.TransientModel):
                                     'analytic_id': line.analytic_account_id.id,
                                     'department_id': line.department_id and line.department_id.id or False,
                                     'delegation_id': line.delegation_id and line.delegation_id.id or False,
-                                    'responsible_id': line.custom_manager_id and line.custom_manager_id.id or False
+                                    'responsible_id': line.manager_id and line.manager_id.id or False
                                 })
                                 self.env["timesheet"].create(data)
 
