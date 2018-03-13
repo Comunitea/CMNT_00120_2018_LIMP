@@ -18,26 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""Initial file to import each classes in this module"""
-#  import service_picking_stock_move
-#  import building_site_services
-#  import service_picking_valorization_rel
-#  import service_picking_other_concepts_rel
-#  import stock_service_picking
-#  import account_invoice
-#  import stock_service_picking_line
-#  import service_picking_invoice_concept
-#  import product
-#  import partner
-#  #import service_picking_employees_rel
-#  import account_analytic_account
-#  import waste_services
-#  import stock_picking
-#  import fleet
-#  import wizard
-#  import valorization_lines
-#  import res_company
-#  import stock_move
-#  import timesheet
-#  import other_expenses
+from . import models
+from . import wizard

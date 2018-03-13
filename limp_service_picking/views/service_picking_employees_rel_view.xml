@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="stock_service_picking_employees_rel_tree" model="ir.ui.view">
+        <field name="name">stock.service.picking.employees.rel.tree</field>
+        <field name="model">stock.service.picking.employees.rel</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Picking employees">
+                <field name="employee_id"/>
+                <field name="hours"/>
+                <field name="total_amount" sum="Total amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_service_picking_employees_rel_form" model="ir.ui.view">
+        <field name="name">stock.service.picking.employees.rel.form</field>
+        <field name="model">stock.service.picking.employees.rel</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Picking employee">
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="hours"/>
+                        <field name="total_amount"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

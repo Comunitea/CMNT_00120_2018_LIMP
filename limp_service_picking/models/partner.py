@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
 #    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,16 @@
 ##############################################################################
 from odoo import models, fields
 
-class ForceBuildingSiteServicePicking(models.TransientModel):
 
-    _name = "force.building.site.service.picking"
+class ResPartner(models.Model):
 
-    service_picking_id = fields.Many2one('stock.service.picking', 'Picking', required=True)
+    _inherit = 'res.partner'
 
-    def copy_building_site(self):
-        pickings = self.env['stock.service.picking'].browse(self._context.get('active_ids', []))
-        pickings.write({'building_site_id': self.service_picking_id.building_site_id.id})
-        return {}
+    partner_contact_id = fields.Many2one('res.partner', 'Partner contact')
+    authorization_no = fields.Char('Authorization no.', size=32)
+    manager_authorization_no = fields.Text('Manager authorization no.')
+    transport_authorization_no = fields.Char('Transport authorization no.', size=32)
+    destination_manager = fields.Boolean('Destination manager', help="Check this box if the partner is a destination manager.")
+    building_site_services_ids = fields.Many2many('building.site.services', 'partner_building_site_services_rel', 'partner_ids', 'building_site_services_id', 'Building sites/Services')
+    nima_no = fields.Char('NIMA', size=255)
+    create_nima_number = fields.Boolean('Create nima number', help="Create nima number in service pickings")

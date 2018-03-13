@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        
-        <record id="view_distribute_fleet_expense" model="ir.ui.view">
-            <field name="name">distribute.fleet.expense.view</field>
-            <field name="model">distribute.fleet.expense</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-              <form string="Distribute fleet expenses">
-                    <field name="name" colspan="4"/>
+<odoo>
+
+    <record id="view_distribute_fleet_expense" model="ir.ui.view">
+        <field name="name">distribute.fleet.expense.view</field>
+        <field name="model">distribute.fleet.expense</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Distribute fleet expenses">
+                <group>
+                    <field name="name"/>
                     <field name="month"/>
                     <field name="year"/>
-                    <separator string="" colspan="4" />
-                    <button special="cancel" string="Cancel" icon='gtk-cancel'/>
-                    <button name="distribute_costs" string="Distribute" type="object" icon="terp-gtk-go-back-rtl"/>
-             </form>
-            </field>
-        </record>
+                </group>
+                <footer>
+                    <button name="distribute_costs" string="Distribute" type="object"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
 
-        <record id="action_view_distribute_fleet_expense" model="ir.actions.act_window">
-            <field name="name">Distribute fleet expenses</field>
-            <field name="res_model">distribute.fleet.expense</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_distribute_fleet_expense"/>
-            <field name="target">new</field>
-          </record>
+    <record id="action_view_distribute_fleet_expense" model="ir.actions.act_window">
+        <field name="name">Distribute fleet expenses</field>
+        <field name="res_model">distribute.fleet.expense</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_distribute_fleet_expense"/>
+        <field name="target">new</field>
+    </record>
 
-          <menuitem id="menu_distribute_fleet_expense" action= "action_view_distribute_fleet_expense" name="Distribute fleet expenses" parent="simple_fleet_management.menu_fleet" sequence="150"/>
-          
-    </data>
-</openerp>
+    <menuitem id="menu_distribute_fleet_expense"
+        action= "action_view_distribute_fleet_expense" name="Distribute fleet expenses" parent="simple_fleet_management.menu_fleet" sequence="150"/>
+</odoo>

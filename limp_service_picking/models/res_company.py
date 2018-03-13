@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
 #    $Omar Castiñeira Saavedra$
-#    $Marta Vázquez Rodríguez$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,8 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import service_order_toinvoice
-from . import stock_invoice_onshipping
-from . import add_to_invoice
-from . import distribute_fleet_expense
-from . import force_building_site_service_picking
+from odoo import models, fields
+
+
+class ResCompany(models.Model):
+
+    _inherit = "res.company"
+
+    reserve_product_id = fields.Many2one('product.product', 'Product')

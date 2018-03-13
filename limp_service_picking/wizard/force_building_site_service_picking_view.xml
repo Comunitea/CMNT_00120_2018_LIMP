@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        
-        <record id="view_force_building_site_picking_form" model="ir.ui.view">
-            <field name="name">force.building.site.service.picking.form</field>
-            <field name="model">force.building.site.service.picking</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-              <form string="Force building site">
+<odoo>
+
+    <record id="view_force_building_site_picking_form" model="ir.ui.view">
+        <field name="name">force.building.site.service.picking.form</field>
+        <field name="model">force.building.site.service.picking</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Force building site">
+                <group>
                     <field name="service_picking_id"/>
-                    <separator string="" colspan="4" />
-                    <button special="cancel" string="Cancel" icon='gtk-cancel'/>
-                    <button name="copy_building_site" string="Force" type="object" icon="terp-gtk-go-back-rtl"/>
-             </form>
-            </field>
-        </record>
+                </group>
+                <footer>
+                    <button name="copy_building_site" string="Force" type="object"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
 
 
-        <act_window name="Force building site"
-            res_model="force.building.site.service.picking"
-            src_model="stock.service.picking"
-            key2="client_action_multi"
-            view_mode="form"
-            view_type="form"
-            target="new"
-            id="action_force_building_site_spicking_form"/>
-            
-    </data>
-</openerp>
+    <act_window name="Force building site"
+        res_model="force.building.site.service.picking"
+        src_model="stock.service.picking"
+        key2="client_action_multi"
+        view_mode="form"
+        view_type="form"
+        target="new"
+        id="action_force_building_site_spicking_form"/>
+</odoo>

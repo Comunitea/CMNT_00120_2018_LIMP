@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_picking_out_form_rep_buttons" model="ir.ui.view">
+        <field name="name">stock.picking.out.form.rep_buttons</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="move_type" position="after">
+                <field name="invoice_state"/>
+                <field name="invoice_type"/>
+            </field>
+            <page name="extra" position="inside">
+                <group>
+                    <field name="waste_or_arid"/>
+                    <field name="manager_or_productor"/>
+                </group>
+                <group colspan="4" col="6">
+                    <field name="carrier_id"/>
+                    <field name="driver_id"/>
+                    <field name="license_plate"/>
+                    <field name="delivery_kms"/>
+                    <field name="arrival_kms"/>
+                    <field name="delivery_hours" widget="float_time"/>
+                    <field name="displacement_hours" widget="float_time"/>
+                    <field name="work_hours" widget="float_time"/>
+                    <field name="tranfer_hours" widget="float_time"/>
+                    <field name="arrival_hours" widget="float_time"/>
+                </group>
+            </page>
+            <!--button name="draft_force_assign" position="replace">
+                <button name="draft_force_assign" states="draft" string="Confirm" type="object" icon="gtk-ok"/>
+            </button>
+            <button name="draft_validate" position="replace">
+            </button-->
+        </field>
+    </record>
+
+    <record id="view_move_search_reception_incoming_picking_add_dates" model="ir.ui.view">
+        <field name="name">stock.move.incoming.search2.add_dates</field>
+        <field name="model">stock.move</field>
+        <field name="type">search</field>
+        <field name="inherit_id" ref="stock.view_move_search"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="date"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_picking_form_add_memory_field" model="ir.ui.view">
+        <field name="name">stock.picking.form.add_memory_field</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="backorder_id" position="after">
+                <field name="memory_include"/>
+            </field>
+        </field>
+    </record>
+
+     <record id="view_picking_out_search_add_memory_field" model="ir.ui.view">
+        <field name="name">stock.picking.out.search.add_memory_field</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <field name="picking_type_id" position="after">
+                <field name="memory_include"/>
+                <field name="invoice_type"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

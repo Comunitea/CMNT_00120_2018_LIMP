@@ -18,170 +18,133 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields, _
+from odoo.exceptions import UserError
 
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-
-class add_to_invoice(osv.osv_memory):
+class AddToInvoice(models.TransientModel):
 
     _name = "add.to.invoice"
 
-    _columns = {
-        'invoice_id': fields.many2one('account.invoice', 'Invoice', required=True)
-    }
+    invoice_id = fields.Many2one('account.invoice', 'Invoice', required=True)
 
-    def view_init(self, cr, uid, fields_list, context=None):
-        if context is None:
-            context = {}
-        res = super(add_to_invoice, self).view_init(cr, uid, fields_list, context=context)
-        cur_obj = self.pool.get('stock.service.picking')
-
-        active_ids = context.get('active_ids',[])
-        for pick in cur_obj.browse(cr, uid, active_ids, context=context):
-            if pick.state <> 'closed' or pick.invoice_line_ids != [] or pick.invoice_type == 'noinvoice':
-                raise osv.except_osv(_('Warning !'), _('The service order %s does not prepares to be invoiced or it was already invoiced.') % (pick.name))
+    def view_init(self, fields_list):
+        res = super(AddToInvoice, self).view_init(fields_list)
+        for pick in self.env['stock.service.picking'].browse(self._context.get('active_ids', [])):
+            if pick.state != 'closed' or pick.invoice_line_ids or pick.invoice_type == 'noinvoice':
+                raise UserError(_('The service order %s does not prepares to be invoiced or it was already invoiced.') % (pick.name))
         return res
 
-    def open_invoice(self, cr, uid, ids, context=None):
-
-        if context is None:
-            context = {}
+    def open_invoice(self):
         invoice_ids = []
-        data_pool = self.pool.get('ir.model.data')
-        invoice_ids = self.add_to_invoice(cr, uid, ids, context=context)
-        action_model = False
-        action = {}
-        action_model = False
+        invoice_ids = self.add_to_invoice()
         if not invoice_ids:
-            raise osv.except_osv(_('Error'), _('No Invoices were created'))
-        action_model,action_id = data_pool.get_object_reference(cr, uid, 'account', "action_invoice_tree1")
-        if action_model:
-            action_pool = self.pool.get(action_model)
-            action = action_pool.read(cr, uid, action_id, context=context)
-            action['domain'] = "[('id','in', ["+','.join(map(str,invoice_ids))+"])]"
+            raise UserError(_('No Invoices were created'))
+        action = self.env.ref('account.action_invoice_tree1').read()[0]
+        action['domain'] = "[('id','in', ["+','.join(map(str, invoice_ids))+"])]"
         return action
 
-    def add_to_invoice(self, cr, uid, ids, context=None):
-        if context is None: context = {}
-
-        picking_pool = self.pool.get('stock.service.picking')
-        invoice_obj = self.pool.get('account.invoice')
-        invoice_line_obj = self.pool.get('account.invoice.line')
-        obj = self.browse(cr, uid, ids[0])
-        for service_picking in picking_pool.browse(cr, uid, context.get('active_ids', []), context=context):
+    def add_to_invoice(self):
+        for service_picking in self.env['stock.service.picking'].browse(self._context.get('active_ids', [])):
             comment = False
             partner = service_picking.partner_id
+            fpos = partner.property_account_position_id
             invoice_vals = {
-                'name': (obj.invoice_id.name or u'') + u', ' + (service_picking.name or u''),
-                'origin': (obj.invoice_id.origin or '') + u', ' + (service_picking.name or u''),
-                'comment': (comment and (obj.invoice_id.comment and obj.invoice_id.comment+u"\n"+comment or comment)) or (obj.invoice_id.comment and obj.invoice_id.comment or u''),
+                'name': (self.invoice_id.name or u'') + u', ' + (service_picking.name or u''),
+                'origin': (self.invoice_id.origin or '') + u', ' + (service_picking.name or u''),
+                'comment': (comment and (self.invoice_id.comment and self.invoice_id.comment+u"\n"+comment or comment)) or (self.invoice_id.comment and self.invoice_id.comment or u''),
             }
-            invoice_obj.write(cr, uid, [obj.invoice_id.id], invoice_vals, context=context)
+            self.invoice_id.write(invoice_vals)
 
             for move_line in service_picking.service_invoice_concept_ids:
                 name = (service_picking.name or u'') + u'-' + move_line.name
                 account_id = move_line.product_id.product_tmpl_id.\
-                            property_account_income.id
+                            property_account_income_id
                 if not account_id:
                     account_id = move_line.product_id.categ_id.\
-                            property_account_income_categ.id
+                            property_account_income_categ_id
                 if not account_id:
-                    raise osv.except_osv(_('Error!'), _('Income account in product %s is not set') % move_line.product_id.name)
+                    raise UserError(_('Income account in product %s is not set') % move_line.product_id.name)
 
                 price_unit = move_line.price
-                tax_ids = self.pool.get('account.fiscal.position').map_tax(
-                        cr,
-                        uid,
-                        service_picking.partner_id.property_account_position,
-                        move_line.product_id.taxes_id
-                )
+                tax_ids = fpos.map_tax(move_line.product_id.taxes_id)._ids
 
 
-                account_id = self.pool.get('account.fiscal.position').map_account(cr, uid, partner.property_account_position, account_id)
-                invoice_line_id = invoice_line_obj.create(cr, uid, {
-                    'name': name,
-                    'invoice_id': obj.invoice_id.id,
-                    'product_id': move_line.product_id.id,
-                    'uos_id': move_line.product_uom and move_line.product_uom.id or move_line.product_id.uom_id.id,
-                    'account_id': account_id,
-                    'price_unit': price_unit,
-                    'quantity': move_line.product_qty,
-                    'invoice_line_tax_id': [(6, 0, tax_ids)],
-                    'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
-                    'account_analytic_id': service_picking.analytic_acc_id.id,
-                    'service_picking_id': service_picking.id
-                }, context=context)
+                account_id = fpos.map_account(account_id).id
+                invoice_line_id = self.env['account.invoice.line'].create(
+                    {
+                        'name': name,
+                        'invoice_id': self.invoice_id.id,
+                        'product_id': move_line.product_id.id,
+                        'uom_id': move_line.product_uom and move_line.product_uom.id or move_line.product_id.uom_id.id,
+                        'account_id': account_id,
+                        'price_unit': price_unit,
+                        'quantity': move_line.product_qty,
+                        'invoice_line_tax_ids': [(6, 0, tax_ids)],
+                        'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
+                        'account_analytic_id': service_picking.analytic_acc_id.id,
+                        'service_picking_id': service_picking.id
+                    })
             service_picking.write({'invoice_type': 'invoiced'})
 
             if service_picking.taxes:
                 if not service_picking.product_tax_id:
-                    raise osv.except_osv(_('Error!'), _('Product tax is not set in picking %s') % service_picking.name)
+                    raise UserError(_('Product tax is not set in picking %s') % service_picking.name)
 
                 account_id = service_picking.product_tax_id.product_tmpl_id.\
-                            property_account_income.id
+                            property_account_income_id
                 if not account_id:
                     account_id = service_picking.product_tax_id.categ_id.\
-                            property_account_income_categ.id
+                            property_account_income_categ_id
                 if not account_id:
-                    raise osv.except_osv(_('Error!'), _('Income account in product %s is not set') % service_picking.product_tax_id.name)
+                    raise UserError(_('Income account in product %s is not set') % service_picking.product_tax_id.name)
 
-                tax_ids = self.pool.get('account.fiscal.position').map_tax(
-                        cr,
-                        uid,
-                        service_picking.partner_id.property_account_position,
-                        service_picking.product_tax_id.taxes_id
-                )
+                tax_ids = fpos.map_tax(service_picking.product_tax_id.taxes_id)._ids
 
-                invoice_line_obj.create(cr, uid, {
-                    'name': service_picking.product_tax_id.name,
-                    'invoice_id': obj.invoice_id.id,
-                    'product_id': service_picking.product_tax_id.id,
-                    'uos_id': service_picking.product_tax_id.uom_id.id,
-                    'account_id': self.pool.get('account.fiscal.position').map_account(cr, uid, partner.property_account_position, account_id),
-                    'price_unit': service_picking.taxes,
-                    'quantity': 1.0,
-                    'invoice_line_tax_id': [(6, 0, tax_ids)],
-                    'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
-                    'account_analytic_id': service_picking.analytic_acc_id.id,
-                    'service_picking_id': service_picking.id
-                }, context=context)
+                self.env['account.invoice.line'].create(
+                    {
+                        'name': service_picking.product_tax_id.name,
+                        'invoice_id': self.invoice_id.id,
+                        'product_id': service_picking.product_tax_id.id,
+                        'uom_id': service_picking.product_tax_id.uom_id.id,
+                        'account_id': fpos.map_account(account_id).id,
+                        'price_unit': service_picking.taxes,
+                        'quantity': 1.0,
+                        'invoice_line_tax_ids': [(6, 0, tax_ids)],
+                        'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
+                        'account_analytic_id': service_picking.analytic_acc_id.id,
+                        'service_picking_id': service_picking.id
+                    })
 
             if service_picking.sand_amount:
                 if not service_picking.product_sand_id:
-                    raise osv.except_osv(_('Error!'), _('Product sand treatment is not set in picking %s') % service_picking.name)
+                    raise UserError(_('Product sand treatment is not set in picking %s') % service_picking.name)
 
                 account_id = service_picking.product_sand_id.product_tmpl_id.\
-                            property_account_income.id
+                            property_account_income_id
                 if not account_id:
                     account_id = service_picking.product_sand_id.categ_id.\
-                            property_account_income_categ.id
+                            property_account_income_categ_id
                 if not account_id:
-                    raise osv.except_osv(_('Error!'), _('Income account in product %s is not set') % service_picking.product_sand_id.name)
+                    raise UserError(_('Income account in product %s is not set') % service_picking.product_sand_id.name)
 
 
-                tax_ids = self.pool.get('account.fiscal.position').map_tax(
-                        cr,
-                        uid,
-                        service_picking.partner_id.property_account_position,
-                        service_picking.product_sand_id.taxes_id
-                )
+                tax_ids = fpos.map_tax(service_picking.product_sand_id.taxes_id)._ids
 
-                invoice_line_obj.create(cr, uid, {
-                    'name': service_picking.product_sand_id.name,
-                    'invoice_id': obj.invoice_id.id,
-                    'product_id': service_picking.product_sand_id.id,
-                    'uos_id': service_picking.product_sand_id.uom_id.id,
-                    'account_id': self.pool.get('account.fiscal.position').map_account(cr, uid, partner.property_account_position, account_id),
-                    'price_unit': service_picking.sand_amount,
-                    'quantity': 1.0,
-                    'invoice_line_tax_id': [(6, 0, tax_ids)],
-                    'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
-                    'account_analytic_id': service_picking.analytic_acc_id.id,
-                    'service_picking_id': service_picking.id
-                }, context=context)
+                self.env['account.invoice.line'].create(
+                    {
+                        'name': service_picking.product_sand_id.name,
+                        'invoice_id': self.invoice_id.id,
+                        'product_id': service_picking.product_sand_id.id,
+                        'uom_id': service_picking.product_sand_id.uom_id.id,
+                        'account_id': fpos.map_account(account_id).id,
+                        'price_unit': service_picking.sand_amount,
+                        'quantity': 1.0,
+                        'invoice_line_tax_ids': [(6, 0, tax_ids)],
+                        'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
+                        'account_analytic_id': service_picking.analytic_acc_id.id,
+                        'service_picking_id': service_picking.id
+                    })
 
-            obj.invoice_id.button_reset_taxes()
+            self.invoice_id.compute_taxes()
 
-        return [obj.invoice_id.id]
-
-add_to_invoice()
+        return [self.invoice_id.id]

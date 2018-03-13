@@ -25,7 +25,6 @@ class limp_service_picking(osv.osv):
     _inherit = 'stock.service.picking'
 
     _columns = {
-        'sale_id': fields.many2one("sale.order", string="Sale"),
         'sale_line_ids': fields.related('sale_id', 'order_line', type="one2many", relation="sale.order.line", string="Order lines", readonly=True)
     }
 

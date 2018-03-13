@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record id="timesheet_tree_add_building_site" model="ir.ui.view">
+        <field name="name">timesheet.tree_add_building_site</field>
+        <field name="model">timesheet</field>
+        <field name="inherit_id" ref="limp_distribution_costs.timesheet_tree"/>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="building_site_id"/>
+            </field>
+            <field name="employee_id" position="after">
+                <field name="description"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="timesheet_form_add_description" model="ir.ui.view">
+        <field name="name">timesheet.tree_add_building_site</field>
+        <field name="model">timesheet</field>
+        <field name="inherit_id" ref="limp_distribution_costs.timesheet_form"/>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="pending_distribute_qty" position="after">
+                <field name="description"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="timesheet_form" model="ir.ui.view">
+        <field name="name">timesheet.form</field>
+        <field name="model">timesheet</field>
+        <field name="inherit_id" ref="limp_distribution_costs.timesheet_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="effective" position="after">
+                <field name="building_site_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="timesheet_search" model="ir.ui.view">
+        <field name="name">timesheet.search</field>
+        <field name="model">timesheet</field>
+        <field name="inherit_id" ref="limp_distribution_costs.timesheet_search"/>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <field name="analytic_id" position="after">
+                <field name="building_site_id"/>
+            </field>
+            <filter name="analytic_account" position="after">
+                <filter string="Building Site" icon="terp-folder-orange" domain="[]" context="{'group_by':'building_site_id'}"/>
+            </filter>
+        </field>
+    </record>
+</odoo>

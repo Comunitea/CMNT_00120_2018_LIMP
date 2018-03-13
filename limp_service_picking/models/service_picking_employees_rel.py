@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
 #    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,14 +19,22 @@
 #
 ##############################################################################
 from odoo import models, fields
+from odoo.addons import decimal_precision as dp
 
-class ForceBuildingSiteServicePicking(models.TransientModel):
+class ServicePickingEmployeesRel(models.Model):
 
-    _name = "force.building.site.service.picking"
+    _name = "stock.service.picking.employees.rel"
+    _description = "Relationship between services pickings and employees"
 
-    service_picking_id = fields.Many2one('stock.service.picking', 'Picking', required=True)
+    picking_id = fields.Many2one('stock.service.picking', 'Picking', required=True)
+    employee_id = fields.Many2one('hr.employee', 'Employee', required=True)
+    hours = fields.Float('Hours', digits=(4,2), required=True)
+    total_amount = fields.Float('Amount total', digits=dp.get_precision('Account'), compute='_compute_total_amount')
 
-    def copy_building_site(self):
-        pickings = self.env['stock.service.picking'].browse(self._context.get('active_ids', []))
-        pickings.write({'building_site_id': self.service_picking_id.building_site_id.id})
-        return {}
+    def _compute_total_amoun(self):
+        for obj in self:
+            if obj.employee_id.product_id:
+                obj.total_amount = obj.employee_id.product_id.list_price * obj.hours
+            else:
+                obj.total_amount = 0.0
+        return res

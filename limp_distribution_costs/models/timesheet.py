@@ -37,8 +37,8 @@ class Timesheet(models.Model):
     hours = fields.Float('Hours', digits=(12, 2), required=True)
     contract = fields.Boolean('Contract')
     fix_qty = fields.Float('Fix Qty.',
-                           digits_compute=dp.get_precision('Account'))
-    quantity = fields.Float('Qty.', digits_compute=dp.get_precision('Account'))
+                           digits=dp.get_precision('Account'))
+    quantity = fields.Float('Qty.', digits=dp.get_precision('Account'))
     extra_hours = fields.Float('Extra Hours', digits=(4, 2))
     price_hours = fields.Float('Price Hours', digits=(4, 2))
     effective = fields.Float('Effective', digits=(4, 2))
