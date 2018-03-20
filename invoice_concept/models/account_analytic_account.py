@@ -91,6 +91,7 @@ class AccountAnalyticAccount(models.Model):
         return invoice
 
     def _process_concept_name(self, concept_rel, date):
+        self.ensure_one()
         return concept_rel.concept_id.process_name(
             description=concept_rel.name, date=date)
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="seq_default_contract" model="ir.sequence">
+            <field name="name">Default contract seq.</field>
+            <field name="code">limp.contract.seq</field>
+            <field name="prefix">D/</field>
+            <field name="padding">5</field>
+            <field name="suffix">/%(year)s</field>
+        </record>
+
+        <record id="seq_default_contract_line" model="ir.sequence">
+            <field name="name">Default contract line seq.</field>
+            <field name="code">limp.contract.line.seq</field>
+        </record>
+
+    </data>
+</odoo>

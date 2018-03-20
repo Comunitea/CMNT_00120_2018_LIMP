@@ -96,7 +96,7 @@ class AccountAnalyticStockMove(models.Model):
 
         account_id = res.product_id.product_tmpl_id.property_account_expense_id.id
         if not account_id:
-            account_id = res.product_id.categ_id.property_account_expense_categ.id
+            account_id = res.product_id.categ_id.property_account_expense_categ_id.id
             if not account_id:
                 raise UserError(
                     _('No product and product category expense property '

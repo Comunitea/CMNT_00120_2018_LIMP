@@ -8,20 +8,20 @@
             <tree string="Timesheet" editable="top">
                 <field name="date"/>
                 <field name="employee_id"/>
-                <field name="hours" sum="Total contract hours" on_change="onchange_hours(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="extra_hours" sum="Total extra hours" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="price_hours" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="quantity" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="hours" sum="Total contract hours"/>
+                <field name="extra_hours" sum="Total extra hours"/>
+                <field name="price_hours"/>
+                <field name="quantity"/>
                 <field name="pending_qty" sum="Total to distribute"/>
                 <field name="pending_distribute_qty" sum="Total Pending"/>
-                <field name="fix_qty" sum="Total fixed" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="effective" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)" sum="Total effective"/>
+                <field name="fix_qty" sum="Total fixed"/>
+                <field name="effective"/>
                 <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="base.group_hr_manager"/>
                 <field name="paid"/>
                 <field name="paid_date"/>
                 <field name="ss_hours" sum="Total ss hours"/>
                 <field name="ss_no_hours" sum="Total no ss hours"/>
-                <field name="analytic_id" required="1" on_change="on_change_analytic_id(analytic_id)"/>
+                <field name="analytic_id" required="1"/>
                 <field name="delegation_id"/>
                 <field name="department_id"/>
                 <field name="responsible_id"/>
@@ -44,17 +44,17 @@
                 <field name="name" readonly="1"/>
                 <field name="date"/>
                 <field name="employee_id"/>
-                <field name="extra_hours" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="price_hours" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="hours" on_change="onchange_hours(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="quantity" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="analytic_id" required="1" on_change="on_change_analytic_id(analytic_id)"/>
+                <field name="extra_hours"/>
+                <field name="price_hours"/>
+                <field name="hours"/>
+                <field name="quantity"/>
+                <field name="analytic_id" required="1"/>
                 <field name="delegation_id"/>
                 <field name="department_id"/>
                 <field name="responsible_id"/>
                 <field name="contract"/>
-                <field name="fix_qty" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
-                <field name="effective" on_change="onchange_qtys(effective,fix_qty,hours,price_hours,extra_hours,quantity)"/>
+                <field name="fix_qty"/>
+                <field name="effective"/>
                 <field name="pending_qty"/>
                 <field name="pending_distribute_qty"/>
                 <separator string="Social security" colspan="4"/>

@@ -40,7 +40,7 @@
                             <field name="parent_man_addr_id" invisible="1"/>
                             <field name="parent_building_addr_id" invisible="1"/>
                             <field name="transport_date"/>
-                            <field name="type" on_change="on_change_type(type,parent_company_id,parent_man_addr_id,parent_building_addr_id)"/>
+                            <field name="type"/>
                             <field name="transport_date_end" groups="limp_service_picking.group_cleaning_user"/>
                         </group>
                         <group>

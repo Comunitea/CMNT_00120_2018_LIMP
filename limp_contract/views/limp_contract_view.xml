@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="limp_contract_tree" model="ir.ui.view">
+            <field name="name">limp.contract.tree</field>
+            <field name="model">limp.contract</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Contracts">
+                    <field name="name" string="Name" required="0"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="description"/>
+                    <field name="date_start"/>
+                    <field name="date"/>
+                    <field name="monthly_amount"/>
+                    <field name="amount"/>
+                    <field name="company_id"/>
+                    <field name="delegation_id"/>
+                    <field name="department_id"/>
+                    <field name="state"/>
+                    <field name="manager_id" string="Manager"/>
+                    <field name="privacy"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="limp_contract_form" model="ir.ui.view">
+            <field name="name">limp.contract.form</field>
+            <field name="model">limp.contract</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Contract">
+                    <header>
+                        <button name="act_confirm" type="object" string="Confirm" colspan="1" states="draft"/>
+                        <button name="%(action_contract_sign)d" string="Sign contract" type="action" colspan="1" target="new" states="wait_signature" />
+                        <button name="act_cancel" type="object" string="Cancel" confirm="Are you sure you want to cancel this contract?" colspan="1" states="draft,wait_signature,open"/>
+                        <button name="act_close" type="object" string="Close" colspan="1" states="open" confirm="Are you sure of close this contract and his lines?"/>
+                        <button name="act_reopen" type="object" string="Reopen" colspan="1" states="close"/>
+                        <button name="act_draft" type="object" string="Set to draft" colspan="1" states="cancel" />
+                        <button name="%(contract_toinvoice_wzd_action)d" type="action" string="Invoice" colspan="1" states="open,close"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_invoices"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                                <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                            </button>
+                            <button name="action_view_upamount_history"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field name="upamount_history_count" widget="statinfo" string="Upamount history"/>
+                            </button>
+                            <button name="action_view_home_help_lines"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-home">
+                                <field name="home_help_lines_count" widget="statinfo" string="Home help"/>
+                            </button>
+                            <button name="action_view_cleaning_lines"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-tint">
+                                <field name="cleaning_lines_count" widget="statinfo" string="Cleaning"/>
+                            </button>
+                            <button name="action_view_waste_lines"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-trash">
+                                <field name="waste_lines_count" widget="statinfo" string="Waste"/>
+                            </button>
+                            <button name="action_view_waste_lines"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field name="service_picking_lines_count" widget="statinfo" string="Service Picking"/>
+                            </button>
+                            <button name="action_view_active_remuneration"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field name="active_remuneration_lines_count" widget="statinfo" string="Active remunerations"/>
+                            </button>
+                            <button name="action_view_contract_note"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field name="contract_note_count" widget="statinfo" string="Notes"/>
+                            </button>
+                            <button name="action_view_contract_note"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field name="analytic_moves_count" widget="statinfo" string="Consumptions"/>
+                            </button>
+                            <button name="action_view_maintenance_task"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field name="maintenance_task_count" widget="statinfo" string="Maintenance tasks"/>
+                            </button>
+                            <button name="action_view_timesheet"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field name="timesheet_count" widget="statinfo" string="Active timesheets"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1" required="0"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="company_id" widget="selection" required="1"/>
+                            <field name="delegation_id" widget="selection" required="1"/>
+                            <field name="department_id" widget="selection" required="1"/>
+                        </group>
+                        <group>
+                            <field name="description" widget="char" size="255"/>
+                            <field name="partner_id" string="Customer" required="1"/>
+                            <field name="contact_id" domain="[('partner_id','=',partner_id)]"/>
+                            <field name="manager_id" string="Manager" required="1"/>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="General">
+                                <group>
+                                    <field name="periodicity" invisible="1"/>
+                                    <field name="monthly_amount"/>
+                                    <field name="amount"/>
+                                    <field name="offered_hours" invisible="1"/>
+                                    <field name="hours_per_week" invisible="1"/>
+                                </group>
+                                <group col="6" colspan="4">
+                                    <field name="date_start"/>
+                                    <field name="contract_duration"/>
+                                    <field name="contract_end_date"/>
+                                    <field name="request_prorogation_date"/>
+                                    <field name="prorogation_date"/>
+                                    <field name="prorogation_end_date"/>
+                                    <field name="request_upamount_date"/>
+                                    <field name="upamount_date"/>
+                                    <field name="signature_date"/>
+                                    <field name="privacy"/>
+                                </group>
+                                <group>
+                                    <field name="date"/>
+                                    <field name="address_id" domain="[('partner_id', '=', partner_id)]" required="1"/>
+                                    <field name="prorogation_notes" colspan="4"/>
+                                </group>
+                            </page>
+                            <page string="Invoicing" groups="base.group_no_one">
+
+                                <notebook colspan="4">
+                                    <page string="Invoice General">
+                                        <group>
+                                            <group>
+                                                <field name="bank_account_id" domain="[('partner_id', '=', partner_id)]"/>
+                                                <field name="currency_id"/>
+                                                <field name="payment_term_id"/>
+                                                <field name="payment_type_id"/>
+                                                <field name="last_invoice_date"/>
+                                                <field name="analytic_account_id" required="0" readonly="1"/>
+                                                <field name="tag_ids" widget="many2many_tags"/>
+                                            </group>
+                                            <group>
+                                                <field name="debit"/>
+                                                <field name="credit"/>
+                                                <field name="balance"/>
+                                                <field name="address_invoice_id" domain="[('parent_id', '=', partner_id)]" required="1"/>
+                                                <field name="address_tramit_id" domain="[('parent_id', '=', partner_id),('type','=','tramit')]"/>
+                                                <field name="invoice_header"/>
+                                                <field name="analytic_distribution_id"/>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <page string="Invoice Concepts">
+                                        <group col="8" colspan="4">
+                                            <field name="include_pickings"/>
+                                            <field name="group_concepts"/>
+                                            <field name="group_products" attrs="{'invisible':[('group_concepts','!=',True)]}"/>
+                                            <field name="group_products_each_invoice" attrs="{'invisible':[('group_products','!=',True)]}"/>
+                                        </group>
+                                        <field name="concept_ids" nolabel="1" colspan="4"/>
+                                    </page>
+                                </notebook>
+                            </page>
+                            <page string="Notes">
+                                <separator string="Description" colspan="4"/>
+                                <field name="note" nolabel="1" colspan="4" widget="text"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="limp_contract_search" model="ir.ui.view">
+            <field name="name">limp.contract.search</field>
+            <field name="model">limp.contract</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Contracts">
+                    <group col="8" colspan="4">
+                        <filter icon="terp-document-new" string="Draft" domain="[('state', '=','draft')]" help="Draft contracts"/>
+                        <filter icon="terp-gtk-media-pause" string="Pending" domain="[('state','=','wait_signature')]" help="Pending contracts"/>
+                        <filter icon="terp-camera_test" string="Current" domain="[('state','=','open')]" help="Current contracts" name="active"/>
+                        <filter icon="gtk-go-up" string="To upamount" help="Contracts pending to upamount over a month" domain="[('state', 'not in', ['close', 'cancelled']), ('upamount_date', '&gt;=', str(time.localtime()[0])+'-'+str(time.localtime()[1]).zfill(2)+'-'+str(time.localtime()[2]).zfill(2)), ('upamount_date', '&lt;=', time.localtime()[1] == 12 and str(time.localtime()[0]+1)+'-01-'+str(time.localtime()[2]).zfill(2) or str(time.localtime()[0])+'-'+str(time.localtime()[1] + 1).zfill(2)+'-'+str(time.localtime()[2]).zfill(2))]"/>
+                        <filter icon="gtk-close" string="Closed" help="Closed Contracts" domain="[('state', '=', 'close')]"/>
+                        <filter icon="gtk-cancel" string="Canceled" help="Canceled Contracts" domain="[('state', '=', 'cancelled')]"/>
+                        <separator orientation="vertical"/>
+                        <field name="name"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="description"/>
+                        <field name="code"/>
+                        <field name="department_id" widget="selection"/>
+                        <field name="delegation_id" widget="selection"/>
+                        <field name="manager_id" widget="selection" string="Manager"/>
+                    </group>
+                    <newline/>
+                    <group col="6" colspan="4">
+                        <field name="date_start"/>
+                        <field name="date"/>
+                        <field name="privacy"/>
+                        <field name="request_prorogation_date"/>
+                        <newline/>
+                        <field name="prorogation_date"/>
+                        <field name="request_upamount_date"/>
+                        <field name="upamount_date"/>
+                        <field name="contract_end_date"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by':'manager_id'}"/>
+                        <filter string="Associated Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Company" icon="terp-folder-orange" domain="[]" context="{'group_by':'company_id'}"/>
+                        <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
+                        <filter string="Department" icon="terp-folder-blue" domain="[]" context="{'group_by':'department_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <act_window
+            id="contract_home_help_lines_link"
+            name="Home help lines"
+            res_model="limp.contract.line.home.help"
+            src_model="limp.contract"
+            view_mode="tree,form"
+            domain="[('contract_id', '=', active_id)]"
+        />
+
+        <act_window
+            id="contract_hom_help_lines_link"
+            name="Cleaning lines"
+            res_model="limp.contract.line.cleaning"
+            src_model="limp.contract"
+            view_mode="tree,form"
+            domain="[('contract_id', '=', active_id)]"
+        />
+
+
+        <record id="action_limp_contract" model="ir.actions.act_window">
+            <field name="name">Contracts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">limp.contract</field>
+            <field name="view_type">form</field>
+            <field name="context">{"search_default_department_id": department_id, "search_default_active":True}</field>
+            <field name="view_id" ref="limp_contract_tree"/>
+            <field name="search_view_id" ref="limp_contract_search"/>
+        </record>
+
+        <menuitem id="menu_limp_contract" sequence="100" name="Contracts"/>
+
+        <menuitem id="menu_limp_contract_contract" parent="menu_limp_contract" name="Contracts"/>
+
+        <menuitem action="action_limp_contract" id="menu_limp_contract_open" parent="menu_limp_contract_contract" name="Contracts"/>
+
+        <menuitem id="menu_limp_contract_conf" parent="menu_limp_contract" name="Configuration" sequence="50"/>
+</odoo>

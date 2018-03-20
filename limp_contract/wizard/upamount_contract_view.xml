@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="upamount_contract_wzd_form" model="ir.ui.view">
-            <field name="name">upamount.contract.wzd.form</field>
-            <field name="model">upamount.contract.wzd</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Contract upamount wizard">
+    <record id="upamount_contract_wzd_form" model="ir.ui.view">
+        <field name="name">upamount.contract.wzd.form</field>
+        <field name="model">upamount.contract.wzd</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Contract upamount wizard">
+                <group>
                     <field name="upamount_percent"/>
-                    <group colspan="4">
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button icon="gtk-ok" name="upamount_action" string="Apply" type="object"/>
-                    </group>
-                </form>
-            </field>
-        </record>
+                </group>
+                <footer>
+                    <button name="upamount_action" string="Apply" type="object"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
 
-        <act_window
-            id="action_upamount_contract_wz" name="Upamount wizard"
-            res_model="upamount.contract.wzd"
-            src_model="limp.contract"
-            view_type="form"
-            view_mode="form"
-            target="new"
-            view_id="upamount_contract_wzd_form"
-            key2="client_action_multi"
-            />
-
-    </data>
-</openerp>
+    <act_window
+        id="action_upamount_contract_wz" name="Upamount wizard"
+        res_model="upamount.contract.wzd"
+        src_model="limp.contract"
+        view_type="form"
+        view_mode="form"
+        target="new"
+        view_id="upamount_contract_wzd_form"
+        key2="client_action_multi"
+    />
+</odoo>

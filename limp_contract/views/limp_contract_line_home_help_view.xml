@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="limp_contract_line_home_help_tree" model="ir.ui.view">
+        <field name="name">limp.contract.line.home.help.tree</field>
+        <field name="model">limp.contract.line.home.help</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Home help contract lines" colors="grey:state=='close'">
+                <field name="num"/>
+                <field name="customer_contact_id"/>
+                <field name="state_id" string="Province"/>
+                <field name="location_id"/>
+                <!--field name="contact_identification_id"/-->
+                <field name="description"/>
+                <field name="date_start"/>
+                <field name="date"/>
+                <field name="state"/>
+                <field name="incidences" string="Inci."/>
+                <field name="concept_amount"/>
+                <field name="beneficiary_amount"/>
+                <field name="check_amount"/>
+                <field name="administration_amount"/>
+                <field name="partner_social_worker_id"/>
+                <field name="social_worker_id"/>
+                <field name="company_id"/>
+                <field name="delegation_id"/>
+                <field name="department_id"/>
+                <button name="open_line" type="object" string="Open line" icon="gtk-ok" states="draft"/>
+                <button name="reopen_line" type="object" string="Reopen" states="close" icon="gtk-undo"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="limp_contract_line_home_help_form" model="ir.ui.view">
+        <field name="name">limp.contract.line.home.help.form</field>
+        <field name="model">limp.contract.line.home.help</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Home help contract line">
+                <header>
+                    <button name="open_line" type="object" string="Open line" states="draft"/>
+                    <button name="reopen_line" type="object" string="Reopen" states="close"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="num"/>
+                            <field name="partner_id" required="1"/>
+                            <field name="customer_contact_id"/>
+                            <field name="state_id" invisible="1" string="Province"/>
+                            <field name="location_id" invisible="1"/>
+                            <field name="partner_social_worker_id"/>
+                            <field name="social_worker_id"/>
+                            <field name="manager_id" string="Manager"/>
+                            <field name="contract_id" readonly="0" required="1"/>
+                            <field name="concept_amount"/>
+                            <field name="description" widget="char" colspan="4" size="255"/>
+                        </group>
+                        <group>
+                            <!--<field name="incidences_amount"/>-->
+                            <field name="beneficiary_amount"/>
+                            <field name="check_amount"/>
+                            <field name="administration_amount"/>
+                            <field name="date_start" required="1"/>
+                            <field name="date"/>
+                            <field name="incidences"/>
+                            <field name="invoice_limit_hours"/>
+                            <field name="invoice_by_high"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="delegation_id"/>
+                            <field name="department_id"/>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Employees Tasks">
+                            <field name="employee_task_ids" nolabel="1" colspan="4"/>
+                        </page>
+                        <!--page string="Active occupations">
+                            <field name="active_occupation_ids" nolabel="1" colspan="4" context="{'company_id': company_id, 'c_delegation_id': delegation_id, 'c_department_id': department_id}"/>
+                        </page-->
+                        <page string="Active remunerations">
+                            <field name="analytic_acc_id" invisible="1"/>
+                            <field name="active_remuneration_ids" nolabel="1" colspan="4" context="{'default_analytic_account_id': analytic_acc_id}"/>
+                        </page>
+                        <page string="Consumptions">
+                           <field name="analytic_move_ids" nolabel="1" colspan="4" context="{'employee_id': manager_id}">
+                               <tree string="Consumptions" editable="top">
+                                    <field name="employee_id"/>
+                                    <field name="location_id"/>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="date"/>
+                                    <field name="state" invisible="1"/>
+                               </tree>
+                               <form string="Consumption">
+                                    <field name="employee_id"/>
+                                    <field name="location_id"/>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="move_id"/>
+                                    <field name="date"/>
+                                    <field name="state"/>
+                               </form>
+                           </field>
+                        </page>
+                        <page string="Invoice Concepts">
+                            <group>
+                                <field name="privacy"/>
+                            </group>
+                            <group col="6" colspan="4">
+                                <field name="group_concepts"/>
+                                <field name="group_products" attrs="{'invisible':[('group_concepts','!=',True)]}"/>
+                                <field name="group_products_each_invoice" attrs="{'invisible':[('group_products','!=',True)]}"/>
+                            </group>
+                            <field name="concept_ids" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Objectives">
+                            <field name="objective_ids" nolabel="1" colspan="4" domain="[('department_id', '=', department_id)]"/>
+                        </page>
+                        <page string="Notes">
+                            <field name="note" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Incidences">
+                            <field name="incidences_text" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Active timesheets">
+                            <field name="active_employee_ids" nolabel="1" colspan="4" context="{'default_delegation_id': delegation_id, 'default_responsible_id': manager_id, 'default_department_id': department_id}">
+                                <tree string="Timesheet" editable="top">
+                                    <field name="date"/>
+                                    <field name="employee_id"/>
+                                    <field name="description"/>
+                                    <field name="hours" widget="float_time" sum="Total hours"/>
+                                    <field name="extra_hours" widget="float_time" sum="Total extra hours"/>
+                                    <field name="price_hours"/>
+                                    <field name="quantity" sum="Total qty."/>
+                                    <field name="pending_qty"/>
+                                    <field name="pending_distribute_qty" sum="Total Pending"/>
+                                    <field name="done"/>
+                                    <field name="old"/>
+                                    <field name="delegation_id"/>
+                                    <field name="department_id"/>
+                                    <field name="responsible_id"/>
+                                </tree>
+                                <form string="Timesheet">
+                                    <field name="name" readonly="1"/>
+                                    <field name="date"/>
+                                    <field name="employee_id"/>
+                                    <field name="description" colspan="4"/>
+                                    <field name="extra_hours" widget="float_time"/>
+                                    <field name="price_hours"/>
+                                    <field name="hours" widget="float_time"/>
+                                    <field name="quantity"/>
+                                    <field name="pending_qty"/>
+                                    <field name="pending_distribute_qty"/>
+                                    <field name="done"/>
+                                    <field name="old"/>
+                                    <field name="delegation_id"/>
+                                    <field name="department_id"/>
+                                    <field name="responsible_id"/>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="limp_contract_line_home_help_search" model="ir.ui.view">
+        <field name="name">limp.contract.line.home.help.search</field>
+        <field name="model">limp.contract.line.home.help</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Home help contract lines">
+                <group col="8" colspan="4">
+                    <filter icon="terp-gtk-media-pause" string="Pending" domain="[('state','=','pending')]" help="Pending contracts"/>
+                    <filter icon="terp-camera_test" string="Current" domain="[('state','=','open')]" help="Current contracts"/>
+                    <separator orientation="vertical"/>
+                    <field name="name" select="1"/>
+                    <field name="partner_id" select="1" string="Customer"/>
+                    <field name="customer_contact_id" select="1"/>
+                    <field name="state_id" select="1" string="Province"/>
+                    <field name="location_id" select="1"/>
+                    <field name="description"/>
+                    <newline/>
+                    <field name="incidences"/>
+                    <field name="partner_social_worker_id" select="1"/>
+                    <field name="manager_id" widget="selection" select="2" string="Manager"/>
+                    <field name="date_start"/>
+                    <field name="date" select="2"/>
+                </group>
+                <newline/>
+                <group expand="0" string="Group By...">
+                    <filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by':'manager_id'}"/>
+                    <filter string="Partner social worker" icon="terp-personal" domain="[]" context="{'group_by':'partner_social_worker_id'}"/>
+                    <filter string="Province" icon="terp-go-home" domain="[]" context="{'group_by': 'state_id'}"/>
+                    <filter string="Council" icon="terp-go-home" domain="[]" context="{'group_by': 'location_id'}"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Company" icon="terp-folder-orange" domain="[]" context="{'group_by':'company_id'}"/>
+                    <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" icon="terp-folder-blue" domain="[]" context="{'group_by':'department_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_limp_contract_home_help_line" model="ir.actions.act_window">
+        <field name="name">Home help contract lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">limp.contract.line.home.help</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem action="action_limp_contract_home_help_line" id="menu_limp_contract_line_home_help_open" parent="menu_limp_contract_contract" name="Home help contract lines" groups="limp_contract.group_limp_administrative"/>
+</odoo>

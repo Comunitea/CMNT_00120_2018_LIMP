@@ -18,48 +18,41 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
 
-class update_last_invoice_date(osv.osv_memory):
+class UpdateLastInvoiceDate(models.TransientModel):
 
     _name = "update.last.invoice.date"
 
-    _columns = {
-        'new_date': fields.date('New date', required=True)
-    }
+    new_date = fields.Date('New date', required=True)
 
-    def update_date(self, cr, uid, ids, context=None):
-        if context is None: context = {}
+    def update_date(self):
+        contracts = self.env['limp.contract'].search(
+            [('id', 'in', self._context.get('active_ids', [])),
+             ('active', '=', True),
+             ('state', 'not in', ('close', 'cancelled'))])
+        for contract in contracts:
+            for concept in contract.analytic_account_id.concept_ids:
+                concept.write({'last_invoice_date': self.new_date})
 
-        contract_ids = context.get('active_ids', [])
-        obj = self.browse(cr, uid, ids[0])
-
-        if contract_ids:
-            for contract in self.pool.get('limp.contract').browse(cr, uid, contract_ids):
-                if contract.active and contract.state not in ['close', 'cancelled']:
-                    for concept in contract.analytic_account_id.concept_ids:
-                        concept.write({'last_invoice_date': obj.new_date})
-
-                    for home_line in contract.home_help_line_ids:
-                        if home_line.state != 'cancelled' and (home_line.state != 'close' or home_line.date > obj.new_date):
-                            for concept in home_line.analytic_acc_id.concept_ids:
-                                if home_line.date_start >= obj.new_date:
-                                    concept.write({'last_invoice_date': False})
-                                else:
-                                    concept.write({'last_invoice_date': obj.new_date})
-                            if home_line.state == 'close':
-                                home_line.reopen_line()
-                    for clean_line in contract.cleaning_line_ids:
-                        if clean_line.state != 'cancelled' and (clean_line.state != 'close' or clean_line.date > obj.new_date):
-                            for concept in clean_line.analytic_acc_id.concept_ids:
-                                if clean_line.date_start >= obj.new_date:
-                                    concept.write({'last_invoice_date': False})
-                                else:
-                                    concept.write({'last_invoice_date': obj.new_date})
-                            if clean_line.state == 'close':
-                                clean_line.reopen_line()
+            for home_line in contract.home_help_line_ids:
+                if home_line.state != 'cancelled' and (home_line.state != 'close' or home_line.date > self.new_date):
+                    for concept in home_line.analytic_acc_id.concept_ids:
+                        if home_line.date_start >= self.new_date:
+                            concept.write({'last_invoice_date': False})
+                        else:
+                            concept.write({'last_invoice_date': self.new_date})
+                    if home_line.state == 'close':
+                        home_line.reopen_line()
+            for clean_line in contract.cleaning_line_ids:
+                if clean_line.state != 'cancelled' and (clean_line.state != 'close' or clean_line.date > self.new_date):
+                    for concept in clean_line.analytic_acc_id.concept_ids:
+                        if clean_line.date_start >= self.new_date:
+                            concept.write({'last_invoice_date': False})
+                        else:
+                            concept.write({'last_invoice_date': self.new_date})
+                    if clean_line.state == 'close':
+                        clean_line.reopen_line()
 
         return {'type': 'ir.actions.act_window_close'}
-
-update_last_invoice_date()

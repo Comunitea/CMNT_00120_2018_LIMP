@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="analytic_account_concept_rel_tree_add_holyday_amount" model="ir.ui.view">
+        <field name="name">analytic.account.concept.rel.tree.add_holiday_amount</field>
+        <field name="model">account.analytic.invoice.concept.rel</field>
+        <field name="inherit_id" ref="invoice_concept.analytic_account_concept_rel_tree"/>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="amount" position="after">
+                <field name="saturday_afternoon_amount"/>
+                <field name="holyday_amount"/>
+                <field name="sunday_amount"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="analytic_account_concept_rel_tree_add_per_hours" model="ir.ui.view">
+        <field name="name">analytic.account.concept.rel.tree.add_per_hours</field>
+        <field name="model">account.analytic.invoice.concept.rel</field>
+        <field name="inherit_id" ref="invoice_concept.analytic_account_concept_rel_tree"/>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="last_invoice_date" position="after">
+                <field name="per_hours"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="analytic_account_concept_rel_form_add_holyday_amount" model="ir.ui.view">
+        <field name="name">analytic.account.concept.rel.form.add_holyday_amount</field>
+        <field name="model">account.analytic.invoice.concept.rel</field>
+        <field name="inherit_id" ref="invoice_concept.analytic_account_concept_rel_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="amount" position="after">
+                <field name="saturday_afternoon_amount"/>
+                <field name="holyday_amount"/>
+                <field name="sunday_amount"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="analytic_account_concept_rel_form_add_per_hours" model="ir.ui.view">
+        <field name="name">analytic.account.concept.rel.form.add_per_hours</field>
+        <field name="model">account.analytic.invoice.concept.rel</field>
+        <field name="inherit_id" ref="invoice_concept.analytic_account_concept_rel_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="last_invoice_date" position="after">
+                <field name="per_hours"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="analytic_account_concept_rel_search_add_per_hours" model="ir.ui.view">
+        <field name="name">analytic.account.concept.rel.search.add_per_hours</field>
+        <field name="model">account.analytic.invoice.concept.rel</field>
+        <field name="inherit_id" ref="invoice_concept.analytic_account_concept_rel_search"/>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <field name="freq" position="after">
+                <field name="per_hours"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="invoice_concept_form_add_more_replacements" model="ir.ui.view">
+        <field name="name">invoice.concept.form.add_more_replacements</field>
+        <field name="model">account.analytic.invoice.concept</field>
+        <field name="inherit_id" ref="invoice_concept.invoice_concept_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@name='current_month']" position="after">
+                <label colspan="2" string="Related workcenter: %%(center)s"/>
+                <label colspan="2" string="Related contact: %%(contact)s"/>
+                <label colspan="2" string="Related hours: %%(hours)s"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="invoice_concept.menu_invoice_concept" parent="menu_limp_contract_conf" name="Invoice concepts"/>
+
+    <record id="action_invoice_concept" model="ir.actions.act_window">
+        <field name="name">Invoice Concept</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.analytic.invoice.concept.rel</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="action_invoice_concept" id="menu_invoice_concept_open" parent="menu_limp_contract_contract" name="Invoice concept"/>
+</odoo>

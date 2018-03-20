@@ -179,14 +179,13 @@ class StockServicePicking(models.Model):
                 return
 
             addr = part.address_get(['contact', 'invoice', 'default'])
-            part = self.pool.get('res.partner').browse(cr, uid, part)
-            payment = part.payment_type_customer and part.payment_type_customer or False
+            payment = part.customer_payment_mode_id and part.customer_payment_mode_id or False
 
             self.address_invoice_id = addr['invoice']
             self.address_id = addr['contact']
             self.ccc_account_id = (payment and payment.suitable_bank_types and part.bank_ids) and part.bank_ids[0].id or False
-            self.fiscal_position =part.property_account_position and part.property_account_position.id or False
-            self.payment_term = part.property_payment_term and part.property_payment_term.id or False
+            self.fiscal_position =part.property_account_position_id and part.property_account_position_id.id or False
+            self.payment_term = part.property_payment_term_id and part.property_payment_term_id.id or False
             self.payment_type = payment and payment.id or False
             self.intercompany = False
 

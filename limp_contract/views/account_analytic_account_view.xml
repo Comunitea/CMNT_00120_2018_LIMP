@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_account_analytic_account_list_add_name" model="ir.ui.view">
+        <field name="name">account.analytic.account.list.add_name</field>
+        <field name="model">account.analytic.account</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+        <field name="arch" type="xml">
+            <field name="code" position="before">
+                <field name="name"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_account_search_add_delegation_id" model="ir.ui.view">
+        <field name="name">account.analytic.account.search.add_delegation_id</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_search" />
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <filter name="inactive" position="after">
+                <separator orientation="vertical"/>
+                <filter icon="terp-dolar" string="Is contract" domain="[('is_contract','=',True)]" help="This account is contract"/>
+                <filter icon="terp-dolar" string="Is picking" domain="[('is_picking','=',True)]" help="This account is picking w/o contract"/>
+                <filter icon="terp-dolar" string="Is picking in contract" domain="[('is_picking_in_contract', '=', True)]" help="This account is picking with contract"/>
+            </filter>
+            <field name="partner_id" position="after">
+                <field name="privacy"/>
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="group_limp_administrative" model="res.groups">
-            <field name="name">Limpergal administrative</field>
-        </record>
-
-    </data>
-</openerp>
+    <record id="group_limp_administrative" model="res.groups">
+        <field name="name">Limpergal administrative</field>
+    </record>
+</odoo>

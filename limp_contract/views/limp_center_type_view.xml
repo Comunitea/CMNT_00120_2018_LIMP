@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="limp_center_type_tree" model="ir.ui.view">
+        <field name="name">limp.center.type.tree</field>
+        <field name="model">limp.center.type</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Center types">
+                <field name="code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="limp_center_type_form" model="ir.ui.view">
+        <field name="name">limp.center.type.form</field>
+        <field name="model">limp.center.type</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Center type">
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="limp_center_type_search" model="ir.ui.view">
+        <field name="name">limp.center.type.search</field>
+        <field name="model">limp.center.type</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Center types">
+                <group col="4" colspan="4">
+                    <field name="name" select="1"/>
+                    <field name="code" select="1"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_limp_center_type" model="ir.actions.act_window">
+        <field name="name">Center types</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">limp.center.type</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="menu_limp_center_type" parent="menu_limp_contract_conf" name="Center types" groups="limp_contract.group_limp_administrative"/>
+
+    <menuitem action="action_limp_center_type" id="menu_limp_center_type_open" parent="menu_limp_center_type" name="Center types"/>
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="limp_contract_task_tree" model="ir.ui.view">
+            <field name="name">limp.contract.task.tree</field>
+            <field name="model">limp.contract.task</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Contract tasks">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="department_id"/>
+                    <field name="center_type_id"/>
+                    <field name="parent_id"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="limp_contract_task_form" model="ir.ui.view">
+            <field name="name">limp.contract.task.form</field>
+            <field name="model">limp.contract.task</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Contract task">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="sequence"/>
+                                <field name="department_id"/>
+                            </group>
+                            <group>
+                                <field name="center_type_id"/>
+                                <field name="parent_id"/>
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="limp_contract_task_search" model="ir.ui.view">
+            <field name="name">limp.contract.task.search</field>
+            <field name="model">limp.contract.task</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Contract tasks">
+                    <group col="4" colspan="4">
+                        <field name="name" select="1"/>
+                        <field name="department_id" select="1"/>
+                        <field name="center_type_id" select="1"/>
+                        <field name="parent_id" select="1"/>
+                        <field name="company_id"/>
+                    </group>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Department" icon="terp-folder-green" domain="[]" context="{'group_by':'department_id'}"/>
+                        <filter string="Center type" icon="terp-folder-green" domain="[]" context="{'group_by':'center_type_id'}"/>
+                        <filter string="Parent" icon="terp-folder-blue" domain="[]" context="{'group_by':'parent_id'}"/>
+                        <filter string="Company" icon="terp-folder-blue" domain="[]" context="{'group_by':'company_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_limp_contract_task" model="ir.actions.act_window">
+            <field name="name">Contract tasks</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">limp.contract.task</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_limp_contract_task" parent="menu_limp_contract_conf" name="Contract tasks" groups="limp_contract.group_limp_administrative"/>
+
+        <menuitem action="action_limp_contract_task" id="menu_limp_contract_task_open" parent="menu_limp_contract_task" name="Contract tasks"/>
+</odoo>

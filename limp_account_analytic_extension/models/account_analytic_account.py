@@ -37,7 +37,8 @@ class AccountAnalyticAccount(models.Model):
                                          r.env.user.employee_ids and
                                          r.env.user.employee_ids[0].id or
                                          False))
-    department_id = fields.Many2one(default=lambda r: r.env.user.context_department_id.id)
+    department_id = fields.Many2one(
+        default=lambda r: r._context.get('c_department_id', r._context.get('context_department_id', r.env.user.context_department_id.id)))
 
 
 class AccountAnalyticLine(models.Model):

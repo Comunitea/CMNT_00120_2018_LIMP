@@ -18,32 +18,48 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp.osv import osv, fields
+from odoo import models, fields, api
 import time
+import calendar
 
-class contract_to_invoice(osv.osv_memory):
-    
-    _inherit = "contract.to_invoice"
-    
-    def action_invoice(self, cr, uid, ids, context=None):
-        if context is None: context = {}
-        
-        if context.get('active_model', False) == 'limp.contract':
-            res = {}
-            obj = self.browse(cr, uid, ids[0])
-            if context.get('active_ids', []):
-                context['invoice_date'] = obj.invoice_date
-                context['journal_id'] = obj.journal_id
-                context['end_date'] = obj.invoice_date_to
-                res = self.pool.get('limp.contract').invoice_run(cr, uid, context['active_ids'], context=context)
-                if isinstance(res, dict):
-                    del res["nodestroy"]
-                else:
-                    res = {}
-        else:
-            res = super(contract_to_invoice, self).action_invoice(cr, uid, ids, context=context)
-            
+class ContractToInvoice(models.TransientModel):
+
+    _name = "contract.to_invoice"
+
+
+    @api.model
+    def _get_journal_id(self):
+        vals = []
+        value = self.env['account.journal'].search([('type', '=', 'sale')])
+        for jr_type in value:
+            t1 = jr_type.id, jr_type.name
+            if t1 not in vals:
+                vals.append(t1)
+        return vals
+
+    @api.model
+    def _default_invoice_date_to(self):
+        time.strftime("%Y-%m-") + \
+            str(calendar.monthrange(
+                int(time.strftime('%Y')), int(time.strftime('%m')))[1])
+
+    journal_id = fields.Selection(_get_journal_id, 'Destination Journal',
+                                  required=True)
+    invoice_date = fields.Date('Invoiced date', required=True,
+                               default=fields.Date.today)
+    invoice_date_to = fields.Date('Invoice to', required=True,
+                                  default=_default_invoice_date_to)
+
+    def action_invoice(self):
+        res = {}
+        if self._context.get('active_model', False) == 'limp.contract' and self._context.get('active_ids', []):
+            ctx = dict(self._context)
+            context['invoice_date'] = self.invoice_date
+            context['journal_id'] = self.journal_id
+            context['end_date'] = self.invoice_date_to
+            res = self.env['limp.contract'].invoice_run(context['active_ids'])
+            if isinstance(res, dict):
+                del res["nodestroy"]
+            else:
+                res = {}
         return res
-    
-contract_to_invoice()

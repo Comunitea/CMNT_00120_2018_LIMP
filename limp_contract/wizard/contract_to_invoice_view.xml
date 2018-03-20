@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        
-        <act_window
-            id="contract_toinvoice_wzd_action" name="Create invoice"
-            res_model="contract.to_invoice"
-            src_model="limp.contract"
-            view_type="form"
-            view_mode="form"
-            target="new"
-            view_id="invoice_concept.contract_toinvoice_wzd_form"
-            key2="client_action_multi"
-            />
-        
-    </data>
-</openerp>
+<odoo>
+
+    <record id="contract_toinvoice_wzd_form" model="ir.ui.view">
+        <field name="name">contract.toinvoice.wzd.form</field>
+        <field name="model">contract.to_invoice</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Contract invoicing wizard">
+                <group>
+                    <field name="journal_id" colspan="4"/>
+                    <field name="invoice_date" colspan="4"/>
+                    <field name="invoice_date_to" colspan="4"/>
+                </group>
+                <footer>
+                    <button name="action_invoice" string="Invoice" type="object"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window
+        id="contract_toinvoice_wzd_action" name="Create invoice"
+        res_model="contract.to_invoice"
+        src_model="limp.contract"
+        view_type="form"
+        view_mode="form"
+        target="new"
+        view_id="contract_toinvoice_wzd_form"
+        key2="client_action_multi"
+    />
+</odoo>

@@ -64,8 +64,10 @@ class AccountAnalyticAccount(models.Model):
     active_employee_ids = fields.One2many('timesheet', 'analytic_id', 'Active timesheets', domain=[('old','=',False)], copy=False)
     inactive_employee_ids = fields.One2many('timesheet', 'analytic_id', 'Unactive timesheets', domain=[('old','=',True)], copy=False)
     report_employee_ids = fields.One2many("analytic.account.employees", "analytic_id", string='Timesheet', readonly=True, copy=False)
-    company_id = fields.Many2one('res.company', 'Company', required=False, change_default=True)
-    delegation_id = fields.Many2one('res.delegation', 'Delegation', change_default=True)
+    company_id = fields.Many2one('res.company', 'Company', required=False, change_default=True, default=lambda r: r._context.get('company_id', r.env.user.company_id.id))
+    delegation_id = fields.Many2one(
+        'res.delegation', 'Delegation', change_default=True,
+        default=lambda r: r._context.get('c_delegation_id', r._context.get('delegation_id', r.env.user.context_delegation_id.id)))
     other_expense_ids = fields.One2many('stock.service.other.expenses', 'analytic_id', string="Other expenses", copy=False)
     address_invoice_id = fields.Many2one('res.partner', 'Address invoice')
     date_start = fields.Date('Date start')

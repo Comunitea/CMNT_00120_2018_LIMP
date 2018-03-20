@@ -21,7 +21,7 @@
 
 """Initial file to import each classes in this module"""
 
-import upamount_contract_wzd
-import contract_to_invoice
-import update_last_invoice_date
+from . import upamount_contract_wzd
+from . import contract_to_invoice
+from . import update_last_invoice_date
 #import service_order_toinvoice

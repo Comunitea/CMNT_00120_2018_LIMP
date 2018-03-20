@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2018 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="limp_contract_note_view_tree" model="ir.ui.view">
+        <field name="name">limp.contract.note.tree</field>
+        <field name="model">limp.contract.note</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Notes" editable="top">
+                <field name="contract_id" invisible="1"/>
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="limp_contract_note_action" model="ir.actions.act_window">
+        <field name="name">Contract notes</field>
+        <field name="res_model">limp.contract.note</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="limp_contract_note_view_tree"/>
+    </record>
+</odoo>
