@@ -18,17 +18,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-#  import product
-#  import res_partner
-#  import invoice_lines
-#  import account_invoice
-#  # mport res_partner_contact MIGRACION: Modelo eliminado
-#  # import payment_type
-#  import hr_employee
-#  import stock
-#  import container
-#  import res_users
-#  import add_reposible_to_models
-#  import account_analytic
-# import sdd_mandate MIGRACION: Modelo eliminado
+from . import models

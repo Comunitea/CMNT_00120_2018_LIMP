@@ -7,11 +7,9 @@
           <field name="model">account.analytic.line</field>
           <field name="inherit_id" ref="limp_distribution_costs.view_account_analytic_line_tree_add_rem_time"/>
           <field name="arch" type="xml">
-              <field name="ref" position="after">
-                  <field name="type_analytic"/>
-              </field>
               <field name="name" position="after">
                     <field name="privacy"/>
+                  <field name="type_analytic"/>
               </field>
           </field>
       </record>
@@ -19,14 +17,14 @@
       <record id="view_account_analytic_line_filter_add_privacy" model="ir.ui.view">
             <field name="name">account.analytic.line.select</field>
             <field name="model">account.analytic.line</field>
-            <field name="inherit_id" ref="account.view_account_analytic_line_filter"/>
+            <field name="inherit_id" ref="analytic.view_account_analytic_line_filter"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
                 <field name="account_id" position="after">
                     <field name="privacy"/>
                     <field name="type_analytic"/>
                 </field>
-                <filter string="User" position="after">
+                <filter name="group_date" position="after">
                   <filter string="Type" context="{'group_by':'type_analytic'}" icon="terp-camera_test"/>
                 </filter>
             </field>

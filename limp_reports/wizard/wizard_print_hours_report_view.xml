@@ -8,7 +8,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form>
-                    <field name="month" on_change="on_change_month(month, year, context)"/>
+                    <field name="month"/>
                     <field name="year"/>
                     <separator string="Holidays" colspan="4"/>
                     <field name="holiday_text" nolabel="1" colspan="4"/>

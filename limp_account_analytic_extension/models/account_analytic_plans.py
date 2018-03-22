@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields
+from odoo import models, fields, _
 
 
 class AccountAnalyticDistributionRule(models.Model):
@@ -37,3 +37,10 @@ class AccountAnalyticDistributionRule(models.Model):
         default=lambda r: r.env.user.employee_ids and
         r.env.user.employee_ids[0].id or False)
     fix_amount = fields.Float(digits=(12, 2), required=True)
+
+    _sql_constraints = [
+        ('analytic_uniq', 'unique(distribution_id, analytic_account_id, delegation_id, department_id, manager_id)',
+         _('Analytic account must be unique per distribution, delegation, department and manager!')),
+        ('percent_positive', 'CHECK(1 = 1)',
+         _('Percentage must be positive!')),
+    ]

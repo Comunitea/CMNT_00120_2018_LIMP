@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_users_form_simple_modif_work_address" model="ir.ui.view">
+        <field name="name">res.users.form.modif.work_address</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form_simple_modif"/>
+        <field name="arch" type="xml">
+            <field name="tz" position="after">
+                <separator string="Address" colspan="4"/>
+                <field name="work_address_id"/>
+            </field>
+            <field name="lang" position="after">
+                <field name="context_responsible_id" widget="selection" readonly="0"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_users_form_add_responsible">
+        <field name="name">res.users.form_add_responsible</field>
+        <field name="type">form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <field name="tz" position="after">
+                <field name="context_responsible_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

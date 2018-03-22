@@ -18,16 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
-
-class hr_employee(osv.osv):
+class HrEmployee(models.Model):
 
     _inherit = 'hr.employee'
 
-    _columns = {
-        'colege_num': fields.char('Colege number', size=64),
-        'private_address': fields.char('Private address', size=255)
-    }
-
-hr_employee()
+    colege_num = fields.Char('Colege number', size=64)
+    private_address = fields.Char('Private address', size=255)

@@ -18,10 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import time
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
+from odoo import models, fields , _
 
 WARNING_MESSAGE = [
                    ('no-message','No Message'),
@@ -32,34 +29,24 @@ WARNING_MESSAGE = [
 
 WARNING_HELP = _('Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.')
 
-class product_template(osv.osv):
+class ProductTemplate(models.Model):
 
     _inherit = "product.template"
 
-    _columns = {
-        'department_id': fields.many2one('hr.department', 'Department')
-    }
+    department_id = fields.Many2one('hr.department', 'Department')
 
-product_template()
 
-class product_product(osv.osv):
+class ProductProduct(models.Model):
     _inherit = 'product.product'
-    _columns = {
-         'picking_warn': fields.selection(WARNING_MESSAGE, 'Picking Warning',
-                                          help=WARNING_HELP),
-         'picking_warn_msg' : fields.text('Message for Picking'),
-         'tax_product': fields.boolean('Tax product'),
-         'biocide_type': fields.char('Biocide type', size=150),
-         'active_matter_percent': fields.float('Active Mater (%)',
-                                               digits=(16, 3)),
-         'registration_no': fields.char('Registration no.', size=150),
-         'application_method': fields.char('Application method', size=150),
-         'dosis': fields.float('Dosis (%)', digits=(16, 3)),
-         'security_term': fields.char('Security term', size=150)
-     }
 
-    _defaults = {
-         'picking_warn' : lambda *a: 'no-message',
-    }
-
-product_product()
+    picking_warn = fields.Selection(WARNING_MESSAGE, 'Picking Warning',
+                                      help=WARNING_HELP, default='no-message')
+    picking_warn_msg = fields.Text('Message for Picking')
+    tax_product = fields.Boolean('Tax product')
+    biocide_type = fields.Char('Biocide type', size=150)
+    active_matter_percent = fields.Float('Active Mater (%)',
+                                           digits=(16, 3))
+    registration_no = fields.Char('Registration no.', size=150)
+    application_method = fields.Char('Application method', size=150)
+    dosis = fields.Float('Dosis (%)', digits=(16, 3))
+    security_term = fields.Char('Security term', size=150)

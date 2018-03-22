@@ -88,7 +88,7 @@
                 <group expand="1" string="Group By..." colspan="10" col="12">
                     <filter string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}"/>
                     <filter string="Shape" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'shape'}"/>
-                    <filter string="Placement" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'container_placement'}"/>
+                    <filter string="Placement" name="placement" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'container_placement'}"/>
                 </group>
             </search>
         </field>

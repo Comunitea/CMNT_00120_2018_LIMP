@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <delete model="ir.rule" id="base.res_partner_rule"/>
 
@@ -19,12 +18,12 @@
             <field name="domain_force">['|',('id','child_of',[user.company_id.id]),('id','=',user.company_id.parent_id.id)]</field>
         </record>
 
-        <!--record id="payment_type_comp_rule" model="ir.rule">
+        <record id="account_payment_mode.account_payment_mode_company_rule" model="ir.rule">
             <field name="name">Payment type</field>
-            <field name="model_id" ref="account_payment_extension.model_payment_type"/>
-            <field eval="True" name="global"/> MIGRACION: Cambiar a payment_mode?
+            <field name="model_id" ref="account_payment_mode.model_account_payment_mode"/>
+            <field eval="True" name="global"/>
             <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id.child_ids','child_of',[user.company_id.id])]</field>
-        </record-->
+        </record>
 
         <record model="ir.rule" id="containers_management.container_comp_rule">
             <field name="name">Container multi-company</field>
@@ -39,6 +38,4 @@
             <field eval="True" name="global"/>
             <field name="domain_force">['|','|',('company_id','=',False),('company_id','child_of',[user.company_id.id]),('company_id.child_ids','child_of',[user.company_id.id])]</field>
         </record>
-
-    </data>
-</openerp>
+</odoo>

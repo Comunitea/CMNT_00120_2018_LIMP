@@ -33,38 +33,30 @@
             'stock',
             'product',
             'hr',
-            # 'base_iban',
             'multi_departments',
-            # 'base_contact', MIGRACION: eliminado
             'limp_service_picking',
             'purchase',
-            #'account_payment_extension', MIGRACION: Modulo eliminado
-            # 'account_analytic_plans', MIGRACION: Modulo eliminado
+            'account_analytic_distribution',
             'limp_multi_delegations',
             'limp_account_analytic_extension',
-            # 'account_payment_sepa_direct_debit',
             'containers_management',
             'limp_contract',
             #'l10n_es_facturae', MIGRACION: Modulo no en 9
-            # 'account_analytic_analysis', MIGRACION: Eliminado
-            'limp_distribution_costs'
+            'limp_distribution_costs',
+            'account_payment_mode'
             ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : [#'stock_picking_view.xml', MIGRACION: Vistas stock
-                        #  'product_view.xml',
-                        #  'security/limp_custom_data.xml',
-                        #  'res_partner_view.xml',
-                        #  # 'purchase_view.xml', MIGRACION: warehouse_id ya no existe cambiar por picking_type_id?
-                        #  # 'invoice_lines_view.xml',
-                        #  # 'account_invoice_view.xml',
-                        #  'security/ir.model.access.csv',
-                        #  'hr_employee_view.xml',
-                        #  'container_view.xml',
-                        #  'res_users_view.xml',
-                        #  'account_analytic_view.xml'
-                        ],
+        "data" : [
+            'views/stock_picking_view.xml',
+            'views/product_view.xml',
+            'security/limp_custom_data.xml',
+            'views/res_partner_view.xml',
+            'views/invoice_lines_view.xml',
+            'views/account_invoice_view.xml',
+            'security/ir.model.access.csv',
+            'views/hr_employee_view.xml',
+            'views/container_view.xml',
+            'views/res_users_view.xml',
+            'views/account_analytic_view.xml'
+        ],
         "installable": True,
-        'active': False
-
 }

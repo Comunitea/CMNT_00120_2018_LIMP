@@ -52,7 +52,7 @@ class AccountAnalyticAccount(models.Model):
     is_picking_in_contract = fields.Boolean('Is picking in contract', compute='_compute_is_picking_contract', search='_search_is_picking_contract')
     invoice_limit_hours = fields.Float('Invoice limit hours', digits=(7, 2))
     invoice_by_high = fields.Boolean('Invoice by high', default=True)
-    analytic_distribution_id = fields.Many2one('account.analytic.plan.instance','Analytic Distribution')
+    analytic_distribution_id = fields.Many2one('account.analytic.distribution','Analytic Distribution')
     address_tramit_id = fields.Many2one('res.partner', "Tramit address")
     partner_name = fields.Char('Partner name', related='partner_id.name', readonly=True, store=True)
 

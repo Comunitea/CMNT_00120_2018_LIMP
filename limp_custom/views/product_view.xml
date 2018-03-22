@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="product_normal_form_view_add_department" model="ir.ui.view">
+        <field name="name">product.normal.form.add_department</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="department_id"/>
+            </field>
+            <field name="warranty" position="after">
+                <field name="tax_product"/>
+            </field>
+            <notebook position="inside">
+                <page string="DDD">
+                    <group>
+                        <group>
+                            <field name="registration_no"/>
+                            <field name="biocide_type"/>
+                            <field name="application_method"/>
+                        </group>
+                        <group>
+                            <field name="security_term"/>
+                            <field name="active_matter_percent"/>
+                            <field name="dosis"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="product_add_warning_form_view" model="ir.ui.view">
+        <field name="name">product.add.warning.form.inherit</field>
+            <field name="model">product.product</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="description_sale" position="after">
+                <group colspan="2" col="2">
+                    <separator string="Warning when Picking this Product" colspan="4"/>
+                    <field name="picking_warn"  nolabel="1" />
+                    <field name="picking_warn_msg" colspan="3" nolabel="1"
+                                attrs="{'required':[('picking_warn','!=','no-message')],'readonly':[('picking_warn','=','no-message')]}"/>
+                </group>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_search_form_view_add_department_id" model="ir.ui.view">
+        <field name="name">product.search.form.add_department_id</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="department_id" widget="selection"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product.product_normal_action" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="product.product_product_tree_view"/>
+        <field name="search_view_id" ref="product.product_search_form_view"/>
+        <field name="context">{"search_default_department_id": department_id}</field>
+        <field name="help">You must define a Product for everything you buy or sell. Products can be raw materials, stockable products, consumables or services. The Product form contains detailed information about your products related to procurement logistics, sales price, product category, suppliers and so on.</field>
+    </record>
+
+</odoo>

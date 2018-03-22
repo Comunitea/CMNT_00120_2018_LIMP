@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <field name="company_id" position="after">
+                <field name="journal_id" position="after">
                     <field name="add_info"/>
                 </field>
             </field>
@@ -31,7 +31,7 @@
                 </field>
                 <field name="currency_id" position="replace">
                     <field name="currency_id" invisible="1"/>
-                    <field name="payment_type"/>
+                    <field name="payment_mode_id"/>
                 </field>
                 <field name="name" position="replace">
                     <field name="name" invisible="1"/>
@@ -45,36 +45,12 @@
             <field name="inherit_id" ref="account.view_account_invoice_filter"/>
             <field name="type">search</field>
             <field name="arch" type="xml">
-                <field name="period_id" position="after">
+                <field name="partner_id" position="after">
                     <field name="add_info"/>
                     <field name="date_invoice"/>
                 </field>
             </field>
         </record>
-
-        <!--record model="ir.ui.view" id="invoice_form4_replace_payment_type">
-            <field name="name">account.invoice.form4.payment_type.replace_payment_type</field> MIGRACION:
-            <field name="model">account.invoice</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account_payment_extension.invoice_form4"/>
-            <field name="arch" type="xml">
-                <field name="payment_type" position="replace">
-                    <field name="payment_type" on_change="onchange_payment_type(payment_type, partner_id)" />
-                </field>
-            </field>
-        </record>
-
-        <record model="ir.ui.view" id="invoice_supplier_form2_replace_payment_type">
-            <field name="name">account.invoice.supplier.form2.replace_payment_type</field>
-            <field name="model">account.invoice</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account_payment_extension.invoice_supplier_form2"/>
-            <field name="arch" type="xml">
-                <field name="payment_type" position="replace">
-                    <field name="payment_type" on_change="onchange_payment_type(payment_type, partner_id)" />
-                </field>
-            </field>
-        </record-->
 
     </data>
 </openerp>
