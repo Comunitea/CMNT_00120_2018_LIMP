@@ -18,15 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
+class StockPicking(models.Model):
 
-class account_journal(osv.osv):
-    
-    _inherit = "account.journal"
-    
-    _columns = {
-        'no_quality': fields.boolean('Scont')
-    }
-    
-account_journal()
+    _inherit = "stock.picking"
+
+    no_quality = fields.Boolean('Scont')
+
+
+    def action_invoice_create(self, journal_id, group, type, date):
+        if group:
+            if any([x.no_quality for x in self]):
+                raise UserError("Scont pickings can't be grouped")
+        return super(StockPicking, self).action_invoice_create(journal_id, group, type, date)

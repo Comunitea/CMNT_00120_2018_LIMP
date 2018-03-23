@@ -24,32 +24,32 @@ class AccountMoveLine(models.Model):
 
     _inherit = "account.move.line"
 
-    manager_id = fields.Many2one(default=lambda r: r.env.user.context_responsible_id.id or r.env.user.employee_ids[0].id)
+    manager_id = fields.Many2one(default=lambda r: r.env.user.context_responsible_id.id or r.env.user.employee_ids and r.env.user.employee_ids[0].id)
 
 
 class AccountInvoice(models.Model):
 
     _inherit = "account.invoice"
 
-    manager_id = fields.Many2one(default=lambda r: r.env.user.context_responsible_id.id or r.env.user.employee_ids[0].id)
+    manager_id = fields.Many2one(default=lambda r: r.env.user.context_responsible_id.id or r.env.user.employee_ids and r.env.user.employee_ids[0].id)
 
 
 class AccountAnalyticDistributionRule(models.Model):
 
     _inherit = "account.analytic.distribution.rule"
 
-    manager_id = fields.Many2one(default=lambda r: r.env.user.context_responsible_id.id or r.env.user.employee_ids[0].id)
+    manager_id = fields.Many2one(default=lambda r: r.env.user.context_responsible_id.id or r.env.user.employee_ids and r.env.user.employee_ids[0].id)
 
 
 class AccountAnalyticAccount(models.Model):
 
     _inherit = "account.analytic.account"
 
-    manager_id = fields.Many2one(default=lambda r: r._context.get(c_manager_id, r.env.user.context_responsible_id.id or r.env.user.employee_ids[0].id))
+    manager_id = fields.Many2one(default=lambda r: r._context.get('c_manager_id', r.env.user.context_responsible_id.id or r.env.user.employee_ids and r.env.user.employee_ids[0].id))
 
 
 class AccountAnalyticLine(models.Model):
 
     _inherit = "account.analytic.line"
 
-    manager_id = fields.Many2one(default=lambda r: r._context.get(c_manager_id, r.env.user.context_responsible_id.id or r.env.user.employee_ids[0].id))
+    manager_id = fields.Many2one(default=lambda r: r._context.get('c_manager_id', r.env.user.context_responsible_id.id or r.env.user.employee_ids and r.env.user.employee_ids[0].id))

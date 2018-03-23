@@ -18,15 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
+class HrEmployee(models.Model):
 
-class limp_contract(osv.osv):
+    _inherit = "hr.employee"
 
-    _inherit = "limp.contract"
-
-    _columns = {
-        'no_quality': fields.boolean('Scont')
-    }
-
-limp_contract()
+    scont = fields.Boolean('Scont')

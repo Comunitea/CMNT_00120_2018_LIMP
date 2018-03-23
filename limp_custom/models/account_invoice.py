@@ -39,7 +39,7 @@ class AccountInvoice(models.Model):
     def _compute_amount_taxes(self):
         for invoice in self:
             amount_taxes = 0.0
-            for line in invoice.invoice_line:
+            for line in invoice.invoice_line_ids:
                 if line.tax_product:
                     amount_taxes += line.price_subtotal
             invoice.amount_taxes = amount_taxes

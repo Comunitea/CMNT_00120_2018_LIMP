@@ -18,22 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
 
-class stock_picking(osv.osv):
+class AccountJournal(models.Model):
 
-    _inherit = "stock.picking"
+    _inherit = "account.journal"
 
-    _columns = {
-        'no_quality': fields.boolean('Scont')
-    }
-    
-    def _invoice_hook(self, cr, uid, picking, invoice_id):
-        res = super(stock_picking, self)._invoice_hook(cr, uid, picking, invoice_id)
-        if picking.no_quality:
-            self.pool.get('account.invoice').write(cr, uid, [invoice_id], {'no_quality': picking.no_quality})
-        
-        return res
-
-stock_picking()
+    no_quality = fields.Boolean('Scont')

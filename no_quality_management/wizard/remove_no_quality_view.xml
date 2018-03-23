@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
-        <record id="view_remove_no_quality_form" model="ir.ui.view">
-            <field name="name">view.remove.no.quality.form</field>
-            <field name="model">remove.no.quality</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Remove Scont">
+    <record id="view_remove_no_quality_form" model="ir.ui.view">
+        <field name="name">view.remove.no.quality.form</field>
+        <field name="model">remove.no.quality</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Remove Scont">
+                <group>
                     <field name="to_date"/>
-                    <newline/>
+                </group>
+                <footer>
                     <button name="delete_no_quality" type="object" string="Delete" colspan="1"/>
-                    <button icon='gtk-cancel' special="cancel" string="Cancel" colspan="1"/>
-                </form>
-            </field>
-          </record>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+      </record>
 
-          <record id="action_remove_no_quality_form" model="ir.actions.act_window">
-            <field name="name">Remove Scont</field>
-            <field name="res_model">remove.no.quality</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_remove_no_quality_form"/>
-            <field name="target">new</field>
-          </record>
+      <record id="action_remove_no_quality_form" model="ir.actions.act_window">
+        <field name="name">Remove Scont</field>
+        <field name="res_model">remove.no.quality</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_remove_no_quality_form"/>
+        <field name="target">new</field>
+      </record>
 
-          <menuitem id="menu_remove_no_quality" action= "action_remove_no_quality_form" name="Remove Scont" parent="base.menu_config" sequence="50"/>
-
-    </data>
-</openerp>
+      <menuitem id="menu_remove_no_quality" action= "action_remove_no_quality_form" name="Remove Scont" parent="base.menu_administration" sequence="50"/>
+</odoo>

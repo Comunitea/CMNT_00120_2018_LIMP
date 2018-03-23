@@ -18,39 +18,31 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields, api
 
-from openerp.osv import osv, fields
 
-class limp_service_picking(osv.osv):
+class LimpServicePicking(models.Model):
 
     _inherit = "stock.service.picking"
 
-    _columns = {
-        'no_quality': fields.boolean('Scont')
-    }
+    no_quality = fields.Boolean('Scont')
 
-    def write(self, cr, uid, ids, vals, context=None):
-        if context is None: context = {}
-        if isinstance(ids, (int,long)):
-            ids = [ids]
-        res = super(limp_service_picking, self).write(cr, uid, ids, vals, context=context)
+    def write(self, vals):
+        res = super(LimpServicePicking, self).write(vals)
         if vals.get('no_quality', False):
-            for pick in self.browse(cr, uid, ids):
+            for pick in self:
                 for line in pick.service_invoice_concept_ids:
                     line.write({'tax_ids': [(6, 0, [])]})
-
         return res
 
-    def create_concept_lines(self,cr,uid,ids,context=None):
-        res = super(limp_service_picking, self).create_concept_lines(cr, uid, ids, context=context)
-        for order in self.browse(cr,uid,ids,context=context):
+    def create_concept_lines(self):
+        res = super(LimpServicePicking, self).create_concept_lines()
+        for order in self:
             if order.no_quality:
                 for line in order.service_invoice_concept_ids:
                     line.write({'tax_ids': [(6, 0, [])]})
-
         return res
 
-    def onchange_intercompany(self, cr, uid, ids, intercompany):
-        return {'value': {'no_quality': intercompany}}
-
-limp_service_picking()
+    @api.onchange('intercompany')
+    def onchange_intercompany(self):
+        self.no_quality = self.intercompany

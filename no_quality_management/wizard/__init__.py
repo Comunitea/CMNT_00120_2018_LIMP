@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import service_order_toinvoice
-import remove_no_quality
+from . import service_order_toinvoice
+from . import remove_no_quality

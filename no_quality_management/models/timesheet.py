@@ -18,53 +18,40 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields, api
 
-
-from openerp.osv import osv, fields
-
-class timesheet(osv.osv):
+class Timesheet(models.Model):
 
     _inherit = 'timesheet'
 
-    _columns = {
-        'scont': fields.related('employee_id', 'scont', string="Scont", type="boolean", readonly=True)
-    }
+    scont = fields.Boolean('Scont', related='employee_id.scont', readonly=True)
 
-    def create(self, cr, uid, vals, context=None):
-        if context is None: context = {}
+    @api.model
+    def create(self):
         scont = False
         if vals.get('employee_id', False):
-            employee_obj = self.pool.get('hr.employee').browse(cr, uid, vals['employee_id'])
+            employee_obj = self.env['hr.employee'].browse(vals['employee_id'])
             if employee_obj.scont:
                 vals['done'] = True
                 scont = True
 
-        res =  super(timesheet, self).create(cr, uid, vals, context=context)
-        obj = self.browse(cr, uid, res)
-        if scont and obj.pending_qty:
-            self.write(cr, uid, [res], {'effective': obj.pending_qty})
-
+        res =  super(Timesheet, self).create(vals)
+        if scont and res.pending_qty:
+            res.write({'effective': res.pending_qty})
         return res
 
-    def write(self, cr, uid, ids, vals, context=None):
-        if context is None: contex = {}
+    def write(self, vals):
         scont = False
         if vals.get('employee_id', False):
-            employee_obj = self.pool.get('hr.employee').browse(cr, uid, vals['employee_id'])
+            employee_obj = self.env['hr.employee'].browse(vals['employee_id'])
             if employee_obj.scont:
                 vals['done'] = True
                 scont = True
         else:
-            obj = self.browse(cr, uid, ids[0])
-            if obj.employee_id.scont:
+            if self.employee_id.scont:
                 vals['done'] = True
                 scont = True
-
-        res = super(timesheet, self).write(cr, uid, ids, vals, context=context)
-        obj = self.browse(cr, uid, ids[0])
-        if scont and obj.pending_qty and not vals.get('effective', False):
-            self.write(cr, uid, [ids[0]], {'effective': obj.pending_qty})
-
+        res = super(Timesheet, self).write(vals)
+        if scont and self.pending_qty and not vals.get('effective', False):
+            self.write({'effective': self.pending_qty})
         return res
-
-timesheet()

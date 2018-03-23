@@ -18,22 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv
 
-class service_order_toinvoice(osv.osv_memory):
+class ServiceOrderToInvoice(models.TransientModel):
 
     _inherit = 'service.order.toinvoice'
 
-    def create_invoice(self, cr, uid, ids, context=None):
-        if context is None: context = {}
-        res = super(service_order_toinvoice, self).create_invoice(cr, uid, ids, context=context)
-
+    def create_invoice(self):
+        res = super(ServiceOrderToInvoice, self).create_invoice()
         for record in res:
-            rec = self.pool.get('stock.service.picking').browse(cr, uid, record)
+            rec = self.env['stock.service.picking'].browse(record)
             if rec.no_quality:
-                self.pool.get('account.invoice').write(cr, uid, res[record], {'no_quality': True})
-
+                invoice = self.env['account.invoice'].browse(res[record])
+                invoice.write({'no_quality': True})
         return res
-
-service_order_toinvoice()
