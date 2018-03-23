@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 %for o in objects:
 <%
-        def get_partner_address(cr,uid,partner_id):
+        def get_partner_address(partner):
                 res = {}
-                partner_obj = pool.get('res.partner').browse(cr,uid,partner_id)
-                dir = partner_obj.address_get(['invoice'])
+                dir = partner.address_get(['invoice'])
                 dir_id = dir.get('invoice', False) or dir.get('default', False)
-                dir_obj = pool.get('res.partner.address').browse(cr,uid,dir_id)
+                dir_obj = env['res.partner'].browse(dir_id)
                 res['street'] = dir_obj.street or ""
                 res['city'] = dir_obj.city or ""
                 res['state'] = dir_obj.state_id and dir_obj.state_id.name or ""
                 res['zip'] = dir_obj.zip or ""
                 return res
 
-%>${ acc_numbers[o.id].ljust(12," ") }${ o.name.ljust(40," ") }${ o.vat and o.vat.ljust(15," ") or "".ljust(15," ")}${ o.address and get_partner_address(cr,uid,o.id)['street'].ljust(35," ") or "".ljust(35," ")}${ o.address and get_partner_address(cr,uid,o.id)['city'].ljust(15," ") or "".ljust(15," ")}${ o.address and get_partner_address(cr,uid,o.id)['state'].ljust(20," ") or "".ljust(20," ")}${ o.address and get_partner_address(cr,uid,o.id)['zip'].ljust(5," ") or "".ljust(5," ")}${ "F".ljust(6," ") }FF
+%>${ acc_numbers[o.id].ljust(12," ") }${ o.name.ljust(40," ") }${ o.vat and o.vat.ljust(15," ") or "".ljust(15," ")}${ get_partner_address(o)['street'].ljust(35," ") or "".ljust(35," ")}${get_partner_address(o)['city'].ljust(15," ") or "".ljust(15," ")}${ get_partner_address(o)['state'].ljust(20," ") or "".ljust(20," ")}${get_partner_address(o)['zip'].ljust(5," ") or "".ljust(5," ")}${ "F".ljust(6," ") }FF
 %endfor

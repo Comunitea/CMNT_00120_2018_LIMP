@@ -18,13 +18,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
-class res_company(osv.osv):
-    
-    _inherit = 'res.company'
-    
-    _columns = {
-        'code': fields.char('Code', size=9)
-    }
-    
-res_company()
+
+{
+    "name" : "Export account to glasof",
+    "description": """Wizard to export account moves to Glasof""",
+    "version" : "1.0",
+    "author" : "Pexego",
+    "website" : "http://www.pexego.es",
+    "category" : "Account/Export",
+    "depends" : [
+        'base',
+        'account',
+        ],
+    "data" : [
+        'views/res_company_view.xml',
+        'wizard/export_account_to_glasof_view.xml'
+    ],
+    "installable": True,
+
+}

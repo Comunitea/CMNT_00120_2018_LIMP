@@ -18,7 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-#  import wizard
-#  import res_company
-#  import account_move_line
+from . import models
+from . import wizard

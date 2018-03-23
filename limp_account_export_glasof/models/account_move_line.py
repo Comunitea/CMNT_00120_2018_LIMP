@@ -18,17 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
-
-class account_move_line(osv.osv):
+class AccountMoveLine(models.Model):
 
     _inherit = "account.move.line"
 
-    def _get_invoice_ref(self, cr, uid, ids, field_name, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids):
-            invoice_ref = line.invoice and line.invoice.number or False
+    invoice_ref = fields.Char('Invoice ref', compute='_compute_invoice_ref')
+
+    def _compute_invoice_ref(self):
+        for line in self:
+            invoice_ref = line.invoice_id and line.invoice_id.number or False
             if invoice_ref:
                 parts = invoice_ref.split("/")
                 if len(parts) == 3:
@@ -37,12 +37,11 @@ class account_move_line(osv.osv):
                     invoice_ref = parts[0]
                 else:
                     invoice_ref = False
-            res[line.id] = (invoice_ref or line.move_id.name)
-        return res
-
-    _columns = {
-        'invoice_ref': fields.function(_get_invoice_ref, type="char", method=True, readonly=True, string="Invoice ref")
-    }
+            line.invoice_ref = (invoice_ref or line.move_id.name)
 
 
-account_move_line()
+class AccountAccountType(models.Model):
+
+    _inherit = 'account.account.type'
+
+    code = fields.Char()

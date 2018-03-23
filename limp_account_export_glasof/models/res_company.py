@@ -18,26 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-{
-        "name" : "Export account to glasof",
-        "description": """Wizard to export account moves to Glasof""",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Account/Export",
-        "depends" : [
-            'base',
-            'account',
-            ],
-        "init_xml" : [],
-        "demo_xml" : [],
-        "data" : [
-        #  'res_company_view.xml',
-                        #  'wizard/export_to_glasof_wizard.xml',
-                        #  'wizard/export_account_to_glasof_view.xml'
-        ],
-        "installable": True,
-        'active': False
 
-}
+class ResCompany(models.Model):
+
+    _inherit = 'res.company'
+
+    code = fields.Char('Code', size=9)

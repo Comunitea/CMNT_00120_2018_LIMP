@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-import export_account_to_glasof
+from . import export_account_to_glasof
