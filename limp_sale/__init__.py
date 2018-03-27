@@ -19,14 +19,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-#  import task_frequency
-#  import waste_services
-#  import price_rule
-#  import limp_contract
-#  import sale_order_periodicity
-#  import product
-#  import sale_order
-#  import limp_service_picking
-#  import product_pricelist
-#  import report
-#  import wizard
+from . import models
+from . import wizard

@@ -297,7 +297,7 @@ class LimpContract(models.Model):
         for contract in self:
             contract.service_picking_lines_count = len(contract.stock_sporadic_service_picking_ids)
 
-    def action_view_waste_lines(self):
+    def action_view_sporadic_service_picking(self):
         action = self.env.ref('limp_service_picking.sporadic_service_pickings_action').read()[0]
         action['context'] = str({
            'default_tag_ids' : [(4, x.id) for x in self.tag_ids],

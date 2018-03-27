@@ -73,7 +73,7 @@
                                 icon="fa-trash">
                                 <field name="waste_lines_count" widget="statinfo" string="Waste"/>
                             </button>
-                            <button name="action_view_waste_lines"
+                            <button name="action_view_sporadic_service_picking"
                                 type="object"
                                 class="oe_stat_button"
                                 icon="fa-pencil-square-o">

@@ -19,27 +19,33 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
-from openerp.addons.decimal_precision import decimal_precision as dp
+{
+    "name" : "Limpergal budgets",
+    "description": "Add budget model for Limpergal.",
+    "version" : "1.0",
+    "author" : "Pexego",
+    "website" : "http://www.pexego.es",
+    "category" : "Budgets",
+    "depends" : [
+        'base',
+        'sale',
+        'product',
+        'account',
+        'limp_multi_delegations',
+        'limp_service_picking',
+        'limp_contract',
+        ],
+    "data" : [
+        'wizard/create_service_picking_from_sale_view.xml',
+        'views/sale_order_periodicity_view.xml',
+        'views/sale_order_view.xml',
+        'security/ir.model.access.csv',
+        #  'limp_sale_report.xml',
+        'security/limp_sale_data.xml',
+        'views/limp_service_picking_view.xml',
+        'views/waste_services_view.xml',
+        'views/limp_contract_view.xml'
+        ],
+    "installable": True,
 
-class price_rule(osv.osv):
-    
-    _name = 'price.rule'
-    _description = 'Price rules'
-    
-    _columns = {
-        'name': fields.char('Name', size=255, readonly=True, required=True),
-        'range': fields.integer('Range', required=True),
-        'province': fields.many2one('res.country.state', 'Province'),
-        'product_id': fields.many2one('product.product', 'Product'),
-        'price': fields.float('Price', digits_compute=dp.get_precision('Account')),
-        'cost_price': fields.float('Cost Price', digits_compute=dp.get_precision('Account'))
-    }
-    
-    _defaults = {
-        'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid,'price.rule'),
-    }
-    
-    _order = 'range asc'
-    
-price_rule()
+}

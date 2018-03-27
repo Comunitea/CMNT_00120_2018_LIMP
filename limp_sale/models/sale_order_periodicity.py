@@ -3,7 +3,6 @@
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
 #    $Omar Castiñeira Saavedra$
-#    $Marta Vázquez Rodríguez$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,11 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import osv, fields
+from odoo import models, fields
 
-class waste_services(osv.osv):
-    _inherit = 'waste.service'
-    _columns = {
-        'sale_id': fields.many2one('sale.order', 'Sale', readonly=True),
-    }
-waste_services()
+
+class SaleOrderPeriodicity(models.Model):
+
+    _name = "sale.order.periodicity"
+
+    name = fields.Char('Name', size=64, required=True)
+    multiplier = fields.Float('Multiplier', digits=(16,4), required=True, default=1)
+    rounding = fields.Boolean ('Round')

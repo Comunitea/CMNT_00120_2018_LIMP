@@ -18,6 +18,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import print_product_pricelist
-import create_service_picking_from_sale
+from . import create_service_picking_from_sale

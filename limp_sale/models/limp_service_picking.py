@@ -3,7 +3,6 @@
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
 #    $Omar Castiñeira Saavedra$
-#    $Marta Vázquez Rodríguez$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,15 +18,26 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields, api
+from odoo.addons import decimal_precision as dp
 
-from openerp.osv import osv, fields
+class LimpServicePicking(models.Model):
+    _inherit = 'stock.service.picking'
 
-class limp_contract(osv.osv):
-    
-    _inherit = "limp.contract"
-    
-    _columns = {
-        'sale_id': fields.many2one('sale.order', 'Sale', readonly=True)
-    }
-    
-limp_contract()
+    sale_line_ids = fields.One2many('sale.order.line', related='sale_id.order_line', readonly=True)
+
+
+class ServicePickingOtherConceptsRel(models.Model):
+    _inherit = 'service.picking.other.concepts.rel'
+
+
+    price_unit = fields.Float('Price Unit', digits_compute=dp.get_precision('Sale Price'))
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        if self.service_picking_id:
+            lines = self.service_picking_id.sale_line_ids
+            use_line = lines.filtered(lambda r: r.product_id==self.product_id)
+            if use_line:
+                self.price_unit = use_line.price_unit
+                self.name = use_line.name

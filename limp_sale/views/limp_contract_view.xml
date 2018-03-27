@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="limp_contract_form_add_context" model="ir.ui.view">
+        <field name="name">limp.contract.form.add_context</field>
+        <field name="model">limp.contract</field>
+        <field name="inherit_id" ref="limp_contract.limp_contract_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="analytic_distribution_id" position="after">
+                <field name="sale_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

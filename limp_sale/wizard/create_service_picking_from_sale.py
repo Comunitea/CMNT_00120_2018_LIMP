@@ -18,22 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
-
-class create_service_picking_from_sale(osv.osv_memory):
+class create_service_picking_from_sale(models.TransientModel):
 
     _name = "create.service.picking.from.sale"
 
-    _columns = {
-        'picking_type': fields.selection([('wastes','Wastes'),('sporadic','Sporadic'),('maintenance', 'Maintenance')], 'Service picking type', required=True)
-    }
+    picking_type = fields.Selection(
+        [('wastes', 'Wastes'), ('sporadic', 'Sporadic'),
+         ('maintenance', 'Maintenance')], 'Service picking type', required=True)
 
-    def action_create_picking(self, cr, uid, ids, context=None):
-        if context is None: context = {}
-        obj = self.browse(cr, uid, ids[0])
-        context['picking_type'] = obj.picking_type
-        res = self.pool.get('sale.order').create_pick(cr, uid, [context['active_id']], context=context)
+    def action_create_picking(self):
+        sale = self.env['sale.order'].browse(self._context.get('active_id', []))
+        res = sale.with_context(picking_type=self.picking_type).create_pick()
         return res
-
-create_service_picking_from_sale()
