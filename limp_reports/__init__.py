@@ -27,3 +27,4 @@
 #  import wizard
 #  import invoice
 #  import res_users
+from . import models

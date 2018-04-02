@@ -20,4 +20,4 @@
 ##############################################################################
 
 # import pricelist_onprice_rule_parser
-# import limp_sale_frequency_table_parser MIGRACION:
+from . import limp_sale_frequency_table_parser

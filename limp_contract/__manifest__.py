@@ -40,7 +40,7 @@
             'limp_distribution_costs',
             'city_council',
             'limp_account_analytic_extension',
-            # 'l10n_es_facturae',
+            'l10n_es_facturae',
             ],
         "data" : [
             'security/groups.xml',

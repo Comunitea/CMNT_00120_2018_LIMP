@@ -18,16 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
 
-
-class res_users(osv.osv):
+class ResUsers(models.Model):
 
     _inherit = "res.users"
 
-    _columns = {
-        'signature_image': fields.binary('Signature')
-    }
-
-res_users()
+    signature_image = fields.Binary('Signature')

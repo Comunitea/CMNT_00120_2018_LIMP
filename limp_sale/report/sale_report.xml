@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2018 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="custom_sale_report" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-set='display_discount']" position="after">
+            <t t-if="doc.header_notes">
+                <p><b t-field="doc.header_notes"/></p>
+            </t>
+        </xpath>
+        <xpath expr="//p[@t-field='doc.note']" position="before">
+            <t t-if="doc.very_important_text">
+                <p><b>- Muy importante:</b></p>
+                <p t-field="doc.very_important_text"/>
+            </t>
+            <t t-if="doc.note">
+                <p><b>- Observaciones:</b></p>
+            </t>
+        </xpath>
+        <xpath expr="//p[@id='fiscal_position_remark']" position="after">
+            <div class="row" style="page-break-inside:avoid;">
+                <div class="col-xs-4 col-xs-offset-1" style="border: 1px solid black">
+                    <p style="margin: 0;">Aceptación y conformidad de la oferta</p>
+                    <p style="margin: 0;">Firma y Sello Responsable pedido:</p>
+                    <div style="min-height: 80px"/>
+                    <p style="margin: 0;">Nº cuenta ________________________</p>
+                </div>
+                <div class="col-xs-4 col-xs-offset-1" style="border: 1px solid black">
+                    <p>Responsable:</p>
+                    <div t-if="not doc.env.user.signature_image" style="min-height: 110px"/>
+                    <img t-if="doc.env.user.signature_image" t-att-src="'data:image/png;base64,%s' % doc.env.user.signature_image" style="max-height: 110px;"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

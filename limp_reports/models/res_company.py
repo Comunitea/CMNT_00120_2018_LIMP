@@ -18,17 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
 
-class res_company(osv.osv):
+class ResCompany(models.Model):
 
     _inherit = "res.company"
 
-    _columns = {
-        'jasper_report_header': fields.text('Jasper report header', help="Text to write in jasper reports header.", translate=True),
-        'jasper_report_footer': fields.text('Jasper report footer', help="Text to write in jasper reports footer.", translate=True),
-        'signature_image': fields.binary('Signature')
-    }
-
-res_company()
+    jasper_report_header = fields.Text('Jasper report header', help="Text to write in jasper reports header.", translate=True)
+    jasper_report_footer = fields.Text('Jasper report footer', help="Text to write in jasper reports footer.", translate=True)
+    signature_image = fields.Binary('Signature')

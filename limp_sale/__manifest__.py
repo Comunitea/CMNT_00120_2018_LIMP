@@ -40,11 +40,12 @@
         'views/sale_order_periodicity_view.xml',
         'views/sale_order_view.xml',
         'security/ir.model.access.csv',
-        #  'limp_sale_report.xml',
+        'limp_sale_report.xml',
         'security/limp_sale_data.xml',
         'views/limp_service_picking_view.xml',
         'views/waste_services_view.xml',
-        'views/limp_contract_view.xml'
+        'views/limp_contract_view.xml',
+        'report/sale_report.xml'
         ],
     "installable": True,
 

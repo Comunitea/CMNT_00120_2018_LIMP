@@ -30,18 +30,17 @@
             'base',
             'limp_service_picking',
             'limp_contract',
-            #'jasper_reports', MIGRACION: eliminadas dependencias
-            #'report_aeroo_ooo',
+            'jasper_reports',
+            'report_py3o',
             'limp_custom',
             'analytic',
             'stock',
             'waste_management'
             ],
-        "init_xml" : [],
-        "demo_xml" : [],
         "data" : [
+            'views/res_company_view.xml',
+            'views/res_users_view.xml',
                 # 'limp_reports_data.xml', MIGRACION:
-                #  'res_company_view.xml',
                 #  # 'annual_memory.xml', MIGRACION:
                 #  'menu_reports.xml',
                 #  'wizard/wizard_print_memory.xml',
@@ -51,9 +50,7 @@
                 #  'acceptance_doc_seq.xml',
                 #  'acceptance_document_view.xml',
                 #  'security/ir.model.access.csv',
-                #  'res_users_view.xml'
             ],
         "installable": True,
-        'active': False
 
 }

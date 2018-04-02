@@ -41,7 +41,7 @@
             'limp_account_analytic_extension',
             'containers_management',
             'limp_contract',
-            #'l10n_es_facturae', MIGRACION: Modulo no en 9
+            'l10n_es_facturae',
             'limp_distribution_costs',
             'account_payment_mode'
             ],

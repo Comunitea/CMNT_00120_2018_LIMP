@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_company_form_add_jasper_report_header" model="ir.ui.view">
+        <field name="name">res.company.form.add_jasper_report_header</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="jasper_reports.jasper_company_view_inherit"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="java_path" position="after">
+                <group colspan="4">
+                    <separator string="Jasper report header" colspan="2"/>
+                    <separator string="Jasper report footer" colspan="2"/>
+                    <field name="jasper_report_header" nolabel="1" colspan="2"/>
+                    <field name="jasper_report_footer" nolabel="1" colspan="2"/>
+                </group>
+            </field>
+            <xpath expr="//field[@name='sequence']/../.." position="after">
+                <group col="2" colspan="2">
+                    <separator string="Signature" colspan="2"/>
+                    <field name="signature_image" colspan="2" nolabel="1" widget="image"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
