@@ -155,52 +155,11 @@ class stock_service_picking_line(osv.osv):
                     seq = self.pool.get('ir.sequence').get_id(cr, uid, seq_id)
                     line.picking_id.write({'delivery_proof_no': seq})
 
-            #~ if line.driver_id and line.picking_id.analytic_acc_id:
-                #~ hours = line.work_hours + line.tranfer_hours + line.displacement_hours
-                #~ vals = {'hours': hours,
-                        #~ 'date': line.transport_date[:10],
-                        #~ 'employee_id': line.driver_id.id,
-                        #~ 'analytic_id': line.picking_id.analytic_acc_id.id,
-                        #~ 'contract': False,
-                        #~ 'done': hours and True or False,
-                        #~ 'building_site_id':line.picking_id.building_site_id and line.picking_id.building_site_id.id or False,
-                        #~ 'department_id': line.picking_id.department_id and line.picking_id.department_id.id or False,
-                        #~ 'delegation_id': line.picking_id.delegation_id and line.picking_id.delegation_id.id or False,
-                        #~ 'responsible_id': line.picking_id.manager_id and line.picking_id.manager_id.id or False,
-                        #~ 'paid': True,
-                        #~ 'contract': True,
-                        #~ 'done': True
-                        #~ }
-                #~ obj_hours.create(cr,uid,vals)
-                #~ if line.extra_hours:
-                    #~ vals = {'extra_hours': line.extra_hours,
-                            #~ 'hours': 0.0,
-                            #~ 'date': line.transport_date[:10],
-                            #~ 'price_hours': line.price_hours,
-                            #~ 'employee_id': line.driver_id.id,
-                            #~ 'analytic_id': line.picking_id.analytic_acc_id.id,
-                            #~ 'pending_qty' : line.price_hours * line.extra_hours,
-                            #~ 'contract': False,
-                            #~ 'done': False,
-                            #~ 'building_site_id': line.picking_id.building_site_id and line.picking_id.building_site_id.id or False,
-                            #~ 'department_id': line.picking_id.department_id and line.picking_id.department_id.id or False,
-                            #~ 'delegation_id': line.picking_id.delegation_id and line.picking_id.delegation_id.id or False,
-                            #~ 'responsible_id': line.picking_id.manager_id and line.picking_id.manager_id.id or False
-                            #~ }
-                    #~ obj_hours.create(cr,uid,vals)
-            #~ elif line.picking_id.picking_type == 'wastes':
-                #~ raise osv.except_osv(_('Error, Empty fields !'), _('Driver or analytic_account fields are empty.'))
-
         return self.write(cr, uid, ids, {'state': 'done'})
 
     def action_reopen(self, cr, uid, ids, context=None):
         if context is None: context = {}
         for line in self.browse(cr, uid, ids):
-            hour_ids = self.pool.get("timesheet").search(cr, uid, [('analytic_id','=',line.picking_id.analytic_acc_id.id),('employee_id','=',line.driver_id.id),('hours', '=', line.work_hours + line.tranfer_hours + line.displacement_hours)])
-            hour_ids.extend(self.pool.get("timesheet").search(cr, uid, [('analytic_id','=',line.picking_id.analytic_acc_id.id),('employee_id','=',line.driver_id.id),('extra_hours', '=', line.extra_hours),('hours','=',0.0)]))
-            if hour_ids:
-                self.pool.get("timesheet").unlink(cr, uid, hour_ids)
-
             if line.container_id and line.dest_address_id:
                 container_move_ids = self.pool.get('container.move').search(cr, uid, [('container_id','=',line.container_id.id)], limit=2)
                 if container_move_ids:
