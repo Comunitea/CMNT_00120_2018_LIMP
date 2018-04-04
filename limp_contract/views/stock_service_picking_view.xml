@@ -6,8 +6,7 @@
         <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <field name="department_id" position="after">
-                <field name="manager_id" required="1" string="Responsible"/>
+            <field name="manager_id" position="after">
                 <field name="contract_id"/>
             </field>
             <field name="address_invoice_id" position="after">
@@ -23,8 +22,7 @@
         <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <field name="department_id" position="after">
-                <field name="manager_id" required="1" string="Responsible"/>
+            <field name="manager_id" position="after">
                 <field name="contract_id"/>
             </field>
             <field name="address_invoice_id" position="after">

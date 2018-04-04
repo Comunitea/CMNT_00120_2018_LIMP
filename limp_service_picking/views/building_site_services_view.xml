@@ -27,7 +27,6 @@
                     <!--<field name="identification_manager"/>
                     <field name="authorization_no"/>-->
                     <field name="show"/>
-                    <field name="pricelist_id"/>
                     <field name="admission_no"/>
                 </tree>
             </field>
@@ -90,7 +89,6 @@
                             </group>
                             <group>
                                 <field name="admission_no"/>
-                                <field name="pricelist_id"/>
                                 <field name="contact_id" attrs="{'invisible':[('show','!=','service')]}" />
                             </group>
                         </group>

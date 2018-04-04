@@ -6,5 +6,4 @@ from . import waste_services
 from . import limp_contract
 from . import sale_order_periodicity
 from . import sale_order
-from . import account_analytic_account
 from . import limp_service_picking

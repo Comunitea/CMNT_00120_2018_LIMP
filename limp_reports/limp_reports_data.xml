@@ -1,85 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
+    <record id="service_picking" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Picking</field>
+        <field name="report_name">service_picking</field>
+        <field name="report_rml">limp_reports/report/service_picking.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
 
-        <report
-            string="Picking"
-            model="stock.service.picking"
-            auto="True"
-            name="stock.service.picking"
-            rml="limp_reports/report/service_picking.jrxml"
-            id="service_picking"
-            menu="True"
-            header="False"
-            />
+    <record id="service_picking_values" model="ir.values">
+        <field name="name">Picking</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(service_picking)" />
+    </record>
 
-        <report
-            string="Valued picking"
-            model="stock.service.picking"
-            auto="True"
-            name="stock.service.valued.picking"
-            rml="limp_reports/report/service_picking_valued.jrxml"
-            id="service_picking_valued"
-            menu="True"
-            header="False"
-            />
+    <record id="service_picking_valued" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Valued picking</field>
+        <field name="report_name">service_valued_picking</field>
+        <field name="report_rml">limp_reports/report/service_picking_valued.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
 
-       <report
-            string="Cleaning picking"
-            model="stock.service.picking"
-            auto="True"
-            name="stock.service.picking.cleaning"
-            rml="limp_reports/report/service_picking_cleaning.jrxml"
-            id="service_picking_cleaning"
-            menu="True"
-            header="False"
-            />
+    <record id="service_picking_valued_values" model="ir.values">
+        <field name="name">Valued picking</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(service_picking_valued)" />
+    </record>
 
-       <report
-            string="Discharge picking"
-            model="stock.service.picking"
-            auto="True"
-            name="discharge.picking"
-            rml="limp_reports/report/discharge_picking.jrxml"
-            id="discharge_picking"
-            menu="True"
-            header="False"
-            />
+    <record id="cleaning_picking" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Cleaning picking</field>
+        <field name="report_name">service_valued_picking</field>
+        <field name="report_rml">limp_reports/report/service_picking_cleaning.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
 
-       <report
-            string="Delivery req. build waste"
-            model="stock.service.picking"
-            auto="True"
-            name="delivery.req.build.waste"
-            rml="limp_reports/report/delivery_req_build_waste.jrxml"
-            id="delivery_req_build_waste"
-            menu="True"
-            header="False"
-            />
+    <record id="cleaning_picking_values" model="ir.values">
+        <field name="name">Cleaning picking</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cleaning_picking)" />
+    </record>
 
-       <report
-            string="Build picking"
-            model="stock.service.picking"
-            auto="True"
-            name="build.picking"
-            rml="limp_reports/report/picking.jrxml"
-            id="build_picking"
-            menu="True"
-            header="False"
-            />
+    <record id="discharge_picking" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Discharge picking</field>
+        <field name="report_name">discharge_picking</field>
+        <field name="report_rml">limp_reports/report/discharge_picking.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
 
-       <report
-            string="Valorization build picking"
-            model="stock.service.picking"
-            auto="True"
-            name="valorization.picking"
-            rml="limp_reports/report/valorization_picking.jrxml"
-            id="valorization_picking"
-            menu="True"
-            header="False"
-            />
+    <record id="discharge_picking_values" model="ir.values">
+        <field name="name">Discharge picking</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(discharge_picking)" />
+    </record>
 
-      <report
+    <record id="delivery_req_build_waste" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Delivery req. build waste</field>
+        <field name="report_name">delivery_req_build_waste</field>
+        <field name="report_rml">limp_reports/report/delivery_req_build_waste.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
+
+    <record id="delivery_req_build_waste_values" model="ir.values">
+        <field name="name">Delivery req. build waste</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(delivery_req_build_waste)" />
+    </record>
+
+    <record id="build_picking" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Build picking</field>
+        <field name="report_name">build_picking</field>
+        <field name="report_rml">limp_reports/report/picking.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
+
+    <record id="build_picking_values" model="ir.values">
+        <field name="name">Build picking</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(build_picking)" />
+    </record>
+
+    <record id="valorization_picking" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Valorization build picking</field>
+        <field name="report_name">valorization_picking</field>
+        <field name="report_rml">limp_reports/report/valorization_picking.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
+
+    <record id="valorization_picking_values" model="ir.values">
+        <field name="name">Valorization build picking</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(valorization_picking)" />
+    </record>
+
+    <record id="delivery_waste_check" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Delivery waste check</field>
+        <field name="report_name">delivery_waste_check</field>
+        <field name="report_rml">limp_reports/report/delivery_waste_check.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
+
+    <record id="delivery_waste_check_values" model="ir.values">
+        <field name="name">Delivery waste check</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(delivery_waste_check)" />
+    </record>
+
+       <!--report
             string="Delivery waste check"
             model="stock.service.picking"
             auto="True"
@@ -297,7 +370,5 @@
         <field name="tml_source">file</field>
         <field name="multi" eval="0"/>
         <field name="parser_state">default</field>
-    </record>
-
-    </data>
-</openerp>
+    </record-->
+</odoo>

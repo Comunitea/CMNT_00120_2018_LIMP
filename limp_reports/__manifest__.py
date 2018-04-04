@@ -40,7 +40,7 @@
         "data" : [
             'views/res_company_view.xml',
             'views/res_users_view.xml',
-                # 'limp_reports_data.xml', MIGRACION:
+            'limp_reports_data.xml',
                 #  # 'annual_memory.xml', MIGRACION:
                 #  'menu_reports.xml',
                 #  'wizard/wizard_print_memory.xml',

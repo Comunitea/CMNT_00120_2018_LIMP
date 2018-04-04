@@ -72,7 +72,6 @@ class BuildingSiteServices(models.Model):
     show = fields.Selection([('building', 'Building'),('service', 'Service')],'Show', required=True, deafault='building')
     code = fields.Char('Reference/Order', size=128)
     serial = fields.Char('Code', size=128)
-    pricelist_id = fields.Many2one("product.pricelist","Pricelist")
     active = fields.Boolean('Active', default=True)
     admission_no = fields.Char('Admission no.', size=24, readonly=True)
     company_id = fields.Many2one('res.company', 'Company', readonly=True, default=lambda r: r._context.get('company_id', self.env.user.company_id.id))

@@ -60,6 +60,7 @@
                             <field name="company_id" groups="base.group_multi_company" required="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
                             <field name="delegation_id" widget="selection" required="1"/>
                             <field name="department_id" widget="selection" required="1"/>
+                            <field name="manager_id" required="1" string="Responsible"/>
                             <field name="description" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" widget="char" size="255"/>
                         </group>
                         <group>
@@ -92,7 +93,6 @@
                             </field>
                         </page>
                         <page string="Employees">
-                            <field name="manager_id" invisible="1"/>
                             <field name="employee_ids" colspan="4" nolabel="1" context="{'default_delegation_id': delegation_id, 'default_responsible_id': manager_id, 'default_department_id': department_id}">
                                 <tree string="Timesheet" editable="top">
                                     <field name="date"/>

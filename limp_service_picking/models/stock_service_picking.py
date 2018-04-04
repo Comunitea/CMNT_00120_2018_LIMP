@@ -48,7 +48,6 @@ class StockServicePicking(models.Model):
 
     state = fields.Selection([('draft', 'Draft'),('active', 'Active'),('closed', 'Closed'),('cancelled', 'Cancelled')], 'State', readonly=True, default='draft')
         #'partner_id = fields.Many2one('res.partner', 'Customer', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
-    address_id = fields.Many2one('res.partner', 'Address', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]})
     carrier_id = fields.Many2one('res.partner', 'Carrier', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]})
     manager_partner_id = fields.Many2one('res.partner', 'Manager', help="Destination partner", states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]})
     manager_address_id = fields.Many2one('res.partner', 'Address', help="Destination address", states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]})
@@ -138,7 +137,7 @@ class StockServicePicking(models.Model):
     planified = fields.Boolean('Planified')
     container_placement = fields.Selection([('on_street', 'On street'),('on_building', 'On building')], string="Container placement", states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}, default='on_building')
     maintenance = fields.Boolean('Maintenance')
-    name = fields.Char(default='SEQ')
+    #name = fields.Char(default='SEQ')
     sale_id = fields.Many2one("sale.order", string="Sale")
 
     def _amount_all(self):
@@ -249,7 +248,6 @@ class StockServicePicking(models.Model):
                 self.holder_address = self.building_stie_id.address_holder
                 self.producer_partner = self.building_stie_id.producer_promoter
                 self.producer_address = self.building_stie_id.address_producer
-                self.pricelist_id = self.building_stie_id.pricelist_id.id
 
         else:
             self.building_site_address_id = False
@@ -259,7 +257,6 @@ class StockServicePicking(models.Model):
             self.holder_address = False
             self.producer_partner = False
             self.producer_address = False
-            self.pricelist_id = False
 
     @api.onchange('service_type')
     def onchange_service_type(self):

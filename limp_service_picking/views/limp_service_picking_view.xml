@@ -67,6 +67,7 @@
                             <field name="address_invoice_id" domain="[('parent_id', '=', partner_id)]" attrs="{'readonly':[('state','in',['cancelled'])]}" required="1"/>
                             <field name="delegation_id" widget="selection" required="1"/>
                             <field name="department_id" widget="selection" required="1"/>
+                            <field name="manager_id" required="1" string="Responsible"/>
                         </group>
                         <group>
                             <field name="building_site"/>
@@ -228,7 +229,6 @@
                             </group>
                         </page>
                         <page string="Employees">
-                            <field name="manager_id" invisible="1"/>
                             <field name="employee_ids" colspan="4" nolabel="1" context="{'default_delegation_id': delegation_id, 'default_responsible_id': manager_id, 'default_department_id': department_id}">
                                 <tree string="Timesheet" editable="top">
                                     <field name="date"/>

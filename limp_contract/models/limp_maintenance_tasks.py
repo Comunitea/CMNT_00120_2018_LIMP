@@ -111,7 +111,6 @@ class MaintenanceTask(models.Model):
                         'ccc_account_id': contract.bank_account_id and contract.bank_account_id.id or False,
                         'manager_id': (task.contract_line_id and task.contract_line_id.manager_id) and task.contract_line_id.manager_id.id or contract.analytic_account_id.manager_id.id,
                         'partner_id': contract.partner_id.id,
-                        'pricelist_id': contract.partner_id.property_product_pricelist.id,
                         'address_invoice_id': contract.address_invoice_id.id,
                         'department_id': (task.contract_line_id and task.contract_line_id.department_id) and task.contract_line_id.department_id.id or contract.analytic_account_id.department_id.id,
                         'delegation_id': (task.contract_line_id and task.contract_line_id.delegation_id) and task.contract_line_id.delegation_id.id or contract.analytic_account_id.delegation_id.id,

@@ -7,9 +7,6 @@
         <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <field name="building_site_id" position="after">
-                <field name="pricelist_id" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" required="1"/>
-            </field>
             <field name="other_concepts_ids" position="after">
                 <separator string="Associated sale lines" colspan="4"/>
                 <field name="sale_line_ids" nolabel="1" colspan="4">
@@ -36,9 +33,6 @@
         <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <field name="picking_date" position="after">
-                <field name="pricelist_id" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" required="1"/>
-            </field>
             <field name="picking_date" position="after">
                 <field name="sale_id"/>
                 <field name="maintenance" invisible="1"/>
