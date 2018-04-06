@@ -84,7 +84,7 @@ class SaleOrder(models.Model):
         if vals.get('name', False) == "/":
             vals["name"] = self.env['ir.sequence'].next_by_code('sale.order')
         if not vals.get('validity_date', False):
-            formatted_date = datetime.strptime(vals['date_order'], "%Y-%m-%d")
+            formatted_date = datetime.strptime(vals['date_order'], "%Y-%m-%d %H:%M:%S")
             vals['validity_date'] = datetime.strftime(formatted_date + timedelta(days=30),"%Y-%m-%d")
         return super(SaleOrder, self).create(vals)
 

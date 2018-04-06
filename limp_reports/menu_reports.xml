@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <!--menuitem id="reports_folder_id" parent="limp_service_picking.menu_waste_man" name="Reports"/>
-        <menuitem action="limp_service_picking.valorization_lines_action_tree" id="limp_service_picking.valorization_lines_view_open" parent="reports_folder_id" name="View Valorization lines"/>
-        <menuitem action="limp_custom.invoice_lines_action_tree" id="limp_custom.invoice_lines_view_open" parent="reports_folder_id" name="View Invoice lines"/ MIGRACION: -->
-    </data>
-</openerp>

@@ -35,20 +35,21 @@
             'limp_custom',
             'analytic',
             'stock',
-            'waste_management'
+            'waste_management',
+            'account_due_dates_str'
             ],
         "data" : [
             'views/res_company_view.xml',
             'views/res_users_view.xml',
             'limp_reports_data.xml',
                 #  # 'annual_memory.xml', MIGRACION:
-                #  'menu_reports.xml',
+            'views/menu_reports.xml',
                 #  'wizard/wizard_print_memory.xml',
                 #  'wizard/wizard_print_hours_report_view.xml',
                 #  'wizard/wizard_print_analytic_details_view.xml',
-                #  'wizard/print_acceptance_document_view.xml',
+            'wizard/print_acceptance_document_view.xml',
                 #  'acceptance_doc_seq.xml',
-                #  'acceptance_document_view.xml',
+            'views/acceptance_document_view.xml',
                 #  'security/ir.model.access.csv',
             ],
         "installable": True,

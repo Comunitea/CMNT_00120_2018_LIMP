@@ -18,38 +18,32 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-import time
-from openerp.osv import osv, fields
 
-class print_acceptance_document_report(osv.osv_memory):
+class PrintAcceptanceDocumentReport(models.TransientModel):
 
     _name = "print.acceptance.document.report"
 
-    _columns = {
-        'building_site_id': fields.many2one('building.site.services', 'Building Site / Service', required=True),
-        'waste_id': fields.many2one('waste.ler.code', 'LER', required=True)
-    }
+    building_site_id = fields.Many2one('building.site.services', 'Building Site / Service', required=True)
+    waste_id = fields.Many2one('waste.ler.code', 'LER', required=True)
 
-    def print_report(self, cr, uid, ids, context=None):
+    def print_report(self):
         """prints report"""
-        if context is None:
-            context = {}
-
-        obj = self.browse(cr, uid, ids[0])
-        acceptance_ids = self.pool.get('acceptance.document').search(cr, uid, [('building_site_id', '=', obj.building_site_id.id),('waste_id', '=', obj.waste_id.id)])
+        acceptance_ids = self.env['acceptance.document'].search([('building_site_id', '=', self.building_site_id.id),('waste_id', '=', self.waste_id.id)])
         if acceptance_ids:
-            data = self.pool.get('acceptance.document').read(cr, uid, acceptance_ids[0])
-            accept_ids = [acceptance_ids[0]]
+            data = acceptance_ids[0].read()
+            accept_ids = [acceptance_ids[0].id]
         else:
-            admission_seq = self.pool.get('ir.sequence').get(cr, uid, 'acceptance_document')
-            new_waste = self.pool.get('acceptance.document').create(cr, uid, {
-                                                                        'building_site_id': obj.building_site_id.id,
-                                                                        'waste_id': obj.waste_id.id,
-                                                                        'number': admission_seq
-                                                                    })
-            data = self.pool.get('acceptance.document').read(cr, uid, new_waste)
-            accept_ids = [new_waste]
+            admission_seq = self.env['ir.sequence'].next_by_code('acceptance_document')
+            new_waste = self.env['acceptance.document'].create(
+                {
+                    'building_site_id': self.building_site_id.id,
+                    'waste_id': self.waste_id.id,
+                    'number': admission_seq
+                })
+            data = new_waste.read()
+            accept_ids = [new_waste.id]
 
         datas = {'ids': accept_ids}
         datas['model'] = 'acceptance.document'
@@ -59,5 +53,3 @@ class print_acceptance_document_report(osv.osv_memory):
             'report_name': 'acceptance_document',
             'datas': datas,
         }
-
-print_acceptance_document_report()

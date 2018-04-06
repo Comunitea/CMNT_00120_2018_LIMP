@@ -18,20 +18,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
 
-from openerp.osv import osv, fields
 
-
-class acceptance_document(osv.osv):
+class AcceptanceDocument(models.Model):
 
     _name = "acceptance.document"
     _rec_name = "number"
 
-    _columns = {
-        'number': fields.char('Number', size=30, required=True),
-        'building_site_id': fields.many2one('building.site.services', 'Building site', required=True),
-        'waste_id': fields.many2one('waste.ler.code', 'LER', required=True),
-    }
-
-
-acceptance_document()
+    number = fields.Char('Number', size=30, required=True)
+    building_site_id = fields.Many2one('building.site.services', 'Building site', required=True)
+    waste_id = fields.Many2one('waste.ler.code', 'LER', required=True)

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="account_invoice" language="groovy" pageWidth="595" pageHeight="846" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="17"/>
+	<property name="ireport.y" value="14"/>
 	<style name="table">
 		<pen lineWidth="0.0" lineStyle="Solid" lineColor="#6666FF"/>
 		<box>
@@ -79,28 +79,28 @@
 			<![CDATA[]]>
 		</queryString>
 		<field name="Referencia-default_code" class="java.lang.String">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line/Producto-product_id/Referencia-default_code]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Producto-product_id/Referencia-default_code]]></fieldDescription>
 		</field>
 		<field name="Descripcion-name" class="java.lang.String">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line/Descripcion-name]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Descripcion-name]]></fieldDescription>
 		</field>
 		<field name="Subtotal-price_subtotal" class="java.lang.Float">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line/Subtotal-price_subtotal]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Subtotal-price_subtotal]]></fieldDescription>
 		</field>
 		<field name="id" class="java.lang.Integer">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line/Referencia_factura-invoice_id/id]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Referencia_factura-invoice_id/id]]></fieldDescription>
 		</field>
 		<field name="id2" class="java.lang.Integer">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line/Obra-building_site_id/id]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Obra-building_site_id/id]]></fieldDescription>
 		</field>
 		<field name="Nombre-name" class="java.lang.String">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line/Obra-building_site_id/Nombre-name]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Obra-building_site_id/Nombre-name]]></fieldDescription>
 		</field>
 		<field name="Reference_Order-code" class="java.lang.String">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line/Obra-building_site_id/Reference_Order-code]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Obra-building_site_id/Reference_Order-code]]></fieldDescription>
 		</field>
 		<field name="Code-serial" class="java.lang.String">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line/Obra-building_site_id/Code-serial]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Obra-building_site_id/Code-serial]]></fieldDescription>
 		</field>
 		<filterExpression><![CDATA[$P{INVOICE_ID} == $F{id}]]></filterExpression>
 		<group name="ID2">
@@ -119,16 +119,16 @@
 			<![CDATA[]]>
 		</queryString>
 		<field name="Importe-amount" class="java.lang.Float">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_impuestos-tax_line/Importe-amount]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_impuestos-tax_line_ids/Importe-amount]]></fieldDescription>
 		</field>
 		<field name="Base-base" class="java.lang.Float">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_impuestos-tax_line/Base-base]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_impuestos-tax_line_ids/Base-base]]></fieldDescription>
 		</field>
 		<field name="Descripcion_impuesto-name" class="java.lang.String">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_impuestos-tax_line/Descripcion_impuesto-name]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_impuestos-tax_line_ids/Descripcion_impuesto-name]]></fieldDescription>
 		</field>
 		<field name="id" class="java.lang.Integer">
-			<fieldDescription><![CDATA[/data/record/Lineas_de_impuestos-tax_line/Linea_de_factura-invoice_id/id]]></fieldDescription>
+			<fieldDescription><![CDATA[/data/record/Lineas_de_impuestos-tax_line_ids/Linea_de_factura-invoice_id/id]]></fieldDescription>
 		</field>
 		<filterExpression><![CDATA[$P{INVOICE_ID} == $F{id}]]></filterExpression>
 	</subDataset>
@@ -153,25 +153,25 @@
 		<fieldDescription><![CDATA[/data/record/Numero-number]]></fieldDescription>
 	</field>
 	<field name="Calle-street" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-address_invoice_id/Calle-street]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Calle-street]]></fieldDescription>
 	</field>
 	<field name="C.P.-zip" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-address_invoice_id/C.P.-zip]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/C.P.-zip]]></fieldDescription>
 	</field>
 	<field name="Nombre_del_pais-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-address_invoice_id/Pais-country_id/Nombre_del_pais-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Pais-country_id/Nombre_del_pais-name]]></fieldDescription>
 	</field>
 	<field name="Nombre_provincia-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-address_invoice_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
 	</field>
 	<field name="Nombre-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-address_invoice_id/Nombre_de_empresa-partner_id/Nombre-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Nombre_de_empresa-parent_id/Nombre-name]]></fieldDescription>
 	</field>
 	<field name="Plazo_de_pago-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Plazo_de_pago-payment_term/Plazo_de_pago-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Plazo_de_pago-payment_term_id/Plazo_de_pago-name]]></fieldDescription>
 	</field>
 	<field name="Nombre-name2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Tipo_de_pago-payment_type/Nombre-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Tipo_de_pago-payment_mode_id/Nombre-name]]></fieldDescription>
 	</field>
 	<field name="Total-amount_total" class="java.lang.Float">
 		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
@@ -180,37 +180,37 @@
 		<fieldDescription><![CDATA[/data/record/Informacion_adicional-comment]]></fieldDescription>
 	</field>
 	<field name="Nombre-name3" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-address_contact_id/Nombre_de_empresa-partner_id/Nombre-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/Nombre_de_empresa-parent_id/Nombre-name]]></fieldDescription>
 	</field>
 	<field name="C.P.-zip2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-address_contact_id/C.P.-zip]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/C.P.-zip]]></fieldDescription>
 	</field>
 	<field name="Calle-street2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-address_contact_id/Calle-street]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/Calle-street]]></fieldDescription>
 	</field>
 	<field name="Nombre_del_pais-name2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-address_contact_id/Pais-country_id/Nombre_del_pais-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/Pais-country_id/Nombre_del_pais-name]]></fieldDescription>
 	</field>
 	<field name="Ciudad-city2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-address_contact_id/Ciudad-city]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/Ciudad-city]]></fieldDescription>
 	</field>
 	<field name="Nombre_provincia-name2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-address_contact_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
 	</field>
 	<field name="Ciudad-city" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-address_invoice_id/Ciudad-city]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Ciudad-city]]></fieldDescription>
 	</field>
 	<field name="Tax_amount-amount_taxes" class="java.lang.Float">
-		<fieldDescription><![CDATA[/data/record/Tax_amount-amount_taxes]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Tax_amount-amount_tax]]></fieldDescription>
 	</field>
 	<field name="Nombre-name4" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_contacto-address_contact_id/Nombre-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_contacto-partner_shipping_id/Nombre-name]]></fieldDescription>
 	</field>
 	<field name="Calle2-street2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_contacto-address_contact_id/Calle2-street2]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_contacto-partner_shipping_id/Calle2-street2]]></fieldDescription>
 	</field>
 	<field name="Calle2-street22" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-address_invoice_id/Calle2-street2]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_id/Calle2-street2]]></fieldDescription>
 	</field>
 	<field name="Numero_de_cuenta-acc_number" class="java.lang.String">
 		<fieldDescription><![CDATA[/data/record/Cuenta_bancaria-partner_bank_id/Numero_de_cuenta-acc_number]]></fieldDescription>
@@ -219,7 +219,7 @@
 		<fieldDescription><![CDATA[/data/record/Empresa-partner_id/CIF_NIF-vat]]></fieldDescription>
 	</field>
 	<field name="A_A-attention_of" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_contacto-address_contact_id/A_A-attention_of]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_contacto-partner_shipping_id/A_A-attention_of]]></fieldDescription>
 	</field>
 	<field name="No_calidad-no_quality" class="java.lang.String">
 		<fieldDescription><![CDATA[/data/record/No_calidad-no_quality]]></fieldDescription>
@@ -231,10 +231,10 @@
 		<fieldDescription><![CDATA[/data/record/Cuenta_bancaria-partner_bank_id/IBAN-iban]]></fieldDescription>
 	</field>
 	<field name="Nombre_del_contacto-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-address_invoice_id/Nombre_del_contacto-name]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_id/Nombre_del_contacto-name]]></fieldDescription>
 	</field>
 	<field name="Tipo_de_direccion-type" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_contacto-address_contact_id/Tipo_de_direccion-type]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_contacto-partner_shipping_id/Tipo_de_direccion-type]]></fieldDescription>
 	</field>
 	<field name="Invoice_header-invoice_header" class="java.lang.String">
 		<fieldDescription><![CDATA[/data/record/Invoice_header-invoice_header]]></fieldDescription>
@@ -243,7 +243,7 @@
 		<fieldDescription><![CDATA[/data/record/Expiration_dates-expiration_dates_str]]></fieldDescription>
 	</field>
 	<field name="A_A-attention_of2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-address_invoice_id/A_A-attention_of]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/A_A-attention_of]]></fieldDescription>
 	</field>
 	<field name="Privacidad-privacy" class="java.lang.String">
 		<fieldDescription><![CDATA[/data/record/privacy]]></fieldDescription>
@@ -366,7 +366,7 @@
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font size="8"/>
 					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2} + "\n" + $F{Plazo_de_pago-name} + "\n" + $F{IBAN-iban} + ($F{Expiration_dates-expiration_dates_str}.isEmpty() ? "" : "\nVencimiento: " + $F{Expiration_dates-expiration_dates_str})]]></textFieldExpression>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2} + "\n" + $F{Plazo_de_pago-name} + "\n" + $F{IBAN-iban} + ($F{Expiration_dates-expiration_dates_str}.isEmpty() ? "" : "\nVencimiento: \n" + $F{Expiration_dates-expiration_dates_str})]]></textFieldExpression>
 				</textField>
 				<frame>
 					<reportElement x="301" y="6" width="255" height="113"/>
@@ -447,7 +447,7 @@
 			<band height="190">
 				<componentElement>
 					<reportElement key="table 1" style="table" x="7" y="4" width="333" height="46" forecolor="#000000">
-						<property name="OPENERP_RELATIONS" value="tax_line"/>
+						<property name="OPENERP_RELATIONS" value="tax_line_ids"/>
 					</reportElement>
 					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 						<datasetRun subDataset="Dataset 2">
@@ -832,7 +832,7 @@
 		<band height="142">
 			<componentElement>
 				<reportElement key="table" style="table" x="0" y="4" width="555" height="133" forecolor="#000000">
-					<property name="OPENERP_RELATIONS" value="invoice_line"/>
+					<property name="OPENERP_RELATIONS" value="invoice_line_ids"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="dataset1">
