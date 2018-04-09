@@ -28,3 +28,4 @@ from . import wizard
 #  import invoice
 #  import res_users
 from . import models
+from . import annual_memory_parser

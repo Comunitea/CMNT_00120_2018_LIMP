@@ -1,31 +1,17 @@
-from openerp.osv import osv, fields
+from odoo import models, fields
 import time
 
-class wizard_print_memory(osv.osv_memory):
+class WizardPrintMemory(models.TransientModel):
 
     _name = "wizard.print.memory"
-    _columns = {
-        'year' : fields.integer('Year', required=True),
-        'company_id':fields.many2one('res.company','Company',required=True),
-    }
-    _defaults = {
-        'year' : lambda *x: int(time.strftime('%Y')),
-        'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
-    }
 
-    def print_report(self, cr, uid, ids, context=None):
-        """prints report"""
-        if context is None:
-            context = {}
+    year = fields.Integer('Year', required=True, default=lambda r:int(time.strftime('%Y')))
+    company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda r: r.env.user.company_id.id)
 
-        datas = {'ids': ids}
-        datas['model'] = 'wizard.print.memory'
-        datas['form'] = self.read(cr, uid, ids)[0]
+    def print_report(self):
+        datas = {'year': self.year, 'company_id': self.company_id.id}
         return {
             'type': 'ir.actions.report.xml',
             'report_name': 'annual_memory',
             'datas': datas,
         }
-
-
-wizard_print_memory()

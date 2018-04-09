@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-#import wizard_print_memory
+from . import wizard_print_memory
 #import wizard_print_hours_report
 #import wizard_print_analytic_details
 from . import print_acceptance_document_report
