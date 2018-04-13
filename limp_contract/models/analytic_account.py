@@ -104,7 +104,7 @@ class AccountAnalyticAccount(models.Model):
     def _compute_is_picking_contract(self):
         for account in self:
             picking_ids = self.env['stock.service.picking'].search(
-                [('analytic_acc_id', '=', account),
+                [('analytic_acc_id', '=', account.id),
                  ('contract_id', '!=', False),
                  ('maintenance', '=', False)])
             account.is_picking_contract = picking_ids and True or False
@@ -122,7 +122,7 @@ class AccountAnalyticAccount(models.Model):
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
         args = args or []
-        ids = []
+        ids = self.env['account.analytic.account']
 
         if name:
             partners = self.env['res.partner'].search([('name', operator, name)], limit=limit)

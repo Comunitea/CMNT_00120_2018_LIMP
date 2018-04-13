@@ -18,14 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-#  import res_company
-#  # import account_analytic_details_parser MIGRACION:
-#  # import aeroo_parser MIGRACION: Aeroo report
-#  # import hours_report_parser MIGRACION: Aeroo report
-#  import acceptance_document
 from . import wizard
-#  import invoice
-#  import res_users
 from . import models
 from . import annual_memory_parser
+from . import analytic_detail_parser

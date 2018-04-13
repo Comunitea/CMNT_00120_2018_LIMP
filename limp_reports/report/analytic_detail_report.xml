@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2018 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <template id="account_analytic_details_account">
+        <div class="row" t-att-style="'padding-left: %s mm' % str(padding)">
+            <div class="col-xs-2">
+                <strong><p style="color:blue" t-field="account.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong><p style="color:blue" t-field="account.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-2">
+                <strong><p style="color:blue"  t-esc="get_balance(account, data, with_tag_accounts=with_tag_accounts)[0]"
+                    t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/></strong>
+            </div>
+            <div class="col-xs-2">
+                <strong><p style="color:blue"><span t-esc="formatLang(account.env, get_real_percent(account, data, with_tag_accounts=with_tag_accounts))"/> %</p></strong>
+            </div>
+        </div>
+        <div class="row" t-att-style="'padding-left: %s mm' % str(padding)">
+            <div class="col-xs-12">
+                <strong><p style="color:blue" t-field="account.description"/></strong>
+            </div>
+        </div>
+        <t t-foreach="get_journals(account, data, not with_tag_accounts, with_tag_accounts=with_tag_accounts)" t-as="journal">
+            <div class="row" t-att-style="'padding-left: %s mm' % str(10 + padding)">
+                <div class="col-xs-4"><span t-esc="journal[0]"/></div>
+                <div class="col-xs-2 col-xs-offset-4">
+                    <p t-esc="journal[1]"
+                        t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/>
+                </div>
+            </div>
+            <t t-foreach="get_employees(account, journal[2], data, with_tag_accounts=with_tag_accounts)" t-as="employee">
+                <div class="row" t-att-style="'padding-left: %s mm' % str(20 + padding)">
+                <div class="col-xs-4"><span t-esc="employee[0]"/></div>
+                <div class="col-xs-2 col-xs-offset-4">
+                    <p t-esc="employee[1]"
+                        t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/>
+                </div>
+                </div>
+                <t t-foreach="get_analytic_type(account, journal[2], employee[2], data, with_tag_accounts=with_tag_accounts)" t-as="analytic_type">
+                    <div class="row" t-att-style="'padding-left: %s mm' % str(30 + padding)">
+                    <div class="col-xs-4"><span t-esc="analytic_type[0]"/></div>
+                    <div class="col-xs-2 col-xs-offset-4">
+                        <p t-esc="analytic_type[1]"
+                            t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/>
+                    </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="account_analytic_details">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.external_layout">
+                    <div class="page">
+                        <h3 class="text-center" t-esc="data['header']"/>
+                        <div class="row mt32 mb32" id="informations">
+                            <div class="col-xs-2">
+                                <strong>Code</strong>
+                            </div>
+                            <div class="col-xs-6">
+                                <strong>Partner</strong>
+                            </div>
+                            <div class="col-xs-2">
+                                <strong>Balance</strong>
+                            </div>
+                            <div class="col-xs-2">
+                                <strong>Real %</strong>
+                            </div>
+                        </div>
+                        <t t-call="limp_reports.account_analytic_details_account">
+                            <t t-set="account" t-value="o"/>
+                            <t t-set="padding" t-value="0"/>
+                            <t t-set="with_tag_accounts" t-value="True"/>
+                        </t>
+                        <t t-if="data['detail']">
+                            <t t-foreach="get_childs(o)" t-as="acc">
+                                <t t-if="get_balance(acc, data, with_tag_accounts=False)[0] or get_balance(acc, data, with_tag_accounts=False)[1]">
+                                    <t t-call="limp_reports.account_analytic_details_account">
+                                        <t t-set="account" t-value="acc"/>
+                                        <t t-set="padding" t-value="10"/>
+                                        <t t-set="with_tag_accounts" t-value="False"/>
+                                    </t>
+                                </t>
+                            </t>
+                        </t>
+                        <h3>Summary</h3>
+                        <t t-foreach="get_summarize()" t-as="journal">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <span t-esc="journal[0]"/>
+                                </div>
+                                <div class="col-xs-3">
+                                    <span t-esc="formatLang(o.env, journal[1])"/><span t-esc="journal[2]"/>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

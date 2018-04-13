@@ -502,11 +502,13 @@
         <field name="py3o_template_fallback">report/annual_memory.odt</field>
     </record>
 
-        <!--
-
-    <report auto="False" id="account_analytic_account_details_report"
-            menu="False" model="account.analytic.account"
-            name="account.analytic.account.details.report"
-            rml="limp_reports/report/analytic_account_details.rml"
-            string="Analytic accounts details"/-->
+    <report
+        string="Analytic accounts details"
+        id="account_analytic_details_action"
+        model="account.analytic.account"
+        report_type="qweb-pdf"
+        menu="False"
+        name="limp_reports.account_analytic_details"
+        file="limp_reports.account_analytic_details"
+    />
 </odoo>

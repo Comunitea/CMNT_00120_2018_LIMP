@@ -18,46 +18,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp.osv import osv, fields
+from odoo import models, fields, _
 import time
-from openerp.tools.translate import _
 
-class account_analytic_account_details(osv.osv_memory):
+class accountnalyticAccountDetails(models.TransientModel):
     _name = "account.analytic.account.details"
 
-    _columns = {
-        'date1': fields.date('Start of period', required=True),
-        'date2': fields.date('End of period', required=True),
-        'department_id': fields.many2one('hr.department', 'Department'),
-        'delegation_id': fields.many2one('res.delegation', 'Delegation'),
-        'manager_id': fields.many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)]),
-        'header': fields.char('Title of report', size=255, required=True),
-        'detail': fields.boolean('Show details'),
-        'without_pickings': fields.boolean('Without pickings in contract')
-    }
+    date1 = fields.Date('Start of period', required=True, default=lambda r: time.strftime('%Y-01-01'))
+    date2 = fields.Date('End of period', required=True, default=fields.Date.today())
+    department_id = fields.Many2one('hr.department', 'Department')
+    delegation_id = fields.Many2one('res.delegation', 'Delegation')
+    manager_id = fields.Many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)])
+    header = fields.Char('Title of report', size=255, required=True, default=_('Analytic Details'))
+    detail = fields.Boolean('Show details')
+    without_pickings = fields.Boolean('Without pickings in contract', default=True)
 
-    _defaults = {
-        'date1': lambda *a: time.strftime('%Y-01-01'),
-        'date2': lambda *a: time.strftime('%Y-%m-%d'),
-        'header': lambda *a: _('Analytic Details'),
-        'without_pickings': lambda *a: True
-    }
-
-    def print_report(self, cr, uid, ids, context=None):
-        datas = {}
-        if context is None:
-            context = {}
-        data = self.read(cr, uid, ids)[0]
+    def print_report(self):
+        data = self.read()[0]
         datas = {
-             'ids': context.get('active_ids',[]),
-             'model': 'account.analytic.account',
-             'form': data
-                 }
-        return {
-            'type': 'ir.actions.report.xml',
-            'report_name': 'account.analytic.account.details.report',
-            'datas': datas,
-            }
-
-account_analytic_account_details()
+            'ids': self.env.context.get('active_ids',[]),
+            'model': 'account.analytic.account',
+            'form': data
+        }
+        records = self.env['account.analytic.account'].browse(self.env.context.get('active_ids',[]))
+        return self.env['report'].get_action(records, 'limp_reports.account_analytic_details', data=datas)
