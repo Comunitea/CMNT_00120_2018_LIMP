@@ -19,10 +19,31 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-
-
-class AccountAnalyticJournal(models.Model):
-    _inherit = 'account.analytic.journal'
-
-    analytic_target_ids = fields.One2many('account.analytic.target', 'analytic_journal_id', 'Targets')
+{
+    "name": "Account Analytic Analysis Reports",
+    "description": """Extends analytic accounting for doing analysis""",
+    "version": "1.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Account/Analytic",
+    "depends": [
+        'base',
+        'account',
+        'analytic',
+        'analytic_base_department',
+        'limp_multi_delegations',
+        'limp_account_analytic_extension',
+        'limp_reports',
+        'date_range',
+        'report_xlsx'
+        ],
+    "data": [
+        'views/account_analytic_tag.xml',
+        'analytic_analysis_report.xml',
+        'wizard/analytic_balance_view.xml',
+        'security/ir.model.access.csv',
+        'security/account_analytic_analysis_security.xml',
+        'wizard/analyti_balance_by_department_wzd_view.xml'
+    ],
+    "installable": True,
+}

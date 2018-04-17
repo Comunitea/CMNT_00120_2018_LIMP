@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2018 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="account_analytic_tag_form_view" model="ir.ui.view">
+        <field name="name">account.analytic.tag</field>
+        <field name="model">account.analytic.tag</field>
+        <field name="inherit_id" ref="limp_reports.account_analytic_tag_form_view"/>
+        <field name="arch" type="xml">
+            <field name="show_in_report" position="after">
+                <separator string="Analytic targets"/>
+                <field name="analytic_target_ids" nolabel="1" colspan="4">
+                    <tree string="Targets" editable="top">
+                        <field name="year"/>
+                        <field name="company_id"/>
+                        <field name="delegation_id"/>
+                        <field name="department_id"/>
+                        <field name="manager_id"/>
+                        <field name="target_percent"/>
+                    </tree>
+                    <form string="Target">
+                        <group>
+                            <field name="year"/>
+                            <field name="company_id"/>
+                            <field name="delegation_id"/>
+                            <field name="department_id"/>
+                            <field name="manager_id"/>
+                            <field name="target_percent"/>
+                        </group>
+                    </form>
+                </field>
+            </field>
+        </field>
+    </record>
+</odoo>

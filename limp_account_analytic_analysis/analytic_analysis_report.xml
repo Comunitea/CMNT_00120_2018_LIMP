@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data>
+<odoo>
 
     <record id="analytic_analysis_xls" model="ir.actions.report.xml">
-      <field name="name">Analytic analysis</field>
-      <field name="model">account.analytic.line</field>
-      <field name="type">ir.actions.report.xml</field>
-      <field name="report_name">analytic_balance_xls</field>
-      <field name="report_type">xls</field>
-      <field name="auto" eval="False"/>
+        <field name="name">Analytic analysis</field>
+        <field name="model">account.analytic.line</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="report_name">analytic_balance_xls</field>
+        <field name="report_type">xlsx</field>
+        <field name="auto" eval="False"/>
     </record>
 
     <record id="analytic_analysis_by_department_xls" model="ir.actions.report.xml">
-      <field name="name">Analytic department analysis</field>
-      <field name="model">account.analytic.line</field>
-      <field name="type">ir.actions.report.xml</field>
-      <field name="report_name">analytic_balance_by_department_xls</field>
-      <field name="report_type">xls</field>
-      <field name="auto" eval="False"/>
+        <field name="name">Analytic department analysis</field>
+        <field name="model">account.analytic.line</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="report_name">analytic_balance_by_department_xls</field>
+        <field name="report_type">xlsx</field>
+        <field name="auto" eval="False"/>
     </record>
-
-  </data>
-</openerp>
+</odoo>

@@ -18,16 +18,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields
+import time
 
-from openerp import models, fields
 
 class AccountAnalyticTarget(models.Model):
     _name = "account.analytic.target"
-    _rec_name = "fiscalyear_id"
-    _order = "fiscalyear_id desc"
+    _rec_name = "year"
+    _order = "year desc"
 
-    analytic_journal_id = fields.Many2one('account.analytic.journal', 'Journal')
-    fiscalyear_id = fields.Many2one('account.fiscalyear', 'Fiscalyear', required=True)
+    analytic_tag_id = fields.Many2one('account.analytic.tag', 'Tag')
+    year = fields.Integer(default=lambda r: int(time.strftime('%Y')))
     company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda r: r.env.user.company_id.id)
     delegation_id = fields.Many2one('res.delegation', 'Delegation')
     department_id = fields.Many2one('hr.department', 'Department')

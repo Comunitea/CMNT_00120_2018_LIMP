@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import analytic_balance
-import analyti_balance_by_department_wzd
+from . import analytic_balance
+from . import analyti_balance_by_department_wzd

@@ -8,12 +8,15 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form>
-                    <field name="fiscalyear_id"/>
-                    <field name="delegation_id"/>
-                    <field name="privacy"/>
-                    <newline/>
-                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
-                    <button name="print_report" string="Print balance" type="object" icon="gtk-print" default_focus="1"/>
+                    <group>
+                        <field name="year"/>
+                        <field name="delegation_id"/>
+                        <field name="privacy"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print balance" type="object" default_focus="1"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
                 </form>
             </field>
         </record>
@@ -27,7 +30,7 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem action="action_analytic_balance_by_department" id="analytic_balance_by_department_menu"  name="Analytic balance by department" parent="account.menu_finance_reporting"/>
+        <menuitem action="action_analytic_balance_by_department" id="analytic_balance_by_department_menu"  name="Analytic balance by department" parent="account.account_reports_business_intelligence_menu"/>
 
     </data>
 </openerp>

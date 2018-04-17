@@ -18,26 +18,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from odoo import models, fields, api
+import time
 
-from openerp import models, fields, api
 
-
-class analytic_balance_by_department(models.TransientModel):
+class AnalyticBalanceByDepartment(models.TransientModel):
     _name = "analytic.balance.by.department.wzd"
 
-    fiscalyear_id = fields.Many2one('account.fiscalyear', 'Fiscalyear', required=True)
+    year = fields.Integer(
+        default=lambda r: int(time.strftime('%Y')), required=True)
     delegation_id = fields.Many2one('res.delegation', 'Delegation')
-    privacy = fields.Selection([('public', 'Public'), ('private', 'Private')], 'Privacy')
+    privacy = fields.Selection([('public', 'Public'), ('private', 'Private')])
 
     @api.multi
     def print_report(self):
-        pass
-        '''MIGRACION: solo firma
-        if context is None: context = {}
-
-        data = self.read(cr, uid, ids[0], [])
-        data.update({'ids': ids})
+        data = self.read([])[0]
+        data.update({'ids': self.ids})
 
         return {'type': 'ir.actions.report.xml',
                  'report_name': 'analytic_balance_by_department_xls',
-                 'datas': data }'''
+                 'datas': data }

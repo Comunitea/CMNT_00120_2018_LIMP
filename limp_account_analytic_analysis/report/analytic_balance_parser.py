@@ -18,188 +18,197 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import xlwt
-from openerp.addons.report_xls.report_xls import report_xls
-from datetime import datetime
+from odoo.addons.report_xlsx.report.report_xlsx import ReportXlsx
 import calendar
-from report import report_sxw
 
-_ir_translation_name = 'analytic_balance.xls'
 
-class analytic_balance(report_sxw.rml_parse):
-
-    def __init__(self, cr, uid, name, context):
-        super(analytic_balance, self).__init__(cr, uid, name, context=context)
-        move_obj = self.pool.get('account.analytic.line')
-        self.context = context
-        self.localcontext.update({
-            'datetime': datetime,
-        })
-
-class account_balance_xls(report_xls):
-
-    def __init__(self, name, table, rml=False, parser=False, header=True, store=False):
-        super(account_balance_xls, self).__init__(name, table, rml, parser, header, store)
-
-        _xs = self.xls_styles
-        rh_cell_format = _xs['bold'] + _xs['borders_all']
-        # lines
-        aml_cell_format = _xs['borders_all']
-        self.aml_cell_style = xlwt.easyxf(aml_cell_format)
-        self.aml_cell_style_center = xlwt.easyxf(aml_cell_format +
-                                                 _xs['center'])
-        self.aml_cell_style_date = xlwt.easyxf(aml_cell_format +
-                                               _xs['left'],
-                                               num_format_str=report_xls.date_format)
-        self.aml_cell_style_decimal = xlwt.easyxf(aml_cell_format +
-                                                  _xs['right'],
-                                                  num_format_str=report_xls.decimal_format)
-
-        self.rh_cell_style = xlwt.easyxf(rh_cell_format)
+class AccountBalanceXls(ReportXlsx):
 
     def _get_value(self, value, positive=False, negative=False):
         if value and value < 100:
             if positive:
-                return ('number', 100.0 - value)
+                return 100.0 - value
             else:
-                return ('text', "")
+                return ""
         elif value and value > 100:
             if negative:
-                return ('number', value - 100.0)
+                return value - 100.0
             else:
-                return ('text', "")
+                return ""
         else:
-            return ('text', "")
+            return ""
 
-    def generate_xls_report(self, _p, _xs, data, objects, wb):
+    def generate_xlsx_report(self, workbook, data, objs):
+        def merge_dicts(*dict_args):
+            result = {}
+            for dictionary in dict_args:
+                result.update(dictionary)
+            return result
         cell_styles = {
-        'far_values': 'pattern: pattern solid, fore_color light_yellow;',
-        'very_far_values': 'pattern: pattern solid, fore_color yellow;',
-        'very_very_far_values': 'pattern: pattern solid, fore_color red;',
-        'target_label': 'pattern: pattern solid, fore_color light_green;',
-        'target_label_font': 'font: colour red, bold on, height 160;',
-        'journals_months': 'font: colour dark_blue, bold on, height 160;',
-        'average_real': 'pattern: pattern solid, fore_color ice_blue;',
-        'average_real_font': 'font: colour dark_blue, bold on, height 160;',
-        'bordered': 'border: top thin, right thin, bottom thin, left thin;',
-        'bold': 'font: bold on, height 160;'
+            'far_values': {'pattern': 1, 'bg_color': 'light_yellow'},
+            'very_far_values': {'pattern': 1, 'bg_color': 'yellow'},
+            'very_very_far_values': {'pattern': 1, 'bg_color': 'red'},
+            'target_label': {'pattern': 1, 'bg_color': '#CCFFCC'},
+            'target_label_font':
+                {'font_color': 'red', 'bold': True, 'font_size': 8},
+            'journals_months':
+                {'font_color': '#000080', 'bold': True, 'font_size': 8},
+            'average_real': {'pattern': 1, 'bg_color': '#CCCCFF'},
+            'average_real_font':
+                {'font_color': '#000080', 'bold': True, 'font_size': 8},
+            'average_real_font':
+                {'font_color': '#000080', 'bold': True, 'font_size': 8},
+            'bordered': {'border': True},
+            'bold': {'bold': True, 'font_size': 8}
         }
 
         domain = []
-
+        report_name = u""
         if data.get('delegation_id', False):
-            domain.append(('delegation_id', '=', data['delegation_id']))
+            domain.append(('delegation_id', '=', data['delegation_id'][0]))
+            report_name += self.env['res.delegation'].browse(
+                data['delegation_id'][0]).name
         if data.get('department_id', False):
-            domain.append(('department_id', '=', data['department_id']))
+            domain.append(('department_id', '=', data['department_id'][0]))
+            report_name += u" " + self.env['hr.department'].browse(
+                data['department_id'][0]).name
         if data.get('manager_id', False):
-            domain.append(('manager_id', '=', data['manager_id']))
+            domain.append(('manager_id', '=', data['manager_id'][0]))
+            report_name += u" " + self.env['hr.employee'].browse(
+                data['manager_id'][0]).name
         if data.get('privacy', False):
-            account_ids = self.pool.get('account.analytic.account').search(self.cr, self.uid, [('privacy', '=', data['privacy'])])
-            domain.append(('account_id', 'child_of', account_ids))
+            domain.append(('account_id.privacy', '=', data['privacy']))
+            report_name += u" " + data['privacy'] == 'public' and \
+                u'Sector público' or u'Sector Privado'
+        report_name += u" " + str(data['year'])
 
-        months = [('01','ENERO'),('02','FEBRERO'),('03','MARZO'),('04','ABRIL'),('05','MAYO'),('06','JUNIO'),('07','JULIO'),('08','AGOSTO'),('09','SEPTIEMBRE'),('10','OCTUBRE'),('11','NOVIEMBRE'),('12','DICIEMBRE')]
-        report_name = (data.get('department_id', False) and  self.pool.get('hr.department').browse(self.cr, self.uid, data['department_id'], context=_p).name or u"")
-        report_name += u" " + (data.get('delegation_id', False) and  self.pool.get('res.delegation').browse(self.cr, self.uid, data['delegation_id'], context=_p).name or u"")
-        report_name += u" " + self.pool.get('account.fiscalyear').browse(self.cr, self.uid, data['fiscalyear_id'], context=_p).name
-        report_name += u" " + (data.get('manager_id', False) and  self.pool.get('hr.employee').browse(self.cr, self.uid, data['manager_id'], context=_p).name or u"")
-        report_name += u" " + (data.get('privacy', False) and (data['privacy'] == 'public' and u'Sector público' or u'Sector Privado') or u"")
-        ws = wb.add_sheet("1")
-        ws.panes_frozen = True
-        ws.remove_splits = True
-        ws.portrait = 0  # Landscape
-        ws.fit_width_to_pages = 1
-        row_pos = 0
-        ws.header_str = self.xls_headers['standard']
-        ws.footer_str = self.xls_footers['standard']
+        months = [('01', 'ENERO'), ('02', 'FEBRERO'), ('03', 'MARZO'),
+                  ('04', 'ABRIL'), ('05', 'MAYO'), ('06', 'JUNIO'),
+                  ('07', 'JULIO'), ('08', 'AGOSTO'), ('09', 'SEPTIEMBRE'),
+                  ('10', 'OCTUBRE'), ('11', 'NOVIEMBRE'), ('12', 'DICIEMBRE')]
 
-        c_specs = [
-            ('report_name', 10, 10, 'text', report_name),
-        ]
+        sheet = workbook.add_worksheet('1')
+        sheet.set_landscape()
 
-        row_data = self.xls_row_template(c_specs, ['report_name'])
-        row_pos = self.xls_write_row(ws, row_pos, row_data)
-        row_pos += 1
-        fstyle = xlwt.easyxf(cell_styles['target_label'] + cell_styles['target_label_font'] + cell_styles['bordered'])
-        c_specs = [('journal_id', 2, 2, 'text',  'OBJETIVOS', None, fstyle)]
-        fstyle = xlwt.easyxf(cell_styles['journals_months'] + cell_styles['bordered'])
+        sheet.merge_range(0, 0, 0, 9, report_name)
+
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['target_label'],
+                        cell_styles['target_label_font'],
+                        cell_styles['bordered']))
+        sheet.merge_range(2, 0, 2, 1, 'OBJETIVOS', cell_format)
+
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['journals_months'],
+                        cell_styles['bordered']))
         for month in months:
-            c_specs.append(('month_' + month[0], 1, 0, 'text', month[1], None, fstyle))
-        fstyle = xlwt.easyxf(cell_styles['average_real'] + cell_styles['average_real_font'] + cell_styles['bordered'])
-        c_specs.append(('average', 1, 0, 'text',  'MEDIA', None, fstyle))
-        c_specs.append(('real_percent', 1, 0, 'text',  '% REAL', None, fstyle))
+            sheet.write(2, 1 + int(month[0]), month[1], cell_format)
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['average_real'],
+                        cell_styles['average_real_font'],
+                        cell_styles['bordered']))
+        sheet.write(2, 14, 'MEDIA', cell_format)
+        sheet.write(2, 15, '% REAL', cell_format)
 
-        row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
-        row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=self.rh_cell_style)
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['journals_months'],
+                        cell_styles['bordered']))
+        sheet.merge_range(3, 0, 3, 1, u'Facturación', cell_format)
 
-        fstyle = xlwt.easyxf(cell_styles['journals_months'] + cell_styles['bordered'])
-        c_specs = [
-            ('journal_id', 2, 2, 'text', u"Facturación", None, fstyle),
-        ]
-        sale_journal_ids = self.pool.get('account.analytic.journal').search(self.cr, self.uid, [('type', '=', 'sale')])
-        fiscal_year = self.pool.get('account.fiscalyear').browse(self.cr, self.uid, data['fiscalyear_id'], context=_p)
-        year = fiscal_year.code
+        year = str(data['year'])
         amount = 0.0
         months_with_results = 0
-        fstyle = xlwt.easyxf(cell_styles['bold'] + cell_styles['bordered'])
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['bold'],  cell_styles['bordered']))
         month_invoice_amouonts = {}
         for month in months:
-            first_day =  year + "-" + month[0] + "-01"
-            last_day = year + "-" + month[0] + "-" + str(calendar.monthrange(int(year),int(month[0]))[1])
-            filter_domain = [('journal_id', 'in', sale_journal_ids),('date', '>=', first_day),('date', '<=',last_day)] + domain
-            unit_amount = sum([x.amount for x in self.pool.get('account.analytic.line').browse(self.cr, self.uid, self.pool.get('account.analytic.line').search(self.cr, self.uid, filter_domain), context=_p)])
+            first_day = year + "-" + month[0] + "-01"
+            last_day = year + "-" + month[0] + "-" \
+                + str(calendar.monthrange(int(year), int(month[0]))[1])
+            filter_domain = [
+                ('amount', '>', 0),
+                ('date', '>=', first_day), ('date', '<=', last_day)] + domain
+            unit_amount = sum(
+                self.env['account.analytic.line'].search(
+                    filter_domain).mapped('amount'))
             month_invoice_amouonts[month[0]] = unit_amount
             if unit_amount:
                 months_with_results += 1
             amount += unit_amount
-            c_specs.append(('month_' + month[0], 1, 0, 'number', unit_amount, None, fstyle))
-        c_specs.append(('average', 1, 0, 'number', round(amount / (months_with_results or 1.0), 2), None, fstyle))
-        c_specs.append(('real_percent', 1, 0, 'number', round(amount / (months_with_results or 1.0), 2), None, fstyle))
+            sheet.write(3, 1 + int(month[0]), unit_amount, cell_format)
+        sheet.write(3, 14,
+                    round(amount / (months_with_results or 1.0), 2),
+                    cell_format)
+        sheet.write(3, 15,
+                    round(amount / (months_with_results or 1.0), 2),
+                    cell_format)
 
-        row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
-        row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=self.rh_cell_style)
+        row_pos = 4
 
-        expense_journal_ids = self.pool.get('account.analytic.journal').search(self.cr, self.uid, [('type', '!=', 'sale')], context=_p)
-        filter_domain = [('journal_id', 'in', expense_journal_ids),('date', '>=', fiscal_year.date_start),('date', '<=', fiscal_year.date_stop)] + domain
-        total_expense = sum([x.amount for x in self.pool.get('account.analytic.line').browse(self.cr, self.uid, self.pool.get('account.analytic.line').search(self.cr, self.uid, filter_domain), context=_p)])
+        tags = self.env['account.analytic.tag'].search(
+            [('show_in_report', '=', True)])
+        first_day = year + "-01-01"
+        last_day = year + "-12-" + str(calendar.monthrange(int(year), 12)[1])
+        filter_domain = [
+            ('tag_ids', 'in', tags.ids),
+            ('date', '>=', first_day),
+            ('date', '<=', last_day)] + domain
+        total_expense = sum(self.env['account.analytic.line'].search(
+            filter_domain).mapped('amount'))
         total_expense = -total_expense
         expense_percent = round((total_expense * 100.0) / (amount or 1.0), 2)
 
         column_percent = {}
 
-
-        journal_obj_ids = sorted(self.pool.get('account.analytic.journal').browse(self.cr, self.uid, expense_journal_ids, context=_p), key=lambda x: x.name)
-        for journal in journal_obj_ids:
+        for tag in tags:
             target = False
             if data.get('target_ids', []):
-                target_ids = self.pool.get('account.analytic.target').search(self.cr, self.uid, [('id', 'in', data['target_ids']),('analytic_journal_id', '=', journal.id)])
+                target_ids = self.env['account.analytic.target'].search(
+                    [('id', 'in', data['target_ids']),
+                     ('analytic_tag_id', '=', tag.id)])
                 if target_ids:
                     target = target_ids[0]
-            fstyle = xlwt.easyxf(cell_styles['journals_months'] + cell_styles['bordered'])
-            c_specs = [('journal_id', 1, 0, 'text', journal.name, None, fstyle)]
-            fstyle = xlwt.easyxf(cell_styles['target_label'] + cell_styles['bordered'] + cell_styles['bold'])
+
+            cell_format = workbook.add_format(
+                merge_dicts(cell_styles['journals_months'],
+                            cell_styles['bordered']))
+            sheet.write(row_pos, 0, tag.name, cell_format)
+            cell_format = workbook.add_format(
+                merge_dicts(cell_styles['target_label'],
+                            cell_styles['bordered'],
+                            cell_styles['bold']))
+
             if target:
-                target = self.pool.get('account.analytic.target').browse(self.cr, self.uid, target, context=_p)
-                c_specs.append(('target', 1, 0, 'number', target.target_percent, None, fstyle))
+                sheet.write(row_pos, 1, target.target_percent, cell_format)
                 if not column_percent.get('target', False):
                     column_percent['target'] = 0.0
                 column_percent['target'] += target.target_percent
             else:
-                c_specs.append(('target', 1, 0, 'number', 0.0, None, fstyle))
+                sheet.write(row_pos, 1, 0.0, cell_format)
                 if not column_percent.get('target', False):
                     column_percent['target'] = 0.0
             avergare_percent = 0.0
             amount = 0.0
-            fstyle = xlwt.easyxf(cell_styles['bold'] + cell_styles['bordered'])
-            for month in months:
-                first_day =  year + "-" + month[0] + "-01"
-                last_day = year + "-" + month[0] + "-" + str(calendar.monthrange(int(year),int(month[0]))[1])
+            cell_format = workbook.add_format(
+                merge_dicts(cell_styles['bold'],
+                            cell_styles['bordered']))
 
-                filter_domain = [('journal_id', '=', journal.id),('date', '>=', first_day),('date', '<=',last_day)] + domain
-                unit_amount = sum([x.amount for x in self.pool.get('account.analytic.line').browse(self.cr, self.uid, self.pool.get('account.analytic.line').search(self.cr, self.uid, filter_domain), context=_p)])
+            for month in months:
+                first_day = year + "-" + month[0] + "-01"
+                last_day = year + "-" + month[0] + "-" \
+                    + str(calendar.monthrange(int(year), int(month[0]))[1])
+                filter_domain = [
+                    ('tag_ids', 'in', tag.ids),
+                    ('date', '>=', first_day),
+                    ('date', '<=', last_day)] + domain
+                unit_amount = sum(
+                    self.env['account.analytic.line'].search(
+                        filter_domain).mapped('amount'))
                 unit_amount = -unit_amount
                 if month_invoice_amouonts[month[0]]:
-                    percent = round((unit_amount * 100.0) / month_invoice_amouonts[month[0]], 2)
+                    percent = round(
+                        (unit_amount * 100.0) /
+                        month_invoice_amouonts[month[0]], 2)
                 else:
                     percent = 0
                 avergare_percent += percent
@@ -207,89 +216,117 @@ class account_balance_xls(report_xls):
                 if not column_percent.get('month_' + month[0], False):
                     column_percent['month_' + month[0]] = 0.0
                 column_percent['month_' + month[0]] += percent
-                c_specs.append(('month_' + month[0], 1, 0, 'number', percent, None, fstyle))
+                sheet.write(row_pos, 1 + int(month[0]), percent, cell_format)
 
-            average_percent = round(avergare_percent / (months_with_results or 1.0), 2)
-            fstyle = False
+            average_percent = round(
+                avergare_percent / (months_with_results or 1.0), 2)
+            cell_format = workbook.add_format(
+                merge_dicts(cell_styles['bold'],
+                            cell_styles['bordered']))
             target_percent = target and target.target_percent or 0.0
 
             if average_percent > target_percent:
                 diff = average_percent - target_percent
                 if diff > 1.5:
-                    fstyle = xlwt.easyxf(cell_styles['very_very_far_values'] + cell_styles['bold'] + cell_styles['bordered'])
+                    cell_format = workbook.add_format(
+                        merge_dicts(cell_styles['very_very_far_values'],
+                                    cell_styles['bold'],
+                                    cell_styles['bordered']))
                 elif diff > 1.0:
-                    fstyle = xlwt.easyxf(cell_styles['very_far_values'] + cell_styles['bold'] + cell_styles['bordered'])
+                    cell_format = workbook.add_format(
+                        merge_dicts(cell_styles['very_far_values'],
+                                    cell_styles['bold'],
+                                    cell_styles['bordered']))
                 elif diff >= 0.5:
-                    fstyle = xlwt.easyxf(cell_styles['far_values'] + cell_styles['bold'] + cell_styles['bordered'])
-            if fstyle:
-                c_specs.append(('average', 1, 0, 'number', average_percent, None, fstyle))
-            else:
-                fstyle = xlwt.easyxf(cell_styles['bold'] + cell_styles['bordered'])
-                c_specs.append(('average', 1, 0, 'number', average_percent, None, fstyle))
+                    cell_format = workbook.add_format(
+                        merge_dicts(cell_styles['far_values'],
+                                    cell_styles['bold'],
+                                    cell_styles['bordered']))
+            sheet.write(row_pos, 14, average_percent, cell_format)
             if not column_percent.get('average', False):
                 column_percent['average'] = 0.0
             column_percent['average'] += average_percent
 
-            real_percent = round((amount * expense_percent) / (total_expense or 1.0), 2)
-            fstyle = False
+            real_percent = round(
+                (amount * expense_percent) / (total_expense or 1.0), 2)
+            cell_format = workbook.add_format(
+                merge_dicts(cell_styles['bold'],
+                            cell_styles['bordered']))
             if real_percent > target_percent:
                 diff = real_percent - target_percent
                 if diff > 1.5:
-                    fstyle = xlwt.easyxf(cell_styles['very_very_far_values'] + cell_styles['bold'] + cell_styles['bordered'])
+                    cell_format = workbook.add_format(
+                        merge_dicts(cell_styles['very_very_far_values'],
+                                    cell_styles['bold'],
+                                    cell_styles['bordered']))
                 elif diff > 1.0:
-                    fstyle = xlwt.easyxf(cell_styles['very_far_values'] + cell_styles['bold'] + cell_styles['bordered'])
+                    cell_format = workbook.add_format(
+                        merge_dicts(cell_styles['very_far_values'],
+                                    cell_styles['bold'],
+                                    cell_styles['bordered']))
                 elif diff >= 0.5:
-                    fstyle = xlwt.easyxf(cell_styles['far_values'] + cell_styles['bold'] + cell_styles['bordered'])
-            if fstyle:
-                c_specs.append(('real_percent', 1, 0, 'number', real_percent, None, fstyle))
-            else:
-                fstyle = xlwt.easyxf(cell_styles['bold'] + cell_styles['bordered'])
-                c_specs.append(('real_percent', 1, 0, 'number', real_percent, None, fstyle))
+                    cell_format = workbook.add_format(
+                        merge_dicts(cell_styles['far_values'],
+                                    cell_styles['bold'],
+                                    cell_styles['bordered']))
+            sheet.write(row_pos, 15, real_percent, cell_format)
             if not column_percent.get('real_percent', False):
                 column_percent['real_percent'] = 0.0
             column_percent['real_percent'] += real_percent
+            row_pos += 1
 
-            row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
-            row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=self.rh_cell_style)
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['journals_months'],
+                        cell_styles['bordered']))
+        sheet.write(row_pos, 0, 'GANANCIAS', cell_format)
+        sheet.write(row_pos + 1, 0, u'PÉRDIDA', cell_format)
 
-        fstyle = xlwt.easyxf(cell_styles['journals_months'] + cell_styles['bordered'])
-        c_specs = [('journal_id', 1, 0, 'text', "GANANCIA", None, fstyle)]
-        fstyle = xlwt.easyxf(cell_styles['target_label_font'] + cell_styles['bordered'])
-        c_specs2 = [('journal_id', 1, 0, 'text', "PÉRDIDA", None, fstyle)]
-        fstyle = xlwt.easyxf(cell_styles['target_label'] + cell_styles['bordered'] + cell_styles['bold'])
-        ctype, value = self._get_value(column_percent['target'], positive=True)
-        c_specs.append(('target', 1, 0, ctype, value, None, fstyle))
-        fstyle = xlwt.easyxf(cell_styles['target_label_font'] + cell_styles['bordered'])
-        ctype, value = self._get_value(column_percent['target'], negative=True)
-        c_specs2.append(('target', 1, 0, ctype, value, None, fstyle))
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['target_label'],
+                        cell_styles['bordered'],
+                        cell_styles['bold']))
+        value = self._get_value(column_percent['target'], positive=True)
+        sheet.write(row_pos, 1, value, cell_format)
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['target_label_font'],
+                        cell_styles['bordered']))
+        value = self._get_value(column_percent['target'], negative=True)
+        sheet.write(row_pos + 1, 1, value, cell_format)
 
         for month in months:
-            fstyle = xlwt.easyxf(cell_styles['bold'] + cell_styles['bordered'])
-            ctype, value = self._get_value(column_percent['month_' + month[0]], positive=True)
-            c_specs.append(('month_' + month[0], 1, 0, ctype, value, None, fstyle))
-            ctype, value = self._get_value(column_percent['month_' + month[0]], negative=True)
-            fstyle = xlwt.easyxf(cell_styles['target_label_font'] + cell_styles['bordered'])
-            c_specs2.append(('month_' + month[0], 1, 0, ctype, value, None, fstyle))
+            cell_format = workbook.add_format(
+                merge_dicts(cell_styles['bold'],
+                            cell_styles['bordered']))
+            value = self._get_value(
+                column_percent['month_' + month[0]], positive=True)
+            sheet.write(row_pos, 1 + int(month[0]), value, cell_format)
+            cell_format = workbook.add_format(
+                merge_dicts(cell_styles['target_label_font'],
+                            cell_styles['bordered']))
+            value = self._get_value(
+                column_percent['month_' + month[0]], negative=True)
+            sheet.write(row_pos + 1, 1 + int(month[0]), value, cell_format)
 
-        fstyle = xlwt.easyxf(cell_styles['bold'] + cell_styles['bordered'])
-        ctype, value = self._get_value(column_percent['average'], positive=True)
-        c_specs.append(('average', 1, 0, ctype, value, None, fstyle))
-        ctype, value = self._get_value(column_percent['average'], negative=True)
-        fstyle = xlwt.easyxf(cell_styles['target_label_font'] + cell_styles['bordered'])
-        c_specs2.append(('average', 1, 0, ctype, value, None, fstyle))
-        ctype, value = self._get_value(column_percent['real_percent'], positive=True)
-        fstyle = xlwt.easyxf(cell_styles['bold'] + cell_styles['bordered'])
-        c_specs.append(('real_percent', 1, 0, ctype, value, None, fstyle))
-        ctype, value = self._get_value(column_percent['real_percent'], negative=True)
-        fstyle = xlwt.easyxf(cell_styles['target_label_font'] + cell_styles['bordered'])
-        c_specs2.append(('real_percent', 1, 0, ctype, value, None, fstyle))
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['bold'],
+                        cell_styles['bordered']))
+        value = self._get_value(column_percent['average'], positive=True)
+        sheet.write(row_pos, 14, value, cell_format)
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['target_label_font'],
+                        cell_styles['bordered']))
+        value = self._get_value(column_percent['average'], negative=True)
+        sheet.write(row_pos + 1, 14, value, cell_format)
 
-        row_data = self.xls_row_template(c_specs, [x[0] for x in c_specs])
-        row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=self.rh_cell_style)
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['bold'],
+                        cell_styles['bordered']))
+        value = self._get_value(column_percent['real_percent'], positive=True)
+        sheet.write(row_pos, 15, value, cell_format)
+        cell_format = workbook.add_format(
+            merge_dicts(cell_styles['target_label_font'],
+                        cell_styles['bordered']))
+        value = self._get_value(column_percent['real_percent'], negative=True)
+        sheet.write(row_pos + 1, 15, value, cell_format)
 
-        row_data = self.xls_row_template(c_specs2, [x[0] for x in c_specs2])
-        row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=self.rh_cell_style)
-
-account_balance_xls('report.analytic_balance_xls',
-    'analytic.balance',
-    parser=analytic_balance)
+AccountBalanceXls('report.analytic_balance_xls', 'analytic.balance')
