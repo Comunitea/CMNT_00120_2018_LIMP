@@ -73,6 +73,18 @@ class LimpContract(models.Model):
     maintenance_task_count = fields.Integer(string='# of waste', compute='_compute_maintenance_task_count', readonly=True)
     timesheet_count = fields.Integer(string='# of waste', compute='_compute_timesheet_count', readonly=True)
 
+
+    def get_same_contract_accounts(self, extra_domain = []):
+        self.ensure_one()
+        contract_tag = self.tag_ids.filtered('contract_tag').id
+        if contract_tag:
+            accounts = self.env['account.analytic.account'].search(
+                [('tag_ids', '=', contract_tag),
+                 ('id', '!=', self.analytic_account_id.id)] + extra_domain)
+            if accounts:
+                return accounts
+        return self.env['account.analytic.account']
+
     def _compute_last_invoice_date(self):
         for contract in self:
             invoice_ids = self.env['account.invoice'].search(
@@ -99,26 +111,32 @@ class LimpContract(models.Model):
             contract.amount = amount
             contract.monthly_amount = round(amount / 12.0, 2)
 
-    def invoice_run(self, cr, uid, ids=False, context=None):
-        if context is None: context = {}
+    def invoice_run(self):
         id_invoice = []
         invoice_ids = []
-        for obj in self.browse(cr, uid, ids):
+        for obj in self:
+            contract_tag = obj.tag_ids.filtered('contract_tag')
             if obj.analytic_account_id and obj.state == 'open':
-                child_ids = self.pool.get('account.analytic.account').search(cr, uid, [('state', '=', 'open'), ('partner_id', '!=', False), ('invoiceable', '=', True), ('parent_id', '=', obj.analytic_account_id.id), ('date_start', '<', context['end_date'])], order='create_date')
-                invoice_ids = self.pool.get('account.analytic.account').run_invoice_cron_manual(cr, uid, child_ids + [obj.analytic_account_id.id], context=context)
+                child_ids = self.env['account.analytic.account'].search(
+                    [('state', '=', 'open'), ('partner_id', '!=', False),
+                    ('invoiceable', '=', True),
+                    ('tag_ids', 'in', [contract_tag.id]),
+                    ('date_start', '<', self._context['end_date'])],
+                    order='create_date')
+                child_ids += obj.analytic_account_id
+                invoice_ids = child_ids.run_invoice_cron_manual()
+
         if invoice_ids:
-            action_model,action_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'account', "action_invoice_tree1")
-            if action_model:
-                action_pool = self.pool.get(action_model)
-                action = action_pool.read(cr, uid, action_id, context=context)
-                action['domain'] = "[('id','in', ["+','.join(map(str,invoice_ids))+"])]"
+            action = self.env.ref('account.action_invoice_tree1').read()[0]
+            if action:
+                action['domain'] = "[('id','in', ["+','.join(map(str, invoice_ids.ids))+"])]"
                 action["nodestroy"] = True
                 return action
         return True
 
     @api.model
     def create(self, vals):
+        vals['is_contract'] = True
         vals['name'] = self.env['ir.sequence'].get_by_delegation('limp.contract.seq', vals['delegation_id'])
         vals['tag_ids'] = [(0, 0, {'name': vals['name'], 'contract_tag': True})]
         # obtains contract lines sequence id and copy default to assign new sequence for this contract lines

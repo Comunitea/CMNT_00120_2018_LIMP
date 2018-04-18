@@ -34,7 +34,6 @@
         'hr'
         ],
     'data' : [
-        'views/analytic_account.xml',
         'views/analytic_stock_move.xml',
         'views/hr_employee.xml',
         'data/analytic_material_costs_data.xml',

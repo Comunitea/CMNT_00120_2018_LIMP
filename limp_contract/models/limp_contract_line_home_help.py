@@ -30,9 +30,8 @@ class LimpContractLineHomeHelp(models.Model):
 
     contract_line_id = fields.Many2one('limp.contract.line', 'Contract line', readonly=True, required=True, ondelete="cascade")
     customer_contact_id = fields.Many2one('res.partner', 'User', required=True)
-    # 'contact_identification_id': fields.related('customer_contact_id', 'identification_no', type="char", size=32, readonly=True, string="ID"), MIGRACION: Pendiente de migrar campos de contact a res.partner
     beneficiary_amount = fields.Float('Beneficiary amount', digits=dp.get_precision('Account'))
-    check_amount = fields.Float('Check amount', digits_compute=dp.get_precision('Account'))
+    check_amount = fields.Float('Check amount', digits=dp.get_precision('Account'))
     administration_amount = fields.Float('Administration amount', digits=dp.get_precision('Account'))
     partner_social_worker_id = fields.Many2one('res.partner', 'Partner social worker')
     analytic_acc_id = fields.Many2one('account.analytic.account', 'Analytic account', readonly=True, required=True, ondelete="cascade")

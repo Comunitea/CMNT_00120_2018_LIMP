@@ -130,7 +130,7 @@ class SaleOrder(models.Model):
             'address_id': self.partner_shipping_id.id,
             'bank_account_id': self.partner_bank and self.partner_bank.id or False,
             'payment_term_id': self.payment_term and self.payment_term.id or False,
-            'payment_type_id': self.payment_type and self.payment_type.id or False,
+            'payment_type_id': self.payment_mode_id and self.payment_mode_id.id or False,
             'address_invoice_id': self.partner_invoice_id.id,
             'sale_id': self.id
         })

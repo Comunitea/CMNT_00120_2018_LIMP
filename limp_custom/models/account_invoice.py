@@ -34,7 +34,14 @@ class AccountInvoice(models.Model):
 
     add_info = fields.Boolean(related='partner_id.add_info', string="Additional Information", readonly=True, type="boolean")
     amount_taxes = fields.Float('Tax amount', method=True, digits=dp.get_precision('Account'), compute='_compute_amount_taxes')
-    # 'address_contact_id': fields.many2one('res.partner', 'Contact Address') MIGRACION: Este campo ya no existe
+
+    def action_invoice_open(self):
+        journal_tag = self.journal_id.analytic_tag_id
+        if journal_tag:
+            for line in self.invoice_line_ids:
+                if journal_tag not in line.analytic_tag_ids:
+                    line.analytic_tag_ids = [(4, journal_tag.id)]
+        return super(AccountInvoice, self).action_invoice_open()
 
     def _compute_amount_taxes(self):
         for invoice in self:

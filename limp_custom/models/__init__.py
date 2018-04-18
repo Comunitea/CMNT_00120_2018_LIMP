@@ -11,3 +11,4 @@ from . import container
 from . import res_users
 from . import add_reposible_to_models
 from . import account_analytic
+from . import account_journal

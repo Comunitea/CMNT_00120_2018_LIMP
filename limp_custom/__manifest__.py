@@ -56,7 +56,8 @@
             'views/hr_employee_view.xml',
             'views/container_view.xml',
             'views/res_users_view.xml',
-            'views/account_analytic_view.xml'
+            'views/account_analytic_view.xml',
+            'views/account_journal.xml',
         ],
         "installable": True,
 }

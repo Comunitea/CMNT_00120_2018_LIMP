@@ -37,7 +37,6 @@ class AccountInvoiceReportCustom(models.Model):
     product_qty = fields.Float('Qty', readonly=True)
     uom_name = fields.Char('Reference UoM', size=128, readonly=True)
     payment_term_id = fields.Many2one('account.payment.term', 'Payment Term', readonly=True)
-    period_id = fields.Many2one('account.period', 'Force Period', domain=[('state','<>','done')], readonly=True)
     fiscal_position = fields.Many2one('account.fiscal.position', 'Fiscal Position', readonly=True)
     currency_id = fields.Many2one('res.currency', 'Currency', readonly=True)
     categ_id = fields.Many2one('product.category','Category of Product', readonly=True)

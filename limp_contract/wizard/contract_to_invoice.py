@@ -54,10 +54,11 @@ class ContractToInvoice(models.TransientModel):
         res = {}
         if self._context.get('active_model', False) == 'limp.contract' and self._context.get('active_ids', []):
             ctx = dict(self._context)
-            context['invoice_date'] = self.invoice_date
-            context['journal_id'] = self.journal_id
-            context['end_date'] = self.invoice_date_to
-            res = self.env['limp.contract'].invoice_run(context['active_ids'])
+            ctx['invoice_date'] = self.invoice_date
+            ctx['journal_id'] = self.journal_id
+            ctx['end_date'] = self.invoice_date_to
+            conctract = self.env['limp.contract'].browse(ctx['active_ids'])
+            res = conctract.with_context(ctx).invoice_run()
             if isinstance(res, dict):
                 del res["nodestroy"]
             else:

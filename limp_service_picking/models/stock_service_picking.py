@@ -90,7 +90,7 @@ class StockServicePicking(models.Model):
     rd_code = fields.Char('R.D. 952/97', size=64, states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}, copy=False)
     overload_qty = fields.Float('Overload', digits=(12,2), help="Overload in m³", states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}, copy=False)
     invoice_date = fields.Date('Invoice date', states={'cancelled':[('readonly',True)]}, copy=False)
-    analytic_acc_id = fields.Many2one("account.analytic.account", 'Analytic account', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}, copy=False)
+    analytic_acc_id = fields.Many2one("account.analytic.account", 'Analytic account', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}, copy=False, required=True, ondelete="cascade")
         #'company_id = fields.Many2one('res.company', 'Company', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
         #'waste_type = fields.Selection([('clean', 'Clean'),('dirty', 'Dirty')], 'Waste type', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
         #'valorization_company_id = fields.Many2one('res.company', 'Val. company', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
@@ -163,10 +163,10 @@ class StockServicePicking(models.Model):
 
             self.address_invoice_id = service.address_invoice_id and service.address_invoice_id.id or service.contact_id.id
             self.address_id = service.partner_shipping_id and service.partner_shipping_id.id or service.contact_id.id
-            self.ccc_account_id = (service.payment_type and service.payment_type.suitable_bank_types and service.partner_bank_id) and part.partner_bank_id.id or False
+            self.ccc_account_id = (service.payment_mode and service.payment_mode.suitable_bank_types and service.partner_bank_id) and part.partner_bank_id.id or False
             self.fiscal_position =service.fiscal_position and service.fiscal_position.id or False
             self.payment_term = service.payment_term and service.payment_term.id or False
-            self.payment_type = service.payment_type and service.payment_type.id or False
+            self.payment_mode = service.payment_mode and service.payment_mode.id or False
             self.intercompany = False
             part = service.partner_id
 
@@ -185,7 +185,7 @@ class StockServicePicking(models.Model):
             self.ccc_account_id = (payment and payment.suitable_bank_types and part.bank_ids) and part.bank_ids[0].id or False
             self.fiscal_position =part.property_account_position_id and part.property_account_position_id.id or False
             self.payment_term = part.property_payment_term_id and part.property_payment_term_id.id or False
-            self.payment_type = payment and payment.id or False
+            self.payment_mode = payment and payment.id or False
             self.intercompany = False
 
 

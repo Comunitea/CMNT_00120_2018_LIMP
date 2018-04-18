@@ -37,7 +37,6 @@
         'security/invoice_concept_security.xml',
         'views/analytic_invoice_concept_rel.xml',
         'views/account_invoice.xml',
-        'views/analytic_account.xml',
         'views/analytic_invoice_concept.xml',
         'views/product.xml'
     ],

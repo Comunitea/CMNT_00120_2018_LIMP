@@ -117,32 +117,18 @@ class LimpContractLineCleaning(models.Model):
     def write(self, vals):
         res = super(LimpContractLineCleaning, self).write(vals)
         if vals.get('date', False) or (vals.get('state', False) and vals['state'] in ('open', 'cancelled')) or vals.get('date_start', False):
-            occupation_ids = []
-            all_remuneration_ids = []
-            remuneration_ids_wo_dateto = []
+            all_remuneration_ids = self.env['remuneration']
+            remuneration_ids_wo_dateto = self.env['remuneration']
 
-            for line in self.browse(cr, uid, ids, context=context):
-                occupation_ids.extend([x.id for x in line.occupation_ids if not x.end_date])
-                all_remuneration_ids.extend([x.id for x in line.remuneration_ids])
-                remuneration_ids_wo_dateto.extend([x.id for x in line.remuneration_ids if not x.date_to])
-
-            if occupation_ids:
-                occupation_vals = {}
-                if vals.get('date', False):
-                    occupation_vals['end_date'] = vals['date']
-                    occupation_vals['end_type'] = 'end_date'
-                if vals.get('state', False):
-                    if vals['state'] == 'open':
-                        occupation_vals['state'] = 'active'
-                    elif vals['state'] == 'cancelled':
-                        occupation_vals['state'] = 'cancelled'
-                self.pool.get('account.analytic.occupation').write(cr, uid, occupation_ids, occupation_vals)
+            for line in self:
+                all_remuneration_ids += line.remuneration_ids
+                remuneration_ids_wo_dateto += line.remuneration_ids.filtered(lambda r: not r.date_to)
 
             if all_remuneration_ids:
                 if vals.get('date_start', False):
-                    self.pool.get('remuneration').write(cr, 1, all_remuneration_ids, {'date': vals['date_start']})
+                    all_remuneration_ids.sudo().write({'date': vals['date_start']})
                 if vals.get('date', False) and remuneration_ids_wo_dateto:
-                    self.pool.get('remuneration').write(cr, 1, remuneration_ids_wo_dateto, {'date_to': vals['date']})
+                    remuneration_ids_wo_dateto.sudo().write({'date_to': vals['date']})
         return res
 
     def unlink(self):

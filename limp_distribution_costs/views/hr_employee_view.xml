@@ -44,7 +44,7 @@
         <field name="inherit_id" ref="hr.view_partner_tree2"/>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <field name="department_id" position="after"> <!-- MIGRACION: ssnid -->
+            <field name="department_id" position="after">
                 <field name="glasof_code"/>
             </field>
         </field>

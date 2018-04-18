@@ -47,7 +47,7 @@ class AccountAnalyticAccount(models.Model):
     address_invoice_id = fields.Many2one('res.partner', 'Address invoice')
     address_id = fields.Many2one('res.partner', 'Address')
     privacy = fields.Selection([('public', 'Public'), ('private', 'Private')], 'Privacy', default='private')
-    is_contract = fields.Boolean('Is contract', compute='_compute_is_contract', search='_search_is_contract')
+    is_contract = fields.Boolean('Is contract')
     is_picking = fields.Boolean('Is picking', compute='_compute_is_picking', search='_search_is_picking')
     is_picking_in_contract = fields.Boolean('Is picking in contract', compute='_compute_is_picking_contract', search='_search_is_picking_contract')
     invoice_limit_hours = fields.Float('Invoice limit hours', digits=(7, 2))
@@ -55,6 +55,12 @@ class AccountAnalyticAccount(models.Model):
     analytic_distribution_id = fields.Many2one('account.analytic.distribution','Analytic Distribution')
     address_tramit_id = fields.Many2one('res.partner', "Tramit address")
     partner_name = fields.Char('Partner name', related='partner_id.name', readonly=True, store=True)
+    state = fields.Selection(
+        [('draft', 'Draft'),
+         ('open', 'Open'),
+         ('pending', 'Pending'),
+         ('cancelled', 'Cancelled'),
+         ('close', 'Closed'), ('template', 'Template')], required=True)
 
     def _get_concept_amount(self, concept_ids):
         # TODO: Eliminar funcion
@@ -65,24 +71,6 @@ class AccountAnalyticAccount(models.Model):
         for account in self:
             account.concept_amount = sum(
                 [x.total_amount for x in account.concept_ids])
-
-    def _compute_is_contract(self):
-        for account in self:
-            contract_ids = self.env['limp.contract'].search(
-                [('analytic_account_id', '=', account.id)])
-            account.is_contract = contract_ids and True or False
-
-    def _search_is_contract(self, operator, operand):
-        ids = []
-        all_contract_ids = self.env['limp.contract'].search([])
-        for data in all_contract_ids.read(['analytic_account_id']):
-            if data['analytic_account_id']:
-                ids.append(data['analytic_account_id'][0])
-        if operand:
-            domain = [('id', 'in', list(set(ids)))]
-        else:
-            domain = [('id', 'not in', list(set(ids)))]
-        return domain
 
     def _compute_is_picking(self):
         for account in ids:
@@ -191,10 +179,9 @@ class AccountAnalyticAccount(models.Model):
 
         if line:
             vals = {
-                'payment_term': line.contract_id.payment_term_id and line.contract_id.payment_term_id.id or (self.partner_id.property_payment_term and self.partner_id.property_payment_term.id or False),
-                'payment_type': line.contract_id.payment_type_id and line.contract_id.payment_type_id.id or (self.partner_id.payment_type_customer and self.partner_id.payment_type_customer.id or False),
+                'payment_term_id': line.contract_id.payment_term_id and line.contract_id.payment_term_id.id or (self.partner_id.property_payment_term_id and self.partner_id.property_payment_term_id.id or False),
+                'payment_mode_id': line.contract_id.payment_type_id and line.contract_id.payment_type_id.id or (self.partner_id.payment_type_customer_id and self.partner_id.payment_type_customer_id.id or False),
                 'invoice_header': line.contract_id.invoice_header,
-                'partner_bank_id': (line.contract_id.payment_type_id and line.contract_id.payment_type_id.suitable_bank_types) and (line.contract_id.bank_account_id and line.contract_id.bank_account_id.id or (self.partner_id.bank_ids and self.partner_id.bank_ids[0].id or False)) or False
             }
             if line.contract_id.address_invoice_id:
                 vals.update({'partner_id': line.contract_id.address_invoice_id.id})
@@ -219,11 +206,10 @@ class AccountAnalyticAccount(models.Model):
             if contracts:
                 contract = contracts[0]
                 vals = {
-                    'payment_term': contract.payment_term_id and contract.payment_term_id.id or (self.partner_id.property_payment_term and self.partner_id.property_payment_term.id or False),
-                    'payment_type': contract.payment_type_id and contract.payment_type_id.id or (self.partner_id.payment_type_customer and self.partner_id.payment_type_customer.id or False),
+                    'payment_term_id': contract.payment_term_id and contract.payment_term_id.id or (self.partner_id.property_payment_term_id and self.partner_id.property_payment_term_id.id or False),
+                    'payment_mode_id': contract.payment_type_id and contract.payment_type_id.id or (self.partner_id.payment_type_customer_id and self.partner_id.payment_type_customer_id.id or False),
                     'contract_id': contract.id,
                     'invoice_header': contract.invoice_header,
-                    'partner_bank_id': (contract.payment_type_id and contract.payment_type_id.suitable_bank_types) and (contract.bank_account_id and contract.bank_account_id.id or (self.partner_id.bank_ids and self.partner_id.bank_ids[0].id or False)) or False
                 }
                 if contract.address_invoice_id:
                     vals.update({'partner_id': contract.address_invoice_id.id})
@@ -243,8 +229,7 @@ class AccountAnalyticAccount(models.Model):
                     wzd.with_context(active_ids=picking_ids._ids).add_to_invoice()
 
         vals.update({'delegation_id': self.delegation_id and self.delegation_id.id or False})
-        invoice = self.env['account.invoice'].browse(invoice_id)
-        invoice.write(vals)
+        invoice_id.write(vals)
         return
 
     def _get_duration(self, cr, uid, analytic, concept, end_date):
@@ -362,12 +347,12 @@ class AccountAnalyticAccount(models.Model):
             duration += suma
         return duration, holiday_duration, sunday_duration, saturday_duration
 
-    def __group_by_product_lines(self, cr, uid, ref_line, grouped_lines):
-        res = super(AccountAnalyticAccount, self).__group_by_product_lines(cr, uid, ref_line, grouped_lines)
-        ref_line = self.pool.get('account.invoice.line').browse(cr, uid, ref_line.id)
 
+    @api.model
+    def __group_by_product_lines(self, ref_line, grouped_lines):
+        res = super(AccountAnalyticAccount, self).__group_by_product_lines(ref_line, grouped_lines)
         total_hours = (ref_line.hours or 0.0)
-        for line in self.pool.get('account.invoice.line').browse(cr, uid, grouped_lines):
+        for line in grouped_lines:
             total_hours += (line.hours or 0.0)
         if total_hours:
             ref_line.write({'hours': total_hours,'name': ref_line.name + u" " + str(total_hours)})
@@ -385,7 +370,7 @@ class AccountAnalyticAccount(models.Model):
         res = super(AccountAnalyticAccount, self)._create_invoice(end_date)
 
         res.write({
-            'user_id': self.manager_id and self.manager_id.user_id and self.manager_id.user_id.id or uid,
+            'user_id': self.manager_id and self.manager_id.user_id and self.manager_id.user_id.id or self.env.user.id,
             'manager_id': self.manager_id and self.manager_id.id or False})
         return res
 

@@ -22,7 +22,6 @@ from openerp import models, fields, api
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import time
-# import netsvc MIGRACION: Comentado
 import calendar
 from dateutil.rrule import rrule, rruleset, DAILY
 
@@ -62,21 +61,17 @@ class AccountAnalyticAccount(models.Model):
             'name': self.name,
             'origin': self.name,
             'type': 'out_invoice',
-            'account_id': self.partner_id.property_account_receivable.id,
+            'account_id': self.partner_id.property_account_receivable_id.id,
             'partner_id': self.partner_id.id,
-            'address_contact_id':
-                self.address_id and self.address_id.id or
-                ((self.parent_id and self.parent_id.address_id) and
-                 self.parent_id.address_id.id or False),
-            'address_invoice_id':
-                self.address_invoice_id and
-                self.address_invoice_id.id or
-                ((self.parent_id and self.parent_id.address_invoice_id) and
-                 self.parent_id.address_invoice_id.id or False),
-            'payment_term':
-                self.partner_id.property_payment_term and
-                self.partner_id.property_payment_term.id or False,
-            'fiscal_position': self.partner_id.property_account_position.id,
+            'partner_shipping_id':
+                self.address_id and self.address_id.id,
+            'address_tramit_id':
+                self.address_tramit_id and
+                self.address_tramit_id.id,
+            'payment_term_id':
+                self.partner_id.property_payment_term_id and
+                self.partner_id.property_payment_term_id.id or False,
+            'fiscal_position_id': self.partner_id.property_account_position_id.id,
             'company_id': self.company_id.id,
             'analytic_id': self.id,
             'date_invoice': self._context.get('invoice_date', False),
@@ -84,7 +79,7 @@ class AccountAnalyticAccount(models.Model):
                 self.department_id and self.department_id.id or False
         }
         if self._context.get('journal_id', False):
-            vals['journal_id'] = self._context["journal_id"]
+            vals['journal_id'] = int(self._context["journal_id"])
 
         invoice = self.env['account.invoice'].create(vals)
         self._invoice_hook(invoice, end_date)
@@ -104,9 +99,9 @@ class AccountAnalyticAccount(models.Model):
 
     def create_concept_invoice_line(self, concept, invoice_id, end_date):
         concept_product = concept.concept_id.product_id
-        account_id = concept_product.product_tmpl_id.property_account_income.id
+        account_id = concept_product.product_tmpl_id.property_account_income_id.id
         if not account_id:
-            account_id = concept_product.categ_id.property_account_income_categ.id
+            account_id = concept_product.categ_id.property_account_income_categ_id.id
 
         # se rellena con la fecha de última factura o
         # la fecha de alta de la cuenta
@@ -164,24 +159,23 @@ class AccountAnalyticAccount(models.Model):
 
         if not amount and concept.amount:
             return False
-
         invoice_line = self.env['account.invoice.line'].create({
                 'name': self._process_concept_name(concept, end_date),
                 'origin': self.name,
-                'invoice_id': invoice_id,
-                'uos_id': concept_product.uos_id and
-                concept_product.uos_id.id or False,
+                'invoice_id': invoice_id.id,
+                'uom_id': concept_product.uom_id and
+                concept_product.uom_id.id or False,
                 'product_id': concept_product.id,
                 'account_id':
-                self.partner_id.property_account_position.map_account(
+                self.partner_id.property_account_position_id.map_account(
                     account_id),
                 'price_unit': amount,
                 'discount': 0.0,
                 'quantity': 1.0,
-                'invoice_line_tax_id': [
+                'invoice_line_tax_ids': [
                     (6, 0,
-                     self.partner_id.property_account_position.map_tax(
-                        concept_product.taxes_id))],
+                     self.partner_id.property_account_position_id.map_tax(
+                        concept_product.taxes_id).ids)],
                 'account_analytic_id': self.id,
         })
 
@@ -221,9 +215,10 @@ class AccountAnalyticAccount(models.Model):
         for analytic_account in self:
             child_concepts_ids = self.env['account.analytic.invoice.concept.rel'] #list of childs in first level
             analytic_invoices= self.env['account.invoice']
-            for child in analytic_account.child_ids:
+            child_ids = analytic_account.get_same_contract_accounts()
+            for child in child_ids:
                 child_concepts_ids += child.concept_ids
-            if analytic_account.id not in analytic_ids:
+            if analytic_account not in analytic_ids:
                 if analytic_account.group_concepts and \
                         (analytic_account.concept_ids or child_concepts_ids):
                     invoice = analytic_account._create_invoice(end_date)
@@ -237,8 +232,8 @@ class AccountAnalyticAccount(models.Model):
 
                     analytic_ids += analytic_account # visited analytic account
 
-                    for analytic_child_obj in analytic_account.child_ids:
-                        if analytic_child_obj.id in analytic_ids:
+                    for analytic_child_obj in child_ids:
+                        if analytic_child_obj in analytic_ids:
                             #remove his related invoice because it's invoice line
                             related_invoices = self.env['account.invoice'].search([('analytic_id', '=', analytic_child_obj.id)]) #obtain all related invoices with this account
                             toremove_related_invoices = created_invoices & related_invoices #computes repeated invoice in two lists
@@ -268,7 +263,7 @@ class AccountAnalyticAccount(models.Model):
                 if analytic_account.group_products:
                     for inv in analytic_invoices:
                         dicc = {}
-                        for line in inv.invoice_line:
+                        for line in inv.invoice_line_ids:
                             if line.product_id.id not in dicc:
                                 dicc[line.product_id.id] = []
                             dicc[line.product_id.id].append(line)
@@ -289,23 +284,23 @@ class AccountAnalyticAccount(models.Model):
                                 to_delete_line_ids.unlink()
 
                         if analytic_account.group_products_each_invoice:
-                            if len(inv.invoice_line) > 1:
-                                line_ref = inv.invoice_line[0]
-                                for line in inv.invoice_line:
+                            if len(inv.invoice_line_ids) > 1:
+                                line_ref = inv.invoice_line_ids[0]
+                                for line in inv.invoice_line_ids:
                                     if line.id != line_ref.id:
                                         new_inv = inv.copy(
-                                            default={'invoice_line': False,
+                                            default={'invoice_line_ids': False,
                                                      'date_invoice':
                                                      inv.date_invoice})
                                         created_invoices += new_inv
-                                        line.write({'invoice_id': new_inv})
+                                        line.write({'invoice_id': new_inv.id})
 
             to_delete_invoices = self.env['account.invoice']
 
             for invoice in created_invoices:
-                if not invoice.invoice_line:
+                if not invoice.invoice_line_ids:
                     # wf_service.trg_validate(uid, 'account.invoice', invoice.id, 'invoice_cancel', cr) por qué no eliminar directamente?
-                    to_delete_invoices.append(invoice.id)
+                    to_delete_invoices += invoice
 
             created_invoices = created_invoices - to_delete_invoices
             to_delete_invoices.unlink()

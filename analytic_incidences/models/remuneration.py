@@ -28,17 +28,6 @@ class Remuneration(models.Model):
     _name = "remuneration"
     _description = "Remunerations"
 
-    def _compute_total_hours(self):
-        pass
-        '''MIGRACION: Solo se cambia la firma a nueva api
-        if context is None:
-            context = {}
-        res = {}
-        for remu in self.browse(cr, uid, ids):
-            res[remu.id] = remu.ss_hours + remu.ss_no_hours
-
-        return res'''
-
     name = fields.Char(
         size=8, readonly=True,
         default=lambda r: r.env['ir.sequence'].get('remuneration'))
@@ -60,8 +49,6 @@ class Remuneration(models.Model):
     quantity = fields.Float(digits=(12, 2))
     analytic_account_id = fields.Many2one(
         'account.analytic.account', 'Account')
-    # state = fields.Selection(related='analytic_account_id.state') MIGRACION: Campo eliminado
-    # selection=[('draft','Draft'),('open','Open'), ('pending','Pending'),('cancelled', 'Cancelled'),('close','Closed'),('template', 'Template')]
 
     parent_id = fields.Many2one(
         'remuneration', 'Parent remuneration', readonly=True, index=True)
@@ -83,6 +70,11 @@ class Remuneration(models.Model):
         default=lambda r: r.env.user.company_id.id)
     old = fields.Boolean()
     notes = fields.Text()
+
+
+    def _compute_total_hours(self):
+        for remu in self:
+            remu.total_hours = remu.ss_hours + remu.ss_no_hours
 
     def get_periods_remuneration(self, start_date, end_date):
         def daterange(start_date, end_date):

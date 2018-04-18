@@ -21,7 +21,6 @@
                 <field name="uom_name" invisible="not context.get('set_visible',False)"/>
                 <field name="categ_id" invisible="1"/>
                 <field name="state" invisible="1"/>
-                <field name="period_id" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
                 <field name="journal_id" invisible="1"/>
                 <field name="partner_shipping_id" invisible="1"/>
@@ -112,7 +111,6 @@
                     <filter string="Journal" icon="terp-folder-orange" context="{'group_by':'journal_id'}"/>
                     <separator orientation="vertical"/>
                     <filter string="Due Date" icon="terp-go-today" context="{'group_by':'date_due'}"/>
-                    <filter string="Period" icon="terp-go-month" context="{'group_by':'period_id'}"/>
                     <separator orientation="vertical" groups="base.group_multi_company"/>
                     <filter string="Company" icon="terp-go-home" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
                     <filter string="Delegation" icon="terp-go-home" context="{'group_by':'delegation_id'}"/>

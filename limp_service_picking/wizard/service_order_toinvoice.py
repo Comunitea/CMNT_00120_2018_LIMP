@@ -38,6 +38,7 @@ class ServiceOrderToinvoice(models.TransientModel):
     invoice_date = fields.Date('Invoiced date')
 
     def view_init(self, fields_list):
+        res = super(ServiceOrderToinvoice, self).view_init(fields_list)
         for pick in self.env['stock.service.picking'].browse(self._context.get('active_ids',[])):
             if pick.state != 'closed' or pick.invoice_line_ids or pick.invoice_type == 'noinvoice':
                 raise UserError(_('The service order %s does not prepares to be invoiced or it was already invoiced.') % (pick.name))
@@ -45,7 +46,7 @@ class ServiceOrderToinvoice(models.TransientModel):
 
     def open_invoice(self):
         res = self.create_invoice()
-        invoice_ids += res.values()
+        invoice_ids = res.values()
         if not invoice_ids:
             return {}
         action = self.env.ref('account.action_invoice_tree1').read()[0]
@@ -54,7 +55,7 @@ class ServiceOrderToinvoice(models.TransientModel):
 
     def create_invoice(self):
         date_inv = self.invoice_date or fields.Date.today()
-        journal_id = self.journal_id
+        journal_id = int(self.journal_id)
         group_partner = self.group_partner
         group_building_site = self.group_building_site
 
@@ -69,26 +70,25 @@ class ServiceOrderToinvoice(models.TransientModel):
             key = "del:" + str(service_picking.delegation_id.id) + "/dep:" + str(service_picking.department_id.id) + "/m:" + str(service_picking.manager_id.id)
             payment_term_id = False
             partner = service_picking.partner_id
-            fpos = partner.property_account_position
+            fpos = partner.property_account_position_id
             building_site = service_picking.building_site_id and service_picking.building_site_id or False
             if not partner:
                 raise UserError(_('Please put a partner on the service order list if you want to generate invoice.'))
 
-            account_id = partner.property_account_receivable.id
-            payment_term_id = service_picking.payment_term.id
+            account_id = partner.property_account_receivable_id.id
+            payment_term_id = service_picking.payment_mode.id
             address_contact_id = service_picking.address_id.id
             address_tramit_id = service_picking.address_tramit_id and service_picking.address_tramit_id.id or False
-            address_invoice_id = service_picking.address_invoice_id.id
             comment = False
 
             if service_picking.ccc_account_id:
                 key += "bank:" + str(service_picking.ccc_account_id.id)
             if service_picking.fiscal_position:
                 key += "fp:" + str(service_picking.fiscal_position.id)
-            if service_picking.payment_type:
-                key += "ptype:" + str(service_picking.payment_type.id)
-            if service_picking.payment_term:
-                key += "pterm:" + str(service_picking.payment_term.id)
+            if service_picking.payment_mode:
+                key += "ptype:" + str(service_picking.payment_mode.id)
+            if service_picking.payment_mode:
+                key += "pterm:" + str(service_picking.payment_mode.id)
             if service_picking.intercompany:
                 key += "interc:1"
 
@@ -109,7 +109,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     'origin': (invoice.origin or '') + u', ' + (service_picking.name or u''),
                     'comment': (comment and (invoice.comment and invoice.comment+u"\n"+comment or comment)) or (invoice.comment and invoice.comment or u''),
                     'date_invoice':date_inv or False,
-                    'user_id': uid,
+                    'user_id': self.env.user.id,
                     'intercompany': intercompany
                 }
                 invoice.write(invoice_vals)
@@ -120,7 +120,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     'origin': (invoice.origin or u'') + u', ' + (service_picking.name or u''),
                     'comment': (comment and (invoice.comment and invoice.comment+u"\n"+comment or comment)) or (invoice.comment and invoice.comment or u''),
                     'date_invoice':date_inv or False,
-                    'user_id': uid,
+                    'user_id': self.env.user.id,
                     'intercompany': intercompany
                 }
                 invoice.write(invoice_vals)
@@ -131,17 +131,15 @@ class ServiceOrderToinvoice(models.TransientModel):
                     'type': 'out_invoice',
                     'account_id': account_id,
                     'partner_id': partner.id,
-                    'address_invoice_id': address_invoice_id,
-                    'address_contact_id': address_contact_id,
+                    'partner_shipping_id': address_contact_id,
                     'address_tramit_id': address_tramit_id,
                     'comment': comment,
-                    'payment_term': payment_term_id,
-                    'partner_bank_id': (service_picking.payment_type and service_picking.payment_type.suitable_bank_types) and (service_picking.ccc_account_id and service_picking.ccc_account_id.id or (partner.bank_ids and partner.bank_ids[0].id or False)) or False,
-                    'payment_type': service_picking.payment_type.id,
-                    'fiscal_position': service_picking.fiscal_position.id,
+                    'payment_mode_id': payment_term_id,
+                    'payment_mode_id': service_picking.payment_mode.id,
+                    'fiscal_position_id': service_picking.fiscal_position.id,
                     'date_invoice': date_inv or False,
                     'company_id': service_picking.company_id.id,
-                    'user_id': uid,
+                    'user_id': self.env.user.id,
                     'delegation_id': service_picking.delegation_id.id,
                     'department_id': service_picking.department_id.id,
                     'manager_id': service_picking.manager_id.id,
@@ -184,7 +182,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     'account_id': account_id,
                     'price_unit': price_unit,
                     'quantity': move_line.product_qty,
-                    'invoice_line_tax_id': [(6, 0, tax_ids)],
+                    'invoice_line_tax_ids': [(6, 0, tax_ids)],
                     'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
                     'account_analytic_id': service_picking.analytic_acc_id.id,
                     'service_picking_id': service_picking.id
@@ -214,7 +212,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     'account_id': fpos.map_account(account_id).id,
                     'price_unit': service_picking.taxes,
                     'quantity': 1.0,
-                    'invoice_line_tax_id': [(6, 0, tax_ids)],
+                    'invoice_line_tax_ids': [(6, 0, tax_ids)],
                     'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
                     'account_analytic_id': service_picking.analytic_acc_id.id,
                     'service_picking_id': service_picking.id
@@ -242,7 +240,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     'account_id': fpos.map_account(account_id).id,
                     'price_unit': service_picking.sand_amount,
                     'quantity': 1.0,
-                    'invoice_line_tax_id': [(6, 0, tax_ids)],
+                    'invoice_line_tax_ids': [(6, 0, tax_ids)],
                     'building_site_id': service_picking.building_site_id and service_picking.building_site_id.id or False,
                     'account_analytic_id': service_picking.analytic_acc_id.id,
                     'service_picking_id': service_picking.id
@@ -267,7 +265,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                 invoice_copied.write({'no_quality': True})
                 invoice_copied.invoice_line.write(
                     {'account_analytic_id': False,
-                     'invoice_line_tax_id': [(6, 0, [])],
+                     'invoice_line_tax_ids': [(6, 0, [])],
                      'intercompany_invoice_id': False})
                 invoice_copied.compute_taxes()
 

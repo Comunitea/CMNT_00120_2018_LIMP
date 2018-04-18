@@ -11,7 +11,6 @@
                 <field name="customer_contact_id"/>
                 <field name="state_id" string="Province"/>
                 <field name="location_id"/>
-                <!--field name="contact_identification_id"/-->
                 <field name="description"/>
                 <field name="date_start"/>
                 <field name="date"/>
