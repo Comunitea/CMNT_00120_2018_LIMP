@@ -86,4 +86,4 @@ class StockServicePicking(models.Model):
         if vals.get('contract_line_id', False):
             line = self.env['limp.contract.line.waste'].browse(vals['contract_line_id'])
             vals['analytic_acc_id'] = line.analytic_acc_id and line.analytic_acc_id.id or False
-        return super(stock_service_picking, self).create(vals)
+        return super(StockServicePicking, self).create(vals)

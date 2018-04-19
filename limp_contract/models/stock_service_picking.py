@@ -38,7 +38,7 @@ class StockServicePicking(models.Model):
                 vals['company_id'] = contract.company_id.id
             if not vals.get('tag_ids', False):
                 vals['tag_ids'] = [(4, x.id) for x in contract.tag_ids]
-        return super(stock_service_picking, self).create(vals)
+        return super(StockServicePicking, self).create(vals)
 
     @api.onchange('contract_id')
     def onchange_contract_id(self):
@@ -56,4 +56,3 @@ class StockServicePicking(models.Model):
             self.payment_term = contract.payment_term_id
             self.privacy = contract.privacy
             self.address_tramit_id = contract.address_tramit_id
-        return res

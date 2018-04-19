@@ -60,7 +60,8 @@ class AccountAnalyticAccount(models.Model):
          ('open', 'Open'),
          ('pending', 'Pending'),
          ('cancelled', 'Cancelled'),
-         ('close', 'Closed'), ('template', 'Template')], required=True)
+         ('close', 'Closed'), ('template', 'Template')], required=True,
+        default='draft')
 
     def _get_concept_amount(self, concept_ids):
         # TODO: Eliminar funcion

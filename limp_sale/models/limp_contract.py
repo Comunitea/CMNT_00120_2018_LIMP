@@ -29,11 +29,43 @@ class LimpContract(models.Model):
     sale_id = fields.Many2one('sale.order', 'Sale', readonly=True)
 
     def action_view_waste_lines(self):
-        res = super(LimpContract, self).action_view_waste_lines()
-        res['context']['default_sale_id'] = self.sale_id
-        return res
+        action = super(LimpContract, self).action_view_waste_lines()
+        action['context'] = str({
+           'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
+           'default_picking_type': 'wastes', 'type': 'wastes',
+           'form_view_ref': 'limp_service_picking.stock_service_picking_form',
+           'default_delegation_id' : self.delegation_id.id,
+           'default_partner_id': self.partner_id.id,
+           'default_manager_id': self.manager_id.id,
+           'default_address_invoice_id': self.address_invoice_id.id,
+           'default_address_id': self.address_id.id,
+           'default_ccc_account_id': self.bank_account_id.id,
+           'default_payment_type': self.payment_type_id.id,
+           'default_payment_term': self.payment_term_id.id,
+           'default_privacy': self.privacy,
+           'default_address_tramit_id': self.address_tramit_id.id,
+           'default_contract_id': self.id,
+           'default_sale_id': self.sale_id.id
+        })
+        return action
 
     def action_view_sporadic_service_picking(self):
-        res = super(LimpContract, self).action_view_sporadic_service_picking()
-        res['context']['default_sale_id'] = self.sale_id
-        return res
+        action = super(LimpContract, self).action_view_sporadic_service_picking()
+        action['context'] = str({
+           'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
+           'default_picking_type': 'sporadic', 'type': 'sporadic',
+           'form_view_ref': 'limp_service_picking.stock_service_picking_form',
+           'default_delegation_id' : self.delegation_id.id,
+           'default_partner_id': self.partner_id.id,
+           'default_manager_id': self.manager_id.id,
+           'default_address_invoice_id': self.address_invoice_id.id,
+           'default_address_id': self.address_id.id,
+           'default_ccc_account_id': self.bank_account_id.id,
+           'default_payment_type': self.payment_type_id.id,
+           'default_payment_term': self.payment_term_id.id,
+           'default_privacy': self.privacy,
+           'default_address_tramit_id': self.address_tramit_id.id,
+           'default_contract_id': self.id,
+           'default_sale_id': self.sale_id.id
+        })
+        return action

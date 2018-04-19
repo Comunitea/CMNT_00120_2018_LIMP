@@ -63,7 +63,7 @@
                     </group>
                     <group>
                         <group>
-                            <field name="name" readonly="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
+                            <field name="name" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
                             <field name="address_invoice_id" domain="[('parent_id', '=', partner_id)]" attrs="{'readonly':[('state','in',['cancelled'])]}" required="1"/>
                             <field name="delegation_id" widget="selection" required="1"/>
                             <field name="department_id" widget="selection" required="1"/>

@@ -63,7 +63,6 @@
             'wizard/upamount_contract_view.xml',
             'wizard/update_last_invoice_date_view.xml',
             'views/analytic_stock_move_view.xml',
-            'views/account_invoice_report_view.xml',
             'views/limp_contract_line_employee_task_view.xml',
             'views/hr_employee_view.xml',
             'views/stock_service_picking_view.xml',

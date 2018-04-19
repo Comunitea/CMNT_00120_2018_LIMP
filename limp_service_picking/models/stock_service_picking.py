@@ -215,8 +215,8 @@ class StockServicePicking(models.Model):
 
         self.manager_address_id = addr['management_plant']
         self.nima_no = nima
-        self.name_manager = part.name
-        self.authorization_manager = part.manager_authorization_no and part.manager_authorization_no or False
+        self.name_manager = self.partner_id.name
+        self.authorization_manager = self.partner_id.manager_authorization_no and self.partner_id.manager_authorization_no or False
 
     @api.onchange('product_id')
     def onchange_product_id(self):

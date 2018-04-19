@@ -29,7 +29,7 @@ class AccountInvoice(models.Model):
     privacy = fields.Selection(
         related='analytic_id.privacy', string="Privacy",
         selection=[('public', 'Public'), ('private', 'Private')],
-        readonly=True)
+        readonly=True, store=True)
 
     def refund(self, date_invoice=None, date=None, description=None,
                journal_id=None):

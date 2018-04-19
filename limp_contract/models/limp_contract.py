@@ -305,8 +305,8 @@ class LimpContract(models.Model):
            'default_payment_type': self.payment_type_id.id,
            'default_payment_term': self.payment_term_id.id,
            'default_privacy': self.privacy,
-           'default_address_tramit_id': self.address_tramit_id.id
-
+           'default_address_tramit_id': self.address_tramit_id.id,
+           'default_contract_id': self.id,
         })
         action['domain'] = "[('id','in', ["+','.join(map(str, self.stock_service_picking_ids._ids))+"])]"
         return action
@@ -330,7 +330,8 @@ class LimpContract(models.Model):
            'default_payment_type': self.payment_type_id.id,
            'default_payment_term': self.payment_term_id.id,
            'default_privacy': self.privacy,
-           'default_address_tramit_id': self.address_tramit_id.id
+           'default_address_tramit_id': self.address_tramit_id.id,
+           'default_contract_id': self.id,
 
         })
         action['domain'] = "[('id','in', ["+','.join(map(str, self.stock_sporadic_service_picking_ids._ids))+"])]"
@@ -366,7 +367,7 @@ class LimpContract(models.Model):
         for contract in self:
             contract.analytic_moves_count = len(contract.analytic_move_ids)
 
-    def action_view_contract_note(self):
+    def action_view_analytic_moves(self):
         action = self.env.ref('analytic_material_costs.analytic_stock_move_concepts').read()[0]
         action['context'] = str({
             'employee_id': self.manager_id.id,
@@ -398,6 +399,7 @@ class LimpContract(models.Model):
         action['context'] = str({ # TODO: AÑADIR RESPONSABLE
             'default_delegation_id': self.delegation_id.id,
             'default_department_id': self.department_id.id,
+            'default_analytic_id': self.analytic_account_id.id,
         })
         action['domain'] = "[('id','in', ["+','.join(map(str, self.active_employee_ids._ids))+"])]"
         return action

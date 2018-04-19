@@ -18,20 +18,19 @@
 #
 ##############################################################################
 from odoo import models, fields
-import time
 
 
-class limp_contract_signature(models.Model):
+class limp_contract_signature(models.TransientModel):
 
     _name = 'limp.contract.signature'
     _description = "Contract signature"
 
-    contract_date = fields.Date('Signature date', required=True, defaults=fields.Date.today)
+    contract_date = fields.Date('Signature date', required=True, readonly=False, defaults=fields.Date.today)
 
     def set_signature(self):
-        contract = self.env['limp.contract'].browse(context['active_id'])
+        contract = self.env['limp.contract'].browse(self._context['active_id'])
         contract.write({
-            'signature_date': obj.contract_date,
+            'signature_date': self.contract_date,
             'state': 'open'
         })
         return {'type': 'ir.actions.act_window_close'}

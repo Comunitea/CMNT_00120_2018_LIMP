@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-  <record id="action_contract_sign" model="ir.actions.act_window">
-        <field name="name">Contract signature</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">limp.contract.signature</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-    </record>
-
     <record id="view_limp_contract_signature" model="ir.ui.view">
         <field name="name">Contract signature</field>
         <field name="model">limp.contract.signature</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Contract signature">
-                <separator colspan="4" string="Signature date"/>
-                <field name="contract_date" nolabel="1"/>
-                <group col="4" colspan="4">
-                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                    <button icon="gtk-ok" name="set_signature" string="Sign" type="object"/>
+                <group>
+                    <field name="contract_date"/>
                 </group>
+                <footer>
+                    <button name="set_signature" string="Sign" type="object"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
             </form>
         </field>
     </record>
+
+    <act_window name="Contract signature"
+        res_model="limp.contract.signature"
+        view_id="view_limp_contract_signature"
+        view_mode="form"
+        target="new"
+        id="action_contract_sign"/>
 </odoo>

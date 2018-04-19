@@ -121,15 +121,15 @@ class SaleOrder(models.Model):
 
     def create_contract(self):
 
-        contract_id = self.env['limp.contract'].create({
+        contract = self.env['limp.contract'].create({
             'company_id': self.company_id.id,
             'delegation_id': self.delegation_id.id,
             'department_id': self.department_id.id,
             'partner_id': self.partner_id.id,
             'amount': self.amount_total,
             'address_id': self.partner_shipping_id.id,
-            'bank_account_id': self.partner_bank and self.partner_bank.id or False,
-            'payment_term_id': self.payment_term and self.payment_term.id or False,
+            # 'bank_account_id': self.partner_bank and self.partner_bank.id or False,
+            'payment_term_id': self.payment_term_id and self.payment_term_id.id or False,
             'payment_type_id': self.payment_mode_id and self.payment_mode_id.id or False,
             'address_invoice_id': self.partner_invoice_id.id,
             'sale_id': self.id
@@ -148,7 +148,7 @@ class SaleOrder(models.Model):
             'type': 'ir.actions.act_window',
             'nodestroy': True,
             'target': 'current',
-            'res_id': contract_id,
+            'res_id': contract.id,
         }
 
     def create_service_order(self):

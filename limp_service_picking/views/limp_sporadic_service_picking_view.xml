@@ -56,7 +56,7 @@
                     </group>
                     <group>
                         <group>
-                            <field name="name" readonly="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
+                            <field name="name" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
                             <field name="company_id" groups="base.group_multi_company" required="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
                             <field name="delegation_id" widget="selection" required="1"/>
                             <field name="department_id" widget="selection" required="1"/>

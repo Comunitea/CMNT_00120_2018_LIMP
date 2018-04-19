@@ -85,9 +85,9 @@
                 <field name="show_total"/>
             </field>
             <button name="action_quotation_send" position="before">
-                <button name="create_contract" type="object" string="Create contract" icon="gtk-convert" attrs="{'invisible': ['|',('created_contract', '=', 1),('state','!=','manual')]}" groups="limp_contract.group_limp_administrative"/>
-                <button name="create_service_order" type="object" string="Create Service order" icon="gtk-convert" groups="limp_service_picking.group_waste_manager" attrs="{'invisible': ['|',('created_service_order', '=', 1),('state','!=','manual')]}"/>
-                <button name="%(action_view_create_service_pick_wzd)d" type="action" string="Create pick" icon="gtk-convert" attrs="{'invisible': ['|',('created_service_pick', '=', 1),('state','!=','manual')]}" groups="limp_service_picking.group_waste_manager,limp_service_picking.group_cleaning_user"/>
+                <button name="create_contract" type="object" string="Create contract" attrs="{'invisible': ['|',('created_contract', '=', 1),('state','!=','sale')]}" groups="limp_contract.group_limp_administrative"/>
+                <button name="create_service_order" type="object" string="Create Service order" groups="limp_service_picking.group_waste_manager" attrs="{'invisible': ['|',('created_service_order', '=', 1),('state','!=','sake')]}"/>
+                <button name="%(action_view_create_service_pick_wzd)d" type="action" string="Create pick" attrs="{'invisible': ['|',('created_service_pick', '=', 1),('state','!=','sale')]}" groups="limp_service_picking.group_waste_manager,limp_service_picking.group_cleaning_user"/>
             </button>
         </field>
     </record>

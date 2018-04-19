@@ -91,7 +91,7 @@
                                 icon="fa-pencil-square-o">
                                 <field name="contract_note_count" widget="statinfo" string="Notes"/>
                             </button>
-                            <button name="action_view_contract_note"
+                            <button name="action_view_analytic_moves"
                                 type="object"
                                 class="oe_stat_button"
                                 icon="fa-pencil-square-o">

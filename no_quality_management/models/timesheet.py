@@ -27,7 +27,7 @@ class Timesheet(models.Model):
     scont = fields.Boolean('Scont', related='employee_id.scont', readonly=True)
 
     @api.model
-    def create(self):
+    def create(self, vals):
         scont = False
         if vals.get('employee_id', False):
             employee_obj = self.env['hr.employee'].browse(vals['employee_id'])
