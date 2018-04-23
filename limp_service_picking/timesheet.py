@@ -34,8 +34,6 @@ class timesheet(osv.osv):
         if context is None: context = {}
         if vals.get('analytic_id', False):
             picking_ids = self.pool.get('stock.service.picking').search(cr, uid, [('analytic_acc_id', '=', vals['analytic_id'])])
-            if picking_ids and not vals.get('extra_hours', False) and not vals.get('quantity', False) and not vals.get('price_hours', False):
-                vals['contract'] = True
             if picking_ids:
                 pick_id = self.pool.get('stock.service.picking').browse(cr, uid, picking_ids[0])
                 if pick_id.building_site_id:
