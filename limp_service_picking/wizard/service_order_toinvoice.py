@@ -20,6 +20,7 @@
 #
 ##############################################################################
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class ServiceOrderToinvoice(models.TransientModel):
     _name = 'service.order.toinvoice'

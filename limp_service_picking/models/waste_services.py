@@ -27,7 +27,7 @@ class WasteService(models.Model):
     _description = "Waste services"
     _inherits = {'account.analytic.account': 'analytic_acc_id'}
 
-    analytic_acc_id = fields.Many2one('account.analytic.account', 'Analytic account', readonly=True, required=True, ondelete="cascade")
+    analytic_acc_id = fields.Many2one('account.analytic.account', 'Analytic account', readonly=True, required=False, ondelete="cascade")
     active = fields.Boolean('Active', default=True)
     fiscal_position = fields.Many2one('account.fiscal.position', 'Fiscal position')
     payment_term = fields.Many2one('account.payment.term', 'Payment term')
@@ -35,7 +35,7 @@ class WasteService(models.Model):
     partner_bank_id = fields.Many2one('res.partner.bank', 'Bank account')
     partner_shipping_id = fields.Many2one('res.partner', 'Service address')
     service_picking_ids = fields.One2many('stock.service.picking','service_id','Stock Service Picking')
-    name = fields.Char(default='SEQ')
+    # name = fields.Char(default='SEQ')
     user_id = fields.Many2one('res.users', 'User', default=lambda r: r.env.user.id)
 
     @api.model
@@ -50,7 +50,7 @@ class WasteService(models.Model):
             self.partner_shipping_id = False
             self.contact_id = False
 
-        addr = part.address_get(['invoice', 'contact'])
+        addr = self.partner_id.address_get(['invoice', 'contact'])
 
         if addr:
             self.address_invoice_id = addr['invoice']
