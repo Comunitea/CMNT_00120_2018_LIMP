@@ -40,8 +40,7 @@ class AccountAnalyticAccount(models.Model):
                                     help='Groups products at invoice')
     group_products_each_invoice = fields.Boolean(
         'One for invoice', help='Groups products, one for invoice')
-    invoiceable = fields.Boolean('Invoiceable',
-                                 help='Visibility to invoce cron')
+    invoiceable = fields.Boolean('Invoiceable')
 
     '''def _get_ids_hook(self, cr, uid, ids, context=None):
         """hook to manage ids list to process"""

@@ -237,17 +237,17 @@ class StockServicePicking(models.Model):
             warning['message'] = message
         return {'warning': warning}
 
-    @api.onchange('building_stie_id')
+    @api.onchange('building_site_id')
     def onchange_building_site_id(self):
-        if self.building_stie_id:
-            if self.building_stie_id:
-                self.building_site_address_id = self.building_stie_id.address_building_site.id
-                self.building_site_city = self.building_stie_id.city_building_site
-                self.building_site_license = self.building_stie_id.building_site_license
-                self.holder_partner = self.building_stie_id.holder_builder
-                self.holder_address = self.building_stie_id.address_holder
-                self.producer_partner = self.building_stie_id.producer_promoter
-                self.producer_address = self.building_stie_id.address_producer
+        if self.building_site_id:
+            if self.building_site_id:
+                self.building_site_address_id = self.building_site_id.address_building_site.id
+                self.building_site_city = self.building_site_id.city_building_site
+                self.building_site_license = self.building_site_id.building_site_license
+                self.holder_partner = self.building_site_id.holder_builder
+                self.holder_address = self.building_site_id.address_holder
+                self.producer_partner = self.building_site_id.producer_promoter
+                self.producer_address = self.building_site_id.address_producer
 
         else:
             self.building_site_address_id = False

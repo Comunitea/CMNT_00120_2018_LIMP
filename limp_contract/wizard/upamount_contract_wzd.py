@@ -42,15 +42,6 @@ class UpamountContractWzd(models.TransientModel):
             if concept.amount:
                 vals['amount'] = concept.amount + (concept.amount * (upamount_percent / 100.0))
                 self._reg_upamount(contract, upamount_percent, concept.amount, vals['amount'], analytical_acc.name + u" Normal: " + concept.concept_id.name)
-            if concept.holyday_amount:
-                vals['holyday_amount'] = concept.holyday_amount + (concept.holyday_amount * (upamount_percent / 100.0))
-                self._reg_upamount(contract, upamount_percent, concept.holyday_amount, vals['holyday_amount'], analytical_acc.name + _(u" Holy: ") + concept.concept_id.name)
-            if concept.sunday_amount:
-                vals['sunday_amount'] = concept.sunday_amount + (concept.sunday_amount * (upamount_percent / 100.0))
-                self._reg_upamount(contract, upamount_percent, concept.sunday_amount, vals['sunday_amount'], analytical_acc.name + _(u" Sunday: ") + concept.concept_id.name)
-            if concept.saturday_afternoon_amount:
-                vals['saturday_afternoon_amount'] = concept.saturday_afternoon_amount + (concept.saturday_afternoon_amount * (upamount_percent / 100.0))
-                self._reg_upamount(contract, upamount_percent, concept.saturday_afternoon_amount, vals['saturday_afternoon_amount'], analytical_acc.name + _(u" Saturday afternoon: ") + concept.concept_id.name)
             concept.write(vals)
         return True
 

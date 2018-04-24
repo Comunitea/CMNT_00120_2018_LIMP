@@ -32,5 +32,8 @@
         </field>
     </record>
 
-    <menuitem id="limp_service_picking.menu_limp_sporadic_stock_service_picking" parent="menu_limp_contract" name="Sporadic service picking"/>
+            <menuitem id="menu_limp_sporadic_contract" parent="menu_limp_contract" name="Sporadic service picking"/>
+        <menuitem action="limp_service_picking.sporadic_service_pickings_action" id="menu_sporadic_service_pickings_open" parent="menu_limp_sporadic_contract" name="Sporadic service pickings"/>
+        <menuitem action="limp_service_picking.planified_service_pickings_action" id="menu_planified_service_pickings_open" parent="menu_limp_sporadic_contract" name="Maintenance service pickings"/>
+
 </odoo>

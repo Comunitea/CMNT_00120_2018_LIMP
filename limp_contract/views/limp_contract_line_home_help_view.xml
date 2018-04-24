@@ -65,8 +65,6 @@
                             <field name="date_start" required="1"/>
                             <field name="date"/>
                             <field name="incidences"/>
-                            <field name="invoice_limit_hours"/>
-                            <field name="invoice_by_high"/>
                             <field name="company_id" invisible="1"/>
                             <field name="delegation_id"/>
                             <field name="department_id"/>

@@ -31,17 +31,12 @@ class AnalyticAccountInvoiceConceptRel(models.Model):
 
     _inherit = "account.analytic.invoice.concept.rel"
 
-    holyday_amount = fields.Float('Holyday amount', digits=dp.get_precision('Account'), default=0.0)
-    sunday_amount = fields.Float('Sunday amount', digits=dp.get_precision('Account'))
-    saturday_afternoon_amount = fields.Float('Sat. aftno. amount', digits=dp.get_precision('Account'))
-    per_hours = fields.Boolean('Per hours')
     total_amount = fields.Float(compute='_compute_total_amount')
 
     def _compute_total_amount(self):
         for line in self:
-            if not line.per_hours:
-                if line.freq == 'q':
-                    line.total_amount += line.amount * 4
-                else:
-                    except_months = line._get_except_months()
-                    line.total_amount += line.amount * (12 - len(except_months[line.id]))
+            if line.freq == 'q':
+                line.total_amount += line.amount * 4
+            else:
+                except_months = line._get_except_months()
+                line.total_amount += line.amount * (12 - len(except_months[line.id]))

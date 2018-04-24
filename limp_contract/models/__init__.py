@@ -15,7 +15,6 @@ from . import limp_contract_line_task_rel
 from . import limp_incidence
 from . import limp_contract_line_home_help
 from . import limp_contract_line_cleaning
-from . import limp_contract_line_waste
 from . import limp_contract_signature
 #  import account_analytic_occupation_name
 #  # import account_analytic_occupation

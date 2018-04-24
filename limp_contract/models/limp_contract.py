@@ -40,15 +40,12 @@ class LimpContract(models.Model):
     periodicity = fields.Selection([('m', 'Monthy'), ('q', 'Quarterly'), ('b', 'Biannual'), ('a', 'Annual'), ('ph', 'Per hours')], 'Periodicity', default='m')
     bank_account_id = fields.Many2one('res.partner.bank', 'Bank account', help="Income bank account")
     last_invoice_date = fields.Date('Last invoice date', compute='_compute_last_invoice_date')
-    offered_hours = fields.Float('Offered hours')
-    hours_per_week = fields.Float('Hours per week')
     analytic_account_id = fields.Many2one('account.analytic.account', 'Account', readonly=True, required=True, ondelete="cascade")
     state = fields.Selection([('draft', 'Draft'), ('wait_signature', 'Waiting signature'), ('open', 'Opened'), ('close', 'Closed'), ('cancelled', 'Cancelled')], 'State', readonly=True, default='draft')
     active = fields.Boolean('Active', default=True)
     seq_lines_id = fields.Many2one('ir.sequence', 'Sequence', readonly=True)
     home_help_line_ids = fields.One2many('limp.contract.line.home.help', 'contract_id', 'Home help lines', states={'cancelled':[('readonly',True)], 'close':[('readonly',True)]})
     cleaning_line_ids = fields.One2many('limp.contract.line.cleaning', 'contract_id', 'Cleaning lines', states={'cancelled':[('readonly',True)], 'close':[('readonly',True)]})
-#        waste_line_ids =fields.one2many('limp.contract.line.waste', 'contract_id', 'Waste lines', states={'cancelled':[('readonly',True)], 'close':[('readonly',True)]})
     stock_service_picking_ids = fields.One2many('stock.service.picking', 'contract_id', 'Picking lines', states={'cancelled':[('readonly',True)], 'close':[('readonly',True)]}, domain=[('picking_type','=','wastes')])
     stock_sporadic_service_picking_ids = fields.One2many('stock.service.picking', 'contract_id', 'Sporadic picking lines', states={'cancelled':[('readonly',True)], 'close':[('readonly',True)]}, domain=[('picking_type','=','sporadic')])
     payment_term_id = fields.Many2one('account.payment.term', 'Payment term')
@@ -106,8 +103,6 @@ class LimpContract(models.Model):
             for cleaning_line in contract.cleaning_line_ids:
                 if cleaning_line.state == 'open':
                     amount += sum([x.total_amount for x in cleaning_line.concept_ids])
-            #for waste_line in contract.waste_line_ids:
-            #    amount += waste_line.amount
             contract.amount = amount
             contract.monthly_amount = round(amount / 12.0, 2)
 

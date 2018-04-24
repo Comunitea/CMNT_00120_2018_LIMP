@@ -50,8 +50,6 @@ class AccountAnalyticAccount(models.Model):
     is_contract = fields.Boolean('Is contract')
     is_picking = fields.Boolean('Is picking', compute='_compute_is_picking', search='_search_is_picking')
     is_picking_in_contract = fields.Boolean('Is picking in contract', compute='_compute_is_picking_contract', search='_search_is_picking_contract')
-    invoice_limit_hours = fields.Float('Invoice limit hours', digits=(7, 2))
-    invoice_by_high = fields.Boolean('Invoice by high', default=True)
     analytic_distribution_id = fields.Many2one('account.analytic.distribution','Analytic Distribution')
     address_tramit_id = fields.Many2one('res.partner', "Tramit address")
     partner_name = fields.Char('Partner name', related='partner_id.name', readonly=True, store=True)
@@ -232,122 +230,6 @@ class AccountAnalyticAccount(models.Model):
         vals.update({'delegation_id': self.delegation_id and self.delegation_id.id or False})
         invoice_id.write(vals)
         return
-
-    def _get_duration(self, cr, uid, analytic, concept, end_date):
-        """returns an add of occupations duration in analytic account in currently month"""
-        analytic_obj = self.pool.get('account.analytic.account').browse(cr, uid, analytic)
-        start_date = concept.last_invoice_date and datetime.strptime(concept.last_invoice_date + " 00:00:00", "%Y-%m-%d %H:%M:%S") + relativedelta(days=+1) or datetime.strptime(analytic_obj.date_start + " 00:00:00", "%Y-%m-%d %H:%M:%S")
-        day, days = calendar.monthrange(end_date.year, end_date.month)
-        user = self.pool.get('res.users').browse(cr, uid, uid)
-        #end_date = datetime.now()
-        SUNDAY_RULE = "FREQ=WEEKLY;BYDAY=SU;INTERVAL=1;UNTIL=" + end_date.strftime("%Y%m%dT%H%M%S")
-        SATURDAY_RULE = "FREQ=WEEKLY;BYDAY=SA;INTERVAL=1;UNTIL=" + end_date.strftime("%Y%m%dT%H%M%S")
-        exceptions = []
-        if concept._get_except_months()[concept.id]:
-            EXCEPT_MONTHS_RULE = "FREQ=DAILY;BYMONTH=" + ",".join([str(x) for x in concept._get_except_months()[concept.id]]) + ";INTERVAL=1;UNTIL=" + end_date.strftime("%Y%m%dT%H%M%S")
-            rset2 = rrule.rrulestr(EXCEPT_MONTHS_RULE, dtstart=start_date, forceset=True)
-            exceptions = map(lambda x:x.strftime('%Y-%m-%d'), rset2._iter())
-
-        rset1 = rrule.rrulestr(SUNDAY_RULE, dtstart=start_date, forceset=True) #search sunday date in the period
-        rset3 = rrule.rrulestr(SATURDAY_RULE, dtstart=start_date, forceset=True) #search saturday date in the period
-        sundays = map(lambda x:x.strftime('%Y-%m-%d'), rset1._iter())
-        saturdays = map(lambda x:x.strftime('%Y-%m-%d'), rset3._iter())
-
-        duration = 0.0
-        holiday_duration = 0.0
-        sunday_duration = 0.0
-        saturday_duration = 0.0
-        diff_exceptions = 0.0
-        total_hours = 0.0
-        holidays = []
-        occupations_ids = self.pool.get('account.analytic.occupation').search(cr, uid, [('analytic_account_id', '=', analytic), ('date', '>=', start_date.strftime("%Y-%m-%d")), ('date', '<=', end_date.strftime("%Y-%m-%d")), ('state', 'in', ['active', 'replacement'])])
-        if occupations_ids:
-            occupation = self.pool.get('account.analytic.occupation').read(cr, uid, occupations_ids[0], ['employee_id', 'date', 'location_id', 'state_id', 'region_id'])
-            tmp_start_date = start_date.strftime("%Y-%m-%d")
-            tmp_end_date = end_date.strftime("%Y-%m-%d")
-            for holiday in self.pool.get('hr.holiday').get_holidays_dates(cr, uid, [occupation['employee_id'][0]], occupation.get('location_id', False) and occupation['location_id'][0] or False, occupation.get('state_id', False) and occupation['state_id'][0] or False, occupation.get('region_id', False) and occupation['region_id'][0] or False)[occupation['employee_id'][0]]:
-                if holiday >= tmp_start_date and holiday <= tmp_end_date:
-                    holidays.append(holiday)
-        for occupation in self.pool.get('account.analytic.occupation').read(cr, uid, occupations_ids, ['employee_id', 'date', 'location_id', 'state_id', 'region_id', 'parent_occupation_id', 'to_invoice']):
-            occupation_date = occupation['date'][:10]
-            hours, minutes, seconds = occupation['date'][11:].split(":")
-            occupation_hour = int(hours) + (((int(minutes) * 60.0 + int(seconds)) / 60.0) / 60.0)
-            #holidays = self.pool.get('hr.holiday').get_holidays_dates(cr, uid, [occupation['employee_id'][0]], occupation.get('location_id', False) and occupation['location_id'][0] or False, occupation.get('state_id', False) and occupation['state_id'][0] or False, occupation.get('region_id', False) and occupation['region_id'][0] or False)[occupation['employee_id'][0]]
-            if occupation.get('parent_occupation_id', False):
-                parent_occ = self.pool.get('account.analytic.occupation').browse(cr, uid, occupation['parent_occupation_id'][0])
-            else:
-                parent_occ = False
-
-            if occupation_date >= start_date.strftime("%Y-%m-%d") and occupation_date <= end_date.strftime("%Y-%m-%d") and occupation_date not in exceptions:
-                #check if it's holiday, checkingh if it's weekend or it's in employee holiday calendars
-                occupation_duration = self.pool.get('account.analytic.occupation').get_duration_to_invoice(cr, uid, occupation['id'])
-
-                if occupation_date in sundays:
-                    if concept.sunday_amount or concept.holyday_amount:
-                        sunday_duration += occupation_duration
-                        total_hours += occupation_duration
-                elif occupation_date in holidays:
-                    if concept.holyday_amount:
-                        holiday_duration += occupation_duration
-                        total_hours += occupation_duration
-                elif occupation_date in saturdays and occupation_hour >= user.company_id.afternoon_time:
-                    saturday_duration += occupation_duration
-                    total_hours += occupation_duration
-                else:
-                    duration += occupation_duration
-                    total_hours += occupation_duration
-
-                if parent_occ and occupation.get('to_invoice', False):
-                    diff_exceptions += (parent_occ.duration - occupation_duration)
-
-                if analytic_obj.invoice_limit_hours and not analytic_obj.invoice_by_high and (analytic_obj.invoice_limit_hours - diff_exceptions) < total_hours:
-                    rest = total_hours - (analytic_obj.invoice_limit_hours - diff_exceptions)
-                    if occupation_date in sundays and sunday_concept_ids:
-                        sunday_duration -= rest
-                        total_hours -= rest
-                    elif occupation_date in holidays and holiday_concept_ids:
-                        holiday_duration -= rest
-                        total_hours -= rest
-                    elif occupation_date in saturdays and occupation_hour >= user.company_id.afternoon_time:
-                        saturday_duration -= rest
-                        total_hours -= rest
-                    else:
-                        duration -= rest
-                        total_hours -= rest
-
-        if analytic_obj.invoice_limit_hours and analytic_obj.invoice_by_high:
-            hours_limit = analytic_obj.invoice_limit_hours - diff_exceptions
-            if total_hours > hours_limit:
-                to_remove_hours = total_hours - hours_limit
-                if duration >= to_remove_hours:
-                    duration -= to_remove_hours
-                else:
-                    to_remove_hours -= duration
-                    duration = 0.0
-                    if saturday_duration >= to_remove_hours:
-                        saturday_duration -= to_remove_hours
-                    else:
-                        to_remove_hours -= saturday_duration
-                        saturday_duration = 0.0
-                        if sunday_duration >= to_remove_hours:
-                            sunday_duration -= to_remove_hours
-                        else:
-                            to_remove_hours -= sunday_duration
-                            sunday_duration = 0.0
-                            if holiday_duration >= to_remove_hours:
-                                holiday_duration -= to_remove_hours
-                            else:
-                                holiday_duration = 0.0
-                                duration = 0.0
-                                saturday_duration = 0.0
-                                sunday_duration = 0.0
-
-        invoice_limit_hours = analytic_obj.invoice_limit_hours - diff_exceptions
-        if analytic_obj.invoice_limit_hours and invoice_limit_hours > total_hours:
-            suma = invoice_limit_hours - total_hours
-            duration += suma
-        return duration, holiday_duration, sunday_duration, saturday_duration
-
 
     @api.model
     def __group_by_product_lines(self, ref_line, grouped_lines):
