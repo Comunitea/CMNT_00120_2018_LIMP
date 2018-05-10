@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #       * limp_sale
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.4\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2016-03-28 16:49+0000\n"
-"PO-Revision-Date: 2016-03-28 16:49+0000\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-10 16:28+0000\n"
+"PO-Revision-Date: 2018-05-10 16:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,26 +16,369 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: limp_sale
-#: model:ir.model,name:limp_sale.model_limp_contract
-msgid "Limpergal Contracts"
-msgstr "Contratos Limpergal"
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<b>- Muy importante:</b>"
+msgstr "<b>- Muy importante:</b>"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<b>- Observaciones:</b>"
+msgstr "<b>- Observaciones:</b>"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<span>Impuestos :</span>"
+msgstr "<span>Impuestos :</span>"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<span>Presupuesto N° </span>"
+msgstr "<span>Presupuesto N° </span>"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<span>Total neto :</span>"
+msgstr "<span>Total neto :</span>"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<strong>Forma de pago:</strong>"
+msgstr "<strong>Forma de pago:</strong>"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<strong>Total :</strong>"
+msgstr "<strong>Total :</strong>"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<strong>Validez oferta:</strong>"
+msgstr "<strong>Validez oferta:</strong>"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_an
+#: report:sale.order.freq.table:0
+msgid "AN"
+msgstr "AN"
 
 #. module: limp_sale
 #: report:sale.order.freq.table:0
-#: field:task.frequency,ju:0
+msgid "AN - Anual"
+msgstr "AN - Anual"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Aceptación y conformidad de la oferta"
+msgstr "Aceptación y conformidad de la oferta"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_address_id
+msgid "Address"
+msgstr "Dirección"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_amount_tax_periodicity
+msgid "Amount Tax w/ Periodicity"
+msgstr "Impuestos con periodicidad"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_amount_total_periodicity
+msgid "Amount Total w/ Periodicity"
+msgstr "Importe total con periodicidad"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_amount_untaxed_periodicity
+msgid "Amount Untaxed w/ Periodicity"
+msgstr "Base imponible con periodicidad"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_line_amount_tax
+msgid "Amount tax"
+msgstr "Importe impuestos"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_analytic_distribution_id
+msgid "Analytic Distribution"
+msgstr "Distribución analítica"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_an
+msgid "Anual"
+msgstr "Anual"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.stock_service_picking_form_add_sale_id
+#: model:ir.ui.view,arch_db:limp_sale.stock_sporadic_service_picking_form_add_pricelist_changes
+msgid "Associated sale lines"
+msgstr "Lineas de venta asociadas"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_bt
+#: report:sale.order.freq.table:0
+msgid "BT"
+msgstr "BT"
+
+#. module: limp_sale
+#: report:sale.order.freq.table:0
+msgid "BT - Bimestral"
+msgstr "BT - Bimestral"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_bt
+msgid "Bimestral"
+msgstr "Bimestral"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_ct
+#: report:sale.order.freq.table:0
+msgid "CT"
+msgstr "CT"
+
+#. module: limp_sale
+#: report:sale.order.freq.table:0
+msgid "CT - Cuatrimestral"
+msgstr "CT - Cuatrimestral"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Cantidad"
+msgstr "Cantidad"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_center_type_id
+msgid "Center type"
+msgstr "Tipo de centro"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.view_create_service_pick_wzd
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.view_sales_order_filter_add_sec_filter_groups
+msgid "Company"
+msgstr "Compañía"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_concept_amount
+msgid "Concepts amount"
+msgstr "Importe conceptos"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_contract_ids
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Contracts"
+msgstr "Contratos"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_line_purchase_price
+msgid "Cost"
+msgstr "Coste"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_location_id
+msgid "Council"
+msgstr "Localidad"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.view_create_service_pick_wzd
+msgid "Create"
+msgstr "Crear"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Create Service order"
+msgstr "Crear órden de servicio"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Create contract"
+msgstr "Crear contrato"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Create pick"
+msgstr "Crear albarán"
+
+#. module: limp_sale
+#: model:ir.actions.act_window,name:limp_sale.action_view_create_service_pick_wzd
+msgid "Create service picking"
+msgstr "Crear albarán de servicio"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_created_service_order
+msgid "Created Service order"
+msgstr "Orden de servicio creada"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_created_service_pick
+msgid "Created Service pick"
+msgstr "Albarán de servicio creado"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_create_uid
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_create_uid
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_created_contract
+msgid "Created contract"
+msgstr "Contrato creado"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_create_date
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_create_date
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_ct
+msgid "Cuatrimestral"
+msgstr "Cuatrimestral"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_do
+#: report:sale.order.freq.table:0
+msgid "DO"
+msgstr "DO"
+
+#. module: limp_sale
+#: report:sale.order.freq.table:0
+msgid "DO - Domingo"
+msgstr "DO - Domingo"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_delegation_id
+#: model:ir.ui.view,arch_db:limp_sale.view_sales_order_filter_add_sec_filter_groups
+msgid "Delegation"
+msgstr "Delegación"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_department_id
+#: model:ir.ui.view,arch_db:limp_sale.view_sales_order_filter_add_sec_filter_groups
+msgid "Department"
+msgstr "Departamento"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Desc.(%)"
+msgstr "Desc.(%)"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Descripción"
+msgstr "Descripción"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_display_name
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_display_name
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_do
+msgid "Domingo"
+msgstr "Domingo"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_validity_Date
+msgid "End of validity"
+msgstr "Fin de validez"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Firma y Sello Responsable pedido:"
+msgstr "Firma y Sello Responsable pedido:"
+
+#. module: limp_sale
+#: model:ir.actions.report.xml,name:limp_sale.sale_frequencey_table
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Frequency table"
+msgstr "Tabla de frecuencia"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_header_notes
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Header notes"
+msgstr "Notas cabecera"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_id
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_id_15181
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_id
+msgid "ID"
+msgstr "ID"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Importe IVA"
+msgstr "Importe IVA"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_invoice_ids
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_is_contract
+msgid "Is contract"
+msgstr "Es contrato"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_is_picking
+msgid "Is picking"
+msgstr "Es albarán"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_is_picking_in_contract
+msgid "Is picking in contract"
+msgstr "Es albarán en contrato"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_sale_order_margin
+msgid "It gives profitability by calculating the difference between the Unit Price and the cost."
+msgstr "Devuelve el beneficio calculando la diferencia entre el precio unidad y el coste."
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_ju
+#: report:sale.order.freq.table:0
 msgid "JU"
 msgstr "JU"
 
 #. module: limp_sale
-#: help:task.frequency,qc:0
-msgid "Quincenal"
-msgstr "Quincenal"
+#: report:sale.order.freq.table:0
+msgid "JU - Jueves"
+msgstr "JU - Jueves"
 
 #. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_ju
+msgid "Jueves"
+msgstr "Jueves"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_lu
 #: report:sale.order.freq.table:0
-#: field:task.frequency,bt:0
-msgid "BT"
-msgstr "BT"
+msgid "LU"
+msgstr "LU"
 
 #. module: limp_sale
 #: report:sale.order.freq.table:0
@@ -43,98 +386,51 @@ msgid "LU - Lunes"
 msgstr "LU - Lunes"
 
 #. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale___last_update
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity___last_update
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency___last_update
+msgid "Last Modified on"
+msgstr "Última Modifiación en"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_write_uid
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_write_uid
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_write_date
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_write_date
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_limp_contract
+msgid "Limpergal Contracts"
+msgstr "Contratos Limpergal"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Load tasks"
+msgstr "Cargar tareas"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_lu
+msgid "Lunes"
+msgstr "Lunes"
+
+#. module: limp_sale
 #: report:sale.order.freq.table:0
-msgid "MI - Miércoles"
-msgstr "MI - Miércoles"
+msgid "M - Mensual"
+msgstr "M - Mensual"
 
 #. module: limp_sale
-#: view:price.rule:0
-msgid "Price rule"
-msgstr "Regla precio"
-
-#. module: limp_sale
-#: field:print.product.pricelist,price_list:0
-msgid "PriceList"
-msgstr "Tarifa"
-
-#. module: limp_sale
-#: field:sale.order,task_frequency_ids:0
-msgid "Task Frequency"
-msgstr "Frecuencia tarea"
-
-#. module: limp_sale
-#: field:price.rule,province:0
-msgid "Province"
-msgstr "Provincia"
-
-#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_ma
 #: report:sale.order.freq.table:0
-msgid "VI - Viernes"
-msgstr "VI - Viernes"
-
-#. module: limp_sale
-#: sql_constraint:sale.order:0
-msgid "Order Reference must be unique !"
-msgstr "¡La referencia del pedido debe ser única!"
-
-#. module: limp_sale
-#: model:ir.module.module,shortdesc:limp_sale.module_meta_information
-msgid "Limpergal budgets"
-msgstr "Presupuestos Limpergal"
-
-#. module: limp_sale
-#: view:sale.order:0
-msgid "Company"
-msgstr "Compañía"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_create_service_picking_from_sale
-msgid "create.service.picking.from.sale"
-msgstr "create.service.picking.from.sale"
-
-#. module: limp_sale
-#: model:ir.module.module,description:limp_sale.module_meta_information
-msgid "Add budget model for Limpergal."
-msgstr "Añade un modelo de presupuesto para Limpergal."
-
-#. module: limp_sale
-#: view:sale.order:0
-msgid "Create pick"
-msgstr "Crear albarán"
-
-#. module: limp_sale
-#: help:task.frequency,bt:0
-msgid "Bimestral"
-msgstr "Bimestral"
-
-#. module: limp_sale
-#: code:addons/limp_sale/sale_order.py:154
-#, python-format
-msgid "Not department defined for this sale order"
-msgstr "Sin departamento definido para esta venta"
-
-#. module: limp_sale
-#: field:task.frequency,task_id:0
-msgid "Task"
-msgstr "Tarea"
-
-#. module: limp_sale
-#: help:task.frequency,mi:0
-msgid "Miércoles"
-msgstr "Miércoles"
-
-#. module: limp_sale
-#: field:sale.order,center_type_id:0
-msgid "Center type"
-msgstr "Tipo centro"
-
-#. module: limp_sale
-#: field:limp.contract,sale_id:0
-#: field:stock.service.picking,sale_id:0
-#: field:task.frequency,sale_id:0
-#: field:waste.service,sale_id:0
-msgid "Sale"
-msgstr "Venta"
+msgid "MA"
+msgstr "MA"
 
 #. module: limp_sale
 #: report:sale.order.freq.table:0
@@ -142,31 +438,172 @@ msgid "MA - Martes"
 msgstr "MA - Martes"
 
 #. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_mi
 #: report:sale.order.freq.table:0
-msgid "TR - Trimestral"
-msgstr "TR - Trimestral"
+msgid "MI"
+msgstr "MI"
 
 #. module: limp_sale
-#: view:stock.service.picking:0
-msgid "Sale order lines"
-msgstr "Lineas de venta"
+#: report:sale.order.freq.table:0
+msgid "MI - Miércoles"
+msgstr "MI - Miércoles"
 
 #. module: limp_sale
-#: code:addons/limp_sale/sale_order.py:154
+#: selection:create.service.picking.from.sale,picking_type:0
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_maintenance_task_ids
+msgid "Maintenance tasks"
+msgstr "Tareas de mantenimiento"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_line_margin
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_margin
+msgid "Margin"
+msgstr "Margen"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_ma
+msgid "Martes"
+msgstr "Martes"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_m
+msgid "Mensual"
+msgstr "Mensual"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_mi
+msgid "Miércoles"
+msgstr "Miércoles"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_multiplier
+msgid "Multiplier"
+msgstr "Multiplicador"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_sale_order_periodicity_id
+msgid "Multiply total amount by periodicity value"
+msgstr "Multiplica el importe total por el valor de la periocidad"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: limp_sale
+#: code:addons/limp_sale/models/sale_order.py:82
 #, python-format
-msgid "Error!"
-msgstr "¡Error!"
+msgid "Not department defined for this sale order"
+msgstr "Sin departemento definido para esta venta"
 
 #. module: limp_sale
-#: code:addons/limp_sale/product_pricelist.py:67
-#, python-format
-msgid "Warning !"
-msgstr "¡Aviso!"
+#: report:sale.order.freq.table:0
+msgid "Nº Presupuesto -"
+msgstr "Nº Presupuesto -"
 
 #. module: limp_sale
-#: view:create.service.picking.from.sale:0
-msgid "Select the service picking type to create:"
-msgstr "Seleccione el tipo de albarán de servicio a crear:"
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Nº cuenta _______________________________"
+msgstr "Nº cuenta _______________________________"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_stock_service_picking_sale_line_ids
+msgid "Order Lines"
+msgstr "Líneas del pedido"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_partner_name
+msgid "Partner name"
+msgstr "Nombre de asociado"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.sale_order_periodicity_search
+#: model:ir.ui.view,arch_db:limp_sale.sale_order_periodicity_tree
+msgid "Periodicities"
+msgstr "Periodicidades"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_id
+#: model:ir.ui.view,arch_db:limp_sale.sale_order_periodicity_form
+msgid "Periodicity"
+msgstr "Periodicidad"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Precio unidad"
+msgstr "Precio unidad"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_service_picking_other_concepts_rel_price_unit
+msgid "Price Unit"
+msgstr "Precio unidad"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_price_rule
+msgid "Price rules"
+msgstr "Reglas precios"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_product_pricelist
+#: model:ir.ui.view,arch_db:limp_sale.view_create_service_pick_wzd
+msgid "Pricelist"
+msgstr "Tarifa"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_print_product_pricelist
+msgid "Print product pricelist"
+msgstr "Imprimir tarifas productos"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_privacy
+msgid "Privacy"
+msgstr "Privacidad"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_state_id
+msgid "Province"
+msgstr "Provincia"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_qc
+#: report:sale.order.freq.table:0
+msgid "QC"
+msgstr "QC"
+
+#. module: limp_sale
+#: report:sale.order.freq.table:0
+msgid "QC - Quincenal"
+msgstr "QC - Quincenal"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_qc
+msgid "Quincenal"
+msgstr "Quincenal"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Responsable:"
+msgstr "Responsable:"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_rounding
+msgid "Round"
+msgstr "Redondear"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_s_n
+#: report:sale.order.freq.table:0
+msgid "S/N"
+msgstr "S/N"
 
 #. module: limp_sale
 #: report:sale.order.freq.table:0
@@ -174,14 +611,57 @@ msgid "S/N - Según necesidad"
 msgstr "S/N - Según necesidad"
 
 #. module: limp_sale
-#: field:sale.order.line,tax_amount:0
-msgid "Tax amount"
-msgstr "Importe impuestos"
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_sa
+#: report:sale.order.freq.table:0
+msgid "SA"
+msgstr "SA"
 
 #. module: limp_sale
-#: model:ir.actions.act_window,name:limp_sale.action_view_create_service_pick_wzd
-msgid "Create service picking"
-msgstr "Crear albarán de servicio"
+#: report:sale.order.freq.table:0
+msgid "SA - Sábado"
+msgstr "SA - Sábado"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_sm
+#: report:sale.order.freq.table:0
+msgid "SM"
+msgstr "SM"
+
+#. module: limp_sale
+#: report:sale.order.freq.table:0
+msgid "SM - Semanal"
+msgstr "SM - Semanal"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_st
+#: report:sale.order.freq.table:0
+msgid "ST"
+msgstr "ST"
+
+#. module: limp_sale
+#: report:sale.order.freq.table:0
+msgid "ST - Semestral"
+msgstr "ST - Semestral"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_limp_contract_sale_id
+#: model:ir.model.fields,field_description:limp_sale.field_stock_service_picking_sale_id
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_sale_id
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_sale_id
+msgid "Sale"
+msgstr "Venta"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.stock_service_picking_form_add_sale_id
+#: model:ir.ui.view,arch_db:limp_sale.stock_sporadic_service_picking_form_add_pricelist_changes
+msgid "Sale order lines"
+msgstr "Lineas de venta"
+
+#. module: limp_sale
+#: model:ir.actions.act_window,name:limp_sale.action_sale_order_periodicity
+#: model:ir.ui.menu,name:limp_sale.menu_sale_order_periodicity_open
+msgid "Sale order periodicities"
+msgstr "Periodicidades ventas"
 
 #. module: limp_sale
 #: model:ir.model,name:limp_sale.model_sale_order
@@ -194,403 +674,75 @@ msgid "Sales Order Line"
 msgstr "Línea pedido de venta"
 
 #. module: limp_sale
-#: model:ir.actions.act_window,name:limp_sale.action_price_rule
-#: model:ir.model,name:limp_sale.model_price_rule
-#: model:ir.ui.menu,name:limp_sale.menu_price_rule_open
-#: view:price.rule:0
-#: view:product.product:0
-#: field:product.product,price_rule_ids:0
-msgid "Price rules"
-msgstr "Reglas precios"
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_s_n
+msgid "Según Necesidad"
+msgstr "Según Necesidad"
 
 #. module: limp_sale
-#: view:sale.order:0
-msgid "Create contract"
-msgstr "Crear contrato"
+#: model:ir.ui.view,arch_db:limp_sale.view_create_service_pick_wzd
+msgid "Select the service picking type to create:"
+msgstr "Seleccione el tipo de albarán de servicio a crear:"
 
 #. module: limp_sale
-#: field:sale.order,show_total:0
-msgid "Show total in report"
-msgstr "Mostrar totales en informe"
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_sm
+msgid "Semanal"
+msgstr "Semanal"
 
 #. module: limp_sale
-#: view:sale.order:0
-#: field:sale.order,contract_ids:0
-msgid "Contracts"
-msgstr "Contratos"
-
-#. module: limp_sale
-#: field:sale.order,created_service_pick:0
-msgid "Created Service pick"
-msgstr "Albarán servicio creado"
-
-#. module: limp_sale
-#: field:account.invoice,department_id:0
-#: view:sale.order:0
-#: field:sale.order,department_id:0
-msgid "Department"
-msgstr "Departamento"
-
-#. module: limp_sale
-#: view:price.rule:0
-#: field:print.product.pricelist,state_id:0
-msgid "State"
-msgstr "Provincia"
-
-#. module: limp_sale
-#: view:print.product.pricelist:0
-msgid "Calculate Product Price per unit base on price rules."
-msgstr "Calcula el precio del producto por unidad base sobre las reglas de precios."
-
-#. module: limp_sale
-#: view:create.service.picking.from.sale:0
-msgid "Create"
-msgstr "Crear"
-
-#. module: limp_sale
-#: view:print.product.pricelist:0
-msgid "Print"
-msgstr "Print"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "JU - Jueves"
-msgstr "JU - Jueves"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "CT - Cuatrimestral"
-msgstr "CT - Cuatrimestral"
-
-#. module: limp_sale
-#: help:task.frequency,lu:0
-msgid "Lunes"
-msgstr "Lunes"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "SA - Sábado"
-msgstr "SA - Sábado"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_service_picking_invoice_concept
-msgid "service.picking.invoice.concept"
-msgstr "service.picking.invoice.concept"
-
-#. module: limp_sale
-#: field:sale.order,validity_date:0
-msgid "End of validity"
-msgstr "Fin validez"
-
-#. module: limp_sale
-#: help:task.frequency,ju:0
-msgid "Jueves"
-msgstr "Jueves"
-
-#. module: limp_sale
-#: view:sale.order:0
-msgid "Other Information"
-msgstr "Otra información"
-
-#. module: limp_sale
-#: view:create.service.picking.from.sale:0
-#: model:ir.model,name:limp_sale.model_product_pricelist
-#: view:print.product.pricelist:0
-msgid "Pricelist"
-msgstr "Tarifa"
-
-#. module: limp_sale
-#: help:task.frequency,ma:0
-msgid "Martes"
-msgstr "Martes"
-
-#. module: limp_sale
-#: help:task.frequency,do:0
-msgid "Domingo"
-msgstr "Domingo"
-
-#. module: limp_sale
-#: model:ir.actions.act_window,name:limp_sale.action_sale_order_periodicity
-#: model:ir.ui.menu,name:limp_sale.menu_sale_order_periodicity_open
-msgid "Sale order periodicities"
-msgstr "Periodicidades ventas"
-
-#. module: limp_sale
-#: view:sale.order:0
-msgid "Order Date"
-msgstr "Fecha pedido"
-
-#. module: limp_sale
-#: help:task.frequency,tr:0
-msgid "Trimestral"
-msgstr "Trimestral"
-
-#. module: limp_sale
-#: view:sale.order:0
-#: field:sale.order,very_important_text:0
-msgid "Very important"
-msgstr "Muy importante"
-
-#. module: limp_sale
-#: field:price.rule,range:0
-msgid "Range"
-msgstr "Rango"
-
-#. module: limp_sale
-#: view:sale.order:0
-#: field:sale.order,service_order_ids:0
-msgid "Service orders"
-msgstr "Órdenes de servicio"
-
-#. module: limp_sale
-#: field:sale.order,created_contract:0
-msgid "Created contract"
-msgstr "Contrato creado"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_res_users
-msgid "res.users"
-msgstr "res.usuarios"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_task_frequency
-msgid "o2m to limp.contract.task"
-msgstr "o2m to limp.contract.task"
-
-#. module: limp_sale
-#: field:sale.order,margin:0
-#: field:sale.order.line,margin:0
-msgid "Margin"
-msgstr "Margen"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,sa:0
-msgid "SA"
-msgstr "SA"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,ma:0
-msgid "MA"
-msgstr "MA"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_print_product_pricelist
-msgid "Print product pricelist"
-msgstr "Imprimir tarifas productos"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,mi:0
-msgid "MI"
-msgstr "MI"
-
-#. module: limp_sale
-#: view:price.rule:0
-msgid "Group by..."
-msgstr "Agrupar por..."
-
-#. module: limp_sale
-#: help:task.frequency,ct:0
-msgid "Cuatrimestral"
-msgstr "Cuatrimestral"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "Tarea"
-msgstr "Tarea"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "SM - Semanal"
-msgstr "SM - Semanal"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "BT - Bimestral"
-msgstr "BT - Bimestral"
-
-#. module: limp_sale
-#: help:task.frequency,st:0
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_st
 msgid "Semestral"
 msgstr "Semestral"
 
 #. module: limp_sale
-#: view:product.product:0
-msgid "Information"
-msgstr "Información"
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_sequence
+msgid "Sequence"
+msgstr "Secuencia"
 
 #. module: limp_sale
-#: field:print.product.pricelist,qty1:0
-msgid "Quantity-1"
-msgstr "Cantidad-1"
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_service_order_ids
+msgid "Service orders"
+msgstr "Órdenes de servicio"
 
 #. module: limp_sale
-#: constraint:res.users:0
-msgid "The chosen company is not in the allowed companies for this user"
-msgstr "La compañía seleccionada no está en las compañías permitidas para este usuario"
+#: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_picking_type
+msgid "Service picking type"
+msgstr "Tipo de albarán de servicio"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_stock_service_picking
+msgid "Service pickings"
+msgstr "Albaranes servicio"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_show_total
+msgid "Show total in report"
+msgstr "Mostrar total en el informe"
 
 #. module: limp_sale
 #: selection:create.service.picking.from.sale,picking_type:0
-msgid "Maintenance"
-msgstr "Mantenimiento"
+msgid "Sporadic"
+msgstr "Esporádico"
 
 #. module: limp_sale
-#: code:addons/limp_sale/product_pricelist.py:66
-#, python-format
-msgid "At least one pricelist has no active version !\n"
-"Please create or activate one."
-msgstr "¡Al menos una tarifa no tiene una versión activada!\n"
-"Por favor, cree o active una."
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "Subtotal"
+msgstr "Subtotal"
 
 #. module: limp_sale
-#: help:print.product.pricelist,state_id:0
-msgid "Filter prices by state."
-msgstr "Filtrar precios por provincia."
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_waste_service
-msgid "Waste services"
-msgstr "Servicios residuos"
-
-#. module: limp_sale
-#: field:sale.order.periodicity,multiplier:0
-msgid "Multiplier"
-msgstr "Multiplicador"
-
-#. module: limp_sale
-#: help:sale.order,margin:0
-msgid "It gives profitability by calculating the difference between the Unit Price and Cost Price of Prices rules."
-msgstr "Esto nos devuelve la rentabilidad calculada por la diferencia entre el Precio unidad y el Precio de coste de las Reglas de precio."
-
-#. module: limp_sale
-#: field:price.rule,cost_price:0
-#: field:sale.order.line,purchase_price:0
-msgid "Cost Price"
-msgstr "Precio de coste"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_account_invoice
-msgid "Facturas"
-msgstr "Facturas"
-
-#. module: limp_sale
-#: view:sale.order:0
-#: field:sale.order,header_notes:0
-msgid "Header notes"
-msgstr "Notas cabecera"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,s_n:0
-msgid "S/N"
-msgstr "S/N"
-
-#. module: limp_sale
-#: field:sale.order.periodicity,rounding:0
-msgid "Round"
-msgstr "Redondear"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_service_picking_other_concepts_rel
-msgid "service.picking.other.concepts.rel"
-msgstr "service.picking.other.concepts.rel"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,ct:0
-msgid "CT"
-msgstr "CT"
-
-#. module: limp_sale
-#: field:sale.order,periodicity_id:0
-msgid "Periodicity"
-msgstr "Periodicidad"
-
-#. module: limp_sale
-#: help:task.frequency,sa:0
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_sa
 msgid "Sábado"
 msgstr "Sábado"
 
 #. module: limp_sale
-#: help:task.frequency,m:0
-msgid "Mensual"
-msgstr "Mensual"
-
-#. module: limp_sale
-#: sql_constraint:res.users:0
-msgid "You can not have two users with the same login !"
-msgstr "¡No puede tener dos usuarios con el mismo identificador de usuario!"
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_tr
+#: report:sale.order.freq.table:0
+msgid "TR"
+msgstr "TR"
 
 #. module: limp_sale
 #: report:sale.order.freq.table:0
-#: field:task.frequency,st:0
-msgid "ST"
-msgstr "ST"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,sm:0
-msgid "SM"
-msgstr "SM"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "QC - Quincenal"
-msgstr "QC - Quincenal"
-
-#. module: limp_sale
-#: view:create.service.picking.from.sale:0
-#: view:print.product.pricelist:0
-msgid "Close"
-msgstr "Cerrar"
-
-#. module: limp_sale
-#: field:stock.service.picking,sale_line_ids:0
-msgid "Order lines"
-msgstr "Lineas de venta"
-
-#. module: limp_sale
-#: field:sale.order,created_service_order:0
-msgid "Created Service order"
-msgstr "Órden de servicio creada"
-
-#. module: limp_sale
-#: field:print.product.pricelist,qty2:0
-msgid "Quantity-2"
-msgstr "Cantidad-2"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,do:0
-msgid "DO"
-msgstr "DO"
-
-#. module: limp_sale
-#: view:stock.service.picking:0
-msgid "Associated sale lines"
-msgstr "Lineas de venta asociadas"
-
-#. module: limp_sale
-#: field:print.product.pricelist,qty4:0
-msgid "Quantity-4"
-msgstr "Cantidad-4"
-
-#. module: limp_sale
-#: field:print.product.pricelist,qty5:0
-msgid "Quantity-5"
-msgstr "Cantidad-5"
-
-#. module: limp_sale
-#: view:sale.order.periodicity:0
-msgid "Periodicities"
-msgstr "Periodicidades"
-
-#. module: limp_sale
-#: help:task.frequency,an:0
-msgid "Anual"
-msgstr "Anual"
+msgid "TR - Trimestral"
+msgstr "TR - Trimestral"
 
 #. module: limp_sale
 #: report:sale.order.freq.table:0
@@ -599,67 +751,65 @@ msgstr "Tabla de frecuencias -"
 
 #. module: limp_sale
 #: report:sale.order.freq.table:0
-msgid "ST - Semestral"
-msgstr "ST - Semestral"
+msgid "Tarea"
+msgstr "Tarea"
 
 #. module: limp_sale
-#: field:sale.order,margin_percentage:0
-msgid "Profitability (%)"
-msgstr "Rentabilidad (%)"
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_task_id
+msgid "Task"
+msgstr "Tarea"
 
 #. module: limp_sale
-#: model:ir.actions.report.xml,name:limp_sale.sale_frequencey_table
-#: view:sale.order:0
-msgid "Frequency table"
-msgstr "Tabla de frecuencia"
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_task_frequency_ids
+msgid "Task Frequency"
+msgstr "Tabla de frecuencias"
 
 #. module: limp_sale
-#: help:task.frequency,vi:0
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Total"
+msgstr "Total"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_waste_service_address_tramit_id
+msgid "Tramit address"
+msgstr "Unidad tramitadora"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_tr
+msgid "Trimestral"
+msgstr "Trimestral"
+
+#. module: limp_sale
+#: model:ir.model,name:limp_sale.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_task_frequency_vi
+#: report:sale.order.freq.table:0
+msgid "VI"
+msgstr "VI"
+
+#. module: limp_sale
+#: report:sale.order.freq.table:0
+msgid "VI - Viernes"
+msgstr "VI - Viernes"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_very_important_text
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "Very important"
+msgstr "Muy importante"
+
+#. module: limp_sale
+#: model:ir.model.fields,help:limp_sale.field_task_frequency_vi
 msgid "Viernes"
 msgstr "Viernes"
 
 #. module: limp_sale
-#: view:sale.order:0
-msgid "Create Service order"
-msgstr "Crear órden de servicio"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_product_product
-#: view:price.rule:0
-#: field:price.rule,product_id:0
-msgid "Product"
-msgstr "Producto"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "Nº Presupuesto -"
-msgstr "Nº Presupuesto -"
-
-#. module: limp_sale
-#: field:task.frequency,description:0
-msgid "Description"
-msgstr "Descripción"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_sale_order_periodicity
-msgid "sale.order.periodicity"
-msgstr "sale.order.periodicity"
-
-#. module: limp_sale
-#: field:price.rule,price:0
-msgid "Price"
-msgstr "Precio"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "AN - Anual"
-msgstr "AN - Anual"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,tr:0
-msgid "TR"
-msgstr "TR"
+#: model:ir.model,name:limp_sale.model_waste_service
+msgid "Waste services"
+msgstr "Servicios residuos"
 
 #. module: limp_sale
 #: selection:create.service.picking.from.sale,picking_type:0
@@ -667,119 +817,31 @@ msgid "Wastes"
 msgstr "Residuos"
 
 #. module: limp_sale
-#: field:print.product.pricelist,qty3:0
-msgid "Quantity-3"
-msgstr "Cantidad-3"
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
+msgid "With periodicity"
+msgstr "Con periodicidad"
 
 #. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,lu:0
-msgid "LU"
-msgstr "LU"
+#: model:ir.model,name:limp_sale.model_create_service_picking_from_sale
+msgid "create.service.picking.from.sale"
+msgstr "create.service.picking.from.sale"
 
 #. module: limp_sale
-#: help:task.frequency,s_n:0
-msgid "Según Necesidad"
-msgstr "Según Necesidad"
+#: model:ir.model,name:limp_sale.model_task_frequency
+msgid "o2m to limp.contract.task"
+msgstr "o2m to limp.contract.task"
 
 #. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "DO - Domingo"
-msgstr "DO - Domingo"
+#: model:ir.model,name:limp_sale.model_sale_order_periodicity
+msgid "sale.order.periodicity"
+msgstr "sale.order.periodicity"
 
 #. module: limp_sale
-#: field:price.rule,name:0
-#: field:sale.order.periodicity,name:0
-msgid "Name"
-msgstr "Nombre"
+#: model:ir.model,name:limp_sale.model_service_picking_invoice_concept
+msgid "service.picking.invoice.concept"
+msgstr "service.picking.invoice.concept"
 
 #. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,vi:0
-msgid "VI"
-msgstr "VI"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,m:0
-msgid "M"
-msgstr "M"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,an:0
-msgid "AN"
-msgstr "AN"
-
-#. module: limp_sale
-#: help:task.frequency,sm:0
-msgid "Semanal"
-msgstr "Semanal"
-
-#. module: limp_sale
-#: field:service.picking.other.concepts.rel,price_unit:0
-msgid "Price Unit"
-msgstr "Precio unidad"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "a"
-msgstr "a"
-
-#. module: limp_sale
-#: field:create.service.picking.from.sale,picking_type:0
-msgid "Service picking type"
-msgstr "Tipo albarán servicio"
-
-#. module: limp_sale
-#: constraint:account.invoice:0
-msgid "Invoice date is previous to an existing invoice."
-msgstr "La fecha de la factura es anterior a una factura existente."
-
-#. module: limp_sale
-#: field:task.frequency,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-msgid "M - Mensual"
-msgstr "M - Mensual"
-
-#. module: limp_sale
-#: model:ir.model,name:limp_sale.model_stock_service_picking
-msgid "Service pickings"
-msgstr "Albaranes servicio"
-
-#. module: limp_sale
-#: field:account.invoice,delegation_id:0
-#: view:sale.order:0
-#: field:sale.order,delegation_id:0
-msgid "Delegation"
-msgstr "Delegación"
-
-#. module: limp_sale
-#: help:sale.order,periodicity_id:0
-msgid "Multiply total amount by periodicity value"
-msgstr "Multiplica el importe total por el valor de la periodicidad"
-
-#. module: limp_sale
-#: report:sale.order.freq.table:0
-#: field:task.frequency,qc:0
-msgid "QC"
-msgstr "QC"
-
-#. module: limp_sale
-#: constraint:product.product:0
-msgid "Error: Invalid ean code"
-msgstr "Error: Código EAN erróneo"
-
-#. module: limp_sale
-#: view:sale.order:0
-msgid "Load tasks"
-msgstr "Cargar tareas"
-
-#. module: limp_sale
-#: selection:create.service.picking.from.sale,picking_type:0
-msgid "Sporadic"
-msgstr "Esporádico"
+#: model:ir.model,name:limp_sale.model_service_picking_other_concepts_rel
+msgid "service.picking.other.concepts.rel"
+msgstr "service.picking.other.concepts.rel"

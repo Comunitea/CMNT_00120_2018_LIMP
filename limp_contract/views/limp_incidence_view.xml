@@ -63,9 +63,9 @@
                 </group>
                 <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Partner" icon="terp-folder-green" domain="[]" context="{'group_by':'partner_id'}"/>
-                    <filter string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
-                    <filter string="Department" icon="terp-folder-orange" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
                 </group>
             </search>
         </field>

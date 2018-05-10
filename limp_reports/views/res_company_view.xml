@@ -7,7 +7,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="java_path" position="after">
-                <group colspan="4">
+                <group colspan="4" col="4">
                     <separator string="Jasper report header" colspan="2"/>
                     <separator string="Jasper report footer" colspan="2"/>
                     <field name="jasper_report_header" nolabel="1" colspan="2"/>

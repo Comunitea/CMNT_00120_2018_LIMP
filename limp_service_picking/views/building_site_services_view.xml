@@ -117,10 +117,10 @@
                     </group>
                     <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Producer/Promoter" icon="terp-folder-green" domain="[]" context="{'group_by':'producer_promoter'}"/>
-                        <filter string="Holder/Builder" icon="terp-folder-green" domain="[]" context="{'group_by':'holder_builder'}"/>
-                        <filter string="Building site city" icon="terp-folder-green" domain="[]" context="{'group_by':'city_building_site'}"/>
-                        <filter string="Contact" icon="terp-folder-green" domain="[]" context="{'group_by':'contact_id'}"/>
+                        <filter string="Producer/Promoter" domain="[]" context="{'group_by':'producer_promoter'}"/>
+                        <filter string="Holder/Builder" domain="[]" context="{'group_by':'holder_builder'}"/>
+                        <filter string="Building site city" domain="[]" context="{'group_by':'city_building_site'}"/>
+                        <filter string="Contact" domain="[]" context="{'group_by':'contact_id'}"/>
                     </group>
                 </search>
             </field>

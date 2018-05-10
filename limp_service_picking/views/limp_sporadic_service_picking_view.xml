@@ -208,7 +208,7 @@
                                 <field name="amount_tax"/>
                                 <field name="amount_total"/>
                             </group>
-                            <button name="create_concept_lines" type="object" string="See Invoice Concepts" icon="gtk-undo" states="active,draft,cancelled"/>
+                            <button name="create_concept_lines" type="object" string="See Invoice Concepts" states="active,draft,cancelled"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -223,9 +223,9 @@
         <field name="arch" type="xml">
             <search string="Sporadic service pickings">
                 <group col="14" colspan="4">
-                    <filter icon="terp-camera_test" string="Current" domain="[('state','=','active')]" help="Active pickings"/>
-                    <filter icon="terp-folder-green" string="To invoice" domain="[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice')]" help="To invoice pickings"/>
-                    <filter icon="terp-camera_test" string="Planified" domain="[('planified','=',True)]" help="Planified pickings"/>
+                    <filter string="Current" domain="[('state','=','active')]" help="Active pickings"/>
+                    <filter string="To invoice" domain="[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice')]" help="To invoice pickings"/>
+                    <filter string="Planified" domain="[('planified','=',True)]" help="Planified pickings"/>
                     <separator orientation="vertical"/>
                     <field name="name" select="1"/>
                     <field name="partner_id"/>
@@ -238,9 +238,9 @@
                 </group>
                 <newline/>
                 <group expand="0" string="Extended Filters...">
-                    <filter string="Invoice delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'invoice_delegation_id'}"/>
-                    <filter string="Invoice department" icon="terp-folder-orange" domain="[]" context="{'group_by':'invoice_department_id'}"/>
-                    <filter string="Invoice responsible" icon="terp-partner" domain="[]" context="{'group_by':'invoice_responsible_id'}"/>
+                    <filter string="Invoice delegation" domain="[]" context="{'group_by':'invoice_delegation_id'}"/>
+                    <filter string="Invoice department" domain="[]" context="{'group_by':'invoice_department_id'}"/>
+                    <filter string="Invoice responsible" domain="[]" context="{'group_by':'invoice_responsible_id'}"/>
                     <separator orientation="vertical"/>
                     <field name="invoice_delegation_id"/>
                     <field name="invoice_department_id"/>
@@ -248,9 +248,9 @@
                </group>
                <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Delegation" icon="terp-folder-orange" domain="[]" context="{'group_by':'delegation_id'}"/>
-                    <filter string="Department" icon="terp-folder-orange" domain="[]" context="{'group_by':'department_id'}"/>
-                    <filter string="Partner" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
                 </group>
             </search>
         </field>

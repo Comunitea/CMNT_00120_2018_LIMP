@@ -77,10 +77,10 @@
                     <field name="department_id"/>
                     <newline/>
                     <group  expand='0' string='Group by...' groups="base.group_no_one">
-                       <filter string='Type' icon="terp-stock_symbol-selection" domain="[]" context="{'group_by' : 'expense_type'}" />
-                       <filter string='Vehicle' icon="terp-stock_symbol-selection" context="{'group_by' : 'fleet_id'}"/>
-                       <filter string='Supplier' icon="terp-partner" context="{'group_by' : 'partner_id'}"/>
-                       <filter string='Department' icon="terp-partner" context="{'group_by' : 'department_id'}"/>
+                       <filter string='Type' domain="[]" context="{'group_by' : 'expense_type'}" />
+                       <filter string='Vehicle' context="{'group_by' : 'fleet_id'}"/>
+                       <filter string='Supplier' context="{'group_by' : 'partner_id'}"/>
+                       <filter string='Department' context="{'group_by' : 'department_id'}"/>
                     </group>
                 </search>
             </field>

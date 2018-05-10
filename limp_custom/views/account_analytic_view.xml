@@ -25,7 +25,7 @@
                     <field name="type_analytic"/>
                 </field>
                 <filter name="group_date" position="after">
-                  <filter string="Type" context="{'group_by':'type_analytic'}" icon="terp-camera_test"/>
+                  <filter string="Type" context="{'group_by':'type_analytic'}"/>
                 </filter>
             </field>
         </record>

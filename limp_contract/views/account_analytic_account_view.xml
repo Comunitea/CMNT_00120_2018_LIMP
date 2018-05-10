@@ -21,9 +21,9 @@
         <field name="arch" type="xml">
             <filter name="inactive" position="after">
                 <separator orientation="vertical"/>
-                <filter icon="terp-dolar" string="Is contract" domain="[('is_contract','=',True)]" help="This account is contract"/>
-                <filter icon="terp-dolar" string="Is picking" domain="[('is_picking','=',True)]" help="This account is picking w/o contract"/>
-                <filter icon="terp-dolar" string="Is picking in contract" domain="[('is_picking_in_contract', '=', True)]" help="This account is picking with contract"/>
+                <filter string="Is contract" domain="[('is_contract','=',True)]" help="This account is contract"/>
+                <filter string="Is picking" domain="[('is_picking','=',True)]" help="This account is picking w/o contract"/>
+                <filter string="Is picking in contract" domain="[('is_picking_in_contract', '=', True)]" help="This account is picking with contract"/>
             </filter>
             <field name="partner_id" position="after">
                 <field name="privacy"/>

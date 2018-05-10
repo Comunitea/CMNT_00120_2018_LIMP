@@ -7,13 +7,14 @@
           <field name="type">form</field>
           <field name="arch" type="xml">
             <form string="Pricelist">
+                <group colspan="4" col="4">
                 <separator colspan="4" string="Select the service picking type to create:"/>
                 <field name="picking_type"/>
-                <separator colspan="4"/>
-                <group col="2" colspan="4">
-                     <button icon="gtk-cancel" special="cancel" string="Close"/>
-                     <button name="action_create_picking" string="Create"  type="object"  icon="gtk-print"/>
                 </group>
+                <footer>
+                     <button class="btn-default" special="cancel" string="Close"/>
+                     <button name="action_create_picking" string="Create"  type="object"  class="btn-primary"/>
+                </footer>
             </form>
           </field>
     </record>

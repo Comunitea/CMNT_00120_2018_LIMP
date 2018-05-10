@@ -46,7 +46,7 @@
         <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Container moves">
-                <filter icon="terp-go-home" string="Outputs" name="outputs" domain="[('move_type','=','out')]" help="Output moves"/>
+                <filter string="Outputs" name="outputs" domain="[('move_type','=','out')]" help="Output moves"/>
                 <separator orientation="vertical"/>
                 <field name="container_id"/>
                 <field name="address_id"/>
@@ -56,10 +56,10 @@
                 <field name="type"/>
                 <newline/>
                 <group expand="1" string="Group By..." >
-                    <filter string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'move_type'}"/>
-                    <filter string="Container" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'container_id'}"/>
-                    <filter string="Container type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}"/>
-                    <filter string="Driver" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'responsible_id'}"/>
+                    <filter string="Type" domain="[]" context="{'group_by':'move_type'}"/>
+                    <filter string="Container" domain="[]" context="{'group_by':'container_id'}"/>
+                    <filter string="Container type" domain="[]" context="{'group_by':'type'}"/>
+                    <filter string="Driver" domain="[]" context="{'group_by':'responsible_id'}"/>
                 </group>
             </search>
         </field>

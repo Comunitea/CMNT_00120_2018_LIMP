@@ -40,7 +40,7 @@
         <field name="type">search</field>
         <field name="arch" type="xml">
             <filter name="supplier" position="after">
-                <filter string="Manager" name="manager" icon="terp-personal" domain="[('destination_manager','=',1)]" help="Destination manager partner"/>
+                <filter string="Manager" name="manager" domain="[('destination_manager','=',1)]" help="Destination manager partner"/>
             </filter>
         </field>
     </record>

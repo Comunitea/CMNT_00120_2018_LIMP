@@ -30,37 +30,21 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     _order = "date_order desc"
 
-    '''def _amount_all(self, cr, uid, ids, field_name, arg, context=None):
-        cur_obj = self.pool.get('res.currency')
-        res = {}
-        for order in self.browse(cr, uid, ids, context=context):
-            res[order.id] = {
-                'amount_untaxed': 0.0,
-                'amount_tax': 0.0,
-                'amount_total': 0.0,
-                'margin':0.0,
-                'margin_percentage': 0.0
-            }
-            val = 0.0
-            val1 = 0.0
-            valmargin = 0.0
-            cur = order.pricelist_id.currency_id
-            for line in order.order_line:
-                val1 += line.price_subtotal
-                val += self._amount_line_tax(cr, uid, line, context=context)
-                valmargin += line.margin or 0.0
-            if order.periodicity_id:
-                val1 = val1 * order.periodicity_id.multiplier
-                val = val * order.periodicity_id.multiplier
-                if order.periodicity_id.rounding:
-                    val1 = round(val1,0)
-                    val = round(val,0)
-            res[order.id]['amount_tax'] = cur_obj.round(cr, uid, cur, val)
-            res[order.id]['amount_untaxed'] = cur_obj.round(cr, uid, cur, val1)
-            res[order.id]['amount_total'] = res[order.id]['amount_untaxed'] + res[order.id]['amount_tax']
-            res[order.id]['margin'] = cur_obj.round(cr, uid, cur, valmargin)
-            res[order.id]['margin_percentage'] = cur_obj.round(cr, uid, cur, ((res[order.id]['margin'] * 100.0) / (res[order.id]['amount_untaxed'] or 1.0)))
-        return res'''
+    @api.multi
+    def _get_amount_w_periodicity(self):
+        for sale in self:
+            if sale.periodicity_id:
+                untaxed = sale.amount_untaxed * sale.periodicity_id.multiplier
+                tax = sale.amount_tax * sale.periodicity_id.multiplier
+                if sale.periodicity_id.rounding:
+                    untaxed = round(untaxed, 0)
+                    tax = round(tax, 0)
+            else:
+                untaxed = sale.amount_untaxed
+                tax = sale.amount_tax
+            sale.amount_untaxed_periodicity = untaxed
+            sale.amount_tax_periodicity = tax
+            sale.amount_total_periodicity = untaxed + tax
 
     #'freq_table = fields.Text('Frequency table'),
     periodicity_id = fields.Many2one('sale.order.periodicity', 'Periodicity', help="Multiply total amount by periodicity value")
@@ -78,6 +62,9 @@ class SaleOrder(models.Model):
     header_notes = fields.Text('Header notes')
     show_total = fields.Boolean("Show total in report", default=True)
     name = fields.Char(default='/')
+    amount_total_periodicity = fields.Float("Amount Total w/ Periodicity", compute="_get_amount_w_periodicity")
+    amount_untaxed_periodicity = fields.Float("Amount Untaxed w/ Periodicity", compute="_get_amount_w_periodicity")
+    amount_tax_periodicity = fields.Float("Amount Tax w/ Periodicity", compute="_get_amount_w_periodicity")
 
     @api.model
     def create(self, vals):
@@ -154,15 +141,15 @@ class SaleOrder(models.Model):
     def create_service_order(self):
         vals = {
             'partner_id': self.partner_id.id,
-            'contact_id': self.partner_order_id.id,
+            'contact_id': self.partner_id.id,
             'address_invoice_id': self.partner_invoice_id.id,
             'company_id': self.company_id.id,
             'partner_shipping_id': self.partner_shipping_id.id,
             'sale_id': self.id,
-            'payment_term': self.payment_term and self.payment_term.id or False,
-            'payment_type': self.payment_type and self.payment_type.id or False,
-            'partner_bank_id': self.partner_bank and self.partner_bank.id or False,
-            'fiscal_position': self.fiscal_position and self.fiscal_position.id or False
+            'payment_term': self.payment_term_id and self.payment_term_id.id or False,
+            'payment_mode': self.payment_mode_id and self.payment_mode_id.id or False,
+            'fiscal_position': self.fiscal_position_id and self.fiscal_position_id.id or False
+            #'partner_bank_id': self.partner_bank and self.partner_bank.id or False,
         }
         service_order_id = self.env['waste.service'].create(vals)
         self.write({'created_service_order': True})
@@ -178,25 +165,24 @@ class SaleOrder(models.Model):
             'type': 'ir.actions.act_window',
             'nodestroy': True,
             'target': 'current',
-            'res_id': service_order_id
+            'res_id': service_order_id.id
         }
 
     def create_pick(self):
         vals = {
             'partner_id': self.partner_id.id,
-            'address_id': self.partner_order_id.id,
-            'contact_id': self.partner_order_id.id,
+            'address_id': self.partner_id.id,
+            'contact_id': self.partner_id.id,
             'address_invoice_id': self.partner_invoice_id.id,
             'company_id': self.company_id.id,
-            'partner_shipping_id': self.partner_shipping_id.id,
             'sale_id': self.id,
             'picking_type': self._context['picking_type'],
-            'payment_term': self.payment_term and self.payment_term.id or False,
-            'payment_type': self.payment_type and self.payment_type.id or False,
-            'partner_bank_id': self.partner_bank and self.partner_bank.id or False,
-            'fiscal_position': self.fiscal_position and self.fiscal_position.id or False,
+            'payment_term': self.payment_term_id and self.payment_term_id.id or False,
+            'payment_mode': self.payment_mode_id and self.payment_mode_id.id or False,
+            #'partner_bank_id': self.partner_bank and self.partner_bank.id or False,
             'delegation_id': self.delegation_id.id,
-            'department_id': self.department_id.id
+            'department_id': self.department_id.id,
+            'fiscal_position': self.fiscal_position_id and self.fiscal_position_id.id or False
         }
         if self._context['picking_type'] == "maintenance":
             vals["maintenance"] = True
@@ -217,40 +203,19 @@ class SaleOrder(models.Model):
             'res_model': 'stock.service.picking',
             'type': 'ir.actions.act_window',
             'target': 'current',
-            'res_id': service_pick_id
+            'res_id': service_pick_id.id
         }
 
 
-'''class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+class SaleOrderLine(models.Model):
 
-    def _product_margin(self, cr, uid, ids, field_name, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = 0
-            if line.product_id:
-                if line.purchase_price:
-                    res[line.id] = round((line.price_unit*line.product_uos_qty*(100.0-line.discount)/100.0) -(line.purchase_price*line.product_uos_qty), 2)
-                else:
-                    res[line.id] = round((line.price_unit*line.product_uos_qty*(100.0-line.discount)/100.0) -(line.product_id.standard_price*line.product_uos_qty), 2)
-        return res
+    _inherit = "sale.order.line"
 
-    def _get_tax_amount(self, cr, uid, ids, field_name, arg, context=None):
-        res = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            res[line.id] = self.pool.get('sale.order')._amount_line_tax(cr, uid, line, context=context)
+    @api.multi
+    def _get_amount_tax(self):
+        for line in self:
+            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+            taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty, product=line.product_id, partner=line.order_id.partner_shipping_id)
+            line.amount_tax = line.order_id.pricelist_id.currency_id.round(sum(t.get('amount', 0.0) for t in taxes.get('taxes', [])))
 
-        return res
-
-    _columns = {
-        'sequence': fields.integer('Sequence', help="Gives the sequence order when displaying a list of sales order lines."),
-        'margin': fields.function(_product_margin, string='Margin',
-              store = True, method=True),
-        'purchase_price': fields.float('Cost Price', digits=(16,2)),
-        'tax_amount': fields.function(_get_tax_amount, method=True,
-                                      string="Tax amount", type="float")
-    }
-    _order = 'sequence'
-    _defaults = {
-        'sequence': 1
-    }'''
+    amount_tax = fields.Float("Amount tax", compute="_get_amount_tax")

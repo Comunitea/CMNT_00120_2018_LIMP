@@ -16,8 +16,8 @@
                 <field name="state"/>
                 <field name="itinerary"/>
                 <field name="orig_address_id"/>
-                <button name="action_done" type="object" string="Done" states="draft" icon="terp-check"/>
-                <button name="action_reopen" type="object" string="Reopen" states="done" icon="gtk-convert"/>
+                <button name="action_done" type="object" string="Done" states="draft" icon="fa-check"/>
+                <button name="action_reopen" type="object" string="Reopen" states="done" icon="fa-undo"/>
             </tree>
         </field>
     </record>
@@ -29,7 +29,7 @@
         <field name="arch" type="xml">
             <form string="Service picking line">
                 <header>
-                    <button name="action_done" type="object" string="Done" states="draft"/>
+                    <button name="action_done" type="object" string="Done" states="draft" class="oe_highlight"/>
                     <button name="action_reopen" type="object" string="Reopen" states="done"/>
                 </header>
                 <sheet>
@@ -98,10 +98,10 @@
                 </group>
                 <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Vehicle" icon="terp-folder-green" domain="[]" context="{'group_by':'vehicle_id'}"/>
-                    <filter string="Driver" icon="terp-folder-orange" domain="[]" context="{'group_by':'driver_id'}"/>
-                    <filter string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}"/>
-                    <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="Vehicle" domain="[]" context="{'group_by':'vehicle_id'}"/>
+                    <filter string="Driver" domain="[]" context="{'group_by':'driver_id'}"/>
+                    <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
+                    <filter string="State" domain="[]" context="{'group_by':'state'}"/>
                 </group>
             </search>
         </field>

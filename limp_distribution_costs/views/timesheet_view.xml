@@ -78,13 +78,13 @@
         <field name="arch" type="xml">
             <search string="Tiemsheet">
                 <group col="8" colspan="4">
-                    <filter string="To check" name="undone" icon="gtk-close" domain="[('done','!=',True),'|',('effective','!=',0.0),('contract','=',False)]"/>
+                    <filter string="To check" name="undone" domain="[('done','!=',True),'|',('effective','!=',0.0),('contract','=',False)]"/>
                     <separator orientation="vertical"/>
-                    <filter string="With extra hours" icon="gtk-ok" domain="[('extra_hours','&gt;',0.0)]"/>
-                    <filter string="Effective" icon="terp-dolar" domain="[('effective','!=',0.0)]"/>
+                    <filter string="With extra hours" domain="[('extra_hours','&gt;',0.0)]"/>
+                    <filter string="Effective" domain="[('effective','!=',0.0)]"/>
                     <separator orientation="vertical"/>
-                    <filter string="Paid" icon="terp-folder-green" domain="[('paid','=',True)]"/>
-                    <filter string="No paid" icon="terp-folder-orange" domain="[('paid','=',False)]"/>
+                    <filter string="Paid" domain="[('paid','=',True)]"/>
+                    <filter string="No paid" domain="[('paid','=',False)]"/>
                     <field name="date" select="1"/>
                     <field name="employee_id"/>
                     <field name="analytic_id"/>
@@ -98,14 +98,14 @@
                 </group>
                 <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
-                    <filter string="Date" icon="terp-go-month" context="{'group_by': 'date'}"/>
-                    <filter string="Analytic account" name="analytic_account" icon="terp-folder-orange" domain="[]" context="{'group_by':'analytic_id'}"/>
-                    <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
-                    <filter string="Department" icon="terp-personal" domain="[]" context="{'group_by':'department_id'}"/>
-                    <filter string="Reponsible" icon="terp-folder-blue" domain="[]" context="{'group_by':'responsible_id'}"/>
-                    <filter string="Employee Department" icon="terp-personal" domain="[]" context="{'group_by':'employee_department_id'}"/>
-                    <filter string="Employee Delegation" icon="terp-folder-blue" domain="[]" context="{'group_by':'employee_delegation_id'}"/>
+                    <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Date" context="{'group_by': 'date'}"/>
+                    <filter string="Analytic account" name="analytic_account" domain="[]" context="{'group_by':'analytic_id'}"/>
+                    <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Reponsible" domain="[]" context="{'group_by':'responsible_id'}"/>
+                    <filter string="Employee Department" domain="[]" context="{'group_by':'employee_department_id'}"/>
+                    <filter string="Employee Delegation" domain="[]" context="{'group_by':'employee_delegation_id'}"/>
                 </group>
             </search>
         </field>

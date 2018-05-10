@@ -12,7 +12,7 @@
                     <button name="get_all_tasks" type="object" string="Load tasks" colspan="4"/>
                     <field colspan="4" name="task_frequency_ids" nolabel="1">
                         <tree string="Frequency table" editable="top">
-                            <field name="sequence"/>
+                            <field name="sequence" widget="handle"/>
                             <field name="task_id"/>
                             <field name="description"/>
                             <field name="lu"/>
@@ -86,9 +86,15 @@
             </field>
             <button name="action_quotation_send" position="before">
                 <button name="create_contract" type="object" string="Create contract" attrs="{'invisible': ['|',('created_contract', '=', 1),('state','!=','sale')]}" groups="limp_contract.group_limp_administrative"/>
-                <button name="create_service_order" type="object" string="Create Service order" groups="limp_service_picking.group_waste_manager" attrs="{'invisible': ['|',('created_service_order', '=', 1),('state','!=','sake')]}"/>
+                <button name="create_service_order" type="object" string="Create Service order" groups="limp_service_picking.group_waste_manager" attrs="{'invisible': ['|',('created_service_order', '=', 1),('state','!=','sale')]}"/>
                 <button name="%(action_view_create_service_pick_wzd)d" type="action" string="Create pick" attrs="{'invisible': ['|',('created_service_pick', '=', 1),('state','!=','sale')]}" groups="limp_service_picking.group_waste_manager,limp_service_picking.group_cleaning_user"/>
             </button>
+            <group name="sale_total" position="after">
+                <group attrs="{'invisible': [('periodicity_id', '=', False)]}" colspan="2" class="oe_subtotal_footer oe_right">
+                    <label string="With periodicity" colspan="2"/>
+                    <field name="amount_total_periodicity" widget='monetary' string="Total" options="{'currency_field': 'currency_id'}"/>
+                </group>
+            </group>
         </field>
     </record>
 
@@ -114,9 +120,9 @@
         <field name="arch" type="xml">
             <filter name="customer" position="after">
                 <separator orientation="vertical"/>
-                <filter string="Company" icon="terp-folder-orange" domain="[]" context="{'group_by':'company_id'}"/>
-                <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
-                <filter string="Department" icon="terp-folder-blue" domain="[]" context="{'group_by':'department_id'}"/>
+                <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
+                <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
             </filter>
         </field>
     </record>

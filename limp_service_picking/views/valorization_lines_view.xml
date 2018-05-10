@@ -47,14 +47,14 @@
                 <field name="no_computed"/>
                 <newline/>
                 <group expand="1" string="Group By..." colspan="10" col="12">
-                    <filter string="Ler" icon="terp-project" context="{'group_by':'ler_code_id'}"/>
-                    <filter string="Product" icon="terp-project" context="{'group_by':'product_id'}"/>
-                    <filter string="Partner" icon="terp-project" context="{'group_by':'partner_id'}"/>
-                    <filter string="Building" icon="terp-project" context="{'group_by':'building_site_id'}"/>
-                    <filter string="Producer" icon="terp-project" context="{'group_by':'producer_promoter'}"/>
-                    <filter string="Holder" icon="terp-project" context="{'group_by':'holder_builder'}"/>
-                    <filter string="Manager" icon="terp-project" context="{'group_by':'manager_partner_id'}"/>
-                    <filter string="Picking" icon="terp-project" context="{'group_by':'picking_id'}"/>
+                    <filter string="Ler" context="{'group_by':'ler_code_id'}"/>
+                    <filter string="Product" context="{'group_by':'product_id'}"/>
+                    <filter string="Partner" context="{'group_by':'partner_id'}"/>
+                    <filter string="Building" context="{'group_by':'building_site_id'}"/>
+                    <filter string="Producer" context="{'group_by':'producer_promoter'}"/>
+                    <filter string="Holder" context="{'group_by':'holder_builder'}"/>
+                    <filter string="Manager" context="{'group_by':'manager_partner_id'}"/>
+                    <filter string="Picking" context="{'group_by':'picking_id'}"/>
                 </group>
             </search>
         </field>

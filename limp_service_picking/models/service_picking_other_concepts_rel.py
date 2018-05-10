@@ -26,9 +26,9 @@ class ServicePickingOtherConceptsRel(models.Model):
     _name = 'service.picking.other.concepts.rel'
 
 
-    product_id = fields.Many2one('product.product', 'Product', required=True, default=1)
+    product_id = fields.Many2one('product.product', 'Product', required=True)
     name = fields.Char('Name', size=256, required=True)
-    product_qty = fields.Float('Qty.', digits=(12,3), required=True)
+    product_qty = fields.Float('Qty.', digits=(12,3), required=True, default=1.0)
     service_picking_id = fields.Many2one('stock.service.picking', 'Service picking')
     billable = fields.Boolean('Billable', default=True)
 
@@ -48,4 +48,4 @@ class ServicePickingOtherConceptsRel(models.Model):
             warning['message'] = message
             res['warning'] = warning
 
-        return res
+            return res

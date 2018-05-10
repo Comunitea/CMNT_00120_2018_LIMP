@@ -45,7 +45,7 @@
                 <field name="ref"/>
             </field>
             <filter name="supplier" position="after">
-                <filter string="With Code" name="with_code" icon="terp-personal" domain="[('ref','!=',False)]"/>
+                <filter string="With Code" name="with_code" domain="[('ref','!=',False)]"/>
             </filter>
         </field>
     </record>

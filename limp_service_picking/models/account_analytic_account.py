@@ -73,5 +73,5 @@ class AccountAnalyticAccount(models.Model):
     date_start = fields.Date('Date start')
     date = fields.Date('Date end')
     contact_id = fields.Many2one('res.partner', 'Contact')
-    description = fields.Char('Service', size=255, required=True)
+    description = fields.Text('Service', required=False)
     address_id = fields.Many2one('res.partner', 'Address')

@@ -58,28 +58,28 @@
         <field name="type">search</field>
             <field name="arch" type="xml">
                 <filter string="Company" position="after">
-                    <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
-                    <filter string="Department" icon="terp-folder-blue" domain="[]" context="{'group_by':'department_id'}"/>
-                    <filter string="Province" icon="terp-go-home" domain="[]" context="{'group_by': 'state_id'}"/>
-                    <filter string="Council" icon="terp-go-home" domain="[]" context="{'group_by': 'location_id'}"/>
-                    <filter string="Center" icon="terp-go-home" domain="[]" context="{'group_by': 'analytic_account_id'}"/>
+                    <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Province" domain="[]" context="{'group_by': 'state_id'}"/>
+                    <filter string="Council" domain="[]" context="{'group_by': 'location_id'}"/>
+                    <filter string="Center" domain="[]" context="{'group_by': 'analytic_account_id'}"/>
                 </filter>
                 <field name="name" position="replace">
                     <field name="occupation_name_id"/>
                     <field name="customer_contact_id"/>
                 </field>
                 <filter string="Cancelled" position="after">
-                     <filter icon="terp-stock_effects-object-colorize" name="incidence" string="Based of incidence"
+                     <filter name="incidence" string="Based of incidence"
                                 domain="[('state','=','incidence')]"
                                 groups="base.group_no_one"
                                 help="Based of incidence occupations"/>
-                     <filter icon="terp-stock_effects-object-colorize" name="replaced" string="Replaced"
+                     <filter name="replaced" string="Replaced"
                                 domain="[('state','=','replaced')]"
                                 groups="base.group_no_one"
                                 help="Replaced occupations"/>
                 </filter>
                 <filter string="Current" position="replace">
-                    <filter icon="terp-check" name="current" string="Current"
+                    <filter name="current" string="Current"
                                 domain="[('state','in',('draft', 'active', 'replacement'))]"
                                 groups="base.group_no_one"
                                 help="Current Occupations"/>

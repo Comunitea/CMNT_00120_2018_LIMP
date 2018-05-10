@@ -25,8 +25,8 @@
                 <field name="company_id"/>
                 <field name="delegation_id"/>
                 <field name="department_id"/>
-                <button name="open_line" type="object" string="Open line" icon="gtk-ok" states="draft"/>
-                <button name="reopen_line" type="object" string="Reopen" states="close" icon="gtk-undo"/>
+                <button name="open_line" type="object" string="Open line" icon="fa-check" states="draft"/>
+                <button name="reopen_line" type="object" string="Reopen" states="close" icon="fa-undo"/>
             </tree>
         </field>
     </record>
@@ -38,7 +38,7 @@
         <field name="arch" type="xml">
             <form string="Home help contract line">
                 <header>
-                    <button name="open_line" type="object" string="Open line" states="draft"/>
+                    <button name="open_line" type="object" string="Open line" states="draft" class="oe_highlight"/>
                     <button name="reopen_line" type="object" string="Reopen" states="close"/>
                     <field name="state" widget="statusbar"/>
                 </header>
@@ -172,8 +172,8 @@
         <field name="arch" type="xml">
             <search string="Home help contract lines">
                 <group col="8" colspan="4">
-                    <filter icon="terp-gtk-media-pause" string="Pending" domain="[('state','=','pending')]" help="Pending contracts"/>
-                    <filter icon="terp-camera_test" string="Current" domain="[('state','=','open')]" help="Current contracts"/>
+                    <filter string="Pending" domain="[('state','=','pending')]" help="Pending contracts"/>
+                    <filter string="Current" domain="[('state','=','open')]" help="Current contracts"/>
                     <separator orientation="vertical"/>
                     <field name="name" select="1"/>
                     <field name="partner_id" select="1" string="Customer"/>
@@ -190,14 +190,14 @@
                 </group>
                 <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Manager" icon="terp-personal" domain="[]" context="{'group_by':'manager_id'}"/>
-                    <filter string="Partner social worker" icon="terp-personal" domain="[]" context="{'group_by':'partner_social_worker_id'}"/>
-                    <filter string="Province" icon="terp-go-home" domain="[]" context="{'group_by': 'state_id'}"/>
-                    <filter string="Council" icon="terp-go-home" domain="[]" context="{'group_by': 'location_id'}"/>
+                    <filter string="Manager" domain="[]" context="{'group_by':'manager_id'}"/>
+                    <filter string="Partner social worker" domain="[]" context="{'group_by':'partner_social_worker_id'}"/>
+                    <filter string="Province" domain="[]" context="{'group_by': 'state_id'}"/>
+                    <filter string="Council" domain="[]" context="{'group_by': 'location_id'}"/>
                     <separator orientation="vertical"/>
-                    <filter string="Company" icon="terp-folder-orange" domain="[]" context="{'group_by':'company_id'}"/>
-                    <filter string="Delegation" icon="terp-folder-green" domain="[]" context="{'group_by':'delegation_id'}"/>
-                    <filter string="Department" icon="terp-folder-blue" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                    <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
                 </group>
             </search>
         </field>

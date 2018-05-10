@@ -75,8 +75,8 @@
         <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Containers">
-                <filter string="Home" name="home" icon="terp-go-home" domain="[('home', '=', True)]"/>
-                <filter string="Placed" icon="gtk-execute" domain="[('home', '=', False)]"/>
+                <filter string="Home" name="home" domain="[('home', '=', True)]"/>
+                <filter string="Placed" domain="[('home', '=', False)]"/>
                 <separator orientation="vertical"/>
                 <field name="partner_id"/>
                 <field name="code" select="1"/>
@@ -86,9 +86,9 @@
                 <field name="container_placement"/>
                 <newline/>
                 <group expand="1" string="Group By..." colspan="10" col="12">
-                    <filter string="Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type'}"/>
-                    <filter string="Shape" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'shape'}"/>
-                    <filter string="Placement" name="placement" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'container_placement'}"/>
+                    <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
+                    <filter string="Shape" domain="[]" context="{'group_by':'shape'}"/>
+                    <filter string="Placement" name="placement" domain="[]" context="{'group_by':'container_placement'}"/>
                 </group>
             </search>
         </field>

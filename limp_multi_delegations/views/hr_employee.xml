@@ -37,7 +37,7 @@
                 <field name="delegation_id"/>
             </field>
             <group position="inside">
-                <filter string="Delegation" icon="terp-personal+" domain="[]" context="{'group_by':'delegation_id'}"/>
+                <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
             </group>
          </field>
     </record>
