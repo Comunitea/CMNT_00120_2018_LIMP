@@ -27,7 +27,7 @@
         "website" : "http://www.pexego.es",
         "category" : "Base/Partner",
         "depends" : [
-            'base_vat'
+            'base_vat', 'l10n_es_partner'
             ],
         "data" : [
             'views/res_partner.xml'

@@ -39,7 +39,7 @@ class ResPartner(models.Model):
     picking_warn_message = fields.Text('Message for Picking')
     ref = fields.Char('Reference', company_dependent=True)
     attention_of = fields.Char('A/A', size=255)
-    type = fields.Selection(selection_add=[('default','Default'), ('management_plant', 'Management plant'), ('tramit', 'Tramit')])
+    type = fields.Selection(selection_add=[('management_plant', 'Management plant'), ('tramit', 'Tramit')])
     first_name = fields.Char('First Name', size=64, required=True)
     colege_num = fields.Char('Colege number', size=64)
 
