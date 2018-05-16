@@ -55,23 +55,23 @@ class ServicePickingInvoiceConcept(models.Model):
 
     @api.onchange('product_id')
     def product_id_change(self):
-        warning = {}
         if self.product_id:
             product_obj = self.product_id
-            result['notes'] = product_obj.description
-            result['product_uom'] = product_obj.uom_id.id
-            fpos = product_obj.service_picking_id.fiscal_position
-            result['tax_ids'] = fpos.map_tax(product_obj.taxes_id)
-            result['price'] = product_obj.list_price
+            self.notes = product_obj.description
+            self.product_uom = product_obj.uom_id.id
+            fpos = self.service_picking_id.fiscal_position
+            self.tax_ids = fpos.map_tax(product_obj.taxes_id)
+            self.price = product_obj.list_price
 
             if product_obj.picking_warn != 'no-message':
-                if product_obj.picking_warn == 'block':
-                    raise UserError(product_obj.picking_warn_msg)
+                warning = {}
                 title = _("Warning for %s") % product_obj.name
                 message = product_obj.picking_warn_msg
                 warning['title'] = title
                 warning['message'] = message
-        return {'warning':warning}
+                if product_obj.picking_warn == 'block':
+                    self.product_id = False
+                return {'warning': warning}
 
     def _amount_line_tax(self):
         self.ensure_one()

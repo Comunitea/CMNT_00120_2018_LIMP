@@ -89,7 +89,7 @@ class BuildingSiteServices(models.Model):
             if obj.address_building_site:
                 obj.name = obj.address_building_site.name_get()[0][1]
             elif obj.contact_id:
-                obj.name = (obj.contact_id.first_name and (obj.contact_id.first_name + u" ") or u"") + obj.contact_id.name
+                obj.name = obj.contact_id.name
             else:
                 obj.name = ""
 

@@ -39,7 +39,6 @@ class LimpContract(models.Model):
     monthly_amount = fields.Float('Monthly amount', digits=dp.get_precision('Account'), compute='_compute_contract_total_amount')
     periodicity = fields.Selection([('m', 'Monthy'), ('q', 'Quarterly'), ('b', 'Biannual'), ('a', 'Annual'), ('ph', 'Per hours')], 'Periodicity', default='m')
     bank_account_id = fields.Many2one('res.partner.bank', 'Bank account', help="Income bank account")
-    last_invoice_date = fields.Date('Last invoice date', compute='_compute_last_invoice_date')
     analytic_account_id = fields.Many2one('account.analytic.account', 'Account', readonly=True, required=True, ondelete="cascade")
     state = fields.Selection([('draft', 'Draft'), ('wait_signature', 'Waiting signature'), ('open', 'Opened'), ('close', 'Closed'), ('cancelled', 'Cancelled')], 'State', readonly=True, default='draft')
     active = fields.Boolean('Active', default=True)
@@ -81,16 +80,6 @@ class LimpContract(models.Model):
             if accounts:
                 return accounts
         return self.env['account.analytic.account']
-
-    def _compute_last_invoice_date(self):
-        for contract in self:
-            invoice_ids = self.env['account.invoice'].search(
-                [('analytic_id', '=', contract.id)],
-                order="date_invoice desc", limit=1)
-            if invoice_ids:
-                contract.last_invoice_date = invoice_ids[0].date_invoice
-            else:
-                contract.last_invoice_date = False
 
     def _compute_contract_total_amount(self):
         for contract in self:

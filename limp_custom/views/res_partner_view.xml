@@ -14,6 +14,17 @@
             <field name="title" position="after">
                 <field name="colege_num"/>
             </field>
+            <xpath expr="//page[@name='internal_notes']//field[@name='comment']" position="before">
+                <group>
+                    <field name="add_info"/>
+                </group>
+            </xpath>
+            <field name="fax" position="after">
+                <field name="attention_of"/>
+            </field>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='email']" position="before">
+                <field name="attention_of"/>
+            </xpath>
         </field>
     </record>
 
@@ -47,18 +58,6 @@
             <filter name="supplier" position="after">
                 <filter string="With Code" name="with_code" domain="[('ref','!=',False)]"/>
             </filter>
-        </field>
-    </record>
-
-    <record id="view_partner_bank_form_add_ative_field" model="ir.ui.view">
-        <field name="name">res.partner.bank.form.add_ative_field</field>
-        <field name="model">res.partner.bank</field>
-        <field name="inherit_id" ref="base.view_partner_bank_form"/>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <field name="bank_id" position="after">
-                    <field name="active"/>
-            </field>
         </field>
     </record>
 

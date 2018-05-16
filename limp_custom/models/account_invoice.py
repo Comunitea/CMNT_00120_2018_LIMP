@@ -21,6 +21,7 @@
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 
+
 class AccountInvoiceLine(models.Model):
 
     _inherit = "account.invoice.line"
@@ -32,8 +33,8 @@ class AccountInvoice(models.Model):
 
     _inherit = "account.invoice"
 
-    add_info = fields.Boolean(related='partner_id.add_info', string="Additional Information", readonly=True, type="boolean")
-    amount_taxes = fields.Float('Tax amount', method=True, digits=dp.get_precision('Account'), compute='_compute_amount_taxes')
+    add_info = fields.Boolean(related='commercial_partner_id.add_info', string="Additional Information", readonly=True)
+    amount_taxes = fields.Float('Tax amount', digits=dp.get_precision('Account'), compute='_compute_amount_taxes')
 
     def action_invoice_open(self):
         journal_tag = self.journal_id.analytic_tag_id
@@ -53,6 +54,7 @@ class AccountInvoice(models.Model):
 
     def action_move_create(self):
         return super(AccountInvoice,self.with_context(inv_ref=True)).action_move_create()
+
 
 class AccountMove(models.Model):
 

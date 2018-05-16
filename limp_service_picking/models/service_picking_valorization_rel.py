@@ -59,16 +59,15 @@ class ServicePickingValorizationRel(models.Model):
             else:
                 self.memory_include = True
 
-        warning = {}
         if self.product_id.picking_warn != 'no-message':
-            if self.product_id.picking_warn == 'block':
-                raise UserError(self.product_id.picking_warn_msg)
+            warning = {}
             title = _("Warning for %s") % self.product_id.name
             message = self.product_id.picking_warn_msg
             warning['title'] = title
             warning['message'] = message
-
-        return {'warning': warning}
+            if self.product_id.picking_warn == 'block':
+                self.product_id = False
+            return {'warning': warning}
 
     @api.onchange('net_weight')
     def onchange_net_weight(self):

@@ -44,7 +44,7 @@ class StockPicking(models.Model):
     invoice_state = fields.Selection(
         [("invoiced", "Invoiced"),
          ("2binvoiced", "To Be Invoiced"),
-         ("none", "Not Applicable")], type='selection',
+         ("none", "Not Applicable")],
         string="Invoice Control", required=True, default='none')
 
     def action_invoice_create(self, journal_id, group, type, date):

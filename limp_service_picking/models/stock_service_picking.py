@@ -188,20 +188,18 @@ class StockServicePicking(models.Model):
             self.payment_mode = payment and payment.id or False
             self.intercompany = False
 
-
         if self.env.user.company_id.partner_id.id == part.id:
             self.intercompany = True
 
-        warning = {}
         if part.picking_warn_type != 'no-message':
-            if part.picking_warn_type == 'block':
-                raise UserError(part.picking_warn_message)
+            warning = {}
             title = _("Warning for %s") % part.name
             message = part.picking_warn_message
             warning['title'] = title
             warning['message'] = message
-            val['warning'] = part.picking_warn_message
-        return {'warning':warning}
+            if part.picking_warn_type == 'block':
+                self.partner_id = False
+            return {'warning':warning}
 
     @api.onchange('manager_partner_id')
     def onchange_manager_partner_id(self):
@@ -227,15 +225,15 @@ class StockServicePicking(models.Model):
         else:
             self.ler_code_id = False
 
-        warning = {}
         if self.product_id.picking_warn != 'no-message':
-            if self.product_id.picking_warn == 'block':
-                raise UserError(self.product_id.picking_warn_msg)
+            warning = {}
             title = _("Warning for %s") % self.product_id.name
             message = self.product_id.picking_warn_msg
             warning['title'] = title
             warning['message'] = message
-        return {'warning': warning}
+            if self.product_id.picking_warn == 'block':
+                self.product_id = False
+            return {'warning': warning}
 
     @api.onchange('building_site_id')
     def onchange_building_site_id(self):
@@ -262,14 +260,14 @@ class StockServicePicking(models.Model):
     def onchange_service_type(self):
         if not self.service_type:
             return
-        warning = {}
         if self.service_type.picking_warn != 'no-message':
-            if self.service_type.picking_warn == 'block':
-                raise UserError(self.service_type.picking_warn_msg)
+            warning = {}
             title = _("Warning for %s") % self.service_type.name
             message = self.service_type.picking_warn_msg
             warning['title'] = title
             warning['message'] = message
+            if self.service_type.picking_warn == 'block':
+                self.service_type = False
         return {'warning':warning}
 
     @api.model

@@ -1,669 +1,669 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.2100000000000002"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="209"/>
-	<property name="OPENERP_RELATIONS" value="[&apos;home_help_line_ids/employee_task_ids&apos;]"/>
-	<style name="table">
-		<box>
-			<pen lineWidth="1.0" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<subDataset name="Task Dataset1">
-		<parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
-			<defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
-		</parameter>
-		<parameter name="EMPLOYE_TASK" class="java.lang.Integer"/>
-		<queryString language="xPath">
-			<![CDATA[]]>
-		</queryString>
-		<field name="Viernes-friday" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Viernes-friday]]></fieldDescription>
-		</field>
-		<field name="Lunes-monday" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Lunes-monday]]></fieldDescription>
-		</field>
-		<field name="Nombre-name" class="java.lang.String">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Nombre-name]]></fieldDescription>
-		</field>
-		<field name="Sabado-saturday" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Sabado-saturday]]></fieldDescription>
-		</field>
-		<field name="Domingo-sunday" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Domingo-sunday]]></fieldDescription>
-		</field>
-		<field name="Jueves-thursday" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Jueves-thursday]]></fieldDescription>
-		</field>
-		<field name="Martes-tuesday" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Martes-tuesday]]></fieldDescription>
-		</field>
-		<field name="Miercoles-wednesday" class="java.lang.Boolean">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Miercoles-wednesday]]></fieldDescription>
-		</field>
-		<field name="id5" class="java.lang.Integer">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Employee_Task-employee_task_line_id/id]]></fieldDescription>
-		</field>
-		<field name="Observaciones-observations" class="java.lang.String">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tareas-task_ids/Observaciones-observations]]></fieldDescription>
-		</field>
-		<field name="Sequence-task_sequence" class="java.lang.Integer">
-			<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tareas-task_ids/Sequence-task_sequence]]></fieldDescription>
-		</field>
-		<sortField name="Sequence-task_sequence"/>
-		<filterExpression><![CDATA[$P{EMPLOYE_TASK} == $F{id5}]]></filterExpression>
-	</subDataset>
-	<parameter name="SUBREPORT1" class="java.lang.Object"/>
-	<queryString language="xPath">
-		<![CDATA[]]>
-	</queryString>
-	<field name="Name-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employee-manager_id/Name-name]]></fieldDescription>
-	</field>
-	<field name="Nombre-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Trabajador_social_cliente-partner_social_worker_id/Nombre-name]]></fieldDescription>
-	</field>
-	<field name="Nombre-name2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Usuario-customer_contact_id/Nombre-name]]></fieldDescription>
-	</field>
-	<field name="Employees-employee_str" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Employees-employee_str]]></fieldDescription>
-	</field>
-	<field name="Nombre-name3" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Nombre-name]]></fieldDescription>
-	</field>
-	<field name="id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/id]]></fieldDescription>
-	</field>
-	<field name="id3" class="java.lang.Integer">
-		<fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
-	</field>
-	<field name="id4" class="java.lang.Integer">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/id]]></fieldDescription>
-	</field>
-	<field name="Calle-street" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Usuario-customer_contact_id/Address-address/Calle-street]]></fieldDescription>
-	</field>
-	<field name="Timetable-timetable" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Timetable-timetable]]></fieldDescription>
-	</field>
-	<field name="Nombre_de_la_compania-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Parent_Analytic_Account-parent_id/Compania-company_id/Nombre_de_la_compania-name]]></fieldDescription>
-	</field>
-	<field name="Logo-logo" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Company-company_id/Logo-logo]]></fieldDescription>
-	</field>
-	<field name="Nombre_de_la_compania-name2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Company-company_id/Nombre_de_la_compania-name]]></fieldDescription>
-	</field>
-	<field name="Start_date-active_date" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Start_date-active_date]]></fieldDescription>
-	</field>
-	<field name="Nombre-first_name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Usuario-customer_contact_id/Nombre-first_name]]></fieldDescription>
-	</field>
-	<field name="Name-name3" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Social_worker-social_worker_id/Name-name]]></fieldDescription>
-	</field>
-	<field name="No_colegiala-colege_num" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Social_worker-social_worker_id/No_colegiala-colege_num]]></fieldDescription>
-	</field>
-	<field name="Nombre-first_name2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Trabajador_social_cliente-partner_social_worker_id/Nombre-first_name]]></fieldDescription>
-	</field>
-	<field name="Ayuntamiento-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Council-location_id/Ayuntamiento-name]]></fieldDescription>
-	</field>
-	<field name="Telefono-phone" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Usuario-customer_contact_id/Cargos_y_direcciones-job_ids/Telefono-phone]]></fieldDescription>
-	</field>
-	<field name="End_date-end_date" class="java.util.Date">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/End_date-end_date]]></fieldDescription>
-	</field>
-	<field name="Project_date-project_date" class="java.util.Date">
-		<fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Project_date-project_date]]></fieldDescription>
-	</field>
-	<filterExpression><![CDATA[$F{id4} != null && $F{End_date-end_date} == null]]></filterExpression>
-	<group name="line">
-		<groupExpression><![CDATA[$F{id}]]></groupExpression>
-	</group>
-	<group name="employee" isStartNewPage="true" footerPosition="ForceAtBottom">
-		<groupExpression><![CDATA[$F{id4}]]></groupExpression>
-		<groupFooter>
-			<band height="10">
-				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-					<reportElement x="87" y="0" width="100" height="10"/>
-					<textElement>
-						<font size="7"/>
-					</textElement>
-					<textFieldExpression class="java.util.Date"><![CDATA[$F{Project_date-project_date}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="17" y="0" width="70" height="10"/>
-					<textElement>
-						<font size="7" isBold="false" isUnderline="true"/>
-					</textElement>
-					<text><![CDATA[Fecha del proyecto:]]></text>
-				</staticText>
-			</band>
-		</groupFooter>
-	</group>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<pageHeader>
-		<band height="34">
-			<staticText>
-				<reportElement x="165" y="6" width="233" height="20"/>
-				<textElement>
-					<font size="12" isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[PROYECTO DE INTERVENCIÓN]]></text>
-			</staticText>
-			<image>
-				<reportElement x="472" y="0" width="100" height="32"/>
-				<imageExpression class="java.lang.String"><![CDATA[$F{Logo-logo}]]></imageExpression>
-			</image>
-		</band>
-	</pageHeader>
-	<detail>
-		<band height="500">
-			<componentElement>
-				<reportElement key="table 1" positionType="Float" x="9" y="56" width="389" height="440">
-					<property name="OPENERP_RELATIONS" value="[&apos;home_help_line_ids/employee_task_ids/task_ids&apos;]"/>
-				</reportElement>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Task Dataset1">
-						<datasetParameter name="EMPLOYE_TASK">
-							<datasetParameterExpression><![CDATA[$F{id4}]]></datasetParameterExpression>
-						</datasetParameter>
-						<dataSourceExpression><![CDATA[$P{SUBREPORT1}]]></dataSourceExpression>
-					</datasetRun>
-					<jr:column width="100">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="4" y="0" width="96" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="8" isBold="true"/>
-								</textElement>
-								<text><![CDATA[TAREA]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField isStretchWithOverflow="true">
-								<reportElement x="4" y="0" width="96" height="13"/>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="7" isBold="false" isItalic="false"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="25">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="0" width="25" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="6" isBold="true"/>
-								</textElement>
-								<text><![CDATA[LUNES]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField>
-								<reportElement x="0" y="0" width="25" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Lunes-monday} == true ? "X" : ""]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="28">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="0" width="28" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="6" isBold="true"/>
-								</textElement>
-								<text><![CDATA[MARTES]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField>
-								<reportElement x="0" y="0" width="28" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Martes-tuesday} == true ? "X" : ""]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="40">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="0" width="40" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="6" isBold="true"/>
-								</textElement>
-								<text><![CDATA[MIÉRCOLES]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField>
-								<reportElement x="0" y="0" width="40" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Miercoles-wednesday} == true ? "X" : ""]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="26">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="0" width="25" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="6" isBold="true"/>
-								</textElement>
-								<text><![CDATA[JUEVES]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField>
-								<reportElement x="0" y="0" width="25" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Jueves-thursday} == true ? "X" : ""]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="31">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="0" width="30" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="6" isBold="true"/>
-								</textElement>
-								<text><![CDATA[VIERNES]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField>
-								<reportElement x="0" y="0" width="30" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Viernes-friday} == true ? "X" : ""]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="31">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="0" width="29" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="6" isBold="true"/>
-								</textElement>
-								<text><![CDATA[SÁBADO]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField>
-								<reportElement x="0" y="0" width="29" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Sabado-saturday} == true ? "X" : ""]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="35">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="0" width="34" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="6" isBold="true"/>
-								</textElement>
-								<text><![CDATA[DOMINGO]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField>
-								<reportElement x="0" y="0" width="34" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Domingo-sunday} == true ? "X" : ""]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="85">
-						<jr:columnHeader height="14" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<staticText>
-								<reportElement x="0" y="1" width="80" height="13"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="SansSerif" size="8" isBold="true"/>
-								</textElement>
-								<text><![CDATA[OBSERVACIONES]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell height="15" rowSpan="1">
-							<box>
-								<topPen lineWidth="0.25"/>
-								<leftPen lineWidth="0.25"/>
-								<bottomPen lineWidth="0.25"/>
-								<rightPen lineWidth="0.25"/>
-							</box>
-							<textField isStretchWithOverflow="true">
-								<reportElement positionType="Float" x="3" y="0" width="77" height="15"/>
-								<textElement verticalAlignment="Middle">
-									<font size="7"/>
-								</textElement>
-								<textFieldExpression class="java.lang.String"><![CDATA[$F{Observaciones-observations}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="356" y="21" width="199" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Employees-employee_str}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="87" y="0" width="61" height="15"/>
-				<textElement>
-					<font size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[USUARIO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="22" y="21" width="92" height="10"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[NOMBRE Y APELLIDOS:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="22" y="31" width="92" height="10"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DIRECCIÓN:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="22" y="41" width="92" height="10"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[TELÉFONO:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="265" y="31" width="110" height="10"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[HORARIO:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="330" y="0" width="61" height="15"/>
-				<textElement>
-					<font size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[AUXILIAR]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="265" y="21" width="91" height="10"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[NOMBRE Y APELLIDOS:]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="114" y="31" width="134" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Calle-street}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="114" y="41" width="134" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Telefono-phone}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="375" y="31" width="180" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Timetable-timetable}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="114" y="21" width="134" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-first_name} + " " + $F{Nombre-name2}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="419" y="56" width="153" height="10"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[TÉCNICO SOCIAL]]></text>
-			</staticText>
-			<textField>
-				<reportElement positionType="Float" x="419" y="67" width="153" height="10"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_de_la_compania-name2}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="419" y="77" width="153" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name3}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="419" y="150" width="61" height="13"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[USUARIO:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="419" y="163" width="136" height="146"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[SE ACREDITA LA RECEPCIÓN DE
+        <property name="ireport.zoom" value="1.2100000000000002"/>
+        <property name="ireport.x" value="0"/>
+        <property name="ireport.y" value="209"/>
+        <property name="OPENERP_RELATIONS" value="[&apos;home_help_line_ids/employee_task_ids&apos;]"/>
+        <style name="table">
+                <box>
+                        <pen lineWidth="1.0" lineColor="#000000"/>
+                </box>
+        </style>
+        <style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+                <box>
+                        <pen lineWidth="0.5" lineColor="#000000"/>
+                </box>
+        </style>
+        <style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+                <box>
+                        <pen lineWidth="0.5" lineColor="#000000"/>
+                </box>
+        </style>
+        <style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+                <box>
+                        <pen lineWidth="0.5" lineColor="#000000"/>
+                </box>
+        </style>
+        <subDataset name="Task Dataset1">
+                <parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
+                        <defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
+                </parameter>
+                <parameter name="EMPLOYE_TASK" class="java.lang.Integer"/>
+                <queryString language="xPath">
+                        <![CDATA[]]>
+                </queryString>
+                <field name="Viernes-friday" class="java.lang.Boolean">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Viernes-friday]]></fieldDescription>
+                </field>
+                <field name="Lunes-monday" class="java.lang.Boolean">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Lunes-monday]]></fieldDescription>
+                </field>
+                <field name="Nombre-name" class="java.lang.String">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Nombre-name]]></fieldDescription>
+                </field>
+                <field name="Sabado-saturday" class="java.lang.Boolean">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Sabado-saturday]]></fieldDescription>
+                </field>
+                <field name="Domingo-sunday" class="java.lang.Boolean">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Domingo-sunday]]></fieldDescription>
+                </field>
+                <field name="Jueves-thursday" class="java.lang.Boolean">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Jueves-thursday]]></fieldDescription>
+                </field>
+                <field name="Martes-tuesday" class="java.lang.Boolean">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Martes-tuesday]]></fieldDescription>
+                </field>
+                <field name="Miercoles-wednesday" class="java.lang.Boolean">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Miercoles-wednesday]]></fieldDescription>
+                </field>
+                <field name="id5" class="java.lang.Integer">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Employee_Task-employee_task_line_id/id]]></fieldDescription>
+                </field>
+                <field name="Observaciones-observations" class="java.lang.String">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tareas-task_ids/Observaciones-observations]]></fieldDescription>
+                </field>
+                <field name="Sequence-task_sequence" class="java.lang.Integer">
+                        <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tareas-task_ids/Sequence-task_sequence]]></fieldDescription>
+                </field>
+                <sortField name="Sequence-task_sequence"/>
+                <filterExpression><![CDATA[$P{EMPLOYE_TASK} == $F{id5}]]></filterExpression>
+        </subDataset>
+        <parameter name="SUBREPORT1" class="java.lang.Object"/>
+        <queryString language="xPath">
+                <![CDATA[]]>
+        </queryString>
+        <field name="Name-name" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employee-manager_id/Name-name]]></fieldDescription>
+        </field>
+        <field name="Nombre-name" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Trabajador_social_cliente-partner_social_worker_id/Nombre-name]]></fieldDescription>
+        </field>
+        <field name="Nombre-name2" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Usuario-customer_contact_id/Nombre-name]]></fieldDescription>
+        </field>
+        <field name="Employees-employee_str" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Employees-employee_str]]></fieldDescription>
+        </field>
+        <field name="Nombre-name3" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Tasks-task_ids/Nombre-name]]></fieldDescription>
+        </field>
+        <field name="id" class="java.lang.Integer">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/id]]></fieldDescription>
+        </field>
+        <field name="id3" class="java.lang.Integer">
+                <fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
+        </field>
+        <field name="id4" class="java.lang.Integer">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/id]]></fieldDescription>
+        </field>
+        <field name="Calle-street" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Usuario-customer_contact_id/Address-address/Calle-street]]></fieldDescription>
+        </field>
+        <field name="Timetable-timetable" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Timetable-timetable]]></fieldDescription>
+        </field>
+        <field name="Nombre_de_la_compania-name" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Parent_Analytic_Account-parent_id/Compania-company_id/Nombre_de_la_compania-name]]></fieldDescription>
+        </field>
+        <field name="Logo-logo" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Company-company_id/Logo-logo]]></fieldDescription>
+        </field>
+        <field name="Nombre_de_la_compania-name2" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Company-company_id/Nombre_de_la_compania-name]]></fieldDescription>
+        </field>
+        <field name="Start_date-active_date" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Start_date-active_date]]></fieldDescription>
+        </field>
+        <field name="Nombre-first_name" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Usuario-customer_contact_id/Nombre-first_name]]></fieldDescription>
+        </field>
+        <field name="Name-name3" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Social_worker-social_worker_id/Name-name]]></fieldDescription>
+        </field>
+        <field name="No_colegiala-colege_num" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Social_worker-social_worker_id/No_colegiala-colege_num]]></fieldDescription>
+        </field>
+        <field name="Nombre-first_name2" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Trabajador_social_cliente-partner_social_worker_id/Nombre-first_name]]></fieldDescription>
+        </field>
+        <field name="Ayuntamiento-name" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Council-location_id/Ayuntamiento-name]]></fieldDescription>
+        </field>
+        <field name="Telefono-phone" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Usuario-customer_contact_id/Cargos_y_direcciones-job_ids/Telefono-phone]]></fieldDescription>
+        </field>
+        <field name="End_date-end_date" class="java.util.Date">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/End_date-end_date]]></fieldDescription>
+        </field>
+        <field name="Project_date-project_date" class="java.util.Date">
+                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Employees_Tasks-employee_task_ids/Project_date-project_date]]></fieldDescription>
+        </field>
+        <filterExpression><![CDATA[$F{id4} != null && $F{End_date-end_date} == null]]></filterExpression>
+        <group name="line">
+                <groupExpression><![CDATA[$F{id}]]></groupExpression>
+        </group>
+        <group name="employee" isStartNewPage="true" footerPosition="ForceAtBottom">
+                <groupExpression><![CDATA[$F{id4}]]></groupExpression>
+                <groupFooter>
+                        <band height="10">
+                                <textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+                                        <reportElement x="87" y="0" width="100" height="10"/>
+                                        <textElement>
+                                                <font size="7"/>
+                                        </textElement>
+                                        <textFieldExpression class="java.util.Date"><![CDATA[$F{Project_date-project_date}]]></textFieldExpression>
+                                </textField>
+                                <staticText>
+                                        <reportElement x="17" y="0" width="70" height="10"/>
+                                        <textElement>
+                                                <font size="7" isBold="false" isUnderline="true"/>
+                                        </textElement>
+                                        <text><![CDATA[Fecha del proyecto:]]></text>
+                                </staticText>
+                        </band>
+                </groupFooter>
+        </group>
+        <background>
+                <band splitType="Stretch"/>
+        </background>
+        <pageHeader>
+                <band height="34">
+                        <staticText>
+                                <reportElement x="165" y="6" width="233" height="20"/>
+                                <textElement>
+                                        <font size="12" isBold="true" isUnderline="true"/>
+                                </textElement>
+                                <text><![CDATA[PROYECTO DE INTERVENCIÓN]]></text>
+                        </staticText>
+                        <image>
+                                <reportElement x="472" y="0" width="100" height="32"/>
+                                <imageExpression class="java.lang.String"><![CDATA[$F{Logo-logo}]]></imageExpression>
+                        </image>
+                </band>
+        </pageHeader>
+        <detail>
+                <band height="500">
+                        <componentElement>
+                                <reportElement key="table 1" positionType="Float" x="9" y="56" width="389" height="440">
+                                        <property name="OPENERP_RELATIONS" value="[&apos;home_help_line_ids/employee_task_ids/task_ids&apos;]"/>
+                                </reportElement>
+                                <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+                                        <datasetRun subDataset="Task Dataset1">
+                                                <datasetParameter name="EMPLOYE_TASK">
+                                                        <datasetParameterExpression><![CDATA[$F{id4}]]></datasetParameterExpression>
+                                                </datasetParameter>
+                                                <dataSourceExpression><![CDATA[$P{SUBREPORT1}]]></dataSourceExpression>
+                                        </datasetRun>
+                                        <jr:column width="100">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="4" y="0" width="96" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="8" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[TAREA]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField isStretchWithOverflow="true">
+                                                                <reportElement x="4" y="0" width="96" height="13"/>
+                                                                <textElement textAlignment="Left" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="7" isBold="false" isItalic="false"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name}]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                        <jr:column width="25">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="0" y="0" width="25" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="6" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[LUNES]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField>
+                                                                <reportElement x="0" y="0" width="25" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Lunes-monday} == true ? "X" : ""]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                        <jr:column width="28">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="0" y="0" width="28" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="6" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[MARTES]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField>
+                                                                <reportElement x="0" y="0" width="28" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Martes-tuesday} == true ? "X" : ""]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                        <jr:column width="40">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="0" y="0" width="40" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="6" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[MIÉRCOLES]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField>
+                                                                <reportElement x="0" y="0" width="40" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Miercoles-wednesday} == true ? "X" : ""]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                        <jr:column width="26">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="0" y="0" width="25" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="6" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[JUEVES]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField>
+                                                                <reportElement x="0" y="0" width="25" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Jueves-thursday} == true ? "X" : ""]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                        <jr:column width="31">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="0" y="0" width="30" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="6" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[VIERNES]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField>
+                                                                <reportElement x="0" y="0" width="30" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Viernes-friday} == true ? "X" : ""]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                        <jr:column width="31">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="0" y="0" width="29" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="6" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[SÁBADO]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField>
+                                                                <reportElement x="0" y="0" width="29" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Sabado-saturday} == true ? "X" : ""]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                        <jr:column width="35">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="0" y="0" width="34" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="6" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[DOMINGO]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField>
+                                                                <reportElement x="0" y="0" width="34" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="7" isBold="true" isItalic="false"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Domingo-sunday} == true ? "X" : ""]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                        <jr:column width="85">
+                                                <jr:columnHeader height="14" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <staticText>
+                                                                <reportElement x="0" y="1" width="80" height="13"/>
+                                                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                                                        <font fontName="SansSerif" size="8" isBold="true"/>
+                                                                </textElement>
+                                                                <text><![CDATA[OBSERVACIONES]]></text>
+                                                        </staticText>
+                                                </jr:columnHeader>
+                                                <jr:detailCell height="15" rowSpan="1">
+                                                        <box>
+                                                                <topPen lineWidth="0.25"/>
+                                                                <leftPen lineWidth="0.25"/>
+                                                                <bottomPen lineWidth="0.25"/>
+                                                                <rightPen lineWidth="0.25"/>
+                                                        </box>
+                                                        <textField isStretchWithOverflow="true">
+                                                                <reportElement positionType="Float" x="3" y="0" width="77" height="15"/>
+                                                                <textElement verticalAlignment="Middle">
+                                                                        <font size="7"/>
+                                                                </textElement>
+                                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Observaciones-observations}]]></textFieldExpression>
+                                                        </textField>
+                                                </jr:detailCell>
+                                        </jr:column>
+                                </jr:table>
+                        </componentElement>
+                        <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                                <reportElement positionType="Float" x="356" y="21" width="199" height="10"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Employees-employee_str}]]></textFieldExpression>
+                        </textField>
+                        <staticText>
+                                <reportElement x="87" y="0" width="61" height="15"/>
+                                <textElement>
+                                        <font size="11" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[USUARIO]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="22" y="21" width="92" height="10"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[NOMBRE Y APELLIDOS:]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="22" y="31" width="92" height="10"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[DIRECCIÓN:]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="22" y="41" width="92" height="10"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[TELÉFONO:]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement positionType="Float" x="265" y="31" width="110" height="10"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[HORARIO:]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="330" y="0" width="61" height="15"/>
+                                <textElement>
+                                        <font size="11" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[AUXILIAR]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="265" y="21" width="91" height="10"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[NOMBRE Y APELLIDOS:]]></text>
+                        </staticText>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="114" y="31" width="134" height="10"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Calle-street}]]></textFieldExpression>
+                        </textField>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="114" y="41" width="134" height="10"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Telefono-phone}]]></textFieldExpression>
+                        </textField>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="375" y="31" width="180" height="10"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Timetable-timetable}]]></textFieldExpression>
+                        </textField>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="114" y="21" width="134" height="10"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2}]]></textFieldExpression>
+                        </textField>
+                        <staticText>
+                                <reportElement positionType="Float" x="419" y="56" width="153" height="10"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[TÉCNICO SOCIAL]]></text>
+                        </staticText>
+                        <textField>
+                                <reportElement positionType="Float" x="419" y="67" width="153" height="10"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre_de_la_compania-name2}]]></textFieldExpression>
+                        </textField>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="419" y="77" width="153" height="10"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name3}]]></textFieldExpression>
+                        </textField>
+                        <staticText>
+                                <reportElement positionType="Float" x="419" y="150" width="61" height="13"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[USUARIO:]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement positionType="Float" x="419" y="163" width="136" height="146"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <text><![CDATA[SE ACREDITA LA RECEPCIÓN DE
 UNA COPIA DEL PRESENTE
 PROYECTO POR PARTE DE LA
 UNIDAD DE CONVIVENCIA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="419" y="323" width="136" height="137"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[SE ACREDITA LA RECEPCIÓN DE
+                        </staticText>
+                        <staticText>
+                                <reportElement positionType="Float" x="419" y="323" width="136" height="137"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <text><![CDATA[SE ACREDITA LA RECEPCIÓN DE
 UNA COPIA DEL PRESENTE
 PROYECTO POR PARTE DE LA
 AUXILIAR DE CONVIVENCIA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="419" y="310" width="61" height="13"/>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[AUXILIAR]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="419" y="462" width="150" height="10">
-					<printWhenExpression><![CDATA[!$F{Nombre-name}.isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<textElement>
-					<font size="7" isBold="true"/>
-				</textElement>
-				<text><![CDATA[TÉCNICO SOCIAL]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="419" y="483" width="150" height="10">
-					<printWhenExpression><![CDATA[!$F{Nombre-name}.isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<textElement>
-					<font fontName="SansSerif" size="7" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-first_name2} + " " + $F{Nombre-name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement positionType="Float" x="472" y="87" width="100" height="10"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{No_colegiala-colege_num}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="419" y="87" width="53" height="10"/>
-				<textElement>
-					<font size="7" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Nº Colegiada:]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="419" y="472" width="150" height="10">
-					<printWhenExpression><![CDATA[!$F{Nombre-name}.isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<textElement>
-					<font fontName="SansSerif" size="7" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Ayuntamiento de " + $F{Ayuntamiento-name}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
+                        </staticText>
+                        <staticText>
+                                <reportElement positionType="Float" x="419" y="310" width="61" height="13"/>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[AUXILIAR]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement positionType="Float" x="419" y="462" width="150" height="10">
+                                        <printWhenExpression><![CDATA[!$F{Nombre-name}.isEmpty()]]></printWhenExpression>
+                                </reportElement>
+                                <textElement>
+                                        <font size="7" isBold="true"/>
+                                </textElement>
+                                <text><![CDATA[TÉCNICO SOCIAL]]></text>
+                        </staticText>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="419" y="483" width="150" height="10">
+                                        <printWhenExpression><![CDATA[!$F{Nombre-name}.isEmpty()]]></printWhenExpression>
+                                </reportElement>
+                                <textElement>
+                                        <font fontName="SansSerif" size="7" isBold="false"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                                <reportElement positionType="Float" x="472" y="87" width="100" height="10"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{No_colegiala-colege_num}]]></textFieldExpression>
+                        </textField>
+                        <staticText>
+                                <reportElement positionType="Float" x="419" y="87" width="53" height="10"/>
+                                <textElement>
+                                        <font size="7" isBold="false"/>
+                                </textElement>
+                                <text><![CDATA[Nº Colegiada:]]></text>
+                        </staticText>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="419" y="472" width="150" height="10">
+                                        <printWhenExpression><![CDATA[!$F{Nombre-name}.isEmpty()]]></printWhenExpression>
+                                </reportElement>
+                                <textElement>
+                                        <font fontName="SansSerif" size="7" isBold="true"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA["Ayuntamiento de " + $F{Ayuntamiento-name}]]></textFieldExpression>
+                        </textField>
+                </band>
+        </detail>
 </jasperReport>

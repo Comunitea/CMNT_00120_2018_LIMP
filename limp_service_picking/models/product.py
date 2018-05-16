@@ -28,3 +28,9 @@ class ProductTemplate(models.Model):
 
     ler_code_id = fields.Many2one('waste.ler.code', 'LER')
     overload_price = fields.Float('Overload price', digits=dp.get_precision('Sale Price'))
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    tax_product = fields.Boolean('Tax product')

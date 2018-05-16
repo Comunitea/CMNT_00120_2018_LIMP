@@ -24,6 +24,7 @@
         <field name="arch" type="xml">
             <field name="tz" position="after">
                 <field name="context_responsible_id"/>
+                <field name="work_address_id"/>
             </field>
         </field>
     </record>

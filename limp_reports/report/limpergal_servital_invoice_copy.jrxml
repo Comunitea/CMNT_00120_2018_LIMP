@@ -181,7 +181,7 @@
         <fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Ciudad-city]]></fieldDescription>
     </field>
     <field name="Tax_amount-amount_taxes" class="java.lang.Float">
-        <fieldDescription><![CDATA[/data/record/Tax_amount-amount_tax]]></fieldDescription>
+        <fieldDescription><![CDATA[/data/record/Tax_amount-amount_taxes]]></fieldDescription>
     </field>
     <field name="Nombre-name4" class="java.lang.String">
         <fieldDescription><![CDATA[/data/record/Direccion_contacto-partner_shipping_id/Nombre-name]]></fieldDescription>

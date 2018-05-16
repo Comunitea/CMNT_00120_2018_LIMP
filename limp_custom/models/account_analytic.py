@@ -20,23 +20,6 @@
 ##############################################################################
 from odoo import models, fields, api
 
-
-class account_analytic_account(models.Model):
-    _inherit = "account.analytic.account"
-
-    last_invoice_date = fields.Date(string='Last Invoice Date',
-        help="Date of the last invoice created for this analytic account.",
-        compute='_compute_last_linvoice_date')
-
-    def get_date_last_invoice(self):
-        for acc in self:
-            acc_an_line = self.env['account.analytic.line'].search(
-                [('account_id', '=', acc.id),('move_id.invoice','!=',False)],
-                order="date desc", limit=1)
-            if acc_an_line:
-                acc.last_invoice_date = acc_an_lined.date
-
-
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 

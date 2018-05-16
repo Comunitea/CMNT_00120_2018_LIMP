@@ -40,33 +40,4 @@ class ResPartner(models.Model):
     ref = fields.Char('Reference', company_dependent=True)
     attention_of = fields.Char('A/A', size=255)
     type = fields.Selection(selection_add=[('management_plant', 'Management plant'), ('tramit', 'Tramit')])
-    first_name = fields.Char('First Name', size=64, required=True)
     colege_num = fields.Char('Colege number', size=64)
-
-
-class ResPartnerBank(models.Model):
-
-    _inherit = "res.partner.bank"
-
-    active = fields.Boolean('Active', default=True)
-
-    def onchange_iban(self, cr, uid, ids, iban):
-        res = {'value': {}}
-        if iban:
-            country = iban[:2]
-            country_obj = self.pool.get('res.country')
-            country_ids = country_obj.search(cr, uid, [('code', '=', country)])
-            if country_ids:
-                res['value']['acc_country_id'] = country_ids[0]
-            else:
-                raise osv.except_osv(_('Error!'),_(u'There isn\'t a country starting with %s' % country))
-
-            bank = iban[4:8]
-            bank_obj = self.pool.get('res.bank')
-            bank_ids = bank_obj.search(cr, uid, [('code', '=', bank),('country', '=', country_ids)])
-            if bank_ids:
-                res['value']['bank'] = bank_ids[0]
-            else:
-                raise osv.except_osv(_('Error!'),_(u'There isn\'t this bank in this country'))
-
-        return res

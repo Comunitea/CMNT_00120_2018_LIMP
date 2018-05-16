@@ -187,7 +187,7 @@
                                     <field name="product_qty"/>
                                     <field name="product_uom"/>
                                     <field name="subtotal" />
-                                    <field name="tax_ids"/>
+                                    <field name="tax_ids" widget="many2many_tags"/>
                                 </tree>
                                 <form string="Invoice concepts">
                                     <field name="sequence"/>

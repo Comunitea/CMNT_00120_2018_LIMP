@@ -42,7 +42,6 @@ class ProductProduct(models.Model):
     picking_warn = fields.Selection(WARNING_MESSAGE, 'Picking Warning',
                                       help=WARNING_HELP, default='no-message')
     picking_warn_msg = fields.Text('Message for Picking')
-    tax_product = fields.Boolean('Tax product')
     biocide_type = fields.Char('Biocide type', size=150)
     active_matter_percent = fields.Float('Active Mater (%)',
                                            digits=(16, 3))
