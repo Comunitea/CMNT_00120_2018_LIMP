@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #       * simple_fleet_management
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.2\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2013-04-17 09:56+0000\n"
-"PO-Revision-Date: 2013-04-17 09:56+0000\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-22 17:31+0000\n"
+"PO-Revision-Date: 2018-05-22 17:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,30 +16,237 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_amount
+msgid "Amount"
+msgstr "Importe"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_avg_consumption
+msgid "Average consumption"
+msgstr "Consumo medio"
+
+#. module: simple_fleet_management
 #: selection:fleet,type:0
-msgid "Van"
-msgstr "Furgoneta"
+msgid "Car"
+msgstr "Coche"
 
 #. module: simple_fleet_management
-#: field:fleet.expense,net_amount:0
-msgid "Net amount"
-msgstr "Importe neto"
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_company_id
+msgid "Company"
+msgstr "Compañía"
 
 #. module: simple_fleet_management
-#: field:fleet.expense,labor:0
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_consumption
+msgid "Consumption (l/100Km)"
+msgstr "Consumo (l/100Km)"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_create_uid
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_create_uid
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_create_date
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_create_date
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_expense_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_department_id
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_search
+msgid "Department"
+msgstr "Departamento"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_name
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_note
+msgid "Description"
+msgstr "Descripción"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_display_name
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_display_name
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_distribute
+msgid "Distribute"
+msgstr "Distribuir"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_end_date
+msgid "End date"
+msgstr "Fecha final"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,help:simple_fleet_management.field_fleet_expense_expense_type
+msgid "Expense type"
+msgstr "Tipo de gasto"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_ids
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_form
+msgid "Expenses"
+msgstr "Gastos"
+
+#. module: simple_fleet_management
+#: model:ir.actions.act_window,name:simple_fleet_management.fleet_action
+#: model:ir.model,name:simple_fleet_management.model_fleet
+#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet
+#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet_open
+#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet_top
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_search
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_tree
+msgid "Fleet"
+msgstr "Flota"
+
+#. module: simple_fleet_management
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_form
+msgid "Fleet expense"
+msgstr "Gastos de flota"
+
+#. module: simple_fleet_management
+#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet_expense_type_open
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_type_form
+msgid "Fleet expense type"
+msgstr "Tipo gastos flota"
+
+#. module: simple_fleet_management
+#: model:ir.actions.act_window,name:simple_fleet_management.fleet_expense_type_action
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_type_search
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_type_tree
+msgid "Fleet expense types"
+msgstr "Tipos gastos flota"
+
+#. module: simple_fleet_management
+#: model:ir.actions.act_window,name:simple_fleet_management.fleet_expense_action
+#: model:ir.model,name:simple_fleet_management.model_fleet_expense
+#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet_expense_open
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_search
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_tree
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_form
+msgid "Fleet expenses"
+msgstr "Gastos flota"
+
+#. module: simple_fleet_management
+#: model:fleet.expense.type,name:simple_fleet_management.fleet_expense_type_garage
+msgid "Garage"
+msgstr "Taller"
+
+#. module: simple_fleet_management
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_search
+msgid "Group by..."
+msgstr "Agrupar por..."
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_id
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type_id
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_id
+msgid "ID"
+msgstr "ID"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_km
+msgid "Km"
+msgstr "Km"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_labor
 msgid "Labor"
 msgstr "Mano de obra"
 
 #. module: simple_fleet_management
-#: field:fleet.expense,note:0
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet___last_update
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense___last_update
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type_write_uid
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_write_uid
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type_write_date
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_write_date
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_license_plate
+msgid "License plate"
+msgstr "Matrícula"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_liter
+msgid "Liter"
+msgstr "Litro"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,help:simple_fleet_management.field_fleet_expense_consumption
+msgid "Liters each 100 km. (Refuel liters / traveled km) * 100"
+msgstr "Litros cada 100 km. (Litros repostados / km. viajados) * 100"
+
+#. module: simple_fleet_management
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_tree
+msgid "Medium consumption"
+msgstr "Consumo medio"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type_name
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_net_amount
+msgid "Net amount"
+msgstr "Importe neto"
+
+#. module: simple_fleet_management
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_tree
+msgid "Net total"
+msgstr "Total neto"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_no_distribute_ids
+msgid "No Distribute expenses"
+msgstr "Gastos no distribuibles"
+
+#. module: simple_fleet_management
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_form
+msgid "No distribute expenses"
+msgstr "Gastos no distribuibles"
+
+#. module: simple_fleet_management
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_note
 msgid "Note"
 msgstr "Nota"
 
 #. module: simple_fleet_management
-#: view:fleet.expense.type:0
-#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet_expense_type_open
-msgid "Fleet expense type"
-msgstr "Tipo gastos flota"
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_form
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_form
+msgid "Observations"
+msgstr "Observaciones"
 
 #. module: simple_fleet_management
 #: selection:fleet,type:0
@@ -48,34 +255,14 @@ msgid "Other"
 msgstr "Otro"
 
 #. module: simple_fleet_management
-#: code:addons/simple_fleet_management/fleet.py:116
-#: sql_constraint:fleet:0
-#, python-format
-msgid "The license plate must be unique !"
-msgstr "¡La matrícula tiene que ser única!"
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_parts_price
+msgid "Parts price"
+msgstr "Precio piezas"
 
 #. module: simple_fleet_management
-#: view:fleet:0
-#: view:fleet.expense:0
-msgid "Observations"
-msgstr "Observaciones"
-
-#. module: simple_fleet_management
-#: view:fleet:0
-#: view:fleet.expense:0
-#: field:fleet.expense,fleet_id:0
-msgid "Vehicle"
-msgstr "Vehículo"
-
-#. module: simple_fleet_management
-#: field:fleet.expense,partner_id:0
-msgid "Supplier"
-msgstr "Proveedor"
-
-#. module: simple_fleet_management
-#: field:fleet,start_date:0
-msgid "Start date"
-msgstr "Fecha de inicio"
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_form
+msgid "Price"
+msgstr "Precio"
 
 #. module: simple_fleet_management
 #: model:fleet.expense.type,name:simple_fleet_management.fleet_expense_type_refueling
@@ -83,170 +270,38 @@ msgid "Refueling"
 msgstr "Repostaje"
 
 #. module: simple_fleet_management
-#: model:ir.model,name:simple_fleet_management.model_fleet_expense_type
-msgid "fleet.expense.type"
-msgstr "fleet.expense.type"
-
-#. module: simple_fleet_management
-#: field:fleet,name:0
-#: field:fleet.expense.type,name:0
-msgid "Name"
-msgstr "Nombre"
-
-#. module: simple_fleet_management
-#: field:fleet,license_plate:0
-msgid "License plate"
-msgstr "Matrícula"
-
-#. module: simple_fleet_management
-#: field:fleet.expense,liter:0
-msgid "Liter"
-msgstr "Litros"
-
-#. module: simple_fleet_management
-#: help:fleet,type:0
-msgid "Vehicle type"
-msgstr "Tipo vehículo"
-
-#. module: simple_fleet_management
-#: view:fleet:0
-#: view:fleet.expense:0
-#: model:ir.actions.act_window,name:simple_fleet_management.fleet_expense_action
-#: model:ir.model,name:simple_fleet_management.model_fleet_expense
-#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet_expense_open
-msgid "Fleet expenses"
-msgstr "Gastos flota"
-
-#. module: simple_fleet_management
-#: view:fleet:0
-#: field:fleet,type:0
-#: view:fleet.expense:0
-#: field:fleet.expense,expense_type:0
-msgid "Type"
-msgstr "Tipo"
-
-#. module: simple_fleet_management
-#: field:fleet,company_id:0
-msgid "Company"
-msgstr "Compañía"
-
-#. module: simple_fleet_management
-#: field:fleet,end_date:0
-msgid "En date"
-msgstr "Fecha fin"
-
-#. module: simple_fleet_management
-#: model:ir.module.module,shortdesc:simple_fleet_management.module_meta_information
-msgid "Simple fleet management"
-msgstr "Gestión sencilla vehículos"
-
-#. module: simple_fleet_management
-#: field:fleet.expense,expense_date:0
-msgid "Date"
-msgstr "Fecha"
-
-#. module: simple_fleet_management
-#: field:fleet.expense.type,product_id:0
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_type_product_id
 msgid "Related product"
 msgstr "Producto relacionado"
 
 #. module: simple_fleet_management
-#: field:fleet.expense,consumption:0
-msgid "Consumption (l/100Km)"
-msgstr "Consumo (l/100Km)"
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_start_date
+msgid "Start date"
+msgstr "Fecha de inicio"
 
 #. module: simple_fleet_management
-#: field:fleet,avg_consumption:0
-msgid "Average consumption"
-msgstr "Consumo medio"
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_partner_id
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_search
+msgid "Supplier"
+msgstr "Proveedor"
 
 #. module: simple_fleet_management
-#: view:fleet.expense:0
-msgid "Net total"
-msgstr "Total neto"
+#: code:addons/simple_fleet_management/models/fleet.py:52
+#: sql_constraint:fleet:0
+#, python-format
+msgid "The license plate must be unique !"
+msgstr "¡La matrícula tiene que ser única!"
 
 #. module: simple_fleet_management
-#: view:fleet:0
-#: view:fleet.expense:0
-msgid "Fleet expense"
-msgstr "Gastos de flota"
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_tree
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_form
+msgid "Total"
+msgstr "Total"
 
 #. module: simple_fleet_management
-#: selection:fleet,type:0
-msgid "Car"
-msgstr "Coche"
-
-#. module: simple_fleet_management
-#: field:fleet.expense,km:0
-msgid "Km"
-msgstr "Km"
-
-#. module: simple_fleet_management
-#: view:fleet:0
-msgid "Context..."
-msgstr "Contexto..."
-
-#. module: simple_fleet_management
-#: model:ir.module.module,description:simple_fleet_management.module_meta_information
-msgid "Allow to manege fleet registries"
-msgstr "Permite gestionar registros de flota"
-
-#. module: simple_fleet_management
-#: model:fleet.expense.type,name:simple_fleet_management.fleet_expense_type_garage
-msgid "Garage"
-msgstr "Taller"
-
-#. module: simple_fleet_management
-#: field:fleet.expense,amount:0
-msgid "Amount"
-msgstr "Importe"
-
-#. module: simple_fleet_management
-#: help:fleet.expense,consumption:0
-msgid "Liters each 100 km. (Refuel liters / traveled km) * 100"
-msgstr "Litros cada 100 km. (Litros repostados /  km. recorridos) * 100"
-
-#. module: simple_fleet_management
-#: view:fleet:0
-#: model:ir.actions.act_window,name:simple_fleet_management.fleet_action
-#: model:ir.model,name:simple_fleet_management.model_fleet
-#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet
-#: model:ir.ui.menu,name:simple_fleet_management.menu_fleet_open
-msgid "Fleet"
-msgstr "Flota"
-
-#. module: simple_fleet_management
-#: field:fleet,note:0
-#: field:fleet.expense,name:0
-msgid "Description"
-msgstr "Descripción"
-
-#. module: simple_fleet_management
-#: view:fleet.expense.type:0
-#: model:ir.actions.act_window,name:simple_fleet_management.fleet_expense_type_action
-msgid "Fleet expense types"
-msgstr "Tipos gastos flota"
-
-#. module: simple_fleet_management
-#: view:fleet:0
-#: field:fleet,expense_ids:0
-msgid "Expenses"
-msgstr "Gastos"
-
-#. module: simple_fleet_management
-#: help:fleet.expense,expense_type:0
-msgid "Expense type"
-msgstr "Tipo gasto"
-
-#. module: simple_fleet_management
-#: view:fleet.expense:0
-msgid "Group by..."
-msgstr "Agrupar por..."
-
-#. module: simple_fleet_management
-#: field:fleet.expense,parts_price:0
-msgid "Parts price"
-msgstr "Precio piezas"
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_tree
+msgid "Total liters"
+msgstr "Litros totales"
 
 #. module: simple_fleet_management
 #: selection:fleet,type:0
@@ -254,19 +309,31 @@ msgid "Truck"
 msgstr "Camión"
 
 #. module: simple_fleet_management
-#: view:fleet:0
-#: view:fleet.expense:0
-msgid "Total"
-msgstr "Total"
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_expense_type
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_type
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_search
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_search
+msgid "Type"
+msgstr "Tipo"
 
 #. module: simple_fleet_management
-#: view:fleet:0
-#: view:fleet.expense:0
-msgid "Price"
-msgstr "Precio"
+#: selection:fleet,type:0
+msgid "Van"
+msgstr "Furgoneta"
 
 #. module: simple_fleet_management
-#: field:fleet,active:0
-msgid "Active"
-msgstr "Activo"
+#: model:ir.model.fields,field_description:simple_fleet_management.field_fleet_expense_fleet_id
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_expense_search
+#: model:ir.ui.view,arch_db:simple_fleet_management.fleet_form
+msgid "Vehicle"
+msgstr "Vehículo"
 
+#. module: simple_fleet_management
+#: model:ir.model.fields,help:simple_fleet_management.field_fleet_type
+msgid "Vehicle type"
+msgstr "Tipo de vehículo"
+
+#. module: simple_fleet_management
+#: model:ir.model,name:simple_fleet_management.model_fleet_expense_type
+msgid "fleet.expense.type"
+msgstr "fleet.expense.type"
