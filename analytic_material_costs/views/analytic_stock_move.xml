@@ -13,6 +13,7 @@
                 <field name="product_id"/>
                 <field name="product_qty"/>
                 <field name="state" invisible="1"/>
+                <button name="action_confirm" type="object" string="Confirm" states="first" icon="fa-check"/>
             </tree>
         </field>
     </record>
@@ -36,6 +37,7 @@
                             <newline/>
                             <field name="move_id"/>
                             <field name="state"/>
+                            <button name="action_confirm" type="object" string="Confirm" states="first" icon="fa-check"/>
                         </group>
                     </group>
                 </sheet>

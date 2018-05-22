@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #       * analytic_material_costs
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.2\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-09-21 08:17+0000\n"
-"PO-Revision-Date: 2012-09-21 08:17+0000\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-22 13:02+0000\n"
+"PO-Revision-Date: 2018-05-22 13:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,163 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: analytic_material_costs
-#: view:account.analytic.account:0
-#: view:account.analytic.stock.move:0
-msgid "Consumption"
-msgstr "Consumo"
-
-#. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:108
-#, python-format
-msgid "Cannot delete any record."
-msgstr "No puede borrar ningún registro."
-
-#. module: analytic_material_costs
-#: field:account.analytic.stock.move,date:0
-msgid "Date"
-msgstr "Fecha"
-
-#. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:90
-#, python-format
-msgid "No product and product category expense property account defined on the related product.\n"
-"Fill these on product form."
-msgstr "Sin cuenta de gastos en el producto ni en la la categoría del producto seleccionado.\n"
-"Rellene estos campos en el formulario de producto."
-
-#. module: analytic_material_costs
-#: view:account.analytic.stock.move:0
-msgid "Analytic account"
-msgstr "Cuenta analítica"
-
-#. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:60
-#, python-format
-msgid "Employee must have an associated location !"
-msgstr "¡El empleado debe tener una ubicación asociada!"
-
-#. module: analytic_material_costs
-#: field:account.analytic.stock.move,state:0
-msgid "State"
-msgstr "Estado"
-
-#. module: analytic_material_costs
-#: help:hr.employee,location_id:0
-msgid "Associated output location, origin of material consumptions in analytic accounts."
-msgstr "La ubicación de salida asociada, origen de los consumos de materiales en las cuentas analíticas."
-
-#. module: analytic_material_costs
-#: field:account.analytic.stock.move,location_id:0
-msgid "Location"
-msgstr "Ubicación"
-
-#. module: analytic_material_costs
-#: view:account.analytic.stock.move:0
-#: model:ir.model,name:analytic_material_costs.model_hr_employee
-msgid "Employee"
-msgstr "Encargado"
-
-#. module: analytic_material_costs
-#: view:account.analytic.account:0
-#: field:account.analytic.account,analytic_move_ids:0
-#: view:account.analytic.stock.move:0
-#: model:ir.actions.act_window,name:analytic_material_costs.analytic_stock_move_concepts
-#: model:ir.ui.menu,name:analytic_material_costs.menu_analytic_stock_move
-#: model:ir.ui.menu,name:analytic_material_costs.menu_analytic_stock_move_open
-msgid "Consumptions"
-msgstr "Consumos"
-
-#. module: analytic_material_costs
-#: field:account.analytic.stock.move,product_id:0
-msgid "Product"
-msgstr "Producto"
-
-#. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:108
-#, python-format
-msgid "Error !"
-msgstr "¡Error!"
-
-#. module: analytic_material_costs
-#: selection:account.analytic.stock.move,state:0
-msgid "Second"
-msgstr "Segundo"
-
-#. module: analytic_material_costs
-#: model:ir.model,name:analytic_material_costs.model_account_analytic_stock_move
-msgid "Model between stock_move and analytic_account"
-msgstr "Modelo entre stock_move y analytic_account"
-
-#. module: analytic_material_costs
-#: field:account.analytic.stock.move,product_qty:0
-msgid "Quantity"
-msgstr "Cantidad"
-
-#. module: analytic_material_costs
-#: constraint:hr.employee:0
-msgid "Error ! You cannot create recursive Hierarchy of Employees."
-msgstr "¡Error! No se puede crear una jerarquía recursiva de empleados."
-
-#. module: analytic_material_costs
-#: field:hr.employee,location_id:0
-msgid "Associated location"
-msgstr "Ubicación asociada"
-
-#. module: analytic_material_costs
-#: constraint:hr.employee:0
-msgid "Error ! You cannot select a department for which the employee is the manager."
-msgstr "¡Error! No puede seleccionar un departamento que tenga el empleado como responsable."
-
-#. module: analytic_material_costs
-#: constraint:account.analytic.account:0
-msgid "Error! The currency has to be the same as the currency of the selected company"
-msgstr "¡Error! La divisa tiene que ser la misma que la establecida en la compañía seleccionada"
-
-#. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:60
-#: code:addons/analytic_material_costs/analytic_stock_move.py:62
-#: code:addons/analytic_material_costs/analytic_stock_move.py:64
-#: code:addons/analytic_material_costs/analytic_stock_move.py:83
-#, python-format
-msgid "Error"
-msgstr "Error"
-
-#. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:62
-#, python-format
-msgid "Employee must have an associated company !"
-msgstr "¡El empleado debe tener una compañía asociada!"
-
-#. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:89
-#, python-format
-msgid "Bad Configuration !"
-msgstr "¡Mala configuración!"
-
-#. module: analytic_material_costs
-#: selection:account.analytic.stock.move,state:0
-msgid "First"
-msgstr "Primero"
-
-#. module: analytic_material_costs
-#: view:account.analytic.account:0
-msgid "Account Data"
-msgstr "Datos de la cuenta"
-
-#. module: analytic_material_costs
-#: field:account.analytic.stock.move,analytic_account_id:0
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_analytic_account_id
 msgid "Analytic"
-msgstr "Analítica"
-
-#. module: analytic_material_costs
-#: view:account.analytic.stock.move:0
-msgid "Group By..."
-msgstr "Agrupar por..."
-
-#. module: analytic_material_costs
-#: field:account.analytic.stock.move,move_id:0
-msgid "Move"
-msgstr "Movimiento"
+msgstr "Cuenta analítica"
 
 #. module: analytic_material_costs
 #: model:ir.model,name:analytic_material_costs.model_account_analytic_account
@@ -180,24 +26,159 @@ msgid "Analytic Account"
 msgstr "Cuenta analítica"
 
 #. module: analytic_material_costs
-#: field:account.analytic.stock.move,employee_id:0
-msgid "Manager"
-msgstr "Encargado"
+#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
+msgid "Analytic account"
+msgstr "Cuenta analítica"
 
 #. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:83
+#: model:ir.model.fields,field_description:analytic_material_costs.field_hr_employee_location_id
+msgid "Associated location"
+msgstr "Ubicación asociada"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,help:analytic_material_costs.field_hr_employee_location_id
+msgid "Associated output location, origin of material consumptions inanalytic accounts."
+msgstr "Ubicación de origen asociada, origen para los consumos de material en las cuentas analíticas."
+
+#. module: analytic_material_costs
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:162
 #, python-format
-msgid "Cannot find analytic journal 'Material'!"
-msgstr "¡No se puede encontrar el diario analítico 'Material'!"
+msgid "Cannot delete any record in confirmed state."
+msgstr "No puede borrar ningún registro en estado confirmado."
 
 #. module: analytic_material_costs
-#: code:addons/analytic_material_costs/analytic_stock_move.py:64
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:82
 #, python-format
 msgid "Company must have set an output customer location in its partner form !"
-msgstr "¡La compañía debe tener rellenada una ubicación de salida de cliente en su formulario de empresa!"
+msgstr "¡La compañía tine que tener una ubicación de cliente establecida en su empresa relacionada!"
 
 #. module: analytic_material_costs
-#: constraint:account.analytic.account:0
-msgid "Error! You can not create recursive analytic accounts."
-msgstr "¡Error! No puede crear cuentas analíticas recursivas."
+#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_form
+#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_tree
+msgid "Confirm"
+msgstr "Confirmar"
 
+#. module: analytic_material_costs
+#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_form
+msgid "Consumption"
+msgstr "Consumo"
+
+#. module: analytic_material_costs
+#: model:ir.actions.act_window,name:analytic_material_costs.analytic_stock_move_concepts
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_account_analytic_move_ids
+#: model:ir.model.fields,field_description:analytic_material_costs.field_project_project_analytic_move_ids
+#: model:ir.ui.menu,name:analytic_material_costs.menu_analytic_stock_move_open
+#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
+#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_tree
+msgid "Consumptions"
+msgstr "Consumos"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: analytic_material_costs
+#: model:ir.model,name:analytic_material_costs.model_hr_employee
+#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: analytic_material_costs
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:77
+#, python-format
+msgid "Employee must have an associated location !"
+msgstr "¡El empleado tiene que tener una ubicación asociada!"
+
+#. module: analytic_material_costs
+#: selection:account.analytic.stock.move,state:0
+msgid "First"
+msgstr "Primero"
+
+#. module: analytic_material_costs
+#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_id
+msgid "ID"
+msgstr "ID"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_location_id
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_employee_id
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: analytic_material_costs
+#: model:ir.model,name:analytic_material_costs.model_account_analytic_stock_move
+msgid "Model between stock_move and analytic_account"
+msgstr "Modelo entre stock_move y analytic_account"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_move_id
+msgid "Move"
+msgstr "Movimiento"
+
+#. module: analytic_material_costs
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:140
+#, python-format
+msgid "No product and product category expense property account defined on the related product.\n"
+"Fill these on product form."
+msgstr "Sin cuenta de gastos definida en el producto ni la categoría del producto relacionado.\n"
+"Rellene esta en el formulario de producto."
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_product_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: analytic_material_costs
+#: selection:account.analytic.stock.move,state:0
+msgid "Second"
+msgstr "Segundo"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_state
+msgid "State"
+msgstr "Estado"
