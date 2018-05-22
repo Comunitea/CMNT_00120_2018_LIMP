@@ -56,13 +56,17 @@ class Container(models.Model):
     last_move_date = fields.Datetime('Last move date', readonly=True)
     last_responsible_id = fields.Many2one('hr.employee', 'Last driver',
                                           readonly=True)
-    situation_id = fields.Many2one(
-        'res.partner', 'Situation',
-        help="Current situation, customer address or available in company addresses",
-        default=lambda r: r.env.user.company_id.partner_id.address_get().get('default', False))
-    partner_id = fields.Many2one('res.partner', 'Partner',
+    situation_id = fields.\
+        Many2one('res.partner', 'Situation',
+                 help="Current situation, customer address or available "
+                      "in company addresses",
+                 default=lambda r:
+                 r.env.user.company_id.partner_id.address_get().get('default',
+                                                                    False))
+    partner_id = fields.Many2one('res.partner', 'Partner', readonly=True,
                                  related='situation_id.commercial_partner_id')
-    home = fields.Boolean('Home', related='situation_id.containers_store')
+    home = fields.Boolean('Home', related='situation_id.containers_store',
+                          readonly=True)
     container_placement = fields.Selection([('on_street', 'On street'),
                                             ('on_building', 'On building')],
                                            string="Container placement")
@@ -85,13 +89,13 @@ class Container(models.Model):
                     })
                 elif vals['situation_id'] != container.situation_id.id:
                     self.env['container.move'].create({
-                            'container_id': container.id,
-                            'move_type': 'out',
-                            'address_id': container.situation_id.id,
-                            'move_date': vals.get('last_move_date',
-                                                  fields.Datetime.now()),
-                            'responsible_id': vals.get('last_responsible_id',
-                                                       False)
+                        'container_id': container.id,
+                        'move_type': 'out',
+                        'address_id': container.situation_id.id,
+                        'move_date': vals.get('last_move_date',
+                                              fields.Datetime.now()),
+                        'responsible_id': vals.get('last_responsible_id',
+                                                   False)
                         })
                     self.env['container.move'].create({
                         'container_id': container.id,

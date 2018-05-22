@@ -27,7 +27,7 @@ class LimpContractLineTaskRel(models.Model):
 
     employee_task_line_id = fields.Many2one('limp.contract.line.employee.task','Employee Task')
     contract_task_id = fields.Many2one('limp.contract.task', 'Task', required=True)
-    name = fields.Char('Name', related='contract_task_id.name')
+    name = fields.Char('Name', related='contract_task_id.name', readonly=True)
     task_sequence = fields.Integer('Sequence', compute='_compute_task_sequence')
     monday = fields.Boolean('Monday')
     tuesday = fields.Boolean('Tuesday')

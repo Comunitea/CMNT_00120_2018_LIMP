@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #       * containers_management
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.2\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2013-02-22 13:30+0000\n"
-"PO-Revision-Date: 2013-02-22 13:30+0000\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-22 16:50+0000\n"
+"PO-Revision-Date: 2018-05-22 16:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,73 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Flat Dumpster 30"
-msgstr "Patera 30"
+#: model:ir.model.fields,field_description:containers_management.field_container_active
+msgid "Active"
+msgstr "Activo"
 
 #. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Flat Dumpster 1,5"
-msgstr "Patera 1,5"
-
-#. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Flat Dumpster 3"
-msgstr "Patera 3"
-
-#. module: containers_management
-#: field:container,container_placement:0
-msgid "Container placement"
-msgstr "Colocación contenedor"
-
-#. module: containers_management
-#: view:container:0
-#: view:container.move:0
-#: field:container.move,container_id:0
-msgid "Container"
-msgstr "Contenedor"
-
-#. module: containers_management
-#: field:container,dimensions:0
-msgid "Dimensions"
-msgstr "Dimensiones"
-
-#. module: containers_management
-#: model:ir.model,name:containers_management.model_container_move
-msgid "History of container moves"
-msgstr "Historial de movimiento del contenedor"
-
-#. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Trapezoidal 8"
-msgstr "Trapezoidal 8"
-
-#. module: containers_management
-#: help:container,situation_id:0
-msgid "Current situation, customer address or available in company addresses"
-msgstr "Ubicación actual, dirección de cliente o disponible en ubicación de la compañía"
-
-#. module: containers_management
-#: view:container:0
-#: view:container.move:0
-msgid "Group By..."
-msgstr "Agrupar por..."
-
-#. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Other"
-msgstr "Otro"
-
-#. module: containers_management
-#: view:container:0
-#: field:container,note:0
-msgid "Observations"
-msgstr "Observaciones"
+#: model:ir.model.fields,field_description:containers_management.field_container_capacity
+msgid "Capacity (m³)"
+msgstr "Capacidad (m³)"
 
 #. module: containers_management
 #: selection:container,shape:0
@@ -90,98 +31,176 @@ msgid "Closed"
 msgstr "Cerrado"
 
 #. module: containers_management
-#: view:container:0
-#: view:container.move:0
-#: model:ir.actions.act_window,name:containers_management.action_container_move
-#: model:ir.ui.menu,name:containers_management.menu_containers_move_open
-msgid "Container moves"
-msgstr "Movimientos contenedor"
+#: model:ir.model.fields,field_description:containers_management.field_container_code
+msgid "Code"
+msgstr "Código"
 
 #. module: containers_management
-#: view:container:0
-#: field:container,type:0
-#: view:container.move:0
-msgid "Type"
-msgstr "Tipo"
-
-#. module: containers_management
-#: view:container:0
-#: model:ir.actions.act_window,name:containers_management.container_action
-#: model:ir.model,name:containers_management.model_container
-#: model:ir.ui.menu,name:containers_management.menu_containers
-#: model:ir.ui.menu,name:containers_management.menu_containers_open
-msgid "Containers"
-msgstr "Contenedores"
-
-#. module: containers_management
-#: selection:container,shape:0
-msgid "Opened"
-msgstr "Abierto"
-
-#. module: containers_management
-#: field:container,partner_id:0
-msgid "Partner"
-msgstr "Empresa"
-
-#. module: containers_management
-#: view:container.move:0
-msgid "Outputs"
-msgstr "Salidas"
-
-#. module: containers_management
-#: field:container,company_id:0
+#: model:ir.model.fields,field_description:containers_management.field_container_company_id
 msgid "Company"
 msgstr "Compañía"
 
 #. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Flat Dumpster 9"
-msgstr "Patera 9"
+#: model:ir.model.fields,field_description:containers_management.field_container_move_container_id
+#: model:ir.ui.view,arch_db:containers_management.container_form
+#: model:ir.ui.view,arch_db:containers_management.container_move_search
+msgid "Container"
+msgstr "Contenedor"
 
 #. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Flat Dumpster 18"
-msgstr "Patera 18"
+#: model:ir.ui.view,arch_db:containers_management.container_form
+#: model:ir.ui.view,arch_db:containers_management.container_move_form
+msgid "Container move"
+msgstr "Movimiento contenedor"
 
 #. module: containers_management
-#: field:container.move,move_date:0
+#: model:ir.actions.act_window,name:containers_management.action_container_move
+#: model:ir.ui.menu,name:containers_management.menu_containers_move_open
+#: model:ir.ui.view,arch_db:containers_management.container_form
+#: model:ir.ui.view,arch_db:containers_management.container_move_search
+#: model:ir.ui.view,arch_db:containers_management.container_move_tree
+msgid "Container moves"
+msgstr "Movimientos contenedor"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_container_placement
+msgid "Container placement"
+msgstr "Ubicación contenedor"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_move_type
+#: model:ir.ui.view,arch_db:containers_management.container_move_search
+msgid "Container type"
+msgstr "Tipo contenedor"
+
+#. module: containers_management
+#: model:ir.actions.act_window,name:containers_management.container_action
+#: model:ir.model,name:containers_management.model_container
+#: model:ir.ui.menu,name:containers_management.menu_containers
+#: model:ir.ui.menu,name:containers_management.menu_containers_open
+#: model:ir.ui.view,arch_db:containers_management.container_search
+#: model:ir.ui.view,arch_db:containers_management.container_tree
+msgid "Containers"
+msgstr "Contenedores"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_res_partner_containers_store
+#: model:ir.model.fields,field_description:containers_management.field_res_users_containers_store
+msgid "Containers store"
+msgstr "Almacén de contenedores"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_create_uid
+#: model:ir.model.fields,field_description:containers_management.field_container_move_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_create_date
+#: model:ir.model.fields,field_description:containers_management.field_container_move_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: containers_management
+#: model:ir.model.fields,help:containers_management.field_container_situation_id
+msgid "Current situation, customer address or available in company addresses"
+msgstr "Localiación actual, dirección del cliente o disponible en la dirección de la compañía"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_move_move_date
 msgid "Date"
 msgstr "Fecha"
 
 #. module: containers_management
-#: model:ir.model,name:containers_management.model_res_partner_address
-msgid "Partner Addresses"
-msgstr "Direcciones de empresa"
+#: model:ir.model.fields,field_description:containers_management.field_container_dimensions
+msgid "Dimensions"
+msgstr "Dimensiones"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_display_name
+#: model:ir.model.fields,field_description:containers_management.field_container_move_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_move_responsible_id
+#: model:ir.ui.view,arch_db:containers_management.container_move_search
+msgid "Driver"
+msgstr "Conductor"
 
 #. module: containers_management
 #: selection:container,type:0
-#: selection:container.move,type:0
+msgid "Flat Dumpster 1,5"
+msgstr "Patera 1,5"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Flat Dumpster 12"
+msgstr "Patera 12"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Flat Dumpster 14"
+msgstr "Patera 14"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Flat Dumpster 18"
+msgstr "Patera 18"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Flat Dumpster 3"
+msgstr "Patera 3"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Flat Dumpster 30"
+msgstr "Patera 30"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Flat Dumpster 4"
+msgstr "Patera 4"
+
+#. module: containers_management
+#: selection:container,type:0
 msgid "Flat Dumpster 7"
 msgstr "Patera 7"
 
 #. module: containers_management
 #: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Flat Dumpster 12"
-msgstr "Patera 12"
+msgid "Flat Dumpster 9"
+msgstr "Patera 9"
 
 #. module: containers_management
-#: selection:container,container_placement:0
-msgid "On building"
-msgstr "En obra"
+#: model:ir.ui.view,arch_db:containers_management.container_move_search
+#: model:ir.ui.view,arch_db:containers_management.container_search
+msgid "Group By..."
+msgstr "Agrupar por..."
 
 #. module: containers_management
-#: view:container:0
-#: view:container.move:0
-msgid "Container move"
-msgstr "Movimiento contenedor"
+#: model:ir.model.fields,field_description:containers_management.field_container_history_ids
+#: model:ir.ui.view,arch_db:containers_management.container_form
+msgid "History"
+msgstr "Historial"
 
 #. module: containers_management
-#: view:container:0
-msgid "Placement"
-msgstr "Colocación"
+#: model:ir.model,name:containers_management.model_container_move
+msgid "History of container moves"
+msgstr "Historial de movimiento del contenedor"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_home
+#: model:ir.ui.view,arch_db:containers_management.container_search
+msgid "Home"
+msgstr "En almacén"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_id
+#: model:ir.model.fields,field_description:containers_management.field_container_move_id
+msgid "ID"
+msgstr "ID"
 
 #. module: containers_management
 #: selection:container.move,move_type:0
@@ -189,54 +208,48 @@ msgid "In"
 msgstr "Entra"
 
 #. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Trapezoidal 6"
-msgstr "Trapezoidal 6"
+#: model:ir.model.fields,field_description:containers_management.field_container___last_update
+#: model:ir.model.fields,field_description:containers_management.field_container_move___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
 
 #. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Trapezoidal 4"
-msgstr "Trapezoidal 4"
+#: model:ir.model.fields,field_description:containers_management.field_container_move_write_uid
+#: model:ir.model.fields,field_description:containers_management.field_container_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
 
 #. module: containers_management
-#: view:container.move:0
-#: field:container.move,type:0
-msgid "Container type"
-msgstr "Tipo contenedor"
+#: model:ir.model.fields,field_description:containers_management.field_container_move_write_date
+#: model:ir.model.fields,field_description:containers_management.field_container_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
 
 #. module: containers_management
-#: field:res.partner.address,containers_store:0
-msgid "Containers store"
-msgstr "Almacén contenedores"
+#: model:ir.model.fields,field_description:containers_management.field_container_last_responsible_id
+msgid "Last driver"
+msgstr "Últ. conductor"
 
 #. module: containers_management
-#: field:container,situation_id:0
-#: field:container.move,address_id:0
-msgid "Situation"
-msgstr "Ubicación"
+#: model:ir.model.fields,field_description:containers_management.field_container_last_move_date
+msgid "Last move date"
+msgstr "Últ. movimiento el"
 
 #. module: containers_management
-#: field:container.move,move_type:0
+#: model:ir.model.fields,field_description:containers_management.field_container_move_move_type
 msgid "Move type"
-msgstr "Tipo movimiento"
+msgstr "Tipo de operación"
 
 #. module: containers_management
-#: view:container:0
-#: field:container,history_ids:0
-msgid "History"
-msgstr "Historial"
+#: model:ir.model.fields,field_description:containers_management.field_container_note
+#: model:ir.ui.view,arch_db:containers_management.container_form
+msgid "Observations"
+msgstr "Observaciones"
 
 #. module: containers_management
-#: field:container,code:0
-msgid "Code"
-msgstr "Código"
-
-#. module: containers_management
-#: view:container:0
-msgid "Placed"
-msgstr "Colocado"
+#: selection:container,container_placement:0
+msgid "On building"
+msgstr "En obra"
 
 #. module: containers_management
 #: selection:container,container_placement:0
@@ -244,33 +257,14 @@ msgid "On street"
 msgstr "En vía pública"
 
 #. module: containers_management
-#: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Flat Dumpster 14"
-msgstr "Patera 14"
-
-#. module: containers_management
-#: view:container:0
-#: field:container,shape:0
-msgid "Shape"
-msgstr "Forma"
+#: selection:container,shape:0
+msgid "Opened"
+msgstr "Abierto"
 
 #. module: containers_management
 #: selection:container,type:0
-#: selection:container.move,type:0
-msgid "Flat Dumpster 4"
-msgstr "Patera 4"
-
-#. module: containers_management
-#: field:container,capacity:0
-msgid "Capacity (m³)"
-msgstr "Capacidad (m³)"
-
-#. module: containers_management
-#: view:container:0
-#: field:container,home:0
-msgid "Home"
-msgstr "En almacén"
+msgid "Other"
+msgstr "Otro"
 
 #. module: containers_management
 #: selection:container.move,move_type:0
@@ -278,7 +272,66 @@ msgid "Out"
 msgstr "Sale"
 
 #. module: containers_management
-#: field:container,active:0
-msgid "Active"
-msgstr "Activo"
+#: model:ir.ui.view,arch_db:containers_management.container_move_search
+msgid "Output moves"
+msgstr "Salidas"
 
+#. module: containers_management
+#: model:ir.ui.view,arch_db:containers_management.container_move_search
+msgid "Outputs"
+msgstr "Salidas"
+
+#. module: containers_management
+#: model:ir.model,name:containers_management.model_res_partner
+#: model:ir.model.fields,field_description:containers_management.field_container_partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: containers_management
+#: model:ir.model,name:containers_management.model_res_partner_address
+msgid "Partner Addresses"
+msgstr "Direcciones de empresa"
+
+#. module: containers_management
+#: model:ir.ui.view,arch_db:containers_management.container_search
+msgid "Placed"
+msgstr "Colocado"
+
+#. module: containers_management
+#: model:ir.ui.view,arch_db:containers_management.container_search
+msgid "Placement"
+msgstr "Colocación"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_shape
+#: model:ir.ui.view,arch_db:containers_management.container_search
+msgid "Shape"
+msgstr "Forma"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_move_address_id
+#: model:ir.model.fields,field_description:containers_management.field_container_situation_id
+msgid "Situation"
+msgstr "Situation"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Trapezoidal 4"
+msgstr "Trapezoidal 4"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Trapezoidal 6"
+msgstr "Trapezoidal 6"
+
+#. module: containers_management
+#: selection:container,type:0
+msgid "Trapezoidal 8"
+msgstr "Trapezoidal 8"
+
+#. module: containers_management
+#: model:ir.model.fields,field_description:containers_management.field_container_type
+#: model:ir.ui.view,arch_db:containers_management.container_move_search
+#: model:ir.ui.view,arch_db:containers_management.container_search
+msgid "Type"
+msgstr "Tipo"

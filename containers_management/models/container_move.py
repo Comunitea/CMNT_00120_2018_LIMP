@@ -33,5 +33,5 @@ class ContainerMove(models.Model):
     move_date = fields.Datetime('Date', required=True,
                                 default=fields.Datetime.now)
     type = fields.Selection(related='container_id.type', store=True,
-                            string="Container type")
+                            string="Container type", readonly=True)
     responsible_id = fields.Many2one('hr.employee', 'Driver', readonly=True)
