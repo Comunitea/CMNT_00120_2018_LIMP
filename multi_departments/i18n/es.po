@@ -1,65 +1,30 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* multi_departments
+#       * multi_departments
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.2\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-09-21 08:22+0000\n"
-"PO-Revision-Date: 2012-09-21 10:55+0100\n"
-"Last-Translator: Marta <marta@pexego.es>\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-23 11:39+0000\n"
+"PO-Revision-Date: 2018-05-23 11:39+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. module: multi_departments
-#: field:hr.department,code:0
+#: model:ir.model.fields,field_description:multi_departments.field_hr_department_code
 msgid "Code"
 msgstr "Código"
 
 #. module: multi_departments
-#: constraint:hr.department:0
-msgid "Error! You can not create recursive departments."
-msgstr "¡Error! No puede crear departamentos recursivos."
-
-#. module: multi_departments
-#: sql_constraint:res.users:0
-msgid "You can not have two users with the same login !"
-msgstr "¡No puede tener dos usuarios con el mismo identificador de usuario!"
-
-#. module: multi_departments
-#: view:res.users:0
-msgid "Related departments"
-msgstr "Departamentos relacionados"
-
-#. module: multi_departments
-#: constraint:hr.employee:0
-msgid "Error ! You cannot select a department for which the employee is the manager."
-msgstr "¡Error! No puede seleccionar un departamento que tenga el empleado como responsable."
-
-#. module: multi_departments
-#: view:hr.employee:0
-#: field:res.users,department_ids:0
+#: model:ir.model.fields,field_description:multi_departments.field_res_users_department_ids
+#: model:ir.ui.view,arch_db:multi_departments.view_users_form_add_new_departments_relationship
 msgid "Departments"
 msgstr "Departamentos"
-
-#. module: multi_departments
-#: model:ir.model,name:multi_departments.model_hr_department
-msgid "hr.department"
-msgstr "hr.departamento"
-
-#. module: multi_departments
-#: field:hr.department,user_ids:0
-msgid "Related users"
-msgstr "Usuarios relacionados"
-
-#. module: multi_departments
-#: constraint:res.users:0
-msgid "The chosen company is not in the allowed companies for this user"
-msgstr "La compañía seleccionada no está en las compañías permitidas para este usuario"
 
 #. module: multi_departments
 #: model:ir.model,name:multi_departments.model_hr_employee
@@ -67,17 +32,16 @@ msgid "Employee"
 msgstr "Empleado"
 
 #. module: multi_departments
+#: model:ir.model,name:multi_departments.model_hr_department
+msgid "Hr Department"
+msgstr "Departamentos"
+
+#. module: multi_departments
+#: model:ir.model.fields,field_description:multi_departments.field_hr_department_user_ids
+msgid "Related users"
+msgstr "Usuarios relacionados"
+
+#. module: multi_departments
 #: model:ir.model,name:multi_departments.model_res_users
-msgid "res.users"
-msgstr "res.usuarios"
-
-#. module: multi_departments
-#: constraint:hr.employee:0
-msgid "Error ! You cannot create recursive Hierarchy of Employees."
-msgstr "¡Error! No se puede crear una jerarquía recursiva de empleados."
-
-#. module: multi_departments
-#: view:hr.employee:0
-msgid "Personal Information"
-msgstr "Información personal"
-
+msgid "Users"
+msgstr "Usuarios"
