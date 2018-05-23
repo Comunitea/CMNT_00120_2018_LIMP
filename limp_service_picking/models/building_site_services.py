@@ -45,7 +45,8 @@ class BuildingSiteServices(models.Model):
                  ('code', 'ilike', name),
                  ('serial', 'ilike', name),
                  ('description', 'ilike', name),
-                 ('address_building_site.street', 'ilike', name)], limit=limit)
+                 ('address_building_site.street', 'ilike', name)] + args,
+                limit=limit)
         else:
             obj = self.search(args, limit=limit)
 
@@ -66,22 +67,14 @@ class BuildingSiteServices(models.Model):
     contact_id = fields.Many2one('res.partner', 'Contact')
     building_site_license = fields.Char('License nº', size=64)
     city_building_site = fields.Char('City', size=64)
-    #identification_manager = fields.Char('Manager', size=148),
-    #authorization_no = fields.Char('Authorization no.', size=32, required=True),
     partner_ids = fields.Many2many('res.partner', 'partner_building_site_services_rel', 'building_site_services_id','partner_ids', 'Partner')
     show = fields.Selection([('building', 'Building'),('service', 'Service')],'Show', required=True, deafault='building')
     code = fields.Char('Reference/Order', size=128)
     serial = fields.Char('Code', size=128)
     active = fields.Boolean('Active', default=True)
     admission_no = fields.Char('Admission no.', size=24, readonly=True)
-    company_id = fields.Many2one('res.company', 'Company', readonly=True, default=lambda r: r._context.get('company_id', self.env.user.company_id.id))
+    company_id = fields.Many2one('res.company', 'Company', readonly=True, default=lambda r: r._context.get('company_id', r.env.user.company_id.id))
     description = fields.Char('Description', size=128)
-
-    '''
-    _defaults = {
-        #'identification_manager':  lambda self, cr, uid, context: context.get('identification_manager', False),
-        #'authorization_no':  lambda self, cr, uid, context: context.get('authorization_no', False),
-    }'''
 
 
     def _compute_address_name(self):
@@ -96,7 +89,7 @@ class BuildingSiteServices(models.Model):
     @api.model
     def create(self, vals):
         if self._context.get('partner_id', False):
-            vals['partner_ids'] = [(4, context['partner_id'])]
+            vals['partner_ids'] = [(4, self._context['partner_id'])]
         admission_seq = self.env['ir.sequence'].next_by_code('waste.admission.number')
         vals['admission_no'] = admission_seq
 

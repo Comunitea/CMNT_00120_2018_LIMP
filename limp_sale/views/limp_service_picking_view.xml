@@ -18,7 +18,7 @@
                     </tree>
                 </field>
             </field>
-            <xpath expr="//field[@name='other_concepts_ids']/form/field[@name='product_qty']" position="after">
+            <xpath expr="//field[@name='other_concepts_ids']/form//field[@name='product_qty']" position="after">
                 <field name="price_unit"/>
             </xpath>
             <xpath expr="//field[@name='other_concepts_ids']/tree/field[@name='product_qty']" position="after">
@@ -48,7 +48,7 @@
                     </tree>
                 </field>
             </field>
-            <xpath expr="//field[@name='other_concepts_ids']/form/field[@name='product_qty']" position="after">
+            <xpath expr="//field[@name='other_concepts_ids']/form//field[@name='product_qty']" position="after">
                 <field name="price_unit"/>
             </xpath>
             <xpath expr="//field[@name='other_concepts_ids']/tree/field[@name='product_qty']" position="after">

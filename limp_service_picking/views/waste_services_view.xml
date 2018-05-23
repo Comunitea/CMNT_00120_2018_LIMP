@@ -26,11 +26,11 @@
                         <group>
                             <field name="name" readonly="1" required="False"/>
                             <field name="date_start" readonly="1"/>
-                            <field name="partner_id" required="1"/>
+                            <field name="partner_id" required="1" domain="[('is_company', '=', True)]"/>
                         </group>
                         <group>
-                            <field name="contact_id" required="1"/>
-                            <field name="partner_shipping_id"/>
+                            <field name="contact_id" required="1" domain="[('id', 'child_of', [partner_id])]"/>
+                            <field name="partner_shipping_id" domain="[('id', 'child_of', [partner_id])]"/>
                             <field name="analytic_acc_id" required="False"/>
                         </group>
                     </group>
@@ -58,8 +58,8 @@
                                     <field name="payment_mode" widget="selection"/>
                                 </group>
                                 <group>
-                                    <field name="partner_bank_id"/>
-                                    <field name="address_invoice_id" domain="[('partner_id', '=', partner_id)]"/>
+                                    <field name="partner_bank_id" domain="[('partner_id', '=', partner_id)]"/>
+                                    <field name="address_invoice_id" domain="[('id', 'child_of', [partner_id])]"/>
                                 </group>
                             </group>
                         </page>

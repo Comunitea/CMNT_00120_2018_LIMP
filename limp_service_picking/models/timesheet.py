@@ -31,8 +31,6 @@ class Timesheet(models.Model):
     def create(self, vals):
         if vals.get('analytic_id', False):
             picking_ids = self.env['stock.service.picking'].search([('analytic_acc_id', '=', vals['analytic_id'])])
-            if picking_ids and not vals.get('extra_hours', False) and not vals.get('quantity', False) and not vals.get('price_hours', False):
-                vals['contract'] = True
             if picking_ids:
                 if picking_ids[0].building_site_id:
                     vals['building_site_id'] = picking_ids[0].building_site_id.id
@@ -40,25 +38,16 @@ class Timesheet(models.Model):
 
     @api.multi
     def write(self, vals):
-        #changed = False
         for tobj in self:
             picking_ids = self.env['stock.service.picking'].search([('analytic_acc_id', '=', vals.get('analytic_id', tobj.analytic_id.id))])
             if picking_ids:
+                vals2 = dict(vals)
                 if picking_ids[0].building_site_id:
-                    vals['building_site_id'] = picking_ids[0].building_site_id.id
+                    vals2['building_site_id'] = picking_ids[0].building_site_id.id
                 else:
-                    vals['building_site_id'] = False
-            #if picking_ids and (vals.get('extra_hours', False) or vals.get('quantity', False) or vals.get('price_hours', False)) and vals.get('done', False) != True:
-            #    vals['done'] = False
-            #    vals['contract'] = False
-            #elif picking_ids and vals.get('done', False) != True:
-            #    vals['done'] = True
-            #    vals['contract'] = True
-            #    changed = True
-            super(timesheet, self).write(vals)
-            #if changed:
-            #    changed = False
-            #    vals['done'] = False
-            #    vals['contract'] = False
+                    vals2['building_site_id'] = False
+                super(Timesheet, tobj).write(vals2)
+            else:
+                super(Timesheet, tobj).write(vals)
 
         return True

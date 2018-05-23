@@ -25,7 +25,7 @@ class AddToInvoice(models.TransientModel):
 
     _name = "add.to.invoice"
 
-    invoice_id = fields.Many2one('account.invoice', 'Invoice', required=True)
+    invoice_id = fields.Many2one('account.invoice', 'Invoice', required=False)
 
     def view_init(self, fields_list):
         res = super(AddToInvoice, self).view_init(fields_list)

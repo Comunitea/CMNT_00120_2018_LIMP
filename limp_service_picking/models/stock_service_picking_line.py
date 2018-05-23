@@ -59,7 +59,7 @@ class StockServicePickingLine(models.Model):
     waste_type = fields.Selection([('clean', 'Clean'),('dirty', 'Dirty')], 'Waste type', states={'done':[('readonly',True)]})
     extra_hours = fields.Float('Extra Hours',digits=(4,2))
     price_hours = fields.Float('Price Hours',digits=(4,2))
-    parent_company_id = fields.Many2one('res.company', 'Parent Company', default=lambda r: r._context.get('parent_company_id', self.env.user.company_id.id))
+    parent_company_id = fields.Many2one('res.company', 'Parent Company', default=lambda r: r._context.get('parent_company_id', r.env.user.company_id.id))
     parent_man_addr_id = fields.Many2one('res.partner', 'Manager Address', default=lambda r: r._context.get('parent_man_addr_id', False))
     parent_building_addr_id = fields.Many2one('res.partner', 'Building Parent Address', default=lambda r: r._context.get('parent_building_addr_id', False))
     total_hours = fields.Float('Total hours', digits=(16, 2), compute='_compute_total_hours')
@@ -73,7 +73,7 @@ class StockServicePickingLine(models.Model):
     def on_change_type(self):
         no_print = False
         if self.type == 'carry':
-            for addr in self.company_id.partner_id.child_ids.filtered(lambda r: r.type != 'contact'):
+            for addr in self.parent_company_id.partner_id.child_ids.filtered(lambda r: r.type != 'contact'):
                 if addr.containers_store:
                     self.orig_address_id = addr.id
                     break
@@ -128,20 +128,19 @@ class StockServicePickingLine(models.Model):
 
     @api.multi
     def action_reopen(self):
-        if context is None: context = {}
         for line in self:
             if line.container_id and line.dest_address_id:
                 container_move_ids = self.env['container.move'].search([('container_id','=',line.container_id.id)], limit=2)
                 if container_move_ids:
                     moves_to_delete = self.env['container.move']
-                    move = self.env['container.move'].browse(container_move_ids[0])
+                    move = container_move_ids[0]
                     if move.address_id.id != line.dest_address_id.id:
                         raise UserError(_('You cannot reopen this line because container is not in %s.') % line.dest_address_id.street)
                     moves_to_delete += move
                     if move.move_type == 'in':
-                        other_move = self.env['container.move'].browse(container_move_ids[1])
+                        other_move = container_move_ids[1]
                         if line.container_id.situation_id and line.container_id.situation_id.id == line.dest_address_id.id:
-                            line.container_id.write({'situation_id': other_move.address_id.id}, context={'no_create_moves': True})
+                            line.container_id.with_context(no_create_moves=True).write({'situation_id': other_move.address_id.id})
                         moves_to_delete += other_move
                     if moves_to_delete:
                         moves_to_delete.unlink()

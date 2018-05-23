@@ -69,7 +69,6 @@ class ServiceOrderToinvoice(models.TransientModel):
             if service_picking.invoice_line_ids or service_picking.state != 'closed' or service_picking.invoice_type == 'noinvoice':
                 continue
             key = "del:" + str(service_picking.delegation_id.id) + "/dep:" + str(service_picking.department_id.id) + "/m:" + str(service_picking.manager_id.id)
-            payment_term_id = False
             partner = service_picking.partner_id
             fpos = partner.property_account_position_id
             building_site = service_picking.building_site_id and service_picking.building_site_id or False
@@ -77,7 +76,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                 raise UserError(_('Please put a partner on the service order list if you want to generate invoice.'))
 
             account_id = partner.property_account_receivable_id.id
-            payment_term_id = service_picking.payment_mode.id
+            payment_term_id = service_picking.payment_term.id
             address_contact_id = service_picking.address_id.id
             address_tramit_id = service_picking.address_tramit_id and service_picking.address_tramit_id.id or False
             comment = False
@@ -88,8 +87,8 @@ class ServiceOrderToinvoice(models.TransientModel):
                 key += "fp:" + str(service_picking.fiscal_position.id)
             if service_picking.payment_mode:
                 key += "ptype:" + str(service_picking.payment_mode.id)
-            if service_picking.payment_mode:
-                key += "pterm:" + str(service_picking.payment_mode.id)
+            if service_picking.payment_term:
+                key += "pterm:" + str(service_picking.payment_term.id)
             if service_picking.intercompany:
                 key += "interc:1"
 
@@ -135,7 +134,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     'partner_shipping_id': address_contact_id,
                     'address_tramit_id': address_tramit_id,
                     'comment': comment,
-                    'payment_mode_id': payment_term_id,
+                    'payment_term_id': payment_term_id,
                     'payment_mode_id': service_picking.payment_mode.id,
                     'fiscal_position_id': service_picking.fiscal_position.id,
                     'date_invoice': date_inv or False,

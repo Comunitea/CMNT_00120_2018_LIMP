@@ -31,26 +31,23 @@
                 <header>
                     <button name="action_done" type="object" string="Done" states="draft" class="oe_highlight"/>
                     <button name="action_reopen" type="object" string="Reopen" states="done"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
-                    <group>
-                        <group>
-                            <field name="name" colspan="4"/>
-                            <field name="parent_company_id" invisible="1"/>
-                            <field name="parent_man_addr_id" invisible="1"/>
-                            <field name="parent_building_addr_id" invisible="1"/>
-                            <field name="transport_date"/>
-                            <field name="type"/>
-                            <field name="transport_date_end" groups="limp_service_picking.group_cleaning_user"/>
-                        </group>
-                        <group>
-                            <field name="other_type_text" attrs="{'invisible': [('type', '!=', 'other')]}"/>
-                            <field name="driver_id"/>
-                            <field name="carrier_id" groups="limp_service_picking.group_waste_manager"/>
-                            <field name="transport_form" string="Transport form" groups="limp_service_picking.group_waste_manager"/>
-                            <field name="other_carrier" groups="limp_service_picking.group_waste_manager"/>
-                            <field name="frequency" groups="limp_service_picking.group_cleaning_user"/>
-                        </group>
+                    <group col="4">
+                        <field name="name" colspan="4"/>
+                        <field name="parent_company_id" invisible="1"/>
+                        <field name="parent_man_addr_id" invisible="1"/>
+                        <field name="parent_building_addr_id" invisible="1"/>
+                        <field name="transport_date"/>
+                        <field name="type"/>
+                        <field name="transport_date_end" groups="limp_service_picking.group_cleaning_user"/>
+                        <field name="other_type_text" attrs="{'invisible': [('type', '!=', 'other')]}"/>
+                        <field name="driver_id"/>
+                        <field name="carrier_id" groups="limp_service_picking.group_waste_manager"/>
+                        <field name="transport_form" string="Transport form" groups="limp_service_picking.group_waste_manager"/>
+                        <field name="other_carrier" groups="limp_service_picking.group_waste_manager"/>
+                        <field name="frequency" groups="limp_service_picking.group_cleaning_user"/>
                     </group>
                     <group col="6">
                         <field name="orig_address_id"/>
@@ -71,10 +68,7 @@
                         <field name="price_hours"/>
                     </group>
                     <separator string="Itinerary" colspan="4"/>
-                    <group>
-                        <field name="itinerary" colspan="4" nolabel="1"/>
-                        <field name="state"/>
-                    </group>
+                    <field name="itinerary" colspan="4" nolabel="1"/>
                 </sheet>
             </form>
         </field>

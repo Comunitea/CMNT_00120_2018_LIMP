@@ -40,11 +40,11 @@
         'account_analytic_distribution',
         'limp_account_analytic_extension',
         'limp_distribution_costs',
-        'limp_multi_delegations'
+        'limp_multi_delegations',
+        'analytic_material_costs'
         ],
     'data' : [
         'security/groups.xml',
-        'views/service_picking_stock_move_view.xml',
         'security/ir.model.access.csv',
         'wizard/service_order_toinvoice_view.xml',
         'data/limp_service_picking_data.xml',
@@ -53,7 +53,6 @@
         'views/product_view.xml',
         'views/res_partner_view.xml',
         'views/waste_services_view.xml',
-        'views/service_picking_employees_rel_view.xml',
         'data/product_data.xml',
         'views/building_site_services_view.xml',
         'views/limp_sporadic_service_picking_view.xml',

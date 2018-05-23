@@ -26,7 +26,7 @@ class ValorizationLines(models.Model):
     _rec_name = 'ler_code_id'
     _order = "date desc"
 
-    date = fields.Date('Date')
+    date = fields.Date('Date', readonly=True)
     qty = fields.Float("Quantity (T)",readonly=True)
     volume = fields.Float("Volume (m³)",readonly=True)
     company_id =fields.Many2one('res.company','Company',readonly=True)
@@ -46,7 +46,7 @@ class ValorizationLines(models.Model):
     picking_id = fields.Many2one('stock.service.picking', 'Picking', readonly=True)
     memory_include = fields.Boolean('Memory include', readonly=True)
     manager_partner_id = fields.Many2one('res.partner', "Manager", readonly=True)
-    no_computed = fields.Boolean('No computed')
+    no_computed = fields.Boolean('No computed', readonly=True)
     stock_picking_id = fields.Many2one('stock.picking', 'Stock picking', readonly=True)
 
     def init(self):

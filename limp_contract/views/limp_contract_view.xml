@@ -122,8 +122,8 @@
                         </group>
                         <group>
                             <field name="description" widget="char" size="255" required="1"/>
-                            <field name="partner_id" string="Customer" required="1"/>
-                            <field name="contact_id" domain="[('partner_id','=',partner_id)]"/>
+                            <field name="partner_id" string="Customer" required="1" domain="[('is_company', '=', True)]"/>
+                            <field name="contact_id" domain="[('id','child_of',[partner_id])]"/>
                             <field name="manager_id" string="Manager" required="1"/>
                         </group>
                         <notebook colspan="4">
@@ -147,7 +147,7 @@
                                 </group>
                                 <group>
                                     <field name="date"/>
-                                    <field name="address_id" domain="[('partner_id', '=', partner_id)]" required="1"/>
+                                    <field name="address_id" domain="[('id', 'child_of', [partner_id])]" required="1"/>
                                     <field name="prorogation_notes" colspan="4"/>
                                 </group>
                             </page>
@@ -169,8 +169,8 @@
                                                 <field name="debit"/>
                                                 <field name="credit"/>
                                                 <field name="balance"/>
-                                                <field name="address_invoice_id" domain="[('parent_id', '=', partner_id)]" required="1"/>
-                                                <field name="address_tramit_id" domain="[('parent_id', '=', partner_id),('type','=','tramit')]"/>
+                                                <field name="address_invoice_id" domain="[('id', 'child_of', [partner_id])]" required="1"/>
+                                                <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]"/>
                                                 <field name="invoice_header"/>
                                                 <field name="analytic_distribution_id"/>
                                             </group>

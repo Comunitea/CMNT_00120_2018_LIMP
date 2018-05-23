@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <form string="Add to invoice">
                 <group>
-                    <field name="invoice_id" domain="[('state','=','draft'),('type','=','out_invoice')]"/>
+                    <field name="invoice_id" domain="[('state','=','draft'),('type','=','out_invoice')]" required="1"/>
                 </group>
                 <footer>
                     <button name="open_invoice" string="Add" type="object"/>

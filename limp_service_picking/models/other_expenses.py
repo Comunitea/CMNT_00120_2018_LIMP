@@ -27,7 +27,7 @@ class StockServiceOtherExpenses(models.Model):
     name = fields.Char('Description', required=True, size=255)
     prod_qty = fields.Float('Qty.', digits=(16,2), required=True)
     price_unit = fields.Float('Price unit', required=True)
-    price_subtotal = fields.Float('Subtotal', digits=(16, 2), compute='_compute_subtotal', store=True)
+    price_subtotal = fields.Float('Subtotal', digits=(16, 2), compute='_get_subtotal', store=True)
     analytic_id = fields.Many2one('account.analytic.account', 'Analytic')
 
     @api.depends('price_unit', 'prod_qty')

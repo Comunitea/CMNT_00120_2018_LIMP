@@ -45,9 +45,9 @@
                 </header>
                 <sheet>
                     <group colspan="4" col="6">
-                        <field name="partner_id" required="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
+                        <field name="partner_id" required="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" domain="[('is_company', '=', True)]"/>
                         <field name="intercompany"/>
-                        <field name="address_id" required="1" domain="[('parent_id', '=', partner_id)]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
+                        <field name="address_id" required="1" domain="[('id', 'child_of', [partner_id])]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
                     </group>
                     <group colspan="4" col="6" attrs="{'invisible': [('intercompany', '=', False)]}">
                         <field name="invoice_delegation_id" attrs="{'required': [('intercompany', '=', True)]}"/>
@@ -56,7 +56,7 @@
                     </group>
                     <group>
                         <group>
-                            <field name="name" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
+                            <field name="name" readonly="1" required="0"/>
                             <field name="company_id" groups="base.group_multi_company" required="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
                             <field name="delegation_id" widget="selection" required="1"/>
                             <field name="department_id" widget="selection" required="1"/>
@@ -66,8 +66,8 @@
                         <group>
                             <field name="quality"/>
                             <field name="service_type" attrs="{'invisible': [('older', '=', False)]}"/>
-                            <field name="address_invoice_id" domain="[('parent_id', '=', partner_id)]" attrs="{'readonly':[('state','in',['cancelled'])]}" required="1"/>
-                            <field name="building_site_id" domain="[('partner_ids', 'in', partner_id),('show','=','service')]" context="{'default_show': 'service', 'partner_id': partner_id}"/>
+                            <field name="address_invoice_id" domain="[('id', 'child_of', [partner_id])]" attrs="{'readonly':[('state','in',['cancelled'])]}" required="1"/>
+                            <field name="building_site_id" domain="[('partner_ids', 'in', [partner_id]),('show','=','service')]" context="{'default_show': 'service', 'partner_id': partner_id}"/>
                             <field name="picking_date" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
                         </group>
                     </group>
@@ -138,7 +138,7 @@
                         <page string="Accounting">
                             <group>
                                 <group>
-                                    <field name="ccc_account_id" colspan="4" domain="[('partner_id', 'in', (partner_id,holder_partner_id)]"/>
+                                    <field name="ccc_account_id" colspan="4" domain="[('partner_id', '=', partner_id)]"/>
                                     <field name="fiscal_position" widget="selection"/>
                                     <field name="payment_term" widget="selection"/>
                                 </group>
@@ -151,12 +151,13 @@
                             <!--<field name="analytic_acc_id"/>-->
                         </page>
                         <page string="Consumptions">
-                            <field name="service_move_ids" colspan="4" nolabel="1"/>
+                            <field name="analytic_move_ids" colspan="4" nolabel="1" context="{'employee_id': manager_id}"/>
                         </page>
                         <page string="Other data">
                             <group>
                                 <group>
                                     <field name="older" invisible="1"/>
+                                    <field name="sale_id"/>
                                     <!--field name="parent_id"/-->
                                 </group>
                                 <group>

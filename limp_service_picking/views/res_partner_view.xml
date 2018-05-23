@@ -11,7 +11,7 @@
                 <page string="Other data">
                     <group>
                         <group>
-                            <field name="partner_contact_id" domain="[('partner_id', '=', active_id)]"/>
+                            <field name="partner_contact_id" domain="[('parent_id', '=', active_id)]"/>
                             <field name="authorization_no"/>
                             <field name="transport_authorization_no"/>
                         </group>

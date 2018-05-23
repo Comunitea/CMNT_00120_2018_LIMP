@@ -54,7 +54,6 @@ class StockServicePicking(models.Model):
     producer_mark = fields.Selection([('small_producer', 'Small producer'),('producer', 'Producer')], 'Producer type', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]})
     ccc_account_id = fields.Many2one('res.partner.bank', 'Bank', states={'cancelled':[('readonly',True)]}, default=lambda r: r._context.get('ccc_account_id', False), copy=False)
         #'name = fields.Char('Name', size=32, required=True, readonly=True),
-        #'employee_ids = fields.One2many('stock.service.picking.employees.rel', 'picking_id', string='Employees', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
     service_ids = fields.One2many('stock.service.picking.line', 'picking_id', 'Transports', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}, copy=False)
     print_service_ids = fields.One2many('stock.service.picking.line', 'picking_id', 'Transports to print', readonly=True, domain=[('no_print', '=', False)], copy=False)
     move_service_ids = fields.One2many('stock.service.picking.line', 'picking_id', 'Move transports', readonly=True, domain=[('type', '=', 'move')], copy=False)
@@ -113,7 +112,6 @@ class StockServicePicking(models.Model):
     authorization_manager = fields.Char('Authorization Manager', size=32, states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}, default=lambda r: r.env.user.company_id.partner_id.manager_authorization_no, copy=False)
     picking_type = fields.Selection([('wastes','Wastes'),('sporadic','Sporadic')], 'Type', change_default=True, default=lambda r: r._context.get('type', 'wastes'))
     service_picking_valorization_ids = fields.One2many('service.picking.valorization.rel', 'service_picking_id', 'Valorization', states={'cancelled':[('readonly',True)]}, copy=False)
-    service_move_ids = fields.One2many('service.picking.stock.move', 'service_picking_id', 'Consumptions', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}, copy=False)
         #'delegation_id = fields.Many2one('res.delegation', 'Delegation', required=True, states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
         #AÑADIDO PARA CALCULAR TOTALES
     taxes = fields.Float('Taxes', digits=(16,2), copy=False)
@@ -348,7 +346,6 @@ class StockServicePicking(models.Model):
             picking_id = False
             location_id = False
             location_dest_id = False
-            move_ids = []
 
             if order.intercompany and not order.no_quality:
                 raise UserError(_('Cannot close because you have checked intercompany and you have not checked scont.'))
@@ -378,9 +375,9 @@ class StockServicePicking(models.Model):
                 if current_company.id == company.id:
                     addr = order.address_id.id
                 else:
-                    addr = current_company.partner_id.child_ids.filtered(lambda r: r.type != 'contact')[0].id
+                    addr = current_company.partner_id.id
 
-                location_id = self.env.ref('stock','stock_location_customers').id
+                location_id = self.env.ref('stock.stock_location_customers').id
                 warehouse_ids = self.env['stock.warehouse'].sudo().search([('company_id', '=', company.id)])
                 if not warehouse_ids:
                     raise osv.except_osv(_('Error !'), _('There is no wharehouse to the order company'))
@@ -391,15 +388,14 @@ class StockServicePicking(models.Model):
                         raise UserError(_('You are trying to close a service picking with overload quantity but the product has not the overload price. Please fill it!'))
 
                     if not picking_id:
-                        pick_type = self.env['stock.picking.type'].search({
-                            'warehouse_id':  warehouse_ids[0].id,
-                            'type': 'internal',
-                        })
-                        pick_name = self.env['ir.sequence'].next_by_code('stock.picking.in')
+                        pick_type = self.env['stock.picking.type'].sudo().\
+                            search([('warehouse_id', '=', warehouse_ids[0].id),
+                                    ('code','=', 'incoming')])
+                        pick_name = pick_type.sequence_id.next_by_id()
                         picking_id = self.env['stock.picking'].sudo().create({
                             'name': u'S' + pick_name,
                             'origin': order.name,
-                            'picking_type_id': pick_type,
+                            'picking_type_id': pick_type.id,
                             'state': 'draft',
                             'address_id': addr,
                             'no_quality': order.no_quality,
@@ -407,15 +403,17 @@ class StockServicePicking(models.Model):
                             'stock_service_picking_id': order.id,
                             'from_spicking' : True,
                             'date': order.retired_date or order.picking_date,
+                            'location_id': location_id,
+                            'location_dest_id':location_dest_id,
                             'invoice_state' : current_company.id == company.id and 'none' or'2binvoiced'
                         })
 
-                    if (valorization_line.product_id.company_id.id == company.parent_id.id) or (valorization_line.product_id.company_id.id == False) or (valorization_line.product_id.company_id.id == company_list[0]):
-                        move_id = self.env['stock.move'].create({
+                    if (valorization_line.product_id.company_id.id == company.parent_id.id) or (not valorization_line.product_id.company_id) or (valorization_line.product_id.company_id.id == company.id):
+                        move_id = self.env['stock.move'].sudo().create({
                                 'name': order.name,
-                                'picking_id': picking_id,
+                                'picking_id': picking_id.id,
                                 'product_id': valorization_line.product_id.id,
-                                'product_qty': valorization_line.product_qty + valorization_line.overload_qty,
+                                'product_uom_qty': valorization_line.product_qty + valorization_line.overload_qty,
                                 'product_uom': valorization_line.product_id.uom_id.id,
                                 'address_id': addr,
                                 'location_id': location_id,
@@ -426,12 +424,11 @@ class StockServicePicking(models.Model):
                                 'state': 'draft',
                                 'company_id': company.id,
                             })
-                        move_ids.append(move_id)
                     else:
                         raise UserError(_('Product %s must be shared inter companies for proceeding') % valorization_line.product_id.name)
 
                 if picking_id:
-                    self.env['stock.immediate.transfer'].create({'pick_id': picking_id.id}).process()
+                    self.env['stock.immediate.transfer'].sudo().create({'pick_id': picking_id.id}).process()
             order.analytic_acc_id.write({'state': 'close', 'date': order.retired_date or order.picking_date})
 
         self.create_concept_lines()
