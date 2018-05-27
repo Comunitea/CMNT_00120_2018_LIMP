@@ -41,11 +41,11 @@
         <field name="arch" type="xml">
             <form string="Service picking">
                 <header>
-                    <button name="action_active" type="object" string="Active" states="draft"/>
-                    <button name="action_close" type="object" string="Close" confirm="It is all right?" states="active" />
+                    <button name="action_active" type="object" string="Active" states="draft" class="oe_highlight"/>
+                    <button name="action_close" type="object" string="Close" confirm="It is all right?" states="active" class="oe_highlight"/>
                     <button name="action_cancel" type="object" string="Cancel" states="active"/>
-                    <button name="action_draft" type="object" string="Set to draft" states="cancelled"/>
-                    <button name="%(action_service_order_toinvoice)d" string="Create Invoice"  type="action" attrs="{'invisible':['|',('state', 'in', ['draft','active','cancelled']),('invoice_type','=','invoiced')]}"/>
+                    <button name="action_draft" type="object" string="Set to draft" states="cancelled" class="oe_highlight"/>
+                    <button name="%(action_service_order_toinvoice)d" string="Create Invoice"  type="action" attrs="{'invisible':['|',('state', 'in', ['draft','active','cancelled']),('invoice_type','=','invoiced')]}" class="oe_highlight"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -335,6 +335,10 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>

@@ -13,7 +13,7 @@
                     <field name="year"/>
                 </group>
                 <footer>
-                    <button name="distribute_costs" string="Distribute" type="object"/>
+                    <button name="distribute_costs" string="Distribute" type="object" class="oe_highlight"/>
                     <button string="Cancel" class="btn-default" special="cancel"/>
                 </footer>
             </form>

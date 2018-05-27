@@ -53,14 +53,14 @@ class DistributeFleetExpense(models.TransientModel):
 
             for expense_type in amount_totals:
                 if vehicle.analytic_plan_id:
-                    a = expense_type.product_id.product_tmpl_id.property_account_expense.id
+                    a = expense_type.product_id.product_tmpl_id.property_account_expense_id.id
                     if not a:
-                        a = expense_type.product_id.categ_id.property_account_expense_categ.id
+                        a = expense_type.product_id.categ_id.property_account_expense_categ_id.id
                         if not a:
                             raise osv.except_osv(_('Bad Configuration !'),
                                     _('No product and product category expense property account defined on the related product.\nFill these on product form.'))
-                    for line in vehicle.analytic_plan_id.account_ids:
-                        amt=line.rate and amount_totals[expense_type] * (line.rate/100) or line.fix_amount
+                    for line in vehicle.analytic_plan_id.rule_ids:
+                        amt=line.percent and amount_totals[expense_type] * (line.percent/100) or line.fix_amount
 
                         al_vals={
                            'name': self.name + u", " + expense_type.name + u": " + vehicle.name,
@@ -72,13 +72,13 @@ class DistributeFleetExpense(models.TransientModel):
                            'amount': -(amt),
                            'company_id': user.company_id.id,
                            'general_account_id': a,
-                           'tag_ids': [(4, line.plan_id.tag_id and line.plan_id.tag_id.id or self.env['account.analytic.journal'].search([('name','=','Gasoil')])[0].id)],
+                           'tag_ids': [(4, line.distribution_id.tag_id and line.distribution_id.tag_id.id or self.env.ref('limp_service_picking.costs_tag').id)],
                            'ref': vehicle.license_plate,
                            'department_id': line.department_id and line.department_id.id or False,
                            'delegation_id': line.delegation_id and line.delegation_id.id or False,
                            'manager_id': line.manager_id and line.manager_id.id or False
                         }
-                        self.env['account.analytic.line'].create(cr, uid, al_vals, context=context)
+                        self.env['account.analytic.line'].create(al_vals)
                 else:
                     moves = self.env['stock.service.picking.line'].sudo().search([('transport_date','>=',str(self.year)+"-"+self.month+"-01"),('transport_date','<=',str(self.year)+"-"+self.month+"-"+str(last_day)),('vehicle_id','=',vehicle.id)])
                     total_hours = sum(moves.mapped('total_hours'))

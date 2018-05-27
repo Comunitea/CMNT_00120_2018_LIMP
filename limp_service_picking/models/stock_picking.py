@@ -20,6 +20,7 @@
 #
 ##############################################################################
 from odoo import models, fields, _, api
+from odoo.exceptions import UserError
 
 
 class StockPicking(models.Model):
@@ -47,20 +48,19 @@ class StockPicking(models.Model):
          ("none", "Not Applicable")],
         string="Invoice Control", required=True, default='none')
 
-    def action_invoice_create(self, journal_id, group, type, date):
+    def action_invoice_create(self, journal_id, group, date):
         grouped_pickings = {}
         for picking in self:
             if picking.state != 'done' or picking.invoice_state != '2binvoiced':
                 continue
-            if picking.invoice_type and picking.invoice_type != type:
-                raise UserError(_('The picking invoice type is incompatible with the journal'))
+            type = picking.invoice_type
             if group:
                 if picking.partner_id not in grouped_pickings:
                     grouped_pickings[picking.partner_id] = self.env['stock.picking']
                 grouped_pickings[picking.partner_id] += picking
             else:
                 grouped_pickings[picking] = picking
-        invoices = []
+        invoices = self.env['account.invoice']
         for key in grouped_pickings:
             if not group:
                 partner = key.partner_id
@@ -72,7 +72,7 @@ class StockPicking(models.Model):
                 'partner_id': partner.id,
                 'origin': origin,
                 'type': type,
-                'journal_id': int(journal_id),
+                'journal_id': journal_id,
                 'date_invoice': date,
                 'account_id': False,
                 'payment_term_id': False,
@@ -113,22 +113,23 @@ class StockPicking(models.Model):
                 invoice.unlink()
             else:
                 invoice.compute_taxes()
-                invoices.append(invoice.id)
+                invoices |= invoice
             grouped_pickings[key].write({'invoice_state': 'invoiced'})
         return invoices
 
-
-
-
     @api.multi
     def force_assign(self):
+        visited_products = []
+        user = self.env.user
         for pick in self:
             reserve_moves1 = self.env['stock.move']
             reserve_moves2 = self.env['stock.move']
             moves = pick.move_lines.filtered(lambda x: x.state in ['confirmed','waiting'])
             for move in moves:
-                if move.product_id.ler_code_id and pick.picking_type_id.code == 'out':
-                    orig_qty = move.product_id.virtual_available
+                if move.product_id.ler_code_id and pick.picking_type_id.code == 'outgoing':
+                    orig_qty = move.product_id.\
+                        with_context(location=move.location_id.id).\
+                        virtual_available
                     if orig_qty < 0.0 and move.product_id.id not in visited_products:
                         visited_products.append(move.product_id.id)
                         if not self.env.user.company_id.reserve_product_id:
@@ -136,7 +137,7 @@ class StockPicking(models.Model):
                         else:
                             reserve_product_id = self.env.user.company_id.reserve_product_id
                             if reserve_product_id.uom_id.category_id.id == move.product_id.uom_id.category_id.id:
-                                qty = move.product_id.uom_id._compute_qty(-(orig_qty), user.company_id.reserve_product_id.uom_id)
+                                qty = move.product_id.uom_id._compute_quantity(-(orig_qty), user.company_id.reserve_product_id.uom_id)
                             else:
                                 qty = -orig_qty / move.product_id.ler_code_id.density
 
@@ -144,7 +145,7 @@ class StockPicking(models.Model):
                             move_vals = {
                                 'name': u"Used to serve %s in picking %s" % (move.product_id.name,pick.name),
                                 'product_id': user.company_id.reserve_product_id.id,
-                                'product_qty': qty,
+                                'product_uom_qty': qty,
                                 'product_uom': user.company_id.reserve_product_id.uom_id.id,
                                 'location_id': move.location_id.id,
                                 'location_dest_id': user.company_id.reserve_product_id.property_stock_production.id
@@ -154,25 +155,27 @@ class StockPicking(models.Model):
                             move_vals2 = {
                                 'name': "Created from reserve product",
                                 'product_id': move.product_id.id,
-                                'product_qty': -(orig_qty),
+                                'product_uom_qty': -(orig_qty),
                                 'product_uom': move.product_id.uom_id.id,
                                 'location_id': move.product_id.property_stock_production.id,
                                 'location_dest_id': move.location_id.id
                             }
                             reserve_moves2 += self.env['stock.move'].create(move_vals2)
             if reserve_moves1:
-                pick_type_internal = self.env['stock.picking.type'].search({
-                    'warehouse_id': pick.warehouse_id.id,
-                    'type': 'internal',
-                })
+                pick_type_internal = self.env['stock.picking.type'].\
+                    search([('code', '=', 'internal'),'|',
+                            ('default_location_src_id', '=',
+                             reserve_moves1[0].location_id.id),
+                            ('default_location_dest_id', '=',
+                             reserve_moves1[0].location_id.id)])
 
                 pick_1 = self.env['stock.picking'].create({
                     'picking_type_id': pick_type_internal.id,
-                    'location_id': picking_id.location_id.id,
-                    'location_dest_id': user.company_id.reserve_product_id.property_stock_production.id,
+                    'location_id': reserve_moves1[0].location_id.id,
+                    'location_dest_id': reserve_moves1[0].location_dest_id.id,
                     'origin': pick.name,
-                    'move_lines': [(6, 0, reserve_moves1._ids)]
                 })
+                reserve_moves1.write({'picking_id': pick_1.id})
                 pick_1.action_confirm()
                 if pick_1.state != 'assigned':
                     pick_1.action_assign()
@@ -180,18 +183,20 @@ class StockPicking(models.Model):
                         pick_1.force_assign()
                 self.env['stock.immediate.transfer'].create({'pick_id': pick_1.id}).process()
             if reserve_moves2:
-                pick_type_internal = self.env['stock.picking.type'].search({
-                    'warehouse_id': pick.warehouse_id.id,
-                    'type': 'internal',
-                })
+                pick_type_internal = self.env['stock.picking.type'].\
+                    search([('code', '=', 'internal'),'|',
+                            ('default_location_src_id', '=',
+                             reserve_moves2[0].location_dest_id.id),
+                            ('default_location_dest_id', '=',
+                             reserve_moves2[0].location_dest_id.id)])
 
                 pick_2 = self.env['stock.picking'].create({
                     'picking_type_id': pick_type_internal.id,
-                    'location_id': user.company_id.reserve_product_id.property_stock_production.id,
-                    'location_dest_id': picking_id.location_id.id,
+                    'location_id': reserve_moves2[0].location_id.id,
+                    'location_dest_id': reserve_moves2[0].location_dest_id.id,
                     'origin': pick.name,
-                    'move_lines': [(6, 0, reserve_moves2._ids)]
                 })
+                reserve_moves2.write({'picking_id': pick_2.id})
                 pick_2.action_confirm()
                 if pick_2.state != 'assigned':
                     pick_2.action_assign()

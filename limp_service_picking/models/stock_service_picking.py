@@ -28,6 +28,7 @@ class StockServicePicking(models.Model):
 
     _name = "stock.service.picking"
     _description = "Service pickings"
+    _inherit = ['mail.thread']
     _inherits = {'account.analytic.account': "analytic_acc_id"}
     _order = "picking_date desc"
 
@@ -405,6 +406,7 @@ class StockServicePicking(models.Model):
                             'date': order.retired_date or order.picking_date,
                             'location_id': location_id,
                             'location_dest_id':location_dest_id,
+                            'invoice_type': 'out_invoice',
                             'invoice_state' : current_company.id == company.id and 'none' or'2binvoiced'
                         })
 

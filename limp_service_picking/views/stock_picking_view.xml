@@ -70,6 +70,13 @@
                 <field name="memory_include"/>
                 <field name="invoice_type"/>
             </field>
+            <filter name="done" position="after">
+                <separator/>
+                <filter name="to_invoice" string="To Invoice" domain="[('state','=', 'done'),('invoice_state', '=', '2binvoiced')]" help="Pickings to invoice"/>
+            </filter>
+            <filter name="picking_type" position="after">
+                <filter name="invoice_type" string="Invoice Type" domain="[]" context="{'group_by':'invoice_type'}"/>
+            </filter>
         </field>
     </record>
 

@@ -14,7 +14,7 @@
                 <field name="invoice_date" />
             </group>
             <footer>
-                <button name="open_invoice" string="Create" type="object" />
+                <button name="open_invoice" string="Create" type="object" class="oe_highlight"/>
                 <button string="Cancel" class="btn-default" special="cancel" />
             </footer>
          </form>

@@ -27,8 +27,8 @@ class StockPicking(models.Model):
     no_quality = fields.Boolean('Scont')
 
 
-    def action_invoice_create(self, journal_id, group, type, date):
+    def action_invoice_create(self, journal_id, group, date):
         if group:
             if any([x.no_quality for x in self]):
                 raise UserError("Scont pickings can't be grouped")
-        return super(StockPicking, self).action_invoice_create(journal_id, group, type, date)
+        return super(StockPicking, self).action_invoice_create(journal_id, group, date)

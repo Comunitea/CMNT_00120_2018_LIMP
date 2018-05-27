@@ -11,7 +11,7 @@
                     <field name="service_picking_id"/>
                 </group>
                 <footer>
-                    <button name="copy_building_site" string="Force" type="object"/>
+                    <button name="copy_building_site" string="Force" type="object" class="oe_highlight"/>
                     <button string="Cancel" class="btn-default" special="cancel"/>
                 </footer>
             </form>

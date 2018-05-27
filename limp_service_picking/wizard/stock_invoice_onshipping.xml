@@ -2,7 +2,7 @@
 <odoo>
     <record id="view_stock_invoice_onshipping" model="ir.ui.view">
         <field name="name">Stock Invoice Onshipping</field>
-        <field name="model">stock.invoice.onshipping</field>
+        <field name="model">wizard.stock.invoice.onshipping</field>
         <field name="arch" type="xml">
           <form string="Create invoice">
               <h1>
@@ -23,7 +23,7 @@
     </record>
 
     <act_window name="Create Draft Invoices"
-        res_model="stock.invoice.onshipping"
+        res_model="wizard.stock.invoice.onshipping"
         src_model="stock.picking"
         key2="client_action_multi"
         multi="True"

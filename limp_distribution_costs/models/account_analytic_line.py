@@ -29,4 +29,6 @@ class AccountAnalyticLine(models.Model):
                                       readonly=True)
     remuneration_incidence = fields.\
         Boolean(related='remuneration_id.incidence', readonly=True)
+    company_id = fields.Many2one("res.company", related=None, string='Company',
+                                 readonly=True)
     timesheet_id = fields.Many2one('timesheet', 'Timesheet', readonly=True)

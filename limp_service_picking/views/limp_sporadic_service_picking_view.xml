@@ -36,11 +36,11 @@
         <field name="arch" type="xml">
             <form string="Sporadic service picking">
                 <header>
-                    <button name="action_active" type="object" string="Active" states="draft"/>
-                    <button name="action_close" type="object" string="Close" states="active"/>
+                    <button name="action_active" type="object" string="Active" states="draft" class="oe_highlight"/>
+                    <button name="action_close" type="object" string="Close" states="active" class="oe_highlight"/>
                     <button name="action_cancel" type="object" string="Cancel" states="active"/>
-                    <button name="action_draft" type="object" string="Set to draft" states="cancelled"/>
-                    <button name="%(action_service_order_toinvoice)d" string="Create Invoice"  type="action" attrs="{'invisible':['|',('state', 'in', ['draft','active','cancelled']),('invoice_type','=','invoiced')]}"/>
+                    <button name="action_draft" type="object" string="Set to draft" states="cancelled" class="oe_highlight"/>
+                    <button name="%(action_service_order_toinvoice)d" string="Create Invoice"  type="action" attrs="{'invisible':['|',('state', 'in', ['draft','active','cancelled']),('invoice_type','=','invoiced')]}" class="oe_highlight"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -85,10 +85,12 @@
                                     <field name="billable"/>
                                 </tree>
                                 <form string="Other concept">
-                                    <field name="product_id" context="{'search_default_department_id': parent.department_id}"/>
-                                    <field name="name"/>
-                                    <field name="product_qty"/>
-                                    <field name="billable"/>
+                                    <group col="4">
+                                        <field name="product_id" context="{'search_default_department_id': parent.department_id}"/>
+                                        <field name="name"/>
+                                        <field name="product_qty"/>
+                                        <field name="billable"/>
+                                    </group>
                                 </form>
                             </field>
                         </page>
@@ -109,19 +111,21 @@
                                     <field name="responsible_id"/>
                                 </tree>
                                 <form string="Timesheet">
-                                    <field name="name" readonly="1"/>
-                                    <field name="date"/>
-                                    <field name="employee_id"/>
-                                    <field name="extra_hours"/>
-                                    <field name="price_hours"/>
-                                    <field name="hours"/>
-                                    <field name="quantity"/>
-                                    <field name="pending_qty"/>
-                                    <field name="pending_distribute_qty"/>
-                                    <field name="done" readonly="1"/>
-                                    <field name="delegation_id"/>
-                                    <field name="department_id"/>
-                                    <field name="responsible_id"/>
+                                    <group col="4">
+                                        <field name="name" readonly="1"/>
+                                        <field name="date"/>
+                                        <field name="employee_id"/>
+                                        <field name="extra_hours"/>
+                                        <field name="price_hours"/>
+                                        <field name="hours"/>
+                                        <field name="quantity"/>
+                                        <field name="pending_qty"/>
+                                        <field name="pending_distribute_qty"/>
+                                        <field name="done" readonly="1"/>
+                                        <field name="delegation_id"/>
+                                        <field name="department_id"/>
+                                        <field name="responsible_id"/>
+                                    </group>
                                 </form>
                              </field>
                         </page>
@@ -136,19 +140,14 @@
                             </notebook>
                         </page>
                         <page string="Accounting">
-                            <group>
-                                <group>
-                                    <field name="ccc_account_id" colspan="4" domain="[('partner_id', '=', partner_id)]"/>
-                                    <field name="fiscal_position" widget="selection"/>
-                                    <field name="payment_term" widget="selection"/>
-                                </group>
-                                <group>
-                                    <field name="payment_mode" widget="selection"/>
-                                    <field name="invoice_type"/>
-                                    <field name="invoice_date"/>
-                                </group>
+                            <group col="4">
+                                <field name="ccc_account_id" colspan="4" domain="[('partner_id', '=', partner_id)]"/>
+                                <field name="fiscal_position" widget="selection"/>
+                                <field name="payment_term" widget="selection"/>
+                                <field name="payment_mode" widget="selection"/>
+                                <field name="invoice_type"/>
+                                <field name="invoice_date"/>
                             </group>
-                            <!--<field name="analytic_acc_id"/>-->
                         </page>
                         <page string="Consumptions">
                             <field name="analytic_move_ids" colspan="4" nolabel="1" context="{'employee_id': manager_id}"/>
@@ -191,20 +190,22 @@
                                     <field name="tax_ids" widget="many2many_tags"/>
                                 </tree>
                                 <form string="Invoice concepts">
-                                    <field name="sequence"/>
-                                    <field name="product_id" context="{'search_default_department_id': parent.department_id}"/>
-                                    <field name="name" />
-                                    <field name="price" />
-                                    <field name="product_qty"/>
-                                    <field name="product_uom"/>
-                                    <field name="subtotal"/>
-                                    <separator string="Notes" colspan="4"/>
-                                    <field name="notes" colspan="4" nolabel="1"/>
-                                    <separator string="Taxes" colspan="4"/>
-                                    <field name="tax_ids" colspan="4" nolabel="1"/>
+                                    <group col="4">
+                                        <field name="sequence"/>
+                                        <field name="product_id" context="{'search_default_department_id': parent.department_id}"/>
+                                        <field name="name" />
+                                        <field name="price" />
+                                        <field name="product_qty"/>
+                                        <field name="product_uom"/>
+                                        <field name="subtotal"/>
+                                        <separator string="Notes" colspan="4"/>
+                                        <field name="notes" colspan="4" nolabel="1"/>
+                                        <separator string="Taxes" colspan="4"/>
+                                        <field name="tax_ids" colspan="4" nolabel="1"/>
+                                    </group>
                                 </form>
                             </field>
-                            <group>
+                            <group col="4">
                                 <field name="amount_untaxed"/>
                                 <field name="amount_tax"/>
                                 <field name="amount_total"/>
@@ -213,6 +214,10 @@
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>

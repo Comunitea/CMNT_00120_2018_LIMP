@@ -25,15 +25,8 @@ from odoo.exceptions import UserError
 class ServiceOrderToinvoice(models.TransientModel):
     _name = 'service.order.toinvoice'
 
-    def _get_journal_id(self):
-        vals = []
-        for jr_type in self.env['account.journal'].search([('type', '=','sale' )]):
-            t1 = jr_type.id, jr_type.name
-            if t1 not in vals:
-                vals.append(t1)
-        return vals
-
-    journal_id = fields.Selection(_get_journal_id, 'Destination Journal',required=True)
+    journal_id = fields.Many2one("account.journal", 'Destination Journal',
+                                 required=True, domain=[('type', '=', 'sale')])
     group_partner = fields.Boolean("Group by partner")
     group_building_site = fields.Boolean("Group by building site")
     invoice_date = fields.Date('Invoiced date')
@@ -56,7 +49,7 @@ class ServiceOrderToinvoice(models.TransientModel):
 
     def create_invoice(self):
         date_inv = self.invoice_date or fields.Date.today()
-        journal_id = int(self.journal_id)
+        journal_id = self.journal_id.id
         group_partner = self.group_partner
         group_building_site = self.group_building_site
 
@@ -96,8 +89,9 @@ class ServiceOrderToinvoice(models.TransientModel):
                 if not comment:
                     comment = u"%s: " % service_picking.name
                 else:
-                    comment += "\n%s: " % service_picking.name
-                comment += u"DEL: %s, " % service_picking.invoice_delegation_id.name
+                    comment += u"\n%s: " % service_picking.name
+                delegation = self.env['res.delegation'].browse(int(service_picking.invoice_delegation_id))
+                comment += u"DEL: %s, " % delegation.name
                 comment += u"DEP: %s, " % service_picking.invoice_department_id.name
                 comment += u"RESP: %s\n" % service_picking.invoice_responsible_id.name
                 intercompany = True
@@ -254,19 +248,31 @@ class ServiceOrderToinvoice(models.TransientModel):
 
                 invoice_copied = invoice.copy(
                     default={'type': 'in_invoice',
-                             'delegation_id': service_picking.invoice_delegation_id.id,
+                             'delegation_id': service_picking.invoice_delegation_id,
                              'department_id': service_picking.invoice_department_id.id,
                              'manager_id': service_picking.invoice_responsible_id.id,
                              'comment': False,
-                             'journal_id': in_journal_ids[0],
+                             'journal_id': in_journal_ids[0].id,
                              'reference': service_picking.name
                             })
                 invoice.write({'intercompany_invoice_id': invoice_copied.id})
                 invoice_copied.write({'no_quality': True})
-                invoice_copied.invoice_line.write(
-                    {'account_analytic_id': False,
-                     'invoice_line_tax_ids': [(6, 0, [])],
-                     'intercompany_invoice_id': False})
+                for line in invoice_copied.invoice_line_ids:
+                    account_id = line.product_id.product_tmpl_id.\
+                            property_account_expense_id
+                    if not account_id:
+                        account_id = line.product_id.categ_id.\
+                                property_account_expense_categ_id
+
+                    if not account_id:
+                        raise UserError(_('Expense account in product %s is not set') % line.product_id.name)
+
+                    account_id = fpos.map_account(account_id).id
+                    line.write(
+                        {'account_analytic_id': False,
+                         'invoice_line_tax_ids': [(6, 0, [])],
+                         'intercompany_invoice_id': False,
+                         'account_id': account_id})
                 invoice_copied.compute_taxes()
 
         return res

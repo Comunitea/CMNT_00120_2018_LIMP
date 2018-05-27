@@ -25,6 +25,7 @@ class WasteService(models.Model):
 
     _name = "waste.service"
     _description = "Waste services"
+    _inherit = ['mail.thread']
     _inherits = {'account.analytic.account': 'analytic_acc_id'}
 
     analytic_acc_id = fields.Many2one('account.analytic.account', 'Analytic account', readonly=True, required=False, ondelete="cascade")

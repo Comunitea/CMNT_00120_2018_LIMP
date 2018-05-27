@@ -22,7 +22,7 @@ class InvoiceLines(models.Model):
         tools.drop_view_if_exists(self._cr,  "invoice_lines")
         self._cr.execute("""
             create or replace view invoice_lines as (
-            SELECT SM.id AS id,SP.date,SP.partner_id,SM.product_uos_qty AS quantity,P2.ler_code_id,SM.product_id,SM.product_qty AS m3, AIL.price_unit*AIL.quantity AS subtotal, SP.company_id
+            SELECT SM.id AS id,SP.date,SP.partner_id,SM.product_uos_qty AS quantity,P2.ler_code_id,SM.product_id,SM.product_uom_qty AS m3, AIL.price_unit*AIL.quantity AS subtotal, SP.company_id
             FROM stock_move AS SM
                 INNER JOIN stock_picking AS SP  ON SM.picking_id = SP.id
                 INNER JOIN product_product AS P ON SM.product_id = P.id
