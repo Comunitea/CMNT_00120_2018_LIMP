@@ -25,7 +25,7 @@ class accountnalyticAccountDetails(models.TransientModel):
     _name = "account.analytic.account.details"
 
     date1 = fields.Date('Start of period', required=True, default=lambda r: time.strftime('%Y-01-01'))
-    date2 = fields.Date('End of period', required=True, default=fields.Date.today())
+    date2 = fields.Date('End of period', required=True, default=fields.Date.today)
     department_id = fields.Many2one('hr.department', 'Department')
     delegation_id = fields.Many2one('res.delegation', 'Delegation')
     manager_id = fields.Many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)])

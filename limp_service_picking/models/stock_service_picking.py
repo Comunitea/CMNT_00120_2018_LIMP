@@ -122,7 +122,7 @@ class StockServicePicking(models.Model):
     amount_untaxed = fields.Float('Untaxed Amount', digits=dp.get_precision('Sale Price'), compute='_amount_all', help='The amount without tax.')
     amount_tax = fields.Float('Taxes', digits=dp.get_precision('Sale Price'), compute='_amount_all', help='The tax amount.')
     amount_total = fields.Float('Total with taxes', digits=dp.get_precision('Sale Price'), compute='_amount_all', help='The total amount.')
-    picking_date = fields.Date('Picking date', required=True, default=fields.Date.today(), copy=False)
+    picking_date = fields.Date('Picking date', required=True, default=fields.Date.today, copy=False)
     service_id = fields.Many2one('waste.service', 'Waste service', readonly=True)
     intercompany = fields.Boolean('Intercompay')
         #'invoice_delegation_id = fields.Many2one('res.delegation', 'Delegation', help="Delegation where inputs the cost"),

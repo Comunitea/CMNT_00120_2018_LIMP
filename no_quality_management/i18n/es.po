@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* no_quality_management
+#       * no_quality_management
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.2\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2013-07-03 16:23+0000\n"
-"PO-Revision-Date: 2013-07-03 16:23+0000\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-31 10:56+0000\n"
+"PO-Revision-Date: 2018-05-31 10:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,53 +16,44 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: no_quality_management
-#: field:account.invoice,no_quality:0
-#: field:limp.contract,no_quality:0
-#: field:stock.service.picking,no_quality:0
-msgid "Scont"
-msgstr "Scont"
-
-#. module: no_quality_management
-#: model:ir.actions.act_window,name:no_quality_management.action_remove_no_quality_form
-#: model:ir.ui.menu,name:no_quality_management.menu_remove_no_quality
-#: view:remove.no.quality:0
-msgid "Remove Scont"
-msgstr "Borrar Scont"
-
-#. module: no_quality_management
-#: constraint:account.invoice:0
-msgid "Invoice date is previous to an existing invoice."
-msgstr "La fecha de la factura es anterior a una factura existente."
-
-#. module: no_quality_management
-#: constraint:account.analytic.account:0
-msgid "Error! The currency has to be the same as the currency of the selected company"
-msgstr "¡Error! La divisa tiene que ser la misma que la establecida en la compañía seleccionada"
-
-#. module: no_quality_management
-#: model:ir.model,name:no_quality_management.model_limp_contract
-msgid "Limpergal Contracts"
-msgstr "Contratos Limpergal"
-
-#. module: no_quality_management
-#: model:ir.model,name:no_quality_management.model_service_order_toinvoice
-msgid "service.order.toinvoice"
-msgstr "service.order.toinvoice"
-
-#. module: no_quality_management
-#: model:ir.model,name:no_quality_management.model_stock_service_picking
-msgid "Service pickings"
-msgstr "Albaranes servicio"
-
-#. module: no_quality_management
 #: model:ir.model,name:no_quality_management.model_account_analytic_account
 msgid "Analytic Account"
 msgstr "Cuenta analítica"
 
 #. module: no_quality_management
-#: field:remove.no.quality,to_date:0
-msgid "To date"
-msgstr "Hasta fecha"
+#: model:ir.ui.view,arch_db:no_quality_management.view_remove_no_quality_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: no_quality_management
+#: model:ir.model.fields,field_description:no_quality_management.field_remove_no_quality_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: no_quality_management
+#: model:ir.model.fields,field_description:no_quality_management.field_remove_no_quality_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: no_quality_management
+#: model:ir.ui.view,arch_db:no_quality_management.view_remove_no_quality_form
+msgid "Delete"
+msgstr "Suprimir"
+
+#. module: no_quality_management
+#: model:ir.model.fields,field_description:no_quality_management.field_remove_no_quality_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: no_quality_management
+#: model:ir.model,name:no_quality_management.model_hr_employee
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: no_quality_management
+#: model:ir.model.fields,field_description:no_quality_management.field_remove_no_quality_id
+msgid "ID"
+msgstr "ID"
 
 #. module: no_quality_management
 #: model:ir.model,name:no_quality_management.model_account_invoice
@@ -70,14 +61,74 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: no_quality_management
-#: view:remove.no.quality:0
-msgid "Cancel"
-msgstr "Cancelar"
+#: model:ir.model,name:no_quality_management.model_account_journal
+msgid "Journal"
+msgstr "Diario"
 
 #. module: no_quality_management
-#: constraint:account.analytic.account:0
-msgid "Error! You can not create recursive analytic accounts."
-msgstr "¡Error! No puede crear cuentas analíticas recursivas."
+#: model:ir.model.fields,field_description:no_quality_management.field_remove_no_quality___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: no_quality_management
+#: model:ir.model.fields,field_description:no_quality_management.field_remove_no_quality_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: no_quality_management
+#: model:ir.model.fields,field_description:no_quality_management.field_remove_no_quality_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: no_quality_management
+#: model:ir.model,name:no_quality_management.model_limp_contract
+msgid "Limpergal Contracts"
+msgstr "Contratos Limpergal"
+
+#. module: no_quality_management
+#: model:ir.actions.act_window,name:no_quality_management.action_remove_no_quality_form
+#: model:ir.ui.menu,name:no_quality_management.menu_remove_no_quality
+#: model:ir.ui.view,arch_db:no_quality_management.view_remove_no_quality_form
+msgid "Remove Scont"
+msgstr "Borrar Scont"
+
+#. module: no_quality_management
+#: model:ir.model.fields,field_description:no_quality_management.field_account_invoice_no_quality
+#: model:ir.model.fields,field_description:no_quality_management.field_account_journal_no_quality
+#: model:ir.model.fields,field_description:no_quality_management.field_hr_employee_scont
+#: model:ir.model.fields,field_description:no_quality_management.field_limp_contract_no_quality
+#: model:ir.model.fields,field_description:no_quality_management.field_stock_picking_no_quality
+#: model:ir.model.fields,field_description:no_quality_management.field_stock_service_picking_no_quality
+#: model:ir.model.fields,field_description:no_quality_management.field_timesheet_scont
+msgid "Scont"
+msgstr "Scont"
+
+#. module: no_quality_management
+#: model:ir.model,name:no_quality_management.model_stock_service_picking
+msgid "Service pickings"
+msgstr "Albaranes servicio"
+
+#. module: no_quality_management
+#: model:ir.model.fields,field_description:no_quality_management.field_remove_no_quality_to_date
+msgid "To date"
+msgstr "Hasta"
+
+#. module: no_quality_management
+#: model:ir.model,name:no_quality_management.model_stock_picking
+msgid "Transfer"
+msgstr "Traspaso"
+
+#. module: no_quality_management
+#: code:addons/no_quality_management/models/account_invoice.py:35
+#, python-format
+msgid "You try to open normal invoice on scont journal."
+msgstr "Está intentando confirmar una factura normal en un diario de scont."
+
+#. module: no_quality_management
+#: code:addons/no_quality_management/models/account_invoice.py:33
+#, python-format
+msgid "You try to open scont invoice on not scont journal."
+msgstr "Está intentando confirmar una factura de scont en un diario que no es de scont."
 
 #. module: no_quality_management
 #: model:ir.model,name:no_quality_management.model_remove_no_quality
@@ -85,7 +136,11 @@ msgid "remove.no.quality"
 msgstr "remove.no.quality"
 
 #. module: no_quality_management
-#: view:remove.no.quality:0
-msgid "Delete"
-msgstr "Borrar"
+#: model:ir.model,name:no_quality_management.model_service_order_toinvoice
+msgid "service.order.toinvoice"
+msgstr "service.order.toinvoice"
 
+#. module: no_quality_management
+#: model:ir.model,name:no_quality_management.model_timesheet
+msgid "timesheet"
+msgstr "timesheet"

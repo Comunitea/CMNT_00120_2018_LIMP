@@ -25,12 +25,12 @@ class RemoveNoQuality(models.TransientModel):
 
     _name = "remove.no.quality"
 
-    to_date = fields.Date('To date', required=True, default=fields.Date.today())
+    to_date = fields.Date('To date', required=True, default=fields.Date.today)
 
     def delete_no_quality(self):
         invoice_ids = self.env['account.invoice'].sudo().search([('no_quality', '=', True), ('date_invoice', '<=', self.to_date)])
         invoice_to_unlink = self.env['account.invoice']
-        for invoice in invoice_ids.filtered(lambda r: r.id in (126172, 126173)):
+        for invoice in invoice_ids:
             if invoice.state in ('draft', 'cancel'):
                 invoice_to_unlink += invoice
             elif invoice.state in ('proforma', 'proforma2', 'open'):
