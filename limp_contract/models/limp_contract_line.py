@@ -28,7 +28,7 @@ class LimpContractLine(models.Model):
     _rec_name = 'num'
 
     contract_id = fields.Many2one('limp.contract', 'Contract', readonly=True, ondelete="cascade")
-    num = fields.Char('Num.', size=4, readonly="True")
+    num = fields.Char('Num.', size=4, readonly=True)
     amount = fields.Float('Amount', digits=dp.get_precision('Account'), readonly=True)
     #'task_ids': fields.one2many('limp.contract.line.task.rel', 'contract_line_id', 'Tasks')
     employee_task_ids = fields.One2many('limp.contract.line.employee.task','contract_line_id','Employees Tasks')

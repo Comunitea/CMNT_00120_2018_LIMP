@@ -76,7 +76,7 @@
                     <field name="distribute"/>
                     <field name="department_id"/>
                     <newline/>
-                    <group  expand='0' string='Group by...' groups="base.group_no_one">
+                    <group  expand='0' string='Group by...'>
                        <filter string='Type' domain="[]" context="{'group_by' : 'expense_type'}" />
                        <filter string='Vehicle' context="{'group_by' : 'fleet_id'}"/>
                        <filter string='Supplier' context="{'group_by' : 'partner_id'}"/>

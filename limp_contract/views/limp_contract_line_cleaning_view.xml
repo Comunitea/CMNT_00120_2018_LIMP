@@ -79,15 +79,18 @@
                                     <field name="product_qty"/>
                                     <field name="date"/>
                                     <field name="state" invisible="1"/>
+                                    <button name="action_confirm" type="object" string="Confirm" states="first" icon="fa-check"/>
                                </tree>
                                <form string="Consumption">
-                                    <field name="employee_id"/>
-                                    <field name="location_id"/>
-                                    <field name="product_id"/>
-                                    <field name="product_qty"/>
-                                    <field name="move_id"/>
-                                    <field name="date"/>
-                                    <field name="state"/>
+                                   <group col="4">
+                                        <field name="employee_id"/>
+                                        <field name="location_id"/>
+                                        <field name="product_id"/>
+                                        <field name="product_qty"/>
+                                        <field name="move_id"/>
+                                        <field name="date"/>
+                                        <field name="state"/>
+                                    </group>
                                </form>
                            </field>
                         </page>
@@ -125,21 +128,23 @@
                                     <field name="responsible_id"/>
                                 </tree>
                                 <form string="Timesheet">
-                                    <field name="name" readonly="1"/>
-                                    <field name="date"/>
-                                    <field name="employee_id"/>
-                                    <field name="description" colspan="4"/>
-                                    <field name="extra_hours" widget="float_time"/>
-                                    <field name="price_hours"/>
-                                    <field name="hours" widget="float_time"/>
-                                    <field name="quantity"/>
-                                    <field name="pending_qty"/>
-                                    <field name="pending_distribute_qty"/>
-                                    <field name="done"/>
-                                    <field name="old"/>
-                                    <field name="delegation_id"/>
-                                    <field name="department_id"/>
-                                    <field name="responsible_id"/>
+                                    <group col="4">
+                                        <field name="name" readonly="1"/>
+                                        <field name="date"/>
+                                        <field name="employee_id"/>
+                                        <field name="description" colspan="4"/>
+                                        <field name="extra_hours" widget="float_time"/>
+                                        <field name="price_hours"/>
+                                        <field name="hours" widget="float_time"/>
+                                        <field name="quantity"/>
+                                        <field name="pending_qty"/>
+                                        <field name="pending_distribute_qty"/>
+                                        <field name="done"/>
+                                        <field name="old"/>
+                                        <field name="delegation_id"/>
+                                        <field name="department_id"/>
+                                        <field name="responsible_id"/>
+                                    </group>
                                 </form>
                             </field>
                         </page>

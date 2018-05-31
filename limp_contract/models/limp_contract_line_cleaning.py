@@ -116,7 +116,7 @@ class LimpContractLineCleaning(models.Model):
 
     def write(self, vals):
         res = super(LimpContractLineCleaning, self).write(vals)
-        if vals.get('date', False) or (vals.get('state', False) and vals['state'] in ('open', 'cancelled')) or vals.get('date_start', False):
+        if vals.get('date', False) or vals.get('date_start', False):
             all_remuneration_ids = self.env['remuneration']
             remuneration_ids_wo_dateto = self.env['remuneration']
 
@@ -129,6 +129,9 @@ class LimpContractLineCleaning(models.Model):
                     all_remuneration_ids.sudo().write({'date': vals['date_start']})
                 if vals.get('date', False) and remuneration_ids_wo_dateto:
                     remuneration_ids_wo_dateto.sudo().write({'date_to': vals['date']})
+        if vals.get('state', False) and vals['state'] in ('open', 'close', 'cancelled'):
+            for line in self:
+                line.analytic_acc_id.state = vals['state']
         return res
 
     def unlink(self):

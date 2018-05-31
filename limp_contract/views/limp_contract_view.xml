@@ -46,13 +46,13 @@
                                 type="object"
                                 class="oe_stat_button"
                                 icon="fa-pencil-square-o"
-                                attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                                attrs="{'invisible': [('invoice_count', '=', 0)]}" groups="account.group_account_manager">
                                 <field name="invoice_count" widget="statinfo" string="Invoices"/>
                             </button>
                             <button name="action_view_upamount_history"
                                 type="object"
                                 class="oe_stat_button"
-                                icon="fa-pencil-square-o">
+                                icon="fa-pencil-square-o" groups="account.group_account_manager">
                                 <field name="upamount_history_count" widget="statinfo" string="Upamount history"/>
                             </button>
                             <button name="action_view_home_help_lines"
@@ -64,7 +64,7 @@
                             <button name="action_view_cleaning_lines"
                                 type="object"
                                 class="oe_stat_button"
-                                icon="fa-tint">
+                                icon="fa-tint" groups="limp_service_picking.group_cleaning_user">
                                 <field name="cleaning_lines_count" widget="statinfo" string="Cleaning"/>
                             </button>
                             <button name="action_view_waste_lines"
@@ -100,7 +100,7 @@
                             <button name="action_view_maintenance_task"
                                 type="object"
                                 class="oe_stat_button"
-                                icon="fa-pencil-square-o">
+                                icon="fa-pencil-square-o" groups="limp_service_picking.group_cleaning_user">
                                 <field name="maintenance_task_count" widget="statinfo" string="Maintenance tasks"/>
                             </button>
                             <button name="action_view_timesheet"
@@ -115,12 +115,12 @@
                                 <field name="name" readonly="1" required="0"/>
                             </h1>
                         </div>
-                        <group>
+                        <group col="6">
                             <field name="company_id" widget="selection" required="1"/>
                             <field name="delegation_id" widget="selection" required="1"/>
                             <field name="department_id" widget="selection" required="1"/>
                         </group>
-                        <group>
+                        <group col="4">
                             <field name="description" widget="char" size="255" required="1"/>
                             <field name="partner_id" string="Customer" required="1" domain="[('is_company', '=', True)]"/>
                             <field name="contact_id" domain="[('id','child_of',[partner_id])]"/>
@@ -128,12 +128,12 @@
                         </group>
                         <notebook colspan="4">
                             <page string="General">
-                                <group>
+                                <group col="4">
                                     <field name="periodicity" invisible="1"/>
                                     <field name="monthly_amount"/>
                                     <field name="amount"/>
                                 </group>
-                                <group col="6" colspan="4">
+                                <group col="6">
                                     <field name="date_start"/>
                                     <field name="contract_duration"/>
                                     <field name="contract_end_date"/>
@@ -145,13 +145,13 @@
                                     <field name="signature_date"/>
                                     <field name="privacy"/>
                                 </group>
-                                <group>
+                                <group col="4">
                                     <field name="date"/>
                                     <field name="address_id" domain="[('id', 'child_of', [partner_id])]" required="1"/>
                                     <field name="prorogation_notes" colspan="4"/>
                                 </group>
                             </page>
-                            <page string="Invoicing" groups="base.group_no_one">
+                            <page string="Invoicing" groups="account.group_account_manager">
 
                                 <notebook colspan="4">
                                     <page string="Invoice General">
@@ -193,6 +193,10 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>

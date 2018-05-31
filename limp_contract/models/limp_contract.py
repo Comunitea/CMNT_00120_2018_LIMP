@@ -27,6 +27,7 @@ class LimpContract(models.Model):
 
     _name = 'limp.contract'
     _description = "Limpergal Contracts"
+    _inherit = ['mail.thread']
     _inherits = {'account.analytic.account': "analytic_account_id"}
 
     prorogation_date = fields.Date('Prorogation date', help="Estimate prorogation date")
@@ -62,12 +63,12 @@ class LimpContract(models.Model):
     home_help_lines_count = fields.Integer(string='# of home_help_lines', compute='_compute_home_help_lines_count', readonly=True)
     cleaning_lines_count = fields.Integer(string='# of cleaning_lines', compute='_compute_cleaning_lines_count', readonly=True)
     waste_lines_count = fields.Integer(string='# of waste', compute='_compute_waste_lines_count', readonly=True)
-    service_picking_lines_count = fields.Integer(string='# of waste', compute='_compute_service_picking_lines_count', readonly=True)
-    active_remuneration_lines_count = fields.Integer(string='# of waste', compute='_compute_active_remuneration_lines_count', readonly=True)
-    contract_note_count = fields.Integer(string='# of waste', compute='_compute_contract_note_count', readonly=True)
-    analytic_moves_count = fields.Integer(string='# of waste', compute='_compute_analytic_moves_count', readonly=True)
-    maintenance_task_count = fields.Integer(string='# of waste', compute='_compute_maintenance_task_count', readonly=True)
-    timesheet_count = fields.Integer(string='# of waste', compute='_compute_timesheet_count', readonly=True)
+    service_picking_lines_count = fields.Integer(string='# of serv. pickings', compute='_compute_service_picking_lines_count', readonly=True)
+    active_remuneration_lines_count = fields.Integer(string='# of remunerations', compute='_compute_active_remuneration_lines_count', readonly=True)
+    contract_note_count = fields.Integer(string='# of notes', compute='_compute_contract_note_count', readonly=True)
+    analytic_moves_count = fields.Integer(string='# of consummtions', compute='_compute_analytic_moves_count', readonly=True)
+    maintenance_task_count = fields.Integer(string='# of maintenance tasks', compute='_compute_maintenance_task_count', readonly=True)
+    timesheet_count = fields.Integer(string='# of timesheets', compute='_compute_timesheet_count', readonly=True)
 
 
     def get_same_contract_accounts(self, extra_domain = []):
@@ -97,7 +98,7 @@ class LimpContract(models.Model):
 
     def invoice_run(self):
         id_invoice = []
-        invoice_ids = []
+        invoice_ids = self.env['account.invoice']
         for obj in self:
             contract_tag = obj.tag_ids.filtered('contract_tag')
             if obj.analytic_account_id and obj.state == 'open':
@@ -108,7 +109,7 @@ class LimpContract(models.Model):
                     ('date_start', '<', self._context['end_date'])],
                     order='create_date')
                 child_ids += obj.analytic_account_id
-                invoice_ids = child_ids.run_invoice_cron_manual()
+                invoice_ids += child_ids.run_invoice_cron_manual()
 
         if invoice_ids:
             action = self.env.ref('account.action_invoice_tree1').read()[0]
@@ -136,8 +137,9 @@ class LimpContract(models.Model):
         res = super(LimpContract, self).write(vals)
         for contract in self:
             if vals.get('state', False) and vals['state'] in ['open', 'close', 'cancelled']:
-                contract.home_help_line_ids.filtered(lambda r: r.state == 'open').write({'state': vals['state']})
-                contract.cleaning_line_ids.filtered(lambda r: r.state == 'open').write({'state': vals['state']})
+                contract.home_help_line_ids.filtered(lambda r: r.state in ['open','draft']).write({'state': vals['state']})
+                contract.cleaning_line_ids.filtered(lambda r: r.state in ['open','draft']).write({'state': vals['state']})
+                contract.analytic_account_id.state = vals['state']
 
             if vals.get('date', False):
                 contract.home_help_line_ids.filtered(lambda r: r.date == False).write({'date': vals['date']})

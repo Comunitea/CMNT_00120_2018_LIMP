@@ -21,12 +21,6 @@
 """Adds new fields to analytics accounts"""
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
-from odoo.exceptions import UserError
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from dateutil import rrule
-import time
-import calendar
 
 
 class AccountAnalyticTag(models.Model):
@@ -64,10 +58,6 @@ class AccountAnalyticAccount(models.Model):
         help="Date of the last invoice created for this analytic account.",
         compute='_compute_last_linvoice_date')
 
-    def _get_concept_amount(self, concept_ids):
-        # TODO: Eliminar funcion
-        raise Exception('use total_amount account.analytic.invoice.concept.rel')
-
     def _compute_last_linvoice_date(self):
         for acc in self:
             acc_an_line = self.env['account.analytic.line'].search(
@@ -83,7 +73,7 @@ class AccountAnalyticAccount(models.Model):
                 [x.total_amount for x in account.concept_ids])
 
     def _compute_is_picking(self):
-        for account in ids:
+        for account in self:
             picking_ids = self.env['stock.service.picking'].search(
                 [('analytic_acc_id', '=', account),
                  ('contract_id', '=', False)])
@@ -190,7 +180,7 @@ class AccountAnalyticAccount(models.Model):
         if line:
             vals = {
                 'payment_term_id': line.contract_id.payment_term_id and line.contract_id.payment_term_id.id or (self.partner_id.property_payment_term_id and self.partner_id.property_payment_term_id.id or False),
-                'payment_mode_id': line.contract_id.payment_type_id and line.contract_id.payment_type_id.id or (self.partner_id.payment_type_customer_id and self.partner_id.payment_type_customer_id.id or False),
+                'payment_mode_id': line.contract_id.payment_type_id and line.contract_id.payment_type_id.id or (self.partner_id.customer_payment_mode_id and self.partner_id.customer_payment_mode_id.id or False),
                 'invoice_header': line.contract_id.invoice_header,
             }
             if line.contract_id.address_invoice_id:
@@ -207,8 +197,11 @@ class AccountAnalyticAccount(models.Model):
                      ('state','=','closed'),
                      ('invoice_type','!=', 'noinvoice'),
                      ('retired_date', '<=', end_date)])
-                wzd = self.env['add.to.invoice'].create({'invoice_id': invoice_id})
-                wzd.with_context(active_ids=picking_ids._ids).add_to_invoice()
+                if picking_ids:
+                    wzd = self.env['add.to.invoice'].\
+                            with_context(active_ids=picking_ids.ids).\
+                            create({'invoice_id': invoice_id.id})
+                    wzd.with_context(active_ids=picking_ids.ids).add_to_invoice()
 
         else:
             contracts = self.env['limp.contract'].search(
@@ -235,8 +228,11 @@ class AccountAnalyticAccount(models.Model):
                          ('state','=','closed'),
                          ('invoice_type','!=', 'noinvoice'),
                          ('retired_date', '<=', end_date)])
-                    wzd = self.env['add.to.invoice'].create({'invoice_id': invoice_id})
-                    wzd.with_context(active_ids=picking_ids._ids).add_to_invoice()
+                    if picking_ids:
+                        wzd = self.env['add.to.invoice'].\
+                            with_context(active_ids=picking_ids.ids).\
+                            create({'invoice_id': invoice_id.id})
+                        wzd.with_context(active_ids=picking_ids.ids).add_to_invoice()
 
         vals.update({'delegation_id': self.delegation_id and self.delegation_id.id or False})
         invoice_id.write(vals)
@@ -257,7 +253,7 @@ class AccountAnalyticAccount(models.Model):
         if self.analytic_distribution_id:
             invoice_line.write(
                 {'account_analytic_id': False,
-                 'analytics_id': self.analytic_distribution_id.id})
+                 'analytic_distribution_id': self.analytic_distribution_id.id})
         return True
 
     def _create_invoice(self, end_date):
@@ -286,6 +282,11 @@ class AccountAnalyticAccount(models.Model):
             contract = self.get_contract()
             if contract:
                 self.write({'privacy': contract.privacy})
+        if vals.get('state') and vals['state'] in ('open', 'close', 'cancelled'):
+            for account in self:
+                contract_ids = self.env['limp.contract'].search([('analytic_account_id', '=', account.id),('state', '!=', vals['state'])])
+                if contract_ids:
+                    contract_ids.write({'state': vals['state']})
         return res
 
     def get_contract(self):

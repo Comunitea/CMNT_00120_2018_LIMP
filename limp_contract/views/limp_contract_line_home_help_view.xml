@@ -47,7 +47,7 @@
                         <group>
                             <field name="num"/>
                             <field name="partner_id" required="1"/>
-                            <field name="customer_contact_id"/>
+                            <field name="customer_contact_id" domain="[('id', 'child_of', [partner_id])]"/>
                             <field name="state_id" invisible="1" string="Province"/>
                             <field name="location_id" invisible="1"/>
                             <field name="partner_social_worker_id"/>
@@ -78,7 +78,7 @@
                             <field name="active_occupation_ids" nolabel="1" colspan="4" context="{'company_id': company_id, 'c_delegation_id': delegation_id, 'c_department_id': department_id}"/>
                         </page-->
                         <page string="Active remunerations">
-                            <field name="analytic_acc_id" invisible="1"/>
+                            <field name="analytic_acc_id" invisible="1" required="0"/>
                             <field name="active_remuneration_ids" nolabel="1" colspan="4" context="{'default_analytic_account_id': analytic_acc_id}"/>
                         </page>
                         <page string="Consumptions">
@@ -90,15 +90,18 @@
                                     <field name="product_qty"/>
                                     <field name="date"/>
                                     <field name="state" invisible="1"/>
+                                    <button name="action_confirm" type="object" string="Confirm" states="first" icon="fa-check"/>
                                </tree>
                                <form string="Consumption">
-                                    <field name="employee_id"/>
-                                    <field name="location_id"/>
-                                    <field name="product_id"/>
-                                    <field name="product_qty"/>
-                                    <field name="move_id"/>
-                                    <field name="date"/>
-                                    <field name="state"/>
+                                   <group col="4">
+                                        <field name="employee_id"/>
+                                        <field name="location_id"/>
+                                        <field name="product_id"/>
+                                        <field name="product_qty"/>
+                                        <field name="move_id"/>
+                                        <field name="date"/>
+                                        <field name="state"/>
+                                    </group>
                                </form>
                            </field>
                         </page>
@@ -141,21 +144,23 @@
                                     <field name="responsible_id"/>
                                 </tree>
                                 <form string="Timesheet">
-                                    <field name="name" readonly="1"/>
-                                    <field name="date"/>
-                                    <field name="employee_id"/>
-                                    <field name="description" colspan="4"/>
-                                    <field name="extra_hours" widget="float_time"/>
-                                    <field name="price_hours"/>
-                                    <field name="hours" widget="float_time"/>
-                                    <field name="quantity"/>
-                                    <field name="pending_qty"/>
-                                    <field name="pending_distribute_qty"/>
-                                    <field name="done"/>
-                                    <field name="old"/>
-                                    <field name="delegation_id"/>
-                                    <field name="department_id"/>
-                                    <field name="responsible_id"/>
+                                    <group col="4">
+                                        <field name="name" readonly="1"/>
+                                        <field name="date"/>
+                                        <field name="employee_id"/>
+                                        <field name="description" colspan="4"/>
+                                        <field name="extra_hours" widget="float_time"/>
+                                        <field name="price_hours"/>
+                                        <field name="hours" widget="float_time"/>
+                                        <field name="quantity"/>
+                                        <field name="pending_qty"/>
+                                        <field name="pending_distribute_qty"/>
+                                        <field name="done"/>
+                                        <field name="old"/>
+                                        <field name="delegation_id"/>
+                                        <field name="department_id"/>
+                                        <field name="responsible_id"/>
+                                    </group>
                                 </form>
                             </field>
                         </page>

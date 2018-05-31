@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
                 <notebook position="inside">
-                    <page string="Delegations" groups="base.group_no_one">
+                    <page string="Delegations">
                         <group>
                             <field name="context_delegation_id" widget="selection" readonly="0"/>
                         </group>

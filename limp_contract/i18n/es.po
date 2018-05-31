@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-24 16:53+0000\n"
-"PO-Revision-Date: 2018-04-24 16:53+0000\n"
+"POT-Creation-Date: 2018-05-30 18:24+0000\n"
+"PO-Revision-Date: 2018-05-30 18:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,12 +18,17 @@ msgstr ""
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_invoice_count
 msgid "# of Invoices"
-msgstr "Nº de facturas"
+msgstr "# Facturas"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_cleaning_lines_count
 msgid "# of cleaning_lines"
-msgstr "# Lin. limieza"
+msgstr "# Lin. limpieza"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_analytic_moves_count
+msgid "# of consummtions"
+msgstr "# Consumos"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_home_help_lines_count
@@ -31,17 +36,36 @@ msgid "# of home_help_lines"
 msgstr "# Lin. ayuda dom."
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_maintenance_task_count
+msgid "# of maintenance tasks"
+msgstr "# Tareas Mant."
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_contract_note_count
+msgid "# of notes"
+msgstr "# Notas"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_active_remuneration_lines_count
+msgid "# of remunerations"
+msgstr "# Remuneraciones"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_service_picking_lines_count
+msgid "# of serv. pickings"
+msgstr "# Alb. serv."
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_timesheet_count
+msgid "# of timesheets"
+msgstr "# Partes"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_count
 msgid "# of upamount_history"
 msgstr "# Subidas"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_active_remuneration_lines_count
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_analytic_moves_count
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_contract_note_count
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_maintenance_task_count
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_service_picking_lines_count
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_timesheet_count
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_waste_lines_count
 msgid "# of waste"
 msgstr "# Residuos"
@@ -60,16 +84,14 @@ msgstr "Cuenta"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_needaction
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_needaction
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_needaction
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_needaction
 msgid "Action Needed"
-msgstr "Necesaria acción"
+msgstr "Acción necesaria"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_active
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_active
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_active
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_active
 msgid "Active"
 msgstr "Activo"
 
@@ -77,7 +99,6 @@ msgstr "Activo"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_active_remuneration_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_active_remuneration_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_active_remuneration_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_active_remuneration_ids
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
@@ -88,7 +109,6 @@ msgstr "Remuneraciones activas"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_active_employee_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_active_employee_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_active_employee_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_active_employee_ids
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
@@ -100,7 +120,6 @@ msgstr "Partes de horas activos"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_address_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_address_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_address_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_address_id
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_address_id
 msgid "Address"
 msgstr "Dirección"
@@ -110,7 +129,6 @@ msgstr "Dirección"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_address_invoice_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_address_invoice_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_address_invoice_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_address_invoice_id
 msgid "Address invoice"
 msgstr "Dir. factura"
 
@@ -129,7 +147,6 @@ msgstr "Hora inicio tarde"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_amount
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_amount
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_amount
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_amount
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_amount
 msgid "Amount"
 msgstr "Importe"
@@ -143,7 +160,6 @@ msgstr "Importe por horas"
 #: model:ir.model,name:limp_contract.model_account_analytic_account
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_name
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_name
 msgid "Analytic Account"
 msgstr "Cuenta analítica"
@@ -153,7 +169,6 @@ msgstr "Cuenta analítica"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_analytic_distribution_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_analytic_distribution_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_analytic_distribution_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_analytic_distribution_id
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_analytic_distribution_id
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_analytic_distribution_id
 msgid "Analytic Distribution"
@@ -162,13 +177,12 @@ msgstr "Distribución analítica"
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Línea analítica"
+msgstr "Línea Analítica"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_line_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_line_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_line_ids
 msgid "Analytic Lines"
 msgstr "Líneas analíticas"
 
@@ -180,7 +194,6 @@ msgstr "Etiquetas analíticas"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_analytic_acc_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_analytic_acc_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_analytic_acc_id
 msgid "Analytic account"
 msgstr "Cuenta analítica"
 
@@ -219,7 +232,6 @@ msgstr "Empresa asociada"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_balance
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_balance
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_balance
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_balance
 msgid "Balance"
 msgstr "Saldo pendiente"
 
@@ -275,7 +287,7 @@ msgid "Cancelled"
 msgstr "Canceladas"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:234
+#: code:addons/limp_contract/models/limp_contract.py:219
 #, python-format
 msgid "Cannot close the contract without a final date less or equal today."
 msgstr "No puede cerrar el contrato sin una fecha final menor o igual a hoy."
@@ -304,7 +316,6 @@ msgstr "Importe cheque"
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_use_tasks
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_use_tasks
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_use_tasks
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_use_tasks
 msgid "Check this box to manage internal activities through this project"
 msgstr "Marque esta casilla para gestionar actividades internas en este proyecto"
@@ -342,7 +353,7 @@ msgstr "Cerrar"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 #: selection:limp.contract,state:0
 msgid "Closed"
-msgstr "Cerrada"
+msgstr "Cerrado"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
@@ -363,12 +374,10 @@ msgstr "Compañías"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_company_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_company_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_company_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_company_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task_company_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_company_id
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_task_search
 msgid "Company"
@@ -378,7 +387,6 @@ msgstr "Compañía"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_company_uom_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_company_uom_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_company_uom_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_company_uom_id
 msgid "Company UOM"
 msgstr "UdM de la compañía"
 
@@ -386,7 +394,6 @@ msgstr "UdM de la compañía"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_concept_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_concept_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_concept_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_concept_ids
 msgid "Concepts"
 msgstr "Conceptos"
 
@@ -395,7 +402,6 @@ msgstr "Conceptos"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_concept_amount
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_concept_amount
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_concept_amount
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_concept_amount
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_concept_amount
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_concept_amount
 msgid "Concepts amount"
@@ -421,11 +427,9 @@ msgstr "Consumo"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_analytic_move_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_analytic_move_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_analytic_move_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_analytic_move_ids
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
 msgid "Consumptions"
 msgstr "Consumos"
 
@@ -433,7 +437,6 @@ msgstr "Consumos"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_contact_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_contact_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_contact_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_contact_id
 msgid "Contact"
 msgstr "Contacto"
 
@@ -441,7 +444,6 @@ msgstr "Contacto"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_incidences
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_incidences
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_incidences
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_incidences
 msgid "Contents incidences"
 msgstr "Contiene incidencias"
 
@@ -451,7 +453,6 @@ msgstr "Contiene incidencias"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_contract_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_contract_id
@@ -484,9 +485,7 @@ msgstr "Asistente de facturación de contratos"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_contract_line_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_contract_line_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_contract_line_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_contract_line_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_contract_line_id
-#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_contract_line_id
 msgid "Contract line"
 msgstr "Linea contrato"
 
@@ -560,12 +559,10 @@ msgstr "Contratos pendientes de subida en un mes"
 #: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account_location_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_location_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_location_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_location_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_location_id
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_location_id
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 msgid "Council"
 msgstr "Ayuntamiento"
 
@@ -582,7 +579,6 @@ msgstr "Crear factura"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_create_uid
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_signature_create_uid
@@ -603,7 +599,6 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_create_date
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_signature_create_date
@@ -614,13 +609,12 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_credit
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_credit
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_credit
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_credit
 msgid "Credit"
 msgstr "Haber"
 
@@ -628,14 +622,12 @@ msgstr "Haber"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_currency_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_currency_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_currency_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_currency_id
 msgid "Currency"
 msgstr "Moneda"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 msgid "Current"
 msgstr "Actual"
@@ -643,7 +635,6 @@ msgstr "Actual"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 msgid "Current contracts"
 msgstr "Contratos actuales"
@@ -651,13 +642,11 @@ msgstr "Contratos actuales"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_partner_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_partner_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_partner_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_partner_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_partner_id
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_tree
 msgid "Customer"
@@ -679,21 +668,19 @@ msgstr "Fecha"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_date
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_date
 msgid "Date end"
 msgstr "Fecha fin"
 
 #. module: limp_contract
+#: model:ir.model.fields,help:limp_contract.field_limp_contract_last_invoice_date
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_last_invoice_date
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_last_invoice_date
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_last_invoice_date
 msgid "Date of the last invoice created for this analytic account."
-msgstr "Fecha de la última factura creada en esta cuenta analítica."
+msgstr "Fecha de la última factura creada para esta cuenta analítica."
 
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_message_last_post
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_message_last_post
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_message_last_post
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_message_last_post
 msgid "Date of the last message posted on the record."
 msgstr "Fecha del último mensaje publicado en el registro."
@@ -702,7 +689,6 @@ msgstr "Fecha del último mensaje publicado en el registro."
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_date_start
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_date_start
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_date_start
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_date_start
 msgid "Date start"
 msgstr "Fecha de inicio"
 
@@ -710,7 +696,6 @@ msgstr "Fecha de inicio"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_debit
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_debit
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_debit
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_debit
 msgid "Debit"
 msgstr "Debe"
 
@@ -723,14 +708,8 @@ msgstr "Debe"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_delegation_id
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 msgid "Delegation"
-msgstr "Delegación"
-
-#. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_delegation_id
-msgid "Delegation id"
 msgstr "Delegación"
 
 #. module: limp_contract
@@ -744,13 +723,11 @@ msgstr "Dep."
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_department_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_department_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_department_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_department_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives_department_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task_department_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_department_id
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_task_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_incidence_search
@@ -766,7 +743,6 @@ msgstr "Departamentos"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_note
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_note
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_note
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_note
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_name
@@ -789,7 +765,6 @@ msgstr "Diaria"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_display_name
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_signature_display_name
@@ -800,7 +775,7 @@ msgstr "Diaria"
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
@@ -818,7 +793,7 @@ msgstr "Contratos borrador"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_employee_task_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_incidence_search
 msgid "Employee"
-msgstr "Encargado"
+msgstr "Empleado"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_employee_task_line_id
@@ -846,7 +821,6 @@ msgstr "Tareas de empleados"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_employee_task_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_employee_task_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_employee_task_ids
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
 msgid "Employees Tasks"
@@ -864,12 +838,6 @@ msgstr "Fecha final"
 #, python-format
 msgid "Error ! You cannot create recursive categories."
 msgstr "¡Error! No puede crear categorías recursivas."
-
-#. module: limp_contract
-#: code:addons/limp_contract/wizard/service_order_toinvoice.py:34
-#, python-format
-msgid "Error!"
-msgstr "¡Error!"
 
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_prorogation_date
@@ -895,7 +863,6 @@ msgstr "Ejecutar"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_follower_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_follower_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_follower_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
@@ -903,7 +870,6 @@ msgstr "Seguidores"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_channel_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_channel_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_channel_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_channel_ids
 msgid "Followers (Channels)"
 msgstr "Seguidores (Canales)"
@@ -911,7 +877,6 @@ msgstr "Seguidores (Canales)"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_partner_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_partner_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_partner_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
@@ -934,7 +899,6 @@ msgstr "General"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_task_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_incidence_search
@@ -945,7 +909,6 @@ msgstr "Agrupar por..."
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_group_concepts
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_group_concepts
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_group_concepts
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_group_concepts
 msgid "Group concepts"
 msgstr "Agrupar conceptos"
 
@@ -953,7 +916,6 @@ msgstr "Agrupar conceptos"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_group_products
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_group_products
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_group_products
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_group_products
 msgid "Group products"
 msgstr "Agrupar productos"
 
@@ -961,7 +923,6 @@ msgstr "Agrupar productos"
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_group_concepts
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_group_concepts
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_group_concepts
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_group_concepts
 msgid "Groups concepts at invoice"
 msgstr "Agrupar conceptos al facturar"
 
@@ -969,7 +930,6 @@ msgstr "Agrupar conceptos al facturar"
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_group_products
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_group_products
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_group_products
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_group_products
 msgid "Groups products at invoice"
 msgstr "Agrupar productos al facturar"
 
@@ -977,7 +937,6 @@ msgstr "Agrupar productos al facturar"
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_group_products_each_invoice
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_group_products_each_invoice
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_group_products_each_invoice
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_group_products_each_invoice
 msgid "Groups products, one for invoice"
 msgstr "Agrupar productos, uno por factura"
 
@@ -1019,7 +978,6 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_signature_id
@@ -1035,7 +993,6 @@ msgstr "ID"
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_message_unread
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_message_unread
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_message_unread
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_message_unread
 msgid "If checked new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
@@ -1043,7 +1000,6 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_message_needaction
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_message_needaction
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_message_needaction
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
@@ -1051,7 +1007,6 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_active
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_active
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_active
 msgid "If the active field is set to False, it will allow you to hide the account without removing it."
 msgstr "Si el campo activo se desmarca, permite ocultar la cuenta sin eliminarla."
 
@@ -1065,7 +1020,6 @@ msgstr "Inci."
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_incidences_amount
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_incidences_amount
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_incidences_amount
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_incidences_amount
 msgid "Incid. amount"
 msgstr "Importe incid."
 
@@ -1079,7 +1033,6 @@ msgstr "Incidencia"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_incidence_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_incidence_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_incidence_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_incidence_ids
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_incidence_search
@@ -1091,7 +1044,6 @@ msgstr "Incidencias"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_incidences_text
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_incidences_text
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_incidences_text
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_incidences_text
 msgid "Incidences description"
 msgstr "Descripción incidencias"
 
@@ -1137,7 +1089,7 @@ msgstr "General"
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Línea de factura"
+msgstr "Linea de Factura"
 
 #. module: limp_contract
 #: model:ir.ui.menu,name:limp_contract.menu_invoice_concept_open
@@ -1154,7 +1106,6 @@ msgstr "Cabecera factura"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_invoiceable
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_invoiceable
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_invoiceable
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_invoiceable
 msgid "Invoiceable"
 msgstr "Facturable"
 
@@ -1163,7 +1114,6 @@ msgstr "Facturable"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_invoice_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_invoice_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_invoice_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_invoice_ids
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_invoice_ids
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_invoice_ids
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
@@ -1183,7 +1133,6 @@ msgstr "Facturar"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_is_follower
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_is_follower
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_is_follower
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
@@ -1193,7 +1142,6 @@ msgstr "Es un seguidor"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_is_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_is_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_is_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_is_contract
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_is_contract
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_is_contract
 #: model:ir.ui.view,arch_db:limp_contract.view_account_analytic_account_search_add_delegation_id
@@ -1205,7 +1153,6 @@ msgstr "Es contrato"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_is_picking
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_is_picking
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_is_picking
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_is_picking
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_is_picking
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_is_picking
 #: model:ir.ui.view,arch_db:limp_contract.view_account_analytic_account_search_add_delegation_id
@@ -1217,7 +1164,6 @@ msgstr "Es albarán"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_is_picking_in_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_is_picking_in_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_is_picking_in_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_is_picking_in_contract
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_is_picking_in_contract
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_is_picking_in_contract
 #: model:ir.ui.view,arch_db:limp_contract.view_account_analytic_account_search_add_delegation_id
@@ -1225,16 +1171,15 @@ msgid "Is picking in contract"
 msgstr "Es albarán en contrato"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_last_invoice_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_last_invoice_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_last_invoice_date
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_last_invoice_date
 msgid "Last Invoice Date"
-msgstr "Last Invoice Date"
+msgstr "Últ. fecha factura"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_last_post
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_last_post
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_last_post
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_last_post
 msgid "Last Message Date"
 msgstr "Fecha del último mensaje"
@@ -1247,7 +1192,6 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel___last_update
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_signature___last_update
@@ -1258,7 +1202,7 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date___last_update
 msgid "Last Modified on"
-msgstr "Última Modifiación en"
+msgstr "Última modificación en"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_write_uid
@@ -1266,7 +1210,6 @@ msgstr "Última Modifiación en"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_write_uid
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives_write_uid
@@ -1279,7 +1222,7 @@ msgstr "Última Modifiación en"
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_write_date
@@ -1287,7 +1230,6 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_write_date
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives_write_date
@@ -1300,17 +1242,12 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_last_execution_date
 msgid "Last execution date"
 msgstr "Últ. ejecución"
-
-#. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_last_invoice_date
-msgid "Last invoice date"
-msgstr "Últ. fecha factura"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_limp_contract
@@ -1381,7 +1318,6 @@ msgstr "Tarea mantenimiento"
 #: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account_maintenance_task_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_maintenance_task_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_maintenance_task_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_maintenance_task_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_maintenance_task_ids
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_maintenance_task_ids
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_maintenance_task_ids
@@ -1396,18 +1332,14 @@ msgstr "Tareas mantenimiento"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_tree
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_tree
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_tree
 msgid "Manager"
-msgstr "Responsable"
+msgstr "Gestor"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_ids
 msgid "Messages"
 msgstr "Mensajes"
@@ -1465,8 +1397,7 @@ msgstr "Sigu. ejecución"
 
 #. module: limp_contract
 #: code:addons/limp_contract/models/limp_contract_line_cleaning.py:112
-#: code:addons/limp_contract/models/limp_contract_line_home_help.py:111
-#: code:addons/limp_contract/models/limp_contract_line_waste.py:64
+#: code:addons/limp_contract/models/limp_contract_line_home_help.py:110
 #, python-format
 msgid "Not contract defined for this line"
 msgstr "Sin contrato definido para esta línea"
@@ -1485,7 +1416,6 @@ msgstr "Sin departamento definido para esta linea de contrato"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_note_view_tree
 #: model:ir.ui.view,arch_db:limp_contract.limp_incidence_form
 msgid "Notes"
@@ -1495,14 +1425,12 @@ msgstr "Notas"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_num
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_num
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_num
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_num
 msgid "Num."
 msgstr "Núm."
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_needaction_counter
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_needaction_counter
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_needaction_counter
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de acciones"
@@ -1510,7 +1438,6 @@ msgstr "Número de acciones"
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_message_needaction_counter
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_message_needaction_counter
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_message_needaction_counter
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Número de mensajes que requieren una acción"
@@ -1518,7 +1445,6 @@ msgstr "Número de mensajes que requieren una acción"
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_message_unread_counter
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_message_unread_counter
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_message_unread_counter
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leídos"
@@ -1527,7 +1453,6 @@ msgstr "Número de mensajes no leídos"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_objective_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_objective_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_objective_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_objective_ids
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
 msgid "Objectives"
 msgstr "Objetivos"
@@ -1542,20 +1467,18 @@ msgstr "Observaciones"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_group_products_each_invoice
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_group_products_each_invoice
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_group_products_each_invoice
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_group_products_each_invoice
 msgid "One for invoice"
 msgstr "Uno por factura"
 
 #. module: limp_contract
 #: code:addons/limp_contract/models/limp_contract_line_cleaning.py:137
-#: code:addons/limp_contract/models/limp_contract_line_home_help.py:132
-#: code:addons/limp_contract/models/limp_contract_line_waste.py:71
+#: code:addons/limp_contract/models/limp_contract_line_home_help.py:131
 #, python-format
 msgid "Only contract lines in draft or cancelled states can be deleted."
 msgstr "Sólo lineas de contratos en estado borrador o cancelados pueden ser borrados."
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:178
+#: code:addons/limp_contract/models/limp_contract.py:163
 #, python-format
 msgid "Only contracts in draft or cancelled states can be deleted."
 msgstr "Sólo contratos en estado borrador o cancelados pueden ser borrados."
@@ -1565,8 +1488,6 @@ msgstr "Sólo contratos en estado borrador o cancelados pueden ser borrados."
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_tree
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_tree
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_tree
 msgid "Open line"
 msgstr "Abrir línea"
 
@@ -1578,7 +1499,6 @@ msgstr "Abierto"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_other_expense_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_other_expense_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_other_expense_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_other_expense_ids
 msgid "Other expenses"
 msgstr "Otros gastos"
@@ -1602,12 +1522,11 @@ msgstr "Empresa"
 #: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account_partner_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_partner_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_partner_name
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_partner_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_partner_name
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_partner_name
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_partner_name
 msgid "Partner name"
-msgstr "Nombre de asociado"
+msgstr "Nombre de empresa"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_partner_social_worker_id
@@ -1628,15 +1547,13 @@ msgstr "Modo de pago"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 msgid "Pending"
-msgstr "Pendientes"
+msgstr "Pendiente"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 msgid "Pending contracts"
 msgstr "Contratos pendientes"
@@ -1659,12 +1576,6 @@ msgid "Picking"
 msgstr "Albarán"
 
 #. module: limp_contract
-#: code:addons/limp_contract/wizard/service_order_toinvoice.py:35
-#, python-format
-msgid "Picking %s is part of contract %s. You cannot invoice it  manually."
-msgstr "El albarán %s es parte del contrato %s. No puede facturarlo manualmente."
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_picking_ids
 msgid "Picking history"
 msgstr "Historial albaranes"
@@ -1673,11 +1584,6 @@ msgstr "Historial albaranes"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_stock_service_picking_ids
 msgid "Picking lines"
 msgstr "Lineas de albarán"
-
-#. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_picking_line_ids
-msgid "Pickings"
-msgstr "Albaranes"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_previous_amount
@@ -1690,7 +1596,6 @@ msgstr "Importe anterior"
 #: model:ir.model.fields,field_description:limp_contract.field_account_invoice_report_privacy
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_privacy
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_privacy
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_privacy
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_privacy
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_privacy
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_privacy
@@ -1706,10 +1611,9 @@ msgstr "Privado"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_project_count
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_project_count
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_project_count
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_project_count
 msgid "Project Count"
-msgstr "Cuenta de proyecto"
+msgstr "Proyectos #"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_project_date
@@ -1719,7 +1623,6 @@ msgstr "Fecha proyecto"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_project_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_project_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_project_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_project_ids
 msgid "Projects"
 msgstr "Proyectos"
@@ -1739,7 +1642,6 @@ msgstr "Fin prórroga"
 #: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account_state_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_state_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_state_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_state_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_state_id
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_state_id
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_state_id
@@ -1749,9 +1651,6 @@ msgstr "Fin prórroga"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_tree
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_tree
 msgid "Province"
 msgstr "Provincia"
 
@@ -1772,7 +1671,6 @@ msgstr "Trimestral"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_code
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_code
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_code
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_code
 msgid "Reference"
 msgstr "Referencia"
 
@@ -1799,7 +1697,6 @@ msgstr "Relación entre cuentas analíticas y conceptos de factura"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_remuneration_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_remuneration_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_remuneration_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_remuneration_ids
 msgid "Remunerations"
 msgstr "Remuneraciones"
@@ -1810,8 +1707,6 @@ msgstr "Remuneraciones"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_tree
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_tree
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_tree
 msgid "Reopen"
 msgstr "Reabrir"
 
@@ -1839,7 +1734,6 @@ msgstr "Solicitud subida"
 #: model:ir.model.fields,field_description:limp_contract.field_account_invoice_report_manager_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_manager_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_manager_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_manager_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_manager_id
 msgid "Responsible"
 msgstr "Responsable"
@@ -1865,7 +1759,6 @@ msgstr "Secuencia"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_description
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_description
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_description
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_description
 msgid "Service"
 msgstr "Servicio"
 
@@ -1878,11 +1771,6 @@ msgstr "Albaranes de servicio"
 #: model:ir.model,name:limp_contract.model_stock_service_picking
 msgid "Service pickings"
 msgstr "Albaranes servicio"
-
-#. module: limp_contract
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
-msgid "Services"
-msgstr "Servicios"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
@@ -1918,7 +1806,7 @@ msgstr "Lineas de albaranes esporádicos"
 #. module: limp_contract
 #: model:ir.ui.menu,name:limp_contract.menu_limp_sporadic_contract
 msgid "Sporadic service picking"
-msgstr "Albaranes de servicio esporádicos"
+msgstr "Albaranes de servicio"
 
 #. module: limp_contract
 #: model:ir.ui.menu,name:limp_contract.menu_sporadic_service_pickings_open
@@ -1933,7 +1821,6 @@ msgstr "Fecha de inicio"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_state
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_state
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_state
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_state
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_state
 msgid "State"
@@ -1947,7 +1834,6 @@ msgstr "Domingo"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_tag_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_tag_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_tag_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_tag_ids
 msgid "Tags"
 msgstr "Etiquetas"
@@ -1970,18 +1856,17 @@ msgstr "Esta cuenta es un contrato"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.view_account_analytic_account_search_add_delegation_id
 msgid "This account is picking w/o contract"
-msgstr "Esta cuenta es un albaran sin contrato"
+msgstr "Esta cuenta es un albarán sin contrato"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.view_account_analytic_account_search_add_delegation_id
 msgid "This account is picking with contract"
-msgstr "Esta cuenta es un albaran con contrato"
+msgstr "Esta cuenta es un albarán con contrato"
 
 #. module: limp_contract
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_company_uom_id
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_cleaning_company_uom_id
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_line_home_help_company_uom_id
-#: model:ir.model.fields,help:limp_contract.field_limp_contract_line_waste_company_uom_id
 msgid "This will set the unit of measure used in projects and tasks.\n"
 "If you use the timesheet linked to projects, don't forget to setup the right unit of measure in your employees."
 msgstr "Permite fijar la unidad de medida utilizada en proyectos y tareas.\n"
@@ -1998,12 +1883,9 @@ msgstr "Jueves"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_report_employee_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_employee_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_report_employee_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_employee_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_report_employee_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_report_employee_ids
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
 msgid "Timesheet"
 msgstr "Hoja de servicios"
 
@@ -2042,19 +1924,12 @@ msgstr "Importe total anual"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
 msgid "Total extra hours"
 msgstr "Horas extra totales"
 
 #. module: limp_contract
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
-msgid "Total fixed"
-msgstr "Total fijo"
-
-#. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
 msgid "Total hours"
 msgstr "Horas totales"
 
@@ -2069,7 +1944,6 @@ msgstr "Cant. total"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_address_tramit_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_address_tramit_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_address_tramit_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_address_tramit_id
 #: model:ir.model.fields,field_description:limp_contract.field_project_project_address_tramit_id
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_address_tramit_id
 msgid "Tramit address"
@@ -2090,7 +1964,6 @@ msgstr "Bimensual"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_inactive_remuneration_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_inactive_remuneration_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_inactive_remuneration_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_inactive_remuneration_ids
 msgid "Unactive remunerations"
 msgstr "Remuneraciones desactivadas"
 
@@ -2098,22 +1971,19 @@ msgstr "Remuneraciones desactivadas"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_inactive_employee_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_inactive_employee_ids
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_inactive_employee_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_inactive_employee_ids
 msgid "Unactive timesheets"
 msgstr "Partes de horas desactivados"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_unread
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_unread
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_unread
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_unread
 msgid "Unread Messages"
-msgstr "Mensajes sin leer"
+msgstr "Mensajes por leer"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_unread_counter
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_unread_counter
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_message_unread_counter
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Contador de mensajes no leídos"
@@ -2169,7 +2039,6 @@ msgstr "Asistente actualización últ. fecha factura"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_use_tasks
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_use_tasks
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_waste_use_tasks
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_use_tasks
 msgid "Use Tasks"
 msgstr "Utilizar tareas"
@@ -2189,19 +2058,6 @@ msgstr "Esperando firma"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
 msgid "Waste"
 msgstr "Residuo"
-
-#. module: limp_contract
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_form
-msgid "Waste contract line"
-msgstr "Linea contrato residuos"
-
-#. module: limp_contract
-#: model:ir.actions.act_window,name:limp_contract.action_limp_contract_line_waste
-#: model:ir.ui.menu,name:limp_contract.menu_limp_contract_line_waste_open
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_search
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_line_waste_tree
-msgid "Waste contract lines"
-msgstr "Líneas contrato residuos"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_wednesday

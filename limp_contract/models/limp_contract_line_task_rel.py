@@ -43,6 +43,6 @@ class LimpContractLineTaskRel(models.Model):
         'Periodicity', default='w')
     observations = fields.Text('Observations')
 
-    def _compute_sequence(self):
+    def _compute_task_sequence(self):
         for task in self:
             task.task_sequence = task.contract_task_id.sequence

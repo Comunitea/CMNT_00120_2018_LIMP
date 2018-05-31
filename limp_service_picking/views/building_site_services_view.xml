@@ -135,6 +135,5 @@
         </record>
 
         <menuitem action="building_site_services_action" id="menu_building_site_services_form"
-            groups="base.group_no_one"
             parent="sales_team.menu_sales" sequence="40"/>
 </odoo>

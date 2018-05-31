@@ -42,12 +42,6 @@ class AccountAnalyticAccount(models.Model):
         'One for invoice', help='Groups products, one for invoice')
     invoiceable = fields.Boolean('Invoiceable')
 
-    '''def _get_ids_hook(self, cr, uid, ids, context=None):
-        """hook to manage ids list to process"""
-        if context is None: context = {}
-        MIGRACION: No se usa en ningun sitio
-        return ids'''
-
     def _invoice_hook(self, invoice_id, end_date):
         return self
 
@@ -101,7 +95,6 @@ class AccountAnalyticAccount(models.Model):
         account_id = concept_product.product_tmpl_id.property_account_income_id.id
         if not account_id:
             account_id = concept_product.categ_id.property_account_income_categ_id.id
-
         # se rellena con la fecha de última factura o
         # la fecha de alta de la cuenta
         start_date = concept.last_invoice_date and \
@@ -151,7 +144,6 @@ class AccountAnalyticAccount(models.Model):
             else:
                 duration += month_days
         amount += (duration * concept.amount) / days
-
         if self.date and datetime.strptime(
                 self.date + " 23:59:59", "%Y-%m-%d %H:%M:%S") <= end_date:
             self.close_analytic()
@@ -298,12 +290,13 @@ class AccountAnalyticAccount(models.Model):
 
             for invoice in created_invoices:
                 if not invoice.invoice_line_ids:
-                    # wf_service.trg_validate(uid, 'account.invoice', invoice.id, 'invoice_cancel', cr) por qué no eliminar directamente?
                     to_delete_invoices += invoice
+                else:
+                    invoice.compute_taxes()
 
             created_invoices = created_invoices - to_delete_invoices
             to_delete_invoices.unlink()
-            return created_invoices
+        return created_invoices
 
     @api.model
     def run_invoice(self):

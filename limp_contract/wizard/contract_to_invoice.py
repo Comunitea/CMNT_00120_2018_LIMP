@@ -26,25 +26,14 @@ class ContractToInvoice(models.TransientModel):
 
     _name = "contract.to_invoice"
 
-
-    @api.model
-    def _get_journal_id(self):
-        vals = []
-        value = self.env['account.journal'].search([('type', '=', 'sale')])
-        for jr_type in value:
-            t1 = jr_type.id, jr_type.name
-            if t1 not in vals:
-                vals.append(t1)
-        return vals
-
     @api.model
     def _default_invoice_date_to(self):
         time.strftime("%Y-%m-") + \
             str(calendar.monthrange(
                 int(time.strftime('%Y')), int(time.strftime('%m')))[1])
 
-    journal_id = fields.Selection(_get_journal_id, 'Destination Journal',
-                                  required=True)
+    journal_id = fields.Many2one("account.journal", 'Destination Journal',
+                                 required=True, domain=[('type', '=', 'sale')])
     invoice_date = fields.Date('Invoiced date', required=True,
                                default=fields.Date.today)
     invoice_date_to = fields.Date('Invoice to', required=True,

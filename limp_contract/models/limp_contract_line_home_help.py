@@ -92,7 +92,6 @@ class LimpContractLineHomeHelp(models.Model):
 
     @api.model
     def create(self, vals):
-        if context is None: context = {}
         if vals.get('contract_id', False):
             contract = self.env['limp.contract'].browse(vals['contract_id'])
             if contract.seq_lines_id:
@@ -115,7 +114,7 @@ class LimpContractLineHomeHelp(models.Model):
     def write(self, vals):
         res = super(LimpContractLineHomeHelp, self).write(vals)
 
-        if vals.get('date', False) or (vals.get('state', False) and vals['state'] in ('open', 'cancelled')) or vals.get('date_start', False):
+        if vals.get('date', False) or vals.get('date_start', False):
             all_remuneration_ids = self.mapped('remuneration_ids')
             remuneration_ids_wo_dateto = self.mapped('remuneration_ids').filtered(lambda r: not r.date_to)
 
@@ -124,6 +123,9 @@ class LimpContractLineHomeHelp(models.Model):
                     all_remuneration_ids.sudo().write({'date': vals['date_start']})
                 if vals.get('date', False) and remuneration_ids_wo_dateto:
                     remuneration_ids_wo_dateto.sudo().write({'date_to': vals['date']})
+        if vals.get('state', False) and vals['state'] in ('open', 'close', 'cancelled'):
+            for line in self:
+                line.analytic_acc_id.state = vals['state']
         return res
 
     def unlink(self):

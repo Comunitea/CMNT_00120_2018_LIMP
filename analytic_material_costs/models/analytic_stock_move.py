@@ -53,7 +53,8 @@ class AccountAnalyticStockMove(models.Model):
                                   default=_get_default_employee_id)
     location_id = fields.Many2one('stock.location', 'Location', required=True,
                                   states={'second': [('readonly', True)]},
-                                  default=_get_default_location_id)
+                                  default=_get_default_location_id,
+                                  domain=[('usage','=','internal')])
     product_id = fields.Many2one('product.product', 'Product', required=True,
                                  states={'second': [('readonly', True)]})
     product_qty = fields.Float('Quantity', required=True,

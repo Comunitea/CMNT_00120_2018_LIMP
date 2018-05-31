@@ -13,6 +13,7 @@
                 <field name="amount"/>
                 <field name="freq"/>
                 <field name="last_invoice_date"/>
+                <field name="analytic_id"/>
             </tree>
         </field>
     </record>
