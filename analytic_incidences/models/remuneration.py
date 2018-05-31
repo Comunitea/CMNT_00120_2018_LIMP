@@ -85,7 +85,7 @@ class Remuneration(models.Model):
         res = {}
         days_to_cover = []
         days_covered = set()
-        if (self.date_to >= start_date or self.date_to) and self.date <= end_date:
+        if (self.date_to >= start_date or not self.date_to) and self.date <= end_date:
             for single_date in daterange(start_date, end_date):
                 days_to_cover.append(single_date)
             child_rem_ids = self.search(

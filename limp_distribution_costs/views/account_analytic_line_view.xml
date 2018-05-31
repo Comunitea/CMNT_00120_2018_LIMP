@@ -22,7 +22,7 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <field name="company_id" position="before">
-                <field name="tag_ids"/>
+                <field name="tag_ids" widget="many2many_tags"/>
                 <field name="remuneration_id" />
                 <field name="timesheet_id"/>
                 <field name="remuneration_incidence" invisible="1"/>

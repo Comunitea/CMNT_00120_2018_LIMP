@@ -12,4 +12,28 @@
             </field>
         </field>
     </record>
+
+    <record id="view_account_analytic_line_tree_add_journal" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree.add_journal</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_tree" />
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="journal_tag_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_line_filter_add_journal" model="ir.ui.view">
+        <field name="name">account.analytic.line.select.add_journal</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='groupby']" position="after">
+                <filter string="Journal" context="{'group_by':'journal_tag_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

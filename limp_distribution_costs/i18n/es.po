@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * limp_distribution_costs
+#       * limp_distribution_costs
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.4\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2014-12-01 11:07+0000\n"
-"PO-Revision-Date: 2014-12-01 11:07+0000\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-31 13:00+0000\n"
+"PO-Revision-Date: 2018-05-31 13:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,132 +16,22 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Employee Data"
-msgstr "Datos empleado"
+#: model:ir.model,name:limp_distribution_costs.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Línea Analítica"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Employee Department"
-msgstr "Departamento empleado"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Employee Delegation"
-msgstr "Delegación empleado"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Total extra hours"
-msgstr "Horas extra totales"
-
-#. module: limp_distribution_costs
-#: field:timesheet,paid_date:0
-msgid "Paid date"
-msgstr "Fecha pago"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Total Pending"
-msgstr "Total Pendiente"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_analytic_id
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Analytic account"
+msgstr "Cuenta analítica"
 
 #. module: limp_distribution_costs
 #: selection:distribution.costs.import,month:0
 #: selection:distribution.effective.costs,month:0
 #: selection:remuneration.timesheet.wzd,month:0
-msgid "June"
-msgstr "Junio"
-
-#. module: limp_distribution_costs
-#: field:timesheet,responsible_id:0
-msgid "Responsible"
-msgstr "Responsable"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Social security"
-msgstr "Seguridad social"
-
-#. module: limp_distribution_costs
-#: model:account.analytic.journal,name:limp_distribution_costs.analytic_social_security_journal
-msgid "Social Security Journal"
-msgstr "Diario Seguridad Social"
-
-#. module: limp_distribution_costs
-#: code:addons/limp_distribution_costs/timesheet.py:166
-#, python-format
-msgid "Cannot delete this timesheet, because you are not the creator or admin."
-msgstr "No puede borrar este parte de horas porque no es el creador o administrador."
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,analytic_id:0
-msgid "Analytic account"
-msgstr "Cuenta analítica"
-
-#. module: limp_distribution_costs
-#: model:ir.model,name:limp_distribution_costs.model_hr_employee
-#: view:timesheet:0
-#: field:timesheet,employee_id:0
-msgid "Employee"
-msgstr "Empleado"
-
-#. module: limp_distribution_costs
-#: field:timesheet,ss_hours:0
-msgid "SS hours"
-msgstr "Horas SS"
-
-#. module: limp_distribution_costs
-#: field:timesheet,quantity:0
-msgid "Qty."
-msgstr "Cant."
-
-#. module: limp_distribution_costs
-#: code:addons/limp_distribution_costs/hr_employee.py:37
-#: sql_constraint:hr.employee:0
-#, python-format
-msgid "The Glasof code must be unique !"
-msgstr "¡El código Glasof debe ser único!"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,employee_department_id:0
-msgid "Employee Department"
-msgstr "Departamento empleado"
-
-#. module: limp_distribution_costs
-#: view:distribution.costs.import:0
-#: view:distribution.effective.costs:0
-msgid "Import"
-msgstr "Importar"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Tiemsheet"
-msgstr "Parte de horas"
-
-#. module: limp_distribution_costs
-#: model:ir.model,name:limp_distribution_costs.model_distribution_costs_import
-msgid "distribution.costs.import"
-msgstr "distribution.costs.import"
-
-#. module: limp_distribution_costs
-#: view:distribution.costs.import:0
-#: model:ir.actions.act_window,name:limp_distribution_costs.action_distribution_costs_import_form
-#: model:ir.ui.menu,name:limp_distribution_costs.menu_import_distribution_costs
-#: view:remuneration.timesheet.wzd:0
-msgid "Import distribution costs"
-msgstr "Importar distribución de costes"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Total fixed"
-msgstr "Total fijo"
-
-#. module: limp_distribution_costs
-#: model:ir.model,name:limp_distribution_costs.model_account_analytic_line
-msgid "Analytic Line"
-msgstr "Línea analítica"
+msgid "April"
+msgstr "Abril"
 
 #. module: limp_distribution_costs
 #: selection:distribution.costs.import,month:0
@@ -151,105 +41,154 @@ msgid "August"
 msgstr "Agosto"
 
 #. module: limp_distribution_costs
-#: model:ir.actions.act_window,name:limp_distribution_costs.action_rem_timesheet_wzd_view
-msgid "Set timesheet lines from remunerations"
-msgstr "Crear parte de horas desde remuneraciones"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_building_site_id
+msgid "Building site/Service"
+msgstr "Obra/Servicio"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.rem_timesheet_wzd_view
+#: model:ir.ui.view,arch_db:limp_distribution_costs.view_distribution_costs_import_form
+#: model:ir.ui.view,arch_db:limp_distribution_costs.view_distribution_effective_costs_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: limp_distribution_costs
+#: code:addons/limp_distribution_costs/models/timesheet.py:161
+#, python-format
+msgid "Cannot delete this timesheet, because you are not the creator or admin."
+msgstr "No puede borrar este parte de horas, porque no es su creador o el administrador."
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_hr_employee_glasof_code
+msgid "Code in Glasof"
+msgstr "Código en Glasof"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_contract
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_create_uid
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_create_uid
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd_create_uid
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_create_date
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_create_date
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd_create_date
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_date
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Date"
+msgstr "Fecha"
 
 #. module: limp_distribution_costs
 #: selection:distribution.costs.import,month:0
 #: selection:distribution.effective.costs,month:0
 #: selection:remuneration.timesheet.wzd,month:0
-msgid "May"
-msgstr "Mayo"
+msgid "December"
+msgstr "Diciembre"
 
 #. module: limp_distribution_costs
-#: view:remuneration.timesheet.wzd:0
-msgid "Do you want to set timesheet lines from remunerations"
-msgstr "¿Quiere crear partes de horas desde remuneraciones?"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_delegation_id
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Delegation"
+msgstr "Delegación"
 
 #. module: limp_distribution_costs
-#: field:timesheet,company_id:0
-msgid "Company"
-msgstr "Compañía"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_department_id
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Department"
+msgstr "Departamento"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Total ss hours"
-msgstr "Total horas aseguradas"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_description
+msgid "Description"
+msgstr "Descripción"
 
 #. module: limp_distribution_costs
-#: field:hr.employee,glasof_code:0
-msgid "Code in Glasof"
-msgstr "Código en Glasof"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_display_name
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_display_name
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd_display_name
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
 
 #. module: limp_distribution_costs
-#: field:account.analytic.line,timesheet_id:0
-#: model:ir.actions.act_window,name:limp_distribution_costs.action_timesheet
-#: model:ir.ui.menu,name:limp_distribution_costs.menu_timesheet
-#: model:ir.ui.menu,name:limp_distribution_costs.menu_timesheet_open
-#: view:timesheet:0
-msgid "Timesheet"
-msgstr "Parte de horas"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,paid:0
-msgid "Paid"
-msgstr "Pagado"
-
-#. module: limp_distribution_costs
-#: field:timesheet,hours:0
-msgid "Hours"
-msgstr "Horas ord."
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "To check"
-msgstr "A comprobar"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,total_hours:0
-msgid "Total hours"
-msgstr "Horas totales"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,date:0
-msgid "Date"
-msgstr "Fecha"
-
-#. module: limp_distribution_costs
-#: field:timesheet,price_hours:0
-msgid "Price Hours"
-msgstr "Precio hora"
-
-#. module: limp_distribution_costs
-#: view:distribution.effective.costs:0
 #: model:ir.actions.act_window,name:limp_distribution_costs.action_distribution_effective_costs_form
 #: model:ir.ui.menu,name:limp_distribution_costs.menu_distribution_effective_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.view_distribution_effective_costs_form
 msgid "Distribute effective costs"
 msgstr "Distribuir costes en efectivo"
 
 #. module: limp_distribution_costs
-#: model:ir.model,name:limp_distribution_costs.model_distribution_effective_costs
-msgid "distribution.effective.costs"
-msgstr "distribution.effective.costs"
+#: model:ir.ui.view,arch_db:limp_distribution_costs.rem_timesheet_wzd_view
+msgid "Do you want to set timesheet lines from remunerations"
+msgstr "¿Quiere crear partes de horas desde remuneraciones?"
 
 #. module: limp_distribution_costs
-#: model:ir.model,name:limp_distribution_costs.model_remuneration_timesheet_wzd
-msgid "remuneration.timesheet.wzd"
-msgstr "remuneration.timesheet.wzd"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_done
+msgid "Done"
+msgstr "Hecho"
 
 #. module: limp_distribution_costs
-#: constraint:hr.employee:0
-msgid "Error ! You cannot create recursive Hierarchy of Employees."
-msgstr "¡Error! No se puede crear una jerarquía recursiva de empleados."
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_effective
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Effective"
+msgstr "Efectivo"
 
 #. module: limp_distribution_costs
-#: field:timesheet,pending_qty:0
-msgid "Quantity to Distribute"
-msgstr "Cantidad a distribuir"
+#: model:ir.model,name:limp_distribution_costs.model_hr_employee
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_employee_id
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_form
+msgid "Employee Data"
+msgstr "Datos empleado"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_employee_delegation_id
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Employee Delegation"
+msgstr "Delegación empleado"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_employee_department_id
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Employee Department"
+msgstr "Departamento empleado"
+
+#. module: limp_distribution_costs
+#: code:addons/limp_distribution_costs/models/timesheet.py:160
+#, python-format
+msgid "Error"
+msgstr "Error"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_extra_hours
+msgid "Extra Hours"
+msgstr "Horas extra"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_res_users_facturae
+msgid "Factura electrónica"
+msgstr "Factura electrónica"
 
 #. module: limp_distribution_costs
 #: selection:distribution.costs.import,month:0
@@ -259,41 +198,51 @@ msgid "February"
 msgstr "Febrero"
 
 #. module: limp_distribution_costs
-#: selection:distribution.costs.import,month:0
-#: selection:distribution.effective.costs,month:0
-#: selection:remuneration.timesheet.wzd,month:0
-msgid "October"
-msgstr "Octubre"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_file
+msgid "File"
+msgstr "Archivo"
 
 #. module: limp_distribution_costs
-#: view:remuneration.timesheet.wzd:0
-msgid "Ok"
-msgstr "Ok"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_fix_qty
+msgid "Fix Qty."
+msgstr "Cant. fija"
 
 #. module: limp_distribution_costs
-#: field:distribution.costs.import,name:0
-#: field:distribution.effective.costs,name:0
-#: field:timesheet,name:0
-msgid "Name"
-msgstr "Nombre"
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Group By..."
+msgstr "Agrupar por..."
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,effective:0
-msgid "Effective"
-msgstr "Efectivo"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_hours
+msgid "Hours"
+msgstr "Horas"
 
 #. module: limp_distribution_costs
-#: field:distribution.costs.import,year:0
-#: field:distribution.effective.costs,year:0
-#: field:remuneration.timesheet.wzd,year:0
-msgid "Year"
-msgstr "Año"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_id
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_id
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd_id
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_id
+msgid "ID"
+msgstr "ID"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Total contract hours"
-msgstr "Total horas contrato"
+#: model:ir.ui.view,arch_db:limp_distribution_costs.view_distribution_costs_import_form
+#: model:ir.ui.view,arch_db:limp_distribution_costs.view_distribution_effective_costs_form
+msgid "Import"
+msgstr "Importar"
+
+#. module: limp_distribution_costs
+#: model:ir.actions.act_window,name:limp_distribution_costs.action_distribution_costs_import_form
+#: model:ir.ui.menu,name:limp_distribution_costs.menu_import_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.rem_timesheet_wzd_view
+#: model:ir.ui.view,arch_db:limp_distribution_costs.view_distribution_costs_import_form
+msgid "Import distribution costs"
+msgstr "Importar distribución de costes"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_account_analytic_line_remuneration_incidence
+msgid "Incidence"
+msgstr "Incidencia"
 
 #. module: limp_distribution_costs
 #: selection:distribution.costs.import,month:0
@@ -306,63 +255,39 @@ msgstr "Enero"
 #: selection:distribution.costs.import,month:0
 #: selection:distribution.effective.costs,month:0
 #: selection:remuneration.timesheet.wzd,month:0
-msgid "November"
-msgstr "Noviembre"
-
-#. module: limp_distribution_costs
-#: constraint:hr.employee:0
-msgid "Error ! You cannot select a department for which the employee is the manager."
-msgstr "¡Error! No puede seleccionar un departamento que tenga el empleado como responsable."
+msgid "July"
+msgstr "Julio"
 
 #. module: limp_distribution_costs
 #: selection:distribution.costs.import,month:0
 #: selection:distribution.effective.costs,month:0
 #: selection:remuneration.timesheet.wzd,month:0
-msgid "September"
-msgstr "Septiembre"
+msgid "June"
+msgstr "Junio"
 
 #. module: limp_distribution_costs
-#: field:timesheet,contract:0
-msgid "Contract"
-msgstr "Contrato"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import___last_update
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs___last_update
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd___last_update
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
 
 #. module: limp_distribution_costs
-#: model:ir.model,name:limp_distribution_costs.model_timesheet
-msgid "timesheet"
-msgstr "timesheet"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_write_uid
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_write_uid
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd_write_uid
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
 
 #. module: limp_distribution_costs
-#: selection:distribution.costs.import,month:0
-#: selection:distribution.effective.costs,month:0
-#: selection:remuneration.timesheet.wzd,month:0
-msgid "April"
-msgstr "Abril"
-
-#. module: limp_distribution_costs
-#: field:timesheet,pending_distribute_qty:0
-msgid "Pending Quantity"
-msgstr "Cantidad pendiente"
-
-#. module: limp_distribution_costs
-#: code:addons/limp_distribution_costs/timesheet.py:157
-#, python-format
-msgid "Cannot update this timesheet, because you are not the creator or admin."
-msgstr "No puede actualizar este parte de horas, porque no es el creador o administrador."
-
-#. module: limp_distribution_costs
-#: field:timesheet,ss_no_hours:0
-msgid "No ss hours"
-msgstr "Horas sin ss"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Total to distribute"
-msgstr "Total a distribuir"
-
-#. module: limp_distribution_costs
-#: model:ir.ui.menu,name:limp_distribution_costs.menu_set_timesheet_lines
-msgid "set timesheet lines"
-msgstr "Crear partes de horas desde remuneraciones"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_write_date
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_write_date
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd_write_date
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
 
 #. module: limp_distribution_costs
 #: selection:distribution.costs.import,month:0
@@ -375,119 +300,257 @@ msgstr "Marzo"
 #: selection:distribution.costs.import,month:0
 #: selection:distribution.effective.costs,month:0
 #: selection:remuneration.timesheet.wzd,month:0
-msgid "July"
-msgstr "Julio"
+msgid "May"
+msgstr "Mayo"
 
 #. module: limp_distribution_costs
-#: field:timesheet,description:0
-msgid "Description"
-msgstr "Descripción"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_month
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_month
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd_month
+msgid "Month"
+msgstr "Mes"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Total effective"
-msgstr "Total efectivo"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_name
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_name
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_name
+msgid "Name"
+msgstr "Nombre"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Process"
-msgstr "Proceso"
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "No paid"
+msgstr "No pagado"
 
 #. module: limp_distribution_costs
-#: model:ir.module.module,description:limp_distribution_costs.module_meta_information
-msgid "Sharing the costs of workers"
-msgstr "Sharing the costs of workers"
-
-#. module: limp_distribution_costs
-#: field:timesheet,old:0
-msgid "Old"
-msgstr "Antiguo"
-
-#. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Group By..."
-msgstr "Agrupar por..."
-
-#. module: limp_distribution_costs
-#: field:timesheet,building_site_id:0
-msgid "Building site/Service"
-msgstr "Obra/Servicio"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_ss_no_hours
+msgid "No ss hours"
+msgstr "Horas no SS"
 
 #. module: limp_distribution_costs
 #: selection:distribution.costs.import,month:0
 #: selection:distribution.effective.costs,month:0
 #: selection:remuneration.timesheet.wzd,month:0
-msgid "December"
-msgstr "Diciembre"
+msgid "November"
+msgstr "Noviembre"
 
 #. module: limp_distribution_costs
-#: field:account.analytic.line,remuneration_id:0
+#: selection:distribution.costs.import,month:0
+#: selection:distribution.effective.costs,month:0
+#: selection:remuneration.timesheet.wzd,month:0
+msgid "October"
+msgstr "Octubre"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_res_users_oficina_contable
+msgid "Oficina contable"
+msgstr "Oficina contable"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.rem_timesheet_wzd_view
+msgid "Ok"
+msgstr "Ok"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_old
+msgid "Old"
+msgstr "Antiguo"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_paid
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_paid_date
+msgid "Paid date"
+msgstr "Fecha pago"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_pending_distribute_qty
+msgid "Pending Quantity"
+msgstr "Cant. pendiente"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_price_hours
+msgid "Price Hours"
+msgstr "Precio horas"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_form
+msgid "Process"
+msgstr "Proceso"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_quantity
+msgid "Qty."
+msgstr "Cant."
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_pending_qty
+msgid "Quantity to Distribute"
+msgstr "Cant. a distribuir"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_account_analytic_line_remuneration_id
 msgid "Remuneration"
 msgstr "Remuneración"
 
 #. module: limp_distribution_costs
-#: model:ir.module.module,shortdesc:limp_distribution_costs.module_meta_information
-msgid "Distribution of costs"
-msgstr "Distribución de costes"
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Reponsible"
+msgstr "Responsable"
 
 #. module: limp_distribution_costs
-#: field:distribution.costs.import,month:0
-#: field:distribution.effective.costs,month:0
-#: field:remuneration.timesheet.wzd,month:0
-msgid "Month"
-msgstr "Mes"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_hr_employee_responsible
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_responsible_id
+msgid "Responsible"
+msgstr "Responsable"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,employee_delegation_id:0
-msgid "Employee Delegation"
-msgstr "Delegación empleado"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_ss_hours
+msgid "SS hours"
+msgstr "Horas SS"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,department_id:0
-msgid "Department"
-msgstr "Departamento"
+#: selection:distribution.costs.import,month:0
+#: selection:distribution.effective.costs,month:0
+#: selection:remuneration.timesheet.wzd,month:0
+msgid "September"
+msgstr "Septiembre"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-#: field:timesheet,delegation_id:0
-msgid "Delegation"
-msgstr "Delegación"
+#: model:ir.actions.act_window,name:limp_distribution_costs.action_rem_timesheet_wzd_view
+msgid "Set timesheet lines from remunerations"
+msgstr "Crear parte de horas desde remuneraciones"
 
 #. module: limp_distribution_costs
-#: field:timesheet,extra_hours:0
-msgid "Extra Hours"
-msgstr "Horas extra"
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_form
+msgid "Social security"
+msgstr "Seguridad social"
 
 #. module: limp_distribution_costs
-#: field:timesheet,done:0
-msgid "Done"
-msgstr "Hecho"
+#: code:addons/limp_distribution_costs/models/hr_employee.py:44
+#: sql_constraint:hr.employee:0
+#, python-format
+msgid "The Glasof code must be unique !"
+msgstr "¡El código Glasof debe ser único!"
 
 #. module: limp_distribution_costs
-#: field:distribution.costs.import,file:0
-msgid "File"
-msgstr "Fichero"
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "Tiemsheet"
+msgstr "Parte de horas"
 
 #. module: limp_distribution_costs
-#: field:timesheet,fix_qty:0
-msgid "Fix Qty."
-msgstr "Cant. fija"
+#: model:ir.actions.act_window,name:limp_distribution_costs.action_timesheet
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_account_analytic_line_timesheet_id
+#: model:ir.ui.menu,name:limp_distribution_costs.menu_timesheet
+#: model:ir.ui.menu,name:limp_distribution_costs.menu_timesheet_open
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_form
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Timesheet"
+msgstr "Parte de horas"
 
 #. module: limp_distribution_costs
-#: view:distribution.costs.import:0
-#: view:distribution.effective.costs:0
-#: view:remuneration.timesheet.wzd:0
-msgid "Cancel"
-msgstr "Cancelar"
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
+msgid "To check"
+msgstr "A comprobar"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Total Pending"
+msgstr "Total Pendiente"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Total contract hours"
+msgstr "Total horas contrato"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Total extra hours"
+msgstr "Horas extra totales"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Total fixed"
+msgstr "Total fijo"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_timesheet_total_hours
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Total hours"
+msgstr "Horas totales"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Total no ss hours"
+msgstr "Total horas no aseguradas"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Total ss hours"
+msgstr "Total horas aseguradas"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_tree
+msgid "Total to distribute"
+msgstr "Total a distribuir"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_res_users_unidad_tramitadora
+msgid "Unidad tramitadora"
+msgstr "Unidad tramitadora"
+
+#. module: limp_distribution_costs
+#: model:ir.model,name:limp_distribution_costs.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.view,arch_db:limp_distribution_costs.timesheet_search
 msgid "With extra hours"
 msgstr "Con horas extra"
 
 #. module: limp_distribution_costs
-#: view:timesheet:0
-msgid "Total no ss hours"
-msgstr "Total horas no aseguradas"
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_costs_import_year
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_distribution_effective_costs_year
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_remuneration_timesheet_wzd_year
+msgid "Year"
+msgstr "Año"
+
+#. module: limp_distribution_costs
+#: model:ir.model,name:limp_distribution_costs.model_distribution_costs_import
+msgid "distribution.costs.import"
+msgstr "distribution.costs.import"
+
+#. module: limp_distribution_costs
+#: model:ir.model,name:limp_distribution_costs.model_distribution_effective_costs
+msgid "distribution.effective.costs"
+msgstr "distribution.effective.costs"
+
+#. module: limp_distribution_costs
+#: model:ir.model,name:limp_distribution_costs.model_remuneration_timesheet_wzd
+msgid "remuneration.timesheet.wzd"
+msgstr "remuneration.timesheet.wzd"
+
+#. module: limp_distribution_costs
+#: model:ir.ui.menu,name:limp_distribution_costs.menu_set_timesheet_lines
+msgid "set timesheet lines"
+msgstr "Crear partes de horas desde remuneraciones"
+
+#. module: limp_distribution_costs
+#: model:ir.model,name:limp_distribution_costs.model_timesheet
+msgid "timesheet"
+msgstr "timesheet"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_res_users_organo_gestor
+msgid "Órgano gestor"
+msgstr "Órgano gestor"
+
+#. module: limp_distribution_costs
+#: model:ir.model.fields,field_description:limp_distribution_costs.field_res_users_organo_proponente
+msgid "Órgano proponente"
+msgstr "Órgano proponente"

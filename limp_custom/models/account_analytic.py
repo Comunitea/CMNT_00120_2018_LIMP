@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"

@@ -50,15 +50,4 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="view_users_form_add_laboral">
-        <field name="name">res.users.form_add_laboral</field>
-        <field name="type">form</field>
-        <field name="model">res.users</field>
-        <field name="inherit_id" ref="base.view_users_form"/>
-        <field name="arch" type="xml">
-            <field name="tz" position="after">
-                <field name="laboral"/>
-            </field>
-        </field>
-    </record>
 </odoo>

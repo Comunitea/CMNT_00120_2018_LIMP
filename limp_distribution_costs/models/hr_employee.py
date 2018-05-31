@@ -43,11 +43,3 @@ class HrEmployee(models.Model):
         ('glasof_code_uniq', 'unique (glasof_code)',
          _('The Glasof code must be unique !')),
     ]
-
-
-class ResUsers(models.Model):
-
-    _inherit = "res.users"
-
-    laboral = fields.Boolean(
-        help="Permite modificar partes de trabajo de otras personas")

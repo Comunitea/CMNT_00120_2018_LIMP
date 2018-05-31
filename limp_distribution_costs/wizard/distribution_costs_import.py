@@ -80,7 +80,7 @@ class DistributionCostsImport(models.TransientModel):
         remuneration_obj = self.env['remuneration']
 
         journal_id = self.env['account.analytic.tag'].search([('name', '=', 'Timesheet Journal')])
-        social_journal_id = self.env['account.analytic.tag'].search([('name', '=', 'Social Security Journal')])
+        social_journal_id = self.env['account.analytic.tag'].search([('name', '=', 'Seguridad Social')])
         sueldos_journal_id = self.env['account.analytic.tag'].search([('name', '=', 'Sueldos')])
         general_account_id_ss = self.env['account.account'].search([('code','=',"64200000")])
         general_account_id_suelsala = self.env['account.account'].search([('code','=',"64000000")])
@@ -256,7 +256,7 @@ class DistributionCostsImport(models.TransientModel):
 
                                         for analytic_obj in analytic_objs:
                                             if distribution:
-                                                new_valor = analytic_obj.rate and valor * (analytic_obj.rate / 100) or analytic_obj.fix_amount
+                                                new_valor = analytic_obj.percent and valor * (analytic_obj.percent / 100) or analytic_obj.fix_amount
                                             else:
                                                 new_valor = valor
 

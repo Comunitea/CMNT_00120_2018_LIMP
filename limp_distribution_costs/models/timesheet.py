@@ -142,12 +142,6 @@ class Timesheet(models.Model):
             employee_id = self.env['hr.employee'].browse(vals['employee_id'])
             vals['employee_delegation_id'] = employee_id.delegation_id.id
             vals['employee_department_id'] = employee_id.department_id.id
-        #~ if uid != 1 and vals:
-            #~ for tim in self.browse(cr, uid, ids):
-                #~ if tim.create_uid.id != uid:
-                    #~ user = self.pool.get('res.users').browse(cr, uid, uid)
-                    #~ if not user.laboral:
-                        #~ raise osv.except_osv(_('Error'), _('Cannot update this timesheet, because you are not the creator or admin.'))
         for line in self:
             if 'hours' in vals and not vals['hours'] and line.hours:
                 vals['contract'] = False

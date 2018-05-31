@@ -21,6 +21,7 @@
 
 from odoo import models, fields
 
+
 class AccountAnalyticLine(models.Model):
 
     _inherit = "account.analytic.line"
@@ -32,3 +33,4 @@ class AccountAnalyticLine(models.Model):
     company_id = fields.Many2one("res.company", related=None, string='Company',
                                  readonly=True)
     timesheet_id = fields.Many2one('timesheet', 'Timesheet', readonly=True)
+    amount = fields.Float(digits=(16, 4))
