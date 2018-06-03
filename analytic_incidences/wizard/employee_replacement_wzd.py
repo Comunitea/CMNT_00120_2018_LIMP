@@ -48,8 +48,6 @@ class EmployeeReplacementWzd(models.TransientModel):
             remuneration_obj = self.env['remuneration'].browse(remuneration_ids[0])
             if remuneration_obj.department_id:
                 return remuneration_obj.department_id.id
-            elif remuneration_obj.employee_id and remuneration_obj.employee_id.department_ids:
-                return remuneration_obj.employee.department_ids[0].id
         return False
 
     employee_id = fields.Many2one('hr.employee', 'Substitute')

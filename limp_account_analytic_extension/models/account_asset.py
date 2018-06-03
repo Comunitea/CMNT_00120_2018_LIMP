@@ -37,7 +37,7 @@ class AccountAssetDepreciationLine(models.Model):
         res = super(AccountAssetDepreciationLine, self).create_move(post_move)
 
         for move in self.env['account.move'].browse(res):
-            for line in move.line_id:
+            for line in move.line_ids:
                 if line.asset_id and line.asset_id.analytic_distribution_id:
                     line.write(
                         {'analytic_distribution_id':

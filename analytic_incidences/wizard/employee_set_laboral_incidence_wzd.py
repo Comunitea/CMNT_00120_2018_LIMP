@@ -101,7 +101,7 @@ class EmployeeSetLaboralIncidenceWzd(models.TransientModel):
                  ('date_to', '>=', line_child_remu.date)])
 
             if parent_remuneration_id:
-                visited_occupations = parent_remuneration_id.make_child_inc_remuneration(vals)
+                parent_remuneration_id.make_child_inc_remuneration(vals)
 
                 self.env['hr.laboral.incidence'].create(
                     {
@@ -109,7 +109,6 @@ class EmployeeSetLaboralIncidenceWzd(models.TransientModel):
                         'end_date': line_child_remu.date_to,
                         'motive': line_child_remu.absence_id_tp.id,
                         'employee_id': obj.id,
-                        'occupation_ids': [(6, 0, visited_occupations)]
                     })
 
         result = self.env.ref(

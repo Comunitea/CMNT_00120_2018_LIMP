@@ -34,6 +34,7 @@
         'limp_multi_delegations',
         'limp_service_picking',
         'limp_contract',
+        'sale_margin'
         ],
     "data" : [
         'wizard/create_service_picking_from_sale_view.xml',

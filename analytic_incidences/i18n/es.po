@@ -1,13 +1,14 @@
-# Translation of OpenERP Server.
+
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #       * analytic_incidences
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.4\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2016-04-05 17:55+0000\n"
-"PO-Revision-Date: 2016-04-05 17:55+0000\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-03 15:18+0000\n"
+"PO-Revision-Date: 2018-06-03 15:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,169 +17,35 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: analytic_incidences
+#: model:incidence,name:analytic_incidences.incidence_absence
+#: model:ir.ui.view,arch_db:analytic_incidences.absence_form
+#: model:ir.ui.view,arch_db:analytic_incidences.absence_tree
+msgid "Absence"
+msgstr "Ausencia"
+
+#. module: analytic_incidences
 #: model:ir.actions.act_window,name:analytic_incidences.action_absence
 #: model:ir.ui.menu,name:analytic_incidences.menu_absence_open
 msgid "Absences"
 msgstr "Ausencias"
 
 #. module: analytic_incidences
-#: code:addons/analytic_incidences/wizard/search_employee_replacement_wzd.py:91
-#, python-format
-msgid "Incorrect range of dates"
-msgstr "Rango de fechas incorrecto"
-
-#. module: analytic_incidences
-#: code:addons/analytic_incidences/wizard/employee_replacement_wzd.py:110
-#, python-format
-msgid "You must set substitute"
-msgstr "Debe seleccionar un sustituto"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Group By..."
-msgstr "Agrupar por..."
-
-#. module: analytic_incidences
-#: view:hr.employee:0
-msgid "Laboral incidences"
-msgstr "Incidencias laborales"
-
-#. module: analytic_incidences
-#: selection:remuneration,state:0
-msgid "Template"
-msgstr "Plantilla"
-
-#. module: analytic_incidences
-#: field:remuneration,department_id:0
-#: field:search.employee.replacement,department_id:0
-msgid "Department"
-msgstr "Departamento"
-
-#. module: analytic_incidences
-#: model:ir.actions.act_window,name:analytic_incidences.action_view_child_remuneration_wizard
-#: view:remuneration:0
-msgid "Set child remuneration"
-msgstr "Realizar incidencia"
-
-#. module: analytic_incidences
-#: model:ir.model,name:analytic_incidences.model_absence
-msgid "absences for work"
-msgstr "Ausencias al trabajo"
-
-#. module: analytic_incidences
-#: view:employee.incidence.set.end.date.wzd:0
-#: model:ir.actions.act_window,name:analytic_incidences.action_set_end_date_incidence_wzd
-msgid "Set end date"
-msgstr "Asignar fecha fin"
-
-#. module: analytic_incidences
-#: field:account.analytic.occupation,parent_occupation_id:0
-msgid "Parent"
-msgstr "Padre"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-#: field:remuneration,company_id:0
-msgid "Company"
-msgstr "Compañía"
-
-#. module: analytic_incidences
-#: model:ir.model,name:analytic_incidences.model_analytic_incidence_set_end_date
-msgid "analytic.incidence.set.end.date"
-msgstr "analytic.incidence.set.end.date"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,date_to:0
-#: field:employee.set.laboral.incidence.wzd,date_to:0
-#: field:remuneration,date_to:0
-msgid "Date to"
-msgstr "Fecha de fin"
-
-#. module: analytic_incidences
-#: view:hr.laboral.incidence:0
-msgid "Affected occupations"
-msgstr "Ocupaciones afectadas"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,quantity:0
-#: field:employee.replacement.wzd,quantity:0
-#: field:employee.set.laboral.incidence.wzd,quantity:0
-#: field:remuneration,quantity:0
-msgid "Quantity"
-msgstr "Cantidad"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,with_fix_qty:0
-#: field:employee.replacement.wzd,with_fix_qty:0
-#: field:employee.set.laboral.incidence.wzd,with_fix_qty:0
-#: field:remuneration,with_fix_qty:0
-msgid "With fix qty"
-msgstr "Con cantidad fija"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,analytic_account_id:0
-#: field:employee.set.laboral.incidence.wzd,analytic_account_id:0
-#: field:remuneration,analytic_account_id:0
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_analytic_account_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_analytic_account_id
 msgid "Account"
 msgstr "Cuenta"
 
 #. module: analytic_incidences
-#: field:analytic.incidence.wizard,ss_hours:0
-#: field:employee.replacement.wzd,ss_hours:0
-#: field:employee.set.laboral.incidence.wzd,ss_hours:0
-#: field:remuneration,ss_hours:0
-msgid "SS hours"
-msgstr "Horas aseguradas"
+#: model:ir.model.fields,field_description:analytic_incidences.field_account_analytic_account_active_remuneration_ids
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_employee_active_remunerations
+#: model:ir.model.fields,field_description:analytic_incidences.field_project_project_active_remuneration_ids
+msgid "Active remunerations"
+msgstr "Remuneraciones activas"
 
 #. module: analytic_incidences
-#: help:search.employee.replacement,employee_id:0
-msgid "Employee to replace"
-msgstr "Empleado a reemplazar"
-
-#. module: analytic_incidences
-#: view:search.employee.replacement:0
-#: field:search.employee.replacement,employee_ids:0
-msgid "Possible replacements"
-msgstr "Sustitutos posibles"
-
-#. module: analytic_incidences
-#: field:remuneration,notes:0
-msgid "Notes"
-msgstr "Notas"
-
-#. module: analytic_incidences
-#: constraint:hr.employee:0
-msgid "Error ! You cannot select a department for which the employee is the manager."
-msgstr "¡Error! No puede seleccionar un departamento que tenga el empleado como responsable."
-
-#. module: analytic_incidences
-#: view:employee.set.laboral.incidence.wzd:0
-#: model:ir.actions.act_window,name:analytic_incidences.action_set_laboral_incidence_wzd
-msgid "Set incidence"
-msgstr "Marcar como incidencia"
-
-#. module: analytic_incidences
-#: code:addons/analytic_incidences/wizard/employee_replacement_wzd.py:110
-#: code:addons/analytic_incidences/wizard/employee_replacement_wzd.py:121
-#: code:addons/analytic_incidences/wizard/search_employee_replacement_wzd.py:91
-#, python-format
-msgid "Error!"
-msgstr "¡Error!"
-
-#. module: analytic_incidences
-#: view:account.analytic.occupation:0
-msgid "Set active"
-msgstr "Activar"
-
-#. module: analytic_incidences
-#: selection:remuneration,state:0
-msgid "Cancelled"
-msgstr "Cancelada"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Fixed"
-msgstr "Fijo"
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_search
+msgid "Actives"
+msgstr "Activos"
 
 #. module: analytic_incidences
 #: model:ir.model,name:analytic_incidences.model_account_analytic_account
@@ -186,261 +53,125 @@ msgid "Analytic Account"
 msgstr "Cuenta analítica"
 
 #. module: analytic_incidences
-#: view:remuneration:0
-msgid "Date from"
-msgstr "Fecha de inicio"
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_analytic_distribution_id
+msgid "Analytic Distribution"
+msgstr "Distribución analítica"
 
 #. module: analytic_incidences
-#: field:remuneration,location_id:0
-#: field:search.employee.replacement,location:0
-msgid "Council"
-msgstr "Ayuntamiento"
-
-#. module: analytic_incidences
-#: help:employee.replacement.wzd,distribute_bt_remuneration:0
-#: help:employee.set.laboral.incidence.wzd,distribute_bt_remuneration:0
-msgid "Distribute quantities between all selected remuneration proportionally to original hours"
-msgstr "Distribuye las cantidades entre todas las remuneraciones seleccionadas proporcionalmente a las horas originales"
-
-#. module: analytic_incidences
-#: field:account.analytic.account,active_remuneration_ids:0
-msgid "Active remunerations"
-msgstr "Remuneraciones activas"
-
-#. module: analytic_incidences
-#: constraint:account.analytic.account:0
-msgid "Error! You can not create recursive analytic accounts."
-msgstr "¡Error! No puede crear cuentas analíticas recursivas."
-
-#. module: analytic_incidences
-#: code:addons/analytic_incidences/wizard/employee_replacement_wzd.py:121
-#, python-format
-msgid "You must set remuneration as based of incidence for replacing employee"
-msgstr "Se debe seleccionar una remuneración de tipo incidencia para sustituir a un empleado"
-
-#. module: analytic_incidences
-#: view:search.employee.replacement:0
-msgid "Replacements"
-msgstr "Sustituciones"
-
-#. module: analytic_incidences
-#: selection:remuneration,state:0
-msgid "Closed"
-msgstr "Cerrada"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Total price fixed"
-msgstr "Total fijo"
-
-#. module: analytic_incidences
-#: view:remuneration:0
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_search
 msgid "Analytic account"
 msgstr "Cuenta analítica"
 
 #. module: analytic_incidences
-#: field:remuneration,state:0
-msgid "State"
-msgstr "Estado"
+#: code:addons/analytic_incidences/models/remuneration.py:156
+#: code:addons/analytic_incidences/models/remuneration.py:163
+#, python-format
+msgid "As the incidence of absence type must complete the type of absence !"
+msgstr "Cómo la incidencia es una ausencia debe rellenar el tipo de ausencia"
 
 #. module: analytic_incidences
-#: sql_constraint:hr.employee:0
-msgid "The Glasof code must be unique !"
-msgstr "¡El código de Glasof debe de ser único!"
+#: model:ir.model,name:analytic_incidences.model_account_analytic_occupation
+msgid "Calendar Event"
+msgstr "Evento de calendario"
 
 #. module: analytic_incidences
-#: field:account.analytic.account,inactive_remuneration_ids:0
-msgid "Unactive remunerations"
-msgstr "Remuneraciones inactivas"
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_incidence_set_end_date_wzd_form
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_replacement_wzd_form2
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_set_laboral_incidence_wzd_form
+#: model:ir.ui.view,arch_db:analytic_incidences.view_analytic_incidence_wizard
+msgid "Cancel"
+msgstr "Cancelar"
 
 #. module: analytic_incidences
-#: field:analytic.incidence.wizard,employee_id:0
-#: field:employee.set.laboral.incidence.wzd,employee_id:0
-#: field:hr.laboral.incidence,employee_id:0
-#: model:ir.model,name:analytic_incidences.model_hr_employee
-#: view:remuneration:0
-#: field:remuneration,employee_id:0
-#: field:search.employee.replacement,employee_id:0
-msgid "Employee"
-msgstr "Empleado"
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_form
+msgid "Child remunerations"
+msgstr "Remuneraciones hijas"
 
 #. module: analytic_incidences
-#: field:search.employee.replacement,start_date:0
-msgid "Start date"
-msgstr "Fecha inicio"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,incidence_id_tp:0
-#: field:employee.set.laboral.incidence.wzd,incidence_id_tp:0
-#: field:remuneration,incidence_id_tp:0
-msgid "Type"
-msgstr "Tipo"
-
-#. module: analytic_incidences
-#: field:hr.laboral.incidence,initial_date:0
-msgid "Initial date"
-msgstr "Fecha inicial"
-
-#. module: analytic_incidences
-#: field:employee.incidence.set.end.date.wzd,only_incidences:0
-msgid "Only incidences"
-msgstr "Sólo incidencias"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,contract_hours:0
-#: field:analytic.incidence.wizard,hour_price_hours:0
-#: field:employee.replacement.wzd,contract_hours:0
-#: field:employee.replacement.wzd,hour_price_hours:0
-#: field:employee.set.laboral.incidence.wzd,contract_hours:0
-#: field:employee.set.laboral.incidence.wzd,hour_price_hours:0
-#: field:remuneration,contract_hours:0
-#: field:remuneration,hour_price_hours:0
-msgid "Hours"
-msgstr "Horas"
-
-#. module: analytic_incidences
-#: selection:remuneration,state:0
-msgid "Pending"
-msgstr "Pendiente"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-#: field:remuneration,total_hours:0
-msgid "Total hours"
-msgstr "Horas totales"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,child_ids:0
-#: field:employee.set.laboral.incidence.wzd,child_ids:0
-#: field:remuneration,child_ids:0
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_child_ids
 msgid "Childs remunerations"
 msgstr "Remuneraciones hijas"
 
 #. module: analytic_incidences
-#: view:employee.replacement.wzd:0
-#: model:ir.actions.act_window,name:analytic_incidences.action_search_employee_replacement
-msgid "Search replacements"
-msgstr "Buscar sustitutos"
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_code
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_code
+msgid "Code"
+msgstr "Código"
 
 #. module: analytic_incidences
-#: field:analytic.incidence.wizard,absence_id_tp:0
-#: field:employee.set.laboral.incidence.wzd,absence_id_tp:0
-#: view:remuneration:0
-#: field:remuneration,absence_id_tp:0
-msgid "Type absence"
-msgstr "Tipo de ausencia"
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_company_id
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_search
+msgid "Company"
+msgstr "Compañía"
 
 #. module: analytic_incidences
-#: field:incidence,is_absence:0
-msgid "Is absence?"
-msgstr "¿Es ausencia?"
-
-#. module: analytic_incidences
-#: view:account.analytic.account:0
-msgid "Account Data"
-msgstr "Datos de la cuenta"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,with_hour_price:0
-#: field:employee.replacement.wzd,with_hour_price:0
-#: field:employee.set.laboral.incidence.wzd,with_hour_price:0
-#: field:remuneration,with_hour_price:0
-msgid "With hour price"
-msgstr "Con precio hora"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Hours (Mode: With price/hour)"
-msgstr "Horas (Modo: Con precio/hora)"
-
-#. module: analytic_incidences
-#: model:incidence,name:analytic_incidences.incidence_extra
-msgid "Extra"
-msgstr "Extra"
-
-#. module: analytic_incidences
-#: code:addons/analytic_incidences/remuneration.py:185
-#: code:addons/analytic_incidences/remuneration.py:190
-#, python-format
-msgid "As the incidence of absence type must complete the type of absence !"
-msgstr "¡Debe de cubrir el tipo de ausencia!"
-
-#. module: analytic_incidences
-#: view:employee.replacement.wzd:0
-msgid "Replace"
-msgstr "Sustituir"
-
-#. module: analytic_incidences
-#: field:hr.laboral.incidence,motive:0
-msgid "Motive"
-msgstr "Motivo"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,ss_no_hours:0
-#: field:employee.replacement.wzd,ss_no_hours:0
-#: field:employee.set.laboral.incidence.wzd,ss_no_hours:0
-#: field:remuneration,ss_no_hours:0
-msgid "No ss hours"
-msgstr "Horas no aseguradas"
-
-#. module: analytic_incidences
-#: view:analytic.incidence.wizard:0
-msgid "Make child remuneration"
-msgstr "Realizar incidencia"
-
-#. module: analytic_incidences
-#: model:ir.model,name:analytic_incidences.model_employee_set_laboral_incidence_wzd
-msgid "employee.set.laboral.incidence.wzd"
-msgstr "employee.set.laboral.incidence.wzd"
-
-#. module: analytic_incidences
-#: view:absence:0
-#: model:incidence,name:analytic_incidences.incidence_absence
-msgid "Absence"
-msgstr "Ausencia"
-
-#. module: analytic_incidences
-#: help:search.employee.replacement,hour_no:0
-msgid "Number of hours between dates take in account 8 per day"
-msgstr "Número de horas entre fechas teniendo en cuenta 8 por día"
-
-#. module: analytic_incidences
-#: selection:remuneration,state:0
-msgid "Draft"
-msgstr "Borrador"
-
-#. module: analytic_incidences
-#: model:ir.model,name:analytic_incidences.model_hr_laboral_incidence
-msgid "Laboral Incidence"
-msgstr "Incidencia laboral"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,conditions:0
-#: field:employee.replacement.wzd,conditions:0
-#: field:employee.set.laboral.incidence.wzd,conditions:0
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_conditions
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_conditions
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_conditions
 msgid "Conditions"
 msgstr "Condiciones"
 
 #. module: analytic_incidences
-#: selection:analytic.incidence.wizard,conditions:0
-#: selection:employee.replacement.wzd,conditions:0
-#: selection:employee.set.laboral.incidence.wzd,conditions:0
-msgid "Equal conditions"
-msgstr "Mismas condiciones"
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Contract hours"
+msgstr "Horas contrato"
 
 #. module: analytic_incidences
-#: field:hr.employee,laboral_incidence_ids:0
-#: view:hr.laboral.incidence:0
-#: view:incidence:0
-#: model:ir.actions.act_window,name:analytic_incidences.action_incidence
-#: model:ir.ui.menu,name:analytic_incidences.menu_incidence_open
-msgid "Incidences"
-msgstr "Incidencias"
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_search_location
+#: model:ir.model.fields,field_description:analytic_incidences.field_project_project_location_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_location_id
+msgid "Council"
+msgstr "Ayuntamiento"
 
 #. module: analytic_incidences
-#: view:remuneration:0
-msgid "Total hours with price/hour"
-msgstr "Total horas con precio/hora"
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_create_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_create_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd_create_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_create_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_create_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_create_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_create_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_create_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_create_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd_create_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_create_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_create_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_create_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_create_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_search
+msgid "Date from"
+msgstr "Fecha de inicio"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_date_to
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_date_to
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_date_to
+msgid "Date to"
+msgstr "Fecha de fin"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_search_department_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_department_id
+msgid "Department"
+msgstr "Departamento"
 
 #. module: analytic_incidences
 #: selection:analytic.incidence.wizard,conditions:0
@@ -450,260 +181,125 @@ msgid "Different conditions"
 msgstr "Diferentes condiciones"
 
 #. module: analytic_incidences
-#: model:incidence,name:analytic_incidences.incidence_normal
-msgid "Normal"
-msgstr "Normal"
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_display_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_display_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd_display_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_display_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_display_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_display_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_display_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
 
 #. module: analytic_incidences
-#: view:remuneration:0
-msgid "Total contract hours"
-msgstr "Total horas contrato"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,date:0
-#: field:employee.incidence.set.end.date.wzd,date:0
-#: field:employee.set.laboral.incidence.wzd,date:0
-#: field:remuneration,date:0
-msgid "Date"
-msgstr "Fecha"
-
-#. module: analytic_incidences
-#: constraint:hr.employee:0
-msgid "Error ! You cannot create recursive Hierarchy of Employees."
-msgstr "¡Error! No se puede crear una jerarquía recursiva de empleados."
-
-#. module: analytic_incidences
-#: view:search.employee.replacement:0
-msgid "Search"
-msgstr "Buscar"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Actives"
-msgstr "Activos"
-
-#. module: analytic_incidences
-#: field:hr.employee,work_council_id:0
-msgid "Work council"
-msgstr "Ayuntamiento trabajo"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,with_contract:0
-#: field:employee.replacement.wzd,with_contract:0
-#: field:employee.set.laboral.incidence.wzd,with_contract:0
-#: field:remuneration,with_contract:0
-msgid "With contract"
-msgstr "Con contrato"
-
-#. module: analytic_incidences
-#: constraint:account.analytic.account:0
-msgid "Error! The currency has to be the same as the currency of the selected company"
-msgstr "¡Error! La divisa tiene que ser la misma que la establecida en la compañía seleccionada"
-
-#. module: analytic_incidences
-#: code:addons/analytic_incidences/remuneration.py:185
-#: code:addons/analytic_incidences/remuneration.py:190
-#, python-format
-msgid "Error"
-msgstr "Error"
-
-#. module: analytic_incidences
-#: field:remuneration,parent_id:0
-msgid "Parent remuneration"
-msgstr "Remuneración padre"
-
-#. module: analytic_incidences
-#: model:ir.model,name:analytic_incidences.model_employee_replacement_wzd
-msgid "employee.replacement.wzd"
-msgstr "employee.replacement.wzd"
-
-#. module: analytic_incidences
-#: field:incidence,selecttable:0
-msgid "Selectable"
-msgstr "Seleccionable"
-
-#. module: analytic_incidences
-#: model:incidence,name:analytic_incidences.incidence_replacement
-msgid "Replacement"
-msgstr "Sustitución"
-
-#. module: analytic_incidences
-#: field:hr.laboral.incidence,end_date:0
-#: field:search.employee.replacement,end_date:0
-msgid "End date"
-msgstr "Fecha fin"
-
-#. module: analytic_incidences
-#: field:absence,code:0
-#: field:incidence,code:0
-msgid "Code"
-msgstr "Código"
-
-#. module: analytic_incidences
-#: field:remuneration,old:0
-msgid "Old"
-msgstr "Antigua"
-
-#. module: analytic_incidences
-#: field:account.analytic.occupation,remuneration_id:0
-#: view:remuneration:0
-msgid "Remuneration"
-msgstr "Remuneración"
-
-#. module: analytic_incidences
-#: field:hr.laboral.incidence,occupation_ids:0
-#: model:ir.actions.act_window,name:analytic_incidences.action_analytic_occupation_tree
-msgid "Occupations"
-msgstr "Ocupaciones"
-
-#. module: analytic_incidences
-#: view:analytic.incidence.wizard:0
-msgid "Make child remunerations"
-msgstr "Realizar incidencia"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Total ss hours"
-msgstr "Horas totales aseguradas"
-
-#. module: analytic_incidences
-#: view:analytic.incidence.wizard:0
-#: view:employee.incidence.set.end.date.wzd:0
-#: view:employee.replacement.wzd:0
-#: view:employee.set.laboral.incidence.wzd:0
-#: view:search.employee.replacement:0
-msgid "Cancel"
-msgstr "Cancelar"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Contract hours"
-msgstr "Horas contrato"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-#: selection:remuneration,state:0
-msgid "Open"
-msgstr "Activa"
-
-#. module: analytic_incidences
-#: view:hr.employee:0
-msgid "Personal Information"
-msgstr "Información personal"
-
-#. module: analytic_incidences
-#: field:absence,remuneration_ids:0
-#: view:account.analytic.account:0
-#: field:account.analytic.account,remuneration_ids:0
-#: field:incidence,remuneration_ids:0
-#: model:ir.actions.act_window,name:analytic_incidences.action_remuneration
-#: model:ir.actions.act_window,name:analytic_incidences.action_remuneration_tree
-#: model:ir.actions.act_window,name:analytic_incidences.remuneration_employee_link
-#: model:ir.model,name:analytic_incidences.model_remuneration
-#: model:ir.ui.menu,name:analytic_incidences.menu_remuneration
-#: model:ir.ui.menu,name:analytic_incidences.menu_remuneration_open
-msgid "Remunerations"
-msgstr "Remuneraciones"
-
-#. module: analytic_incidences
-#: model:ir.model,name:analytic_incidences.model_account_analytic_occupation
-msgid "Calendar Event"
-msgstr "Evento de calendario"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,parent_id:0
-#: field:employee.set.laboral.incidence.wzd,parent_id:0
-msgid "Remuneration parent"
-msgstr "Remuneración padre"
-
-#. module: analytic_incidences
-#: view:analytic.incidence.wizard:0
-#: view:employee.replacement.wzd:0
-#: view:employee.set.laboral.incidence.wzd:0
-#: view:remuneration:0
-msgid "Social security"
-msgstr "Seguridad social"
-
-#. module: analytic_incidences
-#: model:ir.module.module,shortdesc:analytic_incidences.module_meta_information
-msgid "Analytic laboral incidences"
-msgstr "Incidencias laborales analíticas"
-
-#. module: analytic_incidences
-#: field:remuneration,analytic_distribution_id:0
-msgid "Analytic Distribution"
-msgstr "Distribución analítica"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,price:0
-#: field:employee.replacement.wzd,price:0
-#: field:employee.set.laboral.incidence.wzd,price:0
-#: field:remuneration,price:0
-msgid "Price"
-msgstr "Precio"
-
-#. module: analytic_incidences
-#: field:absence,incidence_id:0
-#: field:account.analytic.occupation,incidence_id:0
-#: view:hr.laboral.incidence:0
-#: view:remuneration:0
-#: field:remuneration,incidence:0
-msgid "Incidence"
-msgstr "Incidencia"
-
-#. module: analytic_incidences
-#: field:search.employee.replacement,hour_no:0
-msgid "Number of hours"
-msgstr "Número de horas"
-
-#. module: analytic_incidences
-#: model:ir.module.module,description:analytic_incidences.module_meta_information
-msgid "Allow creates laboral incidences"
-msgstr "Permite crear incidencias laborales"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Child remunerations"
-msgstr "Remuneraciones hijas"
-
-#. module: analytic_incidences
-#: view:remuneration:0
-msgid "Total effective"
-msgstr "Total efectivo"
-
-#. module: analytic_incidences
-#: field:absence,name:0
-#: field:incidence,name:0
-#: field:remuneration,name:0
-msgid "Name"
-msgstr "Nombre"
-
-#. module: analytic_incidences
-#: field:analytic.incidence.wizard,effective:0
-#: field:employee.replacement.wzd,effective:0
-#: field:employee.set.laboral.incidence.wzd,effective:0
-#: field:remuneration,effective:0
-msgid "Effective"
-msgstr "Efectivo"
-
-#. module: analytic_incidences
-#: field:employee.replacement.wzd,distribute_bt_remuneration:0
-#: field:employee.set.laboral.incidence.wzd,distribute_bt_remuneration:0
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_distribute_bt_remuneration
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_distribute_bt_remuneration
 msgid "Distribute between remunerations"
 msgstr "Distribuir entre remuneraciones"
 
 #. module: analytic_incidences
-#: model:ir.model,name:analytic_incidences.model_analytic_incidence_wizard
-msgid "analytic.incidence.wizard"
-msgstr "analytic.incidence.wizard"
+#: model:ir.model.fields,help:analytic_incidences.field_employee_set_laboral_incidence_wzd_distribute_bt_remuneration
+msgid "Distribute quantities between all selected remuneration proportionally to original hours"
+msgstr "Distribuir las cantidades entre todas las remuneraciones seleccionadas proporcionalmente a las horas originales"
 
 #. module: analytic_incidences
-#: view:employee.replacement.wzd:0
-#: model:ir.actions.act_window,name:analytic_incidences.action_employee_replacement_wz
-#: model:ir.actions.act_window,name:analytic_incidences.action_replace_employee_wizard
-#: view:remuneration:0
-msgid "Replace employee"
-msgstr "Sustituir empleado"
+#: model:ir.model.fields,help:analytic_incidences.field_employee_replacement_wzd_distribute_bt_remuneration
+msgid "Distribute quantities between all selectedremuneration proportionally to original hours"
+msgstr "Distribuir las cantidades entre todas las remuneraciones seleccionadas proporcionalmente a las horas originales"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_effective
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_effective
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_effective
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_effective
+msgid "Effective"
+msgstr "Efectivo"
+
+#. module: analytic_incidences
+#: model:ir.model,name:analytic_incidences.model_hr_employee
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_employee_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_employee_id
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_search
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_employee_id
+msgid "Employee id"
+msgstr "Empleado"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_end_date
+msgid "End date"
+msgstr "Fecha final"
+
+#. module: analytic_incidences
+#: selection:analytic.incidence.wizard,conditions:0
+#: selection:employee.replacement.wzd,conditions:0
+#: selection:employee.set.laboral.incidence.wzd,conditions:0
+msgid "Equal conditions"
+msgstr "Mismas condiciones"
+
+#. module: analytic_incidences
+#: model:incidence,name:analytic_incidences.incidence_extra
+msgid "Extra"
+msgstr "Extra"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Fixed"
+msgstr "Fijo"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_search
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_contract_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_hour_price_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_contract_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_hour_price_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_contract_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_hour_price_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_contract_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_hour_price_hours
+msgid "Hours"
+msgstr "Horas"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Hours (Mode: With price/hour)"
+msgstr "Horas (Modo: Con precio/hora)"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_id
+msgid "ID"
+msgstr "ID"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_incidence_id
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_incidence
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_search
+msgid "Incidence"
+msgstr "Incidencia"
+
+#. module: analytic_incidences
+#: model:ir.actions.act_window,name:analytic_incidences.action_incidence
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_employee_laboral_incidence_ids
+#: model:ir.ui.menu,name:analytic_incidences.menu_incidence_open
+#: model:ir.ui.view,arch_db:analytic_incidences.incidence_form
+#: model:ir.ui.view,arch_db:analytic_incidences.incidence_tree
+msgid "Incidences"
+msgstr "Incidencias"
 
 #. module: analytic_incidences
 #: model:ir.model,name:analytic_incidences.model_incidence
@@ -711,14 +307,187 @@ msgid "Incidens for various reasons"
 msgstr "Incidencias por diversos motivos"
 
 #. module: analytic_incidences
-#: view:remuneration:0
-msgid "Total no ss hours"
-msgstr "Total horas no aseguradas"
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_initial_date
+msgid "Initial date"
+msgstr "Fecha inicial"
 
 #. module: analytic_incidences
-#: help:employee.incidence.set.end.date.wzd,only_incidences:0
-msgid "Sets end date in incidences only, if not check it sets the end date in all open remunerations."
-msgstr "Asigna la fecha de fin a indicencias solamente, sino está marcado asigna la fecha de fin en todas las remuneraciones abiertas."
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_is_absence
+msgid "Is absence?"
+msgstr "¿Es ausencia?"
+
+#. module: analytic_incidences
+#: model:ir.model,name:analytic_incidences.model_hr_laboral_incidence
+msgid "Laboral Incidence"
+msgstr "Incidencia laboral"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.view_employee_form_add_incidences
+msgid "Laboral incidences"
+msgstr "Incidencias laborales"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence___last_update
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard___last_update
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd___last_update
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd___last_update
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd___last_update
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence___last_update
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence___last_update
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_write_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_write_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd_write_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_write_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_write_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_write_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_write_uid
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_write_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_write_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd_write_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_write_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_write_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_write_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_write_date
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.view_analytic_incidence_wizard
+msgid "Make child remuneration"
+msgstr "Realizar incidencia"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.view_analytic_incidence_wizard
+msgid "Make child remunerations"
+msgstr "Realizar incidencia"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_laboral_incidence_motive
+msgid "Motive"
+msgstr "Motivo"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_name
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_ss_no_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_ss_no_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_ss_no_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_ss_no_hours
+msgid "No ss hours"
+msgstr "Horas no SS"
+
+#. module: analytic_incidences
+#: model:incidence,name:analytic_incidences.incidence_normal
+msgid "Normal"
+msgstr "Normal"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_notes
+msgid "Notes"
+msgstr "Notas"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_old
+msgid "Old"
+msgstr "Antiguo"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_incidence_set_end_date_wzd_only_incidences
+msgid "Only incidences"
+msgstr "Sólo incidencias"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_parent_id
+msgid "Parent remuneration"
+msgstr "Remuneración padre"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_price
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_price
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_price
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_price
+msgid "Price"
+msgstr "Precio"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_quantity
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_quantity
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_quantity
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_form
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_search
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Remuneration"
+msgstr "Remuneración"
+
+#. module: analytic_incidences
+#: model:ir.actions.act_window,name:analytic_incidences.action_remuneration
+#: model:ir.actions.act_window,name:analytic_incidences.action_remuneration_tree
+#: model:ir.actions.act_window,name:analytic_incidences.remuneration_employee_link
+#: model:ir.model,name:analytic_incidences.model_remuneration
+#: model:ir.model.fields,field_description:analytic_incidences.field_absence_remuneration_ids
+#: model:ir.model.fields,field_description:analytic_incidences.field_account_analytic_account_remuneration_ids
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_remuneration_ids
+#: model:ir.model.fields,field_description:analytic_incidences.field_project_project_remuneration_ids
+#: model:ir.ui.menu,name:analytic_incidences.menu_remuneration
+#: model:ir.ui.menu,name:analytic_incidences.menu_remuneration_open
+msgid "Remunerations"
+msgstr "Remuneraciones"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_replacement_wzd_form2
+msgid "Replace"
+msgstr "Sustituir"
+
+#. module: analytic_incidences
+#: model:ir.actions.act_window,name:analytic_incidences.action_employee_replacement_wz
+#: model:ir.actions.act_window,name:analytic_incidences.action_replace_employee_wizard
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_replacement_wzd_form2
+msgid "Replace employee"
+msgstr "Sustituir empleado"
+
+#. module: analytic_incidences
+#: model:incidence,name:analytic_incidences.incidence_replacement
+msgid "Replacement"
+msgstr "Sustitución"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_ss_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_ss_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_ss_hours
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_ss_hours
+msgid "SS hours"
+msgstr "Horas SS"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_search_employee_id
+msgid "Search employee id"
+msgstr "Buscar empleado"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_search_employee_ids
+msgid "Search employee ids"
+msgstr "Buscar empleados"
 
 #. module: analytic_incidences
 #: model:ir.model,name:analytic_incidences.model_search_employee_replacement
@@ -726,11 +495,180 @@ msgid "Search for possible replacement"
 msgstr "Buscar por sustituciones posibles"
 
 #. module: analytic_incidences
-#: field:employee.replacement.wzd,employee_id:0
+#: model:ir.model.fields,field_description:analytic_incidences.field_incidence_selecttable
+msgid "Selectable"
+msgstr "Seleccionable"
+
+#. module: analytic_incidences
+#: model:ir.actions.act_window,name:analytic_incidences.action_view_child_remuneration_wizard
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_form
+msgid "Set child remuneration"
+msgstr "Realizar incidencia"
+
+#. module: analytic_incidences
+#: model:ir.actions.act_window,name:analytic_incidences.action_set_end_date_incidence_wzd
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_incidence_set_end_date_wzd_form
+msgid "Set end date"
+msgstr "Asignar fecha fin"
+
+#. module: analytic_incidences
+#: model:ir.actions.act_window,name:analytic_incidences.action_set_laboral_incidence_wzd
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_set_laboral_incidence_wzd_form
+msgid "Set incidence"
+msgstr "Marcar como incidencia"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,help:analytic_incidences.field_employee_incidence_set_end_date_wzd_only_incidences
+msgid "Sets end date in incidences only, if not check it sets the end date in all open remunerations."
+msgstr "Establece la fecha fin sólo en incidencias, sino estña marcado establece la fecha fin en todas las remuneraciones abiertas."
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_replacement_wzd_form2
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_set_laboral_incidence_wzd_form
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_form
+#: model:ir.ui.view,arch_db:analytic_incidences.view_analytic_incidence_wizard
+msgid "Social security"
+msgstr "Seguridad social"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_employee_id
 msgid "Substitute"
 msgstr "Sustituto"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Total contract hours"
+msgstr "Total horas contrato"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Total effective"
+msgstr "Total efectivo"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_total_hours
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Total hours"
+msgstr "Horas totales"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Total hours with price/hour"
+msgstr "Total horas con precio/hora"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Total no ss hours"
+msgstr "Total horas no aseguradas"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Total price fixed"
+msgstr "Total fijo"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_tree
+msgid "Total ss hours"
+msgstr "Total horas aseguradas"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_incidence_id_tp
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_incidence_id_tp
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_incidence_id_tp
+msgid "Type"
+msgstr "Tipo"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_absence_id_tp
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_absence_id_tp
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_absence_id_tp
+#: model:ir.ui.view,arch_db:analytic_incidences.remuneration_form
+msgid "Type absence"
+msgstr "Tipo de ausencia"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_account_analytic_account_inactive_remuneration_ids
+#: model:ir.model.fields,field_description:analytic_incidences.field_project_project_inactive_remuneration_ids
+msgid "Unactive remunerations"
+msgstr "Remuneraciones desactivadas"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_with_contract
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_with_contract
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_with_contract
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_with_contract
+msgid "With contract"
+msgstr "Con contrato"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_with_fix_qty
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_with_fix_qty
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_with_fix_qty
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_with_fix_qty
+msgid "With fix qty"
+msgstr "Con cant. fija"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_analytic_incidence_wizard_with_hour_price
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_replacement_wzd_with_hour_price
+#: model:ir.model.fields,field_description:analytic_incidences.field_employee_set_laboral_incidence_wzd_with_hour_price
+#: model:ir.model.fields,field_description:analytic_incidences.field_remuneration_with_hour_price
+msgid "With hour price"
+msgstr "Con precio hora"
+
+#. module: analytic_incidences
+#: model:ir.model.fields,field_description:analytic_incidences.field_hr_employee_work_council_id
+msgid "Work council"
+msgstr "Ayuntamiento trabajo"
+
+#. module: analytic_incidences
+#: code:addons/analytic_incidences/wizard/employee_replacement_wzd.py:132
+#, python-format
+msgid "You must set remuneration as based of incidence for replacing employee"
+msgstr "Se debe seleccionar una remuneración de tipo incidencia para sustituir a un empleado"
+
+#. module: analytic_incidences
+#: code:addons/analytic_incidences/wizard/employee_replacement_wzd.py:120
+#, python-format
+msgid "You must set substitute"
+msgstr "Debe seleccionar un sustituto"
+
+#. module: analytic_incidences
+#: model:ir.model,name:analytic_incidences.model_absence
+msgid "absences for work"
+msgstr "Ausencias al trabajo"
+
+#. module: analytic_incidences
+#: model:ir.model,name:analytic_incidences.model_analytic_incidence_set_end_date
+msgid "analytic.incidence.set.end.date"
+msgstr "analytic.incidence.set.end.date"
+
+#. module: analytic_incidences
+#: model:ir.model,name:analytic_incidences.model_analytic_incidence_wizard
+msgid "analytic.incidence.wizard"
+msgstr "analytic.incidence.wizard"
 
 #. module: analytic_incidences
 #: model:ir.model,name:analytic_incidences.model_employee_incidence_set_end_date_wzd
 msgid "employee.incidence.set.end.date.wzd"
 msgstr "employee.incidence.set.end.date.wzd"
+
+#. module: analytic_incidences
+#: model:ir.model,name:analytic_incidences.model_employee_replacement_wzd
+msgid "employee.replacement.wzd"
+msgstr "employee.replacement.wzd"
+
+#. module: analytic_incidences
+#: model:ir.model,name:analytic_incidences.model_employee_set_laboral_incidence_wzd
+msgid "employee.set.laboral.incidence.wzd"
+msgstr "employee.set.laboral.incidence.wzd"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.view_employee_form_add_incidences
+msgid "remunerations"
+msgstr "Remuneraciones"
+
+#. module: analytic_incidences
+#: model:ir.ui.view,arch_db:analytic_incidences.employee_replacement_wzd_form2
+msgid "search"
+msgstr "Buscar"
