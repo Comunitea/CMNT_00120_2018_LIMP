@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #       * limp_account_analytic_analysis
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.4\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2016-04-06 16:44+0000\n"
-"PO-Revision-Date: 2016-04-06 16:44+0000\n"
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-03 15:38+0000\n"
+"PO-Revision-Date: 2018-06-03 15:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,56 +16,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: limp_account_analytic_analysis
-#: model:ir.actions.act_window,name:limp_account_analytic_analysis.action_analytic_balance_by_department
-#: model:ir.ui.menu,name:limp_account_analytic_analysis.analytic_balance_by_department_menu
-msgid "Analytic balance by department"
-msgstr "Balance analítico por departamento"
-
-#. module: limp_account_analytic_analysis
-#: field:analytic.balance,privacy:0
-#: field:analytic.balance.by.department.wzd,privacy:0
-msgid "Privacy"
-msgstr "Privacidad"
-
-#. module: limp_account_analytic_analysis
-#: field:account.analytic.target,manager_id:0
-#: field:analytic.balance,manager_id:0
-msgid "Responsible"
-msgstr "Responsable"
-
-#. module: limp_account_analytic_analysis
-#: field:account.analytic.target,department_id:0
-#: field:analytic.balance,department_id:0
-msgid "Department"
-msgstr "Departamento"
-
-#. module: limp_account_analytic_analysis
-#: selection:analytic.balance,privacy:0
-#: selection:analytic.balance.by.department.wzd,privacy:0
-msgid "Public"
-msgstr "Pública"
-
-#. module: limp_account_analytic_analysis
-#: field:account.analytic.target,fiscalyear_id:0
-#: field:analytic.balance,fiscalyear_id:0
-#: field:analytic.balance.by.department.wzd,fiscalyear_id:0
-msgid "Fiscalyear"
-msgstr "Año fiscal"
-
-#. module: limp_account_analytic_analysis
 #: model:ir.model,name:limp_account_analytic_analysis.model_account_analytic_journal
 msgid "Analytic Journal"
 msgstr "Diario analítico"
 
 #. module: limp_account_analytic_analysis
-#: field:account.analytic.target,company_id:0
-msgid "Company"
-msgstr "Compañía"
+#: model:ir.model,name:limp_account_analytic_analysis.model_account_analytic_tag
+msgid "Analytic Tags"
+msgstr "Etiquetas analíticas"
 
 #. module: limp_account_analytic_analysis
-#: model:ir.model,name:limp_account_analytic_analysis.model_account_analytic_target
-msgid "account.analytic.target"
-msgstr "account.analytic.target"
+#: model:ir.actions.report.xml,name:limp_account_analytic_analysis.analytic_analysis_xls
+msgid "Analytic analysis"
+msgstr "Análisis analítico"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.actions.act_window,name:limp_account_analytic_analysis.action_analytic_balance_by_department
+#: model:ir.ui.menu,name:limp_account_analytic_analysis.analytic_balance_by_department_menu
+msgid "Analytic balance by department"
+msgstr "Balance analítico por departamento"
 
 #. module: limp_account_analytic_analysis
 #: model:ir.actions.act_window,name:limp_account_analytic_analysis.action_analytic_balance
@@ -74,39 +43,104 @@ msgid "Analytic balance by targets"
 msgstr "Balance analítico por objetivos"
 
 #. module: limp_account_analytic_analysis
-#: view:account.analytic.journal:0
-msgid "Target"
-msgstr "Objetivo"
-
-#. module: limp_account_analytic_analysis
-#: model:ir.model,name:limp_account_analytic_analysis.model_analytic_balance_by_department_wzd
-msgid "analytic.balance.by.department.wzd"
-msgstr "analytic.balance.by.department.wzd"
-
-#. module: limp_account_analytic_analysis
-#: model:ir.model,name:limp_account_analytic_analysis.model_analytic_balance
-msgid "analytic.balance"
-msgstr "analytic.balance"
-
-#. module: limp_account_analytic_analysis
-#: model:ir.actions.report.xml,name:limp_account_analytic_analysis.analytic_analysis_xls
-msgid "Analytic analysis"
-msgstr "Análisis analítico"
-
-#. module: limp_account_analytic_analysis
-#: view:account.analytic.journal:0
-msgid "Analytic targets"
-msgstr "Objetivos analíticos"
-
-#. module: limp_account_analytic_analysis
 #: model:ir.actions.report.xml,name:limp_account_analytic_analysis.analytic_analysis_by_department_xls
 msgid "Analytic department analysis"
 msgstr "Análisis analítico por departamento"
 
 #. module: limp_account_analytic_analysis
-#: field:account.analytic.target,target_percent:0
+#: model:ir.ui.view,arch_db:limp_account_analytic_analysis.account_analytic_tag_form_view
+msgid "Analytic targets"
+msgstr "Objetivos analíticos"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.ui.view,arch_db:limp_account_analytic_analysis.wizard_analytic_balance
+#: model:ir.ui.view,arch_db:limp_account_analytic_analysis.wizard_analytic_balance_by_department_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_create_uid
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_create_uid
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_create_date
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_create_date
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_delegation_id
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_delegation_id
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_delegation_id
+msgid "Delegation"
+msgstr "Delegación"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_department_id
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_display_name
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_display_name
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_id
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_id
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_id
+msgid "ID"
+msgstr "ID"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target___last_update
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance___last_update
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_write_uid
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_write_uid
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_write_date
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_write_date
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_target_percent
 msgid "Percent target"
-msgstr "Porcentaje ojetivo"
+msgstr "Porcentaje objetivo"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.ui.view,arch_db:limp_account_analytic_analysis.wizard_analytic_balance
+#: model:ir.ui.view,arch_db:limp_account_analytic_analysis.wizard_analytic_balance_by_department_form
+msgid "Print balance"
+msgstr "Imprimir balance"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_privacy
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_privacy
+msgid "Privacy"
+msgstr "Privacidad"
 
 #. module: limp_account_analytic_analysis
 #: selection:analytic.balance,privacy:0
@@ -115,31 +149,51 @@ msgid "Private"
 msgstr "Privada"
 
 #. module: limp_account_analytic_analysis
-#: view:account.analytic.journal:0
-#: field:account.analytic.journal,analytic_target_ids:0
+#: selection:analytic.balance,privacy:0
+#: selection:analytic.balance.by.department.wzd,privacy:0
+msgid "Public"
+msgstr "Pública"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_manager_id
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_manager_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_analytic_tag_id
+msgid "Tag"
+msgstr "Etiqueta"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.ui.view,arch_db:limp_account_analytic_analysis.account_analytic_tag_form_view
+msgid "Target"
+msgstr "Objetivo"
+
+#. module: limp_account_analytic_analysis
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_tag_analytic_target_ids
+#: model:ir.ui.view,arch_db:limp_account_analytic_analysis.account_analytic_tag_form_view
 msgid "Targets"
 msgstr "Objetivos"
 
 #. module: limp_account_analytic_analysis
-#: field:account.analytic.target,delegation_id:0
-#: field:analytic.balance,delegation_id:0
-#: field:analytic.balance.by.department.wzd,delegation_id:0
-msgid "Delegation"
-msgstr "Delegación"
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_account_analytic_target_year
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_by_department_wzd_year
+#: model:ir.model.fields,field_description:limp_account_analytic_analysis.field_analytic_balance_year
+msgid "Year"
+msgstr "Año"
 
 #. module: limp_account_analytic_analysis
-#: view:analytic.balance:0
-#: view:analytic.balance.by.department.wzd:0
-msgid "Cancel"
-msgstr "Cancelar"
+#: model:ir.model,name:limp_account_analytic_analysis.model_account_analytic_target
+msgid "account.analytic.target"
+msgstr "account.analytic.target"
 
 #. module: limp_account_analytic_analysis
-#: view:analytic.balance:0
-#: view:analytic.balance.by.department.wzd:0
-msgid "Print balance"
-msgstr "Imprimir balance"
+#: model:ir.model,name:limp_account_analytic_analysis.model_analytic_balance
+msgid "analytic.balance"
+msgstr "analytic.balance"
 
 #. module: limp_account_analytic_analysis
-#: field:account.analytic.target,analytic_journal_id:0
-msgid "Journal"
-msgstr "Diario"
+#: model:ir.model,name:limp_account_analytic_analysis.model_analytic_balance_by_department_wzd
+msgid "analytic.balance.by.department.wzd"
+msgstr "analytic.balance.by.department.wzd"
