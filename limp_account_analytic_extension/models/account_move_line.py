@@ -41,4 +41,5 @@ class AccountMoveLine(models.Model):
             vals_dict['delegation_id'] = self.delegation_id.id
             vals_dict['department_id'] = self.department_id.id
             vals_dict['manager_id'] = self.manager_id.id
+            vals_dict['company_id'] = self.company_id.id
         return res

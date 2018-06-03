@@ -1,0 +1,183 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#       * limp_account_analytic_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-03 16:10+0000\n"
+"PO-Revision-Date: 2018-06-03 16:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_analytic_default
+msgid "Analytic Distribution"
+msgstr "Distribución Analítica"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_analytic_entries_report
+msgid "Analytic Entries Statistics"
+msgstr "Informe de entradas analíticas"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_analytic_plan_instance_line
+msgid "Analytic Instance Line"
+msgstr "Línea de instancia analítica"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_analytic_journal
+msgid "Analytic Journal"
+msgstr "Diario analítico"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Línea Analítica"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_analytic_plan_instance
+msgid "Analytic Plan Instance"
+msgstr "Distribución analítca"
+
+#. module: limp_account_analytic_extension
+#: sql_constraint:account.analytic.distribution.rule:0
+#: code:addons/limp_account_analytic_extension/models/account_analytic_plans.py:43
+#, python-format
+msgid "Analytic account must be unique per distribution, delegation, department and manager!"
+msgstr "La cuenta analítica debe de ser única por distribución, delegación, departemento y responsable"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_asset_asset_analytic_distribution_id
+msgid "Analytic distribution"
+msgstr "Distribución analítica"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_analytic_distribution_rule
+msgid "Analytic distribution rule"
+msgstr "Regla de distribución analítica"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_asset_depreciation_line
+msgid "Asset depreciation line"
+msgstr "Línea de Depreciación de Activo"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_asset_asset
+msgid "Asset/Revenue Recognition"
+msgstr "Aceptación de pagos/Ingresos"
+
+#. module: limp_account_analytic_extension
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_invoice_filter_add_sec_filter_groups
+msgid "Company"
+msgstr "Compañía"
+
+#. module: limp_account_analytic_extension
+#: selection:account.analytic.default,inv_type:0
+msgid "Customer Invoice"
+msgstr "Factura cliente"
+
+#. module: limp_account_analytic_extension
+#: selection:account.analytic.default,inv_type:0
+msgid "Customer Refund"
+msgstr "Rectificativa cliente"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_account_delegation_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_distribution_rule_delegation_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_line_delegation_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_invoice_delegation_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_move_line_delegation_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_project_project_delegation_id
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_analytic_account_search_add_delegation_id
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_analytic_line_filter_add_delegation_id
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_invoice_filter_add_sec_filter_groups
+msgid "Delegation"
+msgstr "Delegación"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_distribution_rule_department_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_invoice_department_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_move_line_department_id
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_invoice_filter_add_sec_filter_groups
+msgid "Department"
+msgstr "Departamento"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_line_employee_id
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_analytic_line_filter_add_delegation_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_distribution_rule_fix_amount
+msgid "Fix amount"
+msgstr "Importe fijo"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Linea de Factura"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model,name:limp_account_analytic_extension.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: limp_account_analytic_extension
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_analytic_account_search_add_delegation_id
+msgid "Manager"
+msgstr "Gestor"
+
+#. module: limp_account_analytic_extension
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_analytic_line_filter_add_delegation_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: limp_account_analytic_extension
+#: sql_constraint:account.analytic.distribution.rule:0
+#: code:addons/limp_account_analytic_extension/models/account_analytic_plans.py:45
+#, python-format
+msgid "Percentage must be positive!"
+msgstr "El porcentaje debe ser positivo."
+
+#. module: limp_account_analytic_extension
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_distribution_rule_manager_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_line_manager_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_invoice_manager_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_move_line_manager_id
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_project_project_manager_id
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_analytic_line_filter_add_delegation_id
+#: model:ir.ui.view,arch_db:limp_account_analytic_extension.view_account_invoice_filter_add_sec_filter_groups
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: limp_account_analytic_extension
+#: selection:account.analytic.default,inv_type:0
+msgid "Supplier Invoice"
+msgstr "Factura proveedor"
+
+#. module: limp_account_analytic_extension
+#: selection:account.analytic.default,inv_type:0
+msgid "Supplier Refund"
+msgstr "Rectificativa proveedor"
+
+#. module: limp_account_analytic_extension
+#: model:ir.model.fields,field_description:limp_account_analytic_extension.field_account_analytic_default_inv_type
+msgid "Type"
+msgstr "Tipo"

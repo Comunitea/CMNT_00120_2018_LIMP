@@ -282,7 +282,8 @@ class DistributionCostsImport(models.TransientModel):
                                                     'department_id': analytic_obj.department_id and analytic_obj.department_id.id or False,
                                                     'delegation_id': analytic_obj.delegation_id and analytic_obj.delegation_id.id or False,
                                                     'manager_id': analytic_obj.manager_id and analytic_obj.manager_id.id or False,
-                                                    'employee_id' : hr_employee_obj.id
+                                                    'employee_id' : hr_employee_obj.id,
+                                                    'company_id': self.env.user.company_id.id
                                                     }
                                                 self.env['account.analytic.line'].create(vals) # se crear un apunte según el tipo y el importe
                                             elif type == "with_contract" and new_valor: # si es con contrato y hay importe
@@ -310,7 +311,8 @@ class DistributionCostsImport(models.TransientModel):
                                                     'department_id': analytic_obj.department_id and analytic_obj.department_id.id or False,
                                                     'delegation_id': analytic_obj.delegation_id and analytic_obj.delegation_id.id or False,
                                                     'manager_id': analytic_obj.manager_id and analytic_obj.manager_id.id or False,
-                                                    'employee_id' : hr_employee_obj.id
+                                                    'employee_id' : hr_employee_obj.id,
+                                                    'company_id': self.env.user.company_id.id
                                                     }
                                                 self.env['account.analytic.line'].create(vals) # creakos el apunte de con contrato
                                             elif new_valor and ss_total: # si hay seguridad social a repartir
@@ -336,7 +338,8 @@ class DistributionCostsImport(models.TransientModel):
                                                         'department_id': analytic_obj.department_id and analytic_obj.department_id.id or False,
                                                         'delegation_id': analytic_obj.delegation_id and analytic_obj.delegation_id.id or False,
                                                         'manager_id': analytic_obj.manager_id and analytic_obj.manager_id.id or False,
-                                                        'employee_id' : hr_employee_obj.id
+                                                        'employee_id' : hr_employee_obj.id,
+                                                        'company_id': self.env.user.company_id.id
                                                         }
                                                 self.env['account.analytic.line'].create(vals)
                                 else: # si es un parte de horas
@@ -364,7 +367,8 @@ class DistributionCostsImport(models.TransientModel):
                                                 'department_id': timesheet_obj_id.department_id and timesheet_obj_id.department_id.id or (analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 'delegation_id': timesheet_obj_id.delegation_id and timesheet_obj_id.delegation_id.id or (analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                 'manager_id': timesheet_obj_id.responsible_id and timesheet_obj_id.responsible_id.id or (analytic_obj.manager_id and analytic_obj.manager_id.id or False),
-                                                'employee_id' : hr_employee_obj.id
+                                                'employee_id' : hr_employee_obj.id,
+                                                'company_id': self.env.user.company_id.id
                                                 }
                                             self.env['account.analytic.line'].create(vals)
                                         elif type == "with_contract" and valor:
@@ -389,7 +393,8 @@ class DistributionCostsImport(models.TransientModel):
                                                 'department_id': timesheet_obj_id.department_id and timesheet_obj_id.department_id.id or (analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                 'delegation_id': timesheet_obj_id.delegation_id and timesheet_obj_id.delegation_id.id or (analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                 'manager_id': timesheet_obj_id.responsible_id and timesheet_obj_id.responsible_id.id or (analytic_obj.manager_id and analytic_obj.manager_id.id or False),
-                                                'employee_id' : hr_employee_obj.id
+                                                'employee_id' : hr_employee_obj.id,
+                                                'company_id': self.env.user.company_id.id
                                                 }
 
                                             self.env['account.analytic.line'].create(vals)
@@ -413,7 +418,8 @@ class DistributionCostsImport(models.TransientModel):
                                                     'department_id': timesheet_obj_id.department_id and timesheet_obj_id.department_id.id or (analytic_obj.department_id and analytic_obj.department_id.id or False),
                                                     'delegation_id': timesheet_obj_id.delegation_id and timesheet_obj_id.delegation_id.id or (analytic_obj.delegation_id and analytic_obj.delegation_id.id or False),
                                                     'manager_id': timesheet_obj_id.responsible_id and timesheet_obj_id.responsible_id.id or (analytic_obj.manager_id and analytic_obj.manager_id.id or False),
-                                                    'employee_id' : hr_employee_obj.id
+                                                    'employee_id' : hr_employee_obj.id,
+                                                    'company_id': self.env.user.company_id.id
                                                     }
                                             self.env['account.analytic.line'].create(vals)
         return {'type': 'ir.actions.act_window_close'}

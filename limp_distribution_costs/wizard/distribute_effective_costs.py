@@ -99,7 +99,8 @@ class DistributionEffectiveCosts(models.TransientModel):
                                 timesheet.responsible_id.id or
                                 (timesheet.analytic_id.manager_id and
                                  timesheet.analytic_id.manager_id.id or False),
-                            'employee_id': employee.id
+                            'employee_id': employee.id,
+                            'company_id': self.env.user.company_id.id
                         }
                         self.env['account.analytic.line'].create(vals)
 

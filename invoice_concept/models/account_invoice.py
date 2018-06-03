@@ -34,7 +34,7 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).refund(
             date_invoice, date, description, journal_id)
         res.write({
-            'delegation_id':
+            'analytic_id':
             self.analytic_id and self.analytic_id.id or False,
         })
         return res
