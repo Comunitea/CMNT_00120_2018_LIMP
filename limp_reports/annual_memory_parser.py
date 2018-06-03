@@ -101,7 +101,7 @@ def _get_ins(self, ler, data):
         ('stock_picking_id', '!=', False),
         ('company_id', '=', data['company_id'])]
     res = {}
-    for obj in self.env['valorization.lines'].search(domain):
+    for obj in self.env['valorization.lines'].sudo().search(domain):
         if obj.ler_code_id.code == ler and not obj.ler_code_id.cpa and \
                 obj.building_site_id:
             key = (obj.building_site_id.producer_promoter or "") \

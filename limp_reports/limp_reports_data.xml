@@ -43,7 +43,7 @@
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Cleaning picking</field>
-        <field name="report_name">service_valued_picking</field>
+        <field name="report_name">service_picking_cleaning</field>
         <field name="report_rml">limp_reports/report/service_picking_cleaning.jrxml</field>
         <field name="header">False</field>
         <field name="jasper_report">True</field>

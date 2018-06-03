@@ -76,7 +76,7 @@
                 <fieldDescription><![CDATA[Volumen__m3-volume]]></fieldDescription>
         </field>
         <field name="Idioma-context_lang" class="java.lang.String">
-                <fieldDescription><![CDATA[Usuario-User/Idioma-context_lang]]></fieldDescription>
+                <fieldDescription><![CDATA[Usuario-User/Idioma-lang]]></fieldDescription>
         </field>
         <field name="Telefono-phone2" class="java.lang.String">
                 <fieldDescription><![CDATA[Direccion-address_id/Telefono-phone]]></fieldDescription>

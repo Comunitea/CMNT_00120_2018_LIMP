@@ -1,250 +1,250 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="picking_transports" language="groovy" pageWidth="545" pageHeight="802" columnWidth="545" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<property name="OPENERP_RELATIONS" value="[&apos;print_service_ids&apos;]"/>
-	<parameter name="PICKING_ID" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
-		<parameterDescription><![CDATA[]]></parameterDescription>
-		<defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
-	</parameter>
-	<queryString language="xPath">
-		<![CDATA[/data/record]]>
-	</queryString>
-	<field name="Nombre-name" class="java.lang.String">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Transportista-carrier_id/Nombre-name]]></fieldDescription>
-	</field>
-	<field name="Nombre-name2" class="java.lang.String">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Direccion_dest.-dest_address_id/Nombre-name]]></fieldDescription>
-	</field>
-	<field name="Name-name" class="java.lang.String">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Conductor-driver_id/Name-name]]></fieldDescription>
-	</field>
-	<field name="Fecha-transport_date" class="java.util.Date">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Fecha-transport_date]]></fieldDescription>
-	</field>
-	<field name="Tipo-type" class="java.lang.Object">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Tipo-type]]></fieldDescription>
-	</field>
-	<field name="Matricula-license_plate" class="java.lang.String">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Vehiculo-vehicle_id/Matricula-license_plate]]></fieldDescription>
-	</field>
-	<field name="Tipo_residuo-waste_type" class="java.lang.Object">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Tipo_residuo-waste_type]]></fieldDescription>
-	</field>
-	<field name="Idioma-context_lang" class="java.lang.String">
-		<fieldDescription><![CDATA[Usuario-User/Idioma-context_lang]]></fieldDescription>
-	</field>
-	<field name="Calle-street" class="java.lang.String">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Direccion_dest.-dest_address_id/Calle-street]]></fieldDescription>
-	</field>
-	<field name="id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[Servicios-print_service_ids/Albaran-picking_id/id]]></fieldDescription>
-	</field>
-	<field name="No_identificacion-identification_id" class="java.lang.String">
-		<fieldDescription><![CDATA[Transportes-print_service_ids/Conductor-driver_id/No_identificacion-identification_id]]></fieldDescription>
-	</field>
-	<field name="Type_description-other_type_text" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Servicios-print_service_ids/Type_description-other_type_text]]></fieldDescription>
-	</field>
-	<field name="Other_Carrier-other_carrier" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Servicios-print_service_ids/Other_Carrier-other_carrier]]></fieldDescription>
-	</field>
-	<filterExpression><![CDATA[$F{id} == $P{PICKING_ID}]]></filterExpression>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
-	<columnHeader>
-		<band height="20" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="63" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Movimiento]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="63" y="0" width="70" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Transportista]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="133" y="0" width="117" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Conductor]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="310" y="0" width="55" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Matrícula]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="365" y="0" width="55" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Fecha]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="420" y="0" width="125" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Destino]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="250" y="0" width="60" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Dni]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="20" splitType="Stretch">
-			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="0" width="63" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Type_description-other_type_text}.isEmpty() ? $F{Tipo-type}.get($F{Idioma-context_lang}) : $F{Type_description-other_type_text}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="63" y="0" width="70" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Other_Carrier-other_carrier}.isEmpty() ? $F{Nombre-name} : $F{Other_Carrier-other_carrier}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement positionType="Float" x="310" y="0" width="55" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Matricula-license_plate}]]></textFieldExpression>
-			</textField>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="365" y="0" width="55" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha-transport_date}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="420" y="0" width="125" height="20"/>
-				<box>
-					<topPen lineWidth="0.25"/>
-					<leftPen lineWidth="0.25"/>
-					<bottomPen lineWidth="0.25"/>
-					<rightPen lineWidth="0.25"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Calle-street}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement positionType="Float" x="250" y="0" width="60" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{No_identificacion-identification_id}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="133" y="0" width="117" height="20"/>
-				<box>
-					<topPen lineWidth="0.25" lineStyle="Solid"/>
-					<leftPen lineWidth="0.25" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
-					<rightPen lineWidth="0.25" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
+        <property name="ireport.zoom" value="1.0"/>
+        <property name="ireport.x" value="0"/>
+        <property name="ireport.y" value="0"/>
+        <property name="OPENERP_RELATIONS" value="[&apos;print_service_ids&apos;]"/>
+        <parameter name="PICKING_ID" class="java.lang.Integer">
+                <defaultValueExpression><![CDATA[]]></defaultValueExpression>
+        </parameter>
+        <parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
+                <parameterDescription><![CDATA[]]></parameterDescription>
+                <defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
+        </parameter>
+        <queryString language="xPath">
+                <![CDATA[/data/record]]>
+        </queryString>
+        <field name="Nombre-name" class="java.lang.String">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Transportista-carrier_id/Nombre-name]]></fieldDescription>
+        </field>
+        <field name="Nombre-name2" class="java.lang.String">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Direccion_dest.-dest_address_id/Nombre-name]]></fieldDescription>
+        </field>
+        <field name="Name-name" class="java.lang.String">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Conductor-driver_id/Name-name]]></fieldDescription>
+        </field>
+        <field name="Fecha-transport_date" class="java.util.Date">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Fecha-transport_date]]></fieldDescription>
+        </field>
+        <field name="Tipo-type" class="java.lang.Object">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Tipo-type]]></fieldDescription>
+        </field>
+        <field name="Matricula-license_plate" class="java.lang.String">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Vehiculo-vehicle_id/Matricula-license_plate]]></fieldDescription>
+        </field>
+        <field name="Tipo_residuo-waste_type" class="java.lang.Object">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Tipo_residuo-waste_type]]></fieldDescription>
+        </field>
+        <field name="Idioma-context_lang" class="java.lang.String">
+                <fieldDescription><![CDATA[Usuario-User/Idioma-lang]]></fieldDescription>
+        </field>
+        <field name="Calle-street" class="java.lang.String">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Direccion_dest.-dest_address_id/Calle-street]]></fieldDescription>
+        </field>
+        <field name="id" class="java.lang.Integer">
+                <fieldDescription><![CDATA[Servicios-print_service_ids/Albaran-picking_id/id]]></fieldDescription>
+        </field>
+        <field name="No_identificacion-identification_id" class="java.lang.String">
+                <fieldDescription><![CDATA[Transportes-print_service_ids/Conductor-driver_id/No_identificacion-identification_id]]></fieldDescription>
+        </field>
+        <field name="Type_description-other_type_text" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Servicios-print_service_ids/Type_description-other_type_text]]></fieldDescription>
+        </field>
+        <field name="Other_Carrier-other_carrier" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Servicios-print_service_ids/Other_Carrier-other_carrier]]></fieldDescription>
+        </field>
+        <filterExpression><![CDATA[$F{id} == $P{PICKING_ID}]]></filterExpression>
+        <background>
+                <band splitType="Stretch"/>
+        </background>
+        <columnHeader>
+                <band height="20" splitType="Stretch">
+                        <staticText>
+                                <reportElement x="0" y="0" width="63" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <text><![CDATA[Movimiento]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="63" y="0" width="70" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <text><![CDATA[Transportista]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="133" y="0" width="117" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <text><![CDATA[Conductor]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="310" y="0" width="55" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <text><![CDATA[Matrícula]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="365" y="0" width="55" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <text><![CDATA[Fecha]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="420" y="0" width="125" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <text><![CDATA[Destino]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement x="250" y="0" width="60" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <text><![CDATA[Dni]]></text>
+                        </staticText>
+                </band>
+        </columnHeader>
+        <detail>
+                <band height="20" splitType="Stretch">
+                        <textField isBlankWhenNull="true">
+                                <reportElement positionType="Float" x="0" y="0" width="63" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Type_description-other_type_text}.isEmpty() ? $F{Tipo-type}.get($F{Idioma-context_lang}) : $F{Type_description-other_type_text}]]></textFieldExpression>
+                        </textField>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="63" y="0" width="70" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Other_Carrier-other_carrier}.isEmpty() ? $F{Nombre-name} : $F{Other_Carrier-other_carrier}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                                <reportElement positionType="Float" x="310" y="0" width="55" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Matricula-license_plate}]]></textFieldExpression>
+                        </textField>
+                        <textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+                                <reportElement positionType="Float" x="365" y="0" width="55" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha-transport_date}]]></textFieldExpression>
+                        </textField>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="420" y="0" width="125" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25"/>
+                                        <leftPen lineWidth="0.25"/>
+                                        <bottomPen lineWidth="0.25"/>
+                                        <rightPen lineWidth="0.25"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Calle-street}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                                <reportElement positionType="Float" x="250" y="0" width="60" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{No_identificacion-identification_id}]]></textFieldExpression>
+                        </textField>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="133" y="0" width="117" height="20"/>
+                                <box>
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle">
+                                        <font size="9"/>
+                                </textElement>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+                        </textField>
+                </band>
+        </detail>
 </jasperReport>

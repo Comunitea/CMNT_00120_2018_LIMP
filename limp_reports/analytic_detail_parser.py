@@ -24,12 +24,12 @@ class AccountAnalyticDetails(models.AbstractModel):
             str(acc.company_id.id))
         if data.get('delegation_id', False):
             where += " and delegation_id = {}".format(
-                str(data['delegation_id']))
+                str(data['delegation_id'][0]))
         if data.get('department_id', False):
             where += " and department_id = {}".format(
-                str(data['department_id']))
+                str(data['department_id'][0]))
         if data.get('manager_id', False):
-            where += " and manager_id = {}".format(str(data['manager_id']))
+            where += " and manager_id = {}".format(str(data['manager_id'][0]))
         if data.get('without_pickings', False):
             not_valid_accounts = account_ids.filtered(
                 lambda r: r.is_picking_in_contract)
