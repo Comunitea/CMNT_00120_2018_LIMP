@@ -36,5 +36,8 @@
                 </t>
             </AdministrativeCentres>
         </xpath>
+        <xpath expr="//t[@t-set='buyer_type']" position="replace">
+            <t t-set="buyer_type" t-value="'J'"/>
+        </xpath>
     </template>
 </odoo>
