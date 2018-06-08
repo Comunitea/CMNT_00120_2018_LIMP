@@ -57,26 +57,28 @@
         <t t-call="report.html_container">
             <t t-call="report.external_layout">
                 <div class="page">
-                    <t t-foreach="docs" t-as="o">
-                        <h3 class="text-center" t-esc="data['header']"/>
-                        <div class="row mt32 mb32" id="informations">
-                            <div class="col-xs-2">
-                                <strong>Code</strong>
-                            </div>
-                            <div class="col-xs-6">
-                                <strong>Partner</strong>
-                            </div>
-                            <div class="col-xs-2">
-                                <strong>Balance</strong>
-                            </div>
-                            <div class="col-xs-2">
-                                <strong>Real %</strong>
-                            </div>
+                    <h3 class="text-center" t-esc="data['header']"/>
+                    <div class="row mt32 mb32" id="informations">
+                        <div class="col-xs-2">
+                            <strong>Code</strong>
                         </div>
-                        <t t-call="limp_reports.account_analytic_details_account">
-                            <t t-set="account" t-value="o"/>
-                            <t t-set="padding" t-value="0"/>
-                            <t t-set="with_tag_accounts" t-value="True"/>
+                        <div class="col-xs-6">
+                            <strong>Partner</strong>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>Balance</strong>
+                        </div>
+                        <div class="col-xs-2">
+                            <strong>Real %</strong>
+                        </div>
+                    </div>
+                    <t t-foreach="docs" t-as="o">
+                        <t t-if="get_balance(o, data, with_tag_accounts=True)[0] or get_balance(o, data, with_tag_accounts=True)[1]">
+                            <t t-call="limp_reports.account_analytic_details_account">
+                                <t t-set="account" t-value="o"/>
+                                <t t-set="padding" t-value="0"/>
+                                <t t-set="with_tag_accounts" t-value="True"/>
+                            </t>
                         </t>
                         <t t-if="data['detail']">
                             <t t-foreach="get_childs(o)" t-as="acc">
@@ -89,18 +91,17 @@
                                 </t>
                             </t>
                         </t>
-                        <h3>Summary</h3>
-                        <t t-foreach="get_summarize()" t-as="journal">
-                            <div class="row">
-                                <div class="col-xs-9">
-                                    <span t-esc="journal[0]"/>
-                                </div>
-                                <div class="col-xs-3">
-                                    <span t-esc="formatLang(o.env, journal[1])"/><span t-esc="journal[2]"/>
-                                </div>
+                    </t>
+                    <h3>Summary</h3>
+                    <t t-foreach="get_summarize()" t-as="journal">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <span t-esc="journal[0]"/>
                             </div>
-                        </t>
-
+                            <div class="col-xs-3">
+                                <span t-esc="formatLang(docs[0].env, journal[1])"/><span t-esc="journal[2]"/>
+                            </div>
+                        </div>
                     </t>
                 </div>
             </t>
