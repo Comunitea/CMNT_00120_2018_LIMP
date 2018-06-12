@@ -73,18 +73,18 @@ class AccountAnalyticDetails(models.AbstractModel):
         domain = self._get_domain(
             account, data, with_tag_accounts=with_tag_accounts)
         res = []
-        self._cr.execute("""
-            select sum(amount)
-            from account_analytic_line
-            where {} and amount > 0""".format(domain))
-        balance = self._cr.fetchone()[0]
-        if balance:
-            res.append((_('Sales'), balance, False))
-            if not child:
-                if not self.journals_sumarize.get(_('Sales')):
-                    self.journals_sumarize[_('Sales')] = balance
-                else:
-                    self.journals_sumarize[_('Sales')] += balance
+        #~ self._cr.execute("""
+            #~ select sum(amount)
+            #~ from account_analytic_line
+            #~ where {} and amount > 0""".format(domain))
+        #~ balance = self._cr.fetchone()[0]
+        #~ if balance:
+            #~ res.append((_('Sales'), balance, False))
+            #~ if not child:
+                #~ if not self.journals_sumarize.get(_('Sales')):
+                    #~ self.journals_sumarize[_('Sales')] = balance
+                #~ else:
+                    #~ self.journals_sumarize[_('Sales')] += balance
         for tag in self.env['account.analytic.tag'].search(
                 [('show_in_report', '=', True)]):
             self._cr.execute("""
