@@ -54,17 +54,6 @@ class AccountAnalyticAccount(models.Model):
          ('cancelled', 'Cancelled'),
          ('close', 'Closed'), ('template', 'Template')], required=True,
         default='draft')
-    last_invoice_date = fields.Date(string='Last Invoice Date',
-        help="Date of the last invoice created for this analytic account.",
-        compute='_compute_last_linvoice_date')
-
-    def _compute_last_linvoice_date(self):
-        for acc in self:
-            acc_an_line = self.env['account.analytic.line'].search(
-                [('account_id', '=', acc.id),('move_id.invoice_id','!=',False)],
-                order="date desc", limit=1)
-            if acc_an_line:
-                acc.last_invoice_date = acc_an_line.date
 
     def _compute_concept_amount(self):
         """adds all fix amount in contract"""

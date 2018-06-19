@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="limp_contract.limp_contract_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <field name="amount" position="after">
+            <field name="periodicity" position="after">
                 <field name="no_quality"/>
             </field>
         </field>

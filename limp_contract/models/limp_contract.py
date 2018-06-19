@@ -86,13 +86,11 @@ class LimpContract(models.Model):
         for contract in self:
             amount = 0.0
             if contract.state == 'open':
-                amount += sum([x.total_amount for x in contract.concept_ids])
-            for home_help_line in contract.home_help_line_ids:
-                if home_help_line.state == 'open':
-                    amount += sum([x.total_amount for x in home_help_line.concept_ids])
-            for cleaning_line in contract.cleaning_line_ids:
-                if cleaning_line.state == 'open':
-                    amount += sum([x.total_amount for x in cleaning_line.concept_ids])
+                amount += sum(contract.concept_ids.mapped('total_amount'))
+            for home_help_line in contract.home_help_line_ids.filtered(lambda x: x.state == 'open'):
+                amount += sum(home_help_line.concept_ids.mapped('total_amount'))
+            for cleaning_line in contract.cleaning_line_ids.filtered(lambda x: x.state == 'open'):
+                amount += sum(cleaning_line.concept_ids.mapped('total_amount'))
             contract.amount = amount
             contract.monthly_amount = round(amount / 12.0, 2)
 

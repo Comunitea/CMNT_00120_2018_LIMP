@@ -161,14 +161,13 @@
                                                 <field name="currency_id"/>
                                                 <field name="payment_term_id"/>
                                                 <field name="payment_type_id"/>
-                                                <field name="last_invoice_date"/>
                                                 <field name="analytic_account_id" required="0" readonly="1"/>
                                                 <field name="tag_ids" widget="many2many_tags"/>
                                             </group>
                                             <group>
-                                                <field name="debit"/>
+                                                <!--<field name="debit"/>
                                                 <field name="credit"/>
-                                                <field name="balance"/>
+                                                <field name="balance"/>-->
                                                 <field name="address_invoice_id" domain="[('id', 'child_of', [partner_id])]" required="1"/>
                                                 <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]"/>
                                                 <field name="invoice_header"/>
