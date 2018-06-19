@@ -58,8 +58,6 @@
                 </page>
                 <page string="Contracts" groups="limp_contract.group_limp_administrative">
                     <field name="contract_ids" nolabel="1" colspan="4" groups="limp_contract.group_limp_administrative"/>
-                    <!--<separator string="Service orders" colspan="4" groups="limp_service_picking.group_waste_manager"/>
-                    <field name="service_order_ids" nolabel="1" colspan="4" groups="limp_service_picking.group_waste_manager"/>-->
                 </page>
             </notebook>
             <field name="project_id" position="after">
