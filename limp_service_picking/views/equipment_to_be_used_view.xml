@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+    <record model="ir.ui.view" id="equipment_form_view">
+        <field name="name">equipment.to.be.used.form</field>
+        <field name="model">equipment.to.be.used</field>
+        <field name="arch" type="xml">
+            <form string="equipment to be used Form">
+                <group>
+                    <field name="name"/>
+                    <field name="purpose_equipment"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="equipment_to_be_used_tree" model="ir.ui.view">
+        <field name="name">equipment.to.be.used.tree</field>
+        <field name="model">equipment.to.be.used</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="purpose_equipment"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

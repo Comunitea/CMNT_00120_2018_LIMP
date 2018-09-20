@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+    <record model="ir.ui.view" id="machinery_ddd_form_view">
+        <field name="name">machinery.to.employ.form</field>
+        <field name="model">machinery.to.employ</field>
+        <field name="arch" type="xml">
+            <form string="machinery to employ Form">
+                <group>
+                    <field name="name"/>
+                    <field name="purpose_machinery"/>
+
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="machinery_to_Employ_tree" model="ir.ui.view">
+        <field name="name">machinery.to.employ.tree</field>
+        <field name="model">machinery.to.employ</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="purpose_machinery"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

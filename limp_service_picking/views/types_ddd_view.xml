@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+    <record model="ir.ui.view" id="types_ddd_form_view">
+        <field name="name">types.ddd.form</field>
+        <field name="model">types.ddd</field>
+        <field name="arch" type="xml">
+            <form string="Types DDD Form">
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="vectors_to_fight"/>
+                </group>
+                <notebook>
+                    <page string= "Machinery and Equipment">
+                        <group>
+                            <field name="machinery_to_employ_ids"/>
+                            <field name="equipment_to_be_used_ids"/>
+                        </group>
+                    </page>
+                    <page string= "Observation / Recommendation">
+                        <group>
+                            <field name="observation_recommendation"/>
+                        </group>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_limp_types_ddd" model="ir.actions.act_window">
+        <field name="name">Types DDD conf</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">types.ddd</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="types_ddd" parent="limp_contract.menu_limp_contract_conf" name="Types DDD"/>
+
+    <menuitem id="types_ddd_conf" parent="types_ddd" name="Types DDD" action="action_limp_types_ddd"/>
+
+</odoo>

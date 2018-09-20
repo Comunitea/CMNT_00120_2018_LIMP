@@ -20,3 +20,12 @@ from . import stock_move
 from . import timesheet
 from . import other_expenses
 from . import account_analytic_distribution
+from . import stock_service_picking_ddd
+from . import types_ddd
+from . import detected_species
+from . import products_used
+from . import legionella_samples
+from . import type_of_installation_legionella
+from . import machinery_to_employ
+from . import equipment_to_be_used
+from . import observation_recommendation_ddd

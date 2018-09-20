@@ -1,0 +1,90 @@
+# -*- coding: utf-8 -*-
+from odoo import models, fields, api
+
+class StockServicePickingDDD(models.Model):
+    _inherit = 'stock.service.picking'
+
+    n_cert=fields.Integer('Nº certificate')
+    type_ddd_ids=fields.Many2many('types.ddd', string='Types ddd')
+    treatment_applicator1=fields.Many2one('hr.employee', string='Treatment Applicator 1')
+    treatment_applicator2=fields.Many2one('hr.employee', string='Treatment Applicator 2')
+    technical_support=fields.Many2one('hr.employee', string="Technical Support")
+
+    start_time=fields.Float(digits=(4,2), string="Start time")
+    end_time=fields.Float(digits=(4,2), string="End time")
+
+    start_time_str=fields.Char(compute='_str_date')
+    end_time_str=fields.Char(compute='_str_date')
+
+    #Page DDD
+
+    detected_species_id=fields.Many2many('detected.species'  , string="Detected Species")
+
+    products_used_id=fields.Many2many('products.used', string ="Products Used")
+
+    monitoring_situation=fields.Char('Monitoring situation')
+
+    observations_recommendations=fields.Many2many('observation.recommendation.ddd', string ="Observations/Recommendations")
+
+
+
+    dr=fields.Boolean(compute ="_get_dr")
+    df=fields.Boolean(compute ="_get_dr")
+    ds=fields.Boolean(compute ="_get_dr")
+    lg=fields.Boolean(compute ="_get_dr")
+
+
+    ##Page Legionella
+
+    type_of_installation_id=fields.Many2one('type.of.installation.legionella', string="Type of installation legionella")
+    date_of_notification=fields.Date(string ="Date of notification", help="Date of notification to the competent autority")
+    legionella_products_id=fields.Many2many('legionella.samples', string="Legionella samples")
+
+    @api.multi
+    def _str_date(self):
+        for x in self:
+
+            if x.start_time:
+
+                time = x.start_time
+
+                hours = int(time)
+                minutes = (time*60) % 60
+                seconds = (time*3600) % 60
+
+                x.start_time_str="%d:%02d:%02d" % (hours, minutes, seconds)
+
+
+            if x.end_time:
+                time = x.end_time
+
+                hours = int(time)
+                minutes = (time*60) % 60
+                seconds = (time*3600) % 60
+
+                x.end_time_str="%d:%02d:%02d" % (hours, minutes, seconds)
+
+
+
+
+
+    @api.depends('type_ddd_ids')
+    def _get_dr(self):
+
+        for pickin in self:
+            type_ddd_str=u','.join([x.code for x in pickin.type_ddd_ids])
+
+            if "deratization" in type_ddd_str:
+                pickin.dr=True
+
+            if "disinfection" in type_ddd_str:
+                pickin.df=True
+
+            if "disinsection" in type_ddd_str:
+                pickin.ds=True
+
+            if "legionella" in type_ddd_str:
+                pickin.lg=True
+
+
+

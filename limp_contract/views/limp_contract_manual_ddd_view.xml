@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <record model="ir.ui.view" id="limp_contract_manual_ddd_form">
+            <field name="name">limp.contract.manual.ddd.form</field>
+            <field name="model">limp.contract</field>
+            <field name="inherit_id" ref="limp_contract_form"/>
+            <field name="arch" type="xml">
+                <page string="General">
+                    <group>
+                        <field name="periodicity_reviews"/>
+                        <field name="type_ddd_ids" widget="many2many_checkboxes"/>
+                        <field name="technical_team" domain="['|', ('bpm_card_basic_level', '=', True), ('bpm_card_qualified_level', '=', True)]"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+</odoo>

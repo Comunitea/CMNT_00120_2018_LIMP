@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="py3o_legionella_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Certificado de limpieza y desinfeccion</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">stock.service.picking</field>
+            <field name="report_name">legionella_report</field>
+            <field name="module">limp_service_picking</field>
+            <field name="py3o_template_fallback">report/certificado_limpieza_desinfeccion_legionella.odt</field>
+        </record>
+
+        <record id="legionella_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'stock.service.picking'" name="model"/>
+            <field name="name">legionella_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_legionella_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+        <record id="py3o_ddd_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Certificado de tratamiento DDD</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">stock.service.picking</field>
+            <field name="report_name">ddd_report</field>
+            <field name="module">limp_service_picking</field>
+            <field name="py3o_template_fallback">report/certificado_tratamiento_DDD.odt</field>
+        </record>
+
+        <record id="ddd_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'stock.service.picking'" name="model"/>
+            <field name="name">ddd_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_ddd_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+    </data>
+</odoo>

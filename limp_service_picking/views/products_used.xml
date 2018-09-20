@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="products_used_tree" model="ir.ui.view">
+        <field name="name">products.used.tree</field>
+        <field name="model">products.used</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="treated_area"/>
+                <field name="type_of_biocide"/>
+                <field name="name"/>
+                <field name="active_matter"/>
+                <field name="registration_number"/>
+                <field name="application_method"/>
+                <field name="dose"/>
+                <field name="security_term"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="products_used_form" model="ir.ui.view">
+        <field name="name">products.used.form</field>
+        <field name="model">products.used</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="treated_area"/>
+                    <field name="type_of_biocide"/>
+                    <field name="name"/>
+                    <field name="active_matter"/>
+                    <field name="registration_number"/>
+                    <field name="application_method"/>
+                    <field name="dose"/>
+                    <field name="security_term"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+
+      <record id="action_products_used_ddd" model="ir.actions.act_window">
+        <field name="name">Products Used conf</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">products.used</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="products_used" parent="limp_contract.menu_limp_contract_conf" name="Products Used DDD"/>
+
+    <menuitem id="products_used_conf" parent="products_used" name="Products Used DDD" action="action_products_used_ddd"/>
+
+</odoo>

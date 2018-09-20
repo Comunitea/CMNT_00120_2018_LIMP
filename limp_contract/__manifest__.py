@@ -71,7 +71,9 @@
             'data/maintenance_task_cron.xml',
             'views/limp_center_type_view.xml',
             'views/limp_contract_notes.xml',
-            'views/maintenance_task.xml'
+            'views/maintenance_task.xml',
+            'views/limp_contract_manual_ddd_view.xml',
+            'limp_manual_ddd_report.xml'
             ],
         "installable": True,
 

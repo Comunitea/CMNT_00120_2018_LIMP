@@ -25,3 +25,5 @@ from . import account_invoice_report
 from . import limp_contract_notes
 from . import company
 from . import limp_maintenance_tasks
+from . import limp_contract_manual_ddd
+

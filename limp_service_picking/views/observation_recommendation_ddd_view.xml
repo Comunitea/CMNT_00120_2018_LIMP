@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="observation_recommendation_ddd_form" model="ir.ui.view">
+        <field name="name">observation.recommendation.ddd.form</field>
+        <field name="model">observation.recommendation.ddd</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name"/>
+                    <field name="observation"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_observation_recommendation_ddd" model="ir.actions.act_window">
+        <field name="name">Observation / Recommendation DDD</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">observation.recommendation.ddd</field>
+        <field name="view_type">form</field>
+    </record>
+
+    <menuitem id="observation_recommendation_ddd" parent="limp_contract.menu_limp_contract_conf" name="Observation / Recommendation DDD"/>
+
+    <menuitem id="observation_recommendation_ddd_conf" parent="observation_recommendation_ddd" name="Observation / Recommendation DDD" action="action_observation_recommendation_ddd"/>
+
+</odoo>

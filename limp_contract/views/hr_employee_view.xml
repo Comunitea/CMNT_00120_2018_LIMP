@@ -9,6 +9,16 @@
             <field name="job_id" position="before">
                 <field name="title"/>
             </field>
+            <notebook>
+                <page name="public" string="DDD y Legionella Information">
+                    <group>
+                        <field name="place_completion_course"/>
+                        <field name="date_completion_course"/>
+                        <field name="bpm_card_basic_level"/>
+                        <field name="bpm_card_qualified_level"/>
+                    </group>
+                </page>
+            </notebook>
         </field>
     </record>
 
@@ -20,6 +30,8 @@
         <field name="arch" type="xml">
             <field name="company_id" position="before">
                 <field name="title"/>
+                <field name="bpm_card_basic_level"/>
+                <field name="bpm_card_qualified_level"/>
             </field>
         </field>
     </record>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="py3o_manual_ddd_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Manual DDD</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">manual_ddd_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/MANUAL_DDD_BASE.odt</field>
+        </record>
+
+        <record id="manual_ddd_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">manual_ddd_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_manual_ddd_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+    </data>
+</odoo>

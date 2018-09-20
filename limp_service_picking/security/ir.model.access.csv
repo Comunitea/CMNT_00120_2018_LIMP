@@ -17,3 +17,11 @@
 "access_timesheet_clean","timesheet_clean_grp","limp_distribution_costs.model_timesheet","group_cleaning_user",1,1,1,1
 "access_service_picking_valorization_rel_clean","service_picking_valorization_rel_waste_clean_grp","model_service_picking_valorization_rel","group_cleaning_user",1,0,0,0
 "access_analytic_account_employees","analytic_account_employees_all","model_analytic_account_employees",,1,1,1,0
+"access_types_ddd","types_ddd_all","model_types_ddd","group_cleaning_user",1,1,1,1
+"access_detected_species","detected_species_all","model_detected_species","group_cleaning_user",1,1,1,1
+"access_products_used","products_used_all","model_products_used","group_cleaning_user",1,1,1,1
+"access_legionella_samples","legionella_samples_all","model_legionella_samples","group_cleaning_user",1,1,1,1
+"access_type_of_installation_legionella","type_of_installation_legionella_all","model_type_of_installation_legionella","group_cleaning_user",1,1,1,1
+"access_machinery_to_employ","machinery_to_employ_all","model_machinery_to_employ","group_cleaning_user",1,1,1,1
+"access_equipment_to_be_used","equipment_to_be_used_all","model_equipment_to_be_used","group_cleaning_user",1,1,1,1
+"access_observation_recommendation_ddd","observation_recommendation_ddd_all","model_observation_recommendation_ddd","group_cleaning_user",1,1,1,1

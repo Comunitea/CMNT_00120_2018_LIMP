@@ -68,7 +68,21 @@
         'views/account_journal_view.xml',
         'views/account_invoice_view.xml',
         'views/account_analytic_distribution.xml',
-        'wizard/stock_invoice_onshipping.xml'
+        'wizard/stock_invoice_onshipping.xml',
+        'views/stock_service_picking_ddd.xml',
+        'data/types_ddd.xml',
+        'views/detected_species.xml',
+        'views/products_used.xml',
+        'data/ir_sequence_data.xml',
+        'data/type_of_installation_legionella.xml',
+        'views/legionella_samples.xml',
+        'views/types_ddd_view.xml',
+        'limp_service_picking_report.xml',
+        'views/equipment_to_be_used_view.xml',
+        'views/machinery_to_employ_view.xml',
+        'views/observation_recommendation_ddd_view.xml'
+
+
     ],
     'installable': True,
 

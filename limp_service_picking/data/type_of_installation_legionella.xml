@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="type.of.installation.legionella" id="fixed">
+            <field name="name">Fixed</field>
+        </record>
+        <record model="type.of.installation.legionella" id="SHW">
+            <field name="name">Sanitary Hot Water</field>
+        </record>
+        <record model="type.of.installation.legionella" id="cistern">
+            <field name="name">Cistern</field>
+        </record>
+        <record model="type.of.installation.legionella" id="towers">
+            <field name="name">Towers</field>
+        </record>
+    </data>
+</odoo>

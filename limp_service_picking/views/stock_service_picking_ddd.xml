@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <record model="ir.ui.view" id="stock_service_picking_form_ddd">
+            <field name="name">stock.sporadic.service.picking.ddd.form</field>
+            <field name="model">stock.service.picking</field>
+            <field name="inherit_id" ref="stock_sporadic_service_picking_form"/>
+            <field name="arch" type="xml">
+
+                <field name="description" position="after">
+                    <field name="treatment_applicator1"/>
+                    <field name="treatment_applicator2"/>
+                    <field name="technical_support"/>
+                    <field name ="n_cert"/>
+                </field>
+                <field name="picking_date" position="after">
+                    <field name="start_time" widget="float_time"/>
+                    <field name="end_time" widget="float_time"/>
+                    <field name="start_time_str" invisible="1"/>
+                    <field name="end_time_str" invisible="1"/>
+                    <field name="type_ddd_ids" widget="many2many_checkboxes"/>
+                </field>
+                    <notebook>
+                        <page string="DDD" attrs="{'invisible': [('dr', '=', False), ('ds', '=', False), ('df', '=', False)]}" >
+                            <group>
+                                <field name="detected_species_id"/>
+                                <field name="products_used_id"/>
+                                <field name="monitoring_situation"/>
+                                <field name="dr" invisible="1"/>
+                                <field name="df" invisible="1"/>
+                                <field name="ds" invisible="1"/>
+                                <field name="lg" invisible="1"/>
+                            </group>
+                        </page>
+                        <page string="Legionella" attrs="{'invisible': [('lg', '!=', True)]}">
+                            <group>
+                                <field name="type_of_installation_id"/>
+                                <field name="date_of_notification"/>
+                                <field name="legionella_products_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+            </field>
+        </record>
+</odoo>
