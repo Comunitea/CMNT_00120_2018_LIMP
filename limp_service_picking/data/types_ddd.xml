@@ -8,12 +8,12 @@
         </record>
         <record model="types.ddd" id="disinfection">
             <field name="name">Desinsectación</field>
-            <field name="code">desinsectación</field>
+            <field name="code">desinsectacion</field>
             <field name="vectors_to_fight_id">Insectos rastreros - Insectos voladores</field>
         </record>
         <record model="types.ddd" id="disinsection">
             <field name="name">Desinfección</field>
-            <field name="code">desinfección</field>
+            <field name="code">desinfeccion</field>
             <field name="vectors_to_fight_id">Microorganismos</field>
         </record>
 

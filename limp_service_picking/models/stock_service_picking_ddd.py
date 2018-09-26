@@ -26,8 +26,6 @@ class StockServicePickingDDD(models.Model):
 
     observations_recommendations=fields.Many2many('observation.recommendation.ddd', string ="Observations/Recommendations")
 
-
-
     dr=fields.Boolean(compute ="_get_dr")
     df=fields.Boolean(compute ="_get_dr")
     ds=fields.Boolean(compute ="_get_dr")
@@ -66,21 +64,19 @@ class StockServicePickingDDD(models.Model):
 
 
 
-
-
     @api.depends('type_ddd_ids')
     def _get_dr(self):
 
         for pickin in self:
             type_ddd_str=u','.join([x.code for x in pickin.type_ddd_ids])
 
-            if "deratization" in type_ddd_str:
+            if "desratizacion" in type_ddd_str:
                 pickin.dr=True
 
-            if "disinfection" in type_ddd_str:
+            if "desinfeccion" in type_ddd_str:
                 pickin.df=True
 
-            if "disinsection" in type_ddd_str:
+            if "desinsectacion" in type_ddd_str:
                 pickin.ds=True
 
             if "legionella" in type_ddd_str:

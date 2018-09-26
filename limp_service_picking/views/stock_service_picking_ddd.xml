@@ -20,8 +20,8 @@
                     <field name="end_time_str" invisible="1"/>
                     <field name="type_ddd_ids" widget="many2many_checkboxes"/>
                 </field>
-                    <notebook>
-                        <page string="DDD" attrs="{'invisible': [('dr', '=', False), ('ds', '=', False), ('df', '=', False)]}" >
+                    <notebook position="inside">
+                        <page string="DDD" attrs="{'invisible': [('dr', '!=', True), ('ds', '!=', True), ('df', '!=', True)]}" >
                             <group>
                                 <field name="detected_species_id"/>
                                 <field name="products_used_id"/>
