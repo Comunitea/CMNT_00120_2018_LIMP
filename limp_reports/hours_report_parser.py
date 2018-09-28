@@ -111,7 +111,7 @@ class Parser(report_sxw.rml_parse):
         analytic_ids = [x.analytic_id.id for x in self.pool.get('account.analytic.invoice.concept.rel').browse(self.cr, self.uid, analytic_concept_ids)]
         lines.extend(self.pool.get('limp.contract.line.home.help').browse(self.cr, self.uid, self.pool.get('limp.contract.line.home.help').search(self.cr, self.uid, [('analytic_acc_id', 'in', analytic_ids),('state', 'in', ['open','close']),('date_start', '<=', end_date),'|',('date', '=', False),('date', '>=', start_date)])))
         #lines.extend(self.pool.get('limp.contract.line.cleaning').browse(self.cr, self.uid, self.pool.get('limp.contract.line.cleaning').search(self.cr, self.uid, [('analytic_acc_id', 'in', analytic_ids),('state', 'in', ['open','close']),('date_start', '<=', end_date),'|',('date', '=', False),('date', '>=', start_date)])))
-        lines.sort(lambda x,y: cmp(x.customer_contact_id and x.customer_contact_id.name or x.address_id.name,y.customer_contact_id and y.customer_contact_id.name or y.address_id.name ) )
+        lines.sort(lambda x,y: cmp((x.customer_contact_id and x.customer_contact_id.name or x.address_id.name) + (x.customer_contact_id and x.customer_contact_id.first_name or x.address_id.first_name),(y.customer_contact_id and y.customer_contact_id.name or y.address_id.name)  + (y.customer_contact_id and y.customer_contact_id.first_name or y.address_id.first_name)))
         return lines
 
     def _get_contract_line_hours(self, contract_line):

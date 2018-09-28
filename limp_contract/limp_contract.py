@@ -177,8 +177,6 @@ class limp_contract(osv.osv):
                     self.pool.get('limp.contract.line.home.help').write(cr, uid, [x.id for x in contract.home_help_line_ids], {'date_start': vals['date_start']})
                 if contract.cleaning_line_ids:
                     self.pool.get('limp.contract.line.cleaning').write(cr, uid, [x.id for x in contract.cleaning_line_ids], {'date_start': vals['date_start']})
-                if contract.remuneration_ids:
-                    self.pool.get('remuneration').write(cr, 1, [x.id for x in contract.remuneration_ids], {'date': vals['date_start']})
 
         if vals.get('privacy',False):
             for contract in self.browse(cr, uid, ids):

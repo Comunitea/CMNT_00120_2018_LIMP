@@ -150,7 +150,7 @@ class limp_contract_line_cleaning(osv.osv):
         """Updates occupations_ids if end_date is set"""
         if context is None: context = {}
         res = super(limp_contract_line_cleaning, self).write(cr, uid, ids, vals, context=context)
-        if vals.get('date', False) or (vals.get('state', False) and vals['state'] in ('open', 'cancelled')) or vals.get('date_start', False):
+        if vals.get('date', False) or (vals.get('state', False) and vals['state'] in ('open', 'cancelled')):
             occupation_ids = []
             all_remuneration_ids = []
             remuneration_ids_wo_dateto = []
@@ -173,8 +173,6 @@ class limp_contract_line_cleaning(osv.osv):
                 self.pool.get('account.analytic.occupation').write(cr, uid, occupation_ids, occupation_vals)
 
             if all_remuneration_ids:
-                if vals.get('date_start', False):
-                    self.pool.get('remuneration').write(cr, 1, all_remuneration_ids, {'date': vals['date_start']})
                 if vals.get('date', False) and remuneration_ids_wo_dateto:
                     self.pool.get('remuneration').write(cr, 1, remuneration_ids_wo_dateto, {'date_to': vals['date']})
 
