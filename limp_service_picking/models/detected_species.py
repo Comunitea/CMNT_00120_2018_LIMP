@@ -10,6 +10,7 @@ class DetectedSpecies(models.Model):
     level_mild=fields.Boolean('Mild')
     level_medium=fields.Boolean('Medium')
     level_high=fields.Boolean('High')
+    picking_id= fields.Many2one("stock.service.picking", "Service Picking")
 
 
     @api.onchange('level_mild')

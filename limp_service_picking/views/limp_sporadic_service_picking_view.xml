@@ -147,6 +147,8 @@
                                 <field name="payment_mode" widget="selection"/>
                                 <field name="invoice_type"/>
                                 <field name="invoice_date"/>
+                                <field name="signer_name"/>
+                                <field name="signer_id"/>
                             </group>
                         </page>
                         <page string="Consumptions">

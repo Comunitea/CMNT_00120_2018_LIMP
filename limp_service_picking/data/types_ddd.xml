@@ -5,21 +5,25 @@
             <field name="name">Desratizacion</field>
             <field name="code">desratizacion</field>
             <field name="vectors_to_fight_id">Roedores</field>
+            <field name="service_type">ddd</field>
         </record>
         <record model="types.ddd" id="disinfection">
             <field name="name">Desinsectación</field>
             <field name="code">desinsectacion</field>
             <field name="vectors_to_fight_id">Insectos rastreros - Insectos voladores</field>
+            <field name="service_type">ddd</field>
         </record>
         <record model="types.ddd" id="disinsection">
             <field name="name">Desinfección</field>
             <field name="code">desinfeccion</field>
             <field name="vectors_to_fight_id">Microorganismos</field>
+            <field name="service_type">ddd</field>
         </record>
 
         <record model="types.ddd" id="legionella">
             <field name="name">Legionella</field>
             <field name="code">legionella</field>
+            <field name="service_type">legionella</field>
         </record>
 
     </data>

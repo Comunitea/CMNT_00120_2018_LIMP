@@ -5,6 +5,5 @@ class EquipmentToBeUsed(models.Model):
 
     _name = 'equipment.to.be.used'
 
-    name=fields.Char("Equipment")
+    name=fields.Char("Equipment", required=True)
     purpose_equipment=fields.Text("Purpose Equipment")
-    types_ddd_id = fields.Many2one('types.ddd', string="Types DDD")

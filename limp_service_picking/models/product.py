@@ -34,3 +34,10 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     tax_product = fields.Boolean('Tax product')
+    biocide_type = fields.Char('Biocide type', size=150)
+    active_matter_percent = fields.Float('Active Mater (%)',
+                                           digits=(16, 3))
+    registration_no = fields.Char('Registration no.', size=150)
+    application_method = fields.Char('Application method', size=150)
+    dosis = fields.Float('Dosis (%)', digits=(16, 3))
+    security_term = fields.Char('Security term', size=150)

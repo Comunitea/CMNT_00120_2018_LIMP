@@ -10,6 +10,7 @@
                     <field name="name"/>
                     <field name="code"/>
                     <field name="vectors_to_fight"/>
+                    <field name="service_type"/>
                 </group>
                 <notebook>
                     <page string= "Machinery and Equipment">

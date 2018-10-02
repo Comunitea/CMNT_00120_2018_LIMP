@@ -4,7 +4,8 @@ from odoo import models, fields, api
 class StockServicePickingDDD(models.Model):
     _inherit = 'stock.service.picking'
 
-    n_cert=fields.Integer('Nº certificate')
+    n_cert=fields.Char('Nº certificate Legionella', readonly=True)
+    n_cert_ddd=fields.Char('Nº certificate DDD', readonly=True)
     type_ddd_ids=fields.Many2many('types.ddd', string='Types ddd')
     treatment_applicator1=fields.Many2one('hr.employee', string='Treatment Applicator 1')
     treatment_applicator2=fields.Many2one('hr.employee', string='Treatment Applicator 2')
@@ -15,12 +16,14 @@ class StockServicePickingDDD(models.Model):
 
     start_time_str=fields.Char(compute='_str_date')
     end_time_str=fields.Char(compute='_str_date')
+    signer_name = fields.Char("Signer Name")
+    signer_id = fields.Char("Signer VAT")
 
     #Page DDD
 
-    detected_species_id=fields.Many2many('detected.species'  , string="Detected Species")
+    detected_species_id=fields.One2many('detected.species',  'picking_id', string="Detected Species")
 
-    products_used_id=fields.Many2many('products.used', string ="Products Used")
+    products_used_id=fields.One2many('products.used', 'picking_id', string ="Products Used")
 
     monitoring_situation=fields.Char('Monitoring situation')
 
@@ -81,6 +84,43 @@ class StockServicePickingDDD(models.Model):
 
             if "legionella" in type_ddd_str:
                 pickin.lg=True
+
+    @api.model
+    def create(self, vals):
+        picking = super(StockServicePickingDDD, self).create(vals)
+        if vals.get('type_ddd_ids'):
+            create_ddd_seq = False
+            for service in picking.type_ddd_ids:
+                if not create_ddd_seq and service.service_type == 'ddd':
+                    create_ddd_seq = True
+                    picking.n_cert_ddd = \
+                        self.env['ir.sequence'].\
+                        next_by_code('treatment.certificate.ddd')
+                elif service.service_type == 'legionella':
+                    picking.n_cert = \
+                        self.env['ir.sequence'].\
+                        next_by_code('treatment.certificate.legionella')
+
+        return picking
+
+    @api.multi
+    def write(self, vals):
+        res = super(StockServicePickingDDD, self).write(vals)
+        if vals.get('type_ddd_ids'):
+            for picking in self:
+                for service in picking.type_ddd_ids:
+                    if service.service_type == 'ddd' and \
+                            not picking.n_cert_ddd:
+                        picking.n_cert_ddd = \
+                            self.env['ir.sequence'].\
+                            next_by_code('treatment.certificate.ddd')
+                    elif service.service_type == 'legionella' \
+                            and not picking.n_cert:
+                        picking.n_cert = \
+                            self.env['ir.sequence'].\
+                            next_by_code('treatment.certificate.legionella')
+
+        return res
 
 
 

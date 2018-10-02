@@ -10,7 +10,6 @@
                     <group>
                         <field name="periodicity_reviews"/>
                         <field name="type_ddd_ids" widget="many2many_checkboxes"/>
-                        <field name="technical_team" domain="['|', ('bpm_card_basic_level', '=', True), ('bpm_card_qualified_level', '=', True)]"/>
                     </group>
                 </page>
             </field>

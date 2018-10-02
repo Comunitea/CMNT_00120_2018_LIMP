@@ -13,22 +13,6 @@
             <field name="warranty" position="after">
                 <field name="tax_product"/>
             </field>
-            <notebook position="inside">
-                <page string="DDD">
-                    <group>
-                        <group>
-                            <field name="registration_no"/>
-                            <field name="biocide_type"/>
-                            <field name="application_method"/>
-                        </group>
-                        <group>
-                            <field name="security_term"/>
-                            <field name="active_matter_percent"/>
-                            <field name="dosis"/>
-                        </group>
-                    </group>
-                </page>
-            </notebook>
         </field>
     </record>
 

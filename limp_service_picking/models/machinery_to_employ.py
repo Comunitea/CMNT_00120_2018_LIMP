@@ -5,6 +5,5 @@ class MachineryToEmploy(models.Model):
 
     _name = 'machinery.to.employ'
 
-    name=fields.Char("Equipment")
+    name=fields.Char("Equipment", required=True)
     purpose_machinery=fields.Text("Purpose machinery")
-    types_ddd_id = fields.Many2one("Types DDD")

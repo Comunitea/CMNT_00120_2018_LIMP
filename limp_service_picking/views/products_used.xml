@@ -6,10 +6,10 @@
         <field name="model">products.used</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable="top">
+                <field name="product_id"/>
                 <field name="treated_area"/>
                 <field name="type_of_biocide"/>
-                <field name="name"/>
                 <field name="active_matter"/>
                 <field name="registration_number"/>
                 <field name="application_method"/>
@@ -28,7 +28,7 @@
                 <group>
                     <field name="treated_area"/>
                     <field name="type_of_biocide"/>
-                    <field name="name"/>
+                    <field name="product_id"/>
                     <field name="active_matter"/>
                     <field name="registration_number"/>
                     <field name="application_method"/>
@@ -38,18 +38,5 @@
             </form>
         </field>
     </record>
-
-
-
-      <record id="action_products_used_ddd" model="ir.actions.act_window">
-        <field name="name">Products Used conf</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">products.used</field>
-        <field name="view_type">form</field>
-    </record>
-
-    <menuitem id="products_used" parent="limp_contract.menu_limp_contract_conf" name="Products Used DDD"/>
-
-    <menuitem id="products_used_conf" parent="products_used" name="Products Used DDD" action="action_products_used_ddd"/>
 
 </odoo>

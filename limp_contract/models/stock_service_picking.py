@@ -56,3 +56,5 @@ class StockServicePicking(models.Model):
             self.payment_term = contract.payment_term_id
             self.privacy = contract.privacy
             self.address_tramit_id = contract.address_tramit_id
+            self.type_ddd_ids = [(6, 0, contract.type_ddd_ids.ids)]
+            self.tag_ids = [(6, 0, contract.tag_ids.ids)]

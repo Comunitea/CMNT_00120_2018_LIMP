@@ -41,14 +41,16 @@
                             <field name="start_date"/>
                             <field name="contract_id" invisible="1"/>
                             <field name="contract_accounts" invisible="1"/>
-                            <field name="contract_line_id" domain="[('id', 'in', contract_accounts and contract_accounts[0] and contract_accounts[0][2] or False)]"/>
-                            <field name="interval"/>
-                        </group>
-                        <group>
                             <field name="interval_count"/>
                             <field name="last_execution_date"/>
-                            <field name="next_execution_date"/>
                             <field name="end_date"/>
+                        </group>
+                        <group>
+                            <field name="contract_line_id" domain="[('id', 'in', contract_accounts and contract_accounts[0] and contract_accounts[0][2] or False)]"/>
+                            <field name="interval"/>
+                            <field name="next_execution_date"/>
+                            <field name="type_ddd_ids" widget="many2many_checkboxes"/>
+                            <field name="monitoring_situation"/>
                         </group>
                     </group>
                 </sheet>

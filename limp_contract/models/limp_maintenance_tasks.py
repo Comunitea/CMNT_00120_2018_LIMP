@@ -39,6 +39,8 @@ class MaintenanceTask(models.Model):
     contract_accounts = fields.Many2many('account.analytic.account', compute='_compute_analytic_accounts')
     next_execution_date = fields.Date('Next execution date', compute='_compute_next_execution_date')
     picking_ids = fields.One2many('stock.service.picking', 'maintenace_task_id', string="Picking history", readonly=True)
+    monitoring_situation=fields.Char("Monitoring Situation")
+    type_ddd_ids=fields.Many2many('types.ddd', string='Types ddd')
 
     @api.onchange('contract_id')
     def onchange_contract_id(self):
@@ -66,7 +68,9 @@ class MaintenanceTask(models.Model):
             else:
                 initial_date = datetime.strptime(task.last_execution_date, "%Y-%m-%d")
 
-            if task.interval == "3":
+            if not task.last_execution_date:
+                exec_date = task.start_date
+            elif task.interval == "3":
                 exec_date = (initial_date + relativedelta(days=task.interval_count)).strftime('%Y-%m-%d')
             elif task.interval == "2":
                 exec_date = (initial_date + relativedelta(weeks=task.interval_count)).strftime('%Y-%m-%d')
@@ -85,7 +89,7 @@ class MaintenanceTask(models.Model):
                     raise UserError(u'No puede poner un fecha fin a una tarea de mantenimiento anterior a la fecha de última ejecución, si tiene que ser así escriba manualmente una fecha de última ejecución anterior y recuerde eliminar el albarán de mantenimiento que ya debe estar generado con una fecha posterior a la de finalización')
         return super(MaintenanceTask, self).write(vals)
 
-    @api.model
+    @api.multi
     def execute_maintenace(self):
         now = datetime.today()
         to_compare = now + relativedelta(days=45)
@@ -103,7 +107,7 @@ class MaintenanceTask(models.Model):
                         'picking_type': 'sporadic',
                         'planified': True,
                         'maintenance': True,
-                        'contract_id': contract_id,
+                        'contract_id': contract.id,
                         'picking_date': task.next_execution_date,
                         'payment_type': contract.payment_type_id and contract.payment_type_id.id or False,
                         'payment_term': contract.payment_term_id and contract.payment_term_id.id or False,
@@ -119,8 +123,12 @@ class MaintenanceTask(models.Model):
                         'no_quality': contract.no_quality,
                         'maintenace_task_id': task.id,
                         'parent_id': task.contract_line_id and task.contract_line_id.id or contract.analytic_account_id.id,
+                        'monitoring_situation': task.monitoring_situation,
+                        'type_ddd_ids': [(6, 0, task.type_ddd_ids.ids)],
+                        'tag_ids': [(6, 0, contract.tag_ids.ids)]
                     })
                     task.write({'last_execution_date': task.next_execution_date})
+                    end_tasks.append(task.id)
                 else:
                     end_tasks.append(task.id)
 
