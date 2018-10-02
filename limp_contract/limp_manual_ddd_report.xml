@@ -21,5 +21,43 @@
             <field eval="True" name="object"/>
         </record>
 
+        <record id="py3o_incidencias_acciones_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Registro de Incidencias y Acciones Correctoras</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">incidencias_acciones_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/registro_incidencias_acciones_correctoras.odt</field>
+        </record>
+
+        <record id="incidencias_acciones_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">incidencias_acciones_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_incidencias_acciones_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+        <record id="py3o_anexo_PCCS_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Anexo PCCS Legionella</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">anexo_pccs_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/ANEXO_PCCS_LEGIONELLA.odt</field>
+        </record>
+
+        <record id="anexo_PCCS_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">anexo_pccs_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_anexo_PCCS_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
     </data>
 </odoo>

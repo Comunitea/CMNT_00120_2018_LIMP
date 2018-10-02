@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields
+from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 
 
@@ -41,3 +41,43 @@ class ProductProduct(models.Model):
     application_method = fields.Char('Application method', size=150)
     dosis = fields.Float('Dosis (%)', digits=(16, 3))
     security_term = fields.Char('Security term', size=150)
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        if args is None:
+            args = []
+        for arg in args:
+            if isinstance(arg, list) and 'in' in arg[1]:
+                ids = []
+                change = False
+                for elem in arg[2]:
+                    if isinstance(elem, list) and len(elem) == 3 and elem[1]:
+                        change = True
+                        ids.append(elem[1])
+                    elif isinstance(elem, list) and len(elem) == 3 \
+                            and not elem[1] and isinstance(elem[2], list):
+                        change = True
+                        ids.extend(elem[2])
+                if change:
+                    arg[2] = ids
+        return super(ProductProduct, self).\
+            name_search(name=name, args=args, operator=operator, limit=limit)
+
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        for arg in args:
+            if isinstance(arg, list) and 'in' in arg[1]:
+                ids = []
+                change = False
+                for elem in arg[2]:
+                    if isinstance(elem, list) and len(elem) == 3 and elem[1]:
+                        change = True
+                        ids.append(elem[1])
+                    elif isinstance(elem, list) and len(elem) == 3 \
+                            and not elem[1] and isinstance(elem[2], list):
+                        change = True
+                        ids.extend(elem[2])
+                if change:
+                    arg[2] = ids
+        return super(ProductProduct, self).search(args, offset, limit, order,
+                                                  count=count)

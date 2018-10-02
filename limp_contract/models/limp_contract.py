@@ -316,10 +316,9 @@ class LimpContract(models.Model):
            'default_privacy': self.privacy,
            'default_address_tramit_id': self.address_tramit_id.id,
            'default_contract_id': self.id,
-           'default_type_ddd_ids': [(6, 0, self.type_ddd_ids.ids)]
-
+           'default_type_ddd_ids': [(6, 0, self.type_ddd_ids.ids)],
+           'default_used_product_ids': [(6, 0, self.used_product_ids.ids)]
         })
-        print "CONTEXT: ", action['context']
         action['domain'] = "[('id','in', ["+','.join(map(str, self.stock_sporadic_service_picking_ids._ids))+"])]"
         return action
 

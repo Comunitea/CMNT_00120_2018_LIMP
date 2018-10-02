@@ -6,12 +6,15 @@
             <field name="model">limp.contract</field>
             <field name="inherit_id" ref="limp_contract_form"/>
             <field name="arch" type="xml">
-                <page string="General">
-                    <group>
-                        <field name="periodicity_reviews"/>
-                        <field name="type_ddd_ids" widget="many2many_checkboxes"/>
-                    </group>
-                </page>
+                <notebook position="inside">
+                    <page string="Legionella &amp; DDD">
+                        <group>
+                            <field name="periodicity_reviews"/>
+                            <field name="type_ddd_ids" widget="many2many_checkboxes"/>
+                            <field name="used_product_ids"/>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
 </odoo>

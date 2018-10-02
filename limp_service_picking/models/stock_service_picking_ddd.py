@@ -39,7 +39,8 @@ class StockServicePickingDDD(models.Model):
 
     type_of_installation_id=fields.Many2one('type.of.installation.legionella', string="Type of installation legionella")
     date_of_notification=fields.Date(string ="Date of notification", help="Date of notification to the competent autority")
-    legionella_products_id=fields.Many2many('legionella.samples', string="Legionella samples")
+    legionella_products_id=fields.One2many('legionella.samples', 'picking_id', string="Legionella samples")
+    used_product_ids = fields.Many2many('product.product', string="Products used")
 
     @api.multi
     def _str_date(self):

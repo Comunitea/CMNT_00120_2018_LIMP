@@ -2,16 +2,16 @@
 <odoo>
     <data>
         <record model="type.of.installation.legionella" id="fixed">
-            <field name="name">Fixed</field>
+            <field name="name">Fijo</field>
         </record>
         <record model="type.of.installation.legionella" id="SHW">
-            <field name="name">Sanitary Hot Water</field>
+            <field name="name">ACS</field>
         </record>
         <record model="type.of.installation.legionella" id="cistern">
-            <field name="name">Cistern</field>
+            <field name="name">Aljibe</field>
         </record>
         <record model="type.of.installation.legionella" id="towers">
-            <field name="name">Towers</field>
+            <field name="name">Torres</field>
         </record>
     </data>
 </odoo>

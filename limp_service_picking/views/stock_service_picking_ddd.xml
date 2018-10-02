@@ -37,7 +37,16 @@
                             <group>
                                 <field name="type_of_installation_id"/>
                                 <field name="date_of_notification"/>
-                                <field name="legionella_products_id"/>
+                                <field name="used_product_ids"/>
+                                <field name="legionella_products_id">
+                                    <tree editable="top">
+                                        <field name="product_id" domain="[('id', 'in', parent.used_product_ids)]"/>
+                                        <field name="code"/>
+                                        <field name="registration_number"/>
+                                        <field name="type_product"/>
+                                        <field name="pick_up_date"/>
+                                    </tree>
+                                </field>
                             </group>
                         </page>
                     </notebook>
