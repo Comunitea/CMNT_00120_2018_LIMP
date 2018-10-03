@@ -59,5 +59,81 @@
             <field eval="True" name="object"/>
         </record>
 
+        <record id="py3o_CONTROL_TEMP_PTOS_TERMINALES_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Control mensual temperatura puntos terminales</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">control_temp_puntos_terminales_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/CONTROL_MENSUAL_TEMPERATURA_PUNTOS_TERMINALES.odt</field>
+        </record>
+
+        <record id="CONTROL_TEMP_PTOS_TERMINALES_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">control_temp_puntos_terminales_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_CONTROL_TEMP_PTOS_TERMINALES_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+        <record id="py3o_CONTROL_CLORO_DIARIO_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Control registros de cloro diario</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">control_cl_diario_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/CONTROL_CLORO_DIARIO.odt</field>
+        </record>
+
+        <record id="CONTROL_CLORO_DIARIO_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">control_cl_diario_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_CONTROL_CLORO_DIARIO_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+        <record id="py3o_CONTROL_CLORO_SEMANAL_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Control registros de cloro semanal</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">control_cl_semanal_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/CONTROL_CLORO_SEMANAL.odt</field>
+        </record>
+
+        <record id="CONTROL_CLORO_SEMANAL_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">control_cl_semanal_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_CONTROL_CLORO_SEMANAL_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+        <record id="py3o_CONTROL_MANTENIMIENTO_TORRES_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Control registros mantenimiento torres</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">control_mantenimiento_torres_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/CONTROL_MANTENIMIENTO_TORRES.odt</field>
+        </record>
+
+        <record id="CONTROL_MANTENIMIENTO_TORRES_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">control_mantenimiento_torres_report</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_CONTROL_MANTENIMIENTO_TORRES_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
     </data>
 </odoo>
