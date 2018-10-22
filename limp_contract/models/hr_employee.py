@@ -29,3 +29,5 @@ class HrEmployee(models.Model):
 
     bpm_card_basic_level=fields.Boolean(string="Biocide product manipulator card (basic level-applicator)")
     bpm_card_qualified_level=fields.Boolean(string="Biocide product manipulator card (Qualified level-technical responsible)")
+
+    others=fields.Char(string="Others")

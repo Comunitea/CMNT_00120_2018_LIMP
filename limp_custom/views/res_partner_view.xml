@@ -12,19 +12,24 @@
                 <field name="picture" widget="image"/>
             </field>
             <field name="title" position="after">
-                <field name="colege_num"/>
+                <field name="colege_num" attrs="{'invisible': [('company_type', '=', 'company')]}"/>
             </field>
             <xpath expr="//page[@name='internal_notes']//field[@name='comment']" position="before">
                 <group>
                     <field name="add_info"/>
                 </group>
             </xpath>
-            <field name="fax" position="after">
-                <field name="attention_of"/>
+            <field name="colege_num" position="before">
+                <group>
+                    <field name="attention_of"/>
+                </group>
             </field>
             <xpath expr="//field[@name='child_ids']/form//field[@name='email']" position="before">
                 <field name="attention_of"/>
             </xpath>
+            <field name="phone" position="before">
+                <field name="ref"/>
+            </field>
         </field>
     </record>
 
@@ -53,7 +58,6 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="company_id"/>
-                <field name="ref"/>
             </field>
             <filter name="supplier" position="after">
                 <filter string="With Code" name="with_code" domain="[('ref','!=',False)]"/>
@@ -67,9 +71,9 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="account.view_partner_property_form"/>
         <field name="arch" type="xml">
-            <field name="lang" position="after">
+            <field name="name" position="before" >
                 <group attrs="{'invisible': [('vat', '!=', False)]}">
-                    <label string="FALTA CIF"/>
+                    <label style="color:red; font-size: 20px" string="FALTA CIF"/>
                 </group>
             </field>
         </field>

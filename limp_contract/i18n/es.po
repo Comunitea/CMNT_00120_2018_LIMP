@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-20 09:54+0000\n"
-"PO-Revision-Date: 2018-09-20 09:54+0000\n"
+"POT-Creation-Date: 2018-10-08 16:09+0000\n"
+"PO-Revision-Date: 2018-10-08 16:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -203,9 +203,19 @@ msgid "Analytic account invoice concepts"
 msgstr "Conceptos de factura en cuentas analíticas"
 
 #. module: limp_contract
+#: model:ir.actions.report.xml,name:limp_contract.py3o_anexo_PCCS_report
+msgid "Anexo PCCS Legionella"
+msgstr "Anexo PCCS Legionella"
+
+#. module: limp_contract
 #: selection:limp.contract,periodicity:0
 #: selection:limp.contract.line.task.rel,freq:0
 msgid "Annual"
+msgstr "Anual"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity_reviews:0
+msgid "Anual"
 msgstr "Anual"
 
 #. module: limp_contract
@@ -250,6 +260,16 @@ msgstr "Importe beneficiario"
 #: selection:limp.contract.line.task.rel,freq:0
 msgid "Biannual"
 msgstr "Semestral"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity_reviews:0
+msgid "Bianual"
+msgstr "Bianual"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity_reviews:0
+msgid "Bimensual"
+msgstr "Bimensual"
 
 #. module: limp_contract
 #: selection:limp.contract.line.task.rel,freq:0
@@ -635,6 +655,11 @@ msgid "Credit"
 msgstr "Haber"
 
 #. module: limp_contract
+#: selection:limp.contract,periodicity_reviews:0
+msgid "Cuatrimestral"
+msgstr "Cuatrimestral"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_currency_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_currency_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_currency_id
@@ -671,7 +696,7 @@ msgstr "Cliente"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.view_employee_form_add_fields
 msgid "DDD y Legionella Information"
-msgstr "DDD y Legionella Information"
+msgstr "DDD y Legionella Información"
 
 #. module: limp_contract
 #: selection:maintenance.task,interval:0
@@ -919,7 +944,6 @@ msgstr "Viernes"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
-#: model:ir.ui.view,arch_db:limp_contract.limp_contract_manual_ddd_form
 msgid "General"
 msgstr "General"
 
@@ -1278,6 +1302,11 @@ msgid "Last execution date"
 msgstr "Últ. ejecución"
 
 #. module: limp_contract
+#: model:ir.ui.view,arch_db:limp_contract.limp_contract_manual_ddd_form
+msgid "Legionella & DDD"
+msgstr "Legionella & DDD"
+
+#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_limp_contract
 msgid "Limpergal Contracts"
 msgstr "Contratos Limpergal"
@@ -1363,12 +1392,17 @@ msgstr "Tareas mantenimiento"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_tree
 msgid "Manager"
-msgstr "Gestor"
+msgstr "Responsable"
 
 #. module: limp_contract
 #: model:ir.actions.report.xml,name:limp_contract.py3o_manual_ddd_report
 msgid "Manual DDD"
 msgstr "Manual DDD"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity_reviews:0
+msgid "Mensual"
+msgstr "Mensual"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_ids
@@ -1381,6 +1415,11 @@ msgstr "Mensajes"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_monday
 msgid "Monday"
 msgstr "Lunes"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_monitoring_situation
+msgid "Monitoring Situation"
+msgstr "Situación de monitoreo"
 
 #. module: limp_contract
 #: selection:limp.incidence,periodicity:0
@@ -1537,6 +1576,11 @@ msgid "Other expenses"
 msgstr "Otros gastos"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_hr_employee_others
+msgid "Others"
+msgstr "Otros"
+
+#. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_task_search
 msgid "Parent"
 msgstr "Padre"
@@ -1652,6 +1696,11 @@ msgid "Private"
 msgstr "Privado"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_used_product_ids
+msgid "Products used"
+msgstr "Productos usados"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_project_count
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_project_count
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_project_count
@@ -1726,6 +1775,11 @@ msgstr "Trimestral"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_code
 msgid "Reference"
 msgstr "Referencia"
+
+#. module: limp_contract
+#: model:ir.actions.report.xml,name:limp_contract.py3o_incidencias_acciones_report
+msgid "Registro de Incidencias y Acciones Correctoras"
+msgstr "Registro de Incidencias y Acciones Correctoras"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.invoice_concept_form_add_more_replacements
@@ -1902,11 +1956,6 @@ msgid "Tasks"
 msgstr "Tareas"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_technical_team
-msgid "Technical Team"
-msgstr "Equipo técnico"
-
-#. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.view_account_analytic_account_search_add_delegation_id
 msgid "This account is contract"
 msgstr "Esta cuenta es un contrato"
@@ -2008,6 +2057,11 @@ msgid "Tramit address"
 msgstr "Unidad tramitadora"
 
 #. module: limp_contract
+#: selection:limp.contract,periodicity_reviews:0
+msgid "Trimestral"
+msgstr "Trimestral"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_tuesday
 msgid "Tuesday"
 msgstr "Martes"
@@ -2019,7 +2073,13 @@ msgid "Two months"
 msgstr "Bimensual"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_type_of_installation_id
+msgid "Type of installation legionella"
+msgstr "Tipo de instalación legionella"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_type_ddd_ids
+#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_type_ddd_ids
 msgid "Types ddd"
 msgstr "Tipos ddd"
 
@@ -2158,21 +2218,6 @@ msgid "account.invoice.report.custom"
 msgstr "account.invoice.report.custom"
 
 #. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
-msgid "annual"
-msgstr "anual"
-
-#. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
-msgid "biannual"
-msgstr "bianual"
-
-#. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
-msgid "bimonthly"
-msgstr "bimensual"
-
-#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_contract_to_invoice
 msgid "contract.to_invoice"
 msgstr "contrato.a_factura"
@@ -2181,11 +2226,6 @@ msgstr "contrato.a_factura"
 #: model:ir.model,name:limp_contract.model_equipment_to_be_used
 msgid "equipment.to.be.used"
 msgstr "equipment.to.be.used"
-
-#. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
-msgid "four-monthly"
-msgstr "cuatrimestral"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_ir_sequence
@@ -2211,16 +2251,6 @@ msgstr "machinery.to.employ"
 #: model:ir.model,name:limp_contract.model_maintenance_task
 msgid "maintenance.task"
 msgstr "maintenance.task"
-
-#. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
-msgid "monthly"
-msgstr "mensual"
-
-#. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
-msgid "quarterly"
-msgstr "trimestral"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_service_order_toinvoice

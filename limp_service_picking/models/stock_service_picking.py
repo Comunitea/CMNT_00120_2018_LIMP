@@ -282,7 +282,22 @@ class StockServicePicking(models.Model):
         return res
 
     def action_active(self):
-        return self.write({'state': 'active'})
+
+        for picking in self:
+            for service in picking.type_ddd_ids:
+                if service.service_type == 'ddd' and \
+                        not picking.n_cert_ddd:
+                    picking.n_cert_ddd = \
+                        self.env['ir.sequence'].\
+                        next_by_code('treatment.certificate.ddd')
+                elif service.service_type == 'legionella' \
+                        and not picking.n_cert:
+                    picking.n_cert = \
+                        self.env['ir.sequence'].\
+                        next_by_code('treatment.certificate.legionella')
+        self.write({'state': 'active'})
+        return
+
 
     def create_concept_lines(self):
         for order in self:

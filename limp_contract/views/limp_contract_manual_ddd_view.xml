@@ -8,9 +8,17 @@
             <field name="arch" type="xml">
                 <notebook position="inside">
                     <page string="Legionella &amp; DDD">
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="type_ddd_ids" widget="many2many_checkboxes"/>
+                            </group>
+                            <group name="group_right">
+                                <field name="periodicity_desratizacion"/>
+                                <field name="periodicity_desinsectacion"/>
+                                <field name="periodicity_desinfeccion"/>
+                            </group>
+                        </group>
                         <group>
-                            <field name="periodicity_reviews"/>
-                            <field name="type_ddd_ids" widget="many2many_checkboxes"/>
                             <field name="used_product_ids"/>
                         </group>
                     </page>

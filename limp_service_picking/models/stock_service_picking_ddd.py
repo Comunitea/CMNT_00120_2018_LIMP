@@ -37,7 +37,7 @@ class StockServicePickingDDD(models.Model):
 
     ##Page Legionella
 
-    type_of_installation_id=fields.Many2one('type.of.installation.legionella', string="Type of installation legionella")
+    type_of_installation_id=fields.Many2many('type.of.installation.legionella', string="Type of installation legionella")
     date_of_notification=fields.Date(string ="Date of notification", help="Date of notification to the competent autority")
     legionella_products_id=fields.One2many('legionella.samples', 'picking_id', string="Legionella samples")
     used_product_ids = fields.Many2many('product.product', string="Products used")
@@ -86,42 +86,7 @@ class StockServicePickingDDD(models.Model):
             if "legionella" in type_ddd_str:
                 pickin.lg=True
 
-    @api.model
-    def create(self, vals):
-        picking = super(StockServicePickingDDD, self).create(vals)
-        if vals.get('type_ddd_ids'):
-            create_ddd_seq = False
-            for service in picking.type_ddd_ids:
-                if not create_ddd_seq and service.service_type == 'ddd':
-                    create_ddd_seq = True
-                    picking.n_cert_ddd = \
-                        self.env['ir.sequence'].\
-                        next_by_code('treatment.certificate.ddd')
-                elif service.service_type == 'legionella':
-                    picking.n_cert = \
-                        self.env['ir.sequence'].\
-                        next_by_code('treatment.certificate.legionella')
 
-        return picking
-
-    @api.multi
-    def write(self, vals):
-        res = super(StockServicePickingDDD, self).write(vals)
-        if vals.get('type_ddd_ids'):
-            for picking in self:
-                for service in picking.type_ddd_ids:
-                    if service.service_type == 'ddd' and \
-                            not picking.n_cert_ddd:
-                        picking.n_cert_ddd = \
-                            self.env['ir.sequence'].\
-                            next_by_code('treatment.certificate.ddd')
-                    elif service.service_type == 'legionella' \
-                            and not picking.n_cert:
-                        picking.n_cert = \
-                            self.env['ir.sequence'].\
-                            next_by_code('treatment.certificate.legionella')
-
-        return res
 
 
 
