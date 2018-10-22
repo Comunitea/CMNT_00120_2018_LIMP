@@ -6,8 +6,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2018-10-08 16:09+0000\n"
 "PO-Revision-Date: 2018-10-08 16:09+0000\n"
+=======
+"POT-Creation-Date: 2018-10-03 10:03+0000\n"
+"PO-Revision-Date: 2018-10-03 10:03+0000\n"
+>>>>>>> 3a5560b50dfb5a2ab9bc78d26570220d2f481520
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,12 +28,12 @@ msgstr "# de Facturas"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_cleaning_lines_count
 msgid "# of cleaning_lines"
-msgstr "# Lin. limieza"
+msgstr "# Lin. limpieza"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_analytic_moves_count
 msgid "# of consummtions"
-msgstr "# of consummtions"
+msgstr "# de consumos"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_home_help_lines_count
@@ -38,27 +43,27 @@ msgstr "# Lin. ayuda dom."
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_maintenance_task_count
 msgid "# of maintenance tasks"
-msgstr "# of maintenance tasks"
+msgstr "# de tareas manten."
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_contract_note_count
 msgid "# of notes"
-msgstr "# of notes"
+msgstr "# de notas"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_active_remuneration_lines_count
 msgid "# of remunerations"
-msgstr "# of remunerations"
+msgstr "# de remuneraciones"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_service_picking_lines_count
 msgid "# of serv. pickings"
-msgstr "# of serv. pickings"
+msgstr "# de alb. servicio"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_timesheet_count
 msgid "# of timesheets"
-msgstr "# of timesheets"
+msgstr "# de partes de trabajo"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_count
@@ -588,6 +593,26 @@ msgid "Contracts pending to upamount over a month"
 msgstr "Contratos pendientes de subida en un mes"
 
 #. module: limp_contract
+#: model:ir.actions.report.xml,name:limp_contract.py3o_CONTROL_TEMP_PTOS_TERMINALES_report
+msgid "Control mensual temperatura puntos terminales"
+msgstr "Control mensual temperatura puntos terminales"
+
+#. module: limp_contract
+#: model:ir.actions.report.xml,name:limp_contract.py3o_CONTROL_CLORO_DIARIO_report
+msgid "Control registros de cloro diario"
+msgstr "Control registros de cloro diario"
+
+#. module: limp_contract
+#: model:ir.actions.report.xml,name:limp_contract.py3o_CONTROL_CLORO_SEMANAL_report
+msgid "Control registros de cloro semanal"
+msgstr "Control registros de cloro semanal"
+
+#. module: limp_contract
+#: model:ir.actions.report.xml,name:limp_contract.py3o_CONTROL_MANTENIMIENTO_TORRES_report
+msgid "Control registros mantenimiento torres"
+msgstr "Control registros mantenimiento torres"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account_location_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_location_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_location_id
@@ -604,7 +629,6 @@ msgid "Create invoice"
 msgstr "Crear factura"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_create_uid
@@ -618,7 +642,6 @@ msgstr "Crear factura"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_create_uid
-#: model:ir.model.fields,field_description:limp_contract.field_machinery_to_employ_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_create_uid
@@ -626,7 +649,6 @@ msgid "Created by"
 msgstr "Creado por"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_create_date
@@ -640,7 +662,6 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_create_date
-#: model:ir.model.fields,field_description:limp_contract.field_machinery_to_employ_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_create_date
@@ -802,7 +823,6 @@ msgid "Diary"
 msgstr "Diaria"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_display_name
@@ -816,7 +836,6 @@ msgstr "Diaria"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_display_name
-#: model:ir.model.fields,field_description:limp_contract.field_machinery_to_employ_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_display_name
@@ -878,11 +897,6 @@ msgstr "Tareas de empleado"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_end_date
 msgid "End date"
 msgstr "Fecha final"
-
-#. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used_name
-msgid "Equipment"
-msgstr "Equipo"
 
 #. module: limp_contract
 #: code:addons/limp_contract/models/limp_contract_task.py:40
@@ -1022,7 +1036,6 @@ msgid "Hours"
 msgstr "Horas"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_id
@@ -1036,7 +1049,6 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_id
-#: model:ir.model.fields,field_description:limp_contract.field_machinery_to_employ_id
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_id
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_id
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_id
@@ -1231,7 +1243,6 @@ msgid "Last Message Date"
 msgstr "Fecha del último mensaje"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line___last_update
@@ -1245,7 +1256,6 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence___last_update
-#: model:ir.model.fields,field_description:limp_contract.field_machinery_to_employ___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date___last_update
@@ -1253,7 +1263,6 @@ msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_write_uid
@@ -1267,7 +1276,6 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_write_uid
-#: model:ir.model.fields,field_description:limp_contract.field_machinery_to_employ_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_write_uid
@@ -1275,7 +1283,6 @@ msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task_write_date
@@ -1289,7 +1296,6 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_write_date
-#: model:ir.model.fields,field_description:limp_contract.field_machinery_to_employ_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_write_date
@@ -1304,7 +1310,11 @@ msgstr "Últ. ejecución"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_manual_ddd_form
 msgid "Legionella & DDD"
+<<<<<<< HEAD
 msgstr "Legionella & DDD"
+=======
+msgstr "Legionella y DDD"
+>>>>>>> 3a5560b50dfb5a2ab9bc78d26570220d2f481520
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_limp_contract
@@ -1419,7 +1429,11 @@ msgstr "Lunes"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_monitoring_situation
 msgid "Monitoring Situation"
+<<<<<<< HEAD
 msgstr "Situación de monitoreo"
+=======
+msgstr "Situación de monitoreos"
+>>>>>>> 3a5560b50dfb5a2ab9bc78d26570220d2f481520
 
 #. module: limp_contract
 #: selection:limp.incidence,periodicity:0
@@ -1751,16 +1765,6 @@ msgstr "Provincia"
 #: selection:account.invoice.report,privacy:0
 msgid "Public"
 msgstr "Público"
-
-#. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_equipment_to_be_used_purpose_equipment
-msgid "Purpose Equipment"
-msgstr "Finalidad"
-
-#. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_machinery_to_employ_purpose_machinery
-msgid "Purpose machinery"
-msgstr "Finalidad"
 
 #. module: limp_contract
 #: selection:limp.contract,periodicity:0
@@ -2223,11 +2227,14 @@ msgid "contract.to_invoice"
 msgstr "contrato.a_factura"
 
 #. module: limp_contract
+<<<<<<< HEAD
 #: model:ir.model,name:limp_contract.model_equipment_to_be_used
 msgid "equipment.to.be.used"
 msgstr "equipment.to.be.used"
 
 #. module: limp_contract
+=======
+>>>>>>> 3a5560b50dfb5a2ab9bc78d26570220d2f481520
 #: model:ir.model,name:limp_contract.model_ir_sequence
 msgid "ir.sequence"
 msgstr "ir.secuencia"
@@ -2241,11 +2248,6 @@ msgstr "limp.center.type"
 #: model:ir.model,name:limp_contract.model_limp_contract_note
 msgid "limp.contract.note"
 msgstr "limp.contract.note"
-
-#. module: limp_contract
-#: model:ir.model,name:limp_contract.model_machinery_to_employ
-msgid "machinery.to.employ"
-msgstr "machinery.to.employ"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_maintenance_task
@@ -2266,8 +2268,3 @@ msgstr "upamount.contract.wzd"
 #: model:ir.model,name:limp_contract.model_update_last_invoice_date
 msgid "update.last.invoice.date"
 msgstr "update.last.invoice.date"
-
-#. module: limp_contract
-#: model:ir.model,name:limp_contract.model_vectors_to_fight
-msgid "vectors.to.fight"
-msgstr "vectors.to.fight"
