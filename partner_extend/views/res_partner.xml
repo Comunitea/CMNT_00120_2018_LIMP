@@ -14,6 +14,16 @@
                     <field name="vat" placeholder="e.g. BE0477472701"/>
                 </div>
             </field>
+            <field name="title" position="attributes">
+                <attribute name="widget">selection</attribute>
+            </field>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='title']" position="attributes">
+                <attribute name="widget">selection</attribute>
+                <attribute name="placeholder"></attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']" position="attributes">
+                <attribute name="mode">tree</attribute>
+            </xpath>
         </field>
     </record>
 
@@ -36,19 +46,11 @@
         </field>
     </record>
 
-<!--
-    <record id="view_partner_form_contacts" model="ir.ui.view">
-        <field name="name">Partner form contacts</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="arch" type="xml">
-        <xpath expr="//page[@string]='Contacts &amp; Addresses'" position="after">
-            <field name="child_ids" mode="tree" context="{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': supplier, 'default_customer': customer, 'default_lang': lang,}"/>
-        </xpath>
-        </field>
+    <record id="base.action_partner_form_view1" model="ir.actions.act_window.view">
+        <field eval="3" name="sequence"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="base.res_partner_kanban_view"/>
+        <field name="act_window_id" ref="base.action_partner_form"/>
     </record>
--->
-
-
 
 </odoo>

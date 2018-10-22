@@ -35,7 +35,7 @@
                         </page>
                         <page string="Legionella" attrs="{'invisible': [('lg', '!=', True)]}">
                             <group>
-                                <field name="type_of_installation_id"/>
+                                <field name="type_of_installation_id" widget="many2many_tags"/>
                                 <field name="date_of_notification"/>
                                 <field name="used_product_ids"/>
                                 <field name="legionella_products_id">

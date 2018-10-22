@@ -272,11 +272,7 @@ class StockServicePicking(models.Model):
     @api.model
     def create(self, vals):
         """Add a sequence name"""
-        if not vals.get('maintenance'):
-            seq = self.env['ir.sequence'].next_by_code('stock.service.picking')
-        else:
-            seq = self.env['ir.sequence'].next_by_code('service.picking.maintenance')
-        vals['name'] = seq
+        vals['name'] = "/"
         vals['state'] = 'draft'
         res = super(StockServicePicking, self).create(vals)
         return res
@@ -295,6 +291,13 @@ class StockServicePicking(models.Model):
                     picking.n_cert = \
                         self.env['ir.sequence'].\
                         next_by_code('treatment.certificate.legionella')
+            if not picking.maintenance:
+                seq = self.env['ir.sequence'].\
+                    next_by_code('stock.service.picking')
+            else:
+                seq = self.env['ir.sequence'].\
+                    next_by_code('service.picking.maintenance')
+            picking.name = seq
         self.write({'state': 'active'})
         return
 

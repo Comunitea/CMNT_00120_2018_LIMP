@@ -51,7 +51,7 @@
                             <field name="next_execution_date"/>
                             <field name="type_ddd_ids" widget="many2many_checkboxes"/>
                             <field name="monitoring_situation"/>
-                            <field name="type_of_installation_id"/>
+                            <field name="type_of_installation_ids" widget="many2many_tags"/>
                         </group>
                     </group>
                 </sheet>

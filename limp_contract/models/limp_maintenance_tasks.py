@@ -41,7 +41,7 @@ class MaintenanceTask(models.Model):
     picking_ids = fields.One2many('stock.service.picking', 'maintenace_task_id', string="Picking history", readonly=True)
     monitoring_situation=fields.Char("Monitoring Situation")
     type_ddd_ids=fields.Many2many('types.ddd', string='Types ddd')
-    type_of_installation_id=fields.Many2one('type.of.installation.legionella', string="Type of installation legionella")
+    type_of_installation_ids=fields.Many2many('type.of.installation.legionella', string="Types of installation legionella")
 
     @api.onchange('contract_id')
     def onchange_contract_id(self):
@@ -127,7 +127,7 @@ class MaintenanceTask(models.Model):
                         'monitoring_situation': task.monitoring_situation,
                         'type_ddd_ids': [(6, 0, task.type_ddd_ids.ids)],
                         'tag_ids': [(6, 0, contract.tag_ids.ids)],
-                        'type_of_installation_id': task.type_of_installation_id.id,
+                        'type_of_installation_id': [(6, 0, task.type_of_installation_ids.ids)],
                         'used_product_ids': [(6, 0, contract.used_product_ids.ids)]
                     })
                     task.write({'last_execution_date': task.next_execution_date})

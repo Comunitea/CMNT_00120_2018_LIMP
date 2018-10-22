@@ -27,7 +27,6 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     is_company=fields.Boolean(default=True)
-    title = fields.fields.Many2one('res.partner.title')
 
     @api.model
     def _commercial_fields(self):

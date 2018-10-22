@@ -6,13 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
 "POT-Creation-Date: 2018-10-08 16:09+0000\n"
 "PO-Revision-Date: 2018-10-08 16:09+0000\n"
-=======
-"POT-Creation-Date: 2018-10-03 10:03+0000\n"
-"PO-Revision-Date: 2018-10-03 10:03+0000\n"
->>>>>>> 3a5560b50dfb5a2ab9bc78d26570220d2f481520
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -731,7 +726,8 @@ msgstr "Diaria"
 msgid "Date"
 msgstr "Fecha"
 
-#. module: limp_contract
+#. module: analytic
+#: model:ir.model.fields,field_description:analytic.field_account_analytic_account_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_date
@@ -750,7 +746,8 @@ msgstr "Lugar y fecha de realización del curso/formación"
 msgid "Date of the last message posted on the record."
 msgstr "Fecha del último mensaje publicado en el registro."
 
-#. module: limp_contract
+#. module: analytic
+#: model:ir.model.fields,field_description:analytic.field_account_analytic_account_date_start
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_date_start
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_date_start
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_date_start
@@ -1310,11 +1307,7 @@ msgstr "Últ. ejecución"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_manual_ddd_form
 msgid "Legionella & DDD"
-<<<<<<< HEAD
-msgstr "Legionella & DDD"
-=======
 msgstr "Legionella y DDD"
->>>>>>> 3a5560b50dfb5a2ab9bc78d26570220d2f481520
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_limp_contract
@@ -1429,11 +1422,7 @@ msgstr "Lunes"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_monitoring_situation
 msgid "Monitoring Situation"
-<<<<<<< HEAD
-msgstr "Situación de monitoreo"
-=======
 msgstr "Situación de monitoreos"
->>>>>>> 3a5560b50dfb5a2ab9bc78d26570220d2f481520
 
 #. module: limp_contract
 #: selection:limp.incidence,periodicity:0
@@ -2227,14 +2216,11 @@ msgid "contract.to_invoice"
 msgstr "contrato.a_factura"
 
 #. module: limp_contract
-<<<<<<< HEAD
 #: model:ir.model,name:limp_contract.model_equipment_to_be_used
 msgid "equipment.to.be.used"
 msgstr "equipment.to.be.used"
 
 #. module: limp_contract
-=======
->>>>>>> 3a5560b50dfb5a2ab9bc78d26570220d2f481520
 #: model:ir.model,name:limp_contract.model_ir_sequence
 msgid "ir.sequence"
 msgstr "ir.secuencia"
