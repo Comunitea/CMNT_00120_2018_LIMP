@@ -97,6 +97,7 @@ class LimpContract(models.Model):
     def invoice_run(self):
         id_invoice = []
         invoice_ids = self.env['account.invoice']
+        import ipdb; ipdb.set_trace()
         for obj in self:
             contract_tag = obj.tag_ids.filtered('contract_tag')
             if obj.analytic_account_id and obj.state == 'open':
@@ -109,6 +110,7 @@ class LimpContract(models.Model):
                 child_ids += obj.analytic_account_id
                 invoice_ids += child_ids.run_invoice_cron_manual()
 
+        self.add_description(invoice_ids)
         if invoice_ids:
             action = self.env.ref('account.action_invoice_tree1').read()[0]
             if action:
@@ -116,6 +118,12 @@ class LimpContract(models.Model):
                 action["nodestroy"] = True
                 return action
         return True
+
+    def add_description(self, invoice_ids):
+        for invoice_line in invoice_ids:
+            self.note += " "+invoice_line.product_id+" "+invoice_line.product_uom_qty+" "+invoice_line.price_unit+" "
+            self.note += invoice_line.tax_id+" "+invoice_line.amount_total_signed
+            self.note += "/n"
 
     @api.model
     def create(self, vals):

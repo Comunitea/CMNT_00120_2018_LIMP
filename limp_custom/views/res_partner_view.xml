@@ -19,14 +19,11 @@
                     <field name="add_info"/>
                 </group>
             </xpath>
-            <field name="colege_num" position="before">
-                <group>
-                    <field name="attention_of"/>
-                </group>
-            </field>
-            <xpath expr="//field[@name='child_ids']/form//field[@name='email']" position="before">
-                <field name="attention_of"/>
-            </xpath>
+                <label for="vat" position="before">
+                        <field name="attention_of"/>
+                </label>
+
+
             <field name="phone" position="before">
                 <field name="ref"/>
             </field>
