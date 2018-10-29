@@ -105,7 +105,7 @@ class AccountAnalyticAccount(models.Model):
             partners = self.env['res.partner'].search([('name', operator, name)], limit=limit)
             if partners:
                 ids = self.search([('partner_id', 'in', partners._ids)]+ args, limit=limit)
-            ids += self.search([('name', operator, name)]+ args, limit=limit)
+            ids += self.search(['|',('description', operator, name),('name', operator, name)]+ args, limit=limit)
         else:
             ids = self.search(args, limit=limit)
         return ids.name_get()

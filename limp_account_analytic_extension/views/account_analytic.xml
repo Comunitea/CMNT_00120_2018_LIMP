@@ -9,11 +9,8 @@
             <field name="partner_id" position="after">
                 <field name="manager_id"/>
                 <field name="delegation_id"/>
-            </field>
-            <search>
-                <field name="partner_id"/>
                 <field name="department_id"/>
-            </search>
+            </field>
             <xpath expr="//group" position="inside">
                 <filter string="Manager" domain="[]" context="{'group_by': 'manager_id'}"/>
                 <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>

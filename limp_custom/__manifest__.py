@@ -28,7 +28,7 @@
         "category" : "Custom",
         "depends" : [
             'base',
-            'account',
+            'account_invoice_currency',
             'analytic',
             'stock',
             'product',

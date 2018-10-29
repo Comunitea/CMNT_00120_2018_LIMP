@@ -17,7 +17,7 @@
         <record id="invoice_tree_add_info" model="ir.ui.view">
             <field name="name">account.invoice.tree.add_info</field>
             <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="inherit_id" ref="account_invoice_currency.invoice_tree"/>
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
@@ -26,11 +26,9 @@
                 <field name="user_id" position="replace">
                     <field name="user_id" invisible="1"/>
                 </field>
-                <field name="origin" position="replace">
-                    <field name="origin" invisible="1"/>
-                </field>
                 <field name="amount_total_signed" position="before">
-                    <field name="amount_untaxed"/>
+                    <field name="amount_untaxed_signed" string="Base Imponible"/>
+                    <field name="amount_tax"/>
                 </field>
                 <field name="currency_id" position="replace">
                     <field name="currency_id" invisible="1"/>
@@ -39,7 +37,8 @@
                 <field name="name" position="attributes">
                     <attribute name="invisible">0</attribute>
                 </field>
-
+                <field name="amount_total_company_signed" position="replace"/>
+                <field name="residual_company_signed" position="replace"/>
             </field>
         </record>
 
@@ -52,6 +51,20 @@
                 <field name="partner_id" position="after">
                     <field name="add_info"/>
                     <field name="date_invoice"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_supplier_tree_rep_cur_amounts" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.currency.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account_invoice_currency.invoice_supplier_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_total_company_signed" position="replace"/>
+                <field name="residual_company_signed" position="replace"/>
+                <field name="amount_total_signed" position="before">
+                    <field name="amount_untaxed_signed" string="Base Imponible"/>
+                    <field name="amount_tax"/>
                 </field>
             </field>
         </record>

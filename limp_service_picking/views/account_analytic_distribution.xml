@@ -12,4 +12,16 @@
             </field>
         </field>
     </record>
+
+    <record id="view_account_analytic_account_search_add_desc" model="ir.ui.view">
+        <field name="name">account.analytic.account.search.add_desc</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_search" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="description"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>
