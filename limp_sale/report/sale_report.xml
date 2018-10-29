@@ -83,7 +83,7 @@
         </xpath>
         <xpath expr="//div[@name='total']" position="replace">
             <div class="row" name="total">
-                <div class="col-xs-11 pull-right">
+                <div class="col-xs-11 pull-right" t-if="doc.show_total">
                     <table class="table table-condensed">
                         <tr>
                             <td>
@@ -105,6 +105,17 @@
                             </td>
                             <td class="text-right">
                                  <strong><span t-field="doc.amount_total"
+                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></strong>
+                            </td>
+                        </tr>
+                        <tr t-if="doc.periodicity_id">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Con periodicidad: </strong></td>
+                            <td class="text-right">
+                                <strong><span t-field="doc.amount_total_periodicity"
                                     t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></strong>
                             </td>
                         </tr>

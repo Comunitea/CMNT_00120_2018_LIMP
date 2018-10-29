@@ -67,45 +67,69 @@ class SaleOrder(models.Model):
     amount_untaxed_periodicity = fields.Float("Amount Untaxed w/ Periodicity", compute="_get_amount_w_periodicity")
     amount_tax_periodicity = fields.Float("Amount Tax w/ Periodicity", compute="_get_amount_w_periodicity")
 
-    pickings=fields.Integer(string='# of serv. pickings' ,readonly=True)
+    waste_pickings=fields.\
+        Integer(string='# of serv. pickings' ,
+                compute="_compute_service_pickings_lines_count", readonly=True)
+    service_pickings=fields.\
+        Integer(string='# of serv. pickings' ,
+                compute="_compute_service_pickings_lines_count", readonly=True)
     contracts=fields.Integer(string='# of serv. contract', compute='_compute_service_contracts_lines_count', readonly=True)
 
-    @api.onchange('partner_id')
-    # ~ def _compute_service_pickings_lines_count(self):
-        # ~ for order in self:
-            # ~ order.pickings = len(order.picking)
+    @api.multi
+    def _compute_service_pickings_lines_count(self):
+        for order in self:
+            order.waste_pickings = len(self.env['stock.service.picking'].
+                                       search([('sale_id', '=', order.id),
+                                               ('picking_type', '=',
+                                                'wastes')]))
+            order.service_pickings = len(self.env['stock.service.picking'].
+                                         search([('sale_id', '=', order.id),
+                                                 ('picking_type', '!=',
+                                                  'wastes')]))
 
-     # ~ def action_view_sporadic_service_picking(self):
-        # ~ action = self.env.ref('limp_service_picking.sporadic_service_pickings_action').read()[0]
-        # ~ action['context'] = str({
-           # ~ 'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
-           # ~ 'default_picking_type': 'sporadic', 'type': 'sporadic',
-           # ~ 'form_view_ref': 'limp_service_picking.stock_service_picking_form',
-           # ~ 'default_delegation_id' : self.delegation_id.id,
-           # ~ 'default_partner_id': self.partner_id.id,
-           # ~ 'default_manager_id': self.manager_id.id,
-           # ~ 'default_address_invoice_id': self.address_invoice_id.id,
-           # ~ 'default_address_id': self.address_id.id,
-           # ~ 'default_ccc_account_id': self.bank_account_id.id,
-           # ~ 'default_payment_type': self.payment_type_id.id,
-           # ~ 'default_payment_term': self.payment_term_id.id,
-           # ~ 'default_privacy': self.privacy,
-           # ~ 'default_address_tramit_id': self.address_tramit_id.id,
-           # ~ 'default_contract_id': self.id,
-           # ~ 'default_type_ddd_ids': [(6, 0, self.type_ddd_ids.ids)],
-           # ~ 'default_used_product_ids': [(6, 0, self.used_product_ids.ids)]
-        # ~ })
-        # ~ action['domain'] = "[('id','in', ["+','.join(map(str, self.stock_sporadic_service_picking_ids._ids))+"])]"
-        # ~ return action
+    @api.multi
+    def action_view_service_picking(self):
+        self.ensure_one()
+        if self._context['picking_type'] == 'wastes':
+            form = self.env.\
+                ref('limp_service_picking.stock_service_picking_form')
+            tree = self.env.\
+                ref("limp_service_picking.stock_service_picking_tree")
+        else:
+            form = self.env.\
+                ref('limp_service_picking.stock_sporadic_service_picking_form')
+            tree = self.env.\
+                ref("limp_service_picking.stock_sporadic_service_picking_tree")
+        return {
+            'name': 'Service Pickings',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'res_model': 'stock.service.picking',
+            'type': 'ir.actions.act_window',
+            'nodestroy': True,
+            'target': 'current',
+            'domain': "[('sale_id', '=', " + str(self.id) + ")]",
+            'views': [[tree.id, 'tree'], [form.id, 'form']],
+        }
 
-
+    @api.multi
     def _compute_service_contracts_lines_count(self):
         for order in self:
             order.contracts = len(order.contract_ids)
 
-    # ~ def action_view_contract(self):
-        # ~ contract_id=self.contract_ids
-
+    @api.multi
+    def action_view_contract(self):
+        self.ensure_one()
+        return {
+            'name': 'Contracts',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'res_model': 'limp.contract',
+            'type': 'ir.actions.act_window',
+            'nodestroy': True,
+            'target': 'current',
+            'domain': "[('sale_id', '=', " + str(self.id) + ")]"
+        }
 
     @api.model
     def create(self, vals):

@@ -140,17 +140,23 @@
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_view_delivery']" position="before">
 
-                <button name="action_view_sporadic_service_picking"
+                <button name="action_view_service_picking"
                             type="object"
                             class="oe_stat_button"
-                            icon="fa-files-o">
-                    <field name="pickings" widget="statinfo" string="pickings"/>
+                            icon="fa-files-o" context="{'picking_type': 'wastes'}">
+                    <field name="waste_pickings" widget="statinfo" string="Waste pickings"/>
+                </button>
+                <button name="action_view_service_picking"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-files-o" context="{'picking_type': 'sporadic'}">
+                    <field name="service_pickings" widget="statinfo" string="Service pickings"/>
                 </button>
                 <button name="action_view_contract"
                             type="object"
                             class="oe_stat_button"
                             icon="fa-files-o">
-                    <field name="contracts" widget="statinfo" string="contracts"/>
+                    <field name="contracts" widget="statinfo" string="Contracts"/>
                 </button>
             </xpath>
 

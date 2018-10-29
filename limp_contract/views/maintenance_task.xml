@@ -15,7 +15,6 @@
                 <field name="contract_line_id"/>
                 <field name="last_execution_date"/>
                 <field name="end_date"/>
-                <field name="next_execution_date"/>
                 <button name="execute_maintenace" type="object" icon="fa-check" string="Execute"/>
             </tree>
         </field>
@@ -42,7 +41,6 @@
                             <field name="last_execution_date"/>
                             <field name="end_date"/>
                             <field name="contract_line_id" domain="[('id', 'in', contract_accounts and contract_accounts[0] and contract_accounts[0][2] or False)]"/>
-                            <field name="next_execution_date"/>
                             <field name="type_ddd_ids" widget="many2many_checkboxes"/>
                             <field name="monitoring_situation"/>
                             <field name="type_of_installation_ids" widget="many2many_tags"/>
