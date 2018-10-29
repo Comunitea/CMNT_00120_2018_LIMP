@@ -41,6 +41,15 @@
             </xpath>
             <xpath expr="//field[@name='invoice_integration_method_ids']/../.." position="replace">
             </xpath>
+            <xpath expr="//sheet/notebook/page/field[@name='child_ids']/form/sheet/group" position="after">
+                <group>
+                    <field name="facturae"/>
+                    <group  attrs="{'invisible': [('facturae', '=', False)]}">
+                        <field name="dir3"/>
+                        <field name="sef"/>
+                    </group>
+                </group>
+            </xpath>
         </field>
     </record>
 
