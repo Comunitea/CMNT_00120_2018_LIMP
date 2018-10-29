@@ -123,7 +123,6 @@ class StockServicePicking(models.Model):
     amount_tax = fields.Float('Taxes', digits=dp.get_precision('Sale Price'), compute='_amount_all', help='The tax amount.')
     amount_total = fields.Float('Total with taxes', digits=dp.get_precision('Sale Price'), compute='_amount_all', help='The total amount.')
     picking_date = fields.Date('Picking date', required=True, default=fields.Date.today, copy=False)
-    service_id = fields.Many2one('waste.service', 'Waste service', readonly=True)
     intercompany = fields.Boolean('Intercompay')
         #'invoice_delegation_id = fields.Many2one('res.delegation', 'Delegation', help="Delegation where inputs the cost"),
     invoice_delegation_id = fields.Selection(_get_all_delegations, string="Delegation", help="Delegation where inputs the cost")
@@ -157,35 +156,22 @@ class StockServicePicking(models.Model):
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         part = self.partner_id
-        if self._context.get('service_id', False):
-            service = self.env['waste.service'].browse(self._context.get('service_id', False))
+        if not part:
+            self.address_id = False
+            self.address_invoice_id = False
+            self.orig_address_id = False
+            return
 
-            self.address_invoice_id = service.address_invoice_id and service.address_invoice_id.id or service.contact_id.id
-            self.address_id = service.partner_shipping_id and service.partner_shipping_id.id or service.contact_id.id
-            self.ccc_account_id = (service.payment_mode and service.payment_mode.suitable_bank_types and service.partner_bank_id) and part.partner_bank_id.id or False
-            self.fiscal_position =service.fiscal_position and service.fiscal_position.id or False
-            self.payment_term = service.payment_term and service.payment_term.id or False
-            self.payment_mode = service.payment_mode and service.payment_mode.id or False
-            self.intercompany = False
-            part = service.partner_id
+        addr = part.address_get(['contact', 'invoice', 'default'])
+        payment = part.customer_payment_mode_id and part.customer_payment_mode_id or False
 
-        else:
-            if not part:
-                self.address_id = False
-                self.address_invoice_id = False
-                self.orig_address_id = False
-                return
-
-            addr = part.address_get(['contact', 'invoice', 'default'])
-            payment = part.customer_payment_mode_id and part.customer_payment_mode_id or False
-
-            self.address_invoice_id = addr['invoice']
-            self.address_id = addr['contact']
-            self.ccc_account_id = (payment and payment.suitable_bank_types and part.bank_ids) and part.bank_ids[0].id or False
-            self.fiscal_position =part.property_account_position_id and part.property_account_position_id.id or False
-            self.payment_term = part.property_payment_term_id and part.property_payment_term_id.id or False
-            self.payment_mode = payment and payment.id or False
-            self.intercompany = False
+        self.address_invoice_id = addr['invoice']
+        self.address_id = addr['contact']
+        self.ccc_account_id = (payment and payment.suitable_bank_types and part.bank_ids) and part.bank_ids[0].id or False
+        self.fiscal_position =part.property_account_position_id and part.property_account_position_id.id or False
+        self.payment_term = part.property_payment_term_id and part.property_payment_term_id.id or False
+        self.payment_mode = payment and payment.id or False
+        self.intercompany = False
 
         if self.env.user.company_id.partner_id.id == part.id:
             self.intercompany = True

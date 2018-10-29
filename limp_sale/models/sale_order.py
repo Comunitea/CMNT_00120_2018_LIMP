@@ -56,7 +56,6 @@ class SaleOrder(models.Model):
     created_contract = fields.Boolean('Created contract', readonly=True, copy=False)
     created_service_order = fields.Boolean('Created Service order', readonly=True, copy=False)
     created_service_pick = fields.Boolean('Created Service pick', readonly=True, copy=False)
-    service_order_ids = fields.One2many('waste.service', 'sale_id', string='Service orders', readonly=True, copy=False)
     task_frequency_ids = fields.One2many('task.frequency', 'sale_id', 'Task Frequency')
     validity_Date = fields.Date('End of validity')
     very_important_text = fields.Text('Very important')
@@ -212,36 +211,6 @@ class SaleOrder(models.Model):
         if not contract:
             return
         contract.description = line.name
-
-    def create_service_order(self):
-        vals = {
-            'partner_id': self.partner_id.id,
-            'contact_id': self.partner_id.id,
-            'address_invoice_id': self.partner_invoice_id.id,
-            'company_id': self.company_id.id,
-            'partner_shipping_id': self.partner_shipping_id.id,
-            'sale_id': self.id,
-            'payment_term': self.payment_term_id and self.payment_term_id.id or False,
-            'payment_mode': self.payment_mode_id and self.payment_mode_id.id or False,
-            'fiscal_position': self.fiscal_position_id and self.fiscal_position_id.id or False
-            #'partner_bank_id': self.partner_bank and self.partner_bank.id or False,
-        }
-        service_order_id = self.env['waste.service'].create(vals)
-        self.write({'created_service_order': True})
-
-        res = self.env.ref('limp_service_picking.waste_service_form')
-
-        return {
-            'name': 'Service order',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': [res.id],
-            'res_model': 'waste.service',
-            'type': 'ir.actions.act_window',
-            'nodestroy': True,
-            'target': 'current',
-            'res_id': service_order_id.id
-        }
 
     def create_pick(self):
         vals = {

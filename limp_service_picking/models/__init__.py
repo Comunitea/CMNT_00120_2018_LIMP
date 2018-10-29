@@ -11,7 +11,6 @@ from . import service_picking_invoice_concept
 from . import product
 from . import partner
 from . import account_analytic_account
-from . import waste_services
 from . import stock_picking
 from . import fleet
 from . import valorization_lines

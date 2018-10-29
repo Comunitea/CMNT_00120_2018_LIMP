@@ -52,7 +52,6 @@
         'views/limp_service_picking_view.xml',
         'views/product_view.xml',
         'views/res_partner_view.xml',
-        'views/waste_services_view.xml',
         'data/product_data.xml',
         'views/building_site_services_view.xml',
         'views/limp_sporadic_service_picking_view.xml',

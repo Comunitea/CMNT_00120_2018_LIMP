@@ -1,7 +1,6 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
 "access_stock_service_picking","stock_service_picking_waste_grp","model_stock_service_picking","group_waste_manager",1,1,1,1
 "access_stock_service_line_picking","stock_service_picking_line_waste_grp","model_stock_service_picking_line","group_waste_manager",1,1,1,1
-"access_waste_service","waste_service_waste_grp","model_waste_service","group_waste_manager",1,1,1,1
 "access_building_site_services","building_site_services_grp","model_building_site_services","group_building_site_services_manager",1,1,1,1
 "access_service_picking_invoice_concept","service_picking_invoice_concept_grp","model_service_picking_invoice_concept","group_waste_manager",1,1,1,1
 "access_service_picking_valorization_rel","service_picking_valorization_rel_waste_grp","model_service_picking_valorization_rel","group_waste_manager",1,1,1,1

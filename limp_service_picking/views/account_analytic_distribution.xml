@@ -24,4 +24,19 @@
         </field>
     </record>
 
+    <record id="view_account_analytic_account_list_add_dates" model="ir.ui.view">
+        <field name="name">account.analytic.account.list.add_dates</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="date_start"/>
+                <field name="date"/>
+            </field>
+            <xpath expr="/tree" position="attributes">
+                <attribute name="decoration-danger">date and date &lt; current_date</attribute>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

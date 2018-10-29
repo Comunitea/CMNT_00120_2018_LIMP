@@ -187,7 +187,6 @@
                                 <field name="rd_code" attrs="{'invisible':[('ler_dangerous','=',False)]}"/>
                                 <field name="name_manager" invisible="1"/>
                                 <field name="authorization_manager" invisible="1"/>
-                                <field name="service_id" invisible="1"/>
                                 <field name="company_id" groups="base.group_multi_company" required="1" attrs="{'readonly':[('state','in',['cancelled','closed'])]}"/>
                                 <newline/>
                                 <!--<field name="analytic_acc_id"/>-->
