@@ -93,6 +93,14 @@
                     <field name="amount_total_periodicity" widget='monetary' string="Total" options="{'currency_field': 'currency_id'}"/>
                 </group>
             </group>
+             <xpath expr="//field[@name='order_line']/form/group/group[2]/label[@for='customer_lead']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+             </xpath>
+             <xpath expr="//field[@name='order_line']/form/group/group[2]/div[1]" position="attributes">
+                    <attribute name="invisible">True</attribute>
+             </xpath>
+
+
         </field>
     </record>
 

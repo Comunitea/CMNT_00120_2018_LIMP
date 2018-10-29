@@ -117,6 +117,7 @@ class LimpContract(models.Model):
                 return action
         return True
 
+
     @api.model
     def create(self, vals):
         vals['is_contract'] = True
