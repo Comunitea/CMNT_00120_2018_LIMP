@@ -59,6 +59,9 @@
             <field name="name" position="after">
                 <field name="company_id"/>
             </field>
+            <search>
+                <field name="vat"/>
+            </search>
             <filter name="supplier" position="after">
                 <filter string="With Code" name="with_code" domain="[('ref','!=',False)]"/>
             </filter>

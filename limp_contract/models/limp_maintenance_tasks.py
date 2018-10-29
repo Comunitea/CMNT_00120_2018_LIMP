@@ -32,16 +32,17 @@ class MaintenanceTask(models.Model):
     last_execution_date = fields.Date('Last execution date')
     start_date = fields.Date('Start date', required=True)
     end_date = fields.Date('End date')
-    interval = fields.Selection([('3', 'Daily'),('1', 'Monthly'),('2', 'Weekly')], 'Interval', required=True, default='1')
-    interval_count = fields.Integer('Repeat each', help="Repeat with interval (Days/Week/Month)", required=True, default=1)
     contract_line_id = fields.Many2one('account.analytic.account', 'Workcenter')
     contract_id = fields.Many2one('account.analytic.account', 'Contract', required=True, readonly=True)
     contract_accounts = fields.Many2many('account.analytic.account', compute='_compute_analytic_accounts')
-    next_execution_date = fields.Date('Next execution date', compute='_compute_next_execution_date')
+    # ~ next_execution_date = fields.Date('Next execution date', compute='_compute_next_execution_date')
+    next_execution_date = fields.Date('Next execution date')
     picking_ids = fields.One2many('stock.service.picking', 'maintenace_task_id', string="Picking history", readonly=True)
     monitoring_situation=fields.Char("Monitoring Situation")
     type_ddd_ids=fields.Many2many('types.ddd', string='Types ddd')
     type_of_installation_ids=fields.Many2many('type.of.installation.legionella', string="Types of installation legionella")
+
+    months_interval=fields.Many2many('months.interval', string='Months interval')
 
     @api.onchange('contract_id')
     def onchange_contract_id(self):
@@ -62,26 +63,26 @@ class MaintenanceTask(models.Model):
         for task in self.filtered('contract_id'):
             task.contract_accounts = task.contract_id.get_same_contract_accounts()
 
-    def _compute_next_execution_date(self):
-        for task in self:
-            if not task.last_execution_date:
-                initial_date = datetime.strptime(task.start_date, "%Y-%m-%d")
-            else:
-                initial_date = datetime.strptime(task.last_execution_date, "%Y-%m-%d")
+    # ~ def _compute_next_execution_date(self):
+        # ~ for task in self:
+            # ~ if not task.last_execution_date:
+                # ~ initial_date = datetime.strptime(task.start_date, "%Y-%m-%d")
+            # ~ else:
+                # ~ initial_date = datetime.strptime(task.last_execution_date, "%Y-%m-%d")
 
-            if not task.last_execution_date:
-                exec_date = task.start_date
-            elif task.interval == "3":
-                exec_date = (initial_date + relativedelta(days=task.interval_count)).strftime('%Y-%m-%d')
-            elif task.interval == "2":
-                exec_date = (initial_date + relativedelta(weeks=task.interval_count)).strftime('%Y-%m-%d')
-            else:
-                exec_date = (initial_date + relativedelta(months=task.interval_count)).strftime('%Y-%m-%d')
+            # ~ if not task.last_execution_date:
+                # ~ exec_date = task.start_date
+            # ~ elif task.interval == "3":
+                # ~ exec_date = (initial_date + relativedelta(days=task.interval_count)).strftime('%Y-%m-%d')
+            # ~ elif task.interval == "2":
+                # ~ exec_date = (initial_date + relativedelta(weeks=task.interval_count)).strftime('%Y-%m-%d')
+            # ~ else:
+                # ~ exec_date = (initial_date + relativedelta(months=task.interval_count)).strftime('%Y-%m-%d')
 
-            if not task.end_date or task.end_date >= exec_date:
-                task.next_execution_date = exec_date
-            else:
-                task.next_execution_date = False
+            # ~ if not task.end_date or task.end_date >= exec_date:
+                # ~ task.next_execution_date = exec_date
+            # ~ else:
+                # ~ task.next_execution_date = False
 
     def write(self, vals):
         for obj in self:

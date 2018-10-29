@@ -30,6 +30,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
     _order = "date_order desc"
 
+
     @api.multi
     def _get_amount_w_periodicity(self):
         for sale in self:
@@ -65,6 +66,46 @@ class SaleOrder(models.Model):
     amount_total_periodicity = fields.Float("Amount Total w/ Periodicity", compute="_get_amount_w_periodicity")
     amount_untaxed_periodicity = fields.Float("Amount Untaxed w/ Periodicity", compute="_get_amount_w_periodicity")
     amount_tax_periodicity = fields.Float("Amount Tax w/ Periodicity", compute="_get_amount_w_periodicity")
+
+    pickings=fields.Integer(string='# of serv. pickings' ,readonly=True)
+    contracts=fields.Integer(string='# of serv. contract', compute='_compute_service_contracts_lines_count', readonly=True)
+
+    @api.onchange('partner_id')
+    # ~ def _compute_service_pickings_lines_count(self):
+        # ~ for order in self:
+            # ~ order.pickings = len(order.picking)
+
+     # ~ def action_view_sporadic_service_picking(self):
+        # ~ action = self.env.ref('limp_service_picking.sporadic_service_pickings_action').read()[0]
+        # ~ action['context'] = str({
+           # ~ 'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
+           # ~ 'default_picking_type': 'sporadic', 'type': 'sporadic',
+           # ~ 'form_view_ref': 'limp_service_picking.stock_service_picking_form',
+           # ~ 'default_delegation_id' : self.delegation_id.id,
+           # ~ 'default_partner_id': self.partner_id.id,
+           # ~ 'default_manager_id': self.manager_id.id,
+           # ~ 'default_address_invoice_id': self.address_invoice_id.id,
+           # ~ 'default_address_id': self.address_id.id,
+           # ~ 'default_ccc_account_id': self.bank_account_id.id,
+           # ~ 'default_payment_type': self.payment_type_id.id,
+           # ~ 'default_payment_term': self.payment_term_id.id,
+           # ~ 'default_privacy': self.privacy,
+           # ~ 'default_address_tramit_id': self.address_tramit_id.id,
+           # ~ 'default_contract_id': self.id,
+           # ~ 'default_type_ddd_ids': [(6, 0, self.type_ddd_ids.ids)],
+           # ~ 'default_used_product_ids': [(6, 0, self.used_product_ids.ids)]
+        # ~ })
+        # ~ action['domain'] = "[('id','in', ["+','.join(map(str, self.stock_sporadic_service_picking_ids._ids))+"])]"
+        # ~ return action
+
+
+    def _compute_service_contracts_lines_count(self):
+        for order in self:
+            order.contracts = len(order.contract_ids)
+
+    # ~ def action_view_contract(self):
+        # ~ contract_id=self.contract_ids
+
 
     @api.model
     def create(self, vals):
@@ -219,3 +260,11 @@ class SaleOrderLine(models.Model):
             line.amount_tax = line.order_id.pricelist_id.currency_id.round(sum(t.get('amount', 0.0) for t in taxes.get('taxes', [])))
 
     amount_tax = fields.Float("Amount tax", compute="_get_amount_tax")
+
+
+    @api.onchange('product_uom', 'product_uom_qty')
+    def product_uom_change(self):
+
+        old_price_unit=self.price_unit
+        super(SaleOrderLine, self).product_uom_change()
+        self.price_unit = old_price_unit

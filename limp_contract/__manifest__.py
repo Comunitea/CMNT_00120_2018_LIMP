@@ -73,7 +73,8 @@
             'views/limp_contract_notes.xml',
             'views/maintenance_task.xml',
             'views/limp_contract_manual_ddd_view.xml',
-            'limp_manual_ddd_report.xml'
+            'limp_manual_ddd_report.xml',
+            'data/months_interval.xml'
             ],
         "installable": True,
 

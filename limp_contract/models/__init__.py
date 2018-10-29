@@ -26,4 +26,5 @@ from . import limp_contract_notes
 from . import company
 from . import limp_maintenance_tasks
 from . import limp_contract_manual_ddd
+from . import months_interval
 

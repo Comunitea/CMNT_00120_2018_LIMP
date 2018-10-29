@@ -51,6 +51,7 @@
         'views/acceptance_document_view.xml',
         'report/analytic_detail_report.xml',
         'security/ir.model.access.csv',
+        # ~ 'views/sale_report_templates_fix.xml'
     ],
     'installable': True,
 

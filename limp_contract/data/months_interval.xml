@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="months.interval" id="1">
+            <field name="name">january</field>
+            <field name="code">1</field>
+        </record>
+
+        <record model="months.interval" id="2">
+            <field name="name">february</field>
+            <field name="code">2</field>
+        </record>
+
+        <record model="months.interval" id="3">
+            <field name="name">march</field>
+            <field name="code">3</field>
+        </record>
+
+        <record model="months.interval" id="4">
+            <field name="name">april</field>
+            <field name="code">4</field>
+        </record>
+
+        <record model="months.interval" id="5">
+            <field name="name">may</field>
+            <field name="code">5</field>
+        </record>
+
+        <record model="months.interval" id="6">
+            <field name="name">june</field>
+            <field name="code">6</field>
+        </record>
+
+        <record model="months.interval" id="7">
+            <field name="name">july</field>
+            <field name="code">7</field>
+        </record>
+
+        <record model="months.interval" id="8">
+            <field name="name">august</field>
+            <field name="code">8</field>
+        </record>
+
+        <record model="months.interval" id="9">
+            <field name="name">september</field>
+            <field name="code">9</field>
+        </record>
+
+        <record model="months.interval" id="10">
+            <field name="name">october</field>
+            <field name="code">10</field>
+        </record>
+
+        <record model="months.interval" id="11">
+            <field name="name">november</field>
+            <field name="code">11</field>
+        </record>
+
+        <record model="months.interval" id="12">
+            <field name="name">december</field>
+            <field name="code">12</field>
+        </record>
+
+    </data>
+</odoo>

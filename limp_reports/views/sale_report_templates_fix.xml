@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- PLANTILLA NUEVA PARA FACTURA TAM -->
+
+        <template id="report_saleorder_document_v2" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@class='total']//div/table/tr/td/" position="replace">
+                <span t-field="doc.amount_total"
+                t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+            </xpath>
+        </template>

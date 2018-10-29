@@ -35,3 +35,4 @@
 "access_maintenance_task","maintenance_task_cleaning_grp","model_maintenance_task","limp_service_picking.group_cleaning_user",1,1,1,1
 "access_maintenance_task_all","maintenance_task_cleaning_all","model_maintenance_task",,1,0,0,0
 "access_limp_center_type_administrative","limp_center_type_administrative","model_limp_center_type","group_limp_administrative",1,1,1,1
+"access_limp_months_interval","months_interval","model_months_interval","group_limp_administrative",1,1,1,1
