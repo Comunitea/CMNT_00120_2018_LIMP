@@ -121,7 +121,7 @@ class SaleOrder(models.Model):
             'address_invoice_id': self.partner_invoice_id.id,
             'sale_id': self.id
         })
-
+        self.add_description()
         self.write({'created_contract': True})
 
         res = self.env.ref('limp_contract.limp_contract_form')
@@ -137,6 +137,16 @@ class SaleOrder(models.Model):
             'target': 'current',
             'res_id': contract.id,
         }
+
+    #This method adds a description in the new contract based on the description provided by the order_line
+    def add_description(self):
+        line = self.order_line and self.order_line[0]
+        if not line:
+            return
+        contract = self.contract_ids and self.contract_ids[0]
+        if not contract:
+            return
+        contract.description = line.name
 
     def create_service_order(self):
         vals = {
