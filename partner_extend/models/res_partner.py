@@ -34,19 +34,3 @@ class ResPartner(models.Model):
         res.remove('vat')
         return res
 
-    @api.multi
-    def name_get(self):
-        result = []
-        orig_name = dict(super(ResPartner, self).name_get())
-        for partner in self:
-            name = orig_name[partner.id]
-            if not partner.is_company:
-                addr = "%s %s %s %s" % \
-                    ((partner.name == '/' and
-                      partner.commercial_partner_id.name or
-                      (partner.name or '')),
-                     partner.street or '', partner.zip or '',
-                     partner.city or '')
-                name = addr.strip()
-            result.append((partner.id, name))
-        return result
