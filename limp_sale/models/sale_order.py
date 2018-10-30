@@ -67,7 +67,7 @@ class SaleOrder(models.Model):
     amount_tax_periodicity = fields.Float("Amount Tax w/ Periodicity", compute="_get_amount_w_periodicity")
 
     waste_pickings=fields.\
-        Integer(string='# of serv. pickings' ,
+        Integer(string='# of waste pickings' ,
                 compute="_compute_service_pickings_lines_count", readonly=True)
     service_pickings=fields.\
         Integer(string='# of serv. pickings' ,

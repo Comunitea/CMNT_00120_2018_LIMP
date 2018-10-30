@@ -6,14 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-10 16:28+0000\n"
-"PO-Revision-Date: 2018-05-10 16:28+0000\n"
+"POT-Creation-Date: 2018-10-30 10:57+0000\n"
+"PO-Revision-Date: 2018-10-30 10:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_contracts
+msgid "# of serv. contract"
+msgstr "# de contratos"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_service_pickings
+msgid "# of serv. pickings"
+msgstr "# alb. Servicio"
+
+#. module: limp_sale
+#: model:ir.model.fields,field_description:limp_sale.field_sale_order_waste_pickings
+msgid "# of waste pickings"
+msgstr "# alb. Residuos"
 
 #. module: limp_sale
 #: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
@@ -39,6 +54,11 @@ msgstr "<span>Presupuesto N° </span>"
 #: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
 msgid "<span>Total neto :</span>"
 msgstr "<span>Total neto :</span>"
+
+#. module: limp_sale
+#: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
+msgid "<strong>Con periodicidad: </strong>"
+msgstr "<strong>Con periodicidad: </strong>"
 
 #. module: limp_sale
 #: model:ir.ui.view,arch_db:limp_sale.custom_sale_report
@@ -72,11 +92,6 @@ msgid "Aceptación y conformidad de la oferta"
 msgstr "Aceptación y conformidad de la oferta"
 
 #. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_address_id
-msgid "Address"
-msgstr "Dirección"
-
-#. module: limp_sale
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_amount_tax_periodicity
 msgid "Amount Tax w/ Periodicity"
 msgstr "Impuestos con periodicidad"
@@ -100,11 +115,6 @@ msgstr "Importe impuestos"
 #: model:ir.model,name:limp_sale.model_account_analytic_account
 msgid "Analytic Account"
 msgstr "Cuenta analítica"
-
-#. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_analytic_distribution_id
-msgid "Analytic Distribution"
-msgstr "Distribución analítica"
 
 #. module: limp_sale
 #: model:ir.model.fields,help:limp_sale.field_task_frequency_an
@@ -165,12 +175,8 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_concept_amount
-msgid "Concepts amount"
-msgstr "Importe conceptos"
-
-#. module: limp_sale
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_contract_ids
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_bt_picking
 #: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_page
 msgid "Contracts"
 msgstr "Contratos"
@@ -179,11 +185,6 @@ msgstr "Contratos"
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_line_purchase_price
 msgid "Cost"
 msgstr "Coste"
-
-#. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_location_id
-msgid "Council"
-msgstr "Localidad"
 
 #. module: limp_sale
 #: model:ir.ui.view,arch_db:limp_sale.view_create_service_pick_wzd
@@ -237,7 +238,7 @@ msgstr "Contrato creado"
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_create_date
 #: model:ir.model.fields,field_description:limp_sale.field_task_frequency_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: limp_sale
 #: model:ir.model.fields,help:limp_sale.field_task_frequency_ct
@@ -287,7 +288,7 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_display_name
 #: model:ir.model.fields,field_description:limp_sale.field_task_frequency_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: limp_sale
 #: model:ir.model.fields,help:limp_sale.field_task_frequency_do
@@ -334,26 +335,6 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_invoice_ids
-msgid "Invoices"
-msgstr "Facturas"
-
-#. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_is_contract
-msgid "Is contract"
-msgstr "Es contrato"
-
-#. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_is_picking
-msgid "Is picking"
-msgstr "Es albarán"
-
-#. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_is_picking_in_contract
-msgid "Is picking in contract"
-msgstr "Es albarán en contrato"
-
-#. module: limp_sale
 #: model:ir.model.fields,help:limp_sale.field_sale_order_margin
 msgid "It gives profitability by calculating the difference between the Unit Price and the cost."
 msgstr "Devuelve el beneficio calculando la diferencia entre el precio unidad y el coste."
@@ -390,21 +371,21 @@ msgstr "LU - Lunes"
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity___last_update
 #: model:ir.model.fields,field_description:limp_sale.field_task_frequency___last_update
 msgid "Last Modified on"
-msgstr "Última Modifiación en"
+msgstr "Última modificación en"
 
 #. module: limp_sale
 #: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_write_uid
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_write_uid
 #: model:ir.model.fields,field_description:limp_sale.field_task_frequency_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: limp_sale
 #: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_write_date
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_periodicity_write_date
 #: model:ir.model.fields,field_description:limp_sale.field_task_frequency_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: limp_sale
 #: model:ir.model,name:limp_sale.model_limp_contract
@@ -454,11 +435,6 @@ msgid "Maintenance"
 msgstr "Mantenimiento"
 
 #. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_maintenance_task_ids
-msgid "Maintenance tasks"
-msgstr "Tareas de mantenimiento"
-
-#. module: limp_sale
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_line_margin
 #: model:ir.model.fields,field_description:limp_sale.field_sale_order_margin
 msgid "Margin"
@@ -495,7 +471,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: limp_sale
-#: code:addons/limp_sale/models/sale_order.py:82
+#: code:addons/limp_sale/models/sale_order.py:146
 #, python-format
 msgid "Not department defined for this sale order"
 msgstr "Sin departemento definido para esta venta"
@@ -514,11 +490,6 @@ msgstr "Nº cuenta _______________________________"
 #: model:ir.model.fields,field_description:limp_sale.field_stock_service_picking_sale_line_ids
 msgid "Order Lines"
 msgstr "Líneas del pedido"
-
-#. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_partner_name
-msgid "Partner name"
-msgstr "Nombre de asociado"
 
 #. module: limp_sale
 #: model:ir.ui.view,arch_db:limp_sale.sale_order_periodicity_search
@@ -559,19 +530,9 @@ msgid "Print product pricelist"
 msgstr "Imprimir tarifas productos"
 
 #. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_privacy
-msgid "Privacy"
-msgstr "Privacidad"
-
-#. module: limp_sale
 #: model:ir.model,name:limp_sale.model_product_product
 msgid "Product"
 msgstr "Producto"
-
-#. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_state_id
-msgid "Province"
-msgstr "Provincia"
 
 #. module: limp_sale
 #: model:ir.model.fields,field_description:limp_sale.field_task_frequency_qc
@@ -647,7 +608,6 @@ msgstr "ST - Semestral"
 #: model:ir.model.fields,field_description:limp_sale.field_limp_contract_sale_id
 #: model:ir.model.fields,field_description:limp_sale.field_stock_service_picking_sale_id
 #: model:ir.model.fields,field_description:limp_sale.field_task_frequency_sale_id
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_sale_id
 msgid "Sale"
 msgstr "Venta"
 
@@ -671,7 +631,7 @@ msgstr "Pedido de venta"
 #. module: limp_sale
 #: model:ir.model,name:limp_sale.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea pedido de venta"
+msgstr "Línea de pedido de venta"
 
 #. module: limp_sale
 #: model:ir.model.fields,help:limp_sale.field_task_frequency_s_n
@@ -699,17 +659,13 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_sale_order_service_order_ids
-msgid "Service orders"
-msgstr "Órdenes de servicio"
-
-#. module: limp_sale
 #: model:ir.model.fields,field_description:limp_sale.field_create_service_picking_from_sale_picking_type
 msgid "Service picking type"
 msgstr "Tipo de albarán de servicio"
 
 #. module: limp_sale
 #: model:ir.model,name:limp_sale.model_stock_service_picking
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_bt_picking
 msgid "Service pickings"
 msgstr "Albaranes servicio"
 
@@ -770,11 +726,6 @@ msgid "Total"
 msgstr "Total"
 
 #. module: limp_sale
-#: model:ir.model.fields,field_description:limp_sale.field_waste_service_address_tramit_id
-msgid "Tramit address"
-msgstr "Unidad tramitadora"
-
-#. module: limp_sale
 #: model:ir.model.fields,help:limp_sale.field_task_frequency_tr
 msgid "Trimestral"
 msgstr "Trimestral"
@@ -807,9 +758,9 @@ msgid "Viernes"
 msgstr "Viernes"
 
 #. module: limp_sale
-#: model:ir.model,name:limp_sale.model_waste_service
-msgid "Waste services"
-msgstr "Servicios residuos"
+#: model:ir.ui.view,arch_db:limp_sale.view_order_form_add_bt_picking
+msgid "Waste pickings"
+msgstr "Albaranes residuos"
 
 #. module: limp_sale
 #: selection:create.service.picking.from.sale,picking_type:0

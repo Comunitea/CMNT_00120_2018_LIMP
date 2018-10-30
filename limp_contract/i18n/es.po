@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-08 16:09+0000\n"
-"PO-Revision-Date: 2018-10-08 16:09+0000\n"
+"POT-Creation-Date: 2018-10-30 10:42+0000\n"
+"PO-Revision-Date: 2018-10-30 10:42+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -214,7 +214,9 @@ msgid "Annual"
 msgstr "Anual"
 
 #. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
+#: selection:limp.contract,periodicity_desinfeccion:0
+#: selection:limp.contract,periodicity_desinsectacion:0
+#: selection:limp.contract,periodicity_desratizacion:0
 msgid "Anual"
 msgstr "Anual"
 
@@ -222,6 +224,11 @@ msgstr "Anual"
 #: model:ir.ui.view,arch_db:limp_contract.upamount_contract_wzd_form
 msgid "Apply"
 msgstr "Aplicar"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.4
+msgid "April"
+msgstr "Abril"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_form
@@ -237,6 +244,11 @@ msgstr "¿Está seguro de que quiere cancelar este contrato?"
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_search
 msgid "Associated Partner"
 msgstr "Empresa asociada"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.8
+msgid "August"
+msgstr "Agosto"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_balance
@@ -262,12 +274,16 @@ msgid "Biannual"
 msgstr "Semestral"
 
 #. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
+#: selection:limp.contract,periodicity_desinfeccion:0
+#: selection:limp.contract,periodicity_desinsectacion:0
+#: selection:limp.contract,periodicity_desratizacion:0
 msgid "Bianual"
 msgstr "Bianual"
 
 #. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
+#: selection:limp.contract,periodicity_desinfeccion:0
+#: selection:limp.contract,periodicity_desinsectacion:0
+#: selection:limp.contract,periodicity_desratizacion:0
 msgid "Bimensual"
 msgstr "Bimensual"
 
@@ -317,7 +333,7 @@ msgid "Cancelled"
 msgstr "Canceladas"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:218
+#: code:addons/limp_contract/models/limp_contract.py:219
 #, python-format
 msgid "Cannot close the contract without a final date less or equal today."
 msgstr "No puede cerrar el contrato sin una fecha final menor o igual a hoy."
@@ -392,6 +408,7 @@ msgstr "Contratos cerrados"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type_code
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval_code
 msgid "Code"
 msgstr "Código"
 
@@ -638,6 +655,7 @@ msgstr "Crear factura"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_create_uid
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_create_uid
 msgid "Created by"
@@ -658,6 +676,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_create_date
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_create_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_create_date
 msgid "Created on"
@@ -671,7 +690,9 @@ msgid "Credit"
 msgstr "Haber"
 
 #. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
+#: selection:limp.contract,periodicity_desinfeccion:0
+#: selection:limp.contract,periodicity_desinsectacion:0
+#: selection:limp.contract,periodicity_desratizacion:0
 msgid "Cuatrimestral"
 msgstr "Cuatrimestral"
 
@@ -715,19 +736,13 @@ msgid "DDD y Legionella Information"
 msgstr "DDD y Legionella Información"
 
 #. module: limp_contract
-#: selection:maintenance.task,interval:0
-msgid "Daily"
-msgstr "Diaria"
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_incidence_date
 msgid "Date"
 msgstr "Fecha"
 
-#. module: analytic
-#: model:ir.model.fields,field_description:analytic.field_account_analytic_account_date
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_date
@@ -746,8 +761,7 @@ msgstr "Lugar y fecha de realización del curso/formación"
 msgid "Date of the last message posted on the record."
 msgstr "Fecha del último mensaje publicado en el registro."
 
-#. module: analytic
-#: model:ir.model.fields,field_description:analytic.field_account_analytic_account_date_start
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_date_start
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_date_start
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_date_start
@@ -760,6 +774,11 @@ msgstr "Fecha de inicio"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_debit
 msgid "Debit"
 msgstr "Debe"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.12
+msgid "December"
+msgstr "Diciembre"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_account_invoice_report_delegation_id
@@ -834,6 +853,7 @@ msgstr "Diaria"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_display_name
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_display_name
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_display_name
 msgid "Display Name"
@@ -921,6 +941,11 @@ msgstr "Excepción"
 #: model:ir.ui.view,arch_db:limp_contract.maintenance_task_view_tree
 msgid "Execute"
 msgstr "Ejecutar"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.2
+msgid "February"
+msgstr "Febrero"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_follower_ids
@@ -1047,6 +1072,7 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_id
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_id
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval_id
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_id
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_id
 msgid "ID"
@@ -1118,11 +1144,6 @@ msgstr "Incluir albaranes"
 #: model:ir.model.fields,help:limp_contract.field_limp_contract_bank_account_id
 msgid "Income bank account"
 msgstr "Cuenta bancaria de entrada"
-
-#. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_interval
-msgid "Interval"
-msgstr "Intervalo"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_account_invoice
@@ -1233,6 +1254,21 @@ msgid "Is picking in contract"
 msgstr "Es albarán en contrato"
 
 #. module: limp_contract
+#: model:months.interval,name:limp_contract.1
+msgid "January"
+msgstr "Enero"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.7
+msgid "July"
+msgstr "Julio"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.6
+msgid "June"
+msgstr "Junio"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_last_post
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_message_last_post
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_message_last_post
@@ -1254,6 +1290,7 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task___last_update
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd___last_update
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date___last_update
 msgid "Last Modified on"
@@ -1274,6 +1311,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_write_uid
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_write_uid
 msgid "Last Updated by"
@@ -1294,6 +1332,7 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_write_date
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd_write_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date_write_date
 msgid "Last Updated on"
@@ -1403,7 +1442,19 @@ msgid "Manual DDD"
 msgstr "Manual DDD"
 
 #. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
+#: model:months.interval,name:limp_contract.3
+msgid "March"
+msgstr "Marzo"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.5
+msgid "May"
+msgstr "Mayo"
+
+#. module: limp_contract
+#: selection:limp.contract,periodicity_desinfeccion:0
+#: selection:limp.contract,periodicity_desinsectacion:0
+#: selection:limp.contract,periodicity_desratizacion:0
 msgid "Mensual"
 msgstr "Mensual"
 
@@ -1426,7 +1477,6 @@ msgstr "Situación de monitoreos"
 
 #. module: limp_contract
 #: selection:limp.incidence,periodicity:0
-#: selection:maintenance.task,interval:0
 msgid "Monthly"
 msgstr "Mensual"
 
@@ -1434,6 +1484,11 @@ msgstr "Mensual"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_monthly_amount
 msgid "Monthly amount"
 msgstr "Importe mensual"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_months_interval
+msgid "Months interval"
+msgstr "Meses"
 
 #. module: limp_contract
 #: selection:limp.contract,periodicity:0
@@ -1446,6 +1501,7 @@ msgstr "Mensual"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task_name
+#: model:ir.model.fields,field_description:limp_contract.field_months_interval_name
 #: model:ir.ui.view,arch_db:limp_contract.limp_contract_tree
 msgid "Name"
 msgstr "Nombre"
@@ -1464,11 +1520,6 @@ msgstr "Nueva fecha"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_next_date
 msgid "Next date"
 msgstr "Próx. fecha"
-
-#. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_next_execution_date
-msgid "Next execution date"
-msgstr "Sigu. ejecución"
 
 #. module: limp_contract
 #: code:addons/limp_contract/models/limp_contract_line_cleaning.py:112
@@ -1495,6 +1546,11 @@ msgstr "Sin departamento definido para esta linea de contrato"
 #: model:ir.ui.view,arch_db:limp_contract.limp_incidence_form
 msgid "Notes"
 msgstr "Notas"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.11
+msgid "November"
+msgstr "Noviembre"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_num
@@ -1539,6 +1595,11 @@ msgid "Observations"
 msgstr "Observaciones"
 
 #. module: limp_contract
+#: model:months.interval,name:limp_contract.10
+msgid "October"
+msgstr "Octubre"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_group_products_each_invoice
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_group_products_each_invoice
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_group_products_each_invoice
@@ -1553,7 +1614,7 @@ msgid "Only contract lines in draft or cancelled states can be deleted."
 msgstr "Sólo lineas de contratos en estado borrador o cancelados pueden ser borrados."
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:162
+#: code:addons/limp_contract/models/limp_contract.py:163
 #, python-format
 msgid "Only contracts in draft or cancelled states can be deleted."
 msgstr "Sólo contratos en estado borrador o cancelados pueden ser borrados."
@@ -1651,9 +1712,19 @@ msgid "Periodicity"
 msgstr "Periodicidad"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_periodicity_reviews
-msgid "Periodicity Reviews"
-msgstr "Periodicidad revisiones"
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_periodicity_desinfeccion
+msgid "Periodicity desinfeccion"
+msgstr "Periodicidad desinfección"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_periodicity_desinsectacion
+msgid "Periodicity desinsectacion"
+msgstr "Periodicidad desinsectación"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_periodicity_desratizacion
+msgid "Periodicity desratizacion"
+msgstr "Periodicidad desratización"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_incidence_picking_id
@@ -1811,16 +1882,6 @@ msgid "Reopen"
 msgstr "Reabrir"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_interval_count
-msgid "Repeat each"
-msgstr "Repetir cada"
-
-#. module: limp_contract
-#: model:ir.model.fields,help:limp_contract.field_maintenance_task_interval_count
-msgid "Repeat with interval (Days/Week/Month)"
-msgstr "Repetir con intervalo (Días/Semanas/Meses)"
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_request_prorogation_date
 msgid "Req. prorogation date"
 msgstr "Solicitud prórroga"
@@ -1847,6 +1908,11 @@ msgstr "Sábado"
 #: model:ir.model.fields,field_description:limp_contract.field_account_invoice_report_no_quality
 msgid "Scont"
 msgstr "Scont"
+
+#. module: limp_contract
+#: model:months.interval,name:limp_contract.9
+msgid "September"
+msgstr "Septiembre"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel_task_sequence
@@ -1956,7 +2022,7 @@ msgstr "Esta cuenta es un contrato"
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.view_account_analytic_account_search_add_delegation_id
 msgid "This account is picking w/o contract"
-msgstr "Esta cuenta es un albaran sin contrato"
+msgstr "Esta cuenta es un albarán sin contrato"
 
 #. module: limp_contract
 #: model:ir.ui.view,arch_db:limp_contract.view_account_analytic_account_search_add_delegation_id
@@ -2050,7 +2116,9 @@ msgid "Tramit address"
 msgstr "Unidad tramitadora"
 
 #. module: limp_contract
-#: selection:limp.contract,periodicity_reviews:0
+#: selection:limp.contract,periodicity_desinfeccion:0
+#: selection:limp.contract,periodicity_desinsectacion:0
+#: selection:limp.contract,periodicity_desratizacion:0
 msgid "Trimestral"
 msgstr "Trimestral"
 
@@ -2066,15 +2134,15 @@ msgid "Two months"
 msgstr "Bimensual"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_type_of_installation_id
-msgid "Type of installation legionella"
-msgstr "Tipo de instalación legionella"
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_type_ddd_ids
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_type_ddd_ids
 msgid "Types ddd"
 msgstr "Tipos ddd"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_type_of_installation_ids
+msgid "Types of installation legionella"
+msgstr "Tipos de instalación legionella"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_inactive_remuneration_ids
@@ -2183,7 +2251,6 @@ msgstr "Miércoles"
 #. module: limp_contract
 #: selection:limp.contract.line.task.rel,freq:0
 #: selection:limp.incidence,periodicity:0
-#: selection:maintenance.task,interval:0
 msgid "Weekly"
 msgstr "Semanal"
 
@@ -2216,11 +2283,6 @@ msgid "contract.to_invoice"
 msgstr "contrato.a_factura"
 
 #. module: limp_contract
-#: model:ir.model,name:limp_contract.model_equipment_to_be_used
-msgid "equipment.to.be.used"
-msgstr "equipment.to.be.used"
-
-#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_ir_sequence
 msgid "ir.sequence"
 msgstr "ir.secuencia"
@@ -2241,6 +2303,11 @@ msgid "maintenance.task"
 msgstr "maintenance.task"
 
 #. module: limp_contract
+#: model:ir.model,name:limp_contract.model_months_interval
+msgid "months.interval"
+msgstr "months.interval"
+
+#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_service_order_toinvoice
 msgid "service.order.toinvoice"
 msgstr "service.order.toinvoice"
@@ -2254,3 +2321,19 @@ msgstr "upamount.contract.wzd"
 #: model:ir.model,name:limp_contract.model_update_last_invoice_date
 msgid "update.last.invoice.date"
 msgstr "update.last.invoice.date"
+
+#. module: analytic
+#: model:ir.model.fields,field_description:analytic.field_account_analytic_account_date
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_date
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_date
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_date
+msgid "Date end"
+msgstr "Fecha fin"
+
+#. module: analytic
+#: model:ir.model.fields,field_description:analytic.field_account_analytic_account_date_start
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_date_start
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_date_start
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help_date_start
+msgid "Date start"
+msgstr "Fecha de inicio"
