@@ -323,7 +323,7 @@ class StockServicePicking(models.Model):
                         'tax_ids': [(6,0,[x.id for x in waste.product_id.taxes_id])]
                     }
 
-                    self.env['service.picking.invoice.concept'].create(cr, uid, vals)
+                    self.env['service.picking.invoice.concept'].create(vals)
                     seq += 1
 
             for other_concept in order.other_concepts_ids:
