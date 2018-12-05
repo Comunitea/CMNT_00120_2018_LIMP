@@ -10,9 +10,11 @@
                 <field name="contract_id"/>
                 <field name="tag_ids" widget="many2many_tags"/>
             </field>
-            <field name="address_invoice_id" position="after">
+            <field name="address_id" position="after">
                 <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
-                <field name="privacy" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
+            </field>
+            <field name="building_site" position="before">>
+                <field name="privacy" attrs="{'readonly':[('state','in',['cancelled'])]}" colspan="4"/>
             </field>
         </field>
     </record>

@@ -21,7 +21,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
-import time
 
 
 class StockServicePicking(models.Model):
@@ -188,18 +187,20 @@ class StockServicePicking(models.Model):
 
     @api.onchange('manager_partner_id')
     def onchange_manager_partner_id(self):
-        if not self.partner_id:
+        if not self.manager_partner_id:
             self.manager_address_id = False
             return
         nima = False
-        addr = self.partner_id.address_get(['management_plant'])
-        if self.partner_id.nima_no:
-            nima = self.partner_id.nima_no
+        addr = self.manager_partner_id.address_get(['management_plant'])
+        if self.manager_partner_id.nima_no:
+            nima = self.manager_partner_id.nima_no
 
         self.manager_address_id = addr['management_plant']
         self.nima_no = nima
-        self.name_manager = self.partner_id.name
-        self.authorization_manager = self.partner_id.manager_authorization_no and self.partner_id.manager_authorization_no or False
+        self.name_manager = self.manager_partner_id.name
+        self.authorization_manager = \
+            self.manager_partner_id.manager_authorization_no and \
+            self.manager_partner_id.manager_authorization_no or False
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -306,7 +307,6 @@ class StockServicePicking(models.Model):
                         'price': waste.product_id.list_price,
                         'service_picking_id': order.id,
                         'tax_ids': [(6,0,[x.id for x in waste.product_id.taxes_id])],
-                        'price': waste.product_id.list_price
                         }
                         self.env['service.picking.invoice.concept'].create(vals)
                         seq += 1
@@ -385,7 +385,7 @@ class StockServicePicking(models.Model):
                 location_id = self.env.ref('stock.stock_location_customers').id
                 warehouse_ids = self.env['stock.warehouse'].sudo().search([('company_id', '=', company.id)])
                 if not warehouse_ids:
-                    raise osv.except_osv(_('Error !'), _('There is no wharehouse to the order company'))
+                    raise UserError(_('There is no wharehouse to the order company'))
                 location_dest_id = warehouse_ids[0].lot_stock_id.id
 
                 for valorization_line in order.service_picking_valorization_ids:

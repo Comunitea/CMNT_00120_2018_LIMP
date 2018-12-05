@@ -113,7 +113,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><strong>Con periodicidad: </strong></td>
+                            <td><strong>Con periodicidad anual: </strong></td>
                             <td class="text-right">
                                 <strong><span t-field="doc.amount_total_periodicity"
                                     t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></strong>

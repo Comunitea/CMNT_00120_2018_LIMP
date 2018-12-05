@@ -32,15 +32,27 @@ class MaintenanceTask(models.Model):
     last_execution_date = fields.Date('Last execution date')
     start_date = fields.Date('Start date', required=True)
     end_date = fields.Date('End date')
-    contract_line_id = fields.Many2one('account.analytic.account', 'Workcenter')
-    contract_id = fields.Many2one('account.analytic.account', 'Contract', required=True, readonly=True)
-    contract_accounts = fields.Many2many('account.analytic.account', compute='_compute_analytic_accounts')
-    picking_ids = fields.One2many('stock.service.picking', 'maintenace_task_id', string="Picking history", readonly=True)
-    monitoring_situation=fields.Char("Monitoring Situation")
-    type_ddd_ids=fields.Many2many('types.ddd', string='Types ddd')
-    type_of_installation_ids=fields.Many2many('type.of.installation.legionella', string="Types of installation legionella")
-
-    months_interval=fields.Many2many('months.interval', string='Months interval')
+    contract_line_id = fields.Many2one('account.analytic.account',
+                                       'Workcenter')
+    contract_id = fields.Many2one('account.analytic.account', 'Contract',
+                                  required=True, readonly=True)
+    contract_accounts = fields.Many2many('account.analytic.account',
+                                         compute='_compute_analytic_accounts')
+    picking_ids = fields.One2many('stock.service.picking',
+                                  'maintenace_task_id',
+                                  string="Picking history", readonly=True)
+    monitoring_situation = fields.Char("Monitoring Situation")
+    type_ddd_ids = fields.Many2many('types.ddd', string='Types ddd')
+    type_of_installation_ids = fields.\
+        Many2many('type.of.installation.legionella',
+                  string="Types of installation legionella")
+    months_interval = fields.Many2many('months.interval',
+                                       string='Months interval')
+    detected_species_ids = fields.One2many('detected.species',
+                                           'maintenace_task_id',
+                                           string="Detected Species")
+    products_used_ids = fields.One2many('products.used', 'maintenace_task_id',
+                                        string="Products Used")
 
     @api.onchange('contract_id')
     def onchange_contract_id(self):
@@ -59,13 +71,24 @@ class MaintenanceTask(models.Model):
     @api.depends('contract_id')
     def _compute_analytic_accounts(self):
         for task in self.filtered('contract_id'):
-            task.contract_accounts = task.contract_id.get_same_contract_accounts()
+            task.contract_accounts = task.contract_id.\
+                get_same_contract_accounts()
 
     def write(self, vals):
         for obj in self:
-            if not 'last_execution_date' in vals or vals['last_execution_date'] != False:
-                if vals.get('end_date', False) and vals.get('last_execution_date', obj.last_execution_date) > vals['end_date']:
-                    raise UserError(u'No puede poner un fecha fin a una tarea de mantenimiento anterior a la fecha de última ejecución, si tiene que ser así escriba manualmente una fecha de última ejecución anterior y recuerde eliminar el albarán de mantenimiento que ya debe estar generado con una fecha posterior a la de finalización')
+            if 'last_execution_date' not in vals or \
+                    vals['last_execution_date']:
+                if vals.get('end_date', False) and \
+                        vals.get('last_execution_date',
+                                 obj.last_execution_date) > vals['end_date']:
+                    raise UserError(u'No puede poner un fecha fin a una tarea '
+                                    u'de mantenimiento anterior a la fecha de '
+                                    u'última ejecución, si tiene que ser así '
+                                    u'escriba manualmente una fecha de última '
+                                    u'ejecución anterior y recuerde eliminar '
+                                    u'el albarán de mantenimiento que ya debe '
+                                    u'estar generado con una fecha posterior '
+                                    u'a la de finalización')
         return super(MaintenanceTask, self).write(vals)
 
     @api.multi
@@ -91,42 +114,78 @@ class MaintenanceTask(models.Model):
         while(tasks_to_execute_ids):
             for task in tasks_to_execute_ids:
                 if task.last_execution_date:
-                    last = datetime.strptime(task.last_execution_date, "%Y-%m-%d")
-                    dates = [dt for dt in rrule(MONTHLY, dtstart=last, until=to_compare, bymonth=(int(x.code) for x in task.months_interval)) if dt != last]
+                    last = datetime.strptime(task.last_execution_date,
+                                             "%Y-%m-%d")
+                    dates = [dt for dt in rrule(MONTHLY, dtstart=last,
+                                                until=to_compare,
+                                                bymonth=(int(x.code)
+                                                         for x in
+                                                         task.months_interval))
+                             if dt != last]
                 else:
                     last = datetime.strptime(task.start_date, "%Y-%m-%d")
-                    dates = [dt for dt in rrule(MONTHLY, dtstart=last, until=to_compare, bymonth=(int(x.code) for x in task.months_interval))]
+                    dates = [dt for dt in
+                             rrule(MONTHLY, dtstart=last, until=to_compare,
+                                   bymonth=(int(x.code) for x in
+                                            task.months_interval))]
                 for date in dates:
                     next_execution_date = date.strftime('%Y-%m-%d')
-                    contract = self.env['limp.contract'].search([('analytic_account_id', '=', task.contract_id.id)])[0]
-                    self.env['stock.service.picking'].create({
+                    contract = self.env['limp.contract'].\
+                        search([('analytic_account_id', '=',
+                                 task.contract_id.id)])[0]
+                    pick = self.env['stock.service.picking'].create({
                         'picking_type': 'sporadic',
                         'planified': True,
                         'maintenance': True,
                         'contract_id': contract.id,
                         'picking_date': next_execution_date,
-                        'payment_type': contract.payment_type_id and contract.payment_type_id.id or False,
-                        'payment_term': contract.payment_term_id and contract.payment_term_id.id or False,
+                        'payment_type': contract.payment_type_id and
+                        contract.payment_type_id.id or False,
+                        'payment_term': contract.payment_term_id and
+                        contract.payment_term_id.id or False,
                         'invoice_type': "noinvoice",
-                        'ccc_account_id': contract.bank_account_id and contract.bank_account_id.id or False,
-                        'manager_id': (task.contract_line_id and task.contract_line_id.manager_id) and task.contract_line_id.manager_id.id or contract.analytic_account_id.manager_id.id,
+                        'ccc_account_id': contract.bank_account_id and
+                        contract.bank_account_id.id or False,
+                        'manager_id': (task.contract_line_id and
+                                       task.contract_line_id.manager_id) and
+                        task.contract_line_id.manager_id.id or
+                        contract.analytic_account_id.manager_id.id,
                         'partner_id': contract.partner_id.id,
                         'address_invoice_id': contract.address_invoice_id.id,
-                        'department_id': (task.contract_line_id and task.contract_line_id.department_id) and task.contract_line_id.department_id.id or contract.analytic_account_id.department_id.id,
-                        'delegation_id': (task.contract_line_id and task.contract_line_id.delegation_id) and task.contract_line_id.delegation_id.id or contract.analytic_account_id.delegation_id.id,
+                        'department_id':
+                        (task.contract_line_id and
+                         task.contract_line_id.department_id) and
+                        task.contract_line_id.department_id.id or
+                        contract.analytic_account_id.department_id.id,
+                        'delegation_id':
+                        (task.contract_line_id and
+                         task.contract_line_id.delegation_id) and
+                        task.contract_line_id.delegation_id.id or
+                        contract.analytic_account_id.delegation_id.id,
                         'description': task.name,
                         'address_id': contract.address_id.id,
                         'no_quality': contract.no_quality,
                         'maintenace_task_id': task.id,
-                        'parent_id': task.contract_line_id and task.contract_line_id.id or contract.analytic_account_id.id,
+                        'parent_id': task.contract_line_id and
+                        task.contract_line_id.id or
+                        contract.analytic_account_id.id,
                         'monitoring_situation': task.monitoring_situation,
                         'type_ddd_ids': [(6, 0, task.type_ddd_ids.ids)],
                         'tag_ids': [(6, 0, contract.tag_ids.ids)],
-                        'type_of_installation_id': [(6, 0, task.type_of_installation_ids.ids)],
-                        'used_product_ids': [(6, 0, contract.used_product_ids.ids)]
+                        'type_of_installation_id':
+                        [(6, 0, task.type_of_installation_ids.ids)],
+                        'used_product_ids':
+                        [(6, 0, contract.used_product_ids.ids)]
                     })
+                    for specie in task.detected_species_ids:
+                        specie.copy({'maintenace_task_id': False,
+                                     'picking_id': pick.id})
+                    for prod in task.products_used_ids:
+                        prod.copy({'maintenace_task_id': False,
+                                   'picking_id': pick.id})
                 if dates:
-                    task.write({'last_execution_date': dates[-1].strftime('%Y-%m-%d')})
+                    task.write({'last_execution_date':
+                                dates[-1].strftime('%Y-%m-%d')})
                     end_tasks.append(task.id)
 
             domain2 = list(domain)
@@ -141,11 +200,29 @@ class AccountAnalyticAccount(models.Model):
 
     _inherit = "account.analytic.account"
 
-    maintenance_task_ids = fields.One2many('maintenance.task', 'contract_id', string='Maintenance tasks')
+    maintenance_task_ids = fields.One2many('maintenance.task', 'contract_id',
+                                           string='Maintenance tasks')
 
 
 class StockServicePicking(models.Model):
 
     _inherit = "stock.service.picking"
 
-    maintenace_task_id = fields.Many2one('maintenance.task', 'Maintenance task', readonly=True)
+    maintenace_task_id = fields.Many2one('maintenance.task',
+                                         'Maintenance task', readonly=True)
+
+
+class DetectedSpecies(models.Model):
+
+    _inherit = 'detected.species'
+
+    maintenace_task_id = fields.Many2one('maintenance.task',
+                                         'Maintenance task', readonly=True)
+
+
+class ProductsUsed(models.Model):
+
+    _inherit = 'products.used'
+
+    maintenace_task_id = fields.Many2one('maintenance.task',
+                                         'Maintenance task', readonly=True)

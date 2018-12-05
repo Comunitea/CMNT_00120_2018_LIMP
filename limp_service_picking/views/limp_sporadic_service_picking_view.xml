@@ -152,7 +152,16 @@
                             </group>
                         </page>
                         <page string="Consumptions">
-                            <field name="analytic_move_ids" colspan="4" nolabel="1" context="{'employee_id': manager_id}"/>
+                            <field name="analytic_move_ids" colspan="4" nolabel="1" context="{'employee_id': manager_id}">
+                                <tree string="Consumptions" editable="top">
+                                    <field name="employee_id"/>
+                                    <field name="location_id"/>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="state" invisible="1"/>
+                                    <button name="action_confirm" type="object" string="Confirm" states="first" icon="fa-check"/>
+                                </tree>
+                            </field>
                         </page>
                         <page string="Other data">
                             <group>

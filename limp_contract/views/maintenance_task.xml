@@ -44,6 +44,8 @@
                             <field name="type_ddd_ids" widget="many2many_checkboxes"/>
                             <field name="monitoring_situation"/>
                             <field name="type_of_installation_ids" widget="many2many_tags"/>
+                            <field name="detected_species_ids"/>
+                            <field name="products_used_ids"/>
                         </group>
 
                         <group>
