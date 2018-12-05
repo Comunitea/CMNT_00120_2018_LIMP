@@ -117,6 +117,8 @@ class Timesheet(models.Model):
             vals['contract'] = True
         if vals.get('paid', False):
             vals['paid_date'] = fields.Date.today()
+        if vals.get('hours', 0.0) and not vals.get('ss_hours', 0.0):
+            vals['ss_hours'] = vals['hours']
         if vals.get('employee_id', False):
             employee_id = self.env['hr.employee'].browse(vals['employee_id'])
             vals['employee_delegation_id'] = employee_id.delegation_id.id
@@ -136,6 +138,8 @@ class Timesheet(models.Model):
             vals['contract'] = True
         if vals.get('paid', False) and not vals.get('paid_date', False):
             vals['paid_date'] = fields.Date.today()
+        if vals.get('hours', 0.0) and not vals.get('ss_hours', 0.0):
+            vals['ss_hours'] = vals['hours']
         if vals.get('employee_id', False):
             employee_id = self.env['hr.employee'].browse(vals['employee_id'])
             vals['employee_delegation_id'] = employee_id.delegation_id.id

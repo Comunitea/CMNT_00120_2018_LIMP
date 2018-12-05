@@ -198,7 +198,7 @@ class DistributionCostsImport(models.TransientModel):
                                                 config[str(remu.id)][str(code)+'-with_contract'] += with_contact_old
 
                                             rule3 = (weeks * days)/30.0
-                                            with_contract_ss_old = remu.contract_hours * rule3 # proporción de horas de seguridad social en el periodo
+                                            with_contract_ss_old = remu.ss_hours * rule3 # proporción de horas de seguridad social en el periodo
                                             ss_total_hours += with_contract_ss_old #sumamos las horas al total horas con seguridad social
                                             #with_ss_contract += with_contract_ss_old # sumamos la proporción de días de la remuneración al total con contrato y precio hora
                                             if not config[str(remu.id)].get(str(code)+'-with_ss_contract'):
@@ -228,10 +228,10 @@ class DistributionCostsImport(models.TransientModel):
                                         with_contract += obj_time.hours # sumamos a las horas totales las horas con contrato en el parte de horas
                                         #with_contract_timesheet += obj_time.hours # sumamos a las horas en parte las horas con contrato del parte
                                         config[str(obj_time.id)+"t"].update({str(obj_time.analytic_id.id)+"-with_contract": obj_time.hours})
-
-                                        ss_total_hours += obj_time.hours #sumamos las horas al total horas con seguridad social
+                                    if obj_time.ss_hours:
+                                        ss_total_hours += obj_time.ss_hours #sumamos las horas al total horas con seguridad social
                                         #ss_total_timesheet += obj_time.ss_hours
-                                        config[str(obj_time.id)+"t"].update({str(obj_time.analytic_id.id)+"-with_ss_contract": obj_time.hours})
+                                        config[str(obj_time.id)+"t"].update({str(obj_time.analytic_id.id)+"-with_ss_contract": obj_time.ss_hours})
 
                         if journal_id and general_account_id_ss and general_account_id_suelsala and config and (fixed or with_contract or with_price_hour):
                             for remuneration in config:

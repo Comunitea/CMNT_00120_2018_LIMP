@@ -19,6 +19,8 @@
                 <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="base.group_hr_manager"/>
                 <field name="paid"/>
                 <field name="paid_date"/>
+                <field name="ss_hours" sum="Total ss hours"/>
+                <field name="ss_no_hours" sum="Total no ss hours"/>
                 <field name="analytic_id" required="1"/>
                 <field name="delegation_id"/>
                 <field name="department_id"/>
@@ -54,6 +56,9 @@
                 <field name="effective"/>
                 <field name="pending_qty"/>
                 <field name="pending_distribute_qty"/>
+                <separator string="Social security" colspan="4"/>
+                <field name="ss_hours"/>
+                <field name="ss_no_hours"/>
                 <separator string="Process" colspan="4"/>
                 <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="base.group_hr_manager"/>
                 <field name="paid"/>
