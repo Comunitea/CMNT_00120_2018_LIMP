@@ -28,7 +28,7 @@
     "category" : "Budgets",
     "depends" : [
         'base',
-        'sale',
+        'sale_stock',
         'product',
         'account',
         'limp_multi_delegations',

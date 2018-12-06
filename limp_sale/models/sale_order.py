@@ -21,15 +21,13 @@
 ##############################################################################
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-from odoo.addons import decimal_precision as dp
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 
 
 class SaleOrder(models.Model):
 
     _inherit = 'sale.order'
     _order = "date_order desc"
-
 
     @api.multi
     def _get_amount_w_periodicity(self):
@@ -264,10 +262,19 @@ class SaleOrderLine(models.Model):
 
     amount_tax = fields.Float("Amount tax", compute="_get_amount_tax")
 
-
     @api.onchange('product_uom', 'product_uom_qty')
     def product_uom_change(self):
 
-        old_price_unit=self.price_unit
+        old_price_unit = self.price_unit
         super(SaleOrderLine, self).product_uom_change()
         self.price_unit = old_price_unit
+
+    @api.onchange('product_id')
+    def product_id_change(self):
+        res = super(SaleOrderLine, self).product_id_change()
+        if self.product_id and self.product_id.type == 'service' and \
+                res.get('domain') and res['domain'].get('product_uom'):
+            res['domain']['product_uom'] = []
+        return res
+
+        return res

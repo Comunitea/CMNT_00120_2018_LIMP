@@ -4,7 +4,7 @@
     <record id="view_order_form_add_page" model="ir.ui.view">
         <field name="name">sale.order.form.add.page</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <notebook position="inside">
@@ -63,8 +63,10 @@
             <field name="project_id" position="after">
                 <field name="periodicity_id" widget="selection"/>
             </field>
+            <field name="warehouse_id" position="replace"/>
             <field name="company_id" position="replace"/>
             <field name="confirmation_date" position="before">
+                <field name="warehouse_id" options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>
                 <field name="company_id" widget="selection"/>
                 <field name="delegation_id" widget="selection"/>
                 <field name="department_id" widget="selection"/>
@@ -83,9 +85,9 @@
                 <field name="show_total"/>
             </field>
             <button name="action_quotation_send" position="before">
-                <button name="create_contract" type="object" string="Create contract" attrs="{'invisible': ['|',('created_contract', '=', 1),('state','!=','sale')]}" groups="limp_contract.group_limp_administrative"/>
-                <button name="create_service_order" type="object" string="Create Service order" groups="limp_service_picking.group_waste_manager" attrs="{'invisible': ['|',('created_service_order', '=', 1),('state','!=','sale')]}"/>
-                <button name="%(action_view_create_service_pick_wzd)d" type="action" string="Create pick" attrs="{'invisible': ['|',('created_service_pick', '=', 1),('state','!=','sale')]}" groups="limp_service_picking.group_waste_manager,limp_service_picking.group_cleaning_user"/>
+                <button name="create_contract" type="object" string="Create contract" attrs="{'invisible': ['|',('created_contract', '=', True),('state','!=','sale')]}" groups="limp_contract.group_limp_administrative"/>
+                <button name="create_service_order" type="object" string="Create Service order" groups="limp_service_picking.group_waste_manager" attrs="{'invisible': ['|',('created_service_order', '=', True),('state','!=','sale')]}"/>
+                <button name="%(action_view_create_service_pick_wzd)d" type="action" string="Create pick" attrs="{'invisible': ['|',('created_service_pick', '=', True),('state','!=','sale')]}" groups="limp_service_picking.group_waste_manager,limp_service_picking.group_cleaning_user"/>
             </button>
             <group name="sale_total" position="after">
                 <group attrs="{'invisible': [('periodicity_id', '=', False)]}" colspan="2" class="oe_subtotal_footer oe_right">
