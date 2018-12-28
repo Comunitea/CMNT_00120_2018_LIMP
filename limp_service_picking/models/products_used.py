@@ -27,3 +27,4 @@ class ProductsUsed(models.Model):
                               related="product_id.security_term",
                               readonly=True)
 
+    plague_to_fight=fields.Selection([('insects', 'Insects'),('microorganisms', 'Microorganisms'),('rodents', 'Rodents')],'Plague to fight', required=True)

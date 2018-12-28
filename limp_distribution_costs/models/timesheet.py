@@ -88,11 +88,11 @@ class Timesheet(models.Model):
         if self.hours:
             self.contract = True
             self.done = True
-            self.paid = True
+
         else:
             self.contract = False
             self.done = False
-            self.paid = False
+
 
     @api.onchange('analytic_id')
     def on_change_analytic_id(self):
@@ -108,7 +108,6 @@ class Timesheet(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('hours', 0.0) and not vals.get('paid', False):
-            vals['paid'] = True
             vals['contract'] = True
             vals['done'] = True
         if vals.get('fix_qty', False) and vals.get(
@@ -129,7 +128,6 @@ class Timesheet(models.Model):
     @api.multi
     def write(self, vals):
         if vals.get('hours', 0.0) and not vals.get('paid', False):
-            vals['paid'] = True
             vals['contract'] = True
             vals['done'] = True
         if vals.get('fix_qty', False) and vals.get(

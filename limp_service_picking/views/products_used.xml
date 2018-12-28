@@ -9,6 +9,7 @@
             <tree editable="top">
                 <field name="product_id"/>
                 <field name="treated_area"/>
+                <field name="plague_to_fight"/>
                 <field name="type_of_biocide"/>
                 <field name="active_matter"/>
                 <field name="registration_number"/>
@@ -28,6 +29,7 @@
                 <group>
                     <field name="treated_area"/>
                     <field name="type_of_biocide"/>
+                    <field name="plague_to_fight"/>
                     <field name="product_id"/>
                     <field name="active_matter"/>
                     <field name="registration_number"/>

@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AccountAnalyticAccount(models.Model):
@@ -39,6 +39,24 @@ class AccountAnalyticAccount(models.Model):
                                          False))
     department_id = fields.Many2one(
         default=lambda r: r._context.get('c_department_id', r._context.get('context_department_id', r.env.user.context_department_id.id)))
+
+    @api.model
+    def create(self, vals):
+
+        if vals.get('date', False) is True:
+            vals['display_name']='[ '+self.display_name+' ]'
+
+        return super(AccountAnalyticAccount, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        for tobj in self:
+            if vals.get('date', False) is True:
+                vals['display_name']='[ '+tobj.display_name+' ]'
+            super(AccountAnalyticAccount, tobj).write(vals)
+
+        return True
+
 
 
 class AccountAnalyticLine(models.Model):

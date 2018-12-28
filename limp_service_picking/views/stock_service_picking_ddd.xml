@@ -10,7 +10,7 @@
                 <field name="description" position="after">
                     <field name="treatment_applicator1"/>
                     <field name="treatment_applicator2"/>
-                    <field name="technical_support"/>
+                    <field name="supervisor"/>
                     <field name ="n_cert"/>
                     <field name="n_cert_ddd"/>
                 </field>

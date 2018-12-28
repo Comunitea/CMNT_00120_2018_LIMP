@@ -72,6 +72,10 @@ class SaleOrder(models.Model):
                 compute="_compute_service_pickings_lines_count", readonly=True)
     contracts=fields.Integer(string='# of serv. contract', compute='_compute_service_contracts_lines_count', readonly=True)
 
+    user_id = fields.Many2one('res.users', 'User', required=True)
+
+
+
     @api.multi
     def _compute_service_pickings_lines_count(self):
         for order in self:
@@ -252,6 +256,8 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
 
     _inherit = "sale.order.line"
+
+    price_unit=fields.Float(digits=(16,2))
 
     @api.multi
     def _get_amount_tax(self):

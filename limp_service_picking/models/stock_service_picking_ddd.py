@@ -9,7 +9,7 @@ class StockServicePickingDDD(models.Model):
     type_ddd_ids=fields.Many2many('types.ddd', string='Types ddd')
     treatment_applicator1=fields.Many2one('hr.employee', string='Treatment Applicator 1')
     treatment_applicator2=fields.Many2one('hr.employee', string='Treatment Applicator 2')
-    technical_support=fields.Many2one('hr.employee', string="Technical Support")
+    supervisor=fields.Many2one('hr.employee', string="Technical Support")
 
     start_time=fields.Float(digits=(4,2), string="Start time")
     end_time=fields.Float(digits=(4,2), string="End time")

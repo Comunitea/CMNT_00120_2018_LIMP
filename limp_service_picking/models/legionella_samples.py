@@ -30,3 +30,4 @@ class LegionellaSamples(models.Model):
             next_by_code('legionella.sample.seq')
         res = super(LegionellaSamples, self).create(vals)
         return res
+

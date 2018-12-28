@@ -13,6 +13,22 @@
             <field name="employee_id" position="after">
                 <field name="description"/>
             </field>
+            <field name="employee_department_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="employee_delegation_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="building_site_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="pending_qty" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="pending_distribute_qty" position="after">
+                <field name="task"/>
+            </field>
+
         </field>
     </record>
 
@@ -49,6 +65,7 @@
             <field name="analytic_id" position="after">
                 <field name="building_site_id"/>
             </field>
+
             <filter name="analytic_account" position="after">
                 <filter string="Building Site" domain="[]" context="{'group_by':'building_site_id'}"/>
             </filter>

@@ -26,6 +26,16 @@ class Timesheet(models.Model):
     _inherit = 'timesheet'
 
     building_site_id = fields.Many2one('building.site.services', 'Building site/Service')
+    task=fields.Selection([
+        ('crystals', 'Crystals'),
+        ('floors', 'Floors'),
+        ('garage', 'Garage'),
+        ('substitutions', 'Substitutions'),
+        ('holidays', 'Holidays'),
+        ('hour_bag', 'Hour bag'),
+        ('deal_material', 'Deal material'),
+        ('gutters', 'Gutters'),
+        ], string='Task')
 
     @api.model
     def create(self, vals):
@@ -34,6 +44,10 @@ class Timesheet(models.Model):
             if picking_ids:
                 if picking_ids[0].building_site_id:
                     vals['building_site_id'] = picking_ids[0].building_site_id.id
+
+        if vals.get('quantity', 0.0)> 0:
+            vals['paid']=True
+
         return super(Timesheet, self).create(vals)
 
     @api.multi
@@ -49,5 +63,10 @@ class Timesheet(models.Model):
                 super(Timesheet, tobj).write(vals2)
             else:
                 super(Timesheet, tobj).write(vals)
+
+
+            if vals.get('quantity', 0)> 0:
+                vals['paid']=True
+            super(Timesheet, tobj).write(vals)
 
         return True

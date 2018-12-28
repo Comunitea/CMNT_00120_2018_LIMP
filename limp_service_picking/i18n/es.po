@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-03 09:53+0000\n"
-"PO-Revision-Date: 2018-10-03 09:53+0000\n"
+"POT-Creation-Date: 2018-12-27 11:27+0000\n"
+"PO-Revision-Date: 2018-12-27 11:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -33,20 +33,17 @@ msgstr "Punto terminal intermedio ACS"
 #. module: limp_service_picking
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_form
 msgid "Accounting"
 msgstr "Contabilidad"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_needaction
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_needaction
 msgid "Action Needed"
 msgstr "Acción necesaria"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services_active
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_active
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_active
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
 #: selection:stock.service.picking,state:0
@@ -66,7 +63,6 @@ msgstr "Albaranes activos"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_active_remuneration_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_active_remuneration_ids
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
 msgid "Active remunerations"
@@ -76,7 +72,6 @@ msgstr "Remuneraciones activas"
 #: model:ir.model.fields,field_description:limp_service_picking.field_account_analytic_account_active_employee_ids
 #: model:ir.model.fields,field_description:limp_service_picking.field_project_project_active_employee_ids
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_active_employee_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_active_employee_ids
 msgid "Active timesheets"
 msgstr "Partes de horas activos"
 
@@ -103,7 +98,6 @@ msgstr "Dirección"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_project_project_address_invoice_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_address_invoice_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_address_invoice_id
 msgid "Address invoice"
 msgstr "Dir. factura"
 
@@ -137,19 +131,16 @@ msgstr "Cuenta analítica"
 #. module: limp_service_picking
 #: model:ir.model,name:limp_service_picking.model_account_analytic_account
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_name
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_name
 msgid "Analytic Account"
 msgstr "Cuenta analítica"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_line_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_line_ids
 msgid "Analytic Lines"
 msgstr "Líneas analíticas"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_analytic_acc_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_analytic_acc_id
 msgid "Analytic account"
 msgstr "Cuenta analítica"
 
@@ -220,7 +211,6 @@ msgstr "Configuración incorrecta"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_balance
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_balance
 msgid "Balance"
 msgstr "Saldo pendiente"
 
@@ -228,11 +218,6 @@ msgstr "Saldo pendiente"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_ccc_account_id
 msgid "Bank"
 msgstr "Banco"
-
-#. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_partner_bank_id
-msgid "Bank account"
-msgstr "Cuenta bancaria"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_picking_other_concepts_rel_billable
@@ -318,13 +303,13 @@ msgid "Cancelled"
 msgstr "Cancelar"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:352
+#: code:addons/limp_service_picking/models/stock_service_picking.py:356
 #, python-format
 msgid "Cannot close because you have checked intercompany and you have not checked scont."
 msgstr "No puede cerrar porque tiene marcado intercompañía y no tiene marcado scont."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:345
+#: code:addons/limp_service_picking/models/stock_service_picking.py:349
 #, python-format
 msgid "Cannot close because you have transports in draft state."
 msgstr "No puede cerrar porque tiene transportes en estado borrador."
@@ -368,7 +353,6 @@ msgstr "Marque esta casilla si la empresa es un gestor en destino."
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_use_tasks
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_use_tasks
 msgid "Check this box to manage internal activities through this project"
 msgstr "Marque esta casilla para gestionar actividades internas en este proyecto"
 
@@ -443,19 +427,16 @@ msgstr "Compañías"
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_picking_valorization_rel_company_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_company_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines_company_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_company_id
 msgid "Company"
 msgstr "Compañía"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_company_uom_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_company_uom_id
 msgid "Company UOM"
 msgstr "UdM de la compañía"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_concept_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_concept_ids
 msgid "Concepts"
 msgstr "Conceptos"
 
@@ -465,8 +446,12 @@ msgid "Configuration"
 msgstr "Configuración"
 
 #. module: limp_service_picking
+#: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_analytic_move_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_analytic_move_ids
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
 msgid "Consumptions"
 msgstr "Consumos"
@@ -475,10 +460,14 @@ msgstr "Consumos"
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services_contact_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_project_project_contact_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_contact_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_contact_id
 #: model:ir.ui.view,arch_db:limp_service_picking.building_site_services_search
 msgid "Contact"
 msgstr "Contacto"
+
+#. module: limp_service_picking
+#: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
+msgid "Contact address"
+msgstr "Contact address"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_container_id
@@ -551,10 +540,8 @@ msgstr "Crear número NIMA en los albaranes de servicio"
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_detected_species_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_distribute_fleet_expense_create_uid
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_force_building_site_service_picking_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_create_uid
-#: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_observation_recommendation_ddd_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_order_toinvoice_create_uid
@@ -566,7 +553,6 @@ msgstr "Crear número NIMA en los albaranes de servicio"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_line_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_type_of_installation_legionella_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_create_uid
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_create_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping_create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -576,10 +562,8 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_detected_species_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_distribute_fleet_expense_create_date
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_force_building_site_service_picking_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_create_date
-#: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_observation_recommendation_ddd_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_order_toinvoice_create_date
@@ -591,20 +575,17 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_line_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_type_of_installation_legionella_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_create_date
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping_create_date
 msgid "Created on"
 msgstr "Creado el"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_credit
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_credit
 msgid "Credit"
 msgstr "Haber"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_currency_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_currency_id
 msgid "Currency"
 msgstr "Moneda"
 
@@ -623,8 +604,6 @@ msgstr "Localiación actual, dirección del cliente o disponible en la direcció
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_partner_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_partner_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines_partner_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_partner_id
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_search
 msgid "Customer"
 msgstr "Cliente"
 
@@ -660,11 +639,10 @@ msgstr "Fecha"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_line_transport_date_end
 msgid "Date End"
-msgstr "Fecha fin"
+msgstr "Date End"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_date
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_date
 msgid "Date end"
 msgstr "Fecha fin"
 
@@ -680,19 +658,16 @@ msgstr "Fecha de notificación a la autoridad competente"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_message_last_post
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_message_last_post
 msgid "Date of the last message posted on the record."
 msgstr "Fecha del último mensaje publicado en el registro."
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_date_start
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_date_start
 msgid "Date start"
 msgstr "Fecha de inicio"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_debit
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_debit
 msgid "Debit"
 msgstr "Debe"
 
@@ -704,7 +679,6 @@ msgstr "Diciembre"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_delegation_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_invoice_delegation_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_delegation_id
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_search
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_search
 msgid "Delegation"
@@ -741,7 +715,6 @@ msgstr "Residuos de obra y demolición"
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_picking_valorization_rel_delegation_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_department_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_invoice_department_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_department_id
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_search
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_search
 msgid "Department"
@@ -757,6 +730,7 @@ msgstr "Departamento al que se imputa el coste"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_move_description
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_other_expenses_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_line_name
+#: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 msgid "Description"
 msgstr "Descripción"
 
@@ -818,10 +792,8 @@ msgstr "Horas de desplazamiento"
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_detected_species_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_distribute_fleet_expense_display_name
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_force_building_site_service_picking_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_display_name
-#: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_observation_recommendation_ddd_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_order_toinvoice_display_name
@@ -834,7 +806,6 @@ msgstr "Horas de desplazamiento"
 #: model:ir.model.fields,field_description:limp_service_picking.field_type_of_installation_legionella_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines_display_name
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_display_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping_display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
@@ -908,7 +879,6 @@ msgid "End time str"
 msgstr "Fecha fin str"
 
 #. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used_name
 #: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ_name
 msgid "Equipment"
 msgstr "Equipo"
@@ -917,12 +887,6 @@ msgstr "Equipo"
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_equipment_to_be_used_ids
 msgid "Equipment to employ"
 msgstr "Equipo para emplear"
-
-#. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:384
-#, python-format
-msgid "Error !"
-msgstr "¡Error!"
 
 #. module: limp_service_picking
 #: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:217
@@ -960,7 +924,6 @@ msgstr "Filtros"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_fiscal_position
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_fiscal_position
 msgid "Fiscal position"
 msgstr "Posición fiscal"
 
@@ -971,19 +934,16 @@ msgstr "Flota"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_follower_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_channel_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_channel_ids
 msgid "Followers (Channels)"
 msgstr "Seguidores (Canales)"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_partner_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
 
@@ -1034,7 +994,6 @@ msgstr "Peso bruto en T"
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_search
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_search
 #: model:ir.ui.view,arch_db:limp_service_picking.view_valorization_lines_search
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_search
 msgid "Group By..."
 msgstr "Agrupar por..."
 
@@ -1051,31 +1010,26 @@ msgstr "Agrupar por empresa"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_group_concepts
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_group_concepts
 msgid "Group concepts"
 msgstr "Agrupar conceptos"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_group_products
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_group_products
 msgid "Group products"
 msgstr "Agrupar productos"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_group_concepts
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_group_concepts
 msgid "Groups concepts at invoice"
 msgstr "Agrupar conceptos al facturar"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_group_products
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_group_products
 msgid "Groups products at invoice"
 msgstr "Agrupar productos al facturar"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_group_products_each_invoice
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_group_products_each_invoice
 msgid "Groups products, one for invoice"
 msgstr "Agrupar productos, uno por factura"
 
@@ -1121,10 +1075,8 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_detected_species_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_distribute_fleet_expense_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_force_building_site_service_picking_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_observation_recommendation_ddd_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_order_toinvoice_id
@@ -1137,20 +1089,17 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:limp_service_picking.field_type_of_installation_legionella_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping_id
 msgid "ID"
 msgstr "ID"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_message_unread
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_message_unread
 msgid "If checked new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_message_needaction
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
@@ -1188,6 +1137,7 @@ msgstr "La cuenta de ingresos en el producto %s no está asignada"
 
 #. module: limp_service_picking
 #: selection:detected.species,name:0
+#: selection:products.used,plague_to_fight:0
 msgid "Insects"
 msgstr "Insectos"
 
@@ -1276,7 +1226,6 @@ msgstr "Tipo de factura"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_invoiceable
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_invoiceable
 msgid "Invoiceable"
 msgstr "Facturable"
 
@@ -1298,7 +1247,6 @@ msgstr "Facturar"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_is_follower
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
 
@@ -1353,7 +1301,6 @@ msgstr "Nombre LER"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_last_post
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_last_post
 msgid "Last Message Date"
 msgstr "Fecha del último mensaje"
 
@@ -1363,10 +1310,8 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_detected_species___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_distribute_fleet_expense___last_update
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_force_building_site_service_picking___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples___last_update
-#: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_observation_recommendation_ddd___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_order_toinvoice___last_update
@@ -1379,7 +1324,6 @@ msgstr "Fecha del último mensaje"
 #: model:ir.model.fields,field_description:limp_service_picking.field_type_of_installation_legionella___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines___last_update
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service___last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping___last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
@@ -1389,10 +1333,8 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_detected_species_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_distribute_fleet_expense_write_uid
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_force_building_site_service_picking_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_write_uid
-#: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_observation_recommendation_ddd_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_order_toinvoice_write_uid
@@ -1404,7 +1346,6 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_type_of_installation_legionella_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_write_uid
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping_write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -1414,10 +1355,8 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_detected_species_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_distribute_fleet_expense_write_date
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_force_building_site_service_picking_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_write_date
-#: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_observation_recommendation_ddd_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_order_toinvoice_write_date
@@ -1429,7 +1368,6 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_type_of_installation_legionella_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_write_date
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping_write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
@@ -1513,9 +1451,6 @@ msgstr "Albaranes de mantenimiento"
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines_manager_partner_id
 #: model:ir.ui.view,arch_db:limp_service_picking.view_res_partner_filters_add_fields
 #: model:ir.ui.view,arch_db:limp_service_picking.view_valorization_lines_search
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_form
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_search
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_tree
 #: selection:stock.picking,manager_or_productor:0
 msgid "Manager"
 msgstr "Responsable"
@@ -1524,6 +1459,11 @@ msgstr "Responsable"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_line_parent_man_addr_id
 msgid "Manager Address"
 msgstr "Dirección del gestor"
+
+#. module: limp_service_picking
+#: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
+msgid "Manager address"
+msgstr "Manager address"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_res_partner_manager_authorization_no
@@ -1564,7 +1504,7 @@ msgstr "Medidas a tomar"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_detected_species_level_medium
 msgid "Medium"
-msgstr "Medio"
+msgstr "Media"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_picking_valorization_rel_memory_include
@@ -1574,7 +1514,6 @@ msgstr "Incluir en memoria"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_ids
 msgid "Messages"
 msgstr "Mensajes"
 
@@ -1585,6 +1524,7 @@ msgstr "Análisis microbiológico"
 
 #. module: limp_service_picking
 #: selection:detected.species,name:0
+#: selection:products.used,plague_to_fight:0
 msgid "Microorganisms"
 msgstr "Microorganismos"
 
@@ -1601,7 +1541,7 @@ msgstr "Modelo entre stock_move y analytic_account"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_monitoring_situation
 msgid "Monitoring situation"
-msgstr "Situación de monitoreos"
+msgstr "Observaciones"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_distribute_fleet_expense_month
@@ -1741,7 +1681,6 @@ msgstr "Notas internas"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_note
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_form
 msgid "Note"
 msgstr "Nota"
 
@@ -1760,19 +1699,16 @@ msgstr "Noviembre"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_needaction_counter
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de acciones"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_message_needaction_counter
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Número de mensajes que requieren una acción"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_message_unread_counter
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leídos"
 
@@ -1784,24 +1720,24 @@ msgstr "Nº certificado DDD"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_n_cert
 msgid "Nº certificate Legionella"
-msgstr "Nº certificado legionella"
+msgstr "Nº certificate Legionella"
 
 #. module: limp_service_picking
 #: model:ir.ui.view,arch_db:limp_service_picking.types_ddd_form_view
 msgid "Observation / Recommendation"
-msgstr "Observación / Recomendación"
+msgstr "Observacion / Recommendacion"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_observation_recommendation
 msgid "Observation / Recommendation "
-msgstr "Observación / Recomendación "
+msgstr "Observacion / Recommendacion "
 
 #. module: limp_service_picking
 #: model:ir.actions.act_window,name:limp_service_picking.action_observation_recommendation_ddd
 #: model:ir.ui.menu,name:limp_service_picking.observation_recommendation_ddd
 #: model:ir.ui.menu,name:limp_service_picking.observation_recommendation_ddd_conf
 msgid "Observation / Recommendation DDD"
-msgstr "Observación / Recomendación DDD"
+msgstr "Observacion / Recommendacion DDD"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_observations
@@ -1838,7 +1774,6 @@ msgstr "En la vía pública"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_group_products_each_invoice
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_group_products_each_invoice
 msgid "One for invoice"
 msgstr "Uno por factura"
 
@@ -1893,7 +1828,6 @@ msgstr "Otro gasto"
 #: model:ir.model.fields,field_description:limp_service_picking.field_account_analytic_account_other_expense_ids
 #: model:ir.model.fields,field_description:limp_service_picking.field_project_project_other_expense_ids
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_other_expense_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_other_expense_ids
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 msgid "Other expenses"
 msgstr "Otros gastos"
@@ -1927,7 +1861,7 @@ msgid "Overload price"
 msgstr "Precio sobrecarga"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:314
+#: code:addons/limp_service_picking/models/stock_service_picking.py:318
 #, python-format
 msgid "Overload/"
 msgstr "Sobrecarga/"
@@ -1953,13 +1887,11 @@ msgstr "Persona de contacto"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_payment_term
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_payment_term
 msgid "Payment term"
 msgstr "Plazo de pago"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_payment_mode
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_payment_mode
 msgid "Payment type"
 msgstr "Modo de pago"
 
@@ -1993,14 +1925,14 @@ msgid "Picking date"
 msgstr "Fecha del albarán"
 
 #. module: limp_service_picking
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_form
-msgid "Pickings"
-msgstr "Albaranes"
-
-#. module: limp_service_picking
 #: model:ir.ui.view,arch_db:limp_service_picking.view_picking_out_search_add_memory_field
 msgid "Pickings to invoice"
 msgstr "Albaranes a facturar"
+
+#. module: limp_service_picking
+#: model:ir.model.fields,field_description:limp_service_picking.field_products_used_plague_to_fight
+msgid "Plague to fight"
+msgstr "Plague to fight"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_planified
@@ -2079,7 +2011,7 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:430
+#: code:addons/limp_service_picking/models/stock_service_picking.py:434
 #, python-format
 msgid "Product %s must be shared inter companies for proceeding"
 msgstr "El producto %s debe estar compartido entre compañías para continuar"
@@ -2135,13 +2067,11 @@ msgstr "Productos usados"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_project_count
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_project_count
 msgid "Project Count"
 msgstr "Proyectos #"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_project_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_project_ids
 msgid "Projects"
 msgstr "Proyectos"
 
@@ -2151,16 +2081,6 @@ msgstr "Proyectos"
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines_building_province
 msgid "Province"
 msgstr "Provincia"
-
-#. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_equipment_to_be_used_purpose_equipment
-msgid "Purpose Equipment"
-msgstr "Propósito del equipamiento"
-
-#. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_machinery_to_employ_purpose_machinery
-msgid "Purpose machinery"
-msgstr "Propósito de la maquinaria"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_picking_invoice_concept_product_qty
@@ -2197,7 +2117,6 @@ msgstr "Fecha recepción lab."
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_code
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_code
 msgid "Reference"
 msgstr "Referencia"
 
@@ -2229,7 +2148,6 @@ msgstr "Transportes de retirada"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_remuneration_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_remuneration_ids
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
 msgid "Remunerations"
@@ -2249,7 +2167,6 @@ msgstr "Producto reserva"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_invoice_responsible_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_manager_id
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_manager_id
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
 msgid "Responsible"
@@ -2267,6 +2184,7 @@ msgstr "Fecha de retirada"
 
 #. module: limp_service_picking
 #: selection:detected.species,name:0
+#: selection:products.used,plague_to_fight:0
 msgid "Rodents"
 msgstr "Roedores"
 
@@ -2300,7 +2218,6 @@ msgstr "Sec."
 #: selection:building.site.services,show:0
 #: model:ir.model.fields,field_description:limp_service_picking.field_project_project_description
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_description
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_description
 #: model:ir.ui.view,arch_db:limp_service_picking.building_site_services_form
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 msgid "Service"
@@ -2311,11 +2228,6 @@ msgstr "Servicio"
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples_picking_id
 msgid "Service Picking"
 msgstr "Albarán"
-
-#. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_partner_shipping_id
-msgid "Service address"
-msgstr "Dirección del servicio"
 
 #. module: limp_service_picking
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
@@ -2425,7 +2337,6 @@ msgstr "Start time str"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_line_state
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_state
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_state
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_line_search
 msgid "State"
 msgstr "Estado"
@@ -2440,11 +2351,6 @@ msgstr "Factura de Stock en el envío"
 #: model:ir.model,name:limp_service_picking.model_stock_move
 msgid "Stock Move"
 msgstr "Movimiento stock"
-
-#. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_service_picking_ids
-msgid "Stock Service Picking"
-msgstr "Albarán de servicio"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_stock_picking_id
@@ -2483,7 +2389,6 @@ msgstr "Etiqueta"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_tag_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_tag_ids
 msgid "Tags"
 msgstr "Etiquetas"
 
@@ -2495,7 +2400,7 @@ msgstr "Tara (T.)"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_tare
 msgid "Tare (kg.)"
-msgstr "Tara (kg.)"
+msgstr "Tare (kg.)"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_tare
@@ -2518,9 +2423,9 @@ msgid "Taxes"
 msgstr "Impuestos"
 
 #. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_technical_support
+#: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_supervisor
 msgid "Technical Support"
-msgstr "Soporte técnico"
+msgstr "Supervisor"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_amount_untaxed
@@ -2545,14 +2450,13 @@ msgid "The total amount."
 msgstr "El importe total."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:384
+#: code:addons/limp_service_picking/models/stock_service_picking.py:388
 #, python-format
 msgid "There is no wharehouse to the order company"
 msgstr "No hay almacenes en la compañía ordenante"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking_company_uom_id
-#: model:ir.model.fields,help:limp_service_picking.field_waste_service_company_uom_id
 msgid "This will set the unit of measure used in projects and tasks.\n"
 "If you use the timesheet linked to projects, don't forget to setup the right unit of measure in your employees."
 msgstr "Permite fijar la unidad de medida utilizada en proyectos y tareas.\n"
@@ -2565,8 +2469,6 @@ msgstr "Permite fijar la unidad de medida utilizada en proyectos y tareas.\n"
 #: model:ir.model.fields,field_description:limp_service_picking.field_project_project_report_employee_ids
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_employee_ids
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_report_employee_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_employee_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_report_employee_ids
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
 msgid "Timesheet"
@@ -2650,7 +2552,7 @@ msgstr "Total sin impuestos"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_amount_total
 msgid "Total with taxes"
-msgstr "Total con impuestos"
+msgstr "Total with taxes"
 
 #. module: limp_service_picking
 #: model:ir.ui.view,arch_db:limp_service_picking.stock_service_vehicle_move_tree
@@ -2757,12 +2659,12 @@ msgstr "Tipos DDD"
 #. module: limp_service_picking
 #: model:ir.ui.view,arch_db:limp_service_picking.types_ddd_form_view
 msgid "Types DDD Form"
-msgstr "Tipos DDD"
+msgstr "Tipos DDD Form"
 
 #. module: limp_service_picking
 #: model:ir.actions.act_window,name:limp_service_picking.action_limp_types_ddd
 msgid "Types DDD conf"
-msgstr "Tipos DDD"
+msgstr "Tipos DDD conf"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_type_ddd_ids
@@ -2771,7 +2673,6 @@ msgstr "Tipos ddd"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_inactive_remuneration_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_inactive_remuneration_ids
 msgid "Unactive remunerations"
 msgstr "Remuneraciones desactivadas"
 
@@ -2779,19 +2680,16 @@ msgstr "Remuneraciones desactivadas"
 #: model:ir.model.fields,field_description:limp_service_picking.field_account_analytic_account_inactive_employee_ids
 #: model:ir.model.fields,field_description:limp_service_picking.field_project_project_inactive_employee_ids
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_inactive_employee_ids
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_inactive_employee_ids
 msgid "Unactive timesheets"
 msgstr "Partes de horas desactivados"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_unread
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_unread
 msgid "Unread Messages"
 msgstr "Mensajes por leer"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_message_unread_counter
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Contador de mensajes no leídos"
 
@@ -2802,14 +2700,8 @@ msgstr "Base imponible"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_use_tasks
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_use_tasks
 msgid "Use Tasks"
 msgstr "Utilizar tareas"
-
-#. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_waste_service_user_id
-msgid "User"
-msgstr "Usuario"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_service_picking_valorization_ids
@@ -2884,9 +2776,9 @@ msgstr "Aviso"
 #: code:addons/limp_service_picking/models/service_picking_invoice_concept.py:68
 #: code:addons/limp_service_picking/models/service_picking_other_concepts_rel.py:43
 #: code:addons/limp_service_picking/models/service_picking_valorization_rel.py:63
-#: code:addons/limp_service_picking/models/stock_service_picking.py:195
-#: code:addons/limp_service_picking/models/stock_service_picking.py:229
-#: code:addons/limp_service_picking/models/stock_service_picking.py:264
+#: code:addons/limp_service_picking/models/stock_service_picking.py:180
+#: code:addons/limp_service_picking/models/stock_service_picking.py:216
+#: code:addons/limp_service_picking/models/stock_service_picking.py:251
 #, python-format
 msgid "Warning for %s"
 msgstr "Aviso para %s"
@@ -2919,17 +2811,7 @@ msgid "Waste memory"
 msgstr "Memoria de Residuos"
 
 #. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_service_id
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_form
-msgid "Waste service"
-msgstr "Servicio residuo"
-
-#. module: limp_service_picking
-#: model:ir.actions.act_window,name:limp_service_picking.waste_service_action
 #: model:ir.model,name:limp_service_picking.model_waste_service
-#: model:ir.ui.menu,name:limp_service_picking.menu_waste_service_open
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_search
-#: model:ir.ui.view,arch_db:limp_service_picking.waste_service_tree
 msgid "Waste services"
 msgstr "Servicios residuos"
 
@@ -2977,20 +2859,20 @@ msgid "Year"
 msgstr "Año"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:389
+#: code:addons/limp_service_picking/models/stock_service_picking.py:393
 #, python-format
 msgid "You are trying to close a service picking with overload quantity but the product has not the overload price. Please fill it!"
 msgstr "Está intentando cerrar un albarán de servicio con sobrecarga pero el producto no tiene precio de sobrecarga. ¡Por favor rellénelo!"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:367
-#: code:addons/limp_service_picking/models/stock_service_picking.py:369
+#: code:addons/limp_service_picking/models/stock_service_picking.py:371
+#: code:addons/limp_service_picking/models/stock_service_picking.py:373
 #, python-format
 msgid "You are trying to close a service picking with wrong retired date."
 msgstr "Está intentando cerrar un albarán de servicio con una fecha de retirada incorrecta."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:363
+#: code:addons/limp_service_picking/models/stock_service_picking.py:367
 #, python-format
 msgid "You are trying to close a service picking without retired date."
 msgstr "Está intentando cerrar un albarán de servicio sin fecha de retirada."
@@ -3046,6 +2928,11 @@ msgstr "equipment.to.be.used"
 #: model:ir.model,name:limp_service_picking.model_force_building_site_service_picking
 msgid "force.building.site.service.picking"
 msgstr "force.building.site.service.picking"
+
+#. module: limp_service_picking
+#: model:ir.model,name:limp_service_picking.model_legionella_products
+msgid "legionella.products"
+msgstr "legionella.products"
 
 #. module: limp_service_picking
 #: model:ir.model,name:limp_service_picking.model_legionella_samples
@@ -3110,7 +2997,12 @@ msgstr "stock.service.other.expenses"
 #. module: limp_service_picking
 #: model:ir.model,name:limp_service_picking.model_timesheet
 msgid "timesheet"
-msgstr "Parte de horas"
+msgstr "timesheet"
+
+#. module: limp_service_picking
+#: model:ir.model,name:limp_service_picking.model_type_ddd
+msgid "type.ddd"
+msgstr "type.ddd"
 
 #. module: limp_service_picking
 #: model:ir.model,name:limp_service_picking.model_type_of_installation_legionella

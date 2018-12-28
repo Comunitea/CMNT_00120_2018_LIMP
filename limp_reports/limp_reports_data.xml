@@ -50,6 +50,18 @@
         <field name="jasper_output">pdf</field>
     </record>
 
+    <record id="cleaning_picking_without hours" model="ir.actions.report.xml">
+        <field name="auto">True</field>
+        <field name="model">stock.service.picking</field>
+        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="name">Cleaning picking without hours</field>
+        <field name="report_name">service_picking_cleaning_without_hours</field>
+        <field name="report_rml">limp_reports/report/service_picking_cleaning_without_hours.jrxml</field>
+        <field name="header">False</field>
+        <field name="jasper_report">True</field>
+        <field name="jasper_output">pdf</field>
+    </record>
+
     <record id="cleaning_picking_values" model="ir.values">
         <field name="name">Cleaning picking</field>
         <field name="model">stock.service.picking</field>
