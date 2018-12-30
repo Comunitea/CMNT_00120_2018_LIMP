@@ -36,6 +36,8 @@ class HrEmployee(models.Model):
             name = employee.name
             if employee.glasof_code:
                 name = u"[" + employee.glasof_code + u"] " + name
+                if not employee.active_remunerations:
+                    name = u"[DESACTIVADO] " + name
             res.append((employee.id, name))
         return res
 

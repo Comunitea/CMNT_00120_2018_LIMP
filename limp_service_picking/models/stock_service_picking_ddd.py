@@ -25,7 +25,7 @@ class StockServicePickingDDD(models.Model):
 
     products_used_id=fields.One2many('products.used', 'picking_id', string ="Products Used")
 
-    monitoring_situation=fields.Char('Monitoring situation')
+    monitoring_situation=fields.Char('Observations')
 
     observations_recommendations=fields.Many2many('observation.recommendation.ddd', string ="Observations/Recommendations")
 

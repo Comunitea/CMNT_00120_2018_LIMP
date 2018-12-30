@@ -50,7 +50,14 @@
         <field name="jasper_output">pdf</field>
     </record>
 
-    <record id="cleaning_picking_without hours" model="ir.actions.report.xml">
+     <record id="cleaning_picking_values" model="ir.values">
+        <field name="name">Cleaning picking</field>
+        <field name="model">stock.service.picking</field>
+        <field name="key2" eval="'client_print_multi'" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cleaning_picking)" />
+    </record>
+
+    <record id="cleaning_picking_without_hours" model="ir.actions.report.xml">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -62,11 +69,11 @@
         <field name="jasper_output">pdf</field>
     </record>
 
-    <record id="cleaning_picking_values" model="ir.values">
-        <field name="name">Cleaning picking</field>
+     <record id="cleaning_picking_wo_hours_values" model="ir.values">
+        <field name="name">Cleaning picking without hours</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cleaning_picking)" />
+        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cleaning_picking_without_hours)" />
     </record>
 
     <record id="discharge_picking" model="ir.actions.report.xml">

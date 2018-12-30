@@ -83,16 +83,25 @@ class Timesheet(models.Model):
             tsobj.pending_distribute_qty = pending_qty - \
                 tsobj.effective - tsobj.fix_qty
 
+    @api.onchange('fix_qty')
+    def onchange_fix_qty(self):
+        if not self.pending_distribute_qty:
+            self.paid = True
+            self.done = True
+        else:
+            self.paid = False
+            self.done = False
+
     @api.onchange('hours')
     def onchange_hours(self):
         if self.hours:
             self.contract = True
             self.done = True
-
+            self.paid = True
         else:
             self.contract = False
             self.done = False
-
+            self.paid = False
 
     @api.onchange('analytic_id')
     def on_change_analytic_id(self):
@@ -108,6 +117,7 @@ class Timesheet(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('hours', 0.0) and not vals.get('paid', False):
+            vals['paid'] = True
             vals['contract'] = True
             vals['done'] = True
         if vals.get('fix_qty', False) and vals.get(
@@ -128,6 +138,7 @@ class Timesheet(models.Model):
     @api.multi
     def write(self, vals):
         if vals.get('hours', 0.0) and not vals.get('paid', False):
+            vals['paid'] = True
             vals['contract'] = True
             vals['done'] = True
         if vals.get('fix_qty', False) and vals.get(

@@ -386,7 +386,7 @@
 			<subreport>
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="23" width="554" height="23"/>
 				<dataSourceExpression><![CDATA[$P{SUBREPORT_EMP}]]></dataSourceExpression>
-				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "service_picking_employees_cleaning.jasper"]]></subreportExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "service_picking_employees_cleaning_wo_hours.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="245">

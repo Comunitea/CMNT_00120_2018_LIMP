@@ -1472,8 +1472,8 @@ msgstr "Lunes"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_monitoring_situation
-msgid "Monitoring Situation"
-msgstr "Situación de monitoreos"
+msgid "Observations"
+msgstr "Observaciones"
 
 #. module: limp_contract
 #: selection:limp.incidence,periodicity:0

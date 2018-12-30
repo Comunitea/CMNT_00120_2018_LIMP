@@ -41,7 +41,7 @@ class MaintenanceTask(models.Model):
     picking_ids = fields.One2many('stock.service.picking',
                                   'maintenace_task_id',
                                   string="Picking history", readonly=True)
-    monitoring_situation = fields.Char("Monitoring Situation")
+    monitoring_situation = fields.Char("Observations")
     type_ddd_ids = fields.Many2many('types.ddd', string='Types ddd')
     type_of_installation_ids = fields.\
         Many2many('type.of.installation.legionella',

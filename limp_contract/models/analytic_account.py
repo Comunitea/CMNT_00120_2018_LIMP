@@ -129,6 +129,8 @@ class AccountAnalyticAccount(models.Model):
                 name += u" " + (obj.description or u"")
             else:
                 name = obj.name
+            if obj.date:
+                name = u"[] " + name
             res.append((obj.id, name))
         return res
 

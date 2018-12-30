@@ -111,6 +111,11 @@ msgid "Cleaning picking"
 msgstr "Albarán limpieza"
 
 #. module: limp_reports
+#: model:ir.actions.report.xml,name:limp_reports.cleaning_picking_without_hours
+msgid "Cleaning picking without hours"
+msgstr "Albarán limpieza sin horas"
+
+#. module: limp_reports
 #: model:ir.model,name:limp_reports.model_res_company
 msgid "Companies"
 msgstr "Compañías"
