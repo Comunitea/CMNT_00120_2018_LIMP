@@ -26,8 +26,6 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    is_company=fields.Boolean(default=True)
-
     @api.model
     def _commercial_fields(self):
         res = super(ResPartner, self)._commercial_fields()
