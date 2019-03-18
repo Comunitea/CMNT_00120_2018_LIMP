@@ -78,7 +78,7 @@ class stock_picking(osv.osv):
 
             if pricelist_id:
                 price = self.pool.get('product.pricelist').price_get(cr, uid, [pricelist_id.id],
-                    move_line.product_id.id, move_line.product_qty or 1.0, move_line.picking_id.partner_id, {
+                    move_line.product_id.id, move_line.product_qty or 1.0, move_line.picking_id.partner_id.id, {
                         'uom': move_line.product_uom.id,
                         'date': move_line.picking_id.date or False,
                         })[pricelist_id.id]
