@@ -28,6 +28,28 @@ class account_invoice_line(osv.osv):
         'move_id': fields.many2one('stock.move', 'Move'),
         'quantity': fields.float('Quantity', digits=(12,3), required=True),
     }
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        default.update({
+            'move_id': False,
+            'building_site_id': False,
+            'service_picking_id': False
+        })
+
+        return super(account_invoice_line, self).copy(cr, uid, id, default, context)
+
+    def copy_data(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        if context is None:
+            context = {}
+        default.update({'move_id': False,
+                        'building_site_id': False,
+                        'service_picking_id': False})
+        return super(account_invoice_line, self).copy_data(cr, uid, id, default, context)
+
 account_invoice_line()
 
 class account_invoice(osv.osv):
