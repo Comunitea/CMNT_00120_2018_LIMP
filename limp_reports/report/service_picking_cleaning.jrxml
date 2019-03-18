@@ -13,19 +13,19 @@
 		<![CDATA[/data/record]]>
 	</queryString>
 	<field name="Ciudad-city" class="java.lang.String">
-		<fieldDescription><![CDATA[Direccion-address_id/Ciudad-city]]></fieldDescription>
+		<fieldDescription><![CDATA[Direccion_factura-address_invoice_id/Ciudad-city]]></fieldDescription>
 	</field>
 	<field name="Fax-fax" class="java.lang.String">
-		<fieldDescription><![CDATA[Direccion-address_id/Fax-fax]]></fieldDescription>
+		<fieldDescription><![CDATA[Direccion_factura-address_invoice_id/Fax-fax]]></fieldDescription>
 	</field>
 	<field name="Telefono-phone" class="java.lang.String">
-		<fieldDescription><![CDATA[Direccion-address_id/Telefono-phone]]></fieldDescription>
+		<fieldDescription><![CDATA[Direccion_factura-address_invoice_id/Telefono-phone]]></fieldDescription>
 	</field>
 	<field name="Nombre_provincia-name" class="java.lang.String">
-		<fieldDescription><![CDATA[Direccion-address_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
+		<fieldDescription><![CDATA[Direccion_factura-address_invoice_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
 	</field>
 	<field name="C.P.-zip" class="java.lang.String">
-		<fieldDescription><![CDATA[Direccion-address_id/C.P.-zip]]></fieldDescription>
+		<fieldDescription><![CDATA[Direccion_factura-address_invoice_id/C.P.-zip]]></fieldDescription>
 	</field>
 	<field name="Calle-street2" class="java.lang.String">
 		<fieldDescription><![CDATA[Direccion_factura-address_invoice_id/Calle-street]]></fieldDescription>
