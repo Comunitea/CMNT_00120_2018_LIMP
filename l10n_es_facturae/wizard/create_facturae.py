@@ -421,7 +421,7 @@ def _create_facturae_file(self, cr, uid, data, context):
             texto += '<Discount>'
             texto += '<DiscountReason>Descuento</DiscountReason>'
             texto += '<DiscountRate>' + str('%.4f' % line.discount) + '</DiscountRate>'
-            texto += '<DiscountAmount>' + str('%.6f' % ( (line.price_unit*line.quantity) - line.price_subtotal)) + '</DiscountAmount>'
+            texto += '<DiscountAmount>' + str('%.6f' % ( round((line.price_unit*line.quantity),2) - round(line.price_subtotal,2))) + '</DiscountAmount>'
             texto += '</Discount>'
             texto += '</DiscountsAndRebates>'
             texto += '<GrossAmount>' + str('%.6f' % line.price_subtotal) + '</GrossAmount>'
