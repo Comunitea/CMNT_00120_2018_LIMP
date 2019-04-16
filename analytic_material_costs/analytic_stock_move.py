@@ -100,7 +100,10 @@ class account_analytic_stock_move(osv.osv):
                                                         'journal_id': journal_ids[0],
                                                         'account_id': obj_id.analytic_account_id.id,
                                                         'general_account_id': a,
-                                                        'date': obj_id.date
+                                                        'date': obj_id.date,
+                                                        'delegation_id': obj_id.analytic_account_id.delegation_id.id,
+                                                        'department_id': obj_id.analytic_account_id.department_id.id,
+                                                        'manager_id': obj_id.analytic_account_id.manager_id.id
                                                 })
 
         self.write(cr, uid, [id], {'state': 'second', 'move_id': move_id})
