@@ -175,7 +175,7 @@ class stock_service_picking(osv.osv):
         'authorization_manager': fields.char('Authorization Manager', size=32, states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
         'picking_type': fields.selection([('wastes','Wastes'),('sporadic','Sporadic')], 'Type', change_default=True),
         'service_picking_valorization_ids': fields.one2many('service.picking.valorization.rel', 'service_picking_id', 'Valorization', states={'cancelled':[('readonly',True)]}),
-        'service_move_ids': fields.one2many('service.picking.stock.move', 'service_picking_id', 'Consumptions', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
+        'service_move_ids': fields.one2many('service.picking.stock.move', 'service_picking_id', 'Consumptions', states={'cancelled':[('readonly',True)]}),
         #'delegation_id': fields.many2one('res.delegation', 'Delegation', required=True, states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
         #AÑADIDO PARA CALCULAR TOTALES
         'taxes': fields.float('Taxes', digits=(16,2)),
