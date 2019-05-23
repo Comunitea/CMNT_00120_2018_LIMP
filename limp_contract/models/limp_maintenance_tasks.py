@@ -96,7 +96,7 @@ class MaintenanceTask(models.Model):
         now = datetime.today()
         to_compare = now + relativedelta(days=45)
         dates = [dt for dt in rrule(MONTHLY, dtstart=now, until=to_compare)]
-        to_compare_months = [x.month for x in dates]
+        to_compare_months = [str(x.month).zfill(2) for x in dates]
         to_compare_range = self.env['months.interval'].\
             search([('code', 'in', to_compare_months)])
         to_compare_str = to_compare.strftime('%Y-%m-01')
