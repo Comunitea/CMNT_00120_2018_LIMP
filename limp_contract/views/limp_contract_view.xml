@@ -247,6 +247,18 @@
             </field>
         </record>
 
+        <record id="view_partner_form_add_button_contracts" model="ir.ui.view">
+            <field name="name">res.partner.form.add_button_contract</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <div name="button_box" position="inside">
+                     <button class="oe_stat_button" type="object"
+                        name="open_contract_employees" icon="fa-folder-open" string="Contract"/>
+                </div>
+            </field>
+        </record>
+
         <act_window
             id="contract_home_help_lines_link"
             name="Home help lines"

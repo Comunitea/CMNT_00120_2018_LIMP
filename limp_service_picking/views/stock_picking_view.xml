@@ -80,4 +80,28 @@
         </field>
     </record>
 
+    <record id="view_partner_form_add_button_stock_service_picking" model="ir.ui.view">
+        <field name="name">res.partner.form.add_button_stock_service_picking</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                 <button class="oe_stat_button" type="object"
+                    name="open_contract_waste" icon="fa-trash-o" string="Waste"/>
+            </div>
+        </field>
+    </record>
+
+    <record id="view_partner_form_add_button_stock_service_picking_sporadic" model="ir.ui.view">
+        <field name="name">res.partner.form.add_button_stock_service_picking_sporadic</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                 <button class="oe_stat_button" type="object"
+                    name="open_contract_sporadic" icon="fa-folder-open-o" string="Sporadic"/>
+            </div>
+        </field>
+    </record>
+
 </odoo>
