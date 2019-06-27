@@ -40,4 +40,4 @@ class ServicePickingOtherConceptsRel(models.Model):
             use_line = lines.filtered(lambda r: r.product_id==self.product_id)
             if use_line:
                 self.price_unit = use_line.price_unit
-                self.name = use_line.name
+                self.name = use_line[0].name
