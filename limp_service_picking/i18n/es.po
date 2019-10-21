@@ -1982,7 +1982,7 @@ msgstr "Albaranes a facturar"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used_plague_to_fight
 msgid "Plague to fight"
-msgstr "Plague to fight"
+msgstr "Plaga a combatir"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_planified
