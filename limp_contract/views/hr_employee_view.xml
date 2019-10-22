@@ -16,6 +16,7 @@
                         <field name="date_completion_course"/>
                         <field name="bpm_card_basic_level"/>
                         <field name="bpm_card_qualified_level"/>
+                        <field name="legionella_accreditation"/>
                         <field name="others"/>
                     </group>
                 </page>

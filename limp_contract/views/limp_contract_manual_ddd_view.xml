@@ -11,11 +11,13 @@
                         <group name="group_top">
                             <group name="group_left">
                                 <field name="type_ddd_ids" widget="many2many_checkboxes"/>
+                                <field name="type_of_installation_ids" widget="many2many_tags"/>
                             </group>
                             <group name="group_right">
                                 <field name="periodicity_desratizacion"/>
                                 <field name="periodicity_desinsectacion"/>
                                 <field name="periodicity_desinfeccion"/>
+                                <field name="periodicity_legionella"/>
                             </group>
                         </group>
                         <group>

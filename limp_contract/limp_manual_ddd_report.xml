@@ -21,6 +21,82 @@
             <field eval="True" name="object"/>
         </record>
 
+        <record id="py3o_manual_legionella_acs_afch_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Manual Legionella ACS+AFCH</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">manual_legionella_acs_afch</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/MANUAL_LEGIONELLA_BASE_ACS_AFCH.odt</field>
+        </record>
+
+        <record id="manual_legionella_acs_afch_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">manual_legionella_acs_afch</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_manual_legionella_acs_afch_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+        <record id="py3o_manual_legionella_acs_afch_aljibe_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Manual Legionella ACS+AFCH+ALJIBE</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">manual_legionella_acs_afch_aljibe</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/MANUAL_LEGIONELLA_BASE_ACS_AFCH_ALJIBE.odt</field>
+        </record>
+
+        <record id="manual_legionella_acs_afch_aljibe_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">manual_legionella_acs_afch_aljibe</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_manual_legionella_acs_afch_aljibe_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+        <record id="py3o_manual_legionella_torres_sparada_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Manual Legionella Torres Sin Parada</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">manual_legionella_torres_sparada</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/MANUAL_LEGIONELLA_BASE_TORRES_SINPARADA.odt</field>
+        </record>
+
+        <record id="manual_legionella_torres_sparada_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">manual_legionella_torres_sparada</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_manual_legionella_torres_sparada_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
+        <record id="py3o_manual_legionella_torres_cparada_report" model="ir.actions.report.xml">
+            <field name="report_type">py3o</field>
+            <field name="name">Manual Legionella Torres Con Parada</field>
+            <field name="py3o_filetype">odt</field>
+            <field name="model">limp.contract</field>
+            <field name="report_name">manual_legionella_torres_cparada</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/MANUAL_LEGIONELLA_BASE_TORRES_CONPARADA.odt</field>
+        </record>
+
+        <record id="manual_legionella_torres_cparada_report" model="ir.values">
+            <field eval="'action'" name="key"/>
+            <field eval="'client_print_multi'" name="key2"/>
+            <field eval="'limp.contract'" name="model"/>
+            <field name="name">manual_legionella_torres_cparada</field>
+            <field eval="'ir.actions.report.xml,'+str(py3o_manual_legionella_torres_cparada_report)" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+
         <record id="py3o_incidencias_acciones_report" model="ir.actions.report.xml">
             <field name="report_type">py3o</field>
             <field name="name">Registro de Incidencias y Acciones Correctoras</field>
