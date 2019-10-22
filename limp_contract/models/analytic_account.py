@@ -201,7 +201,7 @@ class AccountAnalyticAccount(models.Model):
                 contract = contracts[0]
                 vals = {
                     'payment_term_id': contract.payment_term_id and contract.payment_term_id.id or (self.partner_id.property_payment_term_id and self.partner_id.property_payment_term_id.id or False),
-                    'payment_mode_id': contract.payment_type_id and contract.payment_type_id.id or (self.partner_id.payment_type_customer_id and self.partner_id.payment_type_customer_id.id or False),
+                    'payment_mode_id': contract.payment_type_id and contract.payment_type_id.id or (self.partner_id.customer_payment_mode_id and self.partner_id.customer_payment_mode_id.id or False),
                     'contract_id': contract.id,
                     'invoice_header': contract.invoice_header,
                 }
