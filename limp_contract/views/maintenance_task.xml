@@ -30,6 +30,15 @@
                     <button name="execute_maintenace" type="object" string="Execute"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_pickings"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': [('picking_count', '=', 0)]}">
+                            <field name="picking_count" widget="statinfo" string="Pickings"/>
+                        </button>
+                    </div>
                     <group>
                     <field name="name" colspan="4"/>
                     </group>

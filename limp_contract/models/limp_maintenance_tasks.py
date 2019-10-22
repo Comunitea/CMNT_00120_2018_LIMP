@@ -53,6 +53,44 @@ class MaintenanceTask(models.Model):
                                            string="Detected Species")
     products_used_ids = fields.One2many('products.used', 'maintenace_task_id',
                                         string="Products Used")
+    picking_count = fields.Integer(string='# of Pickings',
+                                   compute='_compute_picking_count')
+
+    @api.multi
+    def _compute_picking_count(self):
+        for task in self:
+            task.picking_count = len(task.picking_ids)
+
+    def action_view_pickings(self):
+        action = self.env.\
+            ref('limp_service_picking.planified_service_pickings_action').\
+            read()[0]
+        contract = self.env['limp.contract'].\
+            search([('analytic_account_id', '=', self.contract_id.id)])
+        if contract:
+            action['context'] = str({
+               'default_tag_ids': [(4, x.id) for x in contract.tag_ids],
+               'default_picking_type': 'sporadic', 'type': 'sporadic',
+               'form_view_ref':
+               'limp_service_picking.stock_service_picking_form',
+               'default_delegation_id': contract.delegation_id.id,
+               'default_partner_id': contract.partner_id.id,
+               'default_manager_id': contract.manager_id.id,
+               'default_address_invoice_id': contract.address_invoice_id.id,
+               'default_address_id': contract.address_id.id,
+               'default_ccc_account_id': contract.bank_account_id.id,
+               'default_payment_type': contract.payment_type_id.id,
+               'default_payment_term': contract.payment_term_id.id,
+               'default_privacy': contract.privacy,
+               'default_address_tramit_id': contract.address_tramit_id.id,
+               'default_contract_id': contract.id,
+               'default_type_ddd_ids': [(6, 0, self.type_ddd_ids.ids)],
+               'default_used_product_ids':
+               [(6, 0, self.products_used_ids.mapped('product_id').ids)]
+            })
+        action['domain'] = \
+            "[('id','in', ["+','.join(map(str, self.picking_ids.ids))+"])]"
+        return action
 
     @api.onchange('contract_id')
     def onchange_contract_id(self):

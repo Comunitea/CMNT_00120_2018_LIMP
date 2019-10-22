@@ -21,6 +21,11 @@ msgid "# of Invoices"
 msgstr "# de Facturas"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_picking_count
+msgid "# of Pickings"
+msgstr "# de Albaranes"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_cleaning_lines_count
 msgid "# of cleaning_lines"
 msgstr "# Lin. limpieza"
@@ -80,6 +85,11 @@ msgstr ": Importe anual"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_analytic_account_id
 msgid "Account"
 msgstr "Cuenta"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_hr_employee_legionella_accreditation
+msgid "Accreditation for controlling and preventing of Legionella"
+msgstr "Acreditación para controlar y prevenir la legionella"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning_message_needaction
@@ -2140,6 +2150,7 @@ msgid "Types ddd"
 msgstr "Tipos ddd"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_type_of_installation_ids
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task_type_of_installation_ids
 msgid "Types of installation legionella"
 msgstr "Tipos de instalación legionella"
