@@ -224,7 +224,7 @@ class MaintenanceTask(models.Model):
                 if dates:
                     task.write({'last_execution_date':
                                 dates[-1].strftime('%Y-%m-%d')})
-                    end_tasks.append(task.id)
+                end_tasks.append(task.id)
 
             domain2 = list(domain)
             if end_tasks:
