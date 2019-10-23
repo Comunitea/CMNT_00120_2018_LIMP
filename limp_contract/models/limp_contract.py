@@ -220,11 +220,25 @@ class LimpContract(models.Model):
 
     def _compute_invoiced(self):
         for contract in self:
-            contract.invoice_count = len(contract.invoice_ids)
+            contract_tag = contract.tag_ids.filtered('contract_tag')
+            if contract.analytic_account_id and contract.state == 'open':
+                child_ids = self.env['account.analytic.account'].search(
+                    [('state', '=', 'open'), ('partner_id', '!=', False),
+                    ('invoiceable', '=', True),
+                    ('tag_ids', 'in', [contract_tag.id])])
+                child_ids += contract.analytic_account_id
+            contract.invoice_count = len(child_ids.mapped('invoice_ids'))
 
     def action_view_invoices(self):
         action = self.env.ref('account.action_invoice_tree1').read()[0]
-        action['domain'] = "[('id','in', ["+','.join(map(str, self.invoice_ids._ids))+"])]"
+        contract_tag = self.tag_ids.filtered('contract_tag')
+        child_ids = self.env['account.analytic.account'].search(
+                    [('state', '=', 'open'), ('partner_id', '!=', False),
+                    ('invoiceable', '=', True),
+                    ('tag_ids', 'in', [contract_tag.id])])
+        child_ids += self.analytic_account_id
+        invoices = child_ids.mapped('invoice_ids')
+        action['domain'] = "[('id','in', ["+','.join(map(str, invoices._ids))+"])]"
         return action
 
     def _compute_upamount_history_count(self):
