@@ -195,7 +195,6 @@ class LimpContract(models.Model):
             self.payment_term_id = partner_obj.property_payment_term_id and partner_obj.property_payment_term_id.id or False
             self.address_id = partner_obj.address_get(['contact'])['contact']
             self.address_invoice_id = partner_obj.address_get(['invoice'])['invoice']
-            self.bank_account_id = (payment_type and payment_type.suitable_bank_types and partner_obj.bank_ids) and partner_obj.bank_ids[0].id or False
 
     def act_confirm(self):
         return self.write({'state': 'wait_signature'})
