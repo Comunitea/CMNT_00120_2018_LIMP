@@ -227,7 +227,7 @@ class LimpContract(models.Model):
                     ('invoiceable', '=', True),
                     ('tag_ids', 'in', [contract_tag.id])])
                 child_ids += contract.analytic_account_id
-            contract.invoice_count = len(child_ids.mapped('invoice_ids'))
+                contract.invoice_count = len(child_ids.mapped('invoice_ids'))
 
     def action_view_invoices(self):
         action = self.env.ref('account.action_invoice_tree1').read()[0]
