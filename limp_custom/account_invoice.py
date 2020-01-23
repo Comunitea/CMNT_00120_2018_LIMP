@@ -30,6 +30,10 @@ class account_invoice_line(osv.osv):
         'tax_product': fields.related('product_id', 'tax_product', string='Tax product', readonly=True, type="booolean")
     }
 
+    _defaults = {
+        'sequence': 10
+    }
+
 account_invoice_line()
 
 class account_invoice(osv.osv):

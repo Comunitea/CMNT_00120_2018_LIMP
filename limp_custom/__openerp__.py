@@ -35,6 +35,7 @@
             'product',
             'hr',
             'base_iban',
+            'invoice_sequence',
             'multi_departments',
             'base_contact',
             'limp_service_picking',
