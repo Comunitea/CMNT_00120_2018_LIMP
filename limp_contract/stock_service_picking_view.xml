@@ -28,7 +28,7 @@
             <field name="type">search</field>
             <field name="arch" type="xml">
                 <filter string="To invoice" position="attributes">
-                    <attribute name="domain">[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice'),('contract_id.include_pickings', '=', False)]</attribute>
+                    <attribute name="domain">[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice'),'|',('contract_id', '=', False),('contract_id.include_pickings', '!=', True)]</attribute>
                 </filter>
             </field>
         </record>
@@ -40,7 +40,7 @@
             <field name="type">search</field>
             <field name="arch" type="xml">
                 <filter string="To invoice" position="attributes">
-                    <attribute name="domain">[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice'),('contract_id.include_pickings', '=', False)]</attribute>
+                    <attribute name="domain">[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice'),'|',('contract_id', '=', False),('contract_id.include_pickings', '!=', True)]</attribute>
                 </filter>
             </field>
         </record>
