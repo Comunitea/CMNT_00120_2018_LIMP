@@ -39,9 +39,9 @@ class account_analytic_stock_move(osv.osv):
         'product_id': fields.many2one('product.product', 'Product', required=True, states={'second':[('readonly',True)]}),
         'product_qty': fields.float('Quantity', required=True, digits_compute=dp.get_precision('Product UoM'), states={'second':[('readonly',True)]}),
         'move_id': fields.many2one('stock.move', 'Move', readonly=True),
-        'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic'),
+        'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic', states={'second':[('readonly',True)]}),
         'state': fields.selection([('first', 'First'), ('second', 'Second')], 'State', readonly=True),
-        'date': fields.date("Date", required=True)
+        'date': fields.date("Date", required=True, states={'second':[('readonly',True)]})
     }
 
     _defaults = {
