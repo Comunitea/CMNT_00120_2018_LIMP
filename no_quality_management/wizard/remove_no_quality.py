@@ -75,6 +75,12 @@ class remove_no_quality(osv.osv_memory):
 
         self.pool.get('account.invoice').unlink(cr, 1, invoice_to_unlink)
 
+        pickings_to_unlink = self.pool.get('stock.service.picking').search(cr, 1, [('no_quality', '=', True), ('picking_date', '<=', obj.to_date)])
+        lines_to_unlink = self.pool.get('stock.service.picking.line').search(cr, 1, [('picking_id', 'in', pickings_to_unlink)])
+        self.pool.get('stock.service.picking.line').write(cr, 1, lines_to_unlink, {'state': 'draft'})
+        self.pool.get('stock.service.picking.line').unlink(cr, 1, lines_to_unlink)
+        self.pool.get('stock.service.picking').unlink(cr, 1, pickings_to_unlink)
+
         return {'type': 'ir.actions.act_window_close'}
 
 remove_no_quality()

@@ -216,6 +216,16 @@ class stock_service_picking(osv.osv):
         'maintenance': fields.boolean('Maintenance'),
     }
 
+    def unlink(self, cr, uid, ids, context=None):
+        """delete associated analytic account"""
+        account_to_delete = []
+        for picking in self.browse(cr, uid, ids, context=context):
+            account_to_delete.extend(self.pool.get('account.analytic.account').search(cr, uid, [('id', '=', picking.analytic_acc_id.id)]))
+
+        res = super(stock_service_picking, self).unlink(cr, uid, ids, context=context)
+        self.pool.get('account.analytic.account').unlink(cr, uid, account_to_delete, context=context)
+        return res
+
     def browse(self, cr, uid, select, context=None, list_class=None, fields_process=None):
         res = super(stock_service_picking,self).browse(cr, uid, select, context, list_class, fields_process)
         if isinstance(select, (int, long)):
