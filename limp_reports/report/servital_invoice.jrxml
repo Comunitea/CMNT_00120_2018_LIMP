@@ -699,75 +699,12 @@
 	</group>
 	<pageHeader>
 		<band height="143" splitType="Stretch">
-			<staticText>
-				<reportElement x="284" y="33" width="200" height="12" forecolor="#062B7B" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[C/ Juan Flórez, 146-1º · 15005 · Telf. y Fax 981 979 635]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="284" y="47" width="270" height="12" forecolor="#062B7B" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[C/ Manuel Leiras Pulpeiro 16 · 27004 · Telf. 982 283 042 · Fax 982 283 048]]></text>
-			</staticText>
 			<image>
-				<reportElement x="0" y="5" width="200" height="135">
+				<reportElement x="0" y="5" width="201" height="109">
 					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
 				</reportElement>
 				<imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "../images/servital_logo.png"]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="226" y="33" width="58" height="12" forecolor="#062B7B">
-					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[A CORUÑA ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="226" y="47" width="58" height="12" forecolor="#062B7B">
-					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[LUGO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="226" y="61" width="58" height="12" forecolor="#062B7B">
-					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[OURENSE]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="226" y="75" width="58" height="12" forecolor="#062B7B">
-					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[SANTIAGO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="284" y="61" width="261" height="12" forecolor="#062B7B" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[Avda. de Zamora, nº 120, bajo - 32005 · Telf. 988 211 135 · Fax 988 236 834]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="405" y="114" width="153" height="12" forecolor="#062B7B">
 					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
@@ -794,13 +731,22 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{Invoice_header-invoice_header}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="284" y="75" width="245" height="12" forecolor="#062B7B" backcolor="#FFFFFF">
+				<reportElement x="1" y="116" width="302" height="12" forecolor="#001D77">
 					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
 				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font size="7"/>
+				<textElement>
+					<font size="8"/>
 				</textElement>
-				<text><![CDATA[C/ General Pardiñas, nº36 - 5ºC - 15701 · Tel y Fax - 881957093]]></text>
+				<text><![CDATA[Parque Empresarial As Gándaras - Calle A - Parcela O4.3 - 27003 LUGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="128" width="302" height="12" forecolor="#001D77">
+					<printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Teléfono 982 28 30 42 · Fax 982 20 19 92]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
