@@ -753,7 +753,7 @@
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Teléfono 982 28 30 42 · Fax 982 20 19 92]]></text>
+				<text><![CDATA[Teléfono 982 28 30 42]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
