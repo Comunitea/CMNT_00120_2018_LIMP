@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,7 +24,9 @@ class LimpContractNote(models.Model):
     _name = "limp.contract.note"
     _order = "date desc"
 
-    date = fields.Date('Date', required=True, default=fields.Date.today)
-    name = fields.Text('Description', required=True)
-    user_id = fields.Many2one('res.users', 'User', readonly=True, default=lambda r: r.env.user.id)
-    contract_id = fields.Many2one('limp.contract', 'Contract')
+    date = fields.Date("Date", required=True, default=fields.Date.today)
+    name = fields.Text("Description", required=True)
+    user_id = fields.Many2one(
+        "res.users", "User", readonly=True, default=lambda r: r.env.user.id
+    )
+    contract_id = fields.Many2one("limp.contract", "Contract")

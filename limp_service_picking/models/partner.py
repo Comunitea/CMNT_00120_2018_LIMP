@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -23,13 +22,26 @@ from odoo import models, fields
 
 class ResPartner(models.Model):
 
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
-    partner_contact_id = fields.Many2one('res.partner', 'Partner contact')
-    authorization_no = fields.Char('Authorization no.', size=32)
-    manager_authorization_no = fields.Text('Manager authorization no.')
-    transport_authorization_no = fields.Char('Transport authorization no.', size=32)
-    destination_manager = fields.Boolean('Destination manager', help="Check this box if the partner is a destination manager.")
-    building_site_services_ids = fields.Many2many('building.site.services', 'partner_building_site_services_rel', 'partner_ids', 'building_site_services_id', 'Building sites/Services')
-    nima_no = fields.Char('NIMA', size=255)
-    create_nima_number = fields.Boolean('Create nima number', help="Create nima number in service pickings")
+    partner_contact_id = fields.Many2one("res.partner", "Partner contact")
+    authorization_no = fields.Char("Authorization no.", size=32)
+    manager_authorization_no = fields.Text("Manager authorization no.")
+    transport_authorization_no = fields.Char(
+        "Transport authorization no.", size=32
+    )
+    destination_manager = fields.Boolean(
+        "Destination manager",
+        help="Check this box if the partner is a destination manager.",
+    )
+    building_site_services_ids = fields.Many2many(
+        "building.site.services",
+        "partner_building_site_services_rel",
+        "partner_ids",
+        "building_site_services_id",
+        "Building sites/Services",
+    )
+    nima_no = fields.Char("NIMA", size=255)
+    create_nima_number = fields.Boolean(
+        "Create nima number", help="Create nima number in service pickings"
+    )

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
       <record id="view_account_analytic_line_form_add_type_analytic" model="ir.ui.view">
           <field name="name">account.analytic.line.form.add_type_analytic</field>
@@ -30,5 +29,4 @@
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>

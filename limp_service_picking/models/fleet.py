@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,8 +19,11 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class Fleet(models.Model):
 
     _inherit = "fleet"
 
-    analytic_plan_id = fields.Many2one('account.analytic.distribution', 'Analytic distribution')
+    analytic_plan_id = fields.Many2one(
+        "account.analytic.distribution", "Analytic distribution"
+    )

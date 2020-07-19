@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -19,30 +18,30 @@
 #
 ##############################################################################
 {
-    "name" : "Scont management",
+    "name": "Scont management",
     "description": "Scont management",
-    "version" : "1.0",
-    "author" : "Pexego",
-    "website" : "http://www.pexego.es",
-    "category" : "Accounting",
-    "depends" : [
-        'base',
-        'account',
-        'hr',
-        'limp_contract',
-        'limp_service_picking',
-        'invoice_concept',
-        'limp_distribution_costs'
-        ],
-    "data" : [
-        'views/limp_contract_view.xml',
-        'views/account_invoice_view.xml',
-        'views/limp_service_picking_view.xml',
-        'wizard/remove_no_quality_view.xml',
-        'views/stock_picking_view.xml',
-        'views/account_journal_view.xml',
-        'views/hr_employee_view.xml',
-        'views/timesheet_view.xml'
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Accounting",
+    "depends": [
+        "base",
+        "account",
+        "hr",
+        "limp_contract",
+        "limp_service_picking",
+        "invoice_concept",
+        "limp_distribution_costs",
+    ],
+    "data": [
+        "views/limp_contract_view.xml",
+        "views/account_invoice_view.xml",
+        "views/limp_service_picking_view.xml",
+        "wizard/remove_no_quality_view.xml",
+        "views/stock_picking_view.xml",
+        "views/account_journal_view.xml",
+        "views/hr_employee_view.xml",
+        "views/timesheet_view.xml",
     ],
     "installable": True,
 }

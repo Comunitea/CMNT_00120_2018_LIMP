@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -27,14 +26,18 @@ class LimpContractTask(models.Model):
 
     _order = "sequence asc"
 
-    name = fields.Char('Name', size=256, required=True)
-    department_id = fields.Many2one('hr.department', 'Department', required=True)
-    parent_id = fields.Many2one('limp.contract.task', 'Parent Task')
-    sequence = fields.Integer('Sequence', default=0)
-    company_id = fields.Many2one('res.company', 'Company')
+    name = fields.Char("Name", size=256, required=True)
+    department_id = fields.Many2one(
+        "hr.department", "Department", required=True
+    )
+    parent_id = fields.Many2one("limp.contract.task", "Parent Task")
+    sequence = fields.Integer("Sequence", default=0)
+    company_id = fields.Many2one("res.company", "Company")
     center_type_id = fields.Many2one("limp.center.type", "Center type")
 
-    @api.constrains('parent_id')
+    @api.constrains("parent_id")
     def _check_parent_id(self):
-        if not self._check_recursion('parent_id'):
-            raise ValueError(_('Error ! You cannot create recursive categories.'))
+        if not self._check_recursion("parent_id"):
+            raise ValueError(
+                _("Error ! You cannot create recursive categories.")
+            )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,6 +24,8 @@ class SaleOrderPeriodicity(models.Model):
 
     _name = "sale.order.periodicity"
 
-    name = fields.Char('Name', size=64, required=True)
-    multiplier = fields.Float('Multiplier', digits=(16,4), required=True, default=1)
-    rounding = fields.Boolean ('Round')
+    name = fields.Char("Name", size=64, required=True)
+    multiplier = fields.Float(
+        "Multiplier", digits=(16, 4), required=True, default=1
+    )
+    rounding = fields.Boolean("Round")

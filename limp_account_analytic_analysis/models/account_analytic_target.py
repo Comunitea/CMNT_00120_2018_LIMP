@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -27,10 +26,19 @@ class AccountAnalyticTarget(models.Model):
     _rec_name = "year"
     _order = "year desc"
 
-    analytic_tag_id = fields.Many2one('account.analytic.tag', 'Tag')
-    year = fields.Integer(default=lambda r: int(time.strftime('%Y')))
-    company_id = fields.Many2one('res.company', 'Company', required=True, default=lambda r: r.env.user.company_id.id)
-    delegation_id = fields.Many2one('res.delegation', 'Delegation')
-    department_id = fields.Many2one('hr.department', 'Department')
-    manager_id = fields.Many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)])
-    target_percent = fields.Float('Percent target', digits=(5,2), required=True)
+    analytic_tag_id = fields.Many2one("account.analytic.tag", "Tag")
+    year = fields.Integer(default=lambda r: int(time.strftime("%Y")))
+    company_id = fields.Many2one(
+        "res.company",
+        "Company",
+        required=True,
+        default=lambda r: r.env.user.company_id.id,
+    )
+    delegation_id = fields.Many2one("res.delegation", "Delegation")
+    department_id = fields.Many2one("hr.department", "Department")
+    manager_id = fields.Many2one(
+        "hr.employee", "Responsible", domain=[("responsible", "=", True)]
+    )
+    target_percent = fields.Float(
+        "Percent target", digits=(5, 2), required=True
+    )

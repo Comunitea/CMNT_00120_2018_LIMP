@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,31 +19,31 @@
 #
 ##############################################################################
 {
-    'name': 'Distribution of costs',
-    'description': """Sharing the costs of workers""",
-    'version': '1.0',
-    'author': 'Pexego',
-    'website': 'http://www.pexego.es',
-    'category': 'Base/Laboral/Costs',
-    'depends': [
-        'base',
-        'hr',
-        'analytic',
-        'analytic_incidences',
-        'limp_account_analytic_extension',
-        'limp_multi_delegations',
-        'hr_timesheet'
+    "name": "Distribution of costs",
+    "description": """Sharing the costs of workers""",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Laboral/Costs",
+    "depends": [
+        "base",
+        "hr",
+        "analytic",
+        "analytic_incidences",
+        "limp_account_analytic_extension",
+        "limp_multi_delegations",
+        "hr_timesheet",
     ],
-    'data': [
-        'views/account_analytic_line_view.xml',
-        'views/hr_employee_view.xml',
-        'views/timesheet_view.xml',
-        'wizard/distribution_costs_import_view.xml',
-        'wizard/remuneration_timesheet_wzd_view.xml',
-        'wizard/distribute_effective_costs_view.xml',
-        'security/ir.model.access.csv',
-        'security/limp_distribution_costs_security.xml',
-        'data/timesheet_seq.xml',
+    "data": [
+        "views/account_analytic_line_view.xml",
+        "views/hr_employee_view.xml",
+        "views/timesheet_view.xml",
+        "wizard/distribution_costs_import_view.xml",
+        "wizard/remuneration_timesheet_wzd_view.xml",
+        "wizard/distribute_effective_costs_view.xml",
+        "security/ir.model.access.csv",
+        "security/limp_distribution_costs_security.xml",
+        "data/timesheet_seq.xml",
     ],
-    'installable': True
+    "installable": True,
 }

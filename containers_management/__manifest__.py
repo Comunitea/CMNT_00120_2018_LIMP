@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -21,25 +20,20 @@
 
 
 {
-    'name': 'Containers management',
-    'description': """Allow to manage containers, move with customers and moves history.""",
-    'version': '1.0',
-    'author': 'Pexego',
-    'website': 'http://www.pexego.es',
-    'category': 'Base/Containers',
-    'depends': [
-        'base',
-        'product',
-        'stock',
-        'hr'
+    "name": "Containers management",
+    "description": """Allow to manage containers, move with customers and moves history.""",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Containers",
+    "depends": ["base", "product", "stock", "hr"],
+    "data": [
+        "views/container.xml",
+        "views/container_move.xml",
+        "views/res_partner.xml",
+        "security/ir.model.access.csv",
+        "data/containers_sequence.xml",
+        "security/container_security.xml",
     ],
-    'data': [
-        'views/container.xml',
-        'views/container_move.xml',
-        'views/res_partner.xml',
-        'security/ir.model.access.csv',
-        'data/containers_sequence.xml',
-        'security/container_security.xml'],
-    'installable': True,
-
+    "installable": True,
 }

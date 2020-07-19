@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -24,4 +23,5 @@
 from . import upamount_contract_wzd
 from . import contract_to_invoice
 from . import update_last_invoice_date
-#import service_order_toinvoice
+
+# import service_order_toinvoice

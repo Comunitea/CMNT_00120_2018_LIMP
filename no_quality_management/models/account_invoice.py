@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -21,26 +20,33 @@
 from odoo import models, fields, _, api
 from odoo.exceptions import UserError
 
+
 class AccountInvoice(models.Model):
 
     _inherit = "account.invoice"
 
-    no_quality = fields.Boolean('Scont')
+    no_quality = fields.Boolean("Scont")
 
     def action_move_create(self):
         for inv in self:
             if inv.no_quality and not inv.journal_id.no_quality:
-                raise UserError(_('You try to open scont invoice on not scont journal.'))
+                raise UserError(
+                    _("You try to open scont invoice on not scont journal.")
+                )
             elif not inv.no_quality and inv.journal_id.no_quality:
-                raise UserError(_('You try to open normal invoice on scont journal.'))
+                raise UserError(
+                    _("You try to open normal invoice on scont journal.")
+                )
         return super(AccountInvoice, self).action_move_create()
 
     @api.model
     def create(self, vals):
         res = super(AccountInvoice, self).create(vals)
-        if vals.get('no_quality', False):
+        if vals.get("no_quality", False):
             if res.invoice_line_ids:
-                res.invoice_line_ids.write({'invoice_line_tax_ids': [(6,0, [])]})
+                res.invoice_line_ids.write(
+                    {"invoice_line_tax_ids": [(6, 0, [])]}
+                )
             if res.tax_line_ids:
                 res.tax_line_ids.unlink()
 
@@ -48,10 +54,12 @@ class AccountInvoice(models.Model):
 
     def write(self, vals):
         res = super(AccountInvoice, self).write(vals)
-        if vals.get('no_quality', False):
+        if vals.get("no_quality", False):
             for invoice in self:
                 if invoice.invoice_line_ids:
-                    invoice.invoice_line_ids.write({'invoice_line_tax_ids': [(6,0, [])]})
+                    invoice.invoice_line_ids.write(
+                        {"invoice_line_tax_ids": [(6, 0, [])]}
+                    )
                 if invoice.tax_line_ids:
                     invoice.tax_line_ids.unlink()
         return res

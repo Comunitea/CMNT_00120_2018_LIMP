@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -19,21 +18,17 @@
 ##############################################################################
 
 {
-    'name' : 'Multi Departments',
-    'description': '*Many2many to relate departments and users.',
-    'version' : '1.0',
-    'author' : 'Pexego',
-    'website' : 'http://www.pexego.es',
-    'category' : 'Base/Multi-company',
-    'depends' : [
-        'base',
-        'hr'
-        ],
-    'data' : [
-        'views/hr_department.xml',
-        'views/res_users.xml',
-        'security/multi_departments_security.xml'
+    "name": "Multi Departments",
+    "description": "*Many2many to relate departments and users.",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Multi-company",
+    "depends": ["base", "hr"],
+    "data": [
+        "views/hr_department.xml",
+        "views/res_users.xml",
+        "security/multi_departments_security.xml",
     ],
-    'installable': True,
-
+    "installable": True,
 }

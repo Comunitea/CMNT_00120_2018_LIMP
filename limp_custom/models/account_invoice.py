@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -26,15 +25,25 @@ class AccountInvoiceLine(models.Model):
 
     _inherit = "account.invoice.line"
 
-    tax_product = fields.Boolean(related='product_id.tax_product', string='Tax product', readonly=True)
+    tax_product = fields.Boolean(
+        related="product_id.tax_product", string="Tax product", readonly=True
+    )
 
 
 class AccountInvoice(models.Model):
 
     _inherit = "account.invoice"
 
-    add_info = fields.Boolean(related='commercial_partner_id.add_info', string="Additional Information", readonly=True)
-    amount_taxes = fields.Float('Tax amount', digits=dp.get_precision('Account'), compute='_compute_amount_taxes')
+    add_info = fields.Boolean(
+        related="commercial_partner_id.add_info",
+        string="Additional Information",
+        readonly=True,
+    )
+    amount_taxes = fields.Float(
+        "Tax amount",
+        digits=dp.get_precision("Account"),
+        compute="_compute_amount_taxes",
+    )
 
     def action_invoice_open(self):
         journal_tag = self.journal_id.analytic_tag_id
@@ -47,25 +56,29 @@ class AccountInvoice(models.Model):
     def _compute_amount_taxes(self):
         for invoice in self:
             amount_taxes = 0.0
-            for line in invoice.invoice_line_ids.filtered(lambda l: l.tax_product):
+            for line in invoice.invoice_line_ids.filtered(
+                lambda l: l.tax_product
+            ):
                 amount_taxes += line.price_subtotal
             invoice.amount_taxes = amount_taxes
 
     def action_move_create(self):
-        return super(AccountInvoice,self.with_context(inv_ref=True)).action_move_create()
+        return super(
+            AccountInvoice, self.with_context(inv_ref=True)
+        ).action_move_create()
 
 
 class AccountMove(models.Model):
 
-    _inherit = 'account.move'
+    _inherit = "account.move"
 
     @api.model
     def create(self, vals):
-        if vals.get('ref', False) and self._context.get('inv_ref', False):
-            vals['ref'] = u'FACT. ' + vals['ref']
+        if vals.get("ref", False) and self._context.get("inv_ref", False):
+            vals["ref"] = u"FACT. " + vals["ref"]
         return super(AccountMove, self).create(vals)
 
     def write(self, vals):
-        if vals.get('ref', False) and self._context.get('inv_ref', False):
-            vals['ref'] = u'FACT. ' + vals['ref']
+        if vals.get("ref", False) and self._context.get("inv_ref", False):
+            vals["ref"] = u"FACT. " + vals["ref"]
         return super(AccountMove, self).write(vals)

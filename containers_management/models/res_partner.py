@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -21,8 +20,9 @@
 
 from odoo import models, fields
 
+
 class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
-    containers_store = fields.Boolean('Containers store')
+    containers_store = fields.Boolean("Containers store")

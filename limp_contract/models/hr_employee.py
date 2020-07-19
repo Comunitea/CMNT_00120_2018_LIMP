@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -19,16 +18,27 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
-    title = fields.Char('Title', size=255)
+    title = fields.Char("Title", size=255)
 
-    place_completion_course= fields.Char(string="Place of completion of the course / training")
-    date_completion_course= fields.Date(string="Date of completion of the course / training")
+    place_completion_course = fields.Char(
+        string="Place of completion of the course / training"
+    )
+    date_completion_course = fields.Date(
+        string="Date of completion of the course / training"
+    )
 
-    bpm_card_basic_level=fields.Boolean(string="Biocide product manipulator card (basic level-applicator)")
-    bpm_card_qualified_level=fields.Boolean(string="Biocide product manipulator card (Qualified level-technical responsible)")
-    legionella_accreditation=fields.Boolean("Accreditation for controlling and preventing of Legionella")
+    bpm_card_basic_level = fields.Boolean(
+        string="Biocide product manipulator card (basic level-applicator)"
+    )
+    bpm_card_qualified_level = fields.Boolean(
+        string="Biocide product manipulator card (Qualified level-technical responsible)"
+    )
+    legionella_accreditation = fields.Boolean(
+        "Accreditation for controlling and preventing of Legionella"
+    )
 
-    others=fields.Char(string="Others")
+    others = fields.Char(string="Others")

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,25 +24,34 @@ class RemoveNoQuality(models.TransientModel):
 
     _name = "remove.no.quality"
 
-    to_date = fields.Date('To date', required=True, default=fields.Date.today)
+    to_date = fields.Date("To date", required=True, default=fields.Date.today)
 
     def delete_no_quality(self):
-        invoice_ids = self.env['account.invoice'].sudo().search([('no_quality', '=', True), ('date_invoice', '<=', self.to_date)])
-        invoice_to_unlink = self.env['account.invoice']
+        invoice_ids = (
+            self.env["account.invoice"]
+            .sudo()
+            .search(
+                [
+                    ("no_quality", "=", True),
+                    ("date_invoice", "<=", self.to_date),
+                ]
+            )
+        )
+        invoice_to_unlink = self.env["account.invoice"]
         for invoice in invoice_ids:
-            if invoice.state in ('draft', 'cancel'):
+            if invoice.state in ("draft", "cancel"):
                 invoice_to_unlink += invoice
-            elif invoice.state in ('proforma', 'proforma2', 'open'):
+            elif invoice.state in ("proforma", "proforma2", "open"):
                 if invoice.payment_ids:
                     invoice.payment_ids.cancel()
-                    invoice.payment_ids.write({'move_name': ''})
+                    invoice.payment_ids.write({"move_name": ""})
                 invoice.action_cancel()
                 invoice_to_unlink += invoice
-            elif invoice.state == 'paid':
+            elif invoice.state == "paid":
                 invoice.payment_ids.cancel()
-                invoice.payment_ids.write({'move_name': ''})
+                invoice.payment_ids.write({"move_name": ""})
                 invoice.payment_ids.unlink()
                 invoice.action_cancel()
                 invoice_to_unlink += invoice
         invoice_to_unlink.unlink()
-        return {'type': 'ir.actions.act_window_close'}
+        return {"type": "ir.actions.act_window_close"}

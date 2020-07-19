@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,31 +24,41 @@ class PrintAcceptanceDocumentReport(models.TransientModel):
 
     _name = "print.acceptance.document.report"
 
-    building_site_id = fields.Many2one('building.site.services', 'Building Site / Service', required=True)
-    waste_id = fields.Many2one('waste.ler.code', 'LER', required=True)
+    building_site_id = fields.Many2one(
+        "building.site.services", "Building Site / Service", required=True
+    )
+    waste_id = fields.Many2one("waste.ler.code", "LER", required=True)
 
     def print_report(self):
         """prints report"""
-        acceptance_ids = self.env['acceptance.document'].search([('building_site_id', '=', self.building_site_id.id),('waste_id', '=', self.waste_id.id)])
+        acceptance_ids = self.env["acceptance.document"].search(
+            [
+                ("building_site_id", "=", self.building_site_id.id),
+                ("waste_id", "=", self.waste_id.id),
+            ]
+        )
         if acceptance_ids:
             data = acceptance_ids[0].read()
             accept_ids = [acceptance_ids[0].id]
         else:
-            admission_seq = self.env['ir.sequence'].next_by_code('acceptance_document')
-            new_waste = self.env['acceptance.document'].create(
+            admission_seq = self.env["ir.sequence"].next_by_code(
+                "acceptance_document"
+            )
+            new_waste = self.env["acceptance.document"].create(
                 {
-                    'building_site_id': self.building_site_id.id,
-                    'waste_id': self.waste_id.id,
-                    'number': admission_seq
-                })
+                    "building_site_id": self.building_site_id.id,
+                    "waste_id": self.waste_id.id,
+                    "number": admission_seq,
+                }
+            )
             data = new_waste.read()
             accept_ids = [new_waste.id]
 
-        datas = {'ids': accept_ids}
-        datas['model'] = 'acceptance.document'
-        datas['form'] = data
+        datas = {"ids": accept_ids}
+        datas["model"] = "acceptance.document"
+        datas["form"] = data
         return {
-            'type': 'ir.actions.report.xml',
-            'report_name': 'acceptance_document',
-            'datas': datas,
+            "type": "ir.actions.report",
+            "report_name": "acceptance_document",
+            "datas": datas,
         }

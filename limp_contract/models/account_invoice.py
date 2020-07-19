@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -24,21 +23,32 @@ class AccountInvoice(models.Model):
 
     _inherit = "account.invoice"
 
-    contract_id = fields.Many2one('limp.contract', 'Contract', readonly=True)
-    invoice_header = fields.Char('Invoice header', size=128)
+    contract_id = fields.Many2one("limp.contract", "Contract", readonly=True)
+    invoice_header = fields.Char("Invoice header", size=128)
     privacy = fields.Selection(
-        related='analytic_id.privacy', string="Privacy",
-        selection=[('public', 'Public'), ('private', 'Private')],
-        readonly=True, store=True)
+        related="analytic_id.privacy",
+        string="Privacy",
+        selection=[("public", "Public"), ("private", "Private")],
+        readonly=True,
+        store=True,
+    )
 
-    def refund(self, date_invoice=None, date=None, description=None,
-               journal_id=None):
+    def refund(
+        self, date_invoice=None, date=None, description=None, journal_id=None
+    ):
         new_ids = super(AccountInvoice, self).refund(
-            date_invoice, date, description, journal_id)
-        new_ids.write({
-            'contract_id': self.contract_id and self.contract_id.id or False,
-            'analytic_id': self.analytic_id and self.analytic_id.id or False
-        })
+            date_invoice, date, description, journal_id
+        )
+        new_ids.write(
+            {
+                "contract_id": self.contract_id
+                and self.contract_id.id
+                or False,
+                "analytic_id": self.analytic_id
+                and self.analytic_id.id
+                or False,
+            }
+        )
 
         return new_ids
 
@@ -47,4 +57,4 @@ class AccountInvoiceLine(models.Model):
 
     _inherit = "account.invoice.line"
 
-    hours = fields.Float('Hours', digits=(16, 2))
+    hours = fields.Float("Hours", digits=(16, 2))

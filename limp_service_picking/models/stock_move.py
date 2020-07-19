@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -21,8 +20,9 @@
 
 from odoo import models, fields
 
+
 class StockMove(models.Model):
 
     _inherit = "stock.move"
 
-    description = fields.Char('Description', size=256)
+    description = fields.Char("Description", size=256)

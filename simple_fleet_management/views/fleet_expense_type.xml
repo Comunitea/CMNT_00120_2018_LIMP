@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="fleet_expense_type_tree" model="ir.ui.view">
             <field name="name">fleet.expense.type.tree</field>
@@ -53,5 +52,4 @@
 
         <menuitem action="fleet_expense_type_action" id="menu_fleet_expense_type_open" parent="menu_fleet" name="Fleet expense type" sequence="80"/>
 
-    </data>
-</openerp>
+</odoo>

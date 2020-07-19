@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <record id="py3o_manual_ddd_report" model="ir.actions.report.xml">
+        <record id="py3o_manual_ddd_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Manual DDD</field>
             <field name="py3o_filetype">odt</field>
@@ -17,11 +17,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">manual_ddd_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_manual_ddd_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_manual_ddd_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_manual_legionella_acs_afch_report" model="ir.actions.report.xml">
+        <record id="py3o_manual_legionella_acs_afch_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Manual Legionella ACS+AFCH</field>
             <field name="py3o_filetype">odt</field>
@@ -36,11 +36,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">manual_legionella_acs_afch</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_manual_legionella_acs_afch_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_manual_legionella_acs_afch_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_manual_legionella_acs_afch_aljibe_report" model="ir.actions.report.xml">
+        <record id="py3o_manual_legionella_acs_afch_aljibe_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Manual Legionella ACS+AFCH+ALJIBE</field>
             <field name="py3o_filetype">odt</field>
@@ -55,11 +55,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">manual_legionella_acs_afch_aljibe</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_manual_legionella_acs_afch_aljibe_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_manual_legionella_acs_afch_aljibe_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_manual_legionella_torres_sparada_report" model="ir.actions.report.xml">
+        <record id="py3o_manual_legionella_torres_sparada_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Manual Legionella Torres Sin Parada</field>
             <field name="py3o_filetype">odt</field>
@@ -74,11 +74,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">manual_legionella_torres_sparada</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_manual_legionella_torres_sparada_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_manual_legionella_torres_sparada_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_manual_legionella_torres_cparada_report" model="ir.actions.report.xml">
+        <record id="py3o_manual_legionella_torres_cparada_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Manual Legionella Torres Con Parada</field>
             <field name="py3o_filetype">odt</field>
@@ -93,11 +93,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">manual_legionella_torres_cparada</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_manual_legionella_torres_cparada_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_manual_legionella_torres_cparada_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_incidencias_acciones_report" model="ir.actions.report.xml">
+        <record id="py3o_incidencias_acciones_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Registro de Incidencias y Acciones Correctoras</field>
             <field name="py3o_filetype">odt</field>
@@ -112,11 +112,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">incidencias_acciones_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_incidencias_acciones_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_incidencias_acciones_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_anexo_PCCS_report" model="ir.actions.report.xml">
+        <record id="py3o_anexo_PCCS_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Anexo PCCS Legionella ACS+AFCH</field>
             <field name="py3o_filetype">odt</field>
@@ -131,11 +131,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">anexo_pccs_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_anexo_PCCS_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_anexo_PCCS_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_anexo_PCCS_ALJIBE_report" model="ir.actions.report.xml">
+        <record id="py3o_anexo_PCCS_ALJIBE_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Anexo PCCS Legionella ACS+AFCH+ALJIBE</field>
             <field name="py3o_filetype">odt</field>
@@ -150,11 +150,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">anexo_pccs_aljibe_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_anexo_PCCS_ALJIBE_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_anexo_PCCS_ALJIBE_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_anexo_PCCS_TORRES_CPARADA_report" model="ir.actions.report.xml">
+        <record id="py3o_anexo_PCCS_TORRES_CPARADA_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Anexo PCCS Legionella Torres Con Parada</field>
             <field name="py3o_filetype">odt</field>
@@ -169,11 +169,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">anexo_pccs_torres_cparada_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_anexo_PCCS_TORRES_CPARADA_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_anexo_PCCS_TORRES_CPARADA_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_anexo_PCCS_TORRES_SPARADA_report" model="ir.actions.report.xml">
+        <record id="py3o_anexo_PCCS_TORRES_SPARADA_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Anexo PCCS Legionella Torres Sin Parada</field>
             <field name="py3o_filetype">odt</field>
@@ -188,11 +188,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">anexo_pccs_torres_sparada_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_anexo_PCCS_TORRES_SPARADA_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_anexo_PCCS_TORRES_SPARADA_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_CONTROL_TEMP_PTOS_TERMINALES_report" model="ir.actions.report.xml">
+        <record id="py3o_CONTROL_TEMP_PTOS_TERMINALES_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Control mensual temperatura puntos terminales</field>
             <field name="py3o_filetype">odt</field>
@@ -207,11 +207,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">control_temp_puntos_terminales_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_CONTROL_TEMP_PTOS_TERMINALES_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_CONTROL_TEMP_PTOS_TERMINALES_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_CONTROL_CLORO_DIARIO_report" model="ir.actions.report.xml">
+        <record id="py3o_CONTROL_CLORO_DIARIO_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Control registros de cloro diario</field>
             <field name="py3o_filetype">odt</field>
@@ -226,11 +226,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">control_cl_diario_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_CONTROL_CLORO_DIARIO_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_CONTROL_CLORO_DIARIO_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_CONTROL_CLORO_SEMANAL_report" model="ir.actions.report.xml">
+        <record id="py3o_CONTROL_CLORO_SEMANAL_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Control registros de cloro semanal</field>
             <field name="py3o_filetype">odt</field>
@@ -245,11 +245,11 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">control_cl_semanal_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_CONTROL_CLORO_SEMANAL_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_CONTROL_CLORO_SEMANAL_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 
-        <record id="py3o_CONTROL_MANTENIMIENTO_TORRES_report" model="ir.actions.report.xml">
+        <record id="py3o_CONTROL_MANTENIMIENTO_TORRES_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Control registros mantenimiento torres</field>
             <field name="py3o_filetype">odt</field>
@@ -264,7 +264,7 @@
             <field eval="'client_print_multi'" name="key2"/>
             <field eval="'limp.contract'" name="model"/>
             <field name="name">control_mantenimiento_torres_report</field>
-            <field eval="'ir.actions.report.xml,'+str(py3o_CONTROL_MANTENIMIENTO_TORRES_report)" name="value"/>
+            <field eval="'ir.actions.report,'+str(py3o_CONTROL_MANTENIMIENTO_TORRES_report)" name="value"/>
             <field eval="True" name="object"/>
         </record>
 

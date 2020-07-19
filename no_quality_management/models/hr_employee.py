@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,8 +19,9 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class HrEmployee(models.Model):
 
     _inherit = "hr.employee"
 
-    scont = fields.Boolean('Scont')
+    scont = fields.Boolean("Scont")

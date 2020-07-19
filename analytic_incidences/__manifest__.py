@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,33 +19,26 @@
 #
 ##############################################################################
 {
-    'name': 'Analytic laboral incidences',
-    'description': """Allow creates laboral incidences""",
-    'version': '1.0',
-    'author': 'Pexego',
-    'website': 'http://www.pexego.es',
-    'category': 'Base/Laboral/Incidences',
-    'depends': [
-        'base',
-        'hr',
-        'account',
-        'city_council',
-        'invoice_concept'
+    "name": "Analytic laboral incidences",
+    "description": """Allow creates laboral incidences""",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Laboral/Incidences",
+    "depends": ["base", "hr", "account", "city_council", "invoice_concept"],
+    "data": [
+        "wizard/analytic_incidence_wzd.xml",
+        "views/absence.xml",
+        "views/hr_employee.xml",
+        "views/incidence.xml",
+        "views/remuneration.xml",
+        "wizard/employee_incidence_set_end_date_view.xml",
+        "wizard/employee_replacement_wzd.xml",
+        "data/incidence_data.xml",
+        "wizard/employee_set_laboral_incidence_wzd.xml",
+        "data/remuneration_sequence.xml",
+        "security/ir.model.access.csv",
+        "security/analytic_incidences_security.xml",
     ],
-    'data': [
-        'wizard/analytic_incidence_wzd.xml',
-        'views/absence.xml',
-        'views/hr_employee.xml',
-        'views/incidence.xml',
-        'views/remuneration.xml',
-        'wizard/employee_incidence_set_end_date_view.xml',
-        'wizard/employee_replacement_wzd.xml',
-        'data/incidence_data.xml',
-        'wizard/employee_set_laboral_incidence_wzd.xml',
-        'data/remuneration_sequence.xml',
-        'security/ir.model.access.csv',
-        'security/analytic_incidences_security.xml',
-    ],
-    'installable': True,
-
+    "installable": True,
 }

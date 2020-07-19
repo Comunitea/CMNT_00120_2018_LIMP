@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -27,20 +26,57 @@ class LimpIncidence(models.Model):
     _description = "Incidences"
 
     periodicity = fields.Selection(
-        [('q', 'Quarterly'), ('ex', 'Exception'), ('w', 'Weekly'),
-         ('bm', 'Bimonthly'), ('m', 'Monthly'), ('2m', 'Two months')],
-        'Frequency', default='ex')
-    incidence_date = fields.Date('Date', required=True, default=fields.Date.today)
-    partner_id = fields.Many2one('res.partner', 'Customer', required=True, default=lambda r: r._context.get('partner_id', False))
-    contract_line_id = fields.Many2one('limp.contract.line', 'Contract line', readonly=True)
-    company_id = fields.Many2one('res.company', 'Company', readonly=True, default=lambda r: r._context.get('company_id', False))
-    department_id = fields.Many2one("hr.department", 'Department', default=lambda r: r._context.get('department_id', False))
-    delegation_id = fields.Many2one('res.delegation', 'Delegation', default=lambda r: r._context.get('delegation_id', False))
-    department_code = fields.Char('Dep.', related='department_id.code', readonly=True)
-    picking_id = fields.Many2one('stock.picking', 'Picking')
-    employee_id = fields.Many2one('hr.employee', 'Worker', required=True)
-    hours = fields.Float('Hours')
-    amount = fields.Float('Amount', help="Amount per hours", digits=dp.get_precision('Account'), readonly=True)
-    name = fields.Char('Description', size=256, required=True)
-    next_date = fields.Date('Next date')
-    note = fields.Text('Notes')
+        [
+            ("q", "Quarterly"),
+            ("ex", "Exception"),
+            ("w", "Weekly"),
+            ("bm", "Bimonthly"),
+            ("m", "Monthly"),
+            ("2m", "Two months"),
+        ],
+        "Frequency",
+        default="ex",
+    )
+    incidence_date = fields.Date(
+        "Date", required=True, default=fields.Date.today
+    )
+    partner_id = fields.Many2one(
+        "res.partner",
+        "Customer",
+        required=True,
+        default=lambda r: r._context.get("partner_id", False),
+    )
+    contract_line_id = fields.Many2one(
+        "limp.contract.line", "Contract line", readonly=True
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        "Company",
+        readonly=True,
+        default=lambda r: r._context.get("company_id", False),
+    )
+    department_id = fields.Many2one(
+        "hr.department",
+        "Department",
+        default=lambda r: r._context.get("department_id", False),
+    )
+    delegation_id = fields.Many2one(
+        "res.delegation",
+        "Delegation",
+        default=lambda r: r._context.get("delegation_id", False),
+    )
+    department_code = fields.Char(
+        "Dep.", related="department_id.code", readonly=True
+    )
+    picking_id = fields.Many2one("stock.picking", "Picking")
+    employee_id = fields.Many2one("hr.employee", "Worker", required=True)
+    hours = fields.Float("Hours")
+    amount = fields.Float(
+        "Amount",
+        help="Amount per hours",
+        digits=dp.get_precision("Account"),
+        readonly=True,
+    )
+    name = fields.Char("Description", size=256, required=True)
+    next_date = fields.Date("Next date")
+    note = fields.Text("Notes")

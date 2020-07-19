@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -27,9 +26,11 @@ import socket
 import traceback
 import xlrd
 
+
 def ustr(text):
     """convierte las cadenas de sql server en iso-8859-1 a utf-8 que es la cofificación de postgresql"""
-    return unicode(text, 'iso-8859-15').encode('utf-8')
+    return unicode(text, "iso-8859-15").encode("utf-8")
+
 
 class CCImport:
     """
@@ -41,11 +42,9 @@ class CCImport:
         Inicializar las opciones por defecto y conectar con OpenERP
         """
 
-
-    #-------------------------------------------------------------------------
-    #--- WRAPPER XMLRPC OPENERP ----------------------------------------------
-    #-------------------------------------------------------------------------
-
+        # -------------------------------------------------------------------------
+        # --- WRAPPER XMLRPC OPENERP ----------------------------------------------
+        # -------------------------------------------------------------------------
 
         self.url_template = "http://%s:%s/xmlrpc/%s"
         self.server = "localhost"
@@ -59,9 +58,15 @@ class CCImport:
         #
         # Conectamos con OpenERP
         #
-        login_facade = xmlrpclib.ServerProxy(self.url_template % (self.server, self.port, 'common'))
-        self.user_id = login_facade.login(self.dbname, self.user_name, self.user_passwd)
-        self.object_facade = xmlrpclib.ServerProxy(self.url_template % (self.server, self.port, 'object'))
+        login_facade = xmlrpclib.ServerProxy(
+            self.url_template % (self.server, self.port, "common")
+        )
+        self.user_id = login_facade.login(
+            self.dbname, self.user_name, self.user_passwd
+        )
+        self.object_facade = xmlrpclib.ServerProxy(
+            self.url_template % (self.server, self.port, "object")
+        )
 
         #
         # Fichero Log de Excepciones
@@ -79,43 +84,71 @@ class CCImport:
         Wrapper del método create.
         """
         try:
-            res = self.object_facade.execute(self.dbname, self.user_id, self.user_passwd,
-                                model, 'create', data, context)
+            res = self.object_facade.execute(
+                self.dbname,
+                self.user_id,
+                self.user_passwd,
+                model,
+                "create",
+                data,
+                context,
+            )
 
             if isinstance(res, list):
                 res = res[0]
 
             return res
         except socket.error, err:
-            raise Exception(u'Conexión rechazada: %s!' % err)
+            raise Exception(u"Conexión rechazada: %s!" % err)
         except xmlrpclib.Fault, err:
-            raise Exception(u'Error %s en create: %s' % (err.faultCode, err.faultString))
+            raise Exception(
+                u"Error %s en create: %s" % (err.faultCode, err.faultString)
+            )
 
     def search(self, model, query, context={}):
         """
         Wrapper del método search.
         """
         try:
-            ids = self.object_facade.execute(self.dbname, self.user_id, self.user_passwd,
-                                model, 'search', query, context)
+            ids = self.object_facade.execute(
+                self.dbname,
+                self.user_id,
+                self.user_passwd,
+                model,
+                "search",
+                query,
+                context,
+            )
             return ids
         except socket.error, err:
-            raise Exception(u'Conexión rechazada: %s!' % err)
+            raise Exception(u"Conexión rechazada: %s!" % err)
         except xmlrpclib.Fault, err:
-            raise Exception(u'Error %s en search: %s' % (err.faultCode, err.faultString))
+            raise Exception(
+                u"Error %s en search: %s" % (err.faultCode, err.faultString)
+            )
 
     def write(self, model, ids, field_values, context={}):
         """
         Wrapper del método write.
         """
         try:
-            res = self.object_facade.execute(self.dbname, self.user_id, self.user_passwd,
-                                    model, 'write', ids, field_values, context)
+            res = self.object_facade.execute(
+                self.dbname,
+                self.user_id,
+                self.user_passwd,
+                model,
+                "write",
+                ids,
+                field_values,
+                context,
+            )
             return res
         except socket.error, err:
-            raise Exception(u'Conexión rechazada: %s!' % err)
+            raise Exception(u"Conexión rechazada: %s!" % err)
         except xmlrpclib.Fault, err:
-            raise Exception(u'Error %s en write: %s' % (err.faultCode, err.faultString))
+            raise Exception(
+                u"Error %s en write: %s" % (err.faultCode, err.faultString)
+            )
 
     def process_data(self):
         """
@@ -131,26 +164,34 @@ class CCImport:
                 rows = sh.row_values(rownum)
                 print rows
                 vals = {
-                    'name': rows[1],
-                    'code': rows[0].replace('*',''),
-                    'dangerous': '*' in rows[0] and True or False
+                    "name": rows[1],
+                    "code": rows[0].replace("*", ""),
+                    "dangerous": "*" in rows[0] and True or False,
                 }
 
-                ids = self.search('waste.ler.code', [('code', '=', vals['code']), ('name', '=', vals['name']), ('dangerous', '=', vals['dangerous'])])
+                ids = self.search(
+                    "waste.ler.code",
+                    [
+                        ("code", "=", vals["code"]),
+                        ("name", "=", vals["name"]),
+                        ("dangerous", "=", vals["dangerous"]),
+                    ],
+                )
                 if ids:
-                    self.write('waste.ler.code', ids[0], vals)
+                    self.write("waste.ler.code", ids[0], vals)
                     ids = ids[0]
                 else:
-                    ids = self.create('waste.ler.code', vals)
+                    ids = self.create("waste.ler.code", vals)
 
         except Exception, ex:
             print "Error al conectarse a las bbdd: ", (ex)
             sys.exit()
 
-        #cerramos el fichero
+        # cerramos el fichero
         self.file.close()
 
         return True
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 5:
@@ -159,5 +200,3 @@ if __name__ == "__main__":
         ENGINE = CCImport(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
 
         ENGINE.process_data()
-
-

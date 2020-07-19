@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,19 +19,13 @@
 ##############################################################################
 
 {
-        "name" : "Partner extension",
-        "description": "Add some improvements in partners.",
-        "version" : "1.0",
-        "author" : "Pexego",
-        "website" : "http://www.pexego.es",
-        "category" : "Base/Partner",
-        "depends" : [
-            'base_vat',
-            'l10n_es_partner'
-            ],
-        "data" : [
-            'views/res_partner.xml'
-        ],
-        "installable": True,
-
+    "name": "Partner extension",
+    "description": "Add some improvements in partners.",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Partner",
+    "depends": ["base_vat", "l10n_es_partner"],
+    "data": ["views/res_partner.xml"],
+    "installable": True,
 }

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -21,23 +20,29 @@
 from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 
-class LimpServicePicking(models.Model):
-    _inherit = 'stock.service.picking'
 
-    sale_line_ids = fields.One2many('sale.order.line', related='sale_id.order_line', readonly=True)
+class LimpServicePicking(models.Model):
+    _inherit = "stock.service.picking"
+
+    sale_line_ids = fields.One2many(
+        "sale.order.line", related="sale_id.order_line", readonly=True
+    )
 
 
 class ServicePickingOtherConceptsRel(models.Model):
-    _inherit = 'service.picking.other.concepts.rel'
+    _inherit = "service.picking.other.concepts.rel"
 
+    price_unit = fields.Float(
+        "Price Unit", digits=dp.get_precision("Sale Price")
+    )
 
-    price_unit = fields.Float('Price Unit', digits=dp.get_precision('Sale Price'))
-
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def onchange_product_id(self):
         if self.service_picking_id:
             lines = self.service_picking_id.sale_line_ids
-            use_line = lines.filtered(lambda r: r.product_id==self.product_id)
+            use_line = lines.filtered(
+                lambda r: r.product_id == self.product_id
+            )
             if use_line:
                 self.price_unit = use_line[0].price_unit
                 self.name = use_line[0].name

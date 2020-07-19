@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,44 +24,62 @@ from odoo.addons import decimal_precision as dp
 
 class FleetExpense(models.Model):
 
-    _name = 'fleet.expense'
-    _description = 'Fleet expenses'
-    _order = 'km desc, expense_date desc'
+    _name = "fleet.expense"
+    _description = "Fleet expenses"
+    _order = "km desc, expense_date desc"
 
-    expense_date = fields.Date('Date', required=True,
-                               default=fields.Date.today)
-    name = fields.Char('Description', required=True)
-    fleet_id = fields.Many2one('fleet', 'Vehicle', required=True)
-    amount = fields.Float(digits=dp.get_precision('Account'), required=True)
-    net_amount = fields.Float(digits=dp.get_precision('Account'),
-                              compute='_compute_net_amount')
+    expense_date = fields.Date(
+        "Date", required=True, default=fields.Date.today
+    )
+    name = fields.Char("Description", required=True)
+    fleet_id = fields.Many2one("fleet", "Vehicle", required=True)
+    amount = fields.Float(digits=dp.get_precision("Account"), required=True)
+    net_amount = fields.Float(
+        digits=dp.get_precision("Account"), compute="_compute_net_amount"
+    )
     note = fields.Text()
-    expense_type = fields.Many2one('fleet.expense.type', 'Type',
-                                   help='Expense type')
-    partner_id = fields.Many2one('res.partner', 'Supplier')
-    labor = fields.Float(digits=dp.get_precision('Account'))
-    parts_price = fields.Float(digits=dp.get_precision('Account'))
-    liter = fields.Float(digits=dp.get_precision('Account'))
-    km = fields.Float(digits=dp.get_precision('Account'))
+    expense_type = fields.Many2one(
+        "fleet.expense.type", "Type", help="Expense type"
+    )
+    partner_id = fields.Many2one("res.partner", "Supplier")
+    labor = fields.Float(digits=dp.get_precision("Account"))
+    parts_price = fields.Float(digits=dp.get_precision("Account"))
+    liter = fields.Float(digits=dp.get_precision("Account"))
+    km = fields.Float(digits=dp.get_precision("Account"))
     distribute = fields.Boolean(default=True)
     department_id = fields.Many2one(
-        'hr.department', 'Department', required=True,
+        "hr.department",
+        "Department",
+        required=True,
         default=lambda r: r._context.get(
-            'c_department_id', r._context.get(
-            'department_id', r.env.user.context_department_id.id)))
+            "c_department_id",
+            r._context.get(
+                "department_id", r.env.user.context_department_id.id
+            ),
+        ),
+    )
     consumption = fields.Float(
-        'Consumption (l/100Km)', digits=(13, 2),
-        help='Liters each 100 km. (Refuel liters / traveled km) * 100',
-        compute='_compute_consumption')
+        "Consumption (l/100Km)",
+        digits=(13, 2),
+        help="Liters each 100 km. (Refuel liters / traveled km) * 100",
+        compute="_compute_consumption",
+    )
 
     def _compute_net_amount(self):
         for expense in self:
             if expense.expense_type.product_id:
-                net_amount = sum([x._compute_amount(
-                    expense.amount, expense.amount, 1,
-                    product=expense.expense_type.product_id or False,
-                    partner=expense.partner_id or False)
-                    for x in expense.expense_type.product_id.supplier_taxes_id])
+                net_amount = sum(
+                    [
+                        x._compute_amount(
+                            expense.amount,
+                            expense.amount,
+                            1,
+                            product=expense.expense_type.product_id or False,
+                            partner=expense.partner_id or False,
+                        )
+                        for x in expense.expense_type.product_id.supplier_taxes_id
+                    ]
+                )
                 if net_amount:
                     expense.net_amount = net_amount
                     continue
@@ -70,17 +87,24 @@ class FleetExpense(models.Model):
 
     def _compute_consumption(self):
         type_expense_id = self.env.ref(
-            'simple_fleet_management.fleet_expense_type_refueling').id
+            "simple_fleet_management.fleet_expense_type_refueling"
+        ).id
         for expense in self:
-            if expense.expense_type and \
-                    expense.expense_type.id == type_expense_id:
+            if (
+                expense.expense_type
+                and expense.expense_type.id == type_expense_id
+            ):
                 expense_old = self.search(
-                    [('km', '<', expense.km),
-                     ('expense_type', '=', type_expense_id),
-                     ('fleet_id', '=', expense.fleet_id.id)], limit=1)
+                    [
+                        ("km", "<", expense.km),
+                        ("expense_type", "=", type_expense_id),
+                        ("fleet_id", "=", expense.fleet_id.id),
+                    ],
+                    limit=1,
+                )
                 if expense_old and expense_old.km and expense.km:
-                    expense.consumption = (expense.liter /
-                                           (expense.km - expense_old.km)) * \
-                                          100.0
+                    expense.consumption = (
+                        expense.liter / (expense.km - expense_old.km)
+                    ) * 100.0
                     continue
             expense.consumption = 0.0

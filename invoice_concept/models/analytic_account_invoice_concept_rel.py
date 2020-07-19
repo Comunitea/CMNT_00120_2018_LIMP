@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -27,18 +26,23 @@ from odoo.addons import decimal_precision as dp
 class AccountAnalyticInvoiceConceptRel(models.Model):
     """Relationship between invoice concepts and analytic accounts"""
 
-    _name = 'account.analytic.invoice.concept.rel'
+    _name = "account.analytic.invoice.concept.rel"
     _description = "Relationship between analytic account and invoice concepts"
     _order = "sequence asc"
 
     concept_id = fields.Many2one(
-        'account.analytic.invoice.concept', 'Concept', required=True)
+        "account.analytic.invoice.concept", "Concept", required=True
+    )
     analytic_id = fields.Many2one(
-        'account.analytic.account', 'Account', readonly=True)
-    amount = fields.Float(digits=dp.get_precision('Account'), required=True)
+        "account.analytic.account", "Account", readonly=True
+    )
+    amount = fields.Float(digits=dp.get_precision("Account"), required=True)
     freq = fields.Selection(
-        [('q', 'Quarterly'), ('m', 'Monthly')], 'Frequency',
-        required=True, default='m')
+        [("q", "Quarterly"), ("m", "Monthly")],
+        "Frequency",
+        required=True,
+        default="m",
+    )
     last_invoice_date = fields.Date(copy=False)
     january = fields.Boolean(default=True)
     february = fields.Boolean(default=True)
@@ -52,10 +56,10 @@ class AccountAnalyticInvoiceConceptRel(models.Model):
     october = fields.Boolean(default=True)
     november = fields.Boolean(default=True)
     december = fields.Boolean(default=True)
-    name = fields.Char('Description', default=True)
+    name = fields.Char("Description", default=True)
     sequence = fields.Integer(required=True, default=1)
 
-    @api.onchange('concept_id')
+    @api.onchange("concept_id")
     def onchange_concept_id(self):
         for obj in self:
             if obj.concept_id:

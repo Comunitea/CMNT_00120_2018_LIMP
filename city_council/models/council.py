@@ -25,21 +25,21 @@ from odoo import models, fields
 
 class CityCouncil(models.Model):
 
-    _name = 'city.council'
+    _name = "city.council"
 
-    name = fields.Char('Council', required=True)
-    zip_ids = fields.One2many('res.better.zip', 'council_id', 'Zipcodes')
+    name = fields.Char("Council", required=True)
+    zip_ids = fields.One2many("res.better.zip", "council_id", "Zipcodes")
 
 
 class ResBetterZip(models.Model):
 
     _inherit = "res.better.zip"
 
-    council_id = fields.Many2one('city.council', 'Council')
+    council_id = fields.Many2one("city.council", "Council")
 
 
 class AccountAnalyticAccount(models.Model):
 
-    _inherit = 'account.analytic.account'
+    _inherit = "account.analytic.account"
 
-    location_id = fields.Many2one('city.council', 'Council')
+    location_id = fields.Many2one("city.council", "Council")

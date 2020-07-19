@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,20 +19,16 @@
 ##############################################################################
 
 {
-    "name" : "Export account to glasof",
+    "name": "Export account to glasof",
     "description": """Wizard to export account moves to Glasof""",
-    "version" : "1.0",
-    "author" : "Pexego",
-    "website" : "http://www.pexego.es",
-    "category" : "Account/Export",
-    "depends" : [
-        'base',
-        'account',
-        ],
-    "data" : [
-        'views/res_company_view.xml',
-        'wizard/export_account_to_glasof_view.xml'
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Account/Export",
+    "depends": ["base", "account",],
+    "data": [
+        "views/res_company_view.xml",
+        "wizard/export_account_to_glasof_view.xml",
     ],
     "installable": True,
-
 }

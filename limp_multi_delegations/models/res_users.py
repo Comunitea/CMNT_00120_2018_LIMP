@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -22,9 +21,13 @@ from odoo import models, fields
 
 class ResUsers(models.Model):
 
-    _inherit = 'res.users'
+    _inherit = "res.users"
 
     delegation_ids = fields.Many2many(
-        'res.delegation', 'res_delegation_users_rel', 'user_id',
-        'delegation_id', 'Delegations')
-    context_delegation_id = fields.Many2one('res.delegation', 'Delegation')
+        "res.delegation",
+        "res_delegation_users_rel",
+        "user_id",
+        "delegation_id",
+        "Delegations",
+    )
+    context_delegation_id = fields.Many2one("res.delegation", "Delegation")

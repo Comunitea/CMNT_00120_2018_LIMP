@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,15 +19,17 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class StockPicking(models.Model):
 
     _inherit = "stock.picking"
 
-    no_quality = fields.Boolean('Scont')
-
+    no_quality = fields.Boolean("Scont")
 
     def action_invoice_create(self, journal_id, group, date):
         if group:
             if any([x.no_quality for x in self]):
                 raise UserError("Scont pickings can't be grouped")
-        return super(StockPicking, self).action_invoice_create(journal_id, group, date)
+        return super(StockPicking, self).action_invoice_create(
+            journal_id, group, date
+        )

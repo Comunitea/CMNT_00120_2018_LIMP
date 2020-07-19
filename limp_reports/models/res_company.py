@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,6 +24,14 @@ class ResCompany(models.Model):
 
     _inherit = "res.company"
 
-    jasper_report_header = fields.Text('Jasper report header', help="Text to write in jasper reports header.", translate=True)
-    jasper_report_footer = fields.Text('Jasper report footer', help="Text to write in jasper reports footer.", translate=True)
-    signature_image = fields.Binary('Signature')
+    jasper_report_header = fields.Text(
+        "Jasper report header",
+        help="Text to write in jasper reports header.",
+        translate=True,
+    )
+    jasper_report_footer = fields.Text(
+        "Jasper report footer",
+        help="Text to write in jasper reports footer.",
+        translate=True,
+    )
+    signature_image = fields.Binary("Signature")

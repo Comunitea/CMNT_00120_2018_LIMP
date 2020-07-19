@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2015 Comunitea Servicios Tecnológicos. All Rights Reserved
@@ -25,4 +24,4 @@ class ResUsers(models.Model):
 
     _inherit = "res.users"
 
-    signature_image = fields.Binary('Signature')
+    signature_image = fields.Binary("Signature")

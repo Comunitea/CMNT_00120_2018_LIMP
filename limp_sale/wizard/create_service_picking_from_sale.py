@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2016 Comunitea Servicios Tecnológicos S.L.
@@ -20,15 +19,24 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class create_service_picking_from_sale(models.TransientModel):
 
     _name = "create.service.picking.from.sale"
 
     picking_type = fields.Selection(
-        [('wastes', 'Wastes'), ('sporadic', 'Sporadic'),
-         ('maintenance', 'Maintenance')], 'Service picking type', required=True)
+        [
+            ("wastes", "Wastes"),
+            ("sporadic", "Sporadic"),
+            ("maintenance", "Maintenance"),
+        ],
+        "Service picking type",
+        required=True,
+    )
 
     def action_create_picking(self):
-        sale = self.env['sale.order'].browse(self._context.get('active_id', []))
+        sale = self.env["sale.order"].browse(
+            self._context.get("active_id", [])
+        )
         res = sale.with_context(picking_type=self.picking_type).create_pick()
         return res

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,23 +19,26 @@
 from odoo import models, fields
 from odoo.addons import decimal_precision as dp
 
+
 class AccountAnalyticInvoiceConcept(models.Model):
 
     _inherit = "account.analytic.invoice.concept"
 
-    name = fields.Char('Concept', size=255, required=True)
+    name = fields.Char("Concept", size=255, required=True)
 
 
 class AnalyticAccountInvoiceConceptRel(models.Model):
 
     _inherit = "account.analytic.invoice.concept.rel"
 
-    total_amount = fields.Float(compute='_compute_total_amount')
+    total_amount = fields.Float(compute="_compute_total_amount")
 
     def _compute_total_amount(self):
         for line in self:
-            if line.freq == 'q':
+            if line.freq == "q":
                 line.total_amount += line.amount * 4
             else:
                 except_months = line._get_except_months()
-                line.total_amount += line.amount * (12 - len(except_months[line.id]))
+                line.total_amount += line.amount * (
+                    12 - len(except_months[line.id])
+                )

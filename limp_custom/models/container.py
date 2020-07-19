@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,9 +19,10 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class Container(models.Model):
 
     _inherit = "container"
 
-    delegation_id = fields.Many2one('res.delegation', 'Delegation')
-    delegation_owner_id = fields.Many2one('res.delegation', 'Owner')
+    delegation_id = fields.Many2one("res.delegation", "Delegation")
+    delegation_owner_id = fields.Many2one("res.delegation", "Owner")

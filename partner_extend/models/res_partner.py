@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -29,62 +28,70 @@ class ResPartner(models.Model):
     @api.model
     def _commercial_fields(self):
         res = super(ResPartner, self)._commercial_fields()
-        res.remove('vat')
+        res.remove("vat")
         return res
 
     @api.multi
     def open_contract_employees(self):
         self.ensure_one()
-        form_view_id = self.env.ref('limp_contract.limp_contract_form')
-        tree_view_id = self.env.ref('limp_contract.limp_contract_tree')
+        form_view_id = self.env.ref("limp_contract.limp_contract_form")
+        tree_view_id = self.env.ref("limp_contract.limp_contract_tree")
 
         return {
-            'name': 'Contracts',
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'res_model': 'limp.contract',
-            'domain': "[('partner_id', '=', [%s])]" %
-                      self.id,
-            'context': "{'default_worker': True}",
-            'view_id': tree_view_id.id,
-            'views': [(tree_view_id.id, 'tree'), (form_view_id.id, 'form')],
-            'type': 'ir.actions.act_window',
-            'nodestroy': True}
+            "name": "Contracts",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "limp.contract",
+            "domain": "[('partner_id', '=', [%s])]" % self.id,
+            "context": "{'default_worker': True}",
+            "view_id": tree_view_id.id,
+            "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+        }
 
     @api.multi
     def open_contract_waste(self):
         self.ensure_one()
-        form_view_id = self.env.ref('limp_service_picking.stock_service_picking_form')
-        tree_view_id = self.env.ref('limp_service_picking.stock_service_picking_tree')
+        form_view_id = self.env.ref(
+            "limp_service_picking.stock_service_picking_form"
+        )
+        tree_view_id = self.env.ref(
+            "limp_service_picking.stock_service_picking_tree"
+        )
 
         return {
-            'name': 'Waste',
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'res_model': 'stock.service.picking',
-            'domain': "[('partner_id', '=', [%s])]" %
-                      self.id,
-            'context': "{'default_worker': True}",
-            'view_id': tree_view_id.id,
-            'views': [(tree_view_id.id, 'tree'), (form_view_id.id, 'form')],
-            'type': 'ir.actions.act_window',
-            'nodestroy': True}
+            "name": "Waste",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "stock.service.picking",
+            "domain": "[('partner_id', '=', [%s])]" % self.id,
+            "context": "{'default_worker': True}",
+            "view_id": tree_view_id.id,
+            "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+        }
 
     @api.multi
     def open_contract_sporadic(self):
         self.ensure_one()
-        form_view_id = self.env.ref('limp_service_picking.stock_sporadic_service_picking_form')
-        tree_view_id = self.env.ref('limp_service_picking.stock_sporadic_service_picking_tree')
+        form_view_id = self.env.ref(
+            "limp_service_picking.stock_sporadic_service_picking_form"
+        )
+        tree_view_id = self.env.ref(
+            "limp_service_picking.stock_sporadic_service_picking_tree"
+        )
 
         return {
-            'name': 'Sporadic',
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'res_model': 'stock.service.picking',
-            'domain': "[('partner_id', '=', [%s])]" %
-                      self.id,
-            'context': "{'default_worker': True}",
-            'view_id': tree_view_id.id,
-            'views': [(tree_view_id.id, 'tree'), (form_view_id.id, 'form')],
-            'type': 'ir.actions.act_window',
-            'nodestroy': True}
+            "name": "Sporadic",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "stock.service.picking",
+            "domain": "[('partner_id', '=', [%s])]" % self.id,
+            "context": "{'default_worker': True}",
+            "view_id": tree_view_id.id,
+            "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+        }

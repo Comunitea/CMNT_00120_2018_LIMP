@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -26,7 +25,7 @@ class HrEmployee(models.Model):
 
     _inherit = "hr.employee"
 
-    glasof_code = fields.Char('Code in Glasof', size=7)
+    glasof_code = fields.Char("Code in Glasof", size=7)
     responsible = fields.Boolean()
 
     @api.multi
@@ -42,6 +41,9 @@ class HrEmployee(models.Model):
         return res
 
     _sql_constraints = [
-        ('glasof_code_uniq', 'unique (glasof_code)',
-         _('The Glasof code must be unique !')),
+        (
+            "glasof_code_uniq",
+            "unique (glasof_code)",
+            _("The Glasof code must be unique !"),
+        ),
     ]

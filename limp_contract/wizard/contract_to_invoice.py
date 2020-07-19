@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -22,31 +21,42 @@ from odoo import models, fields, api
 import time
 import calendar
 
+
 class ContractToInvoice(models.TransientModel):
 
     _name = "contract.to_invoice"
 
     @api.model
     def _default_invoice_date_to(self):
-        time.strftime("%Y-%m-") + \
-            str(calendar.monthrange(
-                int(time.strftime('%Y')), int(time.strftime('%m')))[1])
+        time.strftime("%Y-%m-") + str(
+            calendar.monthrange(
+                int(time.strftime("%Y")), int(time.strftime("%m"))
+            )[1]
+        )
 
-    journal_id = fields.Many2one("account.journal", 'Destination Journal',
-                                 required=True, domain=[('type', '=', 'sale')])
-    invoice_date = fields.Date('Invoiced date', required=True,
-                               default=fields.Date.today)
-    invoice_date_to = fields.Date('Invoice to', required=True,
-                                  default=_default_invoice_date_to)
+    journal_id = fields.Many2one(
+        "account.journal",
+        "Destination Journal",
+        required=True,
+        domain=[("type", "=", "sale")],
+    )
+    invoice_date = fields.Date(
+        "Invoiced date", required=True, default=fields.Date.today
+    )
+    invoice_date_to = fields.Date(
+        "Invoice to", required=True, default=_default_invoice_date_to
+    )
 
     def action_invoice(self):
         res = {}
-        if self._context.get('active_model', False) == 'limp.contract' and self._context.get('active_ids', []):
+        if self._context.get(
+            "active_model", False
+        ) == "limp.contract" and self._context.get("active_ids", []):
             ctx = dict(self._context)
-            ctx['invoice_date'] = self.invoice_date
-            ctx['journal_id'] = self.journal_id
-            ctx['end_date'] = self.invoice_date_to
-            conctract = self.env['limp.contract'].browse(ctx['active_ids'])
+            ctx["invoice_date"] = self.invoice_date
+            ctx["journal_id"] = self.journal_id
+            ctx["end_date"] = self.invoice_date_to
+            conctract = self.env["limp.contract"].browse(ctx["active_ids"])
             res = conctract.with_context(ctx).invoice_run()
             if isinstance(res, dict):
                 del res["nodestroy"]

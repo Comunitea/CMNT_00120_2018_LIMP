@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -22,28 +21,32 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
 
+
 class ServicePickingOtherConceptsRel(models.Model):
-    _name = 'service.picking.other.concepts.rel'
+    _name = "service.picking.other.concepts.rel"
 
+    product_id = fields.Many2one("product.product", "Product", required=True)
+    name = fields.Char("Name", size=256, required=True)
+    product_qty = fields.Float(
+        "Qty.", digits=(12, 3), required=True, default=1.0
+    )
+    service_picking_id = fields.Many2one(
+        "stock.service.picking", "Service picking"
+    )
+    billable = fields.Boolean("Billable", default=True)
 
-    product_id = fields.Many2one('product.product', 'Product', required=True)
-    name = fields.Char('Name', size=256, required=True)
-    product_qty = fields.Float('Qty.', digits=(12,3), required=True, default=1.0)
-    service_picking_id = fields.Many2one('stock.service.picking', 'Service picking')
-    billable = fields.Boolean('Billable', default=True)
-
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def onchange_product_id_warning(self):
         if not self.product_id:
             return
         self.name = self.product_id.name
 
-        if self.product_id.picking_warn != 'no-message':
+        if self.product_id.picking_warn != "no-message":
             warning = {}
             title = _("Warning for %s") % self.product_id.name
             message = self.product_id.picking_warn_msg
-            warning['title'] = title
-            warning['message'] = message
-            if self.product_id.picking_warn == 'block':
+            warning["title"] = title
+            warning["message"] = message
+            if self.product_id.picking_warn == "block":
                 self.product_id = False
-            return {'warning': warning}
+            return {"warning": warning}

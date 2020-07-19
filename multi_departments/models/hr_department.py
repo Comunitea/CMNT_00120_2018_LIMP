@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,6 +24,10 @@ class HrDepartment(models.Model):
     _inherit = "hr.department"
 
     user_ids = fields.Many2many(
-        'res.users', 'hr_department_users_rel',
-        'department_id', 'user_id', 'Related users')
-    code = fields.Char('Code', size=8)
+        "res.users",
+        "hr_department_users_rel",
+        "department_id",
+        "user_id",
+        "Related users",
+    )
+    code = fields.Char("Code", size=8)

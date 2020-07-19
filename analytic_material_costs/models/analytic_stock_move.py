@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -36,37 +35,59 @@ class AccountAnalyticStockMove(models.Model):
     @api.model
     def _get_default_employee_id(self):
         employee_id = False
-        if self._context.get('employee_id', False):
-            employee_id = self._context['employee_id']
+        if self._context.get("employee_id", False):
+            employee_id = self._context["employee_id"]
         elif self.env.user.employee_ids:
             employee_id = self.env.user.employee_ids[0].id
         return employee_id
 
     @api.model
     def _get_default_location_id(self):
-        employee = self.env['hr.employee'].\
-            browse(self._get_default_employee_id())
+        employee = self.env["hr.employee"].browse(
+            self._get_default_employee_id()
+        )
         return employee.location_id.id
 
-    employee_id = fields.Many2one('hr.employee', 'Manager', required=True,
-                                  states={'second': [('readonly', True)]},
-                                  default=_get_default_employee_id)
-    location_id = fields.Many2one('stock.location', 'Location', required=True,
-                                  states={'second': [('readonly', True)]},
-                                  default=_get_default_location_id,
-                                  domain=[('usage','=','internal')])
-    product_id = fields.Many2one('product.product', 'Product', required=True,
-                                 states={'second': [('readonly', True)]})
-    product_qty = fields.Float('Quantity', required=True,
-                               digits=dp.get_precision('Product UoM'),
-                               states={'second': [('readonly', True)]},
-                               default=1.0)
-    move_id = fields.Many2one('stock.move', 'Move', readonly=True)
-    analytic_account_id = fields.\
-        Many2one('account.analytic.account', 'Analytic',
-                 states={'second': [('readonly', True)]},)
-    state = fields.Selection([('first', 'First'), ('second', 'Second')],
-                             'State', readonly=True, default='first')
+    employee_id = fields.Many2one(
+        "hr.employee",
+        "Manager",
+        required=True,
+        states={"second": [("readonly", True)]},
+        default=_get_default_employee_id,
+    )
+    location_id = fields.Many2one(
+        "stock.location",
+        "Location",
+        required=True,
+        states={"second": [("readonly", True)]},
+        default=_get_default_location_id,
+        domain=[("usage", "=", "internal")],
+    )
+    product_id = fields.Many2one(
+        "product.product",
+        "Product",
+        required=True,
+        states={"second": [("readonly", True)]},
+    )
+    product_qty = fields.Float(
+        "Quantity",
+        required=True,
+        digits=dp.get_precision("Product UoM"),
+        states={"second": [("readonly", True)]},
+        default=1.0,
+    )
+    move_id = fields.Many2one("stock.move", "Move", readonly=True)
+    analytic_account_id = fields.Many2one(
+        "account.analytic.account",
+        "Analytic",
+        states={"second": [("readonly", True)]},
+    )
+    state = fields.Selection(
+        [("first", "First"), ("second", "Second")],
+        "State",
+        readonly=True,
+        default="first",
+    )
     date = fields.Date("Date", required=True, default=fields.Date.today)
 
     @api.model
@@ -75,50 +96,66 @@ class AccountAnalyticStockMove(models.Model):
         res = super(AccountAnalyticStockMove, self).create(vals)
         user = self.env.user
         if not res.location_id and not res.employee_id.location_id:
-            raise UserError(_('Employee must have an associated location !'))
-        if not user.company_id.partner_id.property_stock_customer or \
-                user.company_id.partner_id.\
-                property_stock_customer.usage != 'customer':
+            raise UserError(_("Employee must have an associated location !"))
+        if (
+            not user.company_id.partner_id.property_stock_customer
+            or user.company_id.partner_id.property_stock_customer.usage
+            != "customer"
+        ):
             raise UserError(
-                _('Company must have set an output customer location in its '
-                  'partner form !'))
-        move = self.env['stock.move'].create(
-            {'date': res.date,
-             'product_id': res.product_id.id,
-             'product_uom_qty': res.product_qty,
-             'product_uom': res.product_id.uom_id.id,
-             'origin': res.analytic_account_id.name,
-             'location_id': res.location_id.id,
-             'location_dest_id':
-             user.company_id.partner_id.property_stock_customer.id,
-             'name':
-             res.analytic_account_id.name + u": Out " + res.product_id.name,
-             'company_id': user.company_id.id,
-             'partner_id': user.company_id.partner_id.id})
+                _(
+                    "Company must have set an output customer location in its "
+                    "partner form !"
+                )
+            )
+        move = self.env["stock.move"].create(
+            {
+                "date": res.date,
+                "product_id": res.product_id.id,
+                "product_uom_qty": res.product_qty,
+                "product_uom": res.product_id.uom_id.id,
+                "origin": res.analytic_account_id.name,
+                "location_id": res.location_id.id,
+                "location_dest_id": user.company_id.partner_id.property_stock_customer.id,
+                "name": res.analytic_account_id.name
+                + u": Out "
+                + res.product_id.name,
+                "company_id": user.company_id.id,
+                "partner_id": user.company_id.partner_id.id,
+            }
+        )
 
         move.action_confirm()
 
-        res.write({'move_id': move.id})
+        res.write({"move_id": move.id})
 
         return res
 
     @api.multi
     def write(self, vals):
         for line in self:
-            if vals.get('location_id') and \
-                    vals['location_id'] != line.location_id.id:
-                line.move_id.location_id = vals['location_id']
-            if vals.get('product_id') and \
-                    vals['product_id'] != line.product_id.id:
-                line.move_id.product_id = vals['product_id']
-                product = self.env['product.product'].\
-                    browse(vals['product_id'])
+            if (
+                vals.get("location_id")
+                and vals["location_id"] != line.location_id.id
+            ):
+                line.move_id.location_id = vals["location_id"]
+            if (
+                vals.get("product_id")
+                and vals["product_id"] != line.product_id.id
+            ):
+                line.move_id.product_id = vals["product_id"]
+                product = self.env["product.product"].browse(
+                    vals["product_id"]
+                )
                 line.move_id.product_uom = product.uom_id.id
-                line.move_id.name = line.analytic_account_id.name + \
-                    u": Out " + product.name,
-            if vals.get('product_qty') and \
-                    vals['product_qty'] != line.product_qty:
-                line.move_id.product_uom_qty = vals['product_qty']
+                line.move_id.name = (
+                    line.analytic_account_id.name + u": Out " + product.name,
+                )
+            if (
+                vals.get("product_qty")
+                and vals["product_qty"] != line.product_qty
+            ):
+                line.move_id.product_uom_qty = vals["product_qty"]
         return super(AccountAnalyticStockMove, self).write(vals)
 
     @api.multi
@@ -128,40 +165,50 @@ class AccountAnalyticStockMove(models.Model):
         self.move_id.force_assign()
         self.move_id.action_done()
 
-        material_tag = \
-            self.env.ref('analytic_material_costs.material_cost_tag')
+        material_tag = self.env.ref(
+            "analytic_material_costs.material_cost_tag"
+        )
 
-        account_id = \
+        account_id = (
             self.product_id.product_tmpl_id.property_account_expense_id.id
+        )
         if not account_id:
-            account_id = \
+            account_id = (
                 self.product_id.categ_id.property_account_expense_categ_id.id
+            )
             if not account_id:
                 raise UserError(
-                    _('No product and product category expense property '
-                      'account defined on the related product.\nFill these'
-                      ' on product form.'))
+                    _(
+                        "No product and product category expense property "
+                        "account defined on the related product.\nFill these"
+                        " on product form."
+                    )
+                )
 
-        self.env['account.analytic.line'].create({
-            'amount': -(self.product_id.standard_price * self.product_qty),
-            'name': self.analytic_account_id.name + u": Out " +
-            self.product_id.name,
-            'company_id': user.company_id.id,
-            'product_id': self.product_id.id,
-            'tag_ids': [(4, material_tag.id)],
-            'account_id': self.analytic_account_id.id,
-            'general_account_id': account_id
-        })
-        self.state = 'second'
+        self.env["account.analytic.line"].create(
+            {
+                "amount": -(self.product_id.standard_price * self.product_qty),
+                "name": self.analytic_account_id.name
+                + u": Out "
+                + self.product_id.name,
+                "company_id": user.company_id.id,
+                "product_id": self.product_id.id,
+                "tag_ids": [(4, material_tag.id)],
+                "account_id": self.analytic_account_id.id,
+                "general_account_id": account_id,
+            }
+        )
+        self.state = "second"
 
     @api.multi
     def unlink(self):
         """Avoid delete an analytic entry"""
         for line in self:
-            if line.state == 'second':
+            if line.state == "second":
                 raise UserError(
-                    _('Cannot delete any record in confirmed state.'))
+                    _("Cannot delete any record in confirmed state.")
+                )
             elif line.move_id:
-                line.move_id.state = 'cancel'
+                line.move_id.state = "cancel"
                 line.move_id.unlink()
         return super(AccountAnalyticStockMove, self).unlink()

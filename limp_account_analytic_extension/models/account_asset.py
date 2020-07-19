@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -23,23 +22,26 @@ from odoo import models, fields
 
 class AccountAssetAsset(models.Model):
 
-    _inherit = 'account.asset.asset'
+    _inherit = "account.asset.asset"
 
     analytic_distribution_id = fields.Many2one(
-        'account.analytic.distribution', 'Analytic distribution')
+        "account.analytic.distribution", "Analytic distribution"
+    )
 
 
 class AccountAssetDepreciationLine(models.Model):
 
-    _inherit = 'account.asset.depreciation.line'
+    _inherit = "account.asset.depreciation.line"
 
     def create_move(self, post_move=True):
         res = super(AccountAssetDepreciationLine, self).create_move(post_move)
 
-        for move in self.env['account.move'].browse(res):
+        for move in self.env["account.move"].browse(res):
             for line in move.line_ids:
                 if line.asset_id and line.asset_id.analytic_distribution_id:
                     line.write(
-                        {'analytic_distribution_id':
-                         line.asset_id.analytic_distribution_id.id})
+                        {
+                            "analytic_distribution_id": line.asset_id.analytic_distribution_id.id
+                        }
+                    )
         return res

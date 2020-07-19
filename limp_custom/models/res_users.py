@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -19,9 +18,12 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class res_users(models.Model):
 
     _inherit = "res.users"
 
-    work_address_id = fields.Many2one('res.partner', string='Work Address')
-    context_responsible_id = fields.Many2one('hr.employee', 'Resposible', domain=[('responsible', '=', True)])
+    work_address_id = fields.Many2one("res.partner", string="Work Address")
+    context_responsible_id = fields.Many2one(
+        "hr.employee", "Resposible", domain=[("responsible", "=", True)]
+    )

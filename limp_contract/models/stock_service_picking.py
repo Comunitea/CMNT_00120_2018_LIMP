@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -24,23 +23,23 @@ class StockServicePicking(models.Model):
 
     _inherit = "stock.service.picking"
 
-    contract_id = fields.Many2one('limp.contract', 'Contract')
+    contract_id = fields.Many2one("limp.contract", "Contract")
 
     @api.model
     def create(self, vals):
-        if vals.get('contract_id', False):
-            contract = self.env['limp.contract'].browse(vals['contract_id'])
-            if not vals.get('delegation_id', False):
-                vals['delegation_id'] = contract.delegation_id.id
-            if not vals.get('department_id', False):
-                vals['department_id'] = contract.department_id.id
-            if not vals.get('company_id', False):
-                vals['company_id'] = contract.company_id.id
-            if not vals.get('parent_id', False):
-                vals['parent_id'] = contract.analytic_account_id.id
+        if vals.get("contract_id", False):
+            contract = self.env["limp.contract"].browse(vals["contract_id"])
+            if not vals.get("delegation_id", False):
+                vals["delegation_id"] = contract.delegation_id.id
+            if not vals.get("department_id", False):
+                vals["department_id"] = contract.department_id.id
+            if not vals.get("company_id", False):
+                vals["company_id"] = contract.company_id.id
+            if not vals.get("parent_id", False):
+                vals["parent_id"] = contract.analytic_account_id.id
         return super(StockServicePicking, self).create(vals)
 
-    @api.onchange('contract_id')
+    @api.onchange("contract_id")
     def onchange_contract_id(self):
         if self.contract_id:
             contract = self.contract_id

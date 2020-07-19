@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -26,58 +25,69 @@ class ProductTemplate(models.Model):
 
     _inherit = "product.template"
 
-    ler_code_id = fields.Many2one('waste.ler.code', 'LER')
-    overload_price = fields.Float('Overload price', digits=dp.get_precision('Sale Price'))
+    ler_code_id = fields.Many2one("waste.ler.code", "LER")
+    overload_price = fields.Float(
+        "Overload price", digits=dp.get_precision("Sale Price")
+    )
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
-    tax_product = fields.Boolean('Tax product')
-    biocide_type = fields.Char('Biocide type', size=150)
-    active_matter_percent = fields.Float('Active Mater (%)',
-                                           digits=(16, 3))
-    registration_no = fields.Char('Registration no.', size=150)
-    application_method = fields.Char('Application method', size=150)
-    dosis = fields.Float('Dosis (%)', digits=(16, 3))
-    security_term = fields.Char('Security term', size=150)
+    tax_product = fields.Boolean("Tax product")
+    biocide_type = fields.Char("Biocide type", size=150)
+    active_matter_percent = fields.Float("Active Mater (%)", digits=(16, 3))
+    registration_no = fields.Char("Registration no.", size=150)
+    application_method = fields.Char("Application method", size=150)
+    dosis = fields.Float("Dosis (%)", digits=(16, 3))
+    security_term = fields.Char("Security term", size=150)
 
     @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
         if args is None:
             args = []
         for arg in args:
-            if isinstance(arg, list) and 'in' in arg[1]:
+            if isinstance(arg, list) and "in" in arg[1]:
                 ids = []
                 change = False
                 for elem in arg[2]:
                     if isinstance(elem, list) and len(elem) == 3 and elem[1]:
                         change = True
                         ids.append(elem[1])
-                    elif isinstance(elem, list) and len(elem) == 3 \
-                            and not elem[1] and isinstance(elem[2], list):
+                    elif (
+                        isinstance(elem, list)
+                        and len(elem) == 3
+                        and not elem[1]
+                        and isinstance(elem[2], list)
+                    ):
                         change = True
                         ids.extend(elem[2])
                 if change:
                     arg[2] = ids
-        return super(ProductProduct, self).\
-            name_search(name=name, args=args, operator=operator, limit=limit)
+        return super(ProductProduct, self).name_search(
+            name=name, args=args, operator=operator, limit=limit
+        )
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
         for arg in args:
-            if isinstance(arg, list) and 'in' in arg[1]:
+            if isinstance(arg, list) and "in" in arg[1]:
                 ids = []
                 change = False
                 for elem in arg[2]:
                     if isinstance(elem, list) and len(elem) == 3 and elem[1]:
                         change = True
                         ids.append(elem[1])
-                    elif isinstance(elem, list) and len(elem) == 3 \
-                            and not elem[1] and isinstance(elem[2], list):
+                    elif (
+                        isinstance(elem, list)
+                        and len(elem) == 3
+                        and not elem[1]
+                        and isinstance(elem[2], list)
+                    ):
                         change = True
                         ids.extend(elem[2])
                 if change:
                     arg[2] = ids
-        return super(ProductProduct, self).search(args, offset, limit, order,
-                                                  count=count)
+        return super(ProductProduct, self).search(
+            args, offset, limit, order, count=count
+        )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -26,40 +25,56 @@ class AccountanalyticDefault(models.Model):
     _inherit = "account.analytic.default"
 
     inv_type = fields.Selection(
-        [('out_invoice', 'Customer Invoice'),
-         ('in_invoice', 'Supplier Invoice'), ('out_refund', 'Customer Refund'),
-         ('in_refund', 'Supplier Refund')],
-        'Type')
+        [
+            ("out_invoice", "Customer Invoice"),
+            ("in_invoice", "Supplier Invoice"),
+            ("out_refund", "Customer Refund"),
+            ("in_refund", "Supplier Refund"),
+        ],
+        "Type",
+    )
 
     @api.model
-    def account_get(self, product_id=None, partner_id=None,
-                    user_id=None, date=None, company_id=None):
+    def account_get(
+        self,
+        product_id=None,
+        partner_id=None,
+        user_id=None,
+        date=None,
+        company_id=None,
+    ):
         """
             Se sobreescribe la funcion para añadir el campo inv_type.
         """
         domain = []
-        if self._context.get('inv_type'):
-            domain += ['|', ('inv_type', '=', self._context['inv_type'])]
-        domain += [('inv_type', '=', False)]
+        if self._context.get("inv_type"):
+            domain += ["|", ("inv_type", "=", self._context["inv_type"])]
+        domain += [("inv_type", "=", False)]
         if product_id:
-            domain += ['|', ('product_id', '=', product_id)]
-        domain += [('product_id', '=', False)]
+            domain += ["|", ("product_id", "=", product_id)]
+        domain += [("product_id", "=", False)]
         if partner_id:
-            domain += ['|', ('partner_id', '=', partner_id)]
-        domain += [('partner_id', '=', False)]
+            domain += ["|", ("partner_id", "=", partner_id)]
+        domain += [("partner_id", "=", False)]
         if company_id:
-            domain += ['|', ('company_id', '=', company_id)]
-        domain += [('company_id', '=', False)]
+            domain += ["|", ("company_id", "=", company_id)]
+        domain += [("company_id", "=", False)]
         if user_id:
-            domain += ['|', ('user_id', '=', user_id)]
-        domain += [('user_id', '=', False)]
+            domain += ["|", ("user_id", "=", user_id)]
+        domain += [("user_id", "=", False)]
         if date:
-            domain += ['|', ('date_start', '<=', date),
-                            ('date_start', '=', False)]
-            domain += ['|', ('date_stop', '>=', date),
-                            ('date_stop', '=', False)]
+            domain += [
+                "|",
+                ("date_start", "<=", date),
+                ("date_start", "=", False),
+            ]
+            domain += [
+                "|",
+                ("date_stop", ">=", date),
+                ("date_stop", "=", False),
+            ]
         best_index = -1
-        res = self.env['account.analytic.default']
+        res = self.env["account.analytic.default"]
         for rec in self.search(domain):
             index = 0
             if rec.product_id:

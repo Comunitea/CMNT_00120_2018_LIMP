@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,9 +24,9 @@ class HrLaboralIncidence(models.Model):
 
     _name = "hr.laboral.incidence"
     _description = "Laboral Incidence"
-    _rec_name = 'motive'
+    _rec_name = "motive"
 
     initial_date = fields.Date(readonly=True)
     end_date = fields.Date(readonly=True)
-    motive = fields.Many2one('absence', 'Motive', readonly=True)
-    employee_id = fields.Many2one('hr.employee', readonly=True)
+    motive = fields.Many2one("absence", "Motive", readonly=True)
+    employee_id = fields.Many2one("hr.employee", readonly=True)

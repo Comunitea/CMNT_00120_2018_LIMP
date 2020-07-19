@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,31 +19,30 @@
 ##############################################################################
 
 {
-    'name': 'Analytic account extension',
-    'description': """Extends analytic accounting for doing analysis""",
-    'version': '1.0',
-    'author': 'Pexego',
-    'website': 'http://www.pexego.es',
-    'category': 'Account/Analytic',
-    'depends': [
-        'base',
-        'analytic',
-        'account',
-        'analytic_base_department',
-        'limp_multi_delegations',
-        'account_analytic_distribution',
-        'account_analytic_default',
-        'l10n_es_account_asset',
-        ],
-    'data': [
-        'views/account_analytic_plans.xml',
-        'views/account_analytic_default.xml',
-        'views/account_analytic.xml',
-        'views/account_asset.xml',
-        'views/account_invoice.xml',
-        'views/account_move_line.xml',
-        'security/analytic_extension_security.xml',
+    "name": "Analytic account extension",
+    "description": """Extends analytic accounting for doing analysis""",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Account/Analytic",
+    "depends": [
+        "base",
+        "analytic",
+        "account",
+        "analytic_base_department",
+        "limp_multi_delegations",
+        "account_analytic_distribution",
+        "account_analytic_default",
+        "l10n_es_account_asset",
     ],
-    'installable': True
-
+    "data": [
+        "views/account_analytic_plans.xml",
+        "views/account_analytic_default.xml",
+        "views/account_analytic.xml",
+        "views/account_asset.xml",
+        "views/account_invoice.xml",
+        "views/account_move_line.xml",
+        "security/analytic_extension_security.xml",
+    ],
+    "installable": True,
 }

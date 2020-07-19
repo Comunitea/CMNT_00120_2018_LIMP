@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -19,13 +18,16 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class LimpContractObjectives(models.Model):
 
     _name = "limp.contract.objectives"
     _description = "Contract objectives"
 
-    name = fields.Char('Name', size=256, required=True)
-    department_id = fields.Many2one('hr.department', 'Department', required=True)
+    name = fields.Char("Name", size=256, required=True)
+    department_id = fields.Many2one(
+        "hr.department", "Department", required=True
+    )
 
 
 class LimpContractLine(models.Model):
@@ -33,5 +35,9 @@ class LimpContractLine(models.Model):
     _inherit = "limp.contract.line"
 
     objective_ids = fields.Many2many(
-        'limp.contract.objectives', 'limp_contract_objectives_rel',
-        'contract_id', 'objective_id', 'Objectives')
+        "limp.contract.objectives",
+        "limp_contract_objectives_rel",
+        "contract_id",
+        "objective_id",
+        "Objectives",
+    )

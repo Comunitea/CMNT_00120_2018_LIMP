@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,7 +24,11 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     department_ids = fields.Many2many(
-        'hr.department', 'hr_department_users_rel', 'user_id',
-        'department_id', 'Departments')
+        "hr.department",
+        "hr_department_users_rel",
+        "user_id",
+        "department_id",
+        "Departments",
+    )
 
-    context_department_id = fields.Many2one('hr.department', 'Department')
+    context_department_id = fields.Many2one("hr.department", "Department")

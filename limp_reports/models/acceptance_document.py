@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -26,6 +25,8 @@ class AcceptanceDocument(models.Model):
     _name = "acceptance.document"
     _rec_name = "number"
 
-    number = fields.Char('Number', size=30, required=True)
-    building_site_id = fields.Many2one('building.site.services', 'Building site', required=True)
-    waste_id = fields.Many2one('waste.ler.code', 'LER', required=True)
+    number = fields.Char("Number", size=30, required=True)
+    building_site_id = fields.Many2one(
+        "building.site.services", "Building site", required=True
+    )
+    waste_id = fields.Many2one("waste.ler.code", "LER", required=True)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -26,7 +25,7 @@ from datetime import datetime, timedelta
 
 class SaleOrder(models.Model):
 
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
     _order = "date_order desc"
 
     @api.multi
@@ -46,71 +45,127 @@ class SaleOrder(models.Model):
             sale.amount_total_periodicity = untaxed + tax
 
     #'freq_table = fields.Text('Frequency table'),
-    periodicity_id = fields.Many2one('sale.order.periodicity', 'Periodicity', help="Multiply total amount by periodicity value")
-    delegation_id = fields.Many2one('res.delegation', 'Delegation', required=True, change_default=True, default=lambda r: r.env.user.context_delegation_id.id)
-    department_id = fields.Many2one('hr.department', 'Department', required=True, change_default=True, default=lambda r: r.env.user.context_department_id.id)
-    center_type_id = fields.Many2one("limp.center.type", "Center type", change_default=True)
-    contract_ids = fields.One2many('limp.contract', 'sale_id', string="Contracts", readonly=True, copy=False)
-    created_contract = fields.Boolean('Created contract', readonly=True, copy=False)
-    created_service_order = fields.Boolean('Created Service order', readonly=True, copy=False)
-    created_service_pick = fields.Boolean('Created Service pick', readonly=True, copy=False)
-    task_frequency_ids = fields.One2many('task.frequency', 'sale_id', 'Task Frequency')
-    validity_Date = fields.Date('End of validity')
-    very_important_text = fields.Text('Very important')
-    header_notes = fields.Text('Header notes')
+    periodicity_id = fields.Many2one(
+        "sale.order.periodicity",
+        "Periodicity",
+        help="Multiply total amount by periodicity value",
+    )
+    delegation_id = fields.Many2one(
+        "res.delegation",
+        "Delegation",
+        required=True,
+        change_default=True,
+        default=lambda r: r.env.user.context_delegation_id.id,
+    )
+    department_id = fields.Many2one(
+        "hr.department",
+        "Department",
+        required=True,
+        change_default=True,
+        default=lambda r: r.env.user.context_department_id.id,
+    )
+    center_type_id = fields.Many2one(
+        "limp.center.type", "Center type", change_default=True
+    )
+    contract_ids = fields.One2many(
+        "limp.contract",
+        "sale_id",
+        string="Contracts",
+        readonly=True,
+        copy=False,
+    )
+    created_contract = fields.Boolean(
+        "Created contract", readonly=True, copy=False
+    )
+    created_service_order = fields.Boolean(
+        "Created Service order", readonly=True, copy=False
+    )
+    created_service_pick = fields.Boolean(
+        "Created Service pick", readonly=True, copy=False
+    )
+    task_frequency_ids = fields.One2many(
+        "task.frequency", "sale_id", "Task Frequency"
+    )
+    validity_Date = fields.Date("End of validity")
+    very_important_text = fields.Text("Very important")
+    header_notes = fields.Text("Header notes")
     show_total = fields.Boolean("Show total in report", default=True)
-    name = fields.Char(default='/')
-    amount_total_periodicity = fields.Float("Amount Total w/ Periodicity", compute="_get_amount_w_periodicity")
-    amount_untaxed_periodicity = fields.Float("Amount Untaxed w/ Periodicity", compute="_get_amount_w_periodicity")
-    amount_tax_periodicity = fields.Float("Amount Tax w/ Periodicity", compute="_get_amount_w_periodicity")
+    name = fields.Char(default="/")
+    amount_total_periodicity = fields.Float(
+        "Amount Total w/ Periodicity", compute="_get_amount_w_periodicity"
+    )
+    amount_untaxed_periodicity = fields.Float(
+        "Amount Untaxed w/ Periodicity", compute="_get_amount_w_periodicity"
+    )
+    amount_tax_periodicity = fields.Float(
+        "Amount Tax w/ Periodicity", compute="_get_amount_w_periodicity"
+    )
 
-    waste_pickings=fields.\
-        Integer(string='# of waste pickings' ,
-                compute="_compute_service_pickings_lines_count", readonly=True)
-    service_pickings=fields.\
-        Integer(string='# of serv. pickings' ,
-                compute="_compute_service_pickings_lines_count", readonly=True)
-    contracts=fields.Integer(string='# of serv. contract', compute='_compute_service_contracts_lines_count', readonly=True)
+    waste_pickings = fields.Integer(
+        string="# of waste pickings",
+        compute="_compute_service_pickings_lines_count",
+        readonly=True,
+    )
+    service_pickings = fields.Integer(
+        string="# of serv. pickings",
+        compute="_compute_service_pickings_lines_count",
+        readonly=True,
+    )
+    contracts = fields.Integer(
+        string="# of serv. contract",
+        compute="_compute_service_contracts_lines_count",
+        readonly=True,
+    )
 
-    user_id = fields.Many2one('res.users', 'User', required=True)
-
-
+    user_id = fields.Many2one("res.users", "User", required=True)
 
     @api.multi
     def _compute_service_pickings_lines_count(self):
         for order in self:
-            order.waste_pickings = len(self.env['stock.service.picking'].
-                                       search([('sale_id', '=', order.id),
-                                               ('picking_type', '=',
-                                                'wastes')]))
-            order.service_pickings = len(self.env['stock.service.picking'].
-                                         search([('sale_id', '=', order.id),
-                                                 ('picking_type', '!=',
-                                                  'wastes')]))
+            order.waste_pickings = len(
+                self.env["stock.service.picking"].search(
+                    [
+                        ("sale_id", "=", order.id),
+                        ("picking_type", "=", "wastes"),
+                    ]
+                )
+            )
+            order.service_pickings = len(
+                self.env["stock.service.picking"].search(
+                    [
+                        ("sale_id", "=", order.id),
+                        ("picking_type", "!=", "wastes"),
+                    ]
+                )
+            )
 
     @api.multi
     def action_view_service_picking(self):
         self.ensure_one()
-        if self._context['picking_type'] == 'wastes':
-            form = self.env.\
-                ref('limp_service_picking.stock_service_picking_form')
-            tree = self.env.\
-                ref("limp_service_picking.stock_service_picking_tree")
+        if self._context["picking_type"] == "wastes":
+            form = self.env.ref(
+                "limp_service_picking.stock_service_picking_form"
+            )
+            tree = self.env.ref(
+                "limp_service_picking.stock_service_picking_tree"
+            )
         else:
-            form = self.env.\
-                ref('limp_service_picking.stock_sporadic_service_picking_form')
-            tree = self.env.\
-                ref("limp_service_picking.stock_sporadic_service_picking_tree")
+            form = self.env.ref(
+                "limp_service_picking.stock_sporadic_service_picking_form"
+            )
+            tree = self.env.ref(
+                "limp_service_picking.stock_sporadic_service_picking_tree"
+            )
         return {
-            'name': 'Service Pickings',
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'res_model': 'stock.service.picking',
-            'type': 'ir.actions.act_window',
-            'nodestroy': True,
-            'target': 'current',
-            'domain': "[('sale_id', '=', " + str(self.id) + ")]",
-            'views': [[tree.id, 'tree'], [form.id, 'form']],
+            "name": "Service Pickings",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "stock.service.picking",
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+            "target": "current",
+            "domain": "[('sale_id', '=', " + str(self.id) + ")]",
+            "views": [[tree.id, "tree"], [form.id, "form"]],
         }
 
     @api.multi
@@ -122,42 +177,57 @@ class SaleOrder(models.Model):
     def action_view_contract(self):
         self.ensure_one()
         return {
-            'name': 'Contracts',
-            'view_type': 'form',
-            'view_mode': 'tree,form',
-            'res_model': 'limp.contract',
-            'type': 'ir.actions.act_window',
-            'nodestroy': True,
-            'target': 'current',
-            'domain': "[('sale_id', '=', " + str(self.id) + ")]"
+            "name": "Contracts",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "limp.contract",
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+            "target": "current",
+            "domain": "[('sale_id', '=', " + str(self.id) + ")]",
         }
 
     @api.model
     def create(self, vals):
-        if vals.get('name', False) == "/":
-            vals["name"] = self.env['ir.sequence'].next_by_code('sale.order')
-        if not vals.get('validity_date', False):
-            formatted_date = datetime.strptime(vals['date_order'], "%Y-%m-%d %H:%M:%S")
-            vals['validity_date'] = datetime.strftime(formatted_date + timedelta(days=30),"%Y-%m-%d")
+        if vals.get("name", False) == "/":
+            vals["name"] = self.env["ir.sequence"].next_by_code("sale.order")
+        if not vals.get("validity_date", False):
+            formatted_date = datetime.strptime(
+                vals["date_order"], "%Y-%m-%d %H:%M:%S"
+            )
+            vals["validity_date"] = datetime.strftime(
+                formatted_date + timedelta(days=30), "%Y-%m-%d"
+            )
         return super(SaleOrder, self).create(vals)
 
     def get_all_tasks(self):
         """Load all task related with this sale order"""
         for order in self:
             if not order.department_id:
-                raise UserError(_('Not department defined for this sale order'))
-            task_ids = self.env['limp.contract.task'].search(
-                ['|', ('department_id', '=', order.department_id.id),
-                 ('department_id', '=', False), '|',
-                 ('center_type_id', '=', order.center_type_id.id),
-                 ('center_type_id', '=', False)])
+                raise UserError(
+                    _("Not department defined for this sale order")
+                )
+            task_ids = self.env["limp.contract.task"].search(
+                [
+                    "|",
+                    ("department_id", "=", order.department_id.id),
+                    ("department_id", "=", False),
+                    "|",
+                    ("center_type_id", "=", order.center_type_id.id),
+                    ("center_type_id", "=", False),
+                ]
+            )
             for task in task_ids:
-                self.env['task.frequency'].create(
-                    {'task_id': task.id, 'sale_id': order.id,
-                     'sequence': task.sequence})
+                self.env["task.frequency"].create(
+                    {
+                        "task_id": task.id,
+                        "sale_id": order.id,
+                        "sequence": task.sequence,
+                    }
+                )
         return True
 
-    '''def action_ship_create(self, cr, uid, ids, *args):
+    """def action_ship_create(self, cr, uid, ids, *args):
         res = super(SaleOrder, self).action_ship_create(cr, uid, ids, args)
 
         for order in self.browse(cr, uid, ids):
@@ -170,41 +240,47 @@ class SaleOrder(models.Model):
                     self.pool.get('stock.move').unlink(cr, uid, move_ids)
                     self.pool.get('stock.picking').unlink(cr, uid, picking_ids)
 
-        return res'''
+        return res"""
 
     def create_contract(self):
 
-        contract = self.env['limp.contract'].create({
-            'company_id': self.company_id.id,
-            'delegation_id': self.delegation_id.id,
-            'department_id': self.department_id.id,
-            'partner_id': self.partner_id.id,
-            'amount': self.amount_total,
-            'address_id': self.partner_shipping_id.id,
-            # 'bank_account_id': self.partner_bank and self.partner_bank.id or False,
-            'payment_term_id': self.payment_term_id and self.payment_term_id.id or False,
-            'payment_type_id': self.payment_mode_id and self.payment_mode_id.id or False,
-            'address_invoice_id': self.partner_invoice_id.id,
-            'sale_id': self.id
-        })
+        contract = self.env["limp.contract"].create(
+            {
+                "company_id": self.company_id.id,
+                "delegation_id": self.delegation_id.id,
+                "department_id": self.department_id.id,
+                "partner_id": self.partner_id.id,
+                "amount": self.amount_total,
+                "address_id": self.partner_shipping_id.id,
+                # 'bank_account_id': self.partner_bank and self.partner_bank.id or False,
+                "payment_term_id": self.payment_term_id
+                and self.payment_term_id.id
+                or False,
+                "payment_type_id": self.payment_mode_id
+                and self.payment_mode_id.id
+                or False,
+                "address_invoice_id": self.partner_invoice_id.id,
+                "sale_id": self.id,
+            }
+        )
         self.add_description()
-        self.write({'created_contract': True})
+        self.write({"created_contract": True})
 
-        res = self.env.ref('limp_contract.limp_contract_form')
+        res = self.env.ref("limp_contract.limp_contract_form")
 
         return {
-            'name': 'Contract',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': [res.id],
-            'res_model': 'limp.contract',
-            'type': 'ir.actions.act_window',
-            'nodestroy': True,
-            'target': 'current',
-            'res_id': contract.id,
+            "name": "Contract",
+            "view_type": "form",
+            "view_mode": "form",
+            "view_id": [res.id],
+            "res_model": "limp.contract",
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+            "target": "current",
+            "res_id": contract.id,
         }
 
-    #This method adds a description in the new contract based on the description provided by the order_line
+    # This method adds a description in the new contract based on the description provided by the order_line
     def add_description(self):
         line = self.order_line and self.order_line[0]
         if not line:
@@ -216,40 +292,50 @@ class SaleOrder(models.Model):
 
     def create_pick(self):
         vals = {
-            'partner_id': self.partner_id.id,
-            'address_id': self.partner_id.id,
-            'contact_id': self.partner_id.id,
-            'address_invoice_id': self.partner_invoice_id.id,
-            'company_id': self.company_id.id,
-            'sale_id': self.id,
-            'picking_type': self._context['picking_type'],
-            'payment_term': self.payment_term_id and self.payment_term_id.id or False,
-            'payment_mode': self.payment_mode_id and self.payment_mode_id.id or False,
+            "partner_id": self.partner_id.id,
+            "address_id": self.partner_id.id,
+            "contact_id": self.partner_id.id,
+            "address_invoice_id": self.partner_invoice_id.id,
+            "company_id": self.company_id.id,
+            "sale_id": self.id,
+            "picking_type": self._context["picking_type"],
+            "payment_term": self.payment_term_id
+            and self.payment_term_id.id
+            or False,
+            "payment_mode": self.payment_mode_id
+            and self.payment_mode_id.id
+            or False,
             #'partner_bank_id': self.partner_bank and self.partner_bank.id or False,
-            'delegation_id': self.delegation_id.id,
-            'department_id': self.department_id.id,
-            'fiscal_position': self.fiscal_position_id and self.fiscal_position_id.id or False
+            "delegation_id": self.delegation_id.id,
+            "department_id": self.department_id.id,
+            "fiscal_position": self.fiscal_position_id
+            and self.fiscal_position_id.id
+            or False,
         }
-        if self._context['picking_type'] == "maintenance":
+        if self._context["picking_type"] == "maintenance":
             vals["maintenance"] = True
             vals["picking_type"] = "sporadic"
-        service_pick_id = self.env['stock.service.picking'].create(vals)
-        self.write({'created_service_pick': True})
+        service_pick_id = self.env["stock.service.picking"].create(vals)
+        self.write({"created_service_pick": True})
 
-        if self._context['picking_type'] == 'wastes':
-            res = self.env.ref('limp_service_picking.stock_service_picking_form')
+        if self._context["picking_type"] == "wastes":
+            res = self.env.ref(
+                "limp_service_picking.stock_service_picking_form"
+            )
         else:
-            res = self.env.ref('limp_service_picking.stock_sporadic_service_picking_form')
+            res = self.env.ref(
+                "limp_service_picking.stock_sporadic_service_picking_form"
+            )
 
         return {
-            'name': 'Service picking',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': [res.id],
-            'res_model': 'stock.service.picking',
-            'type': 'ir.actions.act_window',
-            'target': 'current',
-            'res_id': service_pick_id.id
+            "name": "Service picking",
+            "view_type": "form",
+            "view_mode": "form",
+            "view_id": [res.id],
+            "res_model": "stock.service.picking",
+            "type": "ir.actions.act_window",
+            "target": "current",
+            "res_id": service_pick_id.id,
         }
 
 
@@ -257,30 +343,42 @@ class SaleOrderLine(models.Model):
 
     _inherit = "sale.order.line"
 
-    price_unit=fields.Float(digits=(16,2))
+    price_unit = fields.Float(digits=(16, 2))
 
     @api.multi
     def _get_amount_tax(self):
         for line in self:
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty, product=line.product_id, partner=line.order_id.partner_shipping_id)
-            line.amount_tax = line.order_id.pricelist_id.currency_id.round(sum(t.get('amount', 0.0) for t in taxes.get('taxes', [])))
+            taxes = line.tax_id.compute_all(
+                price,
+                line.order_id.currency_id,
+                line.product_uom_qty,
+                product=line.product_id,
+                partner=line.order_id.partner_shipping_id,
+            )
+            line.amount_tax = line.order_id.pricelist_id.currency_id.round(
+                sum(t.get("amount", 0.0) for t in taxes.get("taxes", []))
+            )
 
     amount_tax = fields.Float("Amount tax", compute="_get_amount_tax")
 
-    @api.onchange('product_uom', 'product_uom_qty')
+    @api.onchange("product_uom", "product_uom_qty")
     def product_uom_change(self):
 
         old_price_unit = self.price_unit
         super(SaleOrderLine, self).product_uom_change()
         self.price_unit = old_price_unit
 
-    @api.onchange('product_id')
+    @api.onchange("product_id")
     def product_id_change(self):
         res = super(SaleOrderLine, self).product_id_change()
-        if self.product_id and self.product_id.type == 'service' and \
-                res.get('domain') and res['domain'].get('product_uom'):
-            res['domain']['product_uom'] = []
+        if (
+            self.product_id
+            and self.product_id.type == "service"
+            and res.get("domain")
+            and res["domain"].get("product_uom")
+        ):
+            res["domain"]["product_uom"] = []
         return res
 
         return res

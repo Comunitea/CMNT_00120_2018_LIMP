@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -23,9 +22,11 @@ from odoo import models, fields
 
 class HrEmployee(models.Model):
 
-    _inherit = 'hr.employee'
+    _inherit = "hr.employee"
 
     location_id = fields.Many2one(
-        'stock.location', 'Associated location',
+        "stock.location",
+        "Associated location",
         help="Associated output location, origin of material consumptions in"
-        "analytic accounts.")
+        "analytic accounts.",
+    )

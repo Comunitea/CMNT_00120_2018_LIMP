@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2016 Comunitea Servicios Tecnológicos
@@ -28,22 +27,30 @@ class EmployeeIncidenceSetEndDateWzd(models.TransientModel):
 
     date = fields.Date(required=True, default=fields.Date.today)
     only_incidences = fields.Boolean(
-        help="Sets end date in incidences only, if not check it sets the end date in all open remunerations.", default=True)
+        help="Sets end date in incidences only, if not check it sets the end date in all open remunerations.",
+        default=True,
+    )
 
     @api.multi
     def act_set_end_date(self):
-        employee_id = self._context.get('active_id', False)
-        domain = [('employee_id', '=', employee_id), ('date_to', '=', False)]
+        employee_id = self._context.get("active_id", False)
+        domain = [("employee_id", "=", employee_id), ("date_to", "=", False)]
 
         if self.only_incidences:
-            domain.append(('incidence_id_tp', '!=', self.env.ref(
-                'analytic_incidences.incidence_normal').id))
-        remunerations = self.env['remuneration'].search(domain)
+            domain.append(
+                (
+                    "incidence_id_tp",
+                    "!=",
+                    self.env.ref("analytic_incidences.incidence_normal").id,
+                )
+            )
+        remunerations = self.env["remuneration"].search(domain)
         if remunerations:
-            remunerations.write({'date_to': self.date})
-        open_incidences = self.env['hr.laboral.incidence'].search(
-            [('employee_id', '=', employee_id), ('end_date', '=', False)])
+            remunerations.write({"date_to": self.date})
+        open_incidences = self.env["hr.laboral.incidence"].search(
+            [("employee_id", "=", employee_id), ("end_date", "=", False)]
+        )
         if open_incidences:
-            open_incidences.write({'end_date': self.date})
+            open_incidences.write({"end_date": self.date})
 
-        return {'type': 'ir.actions.act_window_close'}
+        return {"type": "ir.actions.act_window_close"}

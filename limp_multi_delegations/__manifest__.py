@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -19,23 +18,19 @@
 ##############################################################################
 
 {
-    'name' : 'Multi Delegations',
-    'description': 'Add new dimension for multi-company rules, delegations.',
-    'version' : '1.0',
-    'author' : 'Pexego',
-    'website' : 'http://www.pexego.es',
-    'category' : 'Base/Multi-company',
-    'depends' : [
-        'base',
-        'hr',
-        ],
-    'data' : [
-        'views/res_delegation_view.xml',
-        'views/res_users_view.xml',
-        'views/hr_employee.xml',
-        'security/ir.model.access.csv',
-        'security/multi_delegations_security.xml'
-        ],
-    'installable': True
-
+    "name": "Multi Delegations",
+    "description": "Add new dimension for multi-company rules, delegations.",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Multi-company",
+    "depends": ["base", "hr",],
+    "data": [
+        "views/res_delegation_view.xml",
+        "views/res_users_view.xml",
+        "views/hr_employee.xml",
+        "security/ir.model.access.csv",
+        "security/multi_delegations_security.xml",
+    ],
+    "installable": True,
 }

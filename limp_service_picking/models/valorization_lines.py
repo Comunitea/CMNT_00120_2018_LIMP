@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,37 +19,59 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class ValorizationLines(models.Model):
     _name = "valorization.lines"
     _auto = False
-    _rec_name = 'ler_code_id'
+    _rec_name = "ler_code_id"
     _order = "date desc"
 
-    date = fields.Date('Date', readonly=True)
-    qty = fields.Float("Quantity (T)",readonly=True)
-    volume = fields.Float("Volume (m³)",readonly=True)
-    company_id =fields.Many2one('res.company','Company',readonly=True)
-    building_site_id =fields.Many2one('building.site.services','Building',readonly=True)
-    product_id =fields.Many2one('product.product','Product',readonly=True)
-    product_name =fields.Char('Product Name',readonly=True,size=256)
-    producer_promoter =fields.Char('Producer',readonly=True,size=256)
-    holder_builder = fields.Char('Holder', size=255, readonly=True)
-    vat_holder = fields.Char('Vat', size=32, readonly=True)
-    ler_code_id =fields.Many2one('waste.ler.code',string="LER", readonly=True)
-    ler_name = fields.Char('LER name', related='ler_code_id.name', readonly=True)
-    picking_ler = fields.Char('Picking LER', size=32, readonly=True)
-    building_nif = fields.Char('Producer N.I.F/C.I.F', related='building_site_id.vat_producer', readonly=True)
-    building_city = fields.Char('Council', related='building_site_id.city_producer', readonly=True)
-    building_province = fields.Char('Province', related='building_site_id.province_producer', readonly=True)
-    partner_id = fields.Many2one('res.partner', "Customer", readonly=True)
-    picking_id = fields.Many2one('stock.service.picking', 'Picking', readonly=True)
-    memory_include = fields.Boolean('Memory include', readonly=True)
-    manager_partner_id = fields.Many2one('res.partner', "Manager", readonly=True)
-    no_computed = fields.Boolean('No computed', readonly=True)
-    stock_picking_id = fields.Many2one('stock.picking', 'Stock picking', readonly=True)
+    date = fields.Date("Date", readonly=True)
+    qty = fields.Float("Quantity (T)", readonly=True)
+    volume = fields.Float("Volume (m³)", readonly=True)
+    company_id = fields.Many2one("res.company", "Company", readonly=True)
+    building_site_id = fields.Many2one(
+        "building.site.services", "Building", readonly=True
+    )
+    product_id = fields.Many2one("product.product", "Product", readonly=True)
+    product_name = fields.Char("Product Name", readonly=True, size=256)
+    producer_promoter = fields.Char("Producer", readonly=True, size=256)
+    holder_builder = fields.Char("Holder", size=255, readonly=True)
+    vat_holder = fields.Char("Vat", size=32, readonly=True)
+    ler_code_id = fields.Many2one(
+        "waste.ler.code", string="LER", readonly=True
+    )
+    ler_name = fields.Char(
+        "LER name", related="ler_code_id.name", readonly=True
+    )
+    picking_ler = fields.Char("Picking LER", size=32, readonly=True)
+    building_nif = fields.Char(
+        "Producer N.I.F/C.I.F",
+        related="building_site_id.vat_producer",
+        readonly=True,
+    )
+    building_city = fields.Char(
+        "Council", related="building_site_id.city_producer", readonly=True
+    )
+    building_province = fields.Char(
+        "Province", related="building_site_id.province_producer", readonly=True
+    )
+    partner_id = fields.Many2one("res.partner", "Customer", readonly=True)
+    picking_id = fields.Many2one(
+        "stock.service.picking", "Picking", readonly=True
+    )
+    memory_include = fields.Boolean("Memory include", readonly=True)
+    manager_partner_id = fields.Many2one(
+        "res.partner", "Manager", readonly=True
+    )
+    no_computed = fields.Boolean("No computed", readonly=True)
+    stock_picking_id = fields.Many2one(
+        "stock.picking", "Stock picking", readonly=True
+    )
 
     def init(self):
-        self.env.cr.execute("""
+        self.env.cr.execute(
+            """
             create or replace view valorization_lines as (
             SELECT S.retired_date AS date,V.id AS id,coalesce(V.net_weight,0.0) AS qty,
             (coalesce(V.product_qty,0.0) + coalesce(V.overload_qty,0.0)) as volume, coalesce(SP.company_id, A.company_id) as company_id,S.building_site_id,V.product_id,V.name as product_name,B.producer_promoter,V.ler_code as picking_ler,
@@ -63,4 +84,5 @@ class ValorizationLines(models.Model):
                 INNER JOIN product_template AS P2 ON P.product_tmpl_id = P2.id
                 LEFT JOIN waste_ler_code as L on P2.ler_code_id = L.id
                 LEFT JOIN stock_picking AS SP on SP.stock_service_picking_id = S.id
-            )""")
+            )"""
+        )

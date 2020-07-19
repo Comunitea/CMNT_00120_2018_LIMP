@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -29,5 +28,5 @@ class Incidence(models.Model):
 
     name = fields.Char(required=True, translate=True)
     code = fields.Char()
-    selecttable = fields.Boolean('Selectable', default=True)
-    is_absence = fields.Boolean('Is absence?')
+    selecttable = fields.Boolean("Selectable", default=True)
+    is_absence = fields.Boolean("Is absence?")

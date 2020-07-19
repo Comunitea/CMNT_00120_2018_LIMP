@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,34 +24,43 @@ class UpdateLastInvoiceDate(models.TransientModel):
 
     _name = "update.last.invoice.date"
 
-    new_date = fields.Date('New date', required=True)
+    new_date = fields.Date("New date", required=True)
 
     def update_date(self):
-        contracts = self.env['limp.contract'].search(
-            [('id', 'in', self._context.get('active_ids', [])),
-             ('active', '=', True),
-             ('state', 'not in', ('close', 'cancelled'))])
+        contracts = self.env["limp.contract"].search(
+            [
+                ("id", "in", self._context.get("active_ids", [])),
+                ("active", "=", True),
+                ("state", "not in", ("close", "cancelled")),
+            ]
+        )
         for contract in contracts:
             for concept in contract.analytic_account_id.concept_ids:
-                concept.write({'last_invoice_date': self.new_date})
+                concept.write({"last_invoice_date": self.new_date})
 
             for home_line in contract.home_help_line_ids:
-                if home_line.state != 'cancelled' and (home_line.state != 'close' or home_line.date > self.new_date):
+                if home_line.state != "cancelled" and (
+                    home_line.state != "close"
+                    or home_line.date > self.new_date
+                ):
                     for concept in home_line.analytic_acc_id.concept_ids:
                         if home_line.date_start >= self.new_date:
-                            concept.write({'last_invoice_date': False})
+                            concept.write({"last_invoice_date": False})
                         else:
-                            concept.write({'last_invoice_date': self.new_date})
-                    if home_line.state == 'close':
+                            concept.write({"last_invoice_date": self.new_date})
+                    if home_line.state == "close":
                         home_line.reopen_line()
             for clean_line in contract.cleaning_line_ids:
-                if clean_line.state != 'cancelled' and (clean_line.state != 'close' or clean_line.date > self.new_date):
+                if clean_line.state != "cancelled" and (
+                    clean_line.state != "close"
+                    or clean_line.date > self.new_date
+                ):
                     for concept in clean_line.analytic_acc_id.concept_ids:
                         if clean_line.date_start >= self.new_date:
-                            concept.write({'last_invoice_date': False})
+                            concept.write({"last_invoice_date": False})
                         else:
-                            concept.write({'last_invoice_date': self.new_date})
-                    if clean_line.state == 'close':
+                            concept.write({"last_invoice_date": self.new_date})
+                    if clean_line.state == "close":
                         clean_line.reopen_line()
 
-        return {'type': 'ir.actions.act_window_close'}
+        return {"type": "ir.actions.act_window_close"}

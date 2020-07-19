@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from . import ir_sequence
@@ -16,6 +15,7 @@ from . import limp_incidence
 from . import limp_contract_line_home_help
 from . import limp_contract_line_cleaning
 from . import limp_contract_signature
+
 #  import account_analytic_occupation_name
 #  # import account_analytic_occupation
 from . import analytic_account_invoice_concept_rel
@@ -27,4 +27,3 @@ from . import company
 from . import limp_maintenance_tasks
 from . import limp_contract_manual_ddd
 from . import months_interval
-

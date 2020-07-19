@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,4 +24,4 @@ class ResCompany(models.Model):
 
     _inherit = "res.company"
 
-    reserve_product_id = fields.Many2one('product.product', 'Product')
+    reserve_product_id = fields.Many2one("product.product", "Product")

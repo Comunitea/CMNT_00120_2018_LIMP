@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,33 +19,32 @@
 #
 ##############################################################################
 {
-    "name" : "Limpergal budgets",
+    "name": "Limpergal budgets",
     "description": "Add budget model for Limpergal.",
-    "version" : "1.0",
-    "author" : "Pexego",
-    "website" : "http://www.pexego.es",
-    "category" : "Budgets",
-    "depends" : [
-        'base',
-        'sale_stock',
-        'product',
-        'account',
-        'limp_multi_delegations',
-        'limp_service_picking',
-        'limp_contract',
-        'sale_margin'
-        ],
-    "data" : [
-        'wizard/create_service_picking_from_sale_view.xml',
-        'views/sale_order_periodicity_view.xml',
-        'views/sale_order_view.xml',
-        'security/ir.model.access.csv',
-        'limp_sale_report.xml',
-        'security/limp_sale_data.xml',
-        'views/limp_service_picking_view.xml',
-        'views/limp_contract_view.xml',
-        'report/sale_report.xml'
-        ],
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Budgets",
+    "depends": [
+        "base",
+        "sale_stock",
+        "product",
+        "account",
+        "limp_multi_delegations",
+        "limp_service_picking",
+        "limp_contract",
+        "sale_margin",
+    ],
+    "data": [
+        "wizard/create_service_picking_from_sale_view.xml",
+        "views/sale_order_periodicity_view.xml",
+        "views/sale_order_view.xml",
+        "security/ir.model.access.csv",
+        "limp_sale_report.xml",
+        "security/limp_sale_data.xml",
+        "views/limp_service_picking_view.xml",
+        "views/limp_contract_view.xml",
+        "report/sale_report.xml",
+    ],
     "installable": True,
-
 }

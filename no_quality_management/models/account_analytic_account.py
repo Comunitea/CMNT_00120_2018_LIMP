@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,6 +19,7 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class AccountAnalyticAccount(models.Model):
 
     _inherit = "account.analytic.account"
@@ -30,28 +30,36 @@ class AccountAnalyticAccount(models.Model):
         line = False
         vals = {}
 
-        home_help_lines = self.env['limp.contract.line.home.help'].search([('analytic_acc_id', '=', self.id)], limit=1)
+        home_help_lines = self.env["limp.contract.line.home.help"].search(
+            [("analytic_acc_id", "=", self.id)], limit=1
+        )
         if home_help_lines:
             line = home_help_lines
 
-        cleaning_lines = self.env['limp.contract.line.cleaning'].search([('analytic_acc_id', '=', self.id)], limit=1)
+        cleaning_lines = self.env["limp.contract.line.cleaning"].search(
+            [("analytic_acc_id", "=", self.id)], limit=1
+        )
         if cleaning_lines:
             line = cleaning_lines
 
         if line:
             vals = {
-                'no_quality': line.contract_id.no_quality,
+                "no_quality": line.contract_id.no_quality,
             }
         else:
-            contracts = self.env['limp.contract'].search([('analytic_account_id', '=', self.id)], limit=1)
+            contracts = self.env["limp.contract"].search(
+                [("analytic_account_id", "=", self.id)], limit=1
+            )
             if contracts:
                 vals = {
-                    'no_quality': contracts.no_quality,
+                    "no_quality": contracts.no_quality,
                 }
         invoice_id.write(vals)
         return
 
     def _invoice_line_hook(self, concept, invoice_line, end_date):
         if invoice_line.invoice_id and invoice_line.invoice_id.no_quality:
-            invoice_line.write({'invoice_line_tax_ids': [(6,0, [])]})
-        return super(AccountAnalyticAccount, self)._invoice_line_hook(concept, invoice_line, end_date)
+            invoice_line.write({"invoice_line_tax_ids": [(6, 0, [])]})
+        return super(AccountAnalyticAccount, self)._invoice_line_hook(
+            concept, invoice_line, end_date
+        )

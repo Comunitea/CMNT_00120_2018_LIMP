@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,13 +19,20 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class ForceBuildingSiteServicePicking(models.TransientModel):
 
     _name = "force.building.site.service.picking"
 
-    service_picking_id = fields.Many2one('stock.service.picking', 'Picking', required=True)
+    service_picking_id = fields.Many2one(
+        "stock.service.picking", "Picking", required=True
+    )
 
     def copy_building_site(self):
-        pickings = self.env['stock.service.picking'].browse(self._context.get('active_ids', []))
-        pickings.write({'building_site_id': self.service_picking_id.building_site_id.id})
+        pickings = self.env["stock.service.picking"].browse(
+            self._context.get("active_ids", [])
+        )
+        pickings.write(
+            {"building_site_id": self.service_picking_id.building_site_id.id}
+        )
         return {}

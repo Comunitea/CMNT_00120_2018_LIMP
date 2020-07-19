@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -22,15 +21,17 @@ from odoo import models, fields
 
 class limp_contract_signature(models.TransientModel):
 
-    _name = 'limp.contract.signature'
+    _name = "limp.contract.signature"
     _description = "Contract signature"
 
-    contract_date = fields.Date('Signature date', required=True, readonly=False, defaults=fields.Date.today)
+    contract_date = fields.Date(
+        "Signature date",
+        required=True,
+        readonly=False,
+        defaults=fields.Date.today,
+    )
 
     def set_signature(self):
-        contract = self.env['limp.contract'].browse(self._context['active_id'])
-        contract.write({
-            'signature_date': self.contract_date,
-            'state': 'open'
-        })
-        return {'type': 'ir.actions.act_window_close'}
+        contract = self.env["limp.contract"].browse(self._context["active_id"])
+        contract.write({"signature_date": self.contract_date, "state": "open"})
+        return {"type": "ir.actions.act_window_close"}

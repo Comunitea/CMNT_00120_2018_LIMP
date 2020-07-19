@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -21,21 +20,36 @@
 from odoo import models, fields
 from odoo.addons import decimal_precision as dp
 
+
 class LimpContractUpamountHistory(models.Model):
 
     _name = "limp.contract.upamount.history"
     _description = "Contract upamount history"
     _order = "date desc"
 
-    name = fields.Char('Description', size=255, required=True)
-    upamount_percent = fields.Float('Upamount percent', digits=(12,3), required=True, readonly=True)
-    previous_amount = fields.Float('Previous amount', digits=dp.get_precision('Account'), required=True, readonly=True)
-    new_amount = fields.Float('New amount', digits=dp.get_precision('Account'), required=True, readonly=True)
-    date = fields.Date('Date', required=True, default=fields.Date.today)
-    contract_id = fields.Many2one('limp.contract', 'Contract', required=True)
+    name = fields.Char("Description", size=255, required=True)
+    upamount_percent = fields.Float(
+        "Upamount percent", digits=(12, 3), required=True, readonly=True
+    )
+    previous_amount = fields.Float(
+        "Previous amount",
+        digits=dp.get_precision("Account"),
+        required=True,
+        readonly=True,
+    )
+    new_amount = fields.Float(
+        "New amount",
+        digits=dp.get_precision("Account"),
+        required=True,
+        readonly=True,
+    )
+    date = fields.Date("Date", required=True, default=fields.Date.today)
+    contract_id = fields.Many2one("limp.contract", "Contract", required=True)
 
 
 class LimpContract(models.Model):
-    _inherit = 'limp.contract'
+    _inherit = "limp.contract"
 
-    upamount_history_ids = fields.One2many('limp.contract.upamount.history', 'contract_id', 'Upamounts history')
+    upamount_history_ids = fields.One2many(
+        "limp.contract.upamount.history", "contract_id", "Upamounts history"
+    )

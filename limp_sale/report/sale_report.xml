@@ -36,11 +36,11 @@
             </div>
         </div>
         <t t-raw="0" />
-        <t t-call="report.external_layout_footer" />
+        <t t-call="web.external_layout_footer" />
     </template>
 
     <template id="custom_sale_report" inherit_id="sale_stock.report_saleorder_document_inherit_sale_stock">
-        <xpath expr="//t[@t-call='report.external_layout']" position="attributes">
+        <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
             <attribute name="t-call">limp_sale.external_warehouse_layout</attribute>
         </xpath>
         <xpath expr="//t[@t-set='display_discount']" position="after">

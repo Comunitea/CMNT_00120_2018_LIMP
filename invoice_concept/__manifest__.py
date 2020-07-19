@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -19,27 +18,27 @@
 ##############################################################################
 
 {
-    'name' : 'Analytic account invoiced by concepts',
-    'description': """Add new object invoice concept to analytic account to invoice by concepts""",
-    'version' : '1.0',
-    'author' : 'Pexego',
-    'website' : 'http://www.pexego.es',
-    'category' : 'Base/Invoice/Contract',
-    'depends' : [
-        'base',
-        'analytic',
-        'account',
-        'product',
-        'limp_account_analytic_extension',
-        'account_analytic_parent'
-        ],
-    'data' : [
-        'security/ir.model.access.csv',
-        'security/invoice_concept_security.xml',
-        'views/analytic_invoice_concept_rel.xml',
-        'views/account_invoice.xml',
-        'views/analytic_invoice_concept.xml',
-        'views/product.xml'
+    "name": "Analytic account invoiced by concepts",
+    "description": """Add new object invoice concept to analytic account to invoice by concepts""",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Invoice/Contract",
+    "depends": [
+        "base",
+        "analytic",
+        "account",
+        "product",
+        "limp_account_analytic_extension",
+        "account_analytic_parent",
     ],
-    'installable': True,
+    "data": [
+        "security/ir.model.access.csv",
+        "security/invoice_concept_security.xml",
+        "views/analytic_invoice_concept_rel.xml",
+        "views/account_invoice.xml",
+        "views/analytic_invoice_concept.xml",
+        "views/product.xml",
+    ],
+    "installable": True,
 }

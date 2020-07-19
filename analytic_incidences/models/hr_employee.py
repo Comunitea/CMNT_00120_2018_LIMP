@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -28,13 +27,20 @@ class HrEmployee(models.Model):
     def _compute_active_remunerations(self):
         current_date = fields.Date.today()
         for employee in self:
-            remunerations = self.env['remuneration'].search(
-                [('employee_id', '=', employee.id), '|',
-                 ('date_to', '=', False), ('date_to', '>=', current_date)])
+            remunerations = self.env["remuneration"].search(
+                [
+                    ("employee_id", "=", employee.id),
+                    "|",
+                    ("date_to", "=", False),
+                    ("date_to", ">=", current_date),
+                ]
+            )
             employee.active_remunerations = remunerations and True or False
 
     laboral_incidence_ids = fields.One2many(
-        'hr.laboral.incidence', 'employee_id', 'Incidences', readonly=True)
-    work_council_id = fields.Many2one('city.council', 'Work council')
+        "hr.laboral.incidence", "employee_id", "Incidences", readonly=True
+    )
+    work_council_id = fields.Many2one("city.council", "Work council")
     active_remunerations = fields.Boolean(
-        compute='_compute_active_remunerations')
+        compute="_compute_active_remunerations"
+    )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -20,9 +19,10 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class HrEmployee(models.Model):
 
-    _inherit = 'hr.employee'
+    _inherit = "hr.employee"
 
-    colege_num = fields.Char('Colege number', size=64)
-    private_address = fields.Char('Private address', size=255)
+    colege_num = fields.Char("Colege number", size=64)
+    private_address = fields.Char("Private address", size=255)

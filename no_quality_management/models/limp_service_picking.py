@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,14 +24,14 @@ class LimpServicePicking(models.Model):
 
     _inherit = "stock.service.picking"
 
-    no_quality = fields.Boolean('Scont')
+    no_quality = fields.Boolean("Scont")
 
     def write(self, vals):
         res = super(LimpServicePicking, self).write(vals)
-        if vals.get('no_quality', False):
+        if vals.get("no_quality", False):
             for pick in self:
                 for line in pick.service_invoice_concept_ids:
-                    line.write({'tax_ids': [(6, 0, [])]})
+                    line.write({"tax_ids": [(6, 0, [])]})
         return res
 
     def create_concept_lines(self):
@@ -40,9 +39,9 @@ class LimpServicePicking(models.Model):
         for order in self:
             if order.no_quality:
                 for line in order.service_invoice_concept_ids:
-                    line.write({'tax_ids': [(6, 0, [])]})
+                    line.write({"tax_ids": [(6, 0, [])]})
         return res
 
-    @api.onchange('intercompany')
+    @api.onchange("intercompany")
     def onchange_intercompany(self):
         self.no_quality = self.intercompany

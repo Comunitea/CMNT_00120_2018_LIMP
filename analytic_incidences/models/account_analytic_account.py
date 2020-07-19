@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -27,11 +26,18 @@ class AccountAnalyticAccount(models.Model):
 
     _inherit = "account.analytic.account"
 
-    remuneration_ids = fields.One2many('remuneration', 'analytic_account_id',
-                                       'Remunerations')
+    remuneration_ids = fields.One2many(
+        "remuneration", "analytic_account_id", "Remunerations"
+    )
     active_remuneration_ids = fields.One2many(
-        'remuneration', 'analytic_account_id', 'Active remunerations',
-        domain=[('old', '=', False)])
+        "remuneration",
+        "analytic_account_id",
+        "Active remunerations",
+        domain=[("old", "=", False)],
+    )
     inactive_remuneration_ids = fields.One2many(
-        'remuneration', 'analytic_account_id', 'Unactive remunerations',
-        domain=[('old', '=', True)])
+        "remuneration",
+        "analytic_account_id",
+        "Unactive remunerations",
+        domain=[("old", "=", True)],
+    )

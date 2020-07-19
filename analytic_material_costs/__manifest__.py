@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,25 +19,18 @@
 ##############################################################################
 
 {
-    'name' : 'Analytic account material costs',
-    'description': """Add intermediate object between analytic_account and stock_move to adding material costs in analytic lines""",
-    'version' : '1.0',
-    'author' : 'Pexego',
-    'website' : 'http://www.pexego.es',
-    'category' : 'Base/Contract',
-    'depends' : [
-        'base',
-        'analytic',
-        'account',
-        'stock',
-        'hr'
-        ],
-    'data' : [
-        'views/analytic_stock_move.xml',
-        'views/hr_employee.xml',
-        'data/analytic_material_costs_data.xml',
-        'security/ir.model.access.csv',
-            ],
-    'installable': True,
-
+    "name": "Analytic account material costs",
+    "description": """Add intermediate object between analytic_account and stock_move to adding material costs in analytic lines""",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Contract",
+    "depends": ["base", "analytic", "account", "stock", "hr"],
+    "data": [
+        "views/analytic_stock_move.xml",
+        "views/hr_employee.xml",
+        "data/analytic_material_costs_data.xml",
+        "security/ir.model.access.csv",
+    ],
+    "installable": True,
 }

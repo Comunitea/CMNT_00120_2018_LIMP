@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,18 +19,28 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class ContainerMove(models.Model):
 
     _name = "container.move"
     _description = "History of container moves"
     _order = "id desc"
 
-    container_id = fields.Many2one('container', 'Container', required=True)
-    address_id = fields.Many2one('res.partner', 'Situation', required=True)
-    move_type = fields.Selection([('in','In'),('out', 'Out')], 'Move type',
-                                 required=True, default='in')
-    move_date = fields.Datetime('Date', required=True,
-                                default=fields.Datetime.now)
-    type = fields.Selection(related='container_id.type', store=True,
-                            string="Container type", readonly=True)
-    responsible_id = fields.Many2one('hr.employee', 'Driver', readonly=True)
+    container_id = fields.Many2one("container", "Container", required=True)
+    address_id = fields.Many2one("res.partner", "Situation", required=True)
+    move_type = fields.Selection(
+        [("in", "In"), ("out", "Out")],
+        "Move type",
+        required=True,
+        default="in",
+    )
+    move_date = fields.Datetime(
+        "Date", required=True, default=fields.Datetime.now
+    )
+    type = fields.Selection(
+        related="container_id.type",
+        store=True,
+        string="Container type",
+        readonly=True,
+    )
+    responsible_id = fields.Many2one("hr.employee", "Driver", readonly=True)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2015 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,11 +19,12 @@
 ##############################################################################
 from odoo import models, fields
 
+
 class AccountMoveLine(models.Model):
 
     _inherit = "account.move.line"
 
-    invoice_ref = fields.Char('Invoice ref', compute='_compute_invoice_ref')
+    invoice_ref = fields.Char("Invoice ref", compute="_compute_invoice_ref")
 
     def _compute_invoice_ref(self):
         for line in self:
@@ -37,11 +37,11 @@ class AccountMoveLine(models.Model):
                     invoice_ref = parts[0]
                 else:
                     invoice_ref = False
-            line.invoice_ref = (invoice_ref or line.move_id.name)
+            line.invoice_ref = invoice_ref or line.move_id.name
 
 
 class AccountAccountType(models.Model):
 
-    _inherit = 'account.account.type'
+    _inherit = "account.account.type"
 
     code = fields.Char()

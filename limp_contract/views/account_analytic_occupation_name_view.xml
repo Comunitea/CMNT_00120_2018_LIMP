@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="account_analytic_occupation_name_tree" model="ir.ui.view">
             <field name="name">account.analytic.occupation.name.tree</field>
@@ -48,5 +47,4 @@
 
         <menuitem action="action_account_analytic_occupation_name" id="menu_account_analytic_occupation_name_open" parent="menu_account_analytic_occupation_name" name="Occupation names"/>
 
-    </data>
-</openerp>
+</odoo>

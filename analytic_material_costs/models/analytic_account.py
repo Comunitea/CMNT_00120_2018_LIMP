@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -23,8 +22,11 @@ from odoo import models, fields
 
 class AccountAnalyticAccount(models.Model):
 
-    _inherit = 'account.analytic.account'
+    _inherit = "account.analytic.account"
 
     analytic_move_ids = fields.One2many(
-        'account.analytic.stock.move', 'analytic_account_id',
-        'Consumptions', copy=False)
+        "account.analytic.stock.move",
+        "analytic_account_id",
+        "Consumptions",
+        copy=False,
+    )

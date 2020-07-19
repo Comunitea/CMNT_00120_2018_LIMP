@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,17 +19,20 @@
 ##############################################################################
 from odoo import models, fields, api
 
+
 class StockServiceOtherExpenses(models.Model):
 
     _name = "stock.service.other.expenses"
 
-    name = fields.Char('Description', required=True, size=255)
-    prod_qty = fields.Float('Qty.', digits=(16,2), required=True)
-    price_unit = fields.Float('Price unit', required=True)
-    price_subtotal = fields.Float('Subtotal', digits=(16, 2), compute='_get_subtotal', store=True)
-    analytic_id = fields.Many2one('account.analytic.account', 'Analytic')
+    name = fields.Char("Description", required=True, size=255)
+    prod_qty = fields.Float("Qty.", digits=(16, 2), required=True)
+    price_unit = fields.Float("Price unit", required=True)
+    price_subtotal = fields.Float(
+        "Subtotal", digits=(16, 2), compute="_get_subtotal", store=True
+    )
+    analytic_id = fields.Many2one("account.analytic.account", "Analytic")
 
-    @api.depends('price_unit', 'prod_qty')
+    @api.depends("price_unit", "prod_qty")
     def _get_subtotal(self):
         for expense in self:
             expense.price_subtotal = expense.price_unit * expense.prod_qty

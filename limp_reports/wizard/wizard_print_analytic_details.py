@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -21,24 +20,44 @@
 from odoo import models, fields, _
 import time
 
+
 class accountnalyticAccountDetails(models.TransientModel):
     _name = "account.analytic.account.details"
 
-    date1 = fields.Date('Start of period', required=True, default=lambda r: time.strftime('%Y-01-01'))
-    date2 = fields.Date('End of period', required=True, default=fields.Date.today)
-    department_id = fields.Many2one('hr.department', 'Department')
-    delegation_id = fields.Many2one('res.delegation', 'Delegation')
-    manager_id = fields.Many2one('hr.employee', 'Responsible', domain=[('responsible', '=', True)])
-    header = fields.Char('Title of report', size=255, required=True, default=_('Analytic Details'))
-    detail = fields.Boolean('Show details')
-    without_pickings = fields.Boolean('Without pickings in contract', default=True)
+    date1 = fields.Date(
+        "Start of period",
+        required=True,
+        default=lambda r: time.strftime("%Y-01-01"),
+    )
+    date2 = fields.Date(
+        "End of period", required=True, default=fields.Date.today
+    )
+    department_id = fields.Many2one("hr.department", "Department")
+    delegation_id = fields.Many2one("res.delegation", "Delegation")
+    manager_id = fields.Many2one(
+        "hr.employee", "Responsible", domain=[("responsible", "=", True)]
+    )
+    header = fields.Char(
+        "Title of report",
+        size=255,
+        required=True,
+        default=_("Analytic Details"),
+    )
+    detail = fields.Boolean("Show details")
+    without_pickings = fields.Boolean(
+        "Without pickings in contract", default=True
+    )
 
     def print_report(self):
         data = self.read()[0]
         datas = {
-            'ids': self.env.context.get('active_ids',[]),
-            'model': 'account.analytic.account',
-            'form': data
+            "ids": self.env.context.get("active_ids", []),
+            "model": "account.analytic.account",
+            "form": data,
         }
-        records = self.env['account.analytic.account'].browse(self.env.context.get('active_ids',[]))
-        return self.env['report'].get_action(records, 'limp_reports.account_analytic_details', data=datas)
+        records = self.env["account.analytic.account"].browse(
+            self.env.context.get("active_ids", [])
+        )
+        return self.env["report"].get_action(
+            records, "limp_reports.account_analytic_details", data=datas
+        )

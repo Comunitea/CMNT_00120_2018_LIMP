@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
         
         <record id="department_comp_rule" model="ir.rule">
             <field name="name">Departaments</field>
@@ -9,5 +8,4 @@
             <field name="domain_force">[('id','child_of',[x.id for x in user.department_ids])]</field>
         </record>
         
-    </data>
-</openerp>
+</odoo>

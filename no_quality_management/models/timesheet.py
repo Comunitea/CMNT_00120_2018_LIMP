@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2014 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,38 +19,39 @@
 ##############################################################################
 from odoo import models, fields, api
 
+
 class Timesheet(models.Model):
 
-    _inherit = 'timesheet'
+    _inherit = "timesheet"
 
-    scont = fields.Boolean('Scont', related='employee_id.scont', readonly=True)
+    scont = fields.Boolean("Scont", related="employee_id.scont", readonly=True)
 
     @api.model
     def create(self, vals):
         scont = False
-        if vals.get('employee_id', False):
-            employee_obj = self.env['hr.employee'].browse(vals['employee_id'])
+        if vals.get("employee_id", False):
+            employee_obj = self.env["hr.employee"].browse(vals["employee_id"])
             if employee_obj.scont:
-                vals['done'] = True
+                vals["done"] = True
                 scont = True
 
-        res =  super(Timesheet, self).create(vals)
+        res = super(Timesheet, self).create(vals)
         if scont and res.pending_qty:
-            res.write({'effective': res.pending_qty})
+            res.write({"effective": res.pending_qty})
         return res
 
     def write(self, vals):
         scont = False
-        if vals.get('employee_id', False):
-            employee_obj = self.env['hr.employee'].browse(vals['employee_id'])
+        if vals.get("employee_id", False):
+            employee_obj = self.env["hr.employee"].browse(vals["employee_id"])
             if employee_obj.scont:
-                vals['done'] = True
+                vals["done"] = True
                 scont = True
         else:
             if self.employee_id.scont:
-                vals['done'] = True
+                vals["done"] = True
                 scont = True
         res = super(Timesheet, self).write(vals)
-        if scont and self.pending_qty and not vals.get('effective', False):
-            self.write({'effective': self.pending_qty})
+        if scont and self.pending_qty and not vals.get("effective", False):
+            self.write({"effective": self.pending_qty})
         return res

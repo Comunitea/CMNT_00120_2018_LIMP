@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -20,25 +19,20 @@
 ##############################################################################
 
 {
-    'name' : 'Simple fleet management',
-    'description': """Allow to manege fleet registries""",
-    'version' : '1.0',
-    'author' : 'Pexego',
-    'website' : 'http://www.pexego.es',
-    'category' : 'Base/Fleet',
-    'depends' : [
-        'base',
-        'stock',
-        'hr'
-        ],
-    'data' : [
-        'views/fleet.xml',
-        'views/fleet_expense.xml',
-        'views/fleet_expense_type.xml',
-        'security/ir.model.access.csv',
-        'security/fleet_security.xml',
-        'data/expense_type.xml'
+    "name": "Simple fleet management",
+    "description": """Allow to manege fleet registries""",
+    "version": "11.0.1.0.0",
+    "author": "Pexego",
+    "website": "http://www.pexego.es",
+    "category": "Base/Fleet",
+    "depends": ["base", "stock", "hr"],
+    "data": [
+        "views/fleet.xml",
+        "views/fleet_expense.xml",
+        "views/fleet_expense_type.xml",
+        "security/ir.model.access.csv",
+        "security/fleet_security.xml",
+        "data/expense_type.xml",
     ],
-    'installable': True,
-
+    "installable": True,
 }

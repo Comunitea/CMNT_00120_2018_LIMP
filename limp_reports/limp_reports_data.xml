@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="service_picking" model="ir.actions.report.xml">
+    <record id="service_picking" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -16,10 +16,10 @@
         <field name="name">Picking</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(service_picking)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(service_picking)" />
     </record>
 
-    <record id="service_picking_valued" model="ir.actions.report.xml">
+    <record id="service_picking_valued" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -35,10 +35,10 @@
         <field name="name">Valued picking</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(service_picking_valued)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(service_picking_valued)" />
     </record>
 
-    <record id="cleaning_picking" model="ir.actions.report.xml">
+    <record id="cleaning_picking" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -54,10 +54,10 @@
         <field name="name">Cleaning picking</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cleaning_picking)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(cleaning_picking)" />
     </record>
 
-    <record id="cleaning_picking_without_hours" model="ir.actions.report.xml">
+    <record id="cleaning_picking_without_hours" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -73,10 +73,10 @@
         <field name="name">Cleaning picking without hours</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cleaning_picking_without_hours)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(cleaning_picking_without_hours)" />
     </record>
 
-    <record id="discharge_picking" model="ir.actions.report.xml">
+    <record id="discharge_picking" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -92,10 +92,10 @@
         <field name="name">Discharge picking</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(discharge_picking)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(discharge_picking)" />
     </record>
 
-    <record id="delivery_req_build_waste" model="ir.actions.report.xml">
+    <record id="delivery_req_build_waste" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -111,10 +111,10 @@
         <field name="name">Delivery req. build waste</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(delivery_req_build_waste)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(delivery_req_build_waste)" />
     </record>
 
-    <record id="build_picking" model="ir.actions.report.xml">
+    <record id="build_picking" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -130,10 +130,10 @@
         <field name="name">Build picking</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(build_picking)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(build_picking)" />
     </record>
 
-    <record id="valorization_picking" model="ir.actions.report.xml">
+    <record id="valorization_picking" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -149,10 +149,10 @@
         <field name="name">Valorization build picking</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(valorization_picking)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(valorization_picking)" />
     </record>
 
-    <record id="delivery_waste_check" model="ir.actions.report.xml">
+    <record id="delivery_waste_check" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
         <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
@@ -168,10 +168,10 @@
         <field name="name">Delivery waste check</field>
         <field name="model">stock.service.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(delivery_waste_check)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(delivery_waste_check)" />
     </record>
 
-    <record id="limpergal_invoice" model="ir.actions.report.xml">
+    <record id="limpergal_invoice" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -187,10 +187,10 @@
         <field name="name">Limpergal Invoice</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(limpergal_invoice)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(limpergal_invoice)" />
     </record>
 
-    <record id="limpergal_waste_invoice" model="ir.actions.report.xml">
+    <record id="limpergal_waste_invoice" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -206,10 +206,10 @@
         <field name="name">Limpergal Waste Invoice</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(limpergal_waste_invoice)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(limpergal_waste_invoice)" />
     </record>
 
-    <record id="limpergal_waste_invoice_copy" model="ir.actions.report.xml">
+    <record id="limpergal_waste_invoice_copy" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -225,10 +225,10 @@
         <field name="name">Limpergal Waste Invoice Copy</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(limpergal_waste_invoice_copy)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(limpergal_waste_invoice_copy)" />
     </record>
 
-    <record id="limpergal_invoice_copy" model="ir.actions.report.xml">
+    <record id="limpergal_invoice_copy" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -244,10 +244,10 @@
         <field name="name">Limpergal Invoice Copy</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(limpergal_invoice_copy)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(limpergal_invoice_copy)" />
     </record>
 
-    <record id="limpergal_servital_invoice_copy" model="ir.actions.report.xml">
+    <record id="limpergal_servital_invoice_copy" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -263,10 +263,10 @@
         <field name="name">Limpergal Servital Invoice Copy</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(limpergal_servital_invoice_copy)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(limpergal_servital_invoice_copy)" />
     </record>
 
-    <record id="limpergal_servital_invoice" model="ir.actions.report.xml">
+    <record id="limpergal_servital_invoice" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -282,10 +282,10 @@
         <field name="name">Limpergal Servital Invoice</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(limpergal_servital_invoice)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(limpergal_servital_invoice)" />
     </record>
 
-    <record id="servital_invoice" model="ir.actions.report.xml">
+    <record id="servital_invoice" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -301,10 +301,10 @@
         <field name="name">Servital Invoice</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(servital_invoice)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(servital_invoice)" />
     </record>
 
-    <record id="servital_invoice_copy" model="ir.actions.report.xml">
+    <record id="servital_invoice_copy" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -320,10 +320,10 @@
         <field name="name">Servital Invoice Copy</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(servital_invoice_copy)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(servital_invoice_copy)" />
     </record>
 
-    <record id="cyrgal_invoice" model="ir.actions.report.xml">
+    <record id="cyrgal_invoice" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -339,10 +339,10 @@
         <field name="name">Cyrgal Invoice</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cyrgal_invoice)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(cyrgal_invoice)" />
     </record>
 
-    <record id="cyrgal_invoice_copy" model="ir.actions.report.xml">
+    <record id="cyrgal_invoice_copy" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -358,10 +358,10 @@
         <field name="name">Cyrgal Invoice Copy</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cyrgal_invoice_copy)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(cyrgal_invoice_copy)" />
     </record>
 
-    <record id="cissman_invoice" model="ir.actions.report.xml">
+    <record id="cissman_invoice" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -377,10 +377,10 @@
         <field name="name">Cissman Invoice</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cissman_invoice)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(cissman_invoice)" />
     </record>
 
-    <record id="cissman_invoice_copy" model="ir.actions.report.xml">
+    <record id="cissman_invoice_copy" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -396,10 +396,10 @@
         <field name="name">Cissman Invoice Copy</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(cissman_invoice_copy)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(cissman_invoice_copy)" />
     </record>
 
-    <record id="scont_invoice" model="ir.actions.report.xml">
+    <record id="scont_invoice" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -415,10 +415,10 @@
         <field name="name">Scont Invoice</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(scont_invoice)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(scont_invoice)" />
     </record>
 
-    <record id="ute_invoice" model="ir.actions.report.xml">
+    <record id="ute_invoice" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -434,10 +434,10 @@
         <field name="name">UTE Invoice</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(ute_invoice)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(ute_invoice)" />
     </record>
 
-    <record id="ute_invoice_copy" model="ir.actions.report.xml">
+    <record id="ute_invoice_copy" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
         <field name="jasper_model_id" ref="account.model_account_invoice"/>
@@ -453,10 +453,10 @@
         <field name="name">UTE Invoice Copy</field>
         <field name="model">account.invoice</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(ute_invoice_copy)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(ute_invoice_copy)" />
     </record>
 
-    <record id="employee_task_report" model="ir.actions.report.xml">
+    <record id="employee_task_report" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">limp.contract</field>
         <field name="jasper_model_id" ref="limp_contract.model_limp_contract"/>
@@ -472,10 +472,10 @@
         <field name="name">Tasks Report</field>
         <field name="model">limp.contract</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(employee_task_report)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(employee_task_report)" />
     </record>
 
-    <record id="outgoing_report" model="ir.actions.report.xml">
+    <record id="outgoing_report" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">stock.picking</field>
         <field name="jasper_model_id" ref="stock.model_stock_picking"/>
@@ -491,10 +491,10 @@
         <field name="name">Outgoing report</field>
         <field name="model">stock.picking</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(outgoing_report)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(outgoing_report)" />
     </record>
 
-    <record id="aeroo_acceptance_doc_report" model="ir.actions.report.xml">
+    <record id="aeroo_acceptance_doc_report" model="ir.actions.report">
         <field name="name">Acceptance document</field>
         <field name="model">acceptance.document</field>
         <field name="report_name">acceptance_document</field>
@@ -508,10 +508,10 @@
         <field name="name">Acceptance document</field>
         <field name="model">acceptance.document</field>
         <field name="key2" eval="'client_print_multi'" />
-        <field name="value_unpickle" eval="'ir.actions.report.xml, ' +str(aeroo_acceptance_doc_report)" />
+        <field name="value_unpickle" eval="'ir.actions.report, ' +str(aeroo_acceptance_doc_report)" />
     </record>
 
-    <record id="aeroo_annual_memory_id" model="ir.actions.report.xml">
+    <record id="aeroo_annual_memory_id" model="ir.actions.report">
         <field name="name">Annual Memory Report</field>
         <field name="model">res.partner</field>
         <field name="report_name">annual_memory</field>

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -21,23 +20,35 @@
 from odoo import models, fields, _
 
 WARNING_MESSAGE = [
-                   ('no-message','No Message'),
-                   ('warning','Warning'),
-                   ('block','Blocking Message')
-                   ]
+    ("no-message", "No Message"),
+    ("warning", "Warning"),
+    ("block", "Blocking Message"),
+]
 
 
-WARNING_HELP = _('Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.')
+WARNING_HELP = _(
+    'Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.'
+)
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    picture = fields.Binary('Logo',filters='*.png,*.jpg,*.gif')
-    add_info = fields.Boolean('Aditional Info')
-    picking_warn_type = fields.Selection(WARNING_MESSAGE, 'Picking warning', help=WARNING_HELP, default='no-message')
-    picking_warn_message = fields.Text('Message for Picking')
-    ref = fields.Char('Reference', company_dependent=True)
-    attention_of = fields.Char('A/A', size=255)
-    type = fields.Selection(selection_add=[('management_plant', 'Management plant'), ('tramit', 'Tramit')])
-    colege_num = fields.Char('Colege number', size=64)
+    picture = fields.Binary("Logo", filters="*.png,*.jpg,*.gif")
+    add_info = fields.Boolean("Aditional Info")
+    picking_warn_type = fields.Selection(
+        WARNING_MESSAGE,
+        "Picking warning",
+        help=WARNING_HELP,
+        default="no-message",
+    )
+    picking_warn_message = fields.Text("Message for Picking")
+    ref = fields.Char("Reference", company_dependent=True)
+    attention_of = fields.Char("A/A", size=255)
+    type = fields.Selection(
+        selection_add=[
+            ("management_plant", "Management plant"),
+            ("tramit", "Tramit"),
+        ]
+    )
+    colege_num = fields.Char("Colege number", size=64)

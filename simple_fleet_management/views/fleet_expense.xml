@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="fleet_expense_tree" model="ir.ui.view">
             <field name="name">fleet.expense.tree</field>
@@ -95,5 +94,4 @@
 
         <menuitem action="fleet_expense_action" id="menu_fleet_expense_open" parent="menu_fleet" name="Fleet expenses"/>
 
-    </data>
-</openerp>
+</odoo>

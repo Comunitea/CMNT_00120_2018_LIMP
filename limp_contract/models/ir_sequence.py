@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -19,28 +18,32 @@
 ##############################################################################
 from odoo import models, fields, api
 
+
 class IrSequence(models.Model):
 
     _inherit = "ir.sequence"
 
-    delegation_id = fields.Many2one('res.delegation', 'Delegation')
+    delegation_id = fields.Many2one("res.delegation", "Delegation")
 
     @api.model
     def search_by_delegation(self, code, delegation):
         """search sequence by code and delegation"""
         company_id = self.env.user.company_id.id or None
 
-        self.env.cr.execute('''SELECT id
+        self.env.cr.execute(
+            """SELECT id
                       FROM ir_sequence
                       WHERE code='%s'
                        AND active=true
                        AND (company_id = %s or company_id is NULL)
                        AND (delegation_id = %s or delegation_id is NULL)
                       ORDER BY company_id, id
-                      FOR UPDATE NOWAIT''' % (code, company_id, delegation))
+                      FOR UPDATE NOWAIT"""
+            % (code, company_id, delegation)
+        )
         res = self.env.cr.dictfetchone()
 
-        return res and res['id'] or False
+        return res and res["id"] or False
 
     @api.model
     def get_by_delegation(self, code, delegation):

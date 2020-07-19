@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) Comunitea Servicios Informáticos. All Rights Reserved
@@ -20,15 +19,21 @@
 ##############################################################################
 from odoo import models, fields, api, _
 
+
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
-    type_analytic = fields.Char('Type', compute='_compute_type_analytic', store=True)
-    privacy = fields.Selection([('public', 'Public'), ('private', 'Private')],
-                               'Privacy', related='account_id.privacy',
-                               readonly=True)
+    type_analytic = fields.Char(
+        "Type", compute="_compute_type_analytic", store=True
+    )
+    privacy = fields.Selection(
+        [("public", "Public"), ("private", "Private")],
+        "Privacy",
+        related="account_id.privacy",
+        readonly=True,
+    )
 
-    @api.depends('remuneration_id', 'timesheet_id')
+    @api.depends("remuneration_id", "timesheet_id")
     def _compute_type_analytic(self):
         for line in self:
             if line.remuneration_id:

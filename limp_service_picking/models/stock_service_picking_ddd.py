@@ -1,46 +1,65 @@
-# -*- coding: utf-8 -*-
 from odoo import models, fields, api
 
+
 class StockServicePickingDDD(models.Model):
-    _inherit = 'stock.service.picking'
+    _inherit = "stock.service.picking"
 
-    n_cert=fields.Char('Nº certificate Legionella', readonly=True)
-    n_cert_ddd=fields.Char('Nº certificate DDD', readonly=True)
-    type_ddd_ids=fields.Many2many('types.ddd', string='Types ddd')
-    treatment_applicator1=fields.Many2one('hr.employee', string='Treatment Applicator 1')
-    treatment_applicator2=fields.Many2one('hr.employee', string='Treatment Applicator 2')
-    supervisor=fields.Many2one('hr.employee', string="Technical Support")
+    n_cert = fields.Char("Nº certificate Legionella", readonly=True)
+    n_cert_ddd = fields.Char("Nº certificate DDD", readonly=True)
+    type_ddd_ids = fields.Many2many("types.ddd", string="Types ddd")
+    treatment_applicator1 = fields.Many2one(
+        "hr.employee", string="Treatment Applicator 1"
+    )
+    treatment_applicator2 = fields.Many2one(
+        "hr.employee", string="Treatment Applicator 2"
+    )
+    supervisor = fields.Many2one("hr.employee", string="Technical Support")
 
-    start_time=fields.Float(digits=(4,2), string="Start time")
-    end_time=fields.Float(digits=(4,2), string="End time")
+    start_time = fields.Float(digits=(4, 2), string="Start time")
+    end_time = fields.Float(digits=(4, 2), string="End time")
 
-    start_time_str=fields.Char(compute='_str_date')
-    end_time_str=fields.Char(compute='_str_date')
+    start_time_str = fields.Char(compute="_str_date")
+    end_time_str = fields.Char(compute="_str_date")
     signer_name = fields.Char("Signer Name")
     signer_id = fields.Char("Signer VAT")
 
-    #Page DDD
+    # Page DDD
 
-    detected_species_id=fields.One2many('detected.species',  'picking_id', string="Detected Species")
+    detected_species_id = fields.One2many(
+        "detected.species", "picking_id", string="Detected Species"
+    )
 
-    products_used_id=fields.One2many('products.used', 'picking_id', string ="Products Used")
+    products_used_id = fields.One2many(
+        "products.used", "picking_id", string="Products Used"
+    )
 
-    monitoring_situation=fields.Char('Observations')
+    monitoring_situation = fields.Char("Observations")
 
-    observations_recommendations=fields.Many2many('observation.recommendation.ddd', string ="Observations/Recommendations")
+    observations_recommendations = fields.Many2many(
+        "observation.recommendation.ddd", string="Observations/Recommendations"
+    )
 
-    dr=fields.Boolean(compute ="_get_dr")
-    df=fields.Boolean(compute ="_get_dr")
-    ds=fields.Boolean(compute ="_get_dr")
-    lg=fields.Boolean(compute ="_get_dr")
-
+    dr = fields.Boolean(compute="_get_dr")
+    df = fields.Boolean(compute="_get_dr")
+    ds = fields.Boolean(compute="_get_dr")
+    lg = fields.Boolean(compute="_get_dr")
 
     ##Page Legionella
 
-    type_of_installation_id=fields.Many2many('type.of.installation.legionella', string="Type of installation legionella")
-    date_of_notification=fields.Date(string ="Date of notification", help="Date of notification to the competent autority")
-    legionella_products_id=fields.One2many('legionella.samples', 'picking_id', string="Legionella samples")
-    used_product_ids = fields.Many2many('product.product', string="Products used")
+    type_of_installation_id = fields.Many2many(
+        "type.of.installation.legionella",
+        string="Type of installation legionella",
+    )
+    date_of_notification = fields.Date(
+        string="Date of notification",
+        help="Date of notification to the competent autority",
+    )
+    legionella_products_id = fields.One2many(
+        "legionella.samples", "picking_id", string="Legionella samples"
+    )
+    used_product_ids = fields.Many2many(
+        "product.product", string="Products used"
+    )
 
     @api.multi
     def _str_date(self):
@@ -51,42 +70,34 @@ class StockServicePickingDDD(models.Model):
                 time = x.start_time
 
                 hours = int(time)
-                minutes = (time*60) % 60
-                seconds = (time*3600) % 60
+                minutes = (time * 60) % 60
+                seconds = (time * 3600) % 60
 
-                x.start_time_str="%d:%02d:%02d" % (hours, minutes, seconds)
-
+                x.start_time_str = "%d:%02d:%02d" % (hours, minutes, seconds)
 
             if x.end_time:
                 time = x.end_time
 
                 hours = int(time)
-                minutes = (time*60) % 60
-                seconds = (time*3600) % 60
+                minutes = (time * 60) % 60
+                seconds = (time * 3600) % 60
 
-                x.end_time_str="%d:%02d:%02d" % (hours, minutes, seconds)
+                x.end_time_str = "%d:%02d:%02d" % (hours, minutes, seconds)
 
-
-
-    @api.depends('type_ddd_ids')
+    @api.depends("type_ddd_ids")
     def _get_dr(self):
 
         for pickin in self:
-            type_ddd_str=u','.join([x.code for x in pickin.type_ddd_ids])
+            type_ddd_str = u",".join([x.code for x in pickin.type_ddd_ids])
 
             if "desratizacion" in type_ddd_str:
-                pickin.dr=True
+                pickin.dr = True
 
             if "desinfeccion" in type_ddd_str:
-                pickin.df=True
+                pickin.df = True
 
             if "desinsectacion" in type_ddd_str:
-                pickin.ds=True
+                pickin.ds = True
 
             if "legionella" in type_ddd_str:
-                pickin.lg=True
-
-
-
-
-
+                pickin.lg = True

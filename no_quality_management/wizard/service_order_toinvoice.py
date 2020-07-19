@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
@@ -23,13 +22,13 @@ from odoo import models, fields
 
 class ServiceOrderToInvoice(models.TransientModel):
 
-    _inherit = 'service.order.toinvoice'
+    _inherit = "service.order.toinvoice"
 
     def create_invoice(self):
         res = super(ServiceOrderToInvoice, self).create_invoice()
         for record in res:
-            rec = self.env['stock.service.picking'].browse(record)
+            rec = self.env["stock.service.picking"].browse(record)
             if rec.no_quality:
-                invoice = self.env['account.invoice'].browse(res[record])
-                invoice.write({'no_quality': True})
+                invoice = self.env["account.invoice"].browse(res[record])
+                invoice.write({"no_quality": True})
         return res

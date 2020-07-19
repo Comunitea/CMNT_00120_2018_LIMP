@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2016 Comunitea Servicios Tecnológicos
@@ -26,15 +25,18 @@ class AnalyticBalanceByDepartment(models.TransientModel):
     _name = "analytic.balance.by.department.wzd"
 
     year = fields.Integer(
-        default=lambda r: int(time.strftime('%Y')), required=True)
-    delegation_id = fields.Many2one('res.delegation', 'Delegation')
-    privacy = fields.Selection([('public', 'Public'), ('private', 'Private')])
+        default=lambda r: int(time.strftime("%Y")), required=True
+    )
+    delegation_id = fields.Many2one("res.delegation", "Delegation")
+    privacy = fields.Selection([("public", "Public"), ("private", "Private")])
 
     @api.multi
     def print_report(self):
         data = self.read([])[0]
-        data.update({'ids': self.ids})
+        data.update({"ids": self.ids})
 
-        return {'type': 'ir.actions.report.xml',
-                 'report_name': 'analytic_balance_by_department_xls',
-                 'datas': data }
+        return {
+            "type": "ir.actions.report",
+            "report_name": "analytic_balance_by_department_xls",
+            "datas": data,
+        }

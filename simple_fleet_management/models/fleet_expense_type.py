@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -23,7 +22,7 @@ from odoo import models, fields
 
 class FleetExpenseType(models.Model):
 
-    _name = 'fleet.expense.type'
+    _name = "fleet.expense.type"
 
     name = fields.Char(required=True, translate=True)
-    product_id = fields.Many2one('product.product', 'Related product')
+    product_id = fields.Many2one("product.product", "Related product")

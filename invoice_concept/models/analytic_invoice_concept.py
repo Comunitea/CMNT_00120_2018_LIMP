@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -25,18 +24,18 @@ from datetime import datetime
 from odoo.exceptions import UserError
 
 MONTHS = {
-    '1': _("Enero"),
-    '2': _("Febrero"),
-    '3': _("Marzo"),
-    '4': _("Abril"),
-    '5': _("Mayo"),
-    '6': _("Junio"),
-    '7': _("Julio"),
-    '8': _('Agosto'),
-    '9': _("Septiembre"),
-    '10': _("Octubre"),
-    '11': _("Noviembre"),
-    '12': _("Diciembre")
+    "1": _("Enero"),
+    "2": _("Febrero"),
+    "3": _("Marzo"),
+    "4": _("Abril"),
+    "5": _("Mayo"),
+    "6": _("Junio"),
+    "7": _("Julio"),
+    "8": _("Agosto"),
+    "9": _("Septiembre"),
+    "10": _("Octubre"),
+    "11": _("Noviembre"),
+    "12": _("Diciembre"),
 }
 
 
@@ -47,14 +46,16 @@ class AccountAnalyticInvoiceConcept(models.Model):
     _description = "Analytic account invoice concepts"
 
     @api.model
-    def name_search(self, name, args=[], operator='ilike', limit=100):
+    def name_search(self, name, args=[], operator="ilike", limit=100):
         if name:
-            concepts = self.search([('code', '=', name)] + args, limit=limit)
+            concepts = self.search([("code", "=", name)] + args, limit=limit)
             if not concepts:
                 concepts = self.search(
-                    [('code', operator, name)] + args, limit=limit)
+                    [("code", operator, name)] + args, limit=limit
+                )
                 concepts += self.search(
-                    [('name', operator, name)] + args, limit=limit)
+                    [("name", operator, name)] + args, limit=limit
+                )
         else:
             concepts = self.search(args, limit=limit)
 
@@ -63,20 +64,26 @@ class AccountAnalyticInvoiceConcept(models.Model):
     @api.model
     def process_name(self, description=False, date=False):
         if not description and not self:
-            raise UserError(_(''))
+            raise UserError(_(""))
         if not date:
             date = datetime.now()
         if not description:
             description = self.name
-        return description.replace(
-            '%(year)s', str(date.year)).replace(
-            '%(month)s', MONTHS[str(date.month)])
+        return description.replace("%(year)s", str(date.year)).replace(
+            "%(month)s", MONTHS[str(date.month)]
+        )
 
-    name = fields.Char('Concept', translate=True, required=True)
+    name = fields.Char("Concept", translate=True, required=True)
     code = fields.Char(size=8, required=True)
     product_id = fields.Many2one(
-        'product.product', 'Product', required=True,
-        help="Product required to map invoice taxes.")
+        "product.product",
+        "Product",
+        required=True,
+        help="Product required to map invoice taxes.",
+    )
     company_id = fields.Many2one(
-        'res.company', 'Company', required=True,
-        default=lambda r: r.env.user.company_id.id)
+        "res.company",
+        "Company",
+        required=True,
+        default=lambda r: r.env.user.company_id.id,
+    )

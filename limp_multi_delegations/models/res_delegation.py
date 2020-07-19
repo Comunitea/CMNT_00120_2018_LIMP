@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
@@ -23,21 +22,28 @@ from odoo.exceptions import ValidationError
 
 class ResDelegation(models.Model):
 
-    _name = 'res.delegation'
-    _description = 'Delegation'
+    _name = "res.delegation"
+    _description = "Delegation"
 
-    name = fields.Char('Delegation', size=32, required=True)
+    name = fields.Char("Delegation", size=32, required=True)
     code = fields.Char(size=8)
     description = fields.Text()
-    parent_id = fields.Many2one('res.delegation', 'Parent delegation')
-    child_ids = fields.One2many('res.delegation', 'parent_id',
-                                'Child delegations')
-    user_ids = fields.Many2many('res.users', 'res_delegation_users_rel',
-                                'delegation_id', 'user_id', 'Related users')
-    address_id = fields.Many2one('res.partner', 'Delegation Address')
+    parent_id = fields.Many2one("res.delegation", "Parent delegation")
+    child_ids = fields.One2many(
+        "res.delegation", "parent_id", "Child delegations"
+    )
+    user_ids = fields.Many2many(
+        "res.users",
+        "res_delegation_users_rel",
+        "delegation_id",
+        "user_id",
+        "Related users",
+    )
+    address_id = fields.Many2one("res.partner", "Delegation Address")
 
-    @api.constrains('parent_id')
+    @api.constrains("parent_id")
     def _check_parent_id(self):
-        if not self._check_recursion('parent_id'):
+        if not self._check_recursion("parent_id"):
             raise ValidationError(
-                _('Error! You cannot create recursive delegations.'))
+                _("Error! You cannot create recursive delegations.")
+            )

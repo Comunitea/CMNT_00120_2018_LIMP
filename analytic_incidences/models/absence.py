@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
@@ -28,4 +27,4 @@ class Absence(models.Model):
 
     name = fields.Char(required=True)
     code = fields.Char()
-    incidence_id = fields.Many2one('incidence', 'Incidence')
+    incidence_id = fields.Many2one("incidence", "Incidence")

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2015 Comunitea Servicios Tecnológicos. All Rights Reserved
@@ -21,20 +20,44 @@
 import time
 from odoo.report import report_sxw
 
+
 class frequency_table_parser(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
-        super(frequency_table_parser, self).__init__(cr, uid, name, context=context)
+        super(frequency_table_parser, self).__init__(
+            cr, uid, name, context=context
+        )
 
-        self.localcontext.update({
-            'filter_objs': self._filter_objects
-        })
+        self.localcontext.update({"filter_objs": self._filter_objects})
 
     def _filter_objects(self, objects):
         new_objects = []
         for obj in objects:
-            if obj.lu or obj.ma or obj.mi or obj.ju or obj.vi or obj.sa or obj.do or obj.sm or obj.qc or obj.m or obj.bt or obj.tr or obj.ct or obj.st or obj.an or obj.s_n:
+            if (
+                obj.lu
+                or obj.ma
+                or obj.mi
+                or obj.ju
+                or obj.vi
+                or obj.sa
+                or obj.do
+                or obj.sm
+                or obj.qc
+                or obj.m
+                or obj.bt
+                or obj.tr
+                or obj.ct
+                or obj.st
+                or obj.an
+                or obj.s_n
+            ):
                 new_objects.append(obj)
 
         return new_objects
 
-report_sxw.report_sxw('report.sale.order.freq.table','sale.order','addons/limp_sale/report/limp_sale_frequency_table.rml',parser=frequency_table_parser)
+
+report_sxw.report_sxw(
+    "report.sale.order.freq.table",
+    "sale.order",
+    "addons/limp_sale/report/limp_sale_frequency_table.rml",
+    parser=frequency_table_parser,
+)
