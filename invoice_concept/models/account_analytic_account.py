@@ -206,7 +206,7 @@ class AccountAnalyticAccount(models.Model):
         for analytic_account in self:
             child_concepts_ids = self.env['account.analytic.invoice.concept.rel'] #list of childs in first level
             analytic_invoices= self.env['account.invoice']
-            child_ids = analytic_account.get_same_contract_accounts()
+            child_ids = analytic_account.child_ids
             for child in child_ids:
                 child_concepts_ids += child.concept_ids
             if analytic_account not in analytic_ids:

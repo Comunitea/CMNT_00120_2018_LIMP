@@ -70,18 +70,6 @@ class LimpContract(models.Model):
     maintenance_task_count = fields.Integer(string='# of maintenance tasks', compute='_compute_maintenance_task_count', readonly=True)
     timesheet_count = fields.Integer(string='# of timesheets', compute='_compute_timesheet_count', readonly=True)
 
-
-    def get_same_contract_accounts(self, extra_domain = []):
-        self.ensure_one()
-        contract_tag = self.tag_ids.filtered('contract_tag').id
-        if contract_tag:
-            accounts = self.env['account.analytic.account'].search(
-                [('tag_ids', '=', contract_tag),
-                 ('id', '!=', self.analytic_account_id.id)] + extra_domain)
-            if accounts:
-                return accounts
-        return self.env['account.analytic.account']
-
     def _compute_contract_total_amount(self):
         for contract in self:
             amount = 0.0
@@ -98,12 +86,11 @@ class LimpContract(models.Model):
         id_invoice = []
         invoice_ids = self.env['account.invoice']
         for obj in self:
-            contract_tag = obj.tag_ids.filtered('contract_tag')
             if obj.analytic_account_id and obj.state == 'open':
                 child_ids = self.env['account.analytic.account'].search(
                     [('state', '=', 'open'), ('partner_id', '!=', False),
                     ('invoiceable', '=', True),
-                    ('tag_ids', 'in', [contract_tag.id]),
+                    ('parent_id', '=', obj.analytic_account_id.id),
                     ('date_start', '<', self._context['end_date'])],
                     order='create_date')
                 child_ids += obj.analytic_account_id
@@ -122,7 +109,6 @@ class LimpContract(models.Model):
     def create(self, vals):
         vals['is_contract'] = True
         vals['name'] = self.env['ir.sequence'].get_by_delegation('limp.contract.seq', vals['delegation_id'])
-        vals['tag_ids'] = [(0, 0, {'name': vals['name'], 'contract_tag': True})]
         # obtains contract lines sequence id and copy default to assign new sequence for this contract lines
         seq_id = self.env['ir.sequence'].search_by_delegation('limp.contract.line.seq', vals['delegation_id'])
         if seq_id:
@@ -161,7 +147,7 @@ class LimpContract(models.Model):
         for contract in self:
             if contract.state not in ('draft','cancelled'):
                 raise UserError(_("Only contracts in draft or cancelled states can be deleted."))
-            account_to_delete += contract.get_same_contract_accounts()
+            account_to_delete |= contract.child_ids
 
         res = super(LimpContract, self).unlink()
         account_to_delete.unlink()
@@ -204,7 +190,7 @@ class LimpContract(models.Model):
 
     def act_reopen(self):
         for contract in self:
-            line_ids = contract.get_same_contract_accounts(extra_domain=[('date', '=', contract.date)])
+            line_ids = contract.child_ids.filtered(lambda x: x.date == contract.date)
             line_ids.write({'date': False, 'state': 'open'})
         self.write({'state': 'open', 'date': False})
         return
@@ -220,22 +206,20 @@ class LimpContract(models.Model):
 
     def _compute_invoiced(self):
         for contract in self:
-            contract_tag = contract.tag_ids.filtered('contract_tag')
             if contract.analytic_account_id and contract.state == 'open':
                 child_ids = self.env['account.analytic.account'].search(
                     [('state', '=', 'open'), ('partner_id', '!=', False),
                     ('invoiceable', '=', True),
-                    ('tag_ids', 'in', [contract_tag.id])])
+                    ('parent_id', '=', contract.analytic_account_id.id)])
                 child_ids += contract.analytic_account_id
                 contract.invoice_count = len(child_ids.mapped('invoice_ids'))
 
     def action_view_invoices(self):
         action = self.env.ref('account.action_invoice_tree1').read()[0]
-        contract_tag = self.tag_ids.filtered('contract_tag')
         child_ids = self.env['account.analytic.account'].search(
                     [('state', '=', 'open'), ('partner_id', '!=', False),
                     ('invoiceable', '=', True),
-                    ('tag_ids', 'in', [contract_tag.id])])
+                    ('parent_id', '=', self.analytic_account_id.id)])
         child_ids += self.analytic_account_id
         invoices = child_ids.mapped('invoice_ids')
         action['domain'] = "[('id','in', ["+','.join(map(str, invoices._ids))+"])]"
@@ -259,7 +243,7 @@ class LimpContract(models.Model):
         action['context'] = str({
             'c_manager_id' : self.manager_id.id,
             'default_partner_id' : self.partner_id.id,
-            'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
+            'default_parent_id' : self.analytic_account_id.id,
             'c_delegation_id' : self.delegation_id.id,
             'default_company_id' : self.company_id.id,
             'c_department_id' : self.department_id.id,
@@ -276,7 +260,7 @@ class LimpContract(models.Model):
         action['context'] = str({
             'c_manager_id' : self.manager_id.id,
             'default_partner_id' : self.partner_id.id,
-            'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
+            'default_parent_id' : self.analytic_account_id.id,
             'c_delegation_id' : self.delegation_id.id,
             'default_company_id' : self.company_id.id,
             'c_department_id' : self.department_id.id,
@@ -291,7 +275,7 @@ class LimpContract(models.Model):
     def action_view_waste_lines(self):
         action = self.env.ref('limp_service_picking.service_pickings_action').read()[0]
         action['context'] = str({
-           'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
+           'default_parent_id' : self.analytic_account_id.id,
            'default_picking_type': 'wastes', 'type': 'wastes',
            'form_view_ref': 'limp_service_picking.stock_service_picking_form',
            'default_delegation_id' : self.delegation_id.id,
@@ -316,7 +300,7 @@ class LimpContract(models.Model):
     def action_view_sporadic_service_picking(self):
         action = self.env.ref('limp_service_picking.sporadic_service_pickings_action').read()[0]
         action['context'] = str({
-           'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
+           'default_parent_id' : self.analytic_account_id.id,
            'default_picking_type': 'sporadic', 'type': 'sporadic',
            'form_view_ref': 'limp_service_picking.stock_service_picking_form',
            'default_delegation_id' : self.delegation_id.id,

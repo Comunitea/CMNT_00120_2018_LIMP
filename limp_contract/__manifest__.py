@@ -34,6 +34,7 @@
             'account',
             'decimal_precision',
             'invoice_concept',
+            'account_analytic_parent',
             'analytic_incidences',
             'analytic_material_costs',
             'limp_service_picking',

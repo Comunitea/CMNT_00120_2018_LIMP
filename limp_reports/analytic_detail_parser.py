@@ -182,10 +182,7 @@ class AccountAnalyticDetails(models.AbstractModel):
         return res
 
     def _get_childs(self, account):
-        contract_tag = account.tag_ids.filtered('contract_tag')
-        account_ids = self.env['account.analytic.account'].search(
-            [('tag_ids', 'in', [contract_tag.id]), ('id', '!=', account.id)])
-        return account_ids
+        return account.child_ids
 
     def _get_summarize(self):
         res = []

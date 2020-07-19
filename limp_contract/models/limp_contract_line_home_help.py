@@ -104,8 +104,8 @@ class LimpContractLineHomeHelp(models.Model):
                     vals['department_id'] = contract.department_id.id
                 if not vals.get('company_id', False):
                     vals['company_id'] = contract.company_id.id
-                if not vals.get('tag_ids', False):
-                    vals['tag_ids'] = [(4, x.id) for x in contract.tag_ids]
+                if not vals.get('parent_id', False):
+                    vals['parent_id'] = contract.analytic_account_id.id
         else:
             raise UserError(_('Not contract defined for this line'))
         vals['invoiceable'] = True
@@ -133,6 +133,4 @@ class LimpContractLineHomeHelp(models.Model):
             if line.state not in ('draft','cancelled'):
                 raise UserError(_("Only contract lines in draft or cancelled states can be deleted."))
         res = super(LimpContractLineHomeHelp, self).unlink()
-        self.mapped('contract_line_id').unlink()
-        self.mapped('analytic_acc_id').unlink()
         return res

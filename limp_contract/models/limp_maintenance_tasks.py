@@ -69,7 +69,7 @@ class MaintenanceTask(models.Model):
             search([('analytic_account_id', '=', self.contract_id.id)])
         if contract:
             action['context'] = str({
-               'default_tag_ids': [(4, x.id) for x in contract.tag_ids],
+               'default_parent_id': contract.analytic_account_id.id,
                'default_picking_type': 'sporadic', 'type': 'sporadic',
                'form_view_ref':
                'limp_service_picking.stock_service_picking_form',
@@ -103,14 +103,13 @@ class MaintenanceTask(models.Model):
              'domain': {
 
               'contract_line_id':
-              [('id', 'in', self.contract_id.get_same_contract_accounts()._ids)
+              [('id', 'in', self.contract_id.child_ids.ids)
                ]}}
 
     @api.depends('contract_id')
     def _compute_analytic_accounts(self):
         for task in self.filtered('contract_id'):
-            task.contract_accounts = task.contract_id.\
-                get_same_contract_accounts()
+            task.contract_accounts = task.contract_id.child_ids
 
     def write(self, vals):
         for obj in self:
@@ -209,7 +208,7 @@ class MaintenanceTask(models.Model):
                         contract.analytic_account_id.id,
                         'monitoring_situation': task.monitoring_situation,
                         'type_ddd_ids': [(6, 0, task.type_ddd_ids.ids)],
-                        'tag_ids': [(6, 0, contract.tag_ids.ids)],
+                        'parent_id': contract.analytic_account_id.id,
                         'type_of_installation_id':
                         [(6, 0, task.type_of_installation_ids.ids)],
                         'used_product_ids':

@@ -30,7 +30,8 @@
         'analytic',
         'account',
         'product',
-        'limp_account_analytic_extension'
+        'limp_account_analytic_extension',
+        'account_analytic_parent'
         ],
     'data' : [
         'security/ir.model.access.csv',

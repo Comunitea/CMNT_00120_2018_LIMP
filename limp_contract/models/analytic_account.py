@@ -41,7 +41,7 @@ class AccountAnalyticAccount(models.Model):
     address_invoice_id = fields.Many2one('res.partner', 'Address invoice')
     address_id = fields.Many2one('res.partner', 'Address')
     privacy = fields.Selection([('public', 'Public'), ('private', 'Private')], 'Privacy', default='private')
-    is_contract = fields.Boolean('Is contract')
+    is_contract = fields.Boolean('Is contract', compute='_compute_is_contract', search='_search_is_contract')
     is_picking = fields.Boolean('Is picking', compute='_compute_is_picking', search='_search_is_picking')
     is_picking_in_contract = fields.Boolean('Is picking in contract', compute='_compute_is_picking_contract', search='_search_is_picking_contract')
     analytic_distribution_id = fields.Many2one('account.analytic.distribution','Analytic Distribution')
@@ -77,6 +77,24 @@ class AccountAnalyticAccount(models.Model):
         else:
             ids = [('id', 'not in', list(set(account_ids)))]
         return ids
+
+    def _compute_is_contract(self):
+        for account in self:
+            contract_ids = self.env['limp.contract'].search(
+                [('analytic_account_id', '=', account.id)])
+            account.is_contract = contract_ids and True or False
+
+    def _search_is_contract(self, operator, operand):
+        ids = []
+        all_contract_ids = self.env['limp.contract'].search([])
+        for data in all_contract_ids.read(['analytic_account_id']):
+            if data['analytic_account_id']:
+                ids.append(data['analytic_account_id'][0])
+        if operand:
+            domain = [('id', 'in', list(set(ids)))]
+        else:
+            domain = [('id', 'not in', list(set(ids)))]
+        return domain
 
     def _compute_is_picking_contract(self):
         for account in self:
@@ -267,12 +285,8 @@ class AccountAnalyticAccount(models.Model):
             for account in self:
                 contract_ids = self.env['limp.contract'].search([('analytic_account_id', '=', account.id)])
                 if contract_ids and account.privacy != vals['privacy']:
-                    self.get_same_contract_accounts().write({'privacy': vals['privacy']})
+                    account.child_ids.write({'privacy': vals['privacy']})
         res = super(AccountAnalyticAccount, self).write(vals)
-        if vals.get('tag_ids', False):
-            contract = self.get_contract()
-            if contract:
-                self.write({'privacy': contract.privacy})
         if vals.get('state') and vals['state'] in ('open', 'close', 'cancelled'):
             for account in self:
                 contract_ids = self.env['limp.contract'].search([('analytic_account_id', '=', account.id),('state', '!=', vals['state'])])
@@ -282,18 +296,6 @@ class AccountAnalyticAccount(models.Model):
 
     def get_contract(self):
         self.ensure_one()
-        contract_tag = self.tag_ids.filtered('contract_tag').id
-        if contract_tag:
-            contracts = self.env['limp.contract'].search(
-                [('tag_ids', '=', contract_tag)])
-            if contracts:
-                return contracts[0]
-
-    def get_same_contract_accounts(self, extra_domain = []):
-        self.ensure_one()
-        contract_tag = self.tag_ids.filtered('contract_tag').id
-        if contract_tag:
-            accounts = self.env['account.analytic.account'].search([('tag_ids', '=', contract_tag), ('id', '!=', self.id)] + extra_domain)
-            if accounts:
-                return accounts
-        return self.env['account.analytic.account']
+        contracts = self.env['limp.contract'].search([('analytic_account_id', '=', self.id)])
+        if contracts:
+            return contracts[0]

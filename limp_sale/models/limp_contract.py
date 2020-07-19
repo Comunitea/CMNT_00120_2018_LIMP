@@ -31,7 +31,7 @@ class LimpContract(models.Model):
     def action_view_waste_lines(self):
         action = super(LimpContract, self).action_view_waste_lines()
         action['context'] = str({
-           'default_tag_ids' : [(4, x.id) for x in self.tag_ids],
+           'default_parent_id' : self.analytic_account_id.id,
            'default_picking_type': 'wastes', 'type': 'wastes',
            'form_view_ref': 'limp_service_picking.stock_service_picking_form',
            'default_delegation_id' : self.delegation_id.id,

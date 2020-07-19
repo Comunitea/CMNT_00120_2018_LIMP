@@ -36,8 +36,8 @@ class StockServicePicking(models.Model):
                 vals['department_id'] = contract.department_id.id
             if not vals.get('company_id', False):
                 vals['company_id'] = contract.company_id.id
-            if not vals.get('tag_ids', False):
-                vals['tag_ids'] = [(4, x.id) for x in contract.tag_ids]
+            if not vals.get('parent_id', False):
+                vals['parent_id'] = contract.analytic_account_id.id
         return super(StockServicePicking, self).create(vals)
 
     @api.onchange('contract_id')
@@ -57,5 +57,5 @@ class StockServicePicking(models.Model):
             self.privacy = contract.privacy
             self.address_tramit_id = contract.address_tramit_id
             self.type_ddd_ids = [(6, 0, contract.type_ddd_ids.ids)]
-            self.tag_ids = [(6, 0, contract.tag_ids.ids)]
+            self.parent_id = contract.analytic_account_id.id
             self.used_product_ids = [(6, 0, contract.used_product_ids.ids)]
