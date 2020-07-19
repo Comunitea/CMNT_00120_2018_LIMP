@@ -8,7 +8,6 @@
         <field name="arch" type="xml">
             <field name="sale_id" position="after">
                 <field name="contract_id"/>
-                <field name="tag_ids" widget="many2many_tags"/>
             </field>
             <field name="address_id" position="after">
                 <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
@@ -27,7 +26,6 @@
         <field name="arch" type="xml">
             <field name="sale_id" position="after">
                 <field name="contract_id"/>
-                <field name="tag_ids" widget="many2many_tags"/>
             </field>
             <field name="address_invoice_id" position="after">
                 <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>

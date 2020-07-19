@@ -23,12 +23,6 @@ from odoo import models, fields, api
 from odoo.addons import decimal_precision as dp
 
 
-class AccountAnalyticTag(models.Model):
-    _inherit = 'account.analytic.tag'
-
-    contract_tag = fields.Boolean()
-
-
 class AccountAnalyticAccount(models.Model):
     """Adds new fields to analytics accounts"""
 
