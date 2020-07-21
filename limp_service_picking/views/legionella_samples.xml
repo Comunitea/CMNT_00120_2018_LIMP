@@ -49,8 +49,4 @@
         <field name="view_type">form</field>
     </record>
 
-    <menuitem id="legionella_samples" parent="limp_contract.menu_limp_contract_conf" name="Legionella Samples"/>
-
-    <menuitem id="legionella_samples_conf" parent="legionella_samples" name="Legionella Samples" action="action_legionella_samples_ddd"/>
-
 </odoo>

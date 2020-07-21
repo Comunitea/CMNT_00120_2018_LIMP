@@ -36,8 +36,4 @@
         <field name="view_type">form</field>
     </record>
 
-    <menuitem id="types_ddd" parent="limp_contract.menu_limp_contract_conf" name="Types DDD"/>
-
-    <menuitem id="types_ddd_conf" parent="types_ddd" name="Types DDD" action="action_limp_types_ddd"/>
-
 </odoo>

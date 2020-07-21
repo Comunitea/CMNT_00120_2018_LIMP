@@ -22,8 +22,4 @@
         <field name="view_type">form</field>
     </record>
 
-    <menuitem id="observation_recommendation_ddd" parent="limp_contract.menu_limp_contract_conf" name="Observation / Recommendation DDD"/>
-
-    <menuitem id="observation_recommendation_ddd_conf" parent="observation_recommendation_ddd" name="Observation / Recommendation DDD" action="action_observation_recommendation_ddd"/>
-
 </odoo>

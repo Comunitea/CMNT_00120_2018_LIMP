@@ -27,4 +27,17 @@
                 </notebook>
             </field>
         </record>
+
+        <menuitem id="types_ddd" parent="menu_limp_contract_conf" name="Types DDD"/>
+
+        <menuitem id="types_ddd_conf" parent="types_ddd" name="Types DDD" action="limp_service_picking.action_limp_types_ddd"/>
+
+        <menuitem id="observation_recommendation_ddd" parent="menu_limp_contract_conf" name="Observation / Recommendation DDD"/>
+
+        <menuitem id="observation_recommendation_ddd_conf" parent="observation_recommendation_ddd" name="Observation / Recommendation DDD" action="limp_service_picking.action_observation_recommendation_ddd"/>
+
+        <menuitem id="legionella_samples" parent="menu_limp_contract_conf" name="Legionella Samples"/>
+
+        <menuitem id="legionella_samples_conf" parent="legionella_samples" name="Legionella Samples" action="limp_service_picking.action_legionella_samples_ddd"/>
+
 </odoo>
