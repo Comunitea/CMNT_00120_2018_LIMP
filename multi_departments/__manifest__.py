@@ -20,7 +20,7 @@
 {
     "name": "Multi Departments",
     "description": "*Many2many to relate departments and users.",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Pexego",
     "website": "http://www.pexego.es",
     "category": "Base/Multi-company",

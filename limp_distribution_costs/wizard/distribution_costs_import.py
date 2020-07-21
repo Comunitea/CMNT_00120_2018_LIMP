@@ -80,8 +80,7 @@ class DistributionCostsImport(models.TransientModel):
         month = ""
         file = base64.b64decode(obj.file)
         data = xlrd.open_workbook(
-            file_contents=StringIO(file).read(),
-            encoding_override="utf-8",
+            file_contents=StringIO(file).read(), encoding_override="utf-8",
         )
         sh = data.sheet_by_index(0)
         cost_fixed = 0  # suma de precios fijos

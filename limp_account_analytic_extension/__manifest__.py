@@ -21,7 +21,7 @@
 {
     "name": "Analytic account extension",
     "description": """Extends analytic accounting for doing analysis""",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Pexego",
     "website": "http://www.pexego.es",
     "category": "Account/Analytic",

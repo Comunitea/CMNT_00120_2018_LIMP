@@ -21,7 +21,7 @@
 {
     "name": "Services picking for Limpergal",
     "description": """Add new type of pickings for managing Limpergal's services""",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Pexego",
     "website": "http://www.pexego.es",
     "category": "Contract/Picking",
@@ -41,7 +41,7 @@
         "limp_distribution_costs",
         "limp_multi_delegations",
         "analytic_material_costs",
-        "report_py3o"
+        "report_py3o",
     ],
     "data": [
         "security/groups.xml",

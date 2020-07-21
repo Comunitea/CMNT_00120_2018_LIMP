@@ -21,7 +21,7 @@
 {
     "name": "Export account to glasof",
     "description": """Wizard to export account moves to Glasof""",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Pexego",
     "website": "http://www.pexego.es",
     "category": "Account/Export",

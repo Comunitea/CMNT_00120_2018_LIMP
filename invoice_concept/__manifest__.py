@@ -20,7 +20,7 @@
 {
     "name": "Analytic account invoiced by concepts",
     "description": """Add new object invoice concept to analytic account to invoice by concepts""",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Pexego",
     "website": "http://www.pexego.es",
     "category": "Base/Invoice/Contract",

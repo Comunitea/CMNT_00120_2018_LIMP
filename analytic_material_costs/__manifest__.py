@@ -21,7 +21,7 @@
 {
     "name": "Analytic account material costs",
     "description": """Add intermediate object between analytic_account and stock_move to adding material costs in analytic lines""",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Pexego",
     "website": "http://www.pexego.es",
     "category": "Base/Contract",

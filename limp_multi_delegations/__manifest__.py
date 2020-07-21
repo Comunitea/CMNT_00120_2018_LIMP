@@ -20,7 +20,7 @@
 {
     "name": "Multi Delegations",
     "description": "Add new dimension for multi-company rules, delegations.",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Pexego",
     "website": "http://www.pexego.es",
     "category": "Base/Multi-company",
