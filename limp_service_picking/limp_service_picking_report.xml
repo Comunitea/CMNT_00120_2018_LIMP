@@ -10,15 +10,8 @@
             <field name="report_name">legionella_report</field>
             <field name="module">limp_service_picking</field>
             <field name="py3o_template_fallback">report/certificado_limpieza_desinfeccion_legionella.odt</field>
-        </record>
-
-        <record id="legionella_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'stock.service.picking'" name="model"/>
-            <field name="name">legionella_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_legionella_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_legionella_termica_report" model="ir.actions.report">
@@ -29,15 +22,8 @@
             <field name="report_name">legionella_termica_report</field>
             <field name="module">limp_service_picking</field>
             <field name="py3o_template_fallback">report/CERTIFICADO_LEGIONELLA_DESINFECCION_TERMICA_ACS.odt</field>
-        </record>
-
-        <record id="legionella_termica_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'stock.service.picking'" name="model"/>
-            <field name="name">legionella_termica_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_legionella_termica_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_legionella_quimica_report" model="ir.actions.report">
@@ -48,15 +34,8 @@
             <field name="report_name">legionella_quimica_report</field>
             <field name="module">limp_service_picking</field>
             <field name="py3o_template_fallback">report/CERTIFICADO_LEGIONELLA_DESINFECCION_QUIMICA_AFCH.odt</field>
-        </record>
-
-        <record id="legionella_quimica_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'stock.service.picking'" name="model"/>
-            <field name="name">legionella_quimica_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_legionella_quimica_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_legionella_torres_sparada_report" model="ir.actions.report">
@@ -67,15 +46,8 @@
             <field name="report_name">legionella_torres_sparada_report</field>
             <field name="module">limp_service_picking</field>
             <field name="py3o_template_fallback">report/CERTIFICADO_LEGIONELLA_DESINFECCION_TORRES_SPARADA.odt</field>
-        </record>
-
-        <record id="legionella_torres_sparada_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'stock.service.picking'" name="model"/>
-            <field name="name">legionella_torres_sparada_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_legionella_torres_sparada_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_legionella_torres_cparada_report" model="ir.actions.report">
@@ -86,15 +58,8 @@
             <field name="report_name">legionella_torres_cparada_report</field>
             <field name="module">limp_service_picking</field>
             <field name="py3o_template_fallback">report/CERTIFICADO_LEGIONELLA_DESINFECCION_TORRES_CPARADA.odt</field>
-        </record>
-
-        <record id="legionella_torres_cparada_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'stock.service.picking'" name="model"/>
-            <field name="name">legionella_torres_cparada_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_legionella_torres_cparada_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_ddd_report" model="ir.actions.report">
@@ -105,15 +70,8 @@
             <field name="report_name">ddd_report</field>
             <field name="module">limp_service_picking</field>
             <field name="py3o_template_fallback">report/certificado_tratamiento_DDD.odt</field>
-        </record>
-
-        <record id="ddd_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'stock.service.picking'" name="model"/>
-            <field name="name">ddd_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_ddd_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
         </record>
 
     </data>

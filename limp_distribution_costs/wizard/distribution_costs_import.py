@@ -23,7 +23,7 @@ import base64
 import datetime
 from odoo import models, fields
 import xlrd
-import StringIO
+from io import StringIO
 import calendar
 import time
 from odoo.tools import ustr
@@ -80,7 +80,7 @@ class DistributionCostsImport(models.TransientModel):
         month = ""
         file = base64.b64decode(obj.file)
         data = xlrd.open_workbook(
-            file_contents=StringIO.StringIO(file).read(),
+            file_contents=StringIO(file).read(),
             encoding_override="utf-8",
         )
         sh = data.sheet_by_index(0)

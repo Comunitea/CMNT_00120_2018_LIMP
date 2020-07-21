@@ -10,15 +10,8 @@
             <field name="report_name">manual_ddd_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/MANUAL_DDD_BASE.odt</field>
-        </record>
-
-        <record id="manual_ddd_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">manual_ddd_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_manual_ddd_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_manual_legionella_acs_afch_report" model="ir.actions.report">
@@ -29,15 +22,8 @@
             <field name="report_name">manual_legionella_acs_afch</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/MANUAL_LEGIONELLA_BASE_ACS_AFCH.odt</field>
-        </record>
-
-        <record id="manual_legionella_acs_afch_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">manual_legionella_acs_afch</field>
-            <field eval="'ir.actions.report,'+str(py3o_manual_legionella_acs_afch_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_manual_legionella_acs_afch_aljibe_report" model="ir.actions.report">
@@ -48,15 +34,8 @@
             <field name="report_name">manual_legionella_acs_afch_aljibe</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/MANUAL_LEGIONELLA_BASE_ACS_AFCH_ALJIBE.odt</field>
-        </record>
-
-        <record id="manual_legionella_acs_afch_aljibe_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">manual_legionella_acs_afch_aljibe</field>
-            <field eval="'ir.actions.report,'+str(py3o_manual_legionella_acs_afch_aljibe_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_manual_legionella_torres_sparada_report" model="ir.actions.report">
@@ -67,15 +46,8 @@
             <field name="report_name">manual_legionella_torres_sparada</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/MANUAL_LEGIONELLA_BASE_TORRES_SINPARADA.odt</field>
-        </record>
-
-        <record id="manual_legionella_torres_sparada_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">manual_legionella_torres_sparada</field>
-            <field eval="'ir.actions.report,'+str(py3o_manual_legionella_torres_sparada_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_manual_legionella_torres_cparada_report" model="ir.actions.report">
@@ -86,15 +58,8 @@
             <field name="report_name">manual_legionella_torres_cparada</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/MANUAL_LEGIONELLA_BASE_TORRES_CONPARADA.odt</field>
-        </record>
-
-        <record id="manual_legionella_torres_cparada_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">manual_legionella_torres_cparada</field>
-            <field eval="'ir.actions.report,'+str(py3o_manual_legionella_torres_cparada_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_incidencias_acciones_report" model="ir.actions.report">
@@ -105,15 +70,8 @@
             <field name="report_name">incidencias_acciones_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/registro_incidencias_acciones_correctoras.odt</field>
-        </record>
-
-        <record id="incidencias_acciones_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">incidencias_acciones_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_incidencias_acciones_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_anexo_PCCS_report" model="ir.actions.report">
@@ -124,15 +82,8 @@
             <field name="report_name">anexo_pccs_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/ANEXO_PCCS_LEGIONELLA.odt</field>
-        </record>
-
-        <record id="anexo_PCCS_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">anexo_pccs_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_anexo_PCCS_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_anexo_PCCS_ALJIBE_report" model="ir.actions.report">
@@ -143,15 +94,8 @@
             <field name="report_name">anexo_pccs_aljibe_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/ANEXO_PCCS_LEGIONELLA_ACS_AFCH_ALJIBE.odt</field>
-        </record>
-
-        <record id="anexo_PCCS_ALJIBE_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">anexo_pccs_aljibe_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_anexo_PCCS_ALJIBE_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_anexo_PCCS_TORRES_CPARADA_report" model="ir.actions.report">
@@ -162,15 +106,8 @@
             <field name="report_name">anexo_pccs_torres_cparada_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/ANEXO_PCCS_LEGIONELLA_TORRES_CPARADA.odt</field>
-        </record>
-
-        <record id="anexo_PCCS_TORRES_CPARADA_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">anexo_pccs_torres_cparada_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_anexo_PCCS_TORRES_CPARADA_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_anexo_PCCS_TORRES_SPARADA_report" model="ir.actions.report">
@@ -181,15 +118,8 @@
             <field name="report_name">anexo_pccs_torres_sparada_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/ANEXO_PCCS_LEGIONELLA_TORRES_SPARADA.odt</field>
-        </record>
-
-        <record id="anexo_PCCS_TORRES_SPARADA_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">anexo_pccs_torres_sparada_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_anexo_PCCS_TORRES_SPARADA_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_CONTROL_TEMP_PTOS_TERMINALES_report" model="ir.actions.report">
@@ -200,15 +130,8 @@
             <field name="report_name">control_temp_puntos_terminales_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/CONTROL_MENSUAL_TEMPERATURA_PUNTOS_TERMINALES.odt</field>
-        </record>
-
-        <record id="CONTROL_TEMP_PTOS_TERMINALES_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">control_temp_puntos_terminales_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_CONTROL_TEMP_PTOS_TERMINALES_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_CONTROL_CLORO_DIARIO_report" model="ir.actions.report">
@@ -219,15 +142,8 @@
             <field name="report_name">control_cl_diario_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/CONTROL_CLORO_DIARIO.odt</field>
-        </record>
-
-        <record id="CONTROL_CLORO_DIARIO_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">control_cl_diario_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_CONTROL_CLORO_DIARIO_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_CONTROL_CLORO_SEMANAL_report" model="ir.actions.report">
@@ -238,15 +154,8 @@
             <field name="report_name">control_cl_semanal_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/CONTROL_CLORO_SEMANAL.odt</field>
-        </record>
-
-        <record id="CONTROL_CLORO_SEMANAL_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">control_cl_semanal_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_CONTROL_CLORO_SEMANAL_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
         <record id="py3o_CONTROL_MANTENIMIENTO_TORRES_report" model="ir.actions.report">
@@ -257,15 +166,8 @@
             <field name="report_name">control_mantenimiento_torres_report</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/CONTROL_MANTENIMIENTO_TORRES.odt</field>
-        </record>
-
-        <record id="CONTROL_MANTENIMIENTO_TORRES_report" model="ir.values">
-            <field eval="'action'" name="key"/>
-            <field eval="'client_print_multi'" name="key2"/>
-            <field eval="'limp.contract'" name="model"/>
-            <field name="name">control_mantenimiento_torres_report</field>
-            <field eval="'ir.actions.report,'+str(py3o_CONTROL_MANTENIMIENTO_TORRES_report)" name="value"/>
-            <field eval="True" name="object"/>
+            <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
+            <field name="binding_type">report</field>
         </record>
 
     </data>

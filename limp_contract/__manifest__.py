@@ -41,6 +41,7 @@
         "city_council",
         "limp_account_analytic_extension",
         "l10n_es_facturae",
+        "report_py3o",
     ],
     "data": [
         "security/groups.xml",

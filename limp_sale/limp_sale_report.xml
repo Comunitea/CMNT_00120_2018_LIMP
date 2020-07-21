@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <report auto="True" id="sale_frequencey_table" model="sale.order" name="sale.order.freq.table"
-            rml="limp_sale/report/limp_sale_frequency_table.rml" string="Frequency table" header="False"/>
+    <!--TODO: Migrar<report auto="True" id="sale_frequencey_table" model="sale.order" name="sale.order.freq.table"
+            rml="limp_sale/report/limp_sale_frequency_table.rml" string="Frequency table" header="False"/>-->
 </odoo>

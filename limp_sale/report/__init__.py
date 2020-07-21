@@ -19,4 +19,5 @@
 ##############################################################################
 
 # import pricelist_onprice_rule_parser
-from . import limp_sale_frequency_table_parser
+#TODO: Migrar
+#from . import limp_sale_frequency_table_parser
