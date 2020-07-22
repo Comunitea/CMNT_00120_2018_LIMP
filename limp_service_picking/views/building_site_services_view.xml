@@ -134,6 +134,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="building_site_services_action" id="menu_building_site_services_form"
-            parent="sales_team.menu_sales" sequence="40"/>
+        <!--TODO: Migrar<menuitem action="building_site_services_action" id="menu_building_site_services_form"
+            parent="sales_team.menu_sales" sequence="40"/>-->
 </odoo>

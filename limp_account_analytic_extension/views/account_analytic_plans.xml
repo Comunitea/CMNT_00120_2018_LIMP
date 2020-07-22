@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="account_analytic_distribution_form_add_department_delegation">
+    <!--TODO: Migrar<record model="ir.ui.view" id="account_analytic_distribution_form_add_department_delegation">
         <field name="name">account.analytic.distribution.form.add_department_delgation</field>
         <field name="model">account.analytic.distribution</field>
         <field name="inherit_id" ref="account_analytic_distribution.account_analytic_distribution_form"/>
@@ -16,5 +16,5 @@
                 <field name="manager_id"/>
             </xpath>
         </field>
-    </record>
+    </record>-->
 </odoo>

@@ -36,7 +36,6 @@
         "hr_timesheet",
         "analytic",
         "account",
-        "account_analytic_distribution",
         "limp_account_analytic_extension",
         "limp_distribution_costs",
         "limp_multi_delegations",

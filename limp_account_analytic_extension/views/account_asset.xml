@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <record model="ir.ui.view" id="view_account_asset_asset_form_add_analytic_dist">
+    <!--TODO: Migrar<record model="ir.ui.view" id="view_account_asset_asset_form_add_analytic_dist">
         <field name="name">account.asset.asset.form.add_analytic_distrib</field>
         <field name="model">account.asset.asset</field>
         <field name="inherit_id" ref="account_asset.view_account_asset_asset_form"/>
@@ -10,6 +10,6 @@
                 <field name="analytic_distribution_id"/>
             </field>
        </field>
-    </record>
+    </record>-->
 
 </odoo>

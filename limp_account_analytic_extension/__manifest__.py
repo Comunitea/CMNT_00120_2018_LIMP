@@ -31,7 +31,6 @@
         "account",
         "analytic_base_department",
         "limp_multi_delegations",
-        "account_analytic_distribution",
         "account_analytic_default",
         "l10n_es_account_asset",
     ],

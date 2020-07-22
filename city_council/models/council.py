@@ -28,12 +28,12 @@ class CityCouncil(models.Model):
     _name = "city.council"
 
     name = fields.Char("Council", required=True)
-    zip_ids = fields.One2many("res.better.zip", "council_id", "Zipcodes")
+    zip_ids = fields.One2many("res.city", "council_id", "Zipcodes")
 
 
-class ResBetterZip(models.Model):
+class ResCity(models.Model):
 
-    _inherit = "res.better.zip"
+    _inherit = "res.city"
 
     council_id = fields.Many2one("city.council", "Council")
 

@@ -41,9 +41,9 @@ class AccountInvoice(models.Model):
     )
 
 
-class AccountAnalyticDistributionRule(models.Model):
+class AccountAnalyticDistribution(models.Model):
 
-    _inherit = "account.analytic.distribution.rule"
+    _inherit = "account.analytic.distribution"
 
     manager_id = fields.Many2one(
         default=lambda r: r.env.user.context_responsible_id.id

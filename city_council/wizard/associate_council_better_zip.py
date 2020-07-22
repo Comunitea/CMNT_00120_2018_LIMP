@@ -9,7 +9,7 @@ class AssociateCouncilBetterZipWizard(models.TransientModel):
     _name = "associate.council.better.zip.wizard"
 
     def associate(self):
-        for zip in self.env["res.better.zip"].search([]):
+        for zip in self.env["res.city"].search([]):
             council_ids = self.env["city.council"].search(
                 ["name", "=", zip.city]
             )

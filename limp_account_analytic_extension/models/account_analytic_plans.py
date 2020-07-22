@@ -20,9 +20,9 @@
 from odoo import models, fields, _
 
 
-class AccountAnalyticDistributionRule(models.Model):
+class AccountAnalyticDistribution(models.Model):
 
-    _inherit = "account.analytic.distribution.rule"
+    _inherit = "account.analytic.distribution"
 
     delegation_id = fields.Many2one(
         "res.delegation",

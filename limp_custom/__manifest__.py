@@ -35,7 +35,6 @@
         "multi_departments",
         "limp_service_picking",
         "purchase",
-        "account_analytic_distribution",
         "limp_multi_delegations",
         "limp_account_analytic_extension",
         "containers_management",

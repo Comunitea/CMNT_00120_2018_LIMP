@@ -37,6 +37,6 @@
     </record>
 
     <menuitem name="Councils" groups="base.group_system" action="action_city_council"
-        parent="sales_team.menu_localisation" id="menu_city_council_partner"/>
+        parent="contacts.menu_localisation" id="menu_city_council_partner"/>
 
 </odoo>
