@@ -4,7 +4,6 @@
     <record id="container_move_tree" model="ir.ui.view">
         <field name="name">container.move.tree</field>
         <field name="model">container.move</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Container moves">
                 <field name="container_id"/>
@@ -20,7 +19,6 @@
     <record id="container_move_form" model="ir.ui.view">
         <field name="name">container.move.form</field>
         <field name="model">container.move</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Container move">
                 <sheet>
@@ -43,7 +41,6 @@
     <record id="container_move_search" model="ir.ui.view">
         <field name="name">container.move.search</field>
         <field name="model">container.move</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Container moves">
                 <filter string="Outputs" name="outputs" domain="[('move_type','=','out')]" help="Output moves"/>
@@ -56,10 +53,10 @@
                 <field name="type"/>
                 <newline/>
                 <group expand="1" string="Group By..." >
-                    <filter string="Type" domain="[]" context="{'group_by':'move_type'}"/>
-                    <filter string="Container" domain="[]" context="{'group_by':'container_id'}"/>
-                    <filter string="Container type" domain="[]" context="{'group_by':'type'}"/>
-                    <filter string="Driver" domain="[]" context="{'group_by':'responsible_id'}"/>
+                    <filter string="Type" name="type" domain="[]" context="{'group_by':'move_type'}"/>
+                    <filter string="Container" name="container" domain="[]" context="{'group_by':'container_id'}"/>
+                    <filter string="Container type" name="container_type" domain="[]" context="{'group_by':'type'}"/>
+                    <filter string="Driver" name="driver" domain="[]" context="{'group_by':'responsible_id'}"/>
                 </group>
             </search>
         </field>

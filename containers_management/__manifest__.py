@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011 Comunitea Servicios Tecnológicos S.L.
 #    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,10 +23,10 @@
     "name": "Containers management",
     "description": """Allow to manage containers, move with customers and moves history.""",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comuniotea.com",
     "category": "Base/Containers",
-    "depends": ["base", "product", "stock", "hr"],
+    "depends": ["stock", "hr"],
     "data": [
         "views/container.xml",
         "views/container_move.xml",

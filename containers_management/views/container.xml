@@ -4,7 +4,6 @@
     <record id="container_tree" model="ir.ui.view">
         <field name="name">container.tree</field>
         <field name="model">container</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Containers">
                 <field name="code"/>
@@ -23,7 +22,6 @@
     <record id="container_form" model="ir.ui.view">
         <field name="name">container.form</field>
         <field name="model">container</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Container">
                 <group>
@@ -72,22 +70,21 @@
     <record id="container_search" model="ir.ui.view">
         <field name="name">container.search</field>
         <field name="model">container</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Containers">
                 <filter string="Home" name="home" domain="[('home', '=', True)]"/>
-                <filter string="Placed" domain="[('home', '=', False)]"/>
+                <filter string="Placed" name="placed" domain="[('home', '=', False)]"/>
                 <separator orientation="vertical"/>
                 <field name="partner_id"/>
-                <field name="code" select="1"/>
-                <field name="capacity" select="1"/>
-                <field name="situation_id" select="1"/>
-                <field name="active" select="2"/>
+                <field name="code"/>
+                <field name="capacity"/>
+                <field name="situation_id"/>
+                <field name="active"/>
                 <field name="container_placement"/>
                 <newline/>
                 <group expand="1" string="Group By..." colspan="10" col="12">
-                    <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
-                    <filter string="Shape" domain="[]" context="{'group_by':'shape'}"/>
+                    <filter string="Type" name="type" domain="[]" context="{'group_by':'type'}"/>
+                    <filter string="Shape" name="shape" domain="[]" context="{'group_by':'shape'}"/>
                     <filter string="Placement" name="placement" domain="[]" context="{'group_by':'container_placement'}"/>
                 </group>
             </search>
