@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011 Comunitea
 #    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
     "name": "Partner extension",
     "description": "Add some improvements in partners.",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
+    "author": "Comunitea",
     "website": "http://www.pexego.es",
     "category": "Base/Partner",
     "depends": ["base_vat", "l10n_es_partner"],

@@ -18,18 +18,12 @@
 #
 ##############################################################################
 
-from odoo import models, api, fields
+from odoo import models, api
 
 
 class ResPartner(models.Model):
 
     _inherit = "res.partner"
-
-    @api.model
-    def _commercial_fields(self):
-        res = super(ResPartner, self)._commercial_fields()
-        res.remove("vat")
-        return res
 
     @api.multi
     def open_contract_employees(self):
@@ -42,7 +36,7 @@ class ResPartner(models.Model):
             "view_type": "form",
             "view_mode": "tree,form",
             "res_model": "limp.contract",
-            "domain": "[('partner_id', '=', [%s])]" % self.id,
+            "domain": "[('partner_id', 'child_of', [%s])]" % self.id,
             "context": "{'default_worker': True}",
             "view_id": tree_view_id.id,
             "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
@@ -65,8 +59,9 @@ class ResPartner(models.Model):
             "view_type": "form",
             "view_mode": "tree,form",
             "res_model": "stock.service.picking",
-            "domain": "[('partner_id', '=', [%s])]" % self.id,
-            "context": "{'default_worker': True}",
+            "domain": "[('picking_type','=','wastes'),"
+                      "('partner_id', 'child_of', [%s])]" % self.id,
+            "context": "{'default_worker': True, 'type': 'wastes'}",
             "view_id": tree_view_id.id,
             "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
             "type": "ir.actions.act_window",
@@ -88,8 +83,9 @@ class ResPartner(models.Model):
             "view_type": "form",
             "view_mode": "tree,form",
             "res_model": "stock.service.picking",
-            "domain": "[('partner_id', '=', [%s])]" % self.id,
-            "context": "{'default_worker': True}",
+            "domain": "[('picking_type','=','sporadic'),"
+                      "('partner_id', 'child_of', [%s])]" % self.id,
+            "context": "{'default_worker': True, 'type': 'sporadic'}",
             "view_id": tree_view_id.id,
             "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
             "type": "ir.actions.act_window",
