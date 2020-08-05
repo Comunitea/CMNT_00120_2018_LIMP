@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 
 
 class WasteLerCode(models.Model):

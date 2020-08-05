@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011 Comunitea Servicios Tecnológicos S.L.
 #    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,10 +22,10 @@
     "name": "Waste management",
     "description": """Allow to manage waste""",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comunitea.com",
     "category": "Base/Waste",
-    "depends": ["base", "stock"],
+    "depends": ["stock"],
     "data": ["views/waste_ler_code.xml", "security/ir.model.access.csv"],
     "installable": True,
 }
