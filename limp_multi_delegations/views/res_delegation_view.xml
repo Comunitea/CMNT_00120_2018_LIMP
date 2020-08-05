@@ -4,7 +4,6 @@
         <record id="res_delegation_tree" model="ir.ui.view">
             <field name="name">res.delegation.tree</field>
             <field name="model">res.delegation</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Delegations">
                     <field name="code"/>
@@ -17,7 +16,6 @@
         <record id="res_delegation_form" model="ir.ui.view">
             <field name="name">res.delegation.form</field>
             <field name="model">res.delegation</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Delegation">
                     <sheet>
@@ -43,7 +41,6 @@
         <record id="res_delegation_search" model="ir.ui.view">
             <field name="name">res.delegation.search</field>
             <field name="model">res.delegation</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Delegations">
                     <field name="code"/>

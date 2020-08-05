@@ -3,7 +3,6 @@
 
         <record model="ir.ui.view" id="view_users_form_add_delegations_page">
             <field name="name">res.users.form_add_delegations_page</field>
-            <field name="type">form</field>
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
@@ -22,7 +21,6 @@
             <field name="name">view.delegation.form.hr.inherited1</field>
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form_simple_modif" />
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="company_id" position="after">
                     <field name="context_delegation_id" widget="selection" readonly="0"/>

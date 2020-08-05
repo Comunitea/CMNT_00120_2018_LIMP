@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-23 11:52+0000\n"
-"PO-Revision-Date: 2018-05-23 11:52+0000\n"
+"POT-Creation-Date: 2020-08-05 17:16+0000\n"
+"PO-Revision-Date: 2020-08-05 17:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_child_ids
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__child_ids
 msgid "Child delegations"
 msgstr "Delegaciones hijas"
 
@@ -26,49 +26,50 @@ msgid "Code"
 msgstr "Código"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_create_uid
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_create_date
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Creado en"
 
 #. module: limp_multi_delegations
 #: model:ir.model,name:limp_multi_delegations.model_res_delegation
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_hr_employee__delegation_id
 #: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_name
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_users_context_delegation_id
-#: model:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_form
-#: model:ir.ui.view,arch_db:limp_multi_delegations.view_employee_filter_add_delegation_id
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_users__context_delegation_id
+#: model_terms:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_form
+#: model_terms:ir.ui.view,arch_db:limp_multi_delegations.view_employee_filter_add_delegation_id
 msgid "Delegation"
 msgstr "Delegación"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_address_id
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__address_id
 msgid "Delegation Address"
-msgstr "Dirección delegación"
+msgstr "Dirección Delegación"
 
 #. module: limp_multi_delegations
 #: model:ir.actions.act_window,name:limp_multi_delegations.action_res_delegation
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_users_delegation_ids
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_users__delegation_ids
 #: model:ir.ui.menu,name:limp_multi_delegations.menu_res_delegation_open
-#: model:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_search
-#: model:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_tree
-#: model:ir.ui.view,arch_db:limp_multi_delegations.view_users_form_add_delegations_page
+#: model_terms:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_search
+#: model_terms:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_tree
+#: model_terms:ir.ui.view,arch_db:limp_multi_delegations.view_users_form_add_delegations_page
 msgid "Delegations"
 msgstr "Delegaciones"
 
 #. module: limp_multi_delegations
 #: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_description
-#: model:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_form
+#: model_terms:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_form
 msgid "Description"
 msgstr "Descripción"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_display_name
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nombre mostrado"
 
 #. module: limp_multi_delegations
 #: model:ir.model,name:limp_multi_delegations.model_hr_employee
@@ -76,7 +77,7 @@ msgid "Employee"
 msgstr "Empleado"
 
 #. module: limp_multi_delegations
-#: code:addons/limp_multi_delegations/models/res_delegation.py:43
+#: code:addons/limp_multi_delegations/models/res_delegation.py:48
 #, python-format
 msgid "Error! You cannot create recursive delegations."
 msgstr "¡Error! No puede crear delegaciones recursivas entre sí."
@@ -87,32 +88,32 @@ msgid "ID"
 msgstr "ID"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation___last_update
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última Modifiación en"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_write_uid
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última actualización de"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_write_date
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Última actualización en"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_parent_id
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__parent_id
 msgid "Parent delegation"
 msgstr "Delegación padre"
 
 #. module: limp_multi_delegations
-#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation_user_ids
+#: model:ir.model.fields,field_description:limp_multi_delegations.field_res_delegation__user_ids
 msgid "Related users"
 msgstr "Usuarios relacionados"
 
 #. module: limp_multi_delegations
 #: model:ir.model,name:limp_multi_delegations.model_res_users
-#: model:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_form
+#: model_terms:ir.ui.view,arch_db:limp_multi_delegations.res_delegation_form
 msgid "Users"
 msgstr "Usuarios"
