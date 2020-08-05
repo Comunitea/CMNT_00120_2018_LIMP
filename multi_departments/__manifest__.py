@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011 Comunitea Servicios Tecnonólicos S.L.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,10 +21,10 @@
     "name": "Multi Departments",
     "description": "*Many2many to relate departments and users.",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
+    "author": "Comunitea",
     "website": "http://www.pexego.es",
     "category": "Base/Multi-company",
-    "depends": ["base", "hr"],
+    "depends": ["hr"],
     "data": [
         "views/hr_department.xml",
         "views/res_users.xml",
