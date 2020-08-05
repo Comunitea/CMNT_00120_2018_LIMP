@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -22,14 +21,13 @@
 {
     "name": "Council city",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
+    "author": "Comunitea",
     "category": "Generic Modules/Base",
     "description": """Council to classify cities (zipcodes)""",
-    "depends": ["base", "base_location", "sales_team", "analytic", "contacts"],
+    "depends": ["base_location", "sales_team", "analytic", "contacts"],
     "data": [
         "views/res_partner.xml",
         "views/council.xml",
-        "wizard/associate_council_better_zip.xml",
         "security/ir.model.access.csv",
     ],
     "installable": True,

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-14 17:45+0000\n"
-"PO-Revision-Date: 2018-05-14 17:45+0000\n"
+"POT-Creation-Date: 2020-08-04 23:59+0000\n"
+"PO-Revision-Date: 2020-08-04 23:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,126 +16,64 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: city_council
-#: model:ir.model,name:city_council.model_account_analytic_account
-msgid "Analytic Account"
-msgstr "Cuenta analítica"
-
-#. module: city_council
-#: model:ir.ui.view,arch_db:city_council.associate_council_better_zip_wizard_form
-msgid "Associate"
-msgstr "Asociar"
-
-#. module: city_council
-#: model:ir.actions.act_window,name:city_council.associate_council_better_zip_wizard_action
-#: model:ir.ui.menu,name:city_council.associate_council_better_zip_wizard_menu
-msgid "Associate zips with councils"
-msgstr "Asociar códigos postales con ayuntamientos"
-
-#. module: city_council
-#: model:ir.ui.view,arch_db:city_council.associate_council_better_zip_wizard_form
-msgid "Cancel"
-msgstr "Cancelar"
-
-#. module: city_council
-#: model:ir.ui.view,arch_db:city_council.view_city_council_form
+#: model_terms:ir.ui.view,arch_db:city_council.view_city_council_form
 msgid "Cities"
 msgstr "Ciudades"
 
 #. module: city_council
-#: model:ir.model,name:city_council.model_city_city
-msgid "City"
-msgstr "Ciudad"
-
-#. module: city_council
-#: model:ir.model,name:city_council.model_res_better_zip
-msgid "City/locations completion object"
-msgstr "City/locations completion object"
-
-#. module: city_council
 #: model:ir.actions.act_window,name:city_council.action_city_council
+#: model:ir.model.fields,field_description:city_council.field_account_analytic_account__location_id
 #: model:ir.model.fields,field_description:city_council.field_city_council_name
-#: model:ir.model.fields,field_description:city_council.field_res_better_zip_council_id
-#: model:ir.model.fields,field_description:city_council.field_res_partner_council_id
-#: model:ir.model.fields,field_description:city_council.field_res_users_council_id
-#: model:ir.ui.view,arch_db:city_council.res_partner_add_council
-#: model:ir.ui.view,arch_db:city_council.view_city_council_form
+#: model:ir.model.fields,field_description:city_council.field_res_city__council_id
+#: model:ir.model.fields,field_description:city_council.field_res_partner__council_id
+#: model:ir.model.fields,field_description:city_council.field_res_users__council_id
+#: model_terms:ir.ui.view,arch_db:city_council.res_partner_add_council
+#: model_terms:ir.ui.view,arch_db:city_council.view_city_council_form
 msgid "Council"
 msgstr "Ayuntamiento"
 
 #. module: city_council
 #: model:ir.ui.menu,name:city_council.menu_city_council_partner
-#: model:ir.ui.view,arch_db:city_council.view_city_council_tree
+#: model_terms:ir.ui.view,arch_db:city_council.view_city_council_tree
 msgid "Councils"
 msgstr "Ayuntamientos"
 
 #. module: city_council
-#: model:ir.model.fields,field_description:city_council.field_associate_council_better_zip_wizard_create_uid
-#: model:ir.model.fields,field_description:city_council.field_city_council_create_uid
+#: model:ir.model.fields,field_description:city_council.field_city_council__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: city_council
-#: model:ir.model.fields,field_description:city_council.field_associate_council_better_zip_wizard_create_date
-#: model:ir.model.fields,field_description:city_council.field_city_council_create_date
+#: model:ir.model.fields,field_description:city_council.field_city_council__create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: city_council
-#: model:ir.model.fields,field_description:city_council.field_associate_council_better_zip_wizard_display_name
-#: model:ir.model.fields,field_description:city_council.field_city_council_display_name
+#: model:ir.model.fields,field_description:city_council.field_city_council__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: city_council
-#: model:ir.model.fields,field_description:city_council.field_associate_council_better_zip_wizard_id
 #: model:ir.model.fields,field_description:city_council.field_city_council_id
 msgid "ID"
 msgstr "ID"
 
 #. module: city_council
-#: model:ir.model.fields,field_description:city_council.field_associate_council_better_zip_wizard___last_update
-#: model:ir.model.fields,field_description:city_council.field_city_council___last_update
+#: model:ir.model.fields,field_description:city_council.field_city_council____last_update
 msgid "Last Modified on"
 msgstr "Última Modifiación en"
 
 #. module: city_council
-#: model:ir.model.fields,field_description:city_council.field_associate_council_better_zip_wizard_write_uid
-#: model:ir.model.fields,field_description:city_council.field_city_council_write_uid
+#: model:ir.model.fields,field_description:city_council.field_city_council__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: city_council
-#: model:ir.model.fields,field_description:city_council.field_associate_council_better_zip_wizard_write_date
-#: model:ir.model.fields,field_description:city_council.field_city_council_write_date
+#: model:ir.model.fields,field_description:city_council.field_city_council__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: city_council
-#: model:ir.model,name:city_council.model_res_partner
-msgid "Partner"
-msgstr "Empresa"
-
-#. module: city_council
-#: model:ir.model,name:city_council.model_res_partner_address
-msgid "Partner Addresses"
-msgstr "Direcciones de empresa"
-
-#. module: city_council
-#: model:ir.model.fields,field_description:city_council.field_city_council_zip_ids
+#: model:ir.model.fields,field_description:city_council.field_city_council__zip_ids
 msgid "Zipcodes"
 msgstr "Códigos postales"
-
-#. module: city_council
-#: model:ir.model,name:city_council.model_associate_council_better_zip_wizard
-msgid "associate.council.better.zip.wizard"
-msgstr "associate.council.better.zip.wizard"
-
-#. module: city_council
-#: model:ir.model,name:city_council.model_city_council
-msgid "city.council"
-msgstr "city.council"
-
-#. module: city_council
-#: model:ir.ui.view,arch_db:city_council.associate_council_better_zip_wizard_form
-msgid "or"
-msgstr "o"

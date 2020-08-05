@@ -12,4 +12,4 @@ class ResPartner(models.Model):
     @api.onchange("zip_id")
     def onchange_zip_id_set_council(self):
         if self.zip_id:
-            self.council_id = self.zip_id.council_id
+            self.council_id = self.zip_id.city_id.council_id

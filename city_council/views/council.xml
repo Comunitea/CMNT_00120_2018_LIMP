@@ -4,7 +4,6 @@
     <record model="ir.ui.view" id="view_city_council_tree">
         <field name="name">city.council.tree</field>
         <field name="model">city.council</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Councils">
                 <field name="name"/>
@@ -15,7 +14,6 @@
     <record model="ir.ui.view" id="view_city_council_form">
         <field name="name">city.council.form</field>
         <field name="model">city.council</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Council">
                 <sheet>
