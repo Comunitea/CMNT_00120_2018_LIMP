@@ -4,7 +4,6 @@
         <record id="fleet_expense_tree" model="ir.ui.view">
             <field name="name">fleet.expense.tree</field>
             <field name="model">fleet.expense</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Fleet expenses">
                     <field name="expense_date"/>
@@ -25,7 +24,6 @@
         <record id="fleet_expense_form" model="ir.ui.view">
             <field name="name">fleet.expense.form</field>
             <field name="model">fleet.expense</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Fleet expense">
                     <group>
@@ -64,22 +62,21 @@
         <record id="fleet_expense_search" model="ir.ui.view">
             <field name="name">fleet.expense.search</field>
             <field name="model">fleet.expense</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Fleet expenses">
-                    <field name="name" select="1"/>
-                    <field name="expense_date" select="1"/>
-                    <field name="fleet_id" select="1"/>
+                    <field name="name"/>
+                    <field name="expense_date"/>
+                    <field name="fleet_id"/>
                     <field name="expense_type" widget="selection"/>
                     <field name="partner_id"/>
                     <field name="distribute"/>
                     <field name="department_id"/>
                     <newline/>
                     <group  expand='0' string='Group by...'>
-                       <filter string='Type' domain="[]" context="{'group_by' : 'expense_type'}" />
-                       <filter string='Vehicle' context="{'group_by' : 'fleet_id'}"/>
-                       <filter string='Supplier' context="{'group_by' : 'partner_id'}"/>
-                       <filter string='Department' context="{'group_by' : 'department_id'}"/>
+                       <filter string='Type' name="type" domain="[]" context="{'group_by' : 'expense_type'}" />
+                       <filter string='Vehicle' name="vehicle" context="{'group_by' : 'fleet_id'}"/>
+                       <filter string='Supplier' name="supplier" context="{'group_by' : 'partner_id'}"/>
+                       <filter string='Department' name="department" context="{'group_by' : 'department_id'}"/>
                     </group>
                 </search>
             </field>

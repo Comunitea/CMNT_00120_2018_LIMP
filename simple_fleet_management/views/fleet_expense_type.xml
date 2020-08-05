@@ -4,7 +4,6 @@
         <record id="fleet_expense_type_tree" model="ir.ui.view">
             <field name="name">fleet.expense.type.tree</field>
             <field name="model">fleet.expense.type</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Fleet expense types">
                     <field name="name"/>
@@ -16,7 +15,6 @@
         <record id="fleet_expense_type_form" model="ir.ui.view">
             <field name="name">fleet.expense.type.form</field>
             <field name="model">fleet.expense.type</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Fleet expense type">
                     <group>
@@ -34,7 +32,6 @@
         <record id="fleet_expense_type_search" model="ir.ui.view">
             <field name="name">fleet.expense.type.search</field>
             <field name="model">fleet.expense.type</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Fleet expense types">
                     <field name="name"/>

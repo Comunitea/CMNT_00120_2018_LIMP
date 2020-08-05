@@ -70,18 +70,20 @@ class FleetExpense(models.Model):
             if expense.expense_type.product_id:
                 net_amount = sum(
                     [
-                        x._compute_amount(
+                        x.with_context(force_price_include=True).
+                        _compute_amount(
                             expense.amount,
                             expense.amount,
                             1,
                             product=expense.expense_type.product_id or False,
                             partner=expense.partner_id or False,
                         )
-                        for x in expense.expense_type.product_id.supplier_taxes_id
+                        for x in expense.expense_type.
+                        product_id.supplier_taxes_id
                     ]
                 )
                 if net_amount:
-                    expense.net_amount = net_amount
+                    expense.net_amount = expense.amount - net_amount
                     continue
             expense.net_amount = expense.amount
 

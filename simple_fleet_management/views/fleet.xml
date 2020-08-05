@@ -4,7 +4,6 @@
     <record id="fleet_tree" model="ir.ui.view">
         <field name="name">fleet.tree</field>
         <field name="model">fleet</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Fleet">
                 <field name="name"/>
@@ -18,7 +17,6 @@
     <record id="fleet_form" model="ir.ui.view">
         <field name="name">fleet.form</field>
         <field name="model">fleet</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Vehicle">
                 <group>
@@ -78,10 +76,9 @@
     <record id="fleet_search" model="ir.ui.view">
         <field name="name">fleet.search</field>
         <field name="model">fleet</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Fleet">
-                <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
+                <filter string="Type" name="type" domain="[]" context="{'group_by':'type'}"/>
                 <field name="name"/>
                 <field name="license_plate"/>
                 <field name="active"/>
@@ -99,7 +96,7 @@
         <field name="view_type">form</field>
     </record>
 
-    <menuitem id="menu_fleet_top" name="Fleet" sequence="70"/>
+    <menuitem id="menu_fleet_top" name="Fleet" sequence="70" web_icon="simple_fleet_management,static/description/icon.png"/>
     <menuitem id="menu_fleet" parent="menu_fleet_top" name="Fleet"/>
 
     <menuitem action="fleet_action" id="menu_fleet_open" parent="menu_fleet" name="Fleet"/>
