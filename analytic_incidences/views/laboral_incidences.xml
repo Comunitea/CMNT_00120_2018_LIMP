@@ -4,7 +4,6 @@
     <record id="hr_laboral_incidence_tree" model="ir.ui.view">
         <field name="name">hr.laboral.incidence.tree</field>
         <field name="model">hr.laboral.incidence</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Incidences">
                 <field name="initial_date"/>
@@ -17,7 +16,6 @@
     <record id="hr_laboral_incidence_form" model="ir.ui.view">
         <field name="name">hr.laboral.incidence.form</field>
         <field name="model">hr.laboral.incidence</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Incidence">
                 <sheet>

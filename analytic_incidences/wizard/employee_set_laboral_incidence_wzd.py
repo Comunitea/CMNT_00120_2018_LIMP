@@ -92,9 +92,9 @@ class EmployeeSetLaboralIncidenceWzd(models.TransientModel):
                 "absence_id_tp": line_child_remu.absence_id_tp.id,
                 "date_to": line_child_remu.date_to or False,
                 "conditions": line_child_remu.conditions,
-                "conditions": line_child_remu.conditions,
                 "effective": line_child_remu.effective,
-                "distribute_bt_remuneration": line_child_remu.distribute_bt_remuneration,
+                "distribute_bt_remuneration":
+                line_child_remu.distribute_bt_remuneration,
             }
 
             type_incidence_normal_id = self.env.ref(
@@ -121,17 +121,14 @@ class EmployeeSetLaboralIncidenceWzd(models.TransientModel):
                         "employee_id": obj.id,
                     }
                 )
-
         result = self.env.ref(
             "analytic_incidences.action_remuneration_tree"
         ).read()[0]
-        result["domain"] = str(
-            [
+        result["domain"] = [
                 ("employee_id", "=", obj.id),
                 ("date", ">=", line_child_remu.date),
                 "|",
                 ("date_to", ">=", line_child_remu.date_to),
                 ("date_to", "=", False),
             ]
-        )
         return result

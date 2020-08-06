@@ -3,7 +3,6 @@
     <record id="absence_tree" model="ir.ui.view">
         <field name="name">absence.tree</field>
         <field name="model">absence</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Absence">
                 <field name="name"/>
@@ -14,7 +13,6 @@
     <record id="absence_form" model="ir.ui.view">
         <field name="name">absence.form</field>
         <field name="model">absence</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Absence">
                 <sheet>

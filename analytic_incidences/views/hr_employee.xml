@@ -14,7 +14,6 @@
         <field name="name">hr.employee.form.add_incidences_field</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <page name="personal_information" position="after">
                 <page string="Laboral incidences" groups="hr.group_hr_manager">
@@ -25,7 +24,7 @@
                 <field name="work_council_id"/>
             </field>
             <div name="button_box" position="inside">
-                <button string="remunerations" name="%(remuneration_employee_link)d"
+                <button string="Remunerations" name="%(remuneration_employee_link)d"
                         type="action" groups="hr.group_hr_user"
                         class="oe_stat_button" icon="fa-archive"/>
             </div>
@@ -41,7 +40,7 @@
                 <field name="active_remunerations" invisible="1"/>
             </field>
             <tree position="attributes">
-                <attribute name="colors">red:not active_remunerations;</attribute>
+                <attribute name="decoration-danger">not active_remunerations</attribute>
             </tree>
         </field>
     </record>
@@ -55,9 +54,25 @@
                 <field name="active_remunerations" invisible="1"/>
             </field>
             <tree position="attributes">
-                <attribute name="colors">red:not active_remunerations;</attribute>
+                <attribute name="decoration-danger">not active_remunerations</attribute>
             </tree>
         </field>
     </record>
+
+    <record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+        <field name="view_mode">tree,form,activity,kanban</field>
+    </record>
+
+    <menuitem
+            id="hr.menu_hr_main"
+            name="Human Resources"
+            parent="hr.menu_hr_root"
+            sequence="3"/>
+
+    <menuitem
+            id="hr.menu_open_view_employee_list_my"
+            action="hr.open_view_employee_list_my"
+            parent="hr.menu_hr_root"
+            sequence="1"/>
 
 </odoo>

@@ -74,7 +74,7 @@ class Remuneration(models.Model):
     ss_no_hours = fields.Float("No ss hours", digits=(4, 2))
     total_hours = fields.Float(compute="_compute_total_hours")
     analytic_distribution_id = fields.Many2one(
-        "account.analytic.distribution", "Analytic Distribution"
+        "account.analytic.tag", "Analytic Distribution"
     )
     company_id = fields.Many2one(
         "res.company",
@@ -202,9 +202,8 @@ class Remuneration(models.Model):
             if incidence_obj.is_absence:
                 if not vals.get("absence_id_tp", False):
                     raise UserError(
-                        _(
-                            "As the incidence of absence type must complete the type of absence !"
-                        )
+                        _("As the incidence of absence type must complete "
+                          "the type of absence !")
                     )
 
         if self:
@@ -215,9 +214,8 @@ class Remuneration(models.Model):
                     and not vals.get("absence_id_tp", False)
                 ):
                     raise UserError(
-                        _(
-                            "As the incidence of absence type must complete the type of absence !"
-                        )
+                        _("As the incidence of absence type must complete "
+                          "the type of absence !")
                     )
 
         return True

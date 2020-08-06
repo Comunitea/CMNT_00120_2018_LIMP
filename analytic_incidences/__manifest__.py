@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2012 Comunitea Servicios Tecnológicos S.L.
 #    $Omar Castiñeira Saavedra$
 #    $Marta Vázquez Rodríguez$
 #
@@ -22,16 +22,17 @@
     "name": "Analytic laboral incidences",
     "description": """Allow creates laboral incidences""",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comunitea.com",
     "category": "Base/Laboral/Incidences",
-    "depends": ["base", "hr", "account", "city_council", "invoice_concept"],
+    "depends": ["hr", "city_council", "invoice_concept"],
     "data": [
         "wizard/analytic_incidence_wzd.xml",
         "views/absence.xml",
         "views/hr_employee.xml",
         "views/incidence.xml",
         "views/remuneration.xml",
+        "views/laboral_incidences.xml",
         "wizard/employee_incidence_set_end_date_view.xml",
         "wizard/employee_replacement_wzd.xml",
         "data/incidence_data.xml",

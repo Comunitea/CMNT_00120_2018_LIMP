@@ -4,7 +4,6 @@
     <record id="incidence_tree" model="ir.ui.view">
         <field name="name">incidence.tree</field>
         <field name="model">incidence</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Incidences">
                 <field name="name"/>
@@ -15,7 +14,6 @@
     <record id="incidence_form" model="ir.ui.view">
         <field name="name">incidence.form</field>
         <field name="model">incidence</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Incidences">
                 <sheet>

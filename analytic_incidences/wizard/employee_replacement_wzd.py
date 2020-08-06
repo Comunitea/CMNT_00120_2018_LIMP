@@ -98,36 +98,12 @@ class EmployeeReplacementWzd(models.TransientModel):
             employee_domain.append(
                 ("work_council_id", "=", self.search_location.id)
             )
-        #        if self.department_id:
-        #            employee_domain.append(('department_ids', 'in', [self.department_id.id]))
         if self.search_employee_id:
             employee_domain.append(("id", "!=", self.search_employee_id.id))
         self.search_employee_ids = self.env["hr.employee"].search(
             employee_domain
         )
         return {"type": "ir.actions.do_nothing"}
-
-        #  for x in self.pool.get('hr.employee').browse(cr, uid, employees):
-        #  if x.department_ids:
-        #  for y in x.department_ids:
-        #  if y.id == self.department_id.id:
-        #  possible_employees.append(x.id)
-        """real_possible_employees = []
-        if possible_employees:
-            for employee in self.pool.get('hr.employee').browse(cr, uid, possible_employees):
-                total_availability = datetime.strptime(obj.end_date, "%Y-%m-%d") - datetime.strptime(obj.start_date, "%Y-%m-%d")
-                total_availability = total_availability.days * 8
-                if total_availability < 0:
-                    raise osv.except_osv(_('Error!'),_("Incorrect range of dates"))
-                occupation_ids = self.pool.get('account.analytic.occupation').search(cr, uid, [('employee_id', '=', employee.id), ('state', 'in', ['active','replacement']), ('date', '>=', obj.start_date), ('date', '<=', obj.end_date)])
-                total_occupation = 0.0
-                for occupation in self.pool.get('account.analytic.occupation').browse(cr, uid, occupation_ids):
-                    total_occupation += occupation.duration
-
-                if total_availability >= total_occupation + obj.hour_no:
-                    real_possible_employees.append(employee.id)
-
-        obj.write({'employee_ids': [(6, 0, real_possible_employees)]})"""
 
     @api.multi
     def action_replace(self):
@@ -146,9 +122,8 @@ class EmployeeReplacementWzd(models.TransientModel):
             for line_remuneration in remuneration_objs:
                 if not line_remuneration.incidence:
                     raise UserError(
-                        _(
-                            "You must set remuneration as based of incidence for replacing employee"
-                        )
+                        _("You must set remuneration as based of incidence "
+                          "for replacing employee")
                     )
 
                 if (
@@ -211,7 +186,8 @@ class EmployeeReplacementWzd(models.TransientModel):
                     {
                         "employee_id": self.employee_id.id,
                         "date": line_remuneration.date,
-                        "analytic_account_id": line_remuneration.analytic_account_id.id,
+                        "analytic_account_id":
+                        line_remuneration.analytic_account_id.id,
                         "parent_id": line_remuneration.id,
                         "incidence_id_tp": type_incidence_id,
                         "date_to": line_remuneration.date_to or False,

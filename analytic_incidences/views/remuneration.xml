@@ -4,7 +4,6 @@
      <record id="remuneration_tree" model="ir.ui.view">
         <field name="name">remuneration.tree</field>
         <field name="model">remuneration</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Remuneration">
                 <field name="employee_id"/>
@@ -30,7 +29,6 @@
     <record id="remuneration_form" model="ir.ui.view">
         <field name="name">remuneration.form</field>
         <field name="model">remuneration</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Remuneration">
                 <header>
@@ -100,24 +98,23 @@
     <record id="remuneration_search" model="ir.ui.view">
         <field name="name">remuneration.search</field>
         <field name="model">remuneration</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Remuneration">
                 <group col="8" colspan="4">
                     <filter string="Actives" name="actives" domain="[('old', '=', False)]"/>
-                    <field name="employee_id" select="1"/>
-                    <field name="date" select="1"/>
-                    <field name="incidence_id_tp" select="1"/>
-                    <field name="incidence" select="1"/>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="incidence_id_tp"/>
+                    <field name="incidence"/>
                     <field name="analytic_account_id"/>
                 </group>
                 <newline/>
                 <group expand="1" string="Group By...">
-                    <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
-                    <filter string="Date from" context="{'group_by': 'date'}"/>
-                    <filter string="Incidence" context="{'group_by': 'incidence'}"/>
-                    <filter string="Analytic account" context="{'group_by': 'analytic_account_id'}"/>
-                    <filter string="Company" context="{'group_by': 'company_id'}"/>
+                    <filter string="Employee" name="employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Date from" name="date_from" context="{'group_by': 'date'}"/>
+                    <filter string="Incidence" name="incidence" context="{'group_by': 'incidence'}"/>
+                    <filter string="Analytic account" name="analytic" context="{'group_by': 'analytic_account_id'}"/>
+                    <filter string="Company" name="company" context="{'group_by': 'company_id'}"/>
                 </group>
             </search>
         </field>
