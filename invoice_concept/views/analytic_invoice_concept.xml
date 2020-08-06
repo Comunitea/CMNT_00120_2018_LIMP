@@ -4,7 +4,6 @@
     <record id="invoice_concept_tree" model="ir.ui.view">
         <field name="name">invoice.concept.tree</field>
         <field name="model">account.analytic.invoice.concept</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Invoice concepts">
                 <field name="code"/>
@@ -18,7 +17,6 @@
     <record id="invoice_concept_form" model="ir.ui.view">
         <field name="name">invoice.concept.form</field>
         <field name="model">account.analytic.invoice.concept</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Invoice concept">
                 <sheet>
@@ -34,8 +32,8 @@
                     </group>
                     <separator colspan="4" string="Replacements"/>
                     <group col="6" colspan="4">
-                        <label colspan="2" string="Current Year with Century: %%(year)s"/>
-                        <label colspan="2" string="Current Month: %%(month)s" name="current_month"/>
+                        <span colspan="2">Current Year with Century: %%(year)s</span>
+                        <span colspan="2" name="current_month">Current Month: %%(month)s</span>
                     </group>
                 </sheet>
             </form>
@@ -45,13 +43,12 @@
     <record id="invoice_concept_search" model="ir.ui.view">
         <field name="name">invoice.concept.search</field>
         <field name="model">account.analytic.invoice.concept</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Invoice concepts">
-                <field name="name" select="1"/>
-                <field name="code" select="1"/>
-                <field name="product_id" select="2"/>
-                <field name="company_id" select="1"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="product_id"/>
+                <field name="company_id"/>
             </search>
         </field>
     </record>

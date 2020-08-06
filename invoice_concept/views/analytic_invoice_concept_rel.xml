@@ -1,71 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
     <record id="analytic_account_concept_rel_tree" model="ir.ui.view">
         <field name="name">analytic.account.concept.rel.tree</field>
         <field name="model">account.analytic.invoice.concept.rel</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Invoice concepts">
-                <field name="sequence"/>
-                <field name="concept_id"/>
-                <field name="name"/>
-                <field name="amount"/>
-                <field name="freq"/>
-                <field name="last_invoice_date"/>
-                <field name="analytic_id"/>
+                <field name="sequence" widget="handle"/>
+                <field name="concept_id" />
+                <field name="name" />
+                <field name="amount" />
+                <field name="freq" />
+                <field name="last_invoice_date" />
+                <field name="analytic_id" />
             </tree>
         </field>
     </record>
-
     <record id="analytic_account_concept_rel_form" model="ir.ui.view">
         <field name="name">analytic.account.concept.rel.form</field>
         <field name="model">account.analytic.invoice.concept.rel</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Invoice concept">
                 <sheet>
                     <group>
                         <group>
-                            <field name="concept_id" colspan="4"/>
-                            <field name="name"/>
-                            <field name="amount"/>
+                            <field name="concept_id"/>
+                            <field name="name" />
+                            <field name="amount" />
                         </group>
                         <group>
-                            <field name="freq"/>
-                            <field name="last_invoice_date"/>
-                            <field name="sequence"/>
+                            <field name="freq" />
+                            <field name="last_invoice_date" />
+                            <field name="sequence" />
                         </group>
                     </group>
-                    <separator string="Invoicing months" colspan="4"/>
-                    <label string="Check months for invoicing" colspan="4"/>
+                    <separator string="Invoicing months" colspan="4" />
+                    <span colspan="4">Check months for invoicing</span>
                     <group colspan="4" col="8">
-                       <field name="january"/>
-                       <field name="february"/>
-                       <field name="march"/>
-                       <field name="april"/>
-                       <field name="may"/>
-                       <field name="june"/>
-                       <field name="july"/>
-                       <field name="august"/>
-                       <field name="september"/>
-                       <field name="october"/>
-                       <field name="november"/>
-                       <field name="december"/>
+                        <field name="january" />
+                        <field name="february" />
+                        <field name="march" />
+                        <field name="april" />
+                        <field name="may" />
+                        <field name="june" />
+                        <field name="july" />
+                        <field name="august" />
+                        <field name="september" />
+                        <field name="october" />
+                        <field name="november" />
+                        <field name="december" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
     <record id="analytic_account_concept_rel_search" model="ir.ui.view">
         <field name="name">analytic.account.concept.rel.search</field>
         <field name="model">account.analytic.invoice.concept.rel</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Invoice concepts">
-                <field name="concept_id" select="1"/>
-                <field name="freq" select="1"/>
+                <field name="concept_id"/>
+                <field name="freq"/>
             </search>
         </field>
     </record>

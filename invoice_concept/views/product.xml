@@ -5,13 +5,12 @@
         <field name="name">product.normal.form_add_wildcards</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="description_sale" position="after">
                 <separator colspan="4" string="Replacements"/>
                 <group col="6" colspan="4">
-                    <label colspan="2" string="Current Year with Century: %%(year)s"/>
-                    <label colspan="2" string="Current Month: %%(month)s"/>
+                    <span colspan="2">Current Year with Century: %%(year)s</span>
+                    <span colspan="2">Current Month: %%(month)s</span>
                 </group>
             </field>
         </field>

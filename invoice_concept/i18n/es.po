@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-31 09:51+0000\n"
-"PO-Revision-Date: 2018-05-31 09:51+0000\n"
+"POT-Creation-Date: 2020-08-06 08:44+0000\n"
+"PO-Revision-Date: 2020-08-06 08:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,21 +16,40 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:31
-#, python-format
-msgid "Abril"
-msgstr "Abril"
+#: model_terms:ir.ui.view,arch_db:invoice_concept.invoice_concept_form
+msgid "<span colspan=\"2\">Current Year with Century: %(year)s</span>\n"
+"                        <span colspan=\"2\" name=\"current_month\">Current Month: %(month)s</span>"
+msgstr "<span colspan=\"2\">Año actual con centuria: %(year)s</span>\n"
+"                        <span colspan=\"2\" name=\"current_month\">Mes actual: %(month)s</span>"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_analytic_id
+#: model_terms:ir.ui.view,arch_db:invoice_concept.product_normal_form_view_add_wildcardas
+msgid "<span colspan=\"2\">Current Year with Century: %(year)s</span>\n"
+"                    <span colspan=\"2\">Current Month: %(month)s</span>"
+msgstr "<span colspan=\"2\">Año actual con centuria: %(year)s</span>\n"
+"                    <span colspan=\"2\">Mes actual: %(month)s</span>"
+
+#. module: invoice_concept
+#: model_terms:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_form
+msgid "<span colspan=\"4\">Check months for invoicing</span>"
+msgstr "<span colspan=\"4\">Marque los meses de facturación</span>"
+
+#. module: invoice_concept
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:29
+#, python-format
+msgid "Abril"
+msgstr ""
+
+#. module: invoice_concept
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel__analytic_id
 msgid "Account"
 msgstr "Cuenta"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:35
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:33
 #, python-format
 msgid "Agosto"
-msgstr "Agosto"
+msgstr ""
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_amount
@@ -43,7 +62,7 @@ msgid "Analytic Account"
 msgstr "Cuenta analítica"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_invoice_analytic_id
+#: model:ir.model.fields,field_description:invoice_concept.field_account_invoice__analytic_id
 msgid "Analytic account"
 msgstr "Cuenta analítica"
 
@@ -63,57 +82,39 @@ msgid "August"
 msgstr "Agosto"
 
 #. module: invoice_concept
-#: model:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_form
-msgid "Check months for invoicing"
-msgstr "Marque meses de facturación"
-
-#. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_code
 msgid "Code"
 msgstr "Código"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_company_id
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept__company_id
 msgid "Company"
 msgstr "Compañía"
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_name
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_concept_id
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel__concept_id
 msgid "Concept"
-msgstr "Concept"
+msgstr "Concepto"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account_concept_ids
-#: model:ir.model.fields,field_description:invoice_concept.field_project_project_concept_ids
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account__concept_ids
 msgid "Concepts"
 msgstr "Conceptos"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_create_uid
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_create_uid
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept__create_uid
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel__create_uid
 #: model:ir.model.fields,field_description:invoice_concept.field_contract_to_invoice_create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_create_date
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_create_date
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept__create_date
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel__create_date
 #: model:ir.model.fields,field_description:invoice_concept.field_contract_to_invoice_create_date
 msgid "Created on"
-msgstr "Creado el"
-
-#. module: invoice_concept
-#: model:ir.ui.view,arch_db:invoice_concept.invoice_concept_form
-#: model:ir.ui.view,arch_db:invoice_concept.product_normal_form_view_add_wildcardas
-msgid "Current Month: %(month)s"
-msgstr "Mes Actual: %(month)s"
-
-#. module: invoice_concept
-#: model:ir.ui.view,arch_db:invoice_concept.invoice_concept_form
-#: model:ir.ui.view,arch_db:invoice_concept.product_normal_form_view_add_wildcardas
-msgid "Current Year with Century: %(year)s"
-msgstr "Año actual con centuria: %(year)s"
+msgstr "Creado en"
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_december
@@ -131,29 +132,29 @@ msgid "Destination Journal"
 msgstr "Diario de destino"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:39
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:37
 #, python-format
 msgid "Diciembre"
-msgstr "Diciembre"
+msgstr ""
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_display_name
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_display_name
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept__display_name
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel__display_name
 #: model:ir.model.fields,field_description:invoice_concept.field_contract_to_invoice_display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nombre mostrado"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:28
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:26
 #, python-format
 msgid "Enero"
-msgstr "Enero"
+msgstr ""
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:29
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:27
 #, python-format
 msgid "Febrero"
-msgstr "Febrero"
+msgstr ""
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_february
@@ -166,32 +167,27 @@ msgid "Frequency"
 msgstr "Frecuencia"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account_group_concepts
-#: model:ir.model.fields,field_description:invoice_concept.field_project_project_group_concepts
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account__group_concepts
 msgid "Group concepts"
 msgstr "Agrupar conceptos"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account_group_products
-#: model:ir.model.fields,field_description:invoice_concept.field_project_project_group_products
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account__group_products
 msgid "Group products"
 msgstr "Agrupar productos"
 
 #. module: invoice_concept
-#: model:ir.model.fields,help:invoice_concept.field_account_analytic_account_group_concepts
-#: model:ir.model.fields,help:invoice_concept.field_project_project_group_concepts
+#: model:ir.model.fields,help:invoice_concept.field_account_analytic_account__group_concepts
 msgid "Groups concepts at invoice"
 msgstr "Agrupar conceptos al facturar"
 
 #. module: invoice_concept
-#: model:ir.model.fields,help:invoice_concept.field_account_analytic_account_group_products
-#: model:ir.model.fields,help:invoice_concept.field_project_project_group_products
+#: model:ir.model.fields,help:invoice_concept.field_account_analytic_account__group_products
 msgid "Groups products at invoice"
 msgstr "Agrupar productos al facturar"
 
 #. module: invoice_concept
-#: model:ir.model.fields,help:invoice_concept.field_account_analytic_account_group_products_each_invoice
-#: model:ir.model.fields,help:invoice_concept.field_project_project_group_products_each_invoice
+#: model:ir.model.fields,help:invoice_concept.field_account_analytic_account__group_products_each_invoice
 msgid "Groups products, one for invoice"
 msgstr "Agrupar productos, uno por factura"
 
@@ -200,16 +196,11 @@ msgstr "Agrupar productos, uno por factura"
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_id
 #: model:ir.model.fields,field_description:invoice_concept.field_contract_to_invoice_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: invoice_concept
-#: model:ir.model,name:invoice_concept.model_account_invoice
-msgid "Invoice"
-msgstr "Factura"
-
-#. module: invoice_concept
-#: model:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_form
-#: model:ir.ui.view,arch_db:invoice_concept.invoice_concept_form
+#: model_terms:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_form
+#: model_terms:ir.ui.view,arch_db:invoice_concept.invoice_concept_form
 msgid "Invoice concept"
 msgstr "Concepto de factura"
 
@@ -217,10 +208,10 @@ msgstr "Concepto de factura"
 #: model:ir.actions.act_window,name:invoice_concept.action_invoice_concepts
 #: model:ir.ui.menu,name:invoice_concept.menu_invoice_concept
 #: model:ir.ui.menu,name:invoice_concept.menu_invoice_concepts_open
-#: model:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_search
-#: model:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_tree
-#: model:ir.ui.view,arch_db:invoice_concept.invoice_concept_search
-#: model:ir.ui.view,arch_db:invoice_concept.invoice_concept_tree
+#: model_terms:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_search
+#: model_terms:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_tree
+#: model_terms:ir.ui.view,arch_db:invoice_concept.invoice_concept_search
+#: model_terms:ir.ui.view,arch_db:invoice_concept.invoice_concept_tree
 msgid "Invoice concepts"
 msgstr "Conceptos de factura"
 
@@ -231,7 +222,6 @@ msgstr "Facturar hasta"
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account_invoiceable
-#: model:ir.model.fields,field_description:invoice_concept.field_project_project_invoiceable
 msgid "Invoiceable"
 msgstr "Facturable"
 
@@ -241,7 +231,7 @@ msgid "Invoiced date"
 msgstr "Fecha de factura"
 
 #. module: invoice_concept
-#: model:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_form
+#: model_terms:ir.ui.view,arch_db:invoice_concept.analytic_account_concept_rel_form
 msgid "Invoicing months"
 msgstr "Meses facturación"
 
@@ -251,10 +241,10 @@ msgid "January"
 msgstr "Enero"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:34
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:32
 #, python-format
 msgid "Julio"
-msgstr "Julio"
+msgstr ""
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_july
@@ -267,36 +257,36 @@ msgid "June"
 msgstr "Junio"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:33
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:31
 #, python-format
 msgid "Junio"
-msgstr "Junio"
+msgstr ""
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept___last_update
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel___last_update
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel__last_invoice_date
+msgid "Last Invoice Date"
+msgstr "Fecha última factura"
+
+#. module: invoice_concept
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept____last_update
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel____last_update
 #: model:ir.model.fields,field_description:invoice_concept.field_contract_to_invoice___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última Modifiación en"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_write_uid
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_write_uid
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept__write_uid
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel__write_uid
 #: model:ir.model.fields,field_description:invoice_concept.field_contract_to_invoice_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última actualización de"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_write_date
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_write_date
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept__write_date
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel__write_date
 #: model:ir.model.fields,field_description:invoice_concept.field_contract_to_invoice_write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
-
-#. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_last_invoice_date
-msgid "Last invoice date"
-msgstr "Últ. fecha factura"
+msgstr "Última actualización en"
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_march
@@ -304,10 +294,10 @@ msgid "March"
 msgstr "Marzo"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:30
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:28
 #, python-format
 msgid "Marzo"
-msgstr "Marzo"
+msgstr ""
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_may
@@ -315,10 +305,10 @@ msgid "May"
 msgstr "Mayo"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:32
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:30
 #, python-format
 msgid "Mayo"
-msgstr "Mayo"
+msgstr ""
 
 #. module: invoice_concept
 #: selection:account.analytic.invoice.concept.rel,freq:0
@@ -331,10 +321,10 @@ msgid "November"
 msgstr "Noviembre"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:38
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:36
 #, python-format
 msgid "Noviembre"
-msgstr "Noviembre"
+msgstr ""
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_october
@@ -342,24 +332,23 @@ msgid "October"
 msgstr "Octubre"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:37
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:35
 #, python-format
 msgid "Octubre"
-msgstr "Octubre"
+msgstr ""
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account_group_products_each_invoice
-#: model:ir.model.fields,field_description:invoice_concept.field_project_project_group_products_each_invoice
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_account__group_products_each_invoice
 msgid "One for invoice"
 msgstr "Uno por factura"
 
 #. module: invoice_concept
-#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_product_id
+#: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept__product_id
 msgid "Product"
 msgstr "Producto"
 
 #. module: invoice_concept
-#: model:ir.model.fields,help:invoice_concept.field_account_analytic_invoice_concept_product_id
+#: model:ir.model.fields,help:invoice_concept.field_account_analytic_invoice_concept__product_id
 msgid "Product required to map invoice taxes."
 msgstr "El producto es obligatorio para mapear los impuestos."
 
@@ -374,8 +363,8 @@ msgid "Relationship between analytic account and invoice concepts"
 msgstr "Relación entre cuentas analíticas y conceptos de factura"
 
 #. module: invoice_concept
-#: model:ir.ui.view,arch_db:invoice_concept.invoice_concept_form
-#: model:ir.ui.view,arch_db:invoice_concept.product_normal_form_view_add_wildcardas
+#: model_terms:ir.ui.view,arch_db:invoice_concept.invoice_concept_form
+#: model_terms:ir.ui.view,arch_db:invoice_concept.product_normal_form_view_add_wildcardas
 msgid "Replacements"
 msgstr "Sustituciones"
 
@@ -385,10 +374,10 @@ msgid "September"
 msgstr "Septiembre"
 
 #. module: invoice_concept
-#: code:addons/invoice_concept/models/analytic_invoice_concept.py:36
+#: code:addons/invoice_concept/models/analytic_invoice_concept.py:34
 #, python-format
 msgid "Septiembre"
-msgstr "Septiembre"
+msgstr ""
 
 #. module: invoice_concept
 #: model:ir.model.fields,field_description:invoice_concept.field_account_analytic_invoice_concept_rel_sequence

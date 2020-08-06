@@ -49,7 +49,7 @@ class AccountAnalyticAccount(models.Model):
 
     def _create_invoice(self, end_date):
         """creates an invoice to an analytic account"""
-
+        self.ensure_one()
         end_date = datetime.strptime(
             end_date + " 23:59:59", "%Y-%m-%d %H:%M:%S"
         )
@@ -65,7 +65,10 @@ class AccountAnalyticAccount(models.Model):
             "payment_term_id": self.partner_id.property_payment_term_id
             and self.partner_id.property_payment_term_id.id
             or False,
-            "fiscal_position_id": self.partner_id.property_account_position_id.id,
+            "payment_mode_id": self.partner_id.customer_payment_mode_id and
+            self.partner_id.customer_payment_mode_id.id or False,
+            "fiscal_position_id": self.partner_id.
+            property_account_position_id.id,
             "company_id": self.company_id.id,
             "analytic_id": self.id,
             "date_invoice": self._context.get("invoice_date", False),
@@ -178,7 +181,8 @@ class AccountAnalyticAccount(models.Model):
         amount += (duration * concept.amount) / days
         if (
             self.date
-            and datetime.strptime(self.date + " 23:59:59", "%Y-%m-%d %H:%M:%S")
+            and datetime.strptime(self.date.to_string() + " 23:59:59",
+                                  "%Y-%m-%d %H:%M:%S")
             <= end_date
         ):
             self.close_analytic()
@@ -194,9 +198,8 @@ class AccountAnalyticAccount(models.Model):
                 and concept_product.uom_id.id
                 or False,
                 "product_id": concept_product.id,
-                "account_id": self.partner_id.property_account_position_id.map_account(
-                    account_id
-                ),
+                "account_id": self.partner_id.property_account_position_id.
+                map_account(account_id),
                 "price_unit": amount,
                 "discount": 0.0,
                 "quantity": 1.0,
@@ -243,7 +246,6 @@ class AccountAnalyticAccount(models.Model):
             "account.invoice"
         ]  # list of created invoices
 
-        # ids = self._get_ids_hook(cr, uid, ids, context=context) hook inservible que no se hereda
         if self._context.get("end_date", False):
             end_date = self._context["end_date"]
         else:
@@ -280,11 +282,13 @@ class AccountAnalyticAccount(models.Model):
 
                     for analytic_child_obj in child_ids:
                         if analytic_child_obj in analytic_ids:
-                            # remove his related invoice because it's invoice line
+                            # remove his related invoice because it's
+                            # invoice line
                             related_invoices = self.env[
                                 "account.invoice"
                             ].search(
-                                [("analytic_id", "=", analytic_child_obj.id)]
+                                [("analytic_id", "=", analytic_child_obj.id),
+                                 ('state', '=', 'draft')]
                             )  # obtain all related invoices with this account
                             toremove_related_invoices = (
                                 created_invoices & related_invoices
@@ -300,9 +304,10 @@ class AccountAnalyticAccount(models.Model):
                         ) in (
                             analytic_child_obj.concept_ids
                         ):  # goes around child concepts
-                            res = analytic_child_obj.create_concept_invoice_line(
-                                child_concept, invoice, end_date
-                            )  # creates an invoice line for each child concept
+                            # creates invoice line for each child concept
+                            res = analytic_child_obj.\
+                                create_concept_invoice_line(child_concept,
+                                                            invoice, end_date)
                             if res:
                                 child_concept.write(
                                     {"last_invoice_date": end_date}
@@ -312,7 +317,8 @@ class AccountAnalyticAccount(models.Model):
                         )
                 elif (
                     analytic_account.concept_ids or child_concepts_ids
-                ):  # if exists concepts buy they don't group and it isn't visited
+                ):  # if exists concepts buy they don't group and
+                    # it isn't visited
                     invoice = analytic_account._create_invoice(
                         end_date
                     )  # invoice by concept
@@ -366,7 +372,8 @@ class AccountAnalyticAccount(models.Model):
                                         new_inv = inv.copy(
                                             default={
                                                 "invoice_line_ids": False,
-                                                "date_invoice": inv.date_invoice,
+                                                "date_invoice":
+                                                inv.date_invoice,
                                             }
                                         )
                                         created_invoices += new_inv

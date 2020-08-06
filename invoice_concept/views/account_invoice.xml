@@ -5,7 +5,6 @@
         <field name="name">account.invoice.form.add_contract_field</field>
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="move_id" position="after">
                 <field name="analytic_id"/>
@@ -17,9 +16,8 @@
         <field name="name">account.invoice.select.add_contract_field</field>
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.view_account_invoice_filter"/>
-        <field name="type">search</field>
         <field name="arch" type="xml">
-            <field name="journal_id" position="after">
+            <field name="date" position="after">
                 <field name="analytic_id"/>
             </field>
         </field>

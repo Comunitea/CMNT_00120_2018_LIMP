@@ -27,15 +27,8 @@ class AccountInvoice(models.Model):
         "account.analytic.account", "Analytic account"
     )
 
-    @api.multi
-    @api.returns("self")
-    def refund(
-        self, date_invoice=None, date=None, description=None, journal_id=None
-    ):
-        res = super(AccountInvoice, self).refund(
-            date_invoice, date, description, journal_id
-        )
-        res.write(
-            {"analytic_id": self.analytic_id and self.analytic_id.id or False,}
-        )
+    @api.model
+    def _get_refund_copy_fields(self):
+        res = super()._get_refund_copy_fields()
+        res += ['analytic_id']
         return res

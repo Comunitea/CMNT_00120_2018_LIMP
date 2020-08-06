@@ -20,7 +20,6 @@
 """Concepts to invoice analytic accounts"""
 
 from odoo import models, fields, api, _
-from datetime import datetime
 from odoo.exceptions import UserError
 
 MONTHS = {
@@ -66,7 +65,7 @@ class AccountAnalyticInvoiceConcept(models.Model):
         if not description and not self:
             raise UserError(_(""))
         if not date:
-            date = datetime.now()
+            date = fields.Datetime.now()
         if not description:
             description = self.name
         return description.replace("%(year)s", str(date.year)).replace(
