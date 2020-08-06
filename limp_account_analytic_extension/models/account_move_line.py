@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AccountMoveLine(models.Model):
@@ -43,6 +43,22 @@ class AccountMoveLine(models.Model):
         or False,
     )
 
+    @api.multi
+    def create_analytic_lines(self):
+        for obj_line in self:
+            for tag in obj_line.analytic_tag_ids.\
+                    filtered('active_analytic_distribution'):
+                for distribution in tag.analytic_distribution_ids:
+                    vals_line = obj_line.\
+                        _prepare_analytic_distribution_line(distribution)
+                    self.env['account.analytic.line'].create(vals_line)
+            if obj_line.analytic_account_id and not \
+                    obj_line.analytic_tag_ids.\
+                    filtered('active_analytic_distribution'):
+                vals_line = obj_line._prepare_analytic_line()[0]
+                self.env['account.analytic.line'].create(vals_line)
+
+    @api.one
     def _prepare_analytic_line(self):
         res = super(AccountMoveLine, self)._prepare_analytic_line()
         for vals_dict in res:
@@ -51,3 +67,13 @@ class AccountMoveLine(models.Model):
             vals_dict["manager_id"] = self.manager_id.id
             vals_dict["company_id"] = self.company_id.id
         return res
+
+    def _prepare_analytic_distribution_line(self, distribution):
+        vals_dict = super()._prepare_analytic_distribution_line(distribution)
+        if distribution.fix_amount:
+            vals_dict['amount'] = distribution.fix_amount
+        vals_dict["delegation_id"] = distribution.delegation_id.id
+        vals_dict["department_id"] = distribution.department_id.id
+        vals_dict["manager_id"] = distribution.manager_id.id
+        vals_dict["company_id"] = self.company_id.id
+        return vals_dict

@@ -25,23 +25,22 @@ class AccountAsset(models.Model):
     _inherit = "account.asset"
 
     analytic_distribution_id = fields.Many2one(
-        "account.analytic.distribution", "Analytic distribution"
+        "account.analytic.tag", "Analytic distribution",
+        domain=[('active_analytic_distribution', '=', True)]
     )
 
-#TODO: Migrar
-# ~ class AccountAssetDepreciationLine(models.Model):
 
-    # ~ _inherit = "account.asset.depreciation.line"
+class AccountAssetLine(models.Model):
 
-    # ~ def create_move(self, post_move=True):
-        # ~ res = super(AccountAssetDepreciationLine, self).create_move(post_move)
+    _inherit = "account.asset.line"
 
-        # ~ for move in self.env["account.move"].browse(res):
-            # ~ for line in move.line_ids:
-                # ~ if line.asset_id and line.asset_id.analytic_distribution_id:
-                    # ~ line.write(
-                        # ~ {
-                            # ~ "analytic_distribution_id": line.asset_id.analytic_distribution_id.id
-                        # ~ }
-                    # ~ )
-        # ~ return res
+    def _setup_move_line_data(self, depreciation_date, account, ml_type, move):
+        res = super()._setup_move_line_data(depreciation_date, account,
+                                            ml_type, move)
+        asset = self.asset_id
+        if ml_type == 'expense' and asset.analytic_distribution_id:
+            if res.get('analytic_account_id'):
+                del res['analytic_account_id']
+            res['analytic_tag_ids'] = \
+                [(6, 0, [asset.analytic_distribution_id.id])]
+        return res

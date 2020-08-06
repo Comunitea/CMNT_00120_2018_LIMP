@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class AccountAnalyticAccount(models.Model):
@@ -71,8 +71,12 @@ class AccountAnalyticLine(models.Model):
             r.env.user.employee_ids and r.env.user.employee_ids[0].id or False,
         ),
     )
-    move_id = fields.Many2one(
-        "account.move.line", "Move Line", ondelete="cascade", index=True
+    department_id = fields.Many2one(
+        default=lambda r: r._context.get(
+            "c_department_id",
+            r._context.get(
+                "context_department_id", r.env.user.context_department_id.id
+            ),
+        )
     )
     employee_id = fields.Many2one("hr.employee", "Employee")
-    partner_id = fields.Many2one("res.partner", "Partner")

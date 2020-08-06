@@ -48,16 +48,8 @@ class AccountAnalyticDistribution(models.Model):
     fix_amount = fields.Float(digits=(12, 2), required=True)
 
     _sql_constraints = [
-        (
-            "analytic_uniq",
-            "unique(distribution_id, analytic_account_id, delegation_id, department_id, manager_id)",
-            _(
-                "Analytic account must be unique per distribution, delegation, department and manager!"
-            ),
-        ),
-        (
-            "percent_positive",
-            "CHECK(1 = 1)",
-            _("Percentage must be positive!"),
-        ),
+        ("analytic_uniq",
+         "unique(tag_id, account_id, delegation_id, department_id,manager_id)",
+         _("Analytic account must be unique per distribution, delegation, "
+           "department and manager!"))
     ]

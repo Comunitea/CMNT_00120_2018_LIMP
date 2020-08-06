@@ -7,9 +7,9 @@
         <field name="inherit_id" ref="account.view_move_line_tree"/>
         <field name="arch" type="xml">
             <field name="analytic_account_id" position="after">
-                <field name="delegation_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-                <field name="department_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-                <field name="manager_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
+                <field name="delegation_id" groups="analytic.group_analytic_accounting"/>
+                <field name="department_id" groups="analytic.group_analytic_accounting"/>
+                <field name="manager_id" groups="analytic.group_analytic_accounting"/>
             </field>
         </field>
     </record>
@@ -20,25 +20,12 @@
         <field name="inherit_id" ref="account.view_move_line_form"/>
         <field name="arch" type="xml">
             <field name="analytic_account_id" position="after">
-                <field name="delegation_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-                <field name="department_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-                <field name="manager_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
+                <field name="delegation_id" groups="analytic.group_analytic_accounting"/>
+                <field name="department_id" groups="analytic.group_analytic_accounting"/>
+                <field name="manager_id" groups="analytic.group_analytic_accounting"/>
             </field>
         </field>
     </record>
-
-    <!--TODO: Migrar<record id="view_move_line_form2_add_an_items" model="ir.ui.view">
-        <field name="name">account.move.line.form2.add_analytic_items</field>
-        <field name="model">account.move.line</field>
-        <field name="inherit_id" ref="account.view_move_line_form2"/>
-        <field name="arch" type="xml">
-            <field name="analytic_account_id" position="after">
-                <field name="delegation_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-                <field name="department_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-                <field name="manager_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-            </field>
-        </field>
-    </record>-->
 
     <record id="view_move_form_add_an_items" model="ir.ui.view">
         <field name="name">account.move.form.add_an_items</field>
@@ -46,9 +33,9 @@
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_account_id']" position="after">
-                <field name="delegation_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-                <field name="department_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
-                <field name="manager_id" groups="analytic.group_analytic_accounting" attrs="{'required':[('analytic_account_id','!=',False)]}"/>
+                <field name="delegation_id" groups="analytic.group_analytic_accounting"/>
+                <field name="department_id" groups="analytic.group_analytic_accounting"/>
+                <field name="manager_id" groups="analytic.group_analytic_accounting"/>
             </xpath>
         </field>
     </record>

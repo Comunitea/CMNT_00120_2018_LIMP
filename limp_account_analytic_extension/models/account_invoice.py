@@ -57,23 +57,8 @@ class AccountInvoice(models.Model):
             move_vals[2]["manager_id"] = self.manager_id.id
         return res
 
-    @api.multi
-    @api.returns("self")
-    def refund(
-        self, date_invoice=None, date=None, description=None, journal_id=None
-    ):
-        res = super(AccountInvoice, self).refund(
-            date_invoice, date, description, journal_id
-        )
-        res.write(
-            {
-                "department_id": self.department_id
-                and self.department_id.id
-                or False,
-                "delegation_id": self.delegation_id
-                and self.delegation_id.id
-                or False,
-                "manager_id": self.manager_id and self.manager_id.id or False,
-            }
-        )
+    @api.model
+    def _get_refund_copy_fields(self):
+        res = super()._get_refund_copy_fields()
+        res += ['department_id', 'delegation_id', 'manager_id']
         return res

@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2013 Comunitea Servicios Tecnológicos S.L.
 #    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,12 +22,10 @@
     "name": "Analytic account extension",
     "description": """Extends analytic accounting for doing analysis""",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comunitea.com",
     "category": "Account/Analytic",
     "depends": [
-        "base",
-        "analytic",
         "account",
         "analytic_base_department",
         "limp_multi_delegations",
