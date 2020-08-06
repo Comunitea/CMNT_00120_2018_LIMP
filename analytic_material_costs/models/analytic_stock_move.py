@@ -90,6 +90,11 @@ class AccountAnalyticStockMove(models.Model):
     )
     date = fields.Date("Date", required=True, default=fields.Date.today)
 
+    @api.onchange('employee_id')
+    def onchange_employee_id(self):
+        if self.employee_id and self.employee_id.location_id:
+            self.location_id = self.employee_id.location_id.id
+
     @api.model
     def create(self, vals):
 
@@ -116,7 +121,8 @@ class AccountAnalyticStockMove(models.Model):
                 "product_uom": res.product_id.uom_id.id,
                 "origin": res.analytic_account_id.name,
                 "location_id": res.location_id.id,
-                "location_dest_id": user.company_id.partner_id.property_stock_customer.id,
+                "location_dest_id": user.company_id.
+                partner_id.property_stock_customer.id,
                 "name": res.analytic_account_id.name
                 + u": Out "
                 + res.product_id.name,
@@ -125,7 +131,7 @@ class AccountAnalyticStockMove(models.Model):
             }
         )
 
-        move.action_confirm()
+        move._action_confirm()
 
         res.write({"move_id": move.id})
 
@@ -162,8 +168,12 @@ class AccountAnalyticStockMove(models.Model):
     def action_confirm(self):
         self.ensure_one()
         user = self.env.user
-        self.move_id.force_assign()
-        self.move_id.action_done()
+        self.move_id._action_assign()
+        if self.move_id.state != 'assigned':
+            raise UserError(_("No stock available to confirm consumption"))
+        for line in self.move_id.move_line_ids:
+            line.qty_done = line.product_uom_qty
+        self.move_id._action_done()
 
         material_tag = self.env.ref(
             "analytic_material_costs.material_cost_tag"
@@ -189,7 +199,7 @@ class AccountAnalyticStockMove(models.Model):
             {
                 "amount": -(self.product_id.standard_price * self.product_qty),
                 "name": self.analytic_account_id.name
-                + u": Out "
+                + _(": Out ")
                 + self.product_id.name,
                 "company_id": user.company_id.id,
                 "product_id": self.product_id.id,

@@ -29,4 +29,5 @@ class HrEmployee(models.Model):
         "Associated location",
         help="Associated output location, origin of material consumptions in"
         "analytic accounts.",
+        domain=[('usage', '=', 'internal')]
     )

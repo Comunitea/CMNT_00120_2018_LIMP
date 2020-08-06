@@ -4,7 +4,6 @@
     <record id="analytic_stock_move_tree" model="ir.ui.view">
         <field name="name">analytic.stock.move.tree</field>
         <field name="model">account.analytic.stock.move</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Consumptions" editable="top">
                 <field name="employee_id"/>
@@ -21,7 +20,6 @@
     <record id="analytic_stock_move_form" model="ir.ui.view">
         <field name="name">analytic.stock.move.form</field>
         <field name="model">account.analytic.stock.move</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Consumption">
                 <sheet>
@@ -48,17 +46,16 @@
     <record id="analytic_stock_move_search" model="ir.ui.view">
         <field name="name">analytic.stock.move.search</field>
         <field name="model">account.analytic.stock.move</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Consumptions">
-                <field name="employee_id" select="1"/>
-                <field name="location_id" select="1"/>
-                <field name="analytic_account_id" select="2"/>
-                <field name="product_id" select="2"/>
+                <field name="employee_id"/>
+                <field name="location_id"/>
+                <field name="analytic_account_id"/>
+                <field name="product_id"/>
                 <newline/>
                 <group expand="1" string="Group By...">
-                    <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
-                    <filter string="Analytic account" domain="[]" context="{'group_by':'analytic_account_id'}"/>
+                    <filter string="Employee" name="employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Analytic account" name="analytic" domain="[]" context="{'group_by':'analytic_account_id'}"/>
                 </group>
                 <newline/>
             </search>

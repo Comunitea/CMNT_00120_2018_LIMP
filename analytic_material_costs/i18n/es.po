@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-22 13:02+0000\n"
-"PO-Revision-Date: 2018-05-22 13:02+0000\n"
+"POT-Creation-Date: 2020-08-06 11:52+0000\n"
+"PO-Revision-Date: 2020-08-06 11:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_analytic_account_id
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:202
+#, python-format
+msgid ": Out "
+msgstr ": Salida "
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__analytic_account_id
 msgid "Analytic"
-msgstr "Cuenta analítica"
+msgstr "Analítica"
 
 #. module: analytic_material_costs
 #: model:ir.model,name:analytic_material_costs.model_account_analytic_account
@@ -26,62 +32,61 @@ msgid "Analytic Account"
 msgstr "Cuenta analítica"
 
 #. module: analytic_material_costs
-#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
+#: model_terms:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
 msgid "Analytic account"
 msgstr "Cuenta analítica"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_hr_employee_location_id
+#: model:ir.model.fields,field_description:analytic_material_costs.field_hr_employee__location_id
 msgid "Associated location"
 msgstr "Ubicación asociada"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,help:analytic_material_costs.field_hr_employee_location_id
+#: model:ir.model.fields,help:analytic_material_costs.field_hr_employee__location_id
 msgid "Associated output location, origin of material consumptions inanalytic accounts."
 msgstr "Ubicación de origen asociada, origen para los consumos de material en las cuentas analíticas."
 
 #. module: analytic_material_costs
-#: code:addons/analytic_material_costs/models/analytic_stock_move.py:162
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:219
 #, python-format
 msgid "Cannot delete any record in confirmed state."
 msgstr "No puede borrar ningún registro en estado confirmado."
 
 #. module: analytic_material_costs
-#: code:addons/analytic_material_costs/models/analytic_stock_move.py:82
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:111
 #, python-format
 msgid "Company must have set an output customer location in its partner form !"
 msgstr "¡La compañía tine que tener una ubicación de cliente establecida en su empresa relacionada!"
 
 #. module: analytic_material_costs
-#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_form
-#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_tree
+#: model_terms:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_form
+#: model_terms:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_tree
 msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: analytic_material_costs
-#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_form
+#: model_terms:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_form
 msgid "Consumption"
 msgstr "Consumo"
 
 #. module: analytic_material_costs
 #: model:ir.actions.act_window,name:analytic_material_costs.analytic_stock_move_concepts
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_account_analytic_move_ids
-#: model:ir.model.fields,field_description:analytic_material_costs.field_project_project_analytic_move_ids
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_account__analytic_move_ids
 #: model:ir.ui.menu,name:analytic_material_costs.menu_analytic_stock_move_open
-#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
-#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_tree
+#: model_terms:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
+#: model_terms:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_tree
 msgid "Consumptions"
 msgstr "Consumos"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_create_uid
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_create_date
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Creado en"
 
 #. module: analytic_material_costs
 #: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_date
@@ -89,18 +94,18 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_display_name
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nombre mostrado"
 
 #. module: analytic_material_costs
 #: model:ir.model,name:analytic_material_costs.model_hr_employee
-#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
+#: model_terms:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
 msgid "Employee"
 msgstr "Empleado"
 
 #. module: analytic_material_costs
-#: code:addons/analytic_material_costs/models/analytic_stock_move.py:77
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:104
 #, python-format
 msgid "Employee must have an associated location !"
 msgstr "¡El empleado tiene que tener una ubicación asociada!"
@@ -111,52 +116,47 @@ msgid "First"
 msgstr "Primero"
 
 #. module: analytic_material_costs
-#: model:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
+#: model_terms:ir.ui.view,arch_db:analytic_material_costs.analytic_stock_move_search
 msgid "Group By..."
 msgstr "Agrupar por..."
 
 #. module: analytic_material_costs
 #: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move___last_update
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última Modifiación en"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_write_uid
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última actualización de"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_write_date
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Última actualización en"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_location_id
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__location_id
 msgid "Location"
 msgstr "Ubicación"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_employee_id
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__employee_id
 msgid "Manager"
-msgstr "Responsable"
+msgstr "Encargado"
 
 #. module: analytic_material_costs
-#: model:ir.model,name:analytic_material_costs.model_account_analytic_stock_move
-msgid "Model between stock_move and analytic_account"
-msgstr "Modelo entre stock_move y analytic_account"
-
-#. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_move_id
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__move_id
 msgid "Move"
-msgstr "Movimiento"
+msgstr "Asiento"
 
 #. module: analytic_material_costs
-#: code:addons/analytic_material_costs/models/analytic_stock_move.py:140
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:191
 #, python-format
 msgid "No product and product category expense property account defined on the related product.\n"
 "Fill these on product form."
@@ -164,12 +164,18 @@ msgstr "Sin cuenta de gastos definida en el producto ni la categoría del produc
 "Rellene esta en el formulario de producto."
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_product_id
+#: code:addons/analytic_material_costs/models/analytic_stock_move.py:173
+#, python-format
+msgid "No stock available to confirm consumption"
+msgstr "No hay stock disponible para confirmar el consumo"
+
+#. module: analytic_material_costs
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__product_id
 msgid "Product"
 msgstr "Producto"
 
 #. module: analytic_material_costs
-#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move_product_qty
+#: model:ir.model.fields,field_description:analytic_material_costs.field_account_analytic_stock_move__product_qty
 msgid "Quantity"
 msgstr "Cantidad"
 
