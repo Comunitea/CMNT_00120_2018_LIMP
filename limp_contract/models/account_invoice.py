@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AccountInvoice(models.Model):
@@ -33,24 +33,11 @@ class AccountInvoice(models.Model):
         store=True,
     )
 
-    def refund(
-        self, date_invoice=None, date=None, description=None, journal_id=None
-    ):
-        new_ids = super(AccountInvoice, self).refund(
-            date_invoice, date, description, journal_id
-        )
-        new_ids.write(
-            {
-                "contract_id": self.contract_id
-                and self.contract_id.id
-                or False,
-                "analytic_id": self.analytic_id
-                and self.analytic_id.id
-                or False,
-            }
-        )
-
-        return new_ids
+    @api.model
+    def _get_refund_copy_fields(self):
+        res = super()._get_refund_copy_fields()
+        res += ['contract_id']
+        return res
 
 
 class AccountInvoiceLine(models.Model):

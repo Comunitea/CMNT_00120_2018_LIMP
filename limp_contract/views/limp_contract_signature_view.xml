@@ -4,7 +4,6 @@
     <record id="view_limp_contract_signature" model="ir.ui.view">
         <field name="name">Contract signature</field>
         <field name="model">limp.contract.signature</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Contract signature">
                 <group>

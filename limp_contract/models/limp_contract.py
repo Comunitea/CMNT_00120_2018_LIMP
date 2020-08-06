@@ -19,14 +19,13 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
-from datetime import datetime
 
 
 class LimpContract(models.Model):
 
     _name = "limp.contract"
     _description = "Limpergal Contracts"
-    _inherit = ["mail.thread"]
+    _inherit = ["mail.thread", 'mail.activity.mixin']
     _inherits = {"account.analytic.account": "analytic_account_id"}
 
     prorogation_date = fields.Date(
@@ -211,7 +210,6 @@ class LimpContract(models.Model):
             contract.monthly_amount = round(amount / 12.0, 2)
 
     def invoice_run(self):
-        id_invoice = []
         invoice_ids = self.env["account.invoice"]
         for obj in self:
             if obj.analytic_account_id and obj.state == "open":
@@ -225,8 +223,8 @@ class LimpContract(models.Model):
                     ],
                     order="create_date",
                 )
-                child_ids += obj.analytic_account_id
-                invoice_ids += child_ids.run_invoice_cron_manual()
+                child_ids |= obj.analytic_account_id
+                invoice_ids |= child_ids.run_invoice_cron_manual()
 
         if invoice_ids:
             action = self.env.ref("account.action_invoice_tree1").read()[0]
@@ -246,7 +244,8 @@ class LimpContract(models.Model):
         vals["name"] = self.env["ir.sequence"].get_by_delegation(
             "limp.contract.seq", vals["delegation_id"]
         )
-        # obtains contract lines sequence id and copy default to assign new sequence for this contract lines
+        # obtains contract lines sequence id and copy default to assign
+        # new sequence for this contract lines
         seq_id = self.env["ir.sequence"].search_by_delegation(
             "limp.contract.line.seq", vals["delegation_id"]
         )
@@ -280,10 +279,10 @@ class LimpContract(models.Model):
 
             if vals.get("date", False):
                 contract.home_help_line_ids.filtered(
-                    lambda r: r.date == False
+                    lambda r: not r.date
                 ).write({"date": vals["date"]})
                 contract.cleaning_line_ids.filtered(
-                    lambda r: r.date == False
+                    lambda r: not r.date
                 ).write({"date": vals["date"]})
                 contract.remuneration_ids.filtered(
                     lambda r: not r.date_to
@@ -311,9 +310,8 @@ class LimpContract(models.Model):
         for contract in self:
             if contract.state not in ("draft", "cancelled"):
                 raise UserError(
-                    _(
-                        "Only contracts in draft or cancelled states can be deleted."
-                    )
+                    _("Only contracts in draft or cancelled states can "
+                      "be deleted.")
                 )
             account_to_delete |= contract.child_ids
 
@@ -387,8 +385,8 @@ class LimpContract(models.Model):
             if not contract.date or contract.date > fields.Date.today():
                 raise UserError(
                     _(
-                        "Cannot close the contract without a final date less or equal today."
-                    )
+                        "Cannot close the contract without a final date less "
+                        "or equal today.")
                 )
         return self.write({"state": "close"})
 
@@ -403,7 +401,7 @@ class LimpContract(models.Model):
                         ("parent_id", "=", contract.analytic_account_id.id),
                     ]
                 )
-                child_ids += contract.analytic_account_id
+                child_ids |= contract.analytic_account_id
                 contract.invoice_count = len(child_ids.mapped("invoice_ids"))
 
     def action_view_invoices(self):
@@ -416,7 +414,7 @@ class LimpContract(models.Model):
                 ("parent_id", "=", self.analytic_account_id.id),
             ]
         )
-        child_ids += self.analytic_account_id
+        child_ids |= self.analytic_account_id
         invoices = child_ids.mapped("invoice_ids")
         action["domain"] = (
             "[('id','in', [" + ",".join(map(str, invoices._ids)) + "])]"
@@ -452,7 +450,6 @@ class LimpContract(models.Model):
             {
                 "c_manager_id": self.manager_id.id,
                 "default_partner_id": self.partner_id.id,
-                "default_parent_id": self.analytic_account_id.id,
                 "c_delegation_id": self.delegation_id.id,
                 "default_company_id": self.company_id.id,
                 "c_department_id": self.department_id.id,
@@ -478,7 +475,6 @@ class LimpContract(models.Model):
             {
                 "c_manager_id": self.manager_id.id,
                 "default_partner_id": self.partner_id.id,
-                "default_parent_id": self.analytic_account_id.id,
                 "c_delegation_id": self.delegation_id.id,
                 "default_company_id": self.company_id.id,
                 "c_department_id": self.department_id.id,
@@ -504,10 +500,10 @@ class LimpContract(models.Model):
         ).read()[0]
         action["context"] = str(
             {
-                "default_parent_id": self.analytic_account_id.id,
                 "default_picking_type": "wastes",
                 "type": "wastes",
-                "form_view_ref": "limp_service_picking.stock_service_picking_form",
+                "form_view_ref":
+                "limp_service_picking.stock_service_picking_form",
                 "default_delegation_id": self.delegation_id.id,
                 "default_partner_id": self.partner_id.id,
                 "default_manager_id": self.manager_id.id,
@@ -540,10 +536,10 @@ class LimpContract(models.Model):
         ).read()[0]
         action["context"] = str(
             {
-                "default_parent_id": self.analytic_account_id.id,
                 "default_picking_type": "sporadic",
                 "type": "sporadic",
-                "form_view_ref": "limp_service_picking.stock_service_picking_form",
+                "form_view_ref":
+                "limp_service_picking.stock_service_picking_form",
                 "default_delegation_id": self.delegation_id.id,
                 "default_partner_id": self.partner_id.id,
                 "default_manager_id": self.manager_id.id,

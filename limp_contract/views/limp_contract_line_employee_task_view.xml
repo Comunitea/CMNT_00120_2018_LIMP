@@ -3,9 +3,8 @@
     <record id="limp_contract_line_employee_task_tree" model="ir.ui.view">
         <field name="name">limp.contract.line.employee.task.tree</field>
         <field name="model">limp.contract.line.employee.task</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Employee tasks" colors="grey:end_date != False">
+            <tree string="Employee tasks" decoration-muted="end_date">
                 <field name="employee_str"/>
                 <field name="department_id"/>
                 <field name="end_date"/>
@@ -17,7 +16,6 @@
     <record id="limp_contract_line_employee_task_form" model="ir.ui.view">
         <field name="name">limp.contract.line.employee.task.form</field>
         <field name="model">limp.contract.line.employee.task</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Contract task">
                 <field name="department_id"/>
@@ -45,7 +43,6 @@
     <record id="limp_contract_line_employee_task_search" model="ir.ui.view">
         <field name="name">limp.contract.line.employee.task.search</field>
         <field name="model">limp.contract.line.employee.task</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Contract tasks">
                 <field name="department_id"/>

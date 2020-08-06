@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+
         <record model="months.interval" id="1">
             <field name="name">January</field>
             <field name="code">01</field>
@@ -61,5 +61,4 @@
             <field name="code">12</field>
         </record>
 
-    </data>
 </odoo>

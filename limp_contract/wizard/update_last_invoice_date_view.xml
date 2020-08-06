@@ -4,7 +4,6 @@
         <record id="update_last_invoice_date_wzd_form" model="ir.ui.view">
             <field name="name">update.last_invoice_date.wzd.form</field>
             <field name="model">update.last.invoice.date</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Update last invoice date wizard">
                     <group>

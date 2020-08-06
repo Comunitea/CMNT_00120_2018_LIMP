@@ -5,12 +5,11 @@
         <field name="name">invoice.concept.form.add_more_replacements</field>
         <field name="model">account.analytic.invoice.concept</field>
         <field name="inherit_id" ref="invoice_concept.invoice_concept_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
-            <xpath expr="//label[@name='current_month']" position="after">
-                <label colspan="2" string="Related workcenter: %%(center)s"/>
-                <label colspan="2" string="Related contact: %%(contact)s"/>
-                <label colspan="2" string="Related hours: %%(hours)s"/>
+            <xpath expr="//span[@name='current_month']" position="after">
+                <span colspan="2">Related workcenter: %%(center)s</span>
+                <span colspan="2">Related contact: %%(contact)s</span>
+                <span colspan="2">Related hours: %%(hours)s</span>
             </xpath>
         </field>
     </record>

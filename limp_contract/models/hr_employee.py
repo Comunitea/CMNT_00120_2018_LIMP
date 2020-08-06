@@ -35,7 +35,8 @@ class HrEmployee(models.Model):
         string="Biocide product manipulator card (basic level-applicator)"
     )
     bpm_card_qualified_level = fields.Boolean(
-        string="Biocide product manipulator card (Qualified level-technical responsible)"
+        string="Biocide product manipulator card "
+               "(Qualified level-technical responsible)"
     )
     legionella_accreditation = fields.Boolean(
         "Accreditation for controlling and preventing of Legionella"

@@ -18,7 +18,6 @@
 ##############################################################################
 from odoo import models, fields, api
 from odoo.exceptions import UserError
-from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import rrule, MONTHLY
 
@@ -80,14 +79,15 @@ class MaintenanceTask(models.Model):
         if contract:
             action["context"] = str(
                 {
-                    "default_parent_id": contract.analytic_account_id.id,
                     "default_picking_type": "sporadic",
                     "type": "sporadic",
-                    "form_view_ref": "limp_service_picking.stock_service_picking_form",
+                    "form_view_ref":
+                    "limp_service_picking.stock_service_picking_form",
                     "default_delegation_id": contract.delegation_id.id,
                     "default_partner_id": contract.partner_id.id,
                     "default_manager_id": contract.manager_id.id,
-                    "default_address_invoice_id": contract.address_invoice_id.id,
+                    "default_address_invoice_id":
+                    contract.address_invoice_id.id,
                     "default_address_id": contract.address_id.id,
                     "default_ccc_account_id": contract.bank_account_id.id,
                     "default_payment_type": contract.payment_type_id.id,
@@ -139,20 +139,20 @@ class MaintenanceTask(models.Model):
                     > vals["end_date"]
                 ):
                     raise UserError(
-                        u"No puede poner un fecha fin a una tarea "
-                        u"de mantenimiento anterior a la fecha de "
-                        u"última ejecución, si tiene que ser así "
-                        u"escriba manualmente una fecha de última "
-                        u"ejecución anterior y recuerde eliminar "
-                        u"el albarán de mantenimiento que ya debe "
-                        u"estar generado con una fecha posterior "
-                        u"a la de finalización"
+                        "No puede poner un fecha fin a una tarea "
+                        "de mantenimiento anterior a la fecha de "
+                        "última ejecución, si tiene que ser así "
+                        "escriba manualmente una fecha de última "
+                        "ejecución anterior y recuerde eliminar "
+                        "el albarán de mantenimiento que ya debe "
+                        "estar generado con una fecha posterior "
+                        "a la de finalización"
                     )
         return super(MaintenanceTask, self).write(vals)
 
     @api.multi
     def execute_maintenace(self):
-        now = datetime.today()
+        now = fields.Datetime.now()
         to_compare = now + relativedelta(days=45)
         dates = [dt for dt in rrule(MONTHLY, dtstart=now, until=to_compare)]
         to_compare_months = [str(x.month).zfill(2) for x in dates]
@@ -178,9 +178,7 @@ class MaintenanceTask(models.Model):
         while tasks_to_execute_ids:
             for task in tasks_to_execute_ids:
                 if task.last_execution_date:
-                    last = datetime.strptime(
-                        task.last_execution_date, "%Y-%m-%d"
-                    )
+                    last = task.last_execution_date
                     dates = [
                         dt
                         for dt in rrule(
@@ -194,7 +192,7 @@ class MaintenanceTask(models.Model):
                         if dt != last
                     ]
                 else:
-                    last = datetime.strptime(task.start_date, "%Y-%m-%d")
+                    last = task.start_date
                     dates = [
                         dt
                         for dt in rrule(
@@ -207,7 +205,7 @@ class MaintenanceTask(models.Model):
                         )
                     ]
                 for date in dates:
-                    next_execution_date = date.strftime("%Y-%m-%d")
+                    next_execution_date = fields.Date.today()
                     contract = self.env["limp.contract"].search(
                         [("analytic_account_id", "=", task.contract_id.id)]
                     )[0]
@@ -235,7 +233,8 @@ class MaintenanceTask(models.Model):
                             and task.contract_line_id.manager_id.id
                             or contract.analytic_account_id.manager_id.id,
                             "partner_id": contract.partner_id.id,
-                            "address_invoice_id": contract.address_invoice_id.id,
+                            "address_invoice_id":
+                            contract.address_invoice_id.id,
                             "department_id": (
                                 task.contract_line_id
                                 and task.contract_line_id.department_id
@@ -257,7 +256,6 @@ class MaintenanceTask(models.Model):
                             or contract.analytic_account_id.id,
                             "monitoring_situation": task.monitoring_situation,
                             "type_ddd_ids": [(6, 0, task.type_ddd_ids.ids)],
-                            "parent_id": contract.analytic_account_id.id,
                             "type_of_installation_id": [
                                 (6, 0, task.type_of_installation_ids.ids)
                             ],

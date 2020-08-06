@@ -4,7 +4,6 @@
     <record id="view_account_analytic_account_list_add_name" model="ir.ui.view">
         <field name="name">account.analytic.account.list.add_name</field>
         <field name="model">account.analytic.account</field>
-        <field name="type">tree</field>
         <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
         <field name="arch" type="xml">
             <field name="code" position="before">
@@ -17,13 +16,12 @@
         <field name="name">account.analytic.account.search.add_delegation_id</field>
         <field name="model">account.analytic.account</field>
         <field name="inherit_id" ref="analytic.view_account_analytic_account_search" />
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <filter name="inactive" position="after">
                 <separator orientation="vertical"/>
-                <filter string="Is contract" domain="[('is_contract','=',True)]" help="This account is contract"/>
-                <filter string="Is picking" domain="[('is_picking','=',True)]" help="This account is picking w/o contract"/>
-                <filter string="Is picking in contract" domain="[('is_picking_in_contract', '=', True)]" help="This account is picking with contract"/>
+                <filter string="Is contract" name="is_contract" domain="[('is_contract','=',True)]" help="This account is contract"/>
+                <filter string="Is picking" name="is_picking" domain="[('is_picking','=',True)]" help="This account is picking w/o contract"/>
+                <filter string="Is picking in contract" name="is_pick_contract" domain="[('is_picking_in_contract', '=', True)]" help="This account is picking with contract"/>
             </filter>
             <field name="partner_id" position="after">
                 <field name="privacy"/>

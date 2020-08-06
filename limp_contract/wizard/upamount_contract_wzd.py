@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
@@ -55,7 +55,7 @@ class UpamountContractWzd(models.TransientModel):
                     concept.amount,
                     vals["amount"],
                     analytical_acc.name
-                    + u" Normal: "
+                    + " Normal: "
                     + concept.concept_id.name,
                 )
             concept.write(vals)
@@ -81,7 +81,7 @@ class UpamountContractWzd(models.TransientModel):
                     self.upamount_percent,
                     contract.amount,
                     new_amount,
-                    contract.name + _(u": Annual amount"),
+                    contract.name + _(": Annual amount"),
                 )
 
             # contract invoice concepts

@@ -18,7 +18,6 @@
 ##############################################################################
 from odoo import models, fields
 from odoo.addons import decimal_precision as dp
-import time
 
 
 class LimpContractLine(models.Model):
@@ -34,26 +33,11 @@ class LimpContractLine(models.Model):
     amount = fields.Float(
         "Amount", digits=dp.get_precision("Account"), readonly=True
     )
-    #'task_ids': fields.one2many('limp.contract.line.task.rel', 'contract_line_id', 'Tasks')
     employee_task_ids = fields.One2many(
         "limp.contract.line.employee.task",
         "contract_line_id",
         "Employees Tasks",
     )
-    incidence_ids = fields.One2many(
-        "limp.incidence", "contract_line_id", "Incidences"
-    )
-    incidences_amount = fields.Float(
-        "Incid. amount", digits=dp.get_precision("Account")
-    )
     note = fields.Text("Description")
     incidences = fields.Boolean("Contents incidences")
     incidences_text = fields.Text("Incidences description")
-
-    def _compute_incidences_amount(self):
-        for line in self:
-            amount = 0.0
-            if line.incidence_ids:
-                for incidence in line.incidence_ids:
-                    amount += incidence.amount * incidence.hours
-            line.incidences_amount = amount

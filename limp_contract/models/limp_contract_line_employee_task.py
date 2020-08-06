@@ -41,7 +41,6 @@ class LimpContractLineEmployeeTask(models.Model):
         related="contract_id.department_id",
         readonly=True,
     )
-    #'employee_id': fields.many2one('hr.employee', 'Employees', required=True)
     employee_ids = fields.Many2many(
         "hr.employee",
         "hr_employee_contract_task_rel",
@@ -59,7 +58,7 @@ class LimpContractLineEmployeeTask(models.Model):
 
     def _compute_employees_str(self):
         for task in self:
-            task.employee_str = u" / ".join(
+            task.employee_str = " / ".join(
                 [x.name for x in task.employee_ids]
             )
 

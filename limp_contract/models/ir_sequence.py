@@ -23,7 +23,8 @@ class IrSequence(models.Model):
 
     _inherit = "ir.sequence"
 
-    delegation_id = fields.Many2one("res.delegation", "Delegation")
+    delegation_id = fields.Many2one("res.delegation", "Delegation",
+                                    index=True)
 
     @api.model
     def search_by_delegation(self, code, delegation):

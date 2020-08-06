@@ -4,7 +4,6 @@
         <field name="name">ir.sequence.form.add_delegation_field</field>
         <field name="model">ir.sequence</field>
         <field name="inherit_id" ref="base.sequence_view"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="company_id" position="before">
                 <field name="delegation_id"/>
@@ -16,7 +15,6 @@
         <field name="name">ir.sequence.tree.add_delegation_field</field>
         <field name="model">ir.sequence</field>
         <field name="inherit_id" ref="base.sequence_view_tree"/>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <field name="company_id" position="before">
                 <field name="delegation_id"/>

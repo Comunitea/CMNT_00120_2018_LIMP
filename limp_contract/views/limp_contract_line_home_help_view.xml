@@ -4,9 +4,8 @@
     <record id="limp_contract_line_home_help_tree" model="ir.ui.view">
         <field name="name">limp.contract.line.home.help.tree</field>
         <field name="model">limp.contract.line.home.help</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Home help contract lines" colors="grey:state=='close'">
+            <tree string="Home help contract lines" decoration-muted="state=='close'">
                 <field name="num"/>
                 <field name="customer_contact_id"/>
                 <field name="state_id" string="Province"/>
@@ -34,7 +33,6 @@
     <record id="limp_contract_line_home_help_form" model="ir.ui.view">
         <field name="name">limp.contract.line.home.help.form</field>
         <field name="model">limp.contract.line.home.help</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Home help contract line">
                 <header>
@@ -58,7 +56,6 @@
                             <field name="description" widget="char" colspan="4" size="255"/>
                         </group>
                         <group>
-                            <!--<field name="incidences_amount"/>-->
                             <field name="beneficiary_amount"/>
                             <field name="check_amount"/>
                             <field name="administration_amount"/>
@@ -74,9 +71,6 @@
                         <page string="Employees Tasks">
                             <field name="employee_task_ids" nolabel="1" colspan="4"/>
                         </page>
-                        <!--page string="Active occupations">
-                            <field name="active_occupation_ids" nolabel="1" colspan="4" context="{'company_id': company_id, 'c_delegation_id': delegation_id, 'c_department_id': department_id}"/>
-                        </page-->
                         <page string="Active remunerations">
                             <field name="analytic_acc_id" invisible="1" required="0"/>
                             <field name="active_remuneration_ids" nolabel="1" colspan="4" context="{'default_analytic_account_id': analytic_acc_id}"/>
@@ -173,36 +167,35 @@
     <record id="limp_contract_line_home_help_search" model="ir.ui.view">
         <field name="name">limp.contract.line.home.help.search</field>
         <field name="model">limp.contract.line.home.help</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Home help contract lines">
                 <group col="8" colspan="4">
-                    <filter string="Pending" domain="[('state','=','pending')]" help="Pending contracts"/>
-                    <filter string="Current" domain="[('state','=','open')]" help="Current contracts"/>
+                    <filter string="Pending" name="pending" domain="[('state','=','pending')]" help="Pending contracts"/>
+                    <filter string="Current" name="current" domain="[('state','=','open')]" help="Current contracts"/>
                     <separator orientation="vertical"/>
-                    <field name="name" select="1"/>
-                    <field name="partner_id" select="1" string="Customer"/>
-                    <field name="customer_contact_id" select="1"/>
-                    <field name="state_id" select="1" string="Province"/>
-                    <field name="location_id" select="1"/>
+                    <field name="name"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="customer_contact_id"/>
+                    <field name="state_id" string="Province"/>
+                    <field name="location_id"/>
                     <field name="description"/>
                     <newline/>
                     <field name="incidences"/>
-                    <field name="partner_social_worker_id" select="1"/>
-                    <field name="manager_id" widget="selection" select="2" string="Manager"/>
+                    <field name="partner_social_worker_id"/>
+                    <field name="manager_id" widget="selection" string="Manager"/>
                     <field name="date_start"/>
-                    <field name="date" select="2"/>
+                    <field name="date"/>
                 </group>
                 <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Manager" domain="[]" context="{'group_by':'manager_id'}"/>
-                    <filter string="Partner social worker" domain="[]" context="{'group_by':'partner_social_worker_id'}"/>
-                    <filter string="Province" domain="[]" context="{'group_by': 'state_id'}"/>
-                    <filter string="Council" domain="[]" context="{'group_by': 'location_id'}"/>
+                    <filter string="Manager" name="manager" domain="[]" context="{'group_by':'manager_id'}"/>
+                    <filter string="Partner social worker" name="social_worker" domain="[]" context="{'group_by':'partner_social_worker_id'}"/>
+                    <filter string="Province" domain="[]" name="province" context="{'group_by': 'state_id'}"/>
+                    <filter string="Council" domain="[]" name="council" context="{'group_by': 'location_id'}"/>
                     <separator orientation="vertical"/>
-                    <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
-                    <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
-                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Company" domain="[]" name="company" context="{'group_by':'company_id'}"/>
+                    <filter string="Delegation" domain="[]" name="delegation" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" domain="[]" name="department" context="{'group_by':'department_id'}"/>
                 </group>
             </search>
         </field>

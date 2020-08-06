@@ -4,7 +4,6 @@
         <record id="limp_contract_line_task_rel_tree" model="ir.ui.view">
             <field name="name">limp.contract.line.task.rel.tree</field>
             <field name="model">limp.contract.line.task.rel</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Contract tasks" editable="top">
                     <field name="contract_task_id"/>
@@ -23,7 +22,6 @@
         <record id="limp_contract_line_task_rel_form" model="ir.ui.view">
             <field name="name">limp.contract.line.task.rel.form</field>
             <field name="model">limp.contract.line.task.rel</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Contract task">
                     <field name="contract_task_id" colspan="4"/>
@@ -43,10 +41,9 @@
         <record id="limp_contract_line_task_rel_search" model="ir.ui.view">
             <field name="name">limp.contract.line.task.rel.search</field>
             <field name="model">limp.contract.line.task.rel</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Contract tasks">
-                    <field name="contract_task_id" select="1"/>
+                    <field name="contract_task_id"/>
                 </search>
             </field>
         </record>

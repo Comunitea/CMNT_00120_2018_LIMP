@@ -17,7 +17,6 @@
 #
 ##############################################################################
 from odoo import models, fields
-from odoo.addons import decimal_precision as dp
 
 
 class AccountAnalyticInvoiceConcept(models.Model):

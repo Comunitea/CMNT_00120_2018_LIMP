@@ -4,7 +4,6 @@
         <field name="name">hr.employee.form.add.fields</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="job_id" position="before">
                 <field name="title"/>
@@ -28,7 +27,6 @@
         <field name="name">hr.employee.tree.add.field</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_tree"/>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <field name="company_id" position="before">
                 <field name="title"/>

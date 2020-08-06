@@ -58,7 +58,7 @@ class AccountAnalyticAccount(models.Model):
         search="_search_is_picking_contract",
     )
     analytic_distribution_id = fields.Many2one(
-        "account.analytic.distribution", "Analytic Distribution"
+        "account.analytic.tag", "Analytic Distribution"
     )
     address_tramit_id = fields.Many2one("res.partner", "Tramit address")
     partner_name = fields.Char(
@@ -159,7 +159,7 @@ class AccountAnalyticAccount(models.Model):
                 ids = self.search(
                     [("partner_id", "in", partners._ids)] + args, limit=limit
                 )
-            ids += self.search(
+            ids |= self.search(
                 [
                     "|",
                     ("description", operator, name),
@@ -185,16 +185,16 @@ class AccountAnalyticAccount(models.Model):
                 if home_help_lines:
                     line = home_help_lines[0]
                     if line.customer_contact_id:
-                        name += u" " + line.customer_contact_id.name
+                        name += " " + line.customer_contact_id.name
                     else:
-                        name += u""
+                        name += ""
                 else:
-                    name += u" " + (obj.address_id.name or u"")
-                name += u" " + (obj.description or u"")
+                    name += " " + (obj.address_id.name or "")
+                name += " " + (obj.description or "")
             else:
                 name = obj.name
             if obj.date:
-                name = u"[] " + name
+                name = "[] " + name
             res.append((obj.id, name))
         return res
 
@@ -276,7 +276,8 @@ class AccountAnalyticAccount(models.Model):
             if line.contract_id.address_tramit_id:
                 vals.update(
                     {
-                        "address_tramit_id": line.contract_id.address_tramit_id.id
+                        "address_tramit_id":
+                        line.contract_id.address_tramit_id.id
                     }
                 )
 
@@ -377,7 +378,7 @@ class AccountAnalyticAccount(models.Model):
             ref_line.write(
                 {
                     "hours": total_hours,
-                    "name": ref_line.name + u" " + str(total_hours),
+                    "name": ref_line.name + " " + str(total_hours),
                 }
             )
         return res
@@ -390,7 +391,8 @@ class AccountAnalyticAccount(models.Model):
             invoice_line.write(
                 {
                     "account_analytic_id": False,
-                    "analytic_distribution_id": self.analytic_distribution_id.id,
+                    "analytic_tag_ids":
+                    [(4, self.analytic_distribution_id.id)],
                 }
             )
         return True

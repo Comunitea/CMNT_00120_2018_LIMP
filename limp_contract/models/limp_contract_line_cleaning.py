@@ -82,7 +82,6 @@ class LimpContractLineCleaning(models.Model):
     @api.onchange("address_id")
     def onchange_address_id(self):
         if self.address_id:
-            vals = {}
             if self.address_id.state_id:
                 self.state_id = self.address_id.state_id.id
             if self.address_id.council_id:
@@ -107,7 +106,7 @@ class LimpContractLineCleaning(models.Model):
 
     def copy_data(self, default=None):
         default = default or {}
-        if context.get("is_contract", False):
+        if self.env.context.get("is_contract", False):
             if self.date:
                 return {}
         default.update(
@@ -130,7 +129,7 @@ class LimpContractLineCleaning(models.Model):
             contract = self.env["limp.contract"].browse(vals["contract_id"])
             if contract.seq_lines_id:
                 num = contract.seq_lines_id.next_by_id()
-                vals["name"] = contract.name + u" - " + num
+                vals["name"] = contract.name + " - " + num
                 vals["num"] = num
                 if not vals.get("delegation_id", False):
                     vals["delegation_id"] = contract.delegation_id.id
@@ -153,8 +152,8 @@ class LimpContractLineCleaning(models.Model):
             remuneration_ids_wo_dateto = self.env["remuneration"]
 
             for line in self:
-                all_remuneration_ids += line.remuneration_ids
-                remuneration_ids_wo_dateto += line.remuneration_ids.filtered(
+                all_remuneration_ids |= line.remuneration_ids
+                remuneration_ids_wo_dateto |= line.remuneration_ids.filtered(
                     lambda r: not r.date_to
                 )
 
@@ -180,9 +179,8 @@ class LimpContractLineCleaning(models.Model):
         for line in self:
             if line.state not in ("draft", "cancelled"):
                 raise UserError(
-                    _(
-                        "Only contract lines in draft or cancelled states can be deleted."
-                    )
+                    _("Only contract lines in draft or cancelled states "
+                      "can be deleted.")
                 )
         res = super(LimpContractLineCleaning, self).unlink()
         return res

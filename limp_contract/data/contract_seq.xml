@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
 
         <record id="seq_default_contract" model="ir.sequence">
             <field name="name">Default contract seq.</field>
@@ -15,5 +14,4 @@
             <field name="code">limp.contract.line.seq</field>
         </record>
 
-    </data>
 </odoo>

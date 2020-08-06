@@ -28,7 +28,7 @@ class LimpContractTask(models.Model):
 
     name = fields.Char("Name", size=256, required=True)
     department_id = fields.Many2one(
-        "hr.department", "Department", required=True
+        "hr.department", "Department", required=True, index=True
     )
     parent_id = fields.Many2one("limp.contract.task", "Parent Task")
     sequence = fields.Integer("Sequence", default=0)

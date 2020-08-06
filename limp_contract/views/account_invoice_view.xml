@@ -5,7 +5,6 @@
             <field name="name">account.invoice.supplier.form.add_department_delegation</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="date_due" position="before">
                     <field name="invoice_header" colspan="4"/>
@@ -17,7 +16,6 @@
             <field name="name">account.invoice.form.add_department_delegation</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                  <field name="date_due" position="before">
                     <field name="invoice_header"/>
@@ -30,7 +28,6 @@
             <field name="name">account.invoice.tree.add_privacy</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_tree"/>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <field name="state" position="after">
                     <field name="privacy"/>
@@ -42,7 +39,6 @@
             <field name="name">account.invoice.select.add_privacy</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.view_account_invoice_filter"/>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
                     <field name="privacy"/>

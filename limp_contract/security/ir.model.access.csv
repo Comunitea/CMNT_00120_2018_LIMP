@@ -20,8 +20,6 @@
 "access_limp_contract_line_employee_task_user","limp_contract_line_employee_task_user","model_limp_contract_line_employee_task","base.group_user",1,0,0,0
 "access_limp_contract_objectives_administrative","limp_contract_objectives_administrative","model_limp_contract_objectives","group_limp_administrative",1,1,1,1
 "access_limp_contract_objectives_user","limp_contract_objectives_user","model_limp_contract_objectives","base.group_user",1,0,0,0
-"access_limp_incidence_administrative","limp_incidence_administrative","model_limp_incidence","group_limp_administrative",1,1,1,1
-"access_limp_incidence_stock_manager","limp_incidence_stock_manager","model_limp_incidence","stock.group_stock_manager",1,1,1,1
 "access_limp_contract_task_administrative","limp_contract_task_administrative","model_limp_contract_task","group_limp_administrative",1,1,1,1
 "access_limp_contract_task_user","limp_contract_task_user","model_limp_contract_task","base.group_user",1,0,0,0
 "access_analytic_invoice_concept_administrative","analytic_invoice_conept_administrative","invoice_concept.model_account_analytic_invoice_concept","group_limp_administrative",1,1,1,1

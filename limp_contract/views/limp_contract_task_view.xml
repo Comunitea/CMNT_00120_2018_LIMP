@@ -4,7 +4,6 @@
         <record id="limp_contract_task_tree" model="ir.ui.view">
             <field name="name">limp.contract.task.tree</field>
             <field name="model">limp.contract.task</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Contract tasks">
                     <field name="sequence"/>
@@ -20,7 +19,6 @@
         <record id="limp_contract_task_form" model="ir.ui.view">
             <field name="name">limp.contract.task.form</field>
             <field name="model">limp.contract.task</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Contract task">
                     <sheet>
@@ -44,22 +42,21 @@
         <record id="limp_contract_task_search" model="ir.ui.view">
             <field name="name">limp.contract.task.search</field>
             <field name="model">limp.contract.task</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Contract tasks">
                     <group col="4" colspan="4">
-                        <field name="name" select="1"/>
-                        <field name="department_id" select="1"/>
-                        <field name="center_type_id" select="1"/>
-                        <field name="parent_id" select="1"/>
+                        <field name="name"/>
+                        <field name="department_id"/>
+                        <field name="center_type_id"/>
+                        <field name="parent_id"/>
                         <field name="company_id"/>
                     </group>
                     <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
-                        <filter string="Center type" domain="[]" context="{'group_by':'center_type_id'}"/>
-                        <filter string="Parent" domain="[]" context="{'group_by':'parent_id'}"/>
-                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
+                        <filter string="Department" name="department" domain="[]" context="{'group_by':'department_id'}"/>
+                        <filter string="Center type" name="center_type" domain="[]" context="{'group_by':'center_type_id'}"/>
+                        <filter string="Parent" name="parent" domain="[]" context="{'group_by':'parent_id'}"/>
+                        <filter string="Company" name="company" domain="[]" context="{'group_by':'company_id'}"/>
                     </group>
                 </search>
             </field>

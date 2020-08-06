@@ -4,7 +4,6 @@
     <record id="contract_toinvoice_wzd_form" model="ir.ui.view">
         <field name="name">contract.toinvoice.wzd.form</field>
         <field name="model">contract.to_invoice</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Contract invoicing wizard">
                 <group col="4">

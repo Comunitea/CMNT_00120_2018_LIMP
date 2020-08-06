@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011 Comunitea Servicios Tecnológicos S.L.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,17 +21,13 @@
     "name": "Limpergal contracts",
     "description": "Add contract model for Limpergal.",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comunitea.com",
     "category": "Contracts",
     "depends": [
-        "base",
         "analytic",
         "limp_multi_delegations",
         "hr",
-        "stock",
-        "account",
-        "decimal_precision",
         "invoice_concept",
         "account_analytic_parent",
         "analytic_incidences",
@@ -56,7 +52,6 @@
         "views/ir_sequence_view.xml",
         "views/limp_contract_line_task_rel_view.xml",
         "views/limp_contract_task_view.xml",
-        "views/limp_incidence_view.xml",
         "security/limp_contract_security.xml",
         "views/analytic_invoice_concept_rel_view.xml",
         "views/hr_department_view.xml",
@@ -68,7 +63,6 @@
         "views/hr_employee_view.xml",
         "views/stock_service_picking_view.xml",
         "views/account_invoice_view.xml",
-        "views/res_company_view.xml",
         "data/maintenance_task_cron.xml",
         "views/limp_center_type_view.xml",
         "views/limp_contract_notes.xml",

@@ -140,7 +140,7 @@ class LimpContractLineHomeHelp(models.Model):
             contract = self.env["limp.contract"].browse(vals["contract_id"])
             if contract.seq_lines_id:
                 num = contract.seq_lines_id.next_by_id()
-                vals["name"] = contract.name + u" - " + num
+                vals["name"] = contract.name + " - " + num
                 vals["num"] = num
                 if not vals.get("delegation_id", False):
                     vals["delegation_id"] = contract.delegation_id.id
@@ -186,9 +186,8 @@ class LimpContractLineHomeHelp(models.Model):
         for line in self:
             if line.state not in ("draft", "cancelled"):
                 raise UserError(
-                    _(
-                        "Only contract lines in draft or cancelled states can be deleted."
-                    )
+                    _("Only contract lines in draft or cancelled states "
+                      "can be deleted.")
                 )
         res = super(LimpContractLineHomeHelp, self).unlink()
         return res

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <menuitem id="menu_hr_department" parent="base.menu_administration" name="Departments" sequence="45" />
+    <menuitem action="hr.open_module_tree_department" id="menu_hr_department" parent="base.menu_users" name="Departments" sequence="6" />
 
-    <menuitem action="hr.open_module_tree_department" id="hr.menu_hr_department_tree" parent="menu_hr_department" sequence="6" />
 </odoo>

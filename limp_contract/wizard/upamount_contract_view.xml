@@ -4,7 +4,6 @@
     <record id="upamount_contract_wzd_form" model="ir.ui.view">
         <field name="name">upamount.contract.wzd.form</field>
         <field name="model">upamount.contract.wzd</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Contract upamount wizard">
                 <group>
