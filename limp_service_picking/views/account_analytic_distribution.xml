@@ -2,17 +2,7 @@
 <!-- © 2018 Comunitea
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <!--TODO: Migrar<record id="account_analytic_distribution_form" model="ir.ui.view">
-        <field name="name">account.analytic.distribution</field>
-        <field name="model">account.analytic.distribution</field>
-        <field name="inherit_id" ref="account_analytic_distribution.account_analytic_distribution_form"/>
-        <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="tag_id"/>
-            </field>
-        </field>
-    </record>
--->
+
     <record id="view_account_analytic_account_search_add_desc" model="ir.ui.view">
         <field name="name">account.analytic.account.search.add_desc</field>
         <field name="model">account.analytic.account</field>

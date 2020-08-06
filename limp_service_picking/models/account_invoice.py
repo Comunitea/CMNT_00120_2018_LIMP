@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class AccountInvoiceLine(models.Model):
@@ -42,21 +42,6 @@ class AccountInvoice(models.Model):
     intercompany_invoice_id = fields.Many2one(
         "account.invoice", "Intercompany invoice", readonly=True
     )
-
-    @api.model
-    def _refund_cleanup_lines(self, lines):
-        res = super(AccountInvoice, self)._refund_cleanup_lines(lines)
-        for line in res:
-            line[2]["building_site_id"] = (
-                line[2].get("building_site_id", False)
-                and line[2]["building_site_id"][0]
-            )
-            line[2]["service_picking_id"] = (
-                line[2].get("service_picking_id", False)
-                and line[2]["service_picking_id"][0]
-            )
-
-        return res
 
 
 class StockServicePicking(models.Model):

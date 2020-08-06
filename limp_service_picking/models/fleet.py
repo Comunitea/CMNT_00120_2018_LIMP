@@ -25,5 +25,6 @@ class Fleet(models.Model):
     _inherit = "fleet"
 
     analytic_plan_id = fields.Many2one(
-        "account.analytic.distribution", "Analytic distribution"
+        "account.analytic.tag", "Analytic distribution",
+        domain=[('active_analytic_distribution', '=', True)]
     )

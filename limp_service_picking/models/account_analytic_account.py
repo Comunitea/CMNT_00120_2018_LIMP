@@ -48,20 +48,6 @@ class analytic_account_employees(models.Model):
 class AccountAnalyticAccount(models.Model):
     _inherit = "account.analytic.account"
 
-    """def _get_distinct_employee_ids(self, cr, uid, ids, field_name, arg, context=None):
-        res = {}
-        for acc in self.browse(cr, uid, ids, context=context):
-            employee_ids = []
-            timesheet_ids = []
-
-            for timesheet in acc.employee_ids:
-                if timesheet.employee_id.id not in employee_ids:
-                    employee_ids.append(timesheet.employee_id.id)
-                    timesheet_ids.append(timesheet.id)
-            res[acc.id] = timesheet_ids
-
-        return res"""
-
     employee_ids = fields.One2many(
         "timesheet", "analytic_id", string="Timesheet", copy=False
     )
@@ -87,13 +73,8 @@ class AccountAnalyticAccount(models.Model):
         copy=False,
     )
     company_id = fields.Many2one(
-        "res.company",
-        "Company",
-        required=False,
         change_default=True,
-        default=lambda r: r._context.get(
-            "company_id", r.env.user.company_id.id
-        ),
+        index=True
     )
     delegation_id = fields.Many2one(
         "res.delegation",
@@ -105,6 +86,7 @@ class AccountAnalyticAccount(models.Model):
                 "delegation_id", r.env.user.context_delegation_id.id
             ),
         ),
+        index=True
     )
     other_expense_ids = fields.One2many(
         "stock.service.other.expenses",
@@ -113,8 +95,7 @@ class AccountAnalyticAccount(models.Model):
         copy=False,
     )
     address_invoice_id = fields.Many2one("res.partner", "Address invoice")
-    date_start = fields.Date("Date start")
-    date = fields.Date("Date end")
-    contact_id = fields.Many2one("res.partner", "Contact")
+    date_start = fields.Date("Date start", index=True)
+    date = fields.Date("Date end", index=True)
     description = fields.Text("Service", required=False)
     address_id = fields.Many2one("res.partner", "Address")

@@ -17,7 +17,6 @@ from . import res_company
 from . import stock_move
 from . import timesheet
 from . import other_expenses
-from . import account_analytic_distribution
 from . import stock_service_picking_ddd
 from . import types_ddd
 from . import detected_species

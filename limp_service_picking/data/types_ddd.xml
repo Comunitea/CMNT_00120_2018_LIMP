@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+
         <record model="types.ddd" id="deratization">
             <field name="name">Desratizacion</field>
             <field name="code">desratizacion</field>
@@ -26,5 +26,4 @@
             <field name="service_type">legionella</field>
         </record>
 
-    </data>
 </odoo>

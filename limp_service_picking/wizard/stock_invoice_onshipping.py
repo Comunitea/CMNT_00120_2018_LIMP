@@ -111,9 +111,9 @@ class StockInvoiceOnshipping(models.TransientModel):
             raise UserError(_("No invoice created!"))
 
         action = {}
-        if "out" in invoices[0].type:
+        if "out" in (len(invoices) > 1 and invoices[0].type or invoices.type):
             action = self.env.ref("account.action_invoice_tree1")
-        elif "in" in invoices[0].type:
+        elif "in" in (len(invoices) > 1 and invoices[0].type or invoices.type):
             action = self.env.ref("account.action_invoice_tree2")
 
         if action:

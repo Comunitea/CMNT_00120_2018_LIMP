@@ -73,16 +73,26 @@ class ValorizationLines(models.Model):
         self.env.cr.execute(
             """
             create or replace view valorization_lines as (
-            SELECT S.retired_date AS date,V.id AS id,coalesce(V.net_weight,0.0) AS qty,
-            (coalesce(V.product_qty,0.0) + coalesce(V.overload_qty,0.0)) as volume, coalesce(SP.company_id, A.company_id) as company_id,S.building_site_id,V.product_id,V.name as product_name,B.producer_promoter,V.ler_code as picking_ler,
-            P2.ler_code_id,A.partner_id,B.holder_builder,B.vat_holder,S.id as picking_id, V.memory_include, S.manager_partner_id, V.no_compute as no_computed, SP.id as stock_picking_id
+            SELECT S.retired_date AS date,V.id AS id,
+            coalesce(V.net_weight,0.0) AS qty,
+            (coalesce(V.product_qty,0.0) + coalesce(V.overload_qty,0.0))
+            as volume, coalesce(SP.company_id, A.company_id) as company_id,
+            S.building_site_id,V.product_id,V.name as product_name,
+            B.producer_promoter,V.ler_code as picking_ler,
+            P2.ler_code_id,A.partner_id,B.holder_builder,B.vat_holder,
+            S.id as picking_id, V.memory_include, S.manager_partner_id,
+            V.no_compute as no_computed, SP.id as stock_picking_id
             FROM service_picking_valorization_rel AS V
-                INNER JOIN stock_service_picking as S ON V.service_picking_id = S.id
-                INNER JOIN account_analytic_account as A ON S.analytic_acc_id = A.id
-                LEFT JOIN building_site_services AS B ON S.building_site_id = B.id
+                INNER JOIN stock_service_picking as S ON
+                    V.service_picking_id = S.id
+                INNER JOIN account_analytic_account as A ON
+                    S.analytic_acc_id = A.id
+                LEFT JOIN building_site_services AS B ON
+                    S.building_site_id = B.id
                 INNER JOIN product_product AS P ON V.product_id = P.id
                 INNER JOIN product_template AS P2 ON P.product_tmpl_id = P2.id
                 LEFT JOIN waste_ler_code as L on P2.ler_code_id = L.id
-                LEFT JOIN stock_picking AS SP on SP.stock_service_picking_id = S.id
+                LEFT JOIN stock_picking AS SP on
+                    SP.stock_service_picking_id = S.id
             )"""
         )

@@ -5,7 +5,6 @@
         <field name="name">res.partner.form.add_new_fields_limp</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <page name="internal_notes" position="before">
                 <page string="Other data">
@@ -28,16 +27,16 @@
                     <field name="building_site_services_ids" nolabel="1" colspan="4"/>
                 </page>
             </page>
-            <field name="supplier" position="after">
+            <field name="ref" position="after">
                 <field name="destination_manager"/>
             </field>
         </field>
     </record>
+
     <record id="view_res_partner_filters_add_fields" model="ir.ui.view">
         <field name="name">res.partner.select.filters_add_fields</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_res_partner_filter"/>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <filter name="supplier" position="after">
                 <filter string="Manager" name="manager" domain="[('destination_manager','=',1)]" help="Destination manager partner"/>

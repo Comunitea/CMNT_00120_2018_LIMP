@@ -71,7 +71,7 @@ class StockPicking(models.Model):
                 or picking.invoice_state != "2binvoiced"
             ):
                 continue
-            type = picking.invoice_type
+            type = picking.invoice_type or 'out_invoice'
             if group:
                 if picking.partner_id not in grouped_pickings:
                     grouped_pickings[picking.partner_id] = self.env[
@@ -105,18 +105,18 @@ class StockPicking(models.Model):
                 invoice_vals, ["partner_id"], specs
             )
             value = updates.get("value", {})
-            for name, val in value.iteritems():
+            for name, val in list(value.items()):
                 if isinstance(val, tuple):
                     value[name] = val[0]
             invoice_vals.update(value)
             invoice = self.env["account.invoice"].create(invoice_vals)
             for operation in grouped_pickings[key].mapped(
-                "pack_operation_product_ids"
+                "move_lines"
             ):
                 invoice_line_vals = {
                     "product_id": operation.product_id.id,
-                    "quantity": operation.qty_done,
-                    "uom_id": operation.product_uom_id.id,
+                    "quantity": operation.quantity_done,
+                    "uom_id": operation.product_uom.id,
                     "price_unit": False,
                     "name": False,
                     "invoice_line_tax_ids": False,
@@ -129,7 +129,7 @@ class StockPicking(models.Model):
                     invoice_line_vals, ["product_id"], specs
                 )
                 value = updates.get("value", {})
-                for name, val in value.iteritems():
+                for name, val in list(value.items()):
                     if isinstance(val, tuple):
                         value[name] = val[0]
                 invoice_line_vals.update(value)
@@ -168,7 +168,7 @@ class StockPicking(models.Model):
                         if not self.env.user.company_id.reserve_product_id:
                             raise UserError(
                                 _(
-                                    u"You have not enough quantity to serve the product %s. Then you have to set teh reserve product in company for using it."
+                                    "You have not enough quantity to serve the product %s. Then you have to set teh reserve product in company for using it."
                                 )
                                 % (move.product_id.name,)
                             )
@@ -192,7 +192,7 @@ class StockPicking(models.Model):
 
                             # movimiento de consumo del producto resevado, de Stock a producción
                             move_vals = {
-                                "name": u"Used to serve %s in picking %s"
+                                "name": "Used to serve %s in picking %s"
                                 % (move.product_id.name, pick.name),
                                 "product_id": user.company_id.reserve_product_id.id,
                                 "product_uom_qty": qty,

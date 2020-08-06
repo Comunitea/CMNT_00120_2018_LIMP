@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, api, _
+from odoo import models, fields, _
 from odoo.exceptions import UserError
 
 
@@ -46,9 +46,8 @@ class ServiceOrderToinvoice(models.TransientModel):
                 or pick.invoice_type == "noinvoice"
             ):
                 raise UserError(
-                    _(
-                        "The service order %s does not prepares to be invoiced or it was already invoiced."
-                    )
+                    _("The service order %s does not prepares to be "
+                      "invoiced or it was already invoiced.")
                     % (pick.name)
                 )
         return res
@@ -101,9 +100,8 @@ class ServiceOrderToinvoice(models.TransientModel):
             )
             if not partner:
                 raise UserError(
-                    _(
-                        "Please put a partner on the service order list if you want to generate invoice."
-                    )
+                    _("Please put a partner on the service order list if "
+                      "you want to generate invoice.")
                 )
 
             account_id = partner.property_account_receivable_id.id
@@ -129,18 +127,18 @@ class ServiceOrderToinvoice(models.TransientModel):
 
             if service_picking.intercompany:
                 if not comment:
-                    comment = u"%s: " % service_picking.name
+                    comment = "%s: " % service_picking.name
                 else:
-                    comment += u"\n%s: " % service_picking.name
+                    comment += "\n%s: " % service_picking.name
                 delegation = self.env["res.delegation"].browse(
                     int(service_picking.invoice_delegation_id)
                 )
-                comment += u"DEL: %s, " % delegation.name
+                comment += "DEL: %s, " % delegation.name
                 comment += (
-                    u"DEP: %s, " % service_picking.invoice_department_id.name
+                    "DEP: %s, " % service_picking.invoice_department_id.name
                 )
                 comment += (
-                    u"RESP: %s\n" % service_picking.invoice_responsible_id.name
+                    "RESP: %s\n" % service_picking.invoice_responsible_id.name
                 )
                 intercompany = True
 
@@ -156,21 +154,21 @@ class ServiceOrderToinvoice(models.TransientModel):
                     key + "b:" + str(building_site.id) + "p:" + str(partner.id)
                 ]
                 invoice_vals = {
-                    "name": (invoice.name or u"")
-                    + u", "
-                    + (service_picking.name or u""),
+                    "name": (invoice.name or "")
+                    + ", "
+                    + (service_picking.name or ""),
                     "origin": (invoice.origin or "")
-                    + u", "
-                    + (service_picking.name or u""),
+                    + ", "
+                    + (service_picking.name or ""),
                     "comment": (
                         comment
                         and (
                             invoice.comment
-                            and invoice.comment + u"\n" + comment
+                            and invoice.comment + "\n" + comment
                             or comment
                         )
                     )
-                    or (invoice.comment and invoice.comment or u""),
+                    or (invoice.comment and invoice.comment or ""),
                     "date_invoice": date_inv or False,
                     "user_id": self.env.user.id,
                     "intercompany": intercompany,
@@ -182,21 +180,21 @@ class ServiceOrderToinvoice(models.TransientModel):
             ):
                 invoice = invoices_group[key + "p:" + str(partner.id)]
                 invoice_vals = {
-                    "name": (invoice.name or u"")
-                    + u", "
-                    + (service_picking.name or u""),
-                    "origin": (invoice.origin or u"")
-                    + u", "
-                    + (service_picking.name or u""),
+                    "name": (invoice.name or "")
+                    + ", "
+                    + (service_picking.name or ""),
+                    "origin": (invoice.origin or "")
+                    + ", "
+                    + (service_picking.name or ""),
                     "comment": (
                         comment
                         and (
                             invoice.comment
-                            and invoice.comment + u"\n" + comment
+                            and invoice.comment + "\n" + comment
                             or comment
                         )
                     )
-                    or (invoice.comment and invoice.comment or u""),
+                    or (invoice.comment and invoice.comment or ""),
                     "date_invoice": date_inv or False,
                     "user_id": self.env.user.id,
                     "intercompany": intercompany,
@@ -205,7 +203,7 @@ class ServiceOrderToinvoice(models.TransientModel):
             else:
                 invoice_vals = {
                     "name": service_picking.name,
-                    "origin": (service_picking.name or u""),
+                    "origin": (service_picking.name or ""),
                     "type": "out_invoice",
                     "account_id": account_id,
                     "partner_id": partner.id,
@@ -242,17 +240,19 @@ class ServiceOrderToinvoice(models.TransientModel):
             for move_line in service_picking.service_invoice_concept_ids:
                 if group_partner or group_building_site:
                     name = (
-                        (service_picking.name or u"") + u"-" + move_line.name
+                        (service_picking.name or "") + "-" + move_line.name
                     )
                 else:
                     name = move_line.name
 
                 account_id = (
-                    move_line.product_id.product_tmpl_id.property_account_income_id
+                    move_line.product_id.product_tmpl_id.
+                    property_account_income_id
                 )
                 if not account_id:
                     account_id = (
-                        move_line.product_id.categ_id.property_account_income_categ_id
+                        move_line.product_id.categ_id.
+                        property_account_income_categ_id
                     )
 
                 if not account_id:
@@ -265,7 +265,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                 tax_ids = fpos.map_tax(move_line.product_id.taxes_id)._ids
                 account_id = fpos.map_account(account_id).id
 
-                invoice_line_id = invoice_line_obj.create(
+                invoice_line_obj.create(
                     {
                         "name": name,
                         "invoice_id": invoice.id,
@@ -280,7 +280,8 @@ class ServiceOrderToinvoice(models.TransientModel):
                         "building_site_id": service_picking.building_site_id
                         and service_picking.building_site_id.id
                         or False,
-                        "account_analytic_id": service_picking.analytic_acc_id.id,
+                        "account_analytic_id":
+                        service_picking.analytic_acc_id.id,
                         "service_picking_id": service_picking.id,
                     }
                 )
@@ -294,11 +295,13 @@ class ServiceOrderToinvoice(models.TransientModel):
                     )
 
                 account_id = (
-                    service_picking.product_tax_id.product_tmpl_id.property_account_income
+                    service_picking.product_tax_id.product_tmpl_id.
+                    property_account_income_id
                 )
                 if not account_id:
                     account_id = (
-                        service_picking.product_tax_id.categ_id.property_account_income_categ
+                        service_picking.product_tax_id.categ_id.
+                        property_account_income_categ_id
                     )
 
                 if not account_id:
@@ -324,31 +327,32 @@ class ServiceOrderToinvoice(models.TransientModel):
                         "building_site_id": service_picking.building_site_id
                         and service_picking.building_site_id.id
                         or False,
-                        "account_analytic_id": service_picking.analytic_acc_id.id,
+                        "account_analytic_id":
+                        service_picking.analytic_acc_id.id,
                         "service_picking_id": service_picking.id,
                     }
                 )
 
             if service_picking.sand_amount:
                 if not service_picking.product_sand_id:
-                    raise osv.except_osv(
-                        _("Error!"),
+                    raise UserError(
                         _("Product sand treatment is not set in picking %s")
                         % service_picking.name,
                     )
 
                 account_id = (
-                    service_picking.product_sand_id.product_tmpl_id.property_account_income.id
+                    service_picking.product_sand_id.product_tmpl_id.
+                    property_account_income_id
                 )
                 if not account_id:
                     account_id = (
-                        service_picking.product_sand_id.categ_id.property_account_income_categ.id
+                        service_picking.product_sand_id.categ_id.
+                        property_account_income_categ_id
                     )
                 if not account_id:
-                    raise osv.except_osv(
-                        _("Error!"),
+                    raise UserError(
                         _("Income account in product %s is not set")
-                        % ervice_picking.product_sand_id.name,
+                        % service_picking.product_sand_id.name,
                     )
 
                 tax_ids = fpos.map_tax(
@@ -368,7 +372,8 @@ class ServiceOrderToinvoice(models.TransientModel):
                         "building_site_id": service_picking.building_site_id
                         and service_picking.building_site_id.id
                         or False,
-                        "account_analytic_id": service_picking.analytic_acc_id.id,
+                        "account_analytic_id":
+                        service_picking.analytic_acc_id.id,
                         "service_picking_id": service_picking.id,
                     }
                 )
@@ -382,27 +387,31 @@ class ServiceOrderToinvoice(models.TransientModel):
                     raise UserError(
                         _("Any income intercompany account journal found.")
                     )
-
                 invoice_copied = invoice.copy(
                     default={
                         "type": "in_invoice",
                         "delegation_id": service_picking.invoice_delegation_id,
-                        "department_id": service_picking.invoice_department_id.id,
-                        "manager_id": service_picking.invoice_responsible_id.id,
+                        "department_id":
+                        service_picking.invoice_department_id.id,
+                        "manager_id":
+                        service_picking.invoice_responsible_id.id,
                         "comment": False,
                         "journal_id": in_journal_ids[0].id,
                         "reference": service_picking.name,
+                        "account_id": partner.property_account_payable_id.id
                     }
                 )
                 invoice.write({"intercompany_invoice_id": invoice_copied.id})
                 invoice_copied.write({"no_quality": True})
                 for line in invoice_copied.invoice_line_ids:
                     account_id = (
-                        line.product_id.product_tmpl_id.property_account_expense_id
+                        line.product_id.product_tmpl_id.
+                        property_account_expense_id
                     )
                     if not account_id:
                         account_id = (
-                            line.product_id.categ_id.property_account_expense_categ_id
+                            line.product_id.categ_id.
+                            property_account_expense_categ_id
                         )
 
                     if not account_id:

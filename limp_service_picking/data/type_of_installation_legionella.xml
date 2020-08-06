@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
+
         <record model="type.of.installation.legionella" id="fixed">
             <field name="name">Fijo</field>
         </record>
@@ -13,5 +13,5 @@
         <record model="type.of.installation.legionella" id="towers">
             <field name="name">Torres</field>
         </record>
-    </data>
+
 </odoo>

@@ -19,7 +19,6 @@
 #
 ##############################################################################
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
 
 
 class ServicePickingInvoiceConcept(models.Model):
@@ -33,7 +32,7 @@ class ServicePickingInvoiceConcept(models.Model):
     price = fields.Float("Price", digits=(12, 2))
     notes = fields.Text("Notes")
     product_qty = fields.Float("Qty.", digits=(12, 3))
-    product_uom = fields.Many2one("product.uom", "Product uom")
+    product_uom = fields.Many2one("uom.uom", "Product uom")
     service_picking_id = fields.Many2one(
         "stock.service.picking", "Service picking"
     )
@@ -52,7 +51,7 @@ class ServicePickingInvoiceConcept(models.Model):
     def _compute_taxes_str(self):
         for obj in self:
             if obj.tax_ids:
-                obj.taxes_str = u", ".join([x.name for x in obj.tax_ids])
+                obj.taxes_str = ", ".join([x.name for x in obj.tax_ids])
             else:
                 obj.taxes_str = ""
 

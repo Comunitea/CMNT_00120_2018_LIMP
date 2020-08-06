@@ -4,7 +4,6 @@
     <record id="observation_recommendation_ddd_form" model="ir.ui.view">
         <field name="name">observation.recommendation.ddd.form</field>
         <field name="model">observation.recommendation.ddd</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
                 <group>

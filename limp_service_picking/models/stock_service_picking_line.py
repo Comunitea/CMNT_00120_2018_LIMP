@@ -219,7 +219,7 @@ class StockServicePickingLine(models.Model):
             "aspirating",
             "cleaning",
         ]:
-            picking = res.picking_id.write(
+            res.picking_id.write(
                 {"retired_date": res.transport_date[:10]}
             )
         return res
@@ -231,7 +231,8 @@ class StockServicePickingLine(models.Model):
                 line.container_id.write(
                     {
                         "situation_id": line.dest_address_id.id,
-                        "container_placement": line.picking_id.container_placement,
+                        "container_placement":
+                        line.picking_id.container_placement,
                         "last_move_date": line.transport_date,
                         "last_responsible_id": line.driver_id
                         and line.driver_id.id
@@ -251,7 +252,7 @@ class StockServicePickingLine(models.Model):
                             (
                                 "prefix",
                                 "=",
-                                u"TNP30"
+                                "TNP30"
                                 + line.picking_id.manager_partner_id.nima_no
                                 + time.strftime("%Y"),
                             ),
@@ -261,12 +262,12 @@ class StockServicePickingLine(models.Model):
                     if not seq_id:
                         seq_id = self.env["ir.sequence"].create(
                             {
-                                "prefix": u"TNP30"
+                                "prefix": "TNP30"
                                 + line.picking_id.manager_partner_id.nima_no
                                 + time.strftime("%Y"),
                                 "code": "waste_delivery_proof",
                                 "padding": 7,
-                                "name": u"Waste delivery proof "
+                                "name": "Waste delivery proof "
                                 + line.picking_id.manager_partner_id.name,
                                 "company_id": False,
                             }
@@ -290,9 +291,8 @@ class StockServicePickingLine(models.Model):
                     move = container_move_ids[0]
                     if move.address_id.id != line.dest_address_id.id:
                         raise UserError(
-                            _(
-                                "You cannot reopen this line because container is not in %s."
-                            )
+                            _("You cannot reopen this line because "
+                              "container is not in %s.")
                             % line.dest_address_id.street
                         )
                     moves_to_delete += move
@@ -317,9 +317,8 @@ class StockServicePickingLine(models.Model):
     def unlink(self):
         if self.filtered(lambda r: r.state != "draft"):
             raise UserError(
-                _(
-                    "Only can delete lines in draft state. Please reopen the line."
-                )
+                _("Only can delete lines in draft state. Please "
+                  "reopen the line.")
             )
 
         return super(StockServicePickingLine, self).unlink()

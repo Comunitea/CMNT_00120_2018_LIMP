@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, _
+from odoo import models, fields, _, exceptions
 from odoo.exceptions import UserError
 import time
 import calendar
@@ -96,51 +96,52 @@ class DistributeFleetExpense(models.TransientModel):
             for expense_type in amount_totals:
                 if vehicle.analytic_plan_id:
                     a = (
-                        expense_type.product_id.product_tmpl_id.property_account_expense_id.id
+                        expense_type.product_id.product_tmpl_id.
+                        property_account_expense_id.id
                     )
                     if not a:
                         a = (
-                            expense_type.product_id.categ_id.property_account_expense_categ_id.id
+                            expense_type.product_id.categ_id.
+                            property_account_expense_categ_id.id
                         )
                         if not a:
-                            raise osv.except_osv(
-                                _("Bad Configuration !"),
+                            raise exceptions.UserError(
                                 _(
                                     "No product and product category expense property account defined on the related product.\nFill these on product form."
                                 ),
                             )
-                    for line in vehicle.analytic_plan_id.rule_ids:
+                    for line in vehicle.analytic_plan_id.\
+                            analytic_distribution_ids:
                         amt = (
-                            line.percent
+                            line.percentage
                             and amount_totals[expense_type]
-                            * (line.percent / 100)
+                            * (line.percentage / 100)
                             or line.fix_amount
                         )
 
                         al_vals = {
                             "name": self.name
-                            + u", "
+                            + ", "
                             + expense_type.name
-                            + u": "
+                            + ": "
                             + vehicle.name,
                             "date": str(self.year)
                             + "-"
                             + self.month
                             + "-"
                             + str(last_day),
-                            "account_id": line.analytic_account_id.id,
+                            "account_id": line.account_id.id,
                             "unit_amount": 1,
                             "product_id": expense_type.product_id.id,
-                            "product_uom_id": expense_type.product_id.uom_id.id,
+                            "product_uom_id":
+                            expense_type.product_id.uom_id.id,
                             "amount": -(amt),
                             "company_id": user.company_id.id,
                             "general_account_id": a,
                             "tag_ids": [
                                 (
                                     4,
-                                    line.distribution_id.tag_id
-                                    and line.distribution_id.tag_id.id
-                                    or self.env.ref(
+                                    self.env.ref(
                                         "limp_service_picking.costs_tag"
                                     ).id,
                                 )
@@ -210,9 +211,9 @@ class DistributeFleetExpense(models.TransientModel):
                         ) / total_hours
                         al_vals = {
                             "name": self.name
-                            + u", "
+                            + ", "
                             + expense.name
-                            + u": "
+                            + ": "
                             + vehicle.name,
                             "date": str(self.year)
                             + "-"

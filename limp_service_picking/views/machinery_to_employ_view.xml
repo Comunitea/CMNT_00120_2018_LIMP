@@ -9,7 +9,6 @@
                 <group>
                     <field name="name"/>
                     <field name="purpose_machinery"/>
-
                 </group>
             </form>
         </field>
@@ -18,7 +17,6 @@
     <record id="machinery_to_Employ_tree" model="ir.ui.view">
         <field name="name">machinery.to.employ.tree</field>
         <field name="model">machinery.to.employ</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>

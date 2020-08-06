@@ -4,7 +4,6 @@
     <record id="products_used_tree" model="ir.ui.view">
         <field name="name">products.used.tree</field>
         <field name="model">products.used</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree editable="top">
                 <field name="product_id"/>
@@ -23,7 +22,6 @@
     <record id="products_used_form" model="ir.ui.view">
         <field name="name">products.used.form</field>
         <field name="model">products.used</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
                 <group>

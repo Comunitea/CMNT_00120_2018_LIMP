@@ -3,7 +3,6 @@
     <record id="view_valorization_lines" model="ir.ui.view">
         <field name="name">View Valorization Lines</field>
         <field name="model">valorization.lines</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Valorization lines View">
                 <field name="date"/>
@@ -32,7 +31,6 @@
     <record id="view_valorization_lines_search" model="ir.ui.view">
         <field name="name">View Valorization Lines search</field>
         <field name="model">valorization.lines</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Filters">
                 <field name="date"/>
@@ -47,14 +45,14 @@
                 <field name="no_computed"/>
                 <newline/>
                 <group expand="1" string="Group By..." colspan="10" col="12">
-                    <filter string="Ler" context="{'group_by':'ler_code_id'}"/>
-                    <filter string="Product" context="{'group_by':'product_id'}"/>
-                    <filter string="Partner" context="{'group_by':'partner_id'}"/>
-                    <filter string="Building" context="{'group_by':'building_site_id'}"/>
-                    <filter string="Producer" context="{'group_by':'producer_promoter'}"/>
-                    <filter string="Holder" context="{'group_by':'holder_builder'}"/>
-                    <filter string="Manager" context="{'group_by':'manager_partner_id'}"/>
-                    <filter string="Picking" context="{'group_by':'picking_id'}"/>
+                    <filter string="Ler" name="ler" context="{'group_by':'ler_code_id'}"/>
+                    <filter string="Product" name="product" context="{'group_by':'product_id'}"/>
+                    <filter string="Partner" name="partner" context="{'group_by':'partner_id'}"/>
+                    <filter string="Building" name="building" context="{'group_by':'building_site_id'}"/>
+                    <filter string="Producer" name="producer" context="{'group_by':'producer_promoter'}"/>
+                    <filter string="Holder" name="holder" context="{'group_by':'holder_builder'}"/>
+                    <filter string="Manager" name="manager" context="{'group_by':'manager_partner_id'}"/>
+                    <filter string="Picking" name="picking" context="{'group_by':'picking_id'}"/>
                 </group>
             </search>
         </field>

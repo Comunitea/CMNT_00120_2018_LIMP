@@ -4,7 +4,6 @@
     <record id="legionella_samples_tree" model="ir.ui.view">
         <field name="name">legionella.samples.tree</field>
         <field name="model">legionella.samples</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree editable="top" >
                 <field name="picking_id"/>
@@ -25,7 +24,6 @@
     <record id="legionella_samples_form" model="ir.ui.view">
         <field name="name">legionella.samples.form</field>
         <field name="model">legionella.samples</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
                 <group>

@@ -64,28 +64,28 @@ class AddToInvoice(models.TransientModel):
             partner = service_picking.partner_id
             fpos = partner.property_account_position_id
             invoice_vals = {
-                "name": (self.invoice_id.name or u"")
-                + u", "
-                + (service_picking.name or u""),
+                "name": (self.invoice_id.name or "")
+                + ", "
+                + (service_picking.name or ""),
                 "origin": (self.invoice_id.origin or "")
-                + u", "
-                + (service_picking.name or u""),
+                + ", "
+                + (service_picking.name or ""),
                 "comment": (
                     comment
                     and (
                         self.invoice_id.comment
-                        and self.invoice_id.comment + u"\n" + comment
+                        and self.invoice_id.comment + "\n" + comment
                         or comment
                     )
                 )
                 or (
-                    self.invoice_id.comment and self.invoice_id.comment or u""
+                    self.invoice_id.comment and self.invoice_id.comment or ""
                 ),
             }
             self.invoice_id.write(invoice_vals)
 
             for move_line in service_picking.service_invoice_concept_ids:
-                name = (service_picking.name or u"") + u"-" + move_line.name
+                name = (service_picking.name or "") + "-" + move_line.name
                 account_id = (
                     move_line.product_id.product_tmpl_id.property_account_income_id
                 )

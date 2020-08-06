@@ -6,7 +6,6 @@
             <field name="model">stock.service.picking</field>
             <field name="inherit_id" ref="stock_sporadic_service_picking_form"/>
             <field name="arch" type="xml">
-
                 <field name="description" position="after">
                     <field name="treatment_applicator1"/>
                     <field name="treatment_applicator2"/>

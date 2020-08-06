@@ -44,7 +44,7 @@ class StockServicePickingDDD(models.Model):
     ds = fields.Boolean(compute="_get_dr")
     lg = fields.Boolean(compute="_get_dr")
 
-    ##Page Legionella
+    # Page Legionella
 
     type_of_installation_id = fields.Many2many(
         "type.of.installation.legionella",
@@ -88,7 +88,7 @@ class StockServicePickingDDD(models.Model):
     def _get_dr(self):
 
         for pickin in self:
-            type_ddd_str = u",".join([x.code for x in pickin.type_ddd_ids])
+            type_ddd_str = ",".join([x.code for x in pickin.type_ddd_ids])
 
             if "desratizacion" in type_ddd_str:
                 pickin.dr = True

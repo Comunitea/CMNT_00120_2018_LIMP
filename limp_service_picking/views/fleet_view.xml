@@ -5,7 +5,6 @@
         <field name="name">fleet.form.add_analytic_plan</field>
         <field name="model">fleet</field>
         <field name="inherit_id" ref="simple_fleet_management.fleet_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="active" position="after">
                 <field name="analytic_plan_id"/>

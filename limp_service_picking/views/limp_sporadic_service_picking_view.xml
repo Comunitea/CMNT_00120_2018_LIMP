@@ -4,16 +4,15 @@
     <record id="stock_sporadic_service_picking_tree" model="ir.ui.view">
         <field name="name">stock.sporadic.service.picking.tree</field>
         <field name="model">stock.service.picking</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Sporadic service pickings" colors="blue:planified and state=='draft';grey:invoice_type == 'noinvoice'">
+            <tree string="Sporadic service pickings" decoration-muted="invoice_type == 'noinvoice'" decoration-info="planified and state=='draft'">
                 <field name="name"/>
                 <field name="picking_date"/>
                 <field name="partner_id"/>
                 <field name="description"/>
                 <field name="delegation_id"/>
                 <field name="department_id"/>
-                <!--field name="parent_id"/-->
+                <field name="parent_id"/>
                 <field name="amount_untaxed" sum="Total untaxed"/>
                 <field name="state"/>
                 <field name="sale_id"/>
@@ -32,7 +31,6 @@
     <record id="stock_sporadic_service_picking_form" model="ir.ui.view">
         <field name="name">stock.sporadic.service.picking.form</field>
         <field name="model">stock.service.picking</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Sporadic service picking">
                 <header>
@@ -168,7 +166,7 @@
                                 <group>
                                     <field name="older" invisible="1"/>
                                     <field name="sale_id"/>
-                                    <!--field name="parent_id"/-->
+                                    <field name="parent_id"/>
                                 </group>
                                 <group>
                                     <field name="planified" invisible="1"/>
@@ -227,6 +225,7 @@
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
                     <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
@@ -236,28 +235,27 @@
     <record id="stock_sporadic_service_picking_search" model="ir.ui.view">
         <field name="name">stock.sporadic.service.picking.search</field>
         <field name="model">stock.service.picking</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Sporadic service pickings">
                 <group col="14" colspan="4">
-                    <filter string="Current" domain="[('state','=','active')]" help="Active pickings"/>
-                    <filter string="To invoice" domain="[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice')]" help="To invoice pickings"/>
-                    <filter string="Planified" domain="[('planified','=',True)]" help="Planified pickings"/>
+                    <filter string="Current" name="current" domain="[('state','=','active')]" help="Active pickings"/>
+                    <filter string="To invoice" name="to_invoice" domain="[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice')]" help="To invoice pickings"/>
+                    <filter string="Planified" name="planified" domain="[('planified','=',True)]" help="Planified pickings"/>
                     <separator orientation="vertical"/>
-                    <field name="name" select="1"/>
+                    <field name="name"/>
                     <field name="partner_id"/>
                     <field name="description"/>
                     <field name="delegation_id" widget="selection"/>
                     <field name="department_id" widget="selection"/>
-                    <field name="picking_date" select="1"/>
+                    <field name="picking_date"/>
                     <field name="sale_id"/>
                     <field name="intercompany"/>
                 </group>
                 <newline/>
                 <group expand="0" string="Extended Filters...">
-                    <filter string="Invoice delegation" domain="[]" context="{'group_by':'invoice_delegation_id'}"/>
-                    <filter string="Invoice department" domain="[]" context="{'group_by':'invoice_department_id'}"/>
-                    <filter string="Invoice responsible" domain="[]" context="{'group_by':'invoice_responsible_id'}"/>
+                    <filter string="Invoice delegation" name="inv_delegation" domain="[]" context="{'group_by':'invoice_delegation_id'}"/>
+                    <filter string="Invoice department" name="inv_department" domain="[]" context="{'group_by':'invoice_department_id'}"/>
+                    <filter string="Invoice responsible" name="inv_responsible" domain="[]" context="{'group_by':'invoice_responsible_id'}"/>
                     <separator orientation="vertical"/>
                     <field name="invoice_delegation_id"/>
                     <field name="invoice_department_id"/>
@@ -265,9 +263,9 @@
                </group>
                <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
-                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
-                    <filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Delegation" name="delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" name="department" domain="[]" context="{'group_by':'department_id'}"/>
+                    <filter string="Partner" name="partner" domain="[]" context="{'group_by':'partner_id'}"/>
                 </group>
             </search>
         </field>

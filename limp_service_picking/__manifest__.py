@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011 Comunitea Servicios Tecnológicos S.L.
 #    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,20 +22,16 @@
     "name": "Services picking for Limpergal",
     "description": """Add new type of pickings for managing Limpergal's services""",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comunitea.com",
     "category": "Contract/Picking",
     "depends": [
-        "base",
         "stock",
         "containers_management",
         "simple_fleet_management",
         "waste_management",
-        "product",
         "hr",
-        "hr_timesheet",
-        "analytic",
-        "account",
+        "contacts",
         "limp_account_analytic_extension",
         "limp_distribution_costs",
         "limp_multi_delegations",

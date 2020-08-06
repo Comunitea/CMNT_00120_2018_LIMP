@@ -26,18 +26,11 @@ class StockServicePicking(models.Model):
 
     _name = "stock.service.picking"
     _description = "Service pickings"
-    _inherit = ["mail.thread"]
+    _inherit = ["mail.thread", 'mail.activity.mixin']
     _inherits = {"account.analytic.account": "analytic_acc_id"}
     _order = "picking_date desc"
 
-    """def _get_picking(self, cr, uid, ids, context=None):
-        result = {}
-        for line in self.pool.get('service.picking.invoice.concept').browse(cr, uid, ids):
-            result[line.service_picking_id.id] = True
-        return result.keys()"""
-
     def _get_all_delegations(self):
-        delegation_obj = self.env["res.delegation"]
         selection = []
         delegations = self.env["res.delegation"].sudo().search([])
         for delegation in delegations:
@@ -55,7 +48,6 @@ class StockServicePicking(models.Model):
         readonly=True,
         default="draft",
     )
-    #'partner_id = fields.Many2one('res.partner', 'Customer', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
     carrier_id = fields.Many2one(
         "res.partner",
         "Carrier",
@@ -97,7 +89,6 @@ class StockServicePicking(models.Model):
         default=lambda r: r._context.get("ccc_account_id", False),
         copy=False,
     )
-    #'name = fields.Char('Name', size=32, required=True, readonly=True),
     service_ids = fields.One2many(
         "stock.service.picking.line",
         "picking_id",
@@ -367,13 +358,6 @@ class StockServicePicking(models.Model):
         required=True,
         ondelete="cascade",
     )
-    #'company_id = fields.Many2one('res.company', 'Company', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
-    #'waste_type = fields.Selection([('clean', 'Clean'),('dirty', 'Dirty')], 'Waste type', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
-    #'valorization_company_id = fields.Many2one('res.company', 'Val. company', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
-    #'valorization_ler_code_id = fields.Many2one('waste.ler.code', 'Val. LER', states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
-    #'paint_cans_qty = fields.Float('Paint cans', digits=(12,2), help="Quantity in m³", states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
-    #'silicone_cans_qty = fields.Float('Silicone cans', digits=(12,2), help="Quantity in m³", states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]})
-    #'isolation_mat_qty = fields.Float('Isolation m.', digits=(12,2), help="Quantity in m³", states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]})
     quality = fields.Boolean(
         "Quality",
         states={
@@ -381,7 +365,6 @@ class StockServicePicking(models.Model):
             "cancelled": [("readonly", True)],
         },
     )
-    #'other_materials = fields.Char('Other mat.', size=128, states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]})
     service_type = fields.Many2one(
         "product.product",
         string="Service type",
@@ -465,7 +448,8 @@ class StockServicePicking(models.Model):
             "closed": [("readonly", True)],
             "cancelled": [("readonly", True)],
         },
-        default=lambda r: r.env.user.company_id.partner_id.manager_authorization_no,
+        default=lambda r: r.env.user.company_id.partner_id.
+        manager_authorization_no,
         copy=False,
     )
     picking_type = fields.Selection(
@@ -481,7 +465,6 @@ class StockServicePicking(models.Model):
         states={"cancelled": [("readonly", True)]},
         copy=False,
     )
-    #'delegation_id = fields.Many2one('res.delegation', 'Delegation', required=True, states={'closed':[('readonly',True)],'cancelled':[('readonly',True)]}),
     # AÑADIDO PARA CALCULAR TOTALES
     taxes = fields.Float("Taxes", digits=(16, 2), copy=False)
     product_tax_id = fields.Many2one(
@@ -513,7 +496,6 @@ class StockServicePicking(models.Model):
         "Picking date", required=True, default=fields.Date.today, copy=False
     )
     intercompany = fields.Boolean("Intercompay")
-    #'invoice_delegation_id = fields.Many2one('res.delegation', 'Delegation', help="Delegation where inputs the cost"),
     invoice_delegation_id = fields.Selection(
         _get_all_delegations,
         string="Delegation",
@@ -548,7 +530,6 @@ class StockServicePicking(models.Model):
         default="on_building",
     )
     maintenance = fields.Boolean("Maintenance")
-    # name = fields.Char(default='SEQ')
     sale_id = fields.Many2one("sale.order", string="Sale")
 
     def _amount_all(self):
@@ -559,7 +540,8 @@ class StockServicePicking(models.Model):
                 am_tax += inv_cncpt._amount_line_tax()
             if picking.product_sand_id and picking.sand_amount:
                 for c in picking.product_sand_id.taxes_id.compute_all(
-                    picking.sand_amount, 1, picking.product_sand_id
+                    picking.sand_amount, quantity=1.0,
+                    product=picking.product_sand_id
                 )["taxes"]:
                     am_tax += c.get("amount", 0.0)
                 am_untax += picking.sand_amount
@@ -636,25 +618,6 @@ class StockServicePicking(models.Model):
             or False
         )
 
-    @api.onchange("product_id")
-    def onchange_product_id(self):
-        if not self.product_id:
-            return
-        if self.product_id.ler_code_id:
-            self.ler_code_id = self.product_id.ler_code_id.id
-        else:
-            self.ler_code_id = False
-
-        if self.product_id.picking_warn != "no-message":
-            warning = {}
-            title = _("Warning for %s") % self.product_id.name
-            message = self.product_id.picking_warn_msg
-            warning["title"] = title
-            warning["message"] = message
-            if self.product_id.picking_warn == "block":
-                self.product_id = False
-            return {"warning": warning}
-
     @api.onchange("building_site_id")
     def onchange_building_site_id(self):
         if self.building_site_id:
@@ -681,20 +644,6 @@ class StockServicePicking(models.Model):
             self.holder_address = False
             self.producer_partner = False
             self.producer_address = False
-
-    @api.onchange("service_type")
-    def onchange_service_type(self):
-        if not self.service_type:
-            return
-        if self.service_type.picking_warn != "no-message":
-            warning = {}
-            title = _("Warning for %s") % self.service_type.name
-            message = self.service_type.picking_warn_msg
-            warning["title"] = title
-            warning["message"] = message
-            if self.service_type.picking_warn == "block":
-                self.service_type = False
-        return {"warning": warning}
 
     @api.model
     def create(self, vals):
@@ -810,9 +759,8 @@ class StockServicePicking(models.Model):
         for order in self:
             if order.service_ids.filtered(lambda r: r.state != "done"):
                 raise UserError(
-                    _(
-                        "Cannot close because you have transports in draft state."
-                    )
+                    _("Cannot close because you have transports in draft "
+                      "state.")
                 )
 
             picking_id = False
@@ -821,9 +769,8 @@ class StockServicePicking(models.Model):
 
             if order.intercompany and not order.no_quality:
                 raise UserError(
-                    _(
-                        "Cannot close because you have checked intercompany and you have not checked scont."
-                    )
+                    _("Cannot close because you have checked intercompany "
+                      "and you have not checked scont.")
                 )
 
             if order.picking_type == "wastes" and not order.retired_date:
@@ -839,23 +786,21 @@ class StockServicePicking(models.Model):
                     order.write({"retired_date": retired_date})
                 else:
                     raise UserError(
-                        _(
-                            "You are trying to close a service picking without retired date."
-                        )
+                        _("You are trying to close a service picking "
+                          "without retired date.")
                     )
             elif order.picking_type == "wastes" and order.retired_date:
                 for line in order.remove_service_ids:
-                    if order.retired_date < line.transport_date[:10]:
+                    if fields.Date.to_string(order.retired_date) < \
+                            fields.Date.to_string(line.transport_date)[:10]:
                         raise UserError(
-                            _(
-                                "You are trying to close a service picking with wrong retired date."
-                            )
+                            _("You are trying to close a service picking "
+                              "with wrong retired date.")
                         )
                 if order.retired_date < order.picking_date:
                     raise UserError(
-                        _(
-                            "You are trying to close a service picking with wrong retired date."
-                        )
+                        _("You are trying to close a service picking with "
+                          "wrong retired date.")
                     )
             elif order.picking_type == "sporadic":
                 order.write({"retired_date": order.picking_date})
@@ -880,7 +825,7 @@ class StockServicePicking(models.Model):
                 )
                 if not warehouse_ids:
                     raise UserError(
-                        _("There is no wharehouse to the order company")
+                        _("There is no warehouse to the order company")
                     )
                 location_dest_id = warehouse_ids[0].lot_stock_id.id
 
@@ -892,9 +837,9 @@ class StockServicePicking(models.Model):
                         and not valorization_line.product_id.overload_price
                     ):
                         raise UserError(
-                            _(
-                                "You are trying to close a service picking with overload quantity but the product has not the overload price. Please fill it!"
-                            )
+                            _("You are trying to close a service picking "
+                              "with overload quantity but the product has "
+                              "not the overload price. Please fill it!")
                         )
 
                     if not picking_id:
@@ -914,7 +859,7 @@ class StockServicePicking(models.Model):
                             .sudo()
                             .create(
                                 {
-                                    "name": u"S" + pick_name,
+                                    "name": "S" + pick_name,
                                     "origin": order.name,
                                     "picking_type_id": pick_type.id,
                                     "state": "draft",
@@ -947,17 +892,18 @@ class StockServicePicking(models.Model):
                             == company.id
                         )
                     ):
-                        move_id = (
-                            self.env["stock.move"]
-                            .sudo()
-                            .create(
+                        self.env["stock.move"].sudo().\
+                            create(
                                 {
                                     "name": order.name,
                                     "picking_id": picking_id.id,
-                                    "product_id": valorization_line.product_id.id,
-                                    "product_uom_qty": valorization_line.product_qty
+                                    "product_id":
+                                    valorization_line.product_id.id,
+                                    "product_uom_qty":
+                                    valorization_line.product_qty
                                     + valorization_line.overload_qty,
-                                    "product_uom": valorization_line.product_id.uom_id.id,
+                                    "product_uom":
+                                    valorization_line.product_id.uom_id.id,
                                     "address_id": addr,
                                     "location_id": location_id,
                                     "location_dest_id": location_dest_id,
@@ -970,18 +916,16 @@ class StockServicePicking(models.Model):
                                     "company_id": company.id,
                                 }
                             )
-                        )
                     else:
                         raise UserError(
-                            _(
-                                "Product %s must be shared inter companies for proceeding"
-                            )
+                            _("Product %s must be shared inter companies "
+                              "for proceeding")
                             % valorization_line.product_id.name
                         )
 
                 if picking_id:
                     self.env["stock.immediate.transfer"].sudo().create(
-                        {"pick_id": picking_id.id}
+                        {"pick_ids": [(4, picking_id.id)]}
                     ).process()
             order.analytic_acc_id.write(
                 {

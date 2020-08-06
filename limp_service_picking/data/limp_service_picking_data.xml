@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
 
         <record id="seq_stock_service_picking" model="ir.sequence">
             <field name="name">Service pickings</field>
@@ -26,5 +25,4 @@
             <field name="prefix">DAR</field>
         </record>
 
-    </data>
 </odoo>

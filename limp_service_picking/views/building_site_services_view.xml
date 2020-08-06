@@ -24,8 +24,6 @@
                     <field name="city_building_site"/>
                     <field name="code"/>
                     <field name="serial"/>
-                    <!--<field name="identification_manager"/>
-                    <field name="authorization_no"/>-->
                     <field name="show"/>
                     <field name="admission_no"/>
                 </tree>
@@ -92,9 +90,6 @@
                                 <field name="contact_id" attrs="{'invisible':[('show','!=','service')]}" />
                             </group>
                         </group>
-                        <!--<newline/>
-                            <field name="identification_manager"/>
-                            <field name="authorization_no"/>-->
                     </sheet>
                 </form>
             </field>
@@ -103,12 +98,11 @@
         <record id="building_site_services_search" model="ir.ui.view">
             <field name="name">building.site.services.search</field>
             <field name="model">building.site.services</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="Building sites/Services">
                     <group col="14" colspan="4">
-                        <field name="producer_promoter" select="1"/>
-                        <field name="holder_builder" select="1"/>
+                        <field name="producer_promoter"/>
+                        <field name="holder_builder"/>
                         <field name="contact_id"/>
                         <field name="show"/>
                         <field name="code"/>
@@ -117,10 +111,10 @@
                     </group>
                     <newline/>
                     <group expand="0" string="Group By...">
-                        <filter string="Producer/Promoter" domain="[]" context="{'group_by':'producer_promoter'}"/>
-                        <filter string="Holder/Builder" domain="[]" context="{'group_by':'holder_builder'}"/>
-                        <filter string="Building site city" domain="[]" context="{'group_by':'city_building_site'}"/>
-                        <filter string="Contact" domain="[]" context="{'group_by':'contact_id'}"/>
+                        <filter string="Producer/Promoter" name="producer" domain="[]" context="{'group_by':'producer_promoter'}"/>
+                        <filter string="Holder/Builder" name="holder" domain="[]" context="{'group_by':'holder_builder'}"/>
+                        <filter string="Building site city" name="building" domain="[]" context="{'group_by':'city_building_site'}"/>
+                        <filter string="Contact" domain="[]" name="contact" context="{'group_by':'contact_id'}"/>
                     </group>
                 </search>
             </field>
@@ -134,6 +128,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <!--TODO: Migrar<menuitem action="building_site_services_action" id="menu_building_site_services_form"
-            parent="sales_team.menu_sales" sequence="40"/>-->
+        <menuitem action="building_site_services_action" id="menu_building_site_services_form"
+            parent="contacts.res_partner_menu_config" sequence="40"/>
 </odoo>

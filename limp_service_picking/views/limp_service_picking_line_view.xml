@@ -4,7 +4,6 @@
     <record id="stock_service_picking_line_tree" model="ir.ui.view">
         <field name="name">stock.service.picking.line.tree</field>
         <field name="model">stock.service.picking.line</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Service picking lines">
                 <field name="transport_date"/>
@@ -25,7 +24,6 @@
     <record id="stock_service_picking_line_form" model="ir.ui.view">
         <field name="name">stock.service.picking.line.form</field>
         <field name="model">stock.service.picking.line</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Service picking line">
                 <header>
@@ -77,25 +75,24 @@
     <record id="stock_service_picking_line_search" model="ir.ui.view">
         <field name="name">stock.service.picking.line.search</field>
         <field name="model">stock.service.picking.line</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Service picking lines">
                 <group col="16" colspan="4">
-                    <field name="name" select="1"/>
-                    <field name="transport_date" select="1"/>
-                    <field name="itinerary" select="1"/>
-                    <field name="type" select="1"/>
-                    <field name="vehicle_id" select="1"/>
-                    <field name="driver_id" select="1"/>
-                    <field name="carrier_id" select="1"/>
-                    <field name="state" select="1"/>
+                    <field name="name"/>
+                    <field name="transport_date"/>
+                    <field name="itinerary"/>
+                    <field name="type"/>
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="carrier_id"/>
+                    <field name="state"/>
                 </group>
                 <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Vehicle" domain="[]" context="{'group_by':'vehicle_id'}"/>
-                    <filter string="Driver" domain="[]" context="{'group_by':'driver_id'}"/>
-                    <filter string="Type" domain="[]" context="{'group_by':'type'}"/>
-                    <filter string="State" domain="[]" context="{'group_by':'state'}"/>
+                    <filter string="Vehicle" name="vehicle" domain="[]" context="{'group_by':'vehicle_id'}"/>
+                    <filter string="Driver" name="driver" domain="[]" context="{'group_by':'driver_id'}"/>
+                    <filter string="Type" name="type" domain="[]" context="{'group_by':'type'}"/>
+                    <filter string="State" name="state" domain="[]" context="{'group_by':'state'}"/>
                 </group>
             </search>
         </field>
@@ -105,7 +102,6 @@
     <record id="stock_service_vehicle_move_tree" model="ir.ui.view">
         <field name="name">stock.service.vehicle.move.tree</field>
         <field name="model">stock.service.picking.line</field>
-        <field name="type">tree</field>
         <field name="priority" eval="80"/>
         <field name="arch" type="xml">
             <tree string="Vehicle moves">

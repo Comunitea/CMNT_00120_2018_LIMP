@@ -4,7 +4,6 @@
         <field name="name">account.invoice.form.add_intercompany</field>
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="move_id" position="after">
                 <field name="intercompany_invoice_id"/>
@@ -21,7 +20,7 @@
         <field name="domain">[('type','=','out_invoice'),('intercompany', '=', True)]</field>
         <field name="context">{'type':'out_invoice', 'journal_type': 'sale'}</field>
         <field name="search_view_id" ref="account.view_account_invoice_filter"/>
-        <field name="help">With Customer Invoices you can create and manage sales invoices issued to your customers. OpenERP can also generate draft invoices automatically from sales orders or deliveries. You should only confirm them before sending them to your customers.</field>
+        <field name="help">With Customer Invoices you can create and manage sales invoices issued to your customers. Odoo can also generate draft invoices automatically from sales orders or deliveries. You should only confirm them before sending them to your customers.</field>
     </record>
 
 
@@ -50,7 +49,7 @@
         <field name="domain">[('type','=','in_invoice'),('intercompany', '=', True)]</field>
         <field name="context">{'type':'in_invoice', 'journal_type': 'purchase'}</field>
         <field name="search_view_id" ref="account.view_account_invoice_filter"/>
-        <field name="help">With Supplier Invoices you can enter and manage invoices issued by your suppliers. OpenERP can also generate draft invoices automatically from purchase orders or receipts. This way, you can control the invoice from your supplier according to what you purchased or received.</field>
+        <field name="help">With Supplier Invoices you can enter and manage invoices issued by your suppliers. Odoo can also generate draft invoices automatically from purchase orders or receipts. This way, you can control the invoice from your supplier according to what you purchased or received.</field>
     </record>
     <menuitem action="action_intercompany_invoice_tree2" id="menu_action_intercompany_invoice_tree2" parent="account.menu_finance_payables"/>
 </odoo>
