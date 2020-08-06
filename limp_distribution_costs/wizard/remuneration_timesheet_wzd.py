@@ -131,24 +131,26 @@ class RemunerationTimesheetWzd(models.TransientModel):
                             )
                             self.env["timesheet"].create(data)
                         elif rem.analytic_distribution_id:
-                            for line in rem.analytic_distribution_id.rule_ids:
+                            for line in rem.analytic_distribution_id.\
+                                    analytic_distribution_ids:
                                 data.update(
                                     {
                                         "effective": round(
-                                            line.percent
+                                            line.percentage
                                             and effective_amount
-                                            * (line.percent / 100.0)
+                                            * (line.percentage / 100.0)
                                             or line.fix_amount,
                                             2,
                                         ),
                                         "quantity": round(
-                                            line.percent
+                                            line.percentage
                                             and effective_amount
-                                            * (line.percent / 100.0)
+                                            * (line.percentage / 100.0)
                                             or line.fix_amount,
                                             2,
                                         ),
-                                        "analytic_id": line.analytic_account_id.id,
+                                        "analytic_id":
+                                        line.account_id.id,
                                         "department_id": line.department_id
                                         and line.department_id.id
                                         or False,

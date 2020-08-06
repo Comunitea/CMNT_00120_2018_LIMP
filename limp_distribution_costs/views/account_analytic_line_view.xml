@@ -6,7 +6,6 @@
         <field name="name">account.analytic.line.form.add.fields</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="analytic.view_account_analytic_line_form" />
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="remuneration_id"/>
@@ -19,7 +18,6 @@
         <field name="name">account.analytic.line.tree.add_rem_time</field>
         <field name="model">account.analytic.line</field>
         <field name="inherit_id" ref="analytic.view_account_analytic_line_tree" />
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <field name="company_id" position="before">
                 <field name="tag_ids" widget="many2many_tags"/>
@@ -28,7 +26,7 @@
                 <field name="remuneration_incidence" invisible="1"/>
             </field>
             <xpath expr="//tree" position="attributes">
-                <attribute name="colors">red:remuneration_incidence;</attribute>
+                <attribute name="decoration-danger">remuneration_incidence</attribute>
             </xpath>
         </field>
     </record>

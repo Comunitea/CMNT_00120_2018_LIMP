@@ -12,7 +12,7 @@
                     <field name="month"/>
                     <field name="year"/>
                 </group>
-                <label string="Do you want to set timesheet lines from remunerations"/>
+                <span colspan="4">Do you want to set timesheet lines from remunerations</span>
                 <footer>
                     <button name="set_timesheet_lines" type="object" string="Ok" colspan="1" class="btn-primary"/>
                     <button string="Cancel" class="btn-default" special="cancel"/>

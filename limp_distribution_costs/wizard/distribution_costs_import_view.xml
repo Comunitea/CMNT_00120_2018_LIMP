@@ -11,7 +11,7 @@
                     <field name="year"/>
                     <newline/>
                     <field name="name"/>
-                    <field name="file"/>
+                    <field name="file" filename="filename"/>
                 </group>
                 <newline/>
                 <footer>

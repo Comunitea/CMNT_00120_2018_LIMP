@@ -34,17 +34,17 @@ class Timesheet(models.Model):
     date = fields.Date("Date", required=True)
     employee_id = fields.Many2one("hr.employee", "Employee", required=True)
     analytic_id = fields.Many2one(
-        "account.analytic.account", "Analytic account"
+        "account.analytic.account", "Analytic account", index=True
     )
     hours = fields.Float("Hours", digits=(12, 2), required=True)
     contract = fields.Boolean("Contract")
     fix_qty = fields.Float("Fix Qty.", digits=dp.get_precision("Account"))
     quantity = fields.Float("Qty.", digits=dp.get_precision("Account"))
-    extra_hours = fields.Float("Extra Hours", digits=(4, 2))
+    extra_hours = fields.Float("Extra Hours", digits=(4, 2), index=True)
     price_hours = fields.Float("Price Hours", digits=(4, 2))
-    effective = fields.Float("Effective", digits=(4, 2))
-    done = fields.Boolean("Done")
-    paid = fields.Boolean("Paid")
+    effective = fields.Float("Effective", digits=(4, 2), index=True)
+    done = fields.Boolean("Done", index=True)
+    paid = fields.Boolean("Paid", index=True)
     paid_date = fields.Date("Paid date")
     ss_hours = fields.Float("SS hours", digits=(4, 2))
     ss_no_hours = fields.Float("No ss hours", digits=(4, 2))
@@ -65,10 +65,11 @@ class Timesheet(models.Model):
     pending_distribute_qty = fields.Float(
         "Pending Quantity", digits=(12, 2), compute="_compute_pending_qty"
     )
-    delegation_id = fields.Many2one("res.delegation", "Delegation")
-    department_id = fields.Many2one("hr.department", "Department")
+    delegation_id = fields.Many2one("res.delegation", "Delegation", index=True)
+    department_id = fields.Many2one("hr.department", "Department", index=True)
     responsible_id = fields.Many2one(
-        "hr.employee", "Responsible", domain=[("responsible", "=", True)]
+        "hr.employee", "Responsible", domain=[("responsible", "=", True)],
+        index=True
     )
     description = fields.Char("Description", size=255)
     old = fields.Boolean("Old")
@@ -78,7 +79,6 @@ class Timesheet(models.Model):
     employee_department_id = fields.Many2one(
         "hr.department", "Employee Department"
     )
-    # create_uid': fields.many2one('res.users', 'Creator', readonly=True)
 
     @api.depends("ss_hours", "ss_no_hours")
     def _compute_total_hours(self):
@@ -196,7 +196,6 @@ class Timesheet(models.Model):
             for tim in self:
                 if tim.create_uid.id != self.env.user.id:
                     raise UserError(
-                        _("Error"),
                         _(
                             "Cannot delete this timesheet, "
                             "because you are not the creator or admin."

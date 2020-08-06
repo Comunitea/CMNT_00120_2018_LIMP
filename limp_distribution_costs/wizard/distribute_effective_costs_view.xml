@@ -4,7 +4,6 @@
     <record id="view_distribution_effective_costs_form" model="ir.ui.view">
         <field name="name">view.distribution.effective.costs.form</field>
         <field name="model">distribution.effective.costs</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Distribute effective costs">
                 <group colspan="2" col="4">

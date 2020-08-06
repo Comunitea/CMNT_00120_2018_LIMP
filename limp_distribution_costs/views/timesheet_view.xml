@@ -3,7 +3,6 @@
     <record id="timesheet_tree" model="ir.ui.view">
         <field name="name">timesheet.tree</field>
         <field name="model">timesheet</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Timesheet" editable="top">
                 <field name="date"/>
@@ -27,7 +26,6 @@
                 <field name="responsible_id"/>
                 <field name="name"/>
                 <field name="contract"/>
-                <!--separator string="Employee Data" colspan="4"/-->
                 <field name="employee_delegation_id"/>
                 <field name="employee_department_id"/>
             </tree>
@@ -37,7 +35,6 @@
     <record id="timesheet_form" model="ir.ui.view">
         <field name="name">timesheet.form</field>
         <field name="model">timesheet</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Timesheet">
                 <field name="name" readonly="1"/>
@@ -73,18 +70,17 @@
     <record id="timesheet_search" model="ir.ui.view">
         <field name="name">timesheet.search</field>
         <field name="model">timesheet</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Tiemsheet">
                 <group col="8" colspan="4">
                     <filter string="To check" name="undone" domain="[('done','!=',True),'|',('effective','!=',0.0),('contract','=',False)]"/>
                     <separator orientation="vertical"/>
-                    <filter string="With extra hours" domain="[('extra_hours','&gt;',0.0)]"/>
-                    <filter string="Effective" domain="[('effective','!=',0.0)]"/>
+                    <filter string="With extra hours" name="extra_hours" domain="[('extra_hours','&gt;',0.0)]"/>
+                    <filter string="Effective" name="effective" domain="[('effective','!=',0.0)]"/>
                     <separator orientation="vertical"/>
-                    <filter string="Paid" domain="[('paid','=',True)]"/>
-                    <filter string="No paid" domain="[('paid','=',False)]"/>
-                    <field name="date" select="1"/>
+                    <filter string="Paid" domain="[('paid','=',True)]" name="paid"/>
+                    <filter string="No paid" domain="[('paid','=',False)]" name="not_paid"/>
+                    <field name="date"/>
                     <field name="employee_id"/>
                     <field name="analytic_id"/>
                     <newline/>
@@ -97,14 +93,14 @@
                 </group>
                 <newline/>
                 <group expand="0" string="Group By...">
-                    <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>
-                    <filter string="Date" context="{'group_by': 'date'}"/>
+                    <filter string="Employee" name="employee" domain="[]" context="{'group_by':'employee_id'}"/>
+                    <filter string="Date" name="date" context="{'group_by': 'date'}"/>
                     <filter string="Analytic account" name="analytic_account" domain="[]" context="{'group_by':'analytic_id'}"/>
-                    <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
-                    <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
-                    <filter string="Reponsible" domain="[]" context="{'group_by':'responsible_id'}"/>
-                    <filter string="Employee Department" domain="[]" context="{'group_by':'employee_department_id'}"/>
-                    <filter string="Employee Delegation" domain="[]" context="{'group_by':'employee_delegation_id'}"/>
+                    <filter string="Delegation" domain="[]" name="delegation" context="{'group_by':'delegation_id'}"/>
+                    <filter string="Department" domain="[]" name="department" context="{'group_by':'department_id'}"/>
+                    <filter string="Reponsible" domain="[]" name="responsible" context="{'group_by':'responsible_id'}"/>
+                    <filter string="Employee Department" domain="[]" name="emp_department" context="{'group_by':'employee_department_id'}"/>
+                    <filter string="Employee Delegation" domain="[]" name="emp_delegation" context="{'group_by':'employee_delegation_id'}"/>
                 </group>
             </search>
         </field>

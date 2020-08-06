@@ -85,11 +85,11 @@ class DistributionEffectiveCosts(models.TransientModel):
                                 "name",
                                 "=",
                                 ustr(self.name)
-                                + u" (effective)/ "
+                                + " (effective)/ "
                                 + month
-                                + u"/"
+                                + "/"
                                 + year
-                                + u"/ "
+                                + "/ "
                                 + employee.name,
                             ),
                         ]
@@ -101,11 +101,11 @@ class DistributionEffectiveCosts(models.TransientModel):
                         vals = {
                             "amount": -(amount),
                             "name": ustr(self.name)
-                            + u" (effective)/ "
+                            + " (effective)/ "
                             + month
-                            + u"/"
+                            + "/"
                             + year
-                            + u"/ "
+                            + "/ "
                             + employee.name,
                             "tag_ids": [(4, sueldos_tag[0].id)],
                             "timesheet_id": timesheet.id,

@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2012 Comunitea Servicios Tecnológicos S.L.
 #    $Omar Castiñeira Saavedra$
 #    $Marta Vázquez Rodríguez$
 #
@@ -22,17 +22,14 @@
     "name": "Distribution of costs",
     "description": """Sharing the costs of workers""",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comunitea.com",
     "category": "Base/Laboral/Costs",
     "depends": [
-        "base",
         "hr",
-        "analytic",
         "analytic_incidences",
         "limp_account_analytic_extension",
         "limp_multi_delegations",
-        "hr_timesheet",
     ],
     "data": [
         "views/account_analytic_line_view.xml",

@@ -30,7 +30,7 @@ class Remuneration(models.Model):
     name = fields.Char(
         size=8,
         readonly=True,
-        default=lambda r: r.env["ir.sequence"].get("remuneration"),
+        default=lambda r: r.env["ir.sequence"].next_by_code("remuneration"),
     )
     employee_id = fields.Many2one("hr.employee", "Employee", required=True)
     incidence = fields.Boolean()
@@ -91,16 +91,20 @@ class Remuneration(models.Model):
 
     def get_periods_remuneration(self, start_date, end_date):
         def daterange(start_date, end_date):
-            start_date = datetime.strptime(start_date, "%Y-%m-%d")
-            end_date = datetime.strptime(end_date, "%Y-%m-%d")
+            if isinstance(start_date, str):
+                start_date = fields.Date.to_date(start_date)
+            if isinstance(end_date, str):
+                end_date = fields.Date.to_date(end_date)
             for n in range(int((end_date - start_date).days + 1)):
-                yield datetime.strftime(start_date + timedelta(n), "%Y-%m-%d")
+                yield fields.Date.to_string(start_date + timedelta(n))
 
         res = {}
         days_to_cover = []
         days_covered = set()
+        start_date = fields.Date.to_date(start_date)
+        end_date = fields.Date.to_date(end_date)
         if (
-            self.date_to >= start_date or not self.date_to
+            not self.date_to or self.date_to >= start_date
         ) and self.date <= end_date:
             for single_date in daterange(start_date, end_date):
                 days_to_cover.append(single_date)
@@ -121,33 +125,40 @@ class Remuneration(models.Model):
                     and child_rem.date_to
                     and child_rem.date_to <= end_date
                 ):
-                    key = start_date + "#" + child_rem.date_to
+                    key = fields.Date.to_string(start_date) + "#" + \
+                        fields.Date.to_string(child_rem.date_to)
                 elif (
                     child_rem.date < start_date
                     and child_rem.date_to
                     and child_rem.date_to > end_date
                 ):
-                    key = start_date + "#" + end_date
+                    key = fields.Date.to_string(start_date) + "#" + \
+                        fields.Date.to_string(end_date)
                 elif (
                     child_rem.date >= start_date
                     and child_rem.date_to
                     and child_rem.date_to <= end_date
                 ):
-                    key = child_rem.date + "#" + child_rem.date_to
+                    key = fields.Date.to_string(child_rem.date) + "#" + \
+                        fields.Date.to_string(child_rem.date_to)
                 elif (
                     child_rem.date >= start_date
                     and child_rem.date_to
                     and child_rem.date_to > end_date
                 ):
-                    key = child_rem.date + "#" + end_date
-                elif child_rem.date <= start_date and not child_rem.date_to:
-                    key = start_date + "#" + end_date
+                    key = fields.Date.to_string(child_rem.date) + "#" + \
+                        fields.Date.to_string(end_date)
+                elif child_rem.date <= start_date and \
+                        not child_rem.date_to:
+                    key = fields.Date.to_string(start_date) + "#" + \
+                        fields.Date.to_string(end_date)
                 elif (
                     child_rem.date >= start_date
                     and child_rem.date <= end_date
                     and not child_rem.date_to
                 ):
-                    key = child_rem.date + "#" + end_date
+                    key = fields.Date.to_string(child_rem.date) + "#" + \
+                        fields.Date.to_string(end_date)
 
                 if key:
                     period_start, period_end = key.split("#")
@@ -168,8 +179,9 @@ class Remuneration(models.Model):
                 for day in days_to_cover:
                     if (
                         day not in days_covered
-                        and day >= self.date
-                        and (not self.date_to or day <= self.date_to)
+                        and fields.Date.to_date(day) >= self.date
+                        and (not self.date_to or
+                             fields.Date.to_date(day) <= self.date_to)
                     ):
                         if not start_day:
                             start_day = day
@@ -189,7 +201,8 @@ class Remuneration(models.Model):
                     start_date = self.date
                 if self.date_to and end_date >= self.date_to:
                     end_date = self.date_to
-                key = start_date + "#" + end_date
+                key = fields.Date.to_string(start_date) + "#" + \
+                    fields.Date.to_string(end_date)
                 res[key] = [self.id]
         return res
 

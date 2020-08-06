@@ -39,7 +39,7 @@ def string_format(value):
 
 
 def float_format(value):
-    if isinstance(value, (str, unicode)):
+    if isinstance(value, (str)):
         value = float(value.replace(",", "."))
     else:
         value = float(value)
@@ -70,6 +70,7 @@ class DistributionCostsImport(models.TransientModel):
         "Month",
     )
     file = fields.Binary("File", required=True)
+    filename = fields.Char(string='Filename')
     year = fields.Integer(
         "Year", required=True, default=lambda r: int(time.strftime("%Y"))
     )
@@ -78,19 +79,14 @@ class DistributionCostsImport(models.TransientModel):
         obj = self
         year = str(obj.year)
         month = ""
-        file = base64.b64decode(obj.file)
         data = xlrd.open_workbook(
-            file_contents=StringIO(file).read(), encoding_override="utf-8",
-        )
+            file_contents=base64.decodestring(obj.file))
         sh = data.sheet_by_index(0)
         cost_fixed = 0  # suma de precios fijos
         cost_price_hour = 0  # suma de horas con precio hora
-        cost_contract = 0  # suma de coste c on contrato
-        cost_contract_ss = 0  # suma de coste seguriodad social
 
         record = {}
         weeks = 4.416666667  # 53/12
-        dates = []
         timesheets = []
 
         remuneration_obj = self.env["remuneration"]
@@ -100,9 +96,6 @@ class DistributionCostsImport(models.TransientModel):
         )
         social_journal_id = self.env["account.analytic.tag"].search(
             [("name", "=", "Seguridad Social")]
-        )
-        sueldos_journal_id = self.env["account.analytic.tag"].search(
-            [("name", "=", "Sueldos")]
         )
         general_account_id_ss = self.env["account.account"].search(
             [("code", "=", "64200000")]
@@ -121,14 +114,9 @@ class DistributionCostsImport(models.TransientModel):
                 and row[3] not in visited_rows
             ):
                 visited_rows.append(row[3])
-                contracts = {}
                 with_contract = 0  # coste con contrato total
                 ss_total = 0  # total importe seguridad social
-                # with_ss_contract = 0 # total horas seguridad social en contratos
-                # ss_total_timesheet = 0 # total horas ss en partes
                 ss_total_hours = 0  # total horas seguridad social
-                # with_contract_timesheet = 0 #horas de los parte de trabajo
-                # with_contract_contract = 0 #horas de contratos
                 fixed = 0  # costes fijos
                 with_price_hour = 0  # coste con precio hora
                 n = 1
@@ -152,7 +140,10 @@ class DistributionCostsImport(models.TransientModel):
                 while (sh.row_values(line + n))[3] == "" or (
                     sh.row_values(line + n)
                 )[3] == row[3]:
-                    ### MARTA (30.09.2014 11:49): Añadido 'or' debido a que si había dos registros con el código del mismo trabajador antes de crear el segundo apunte eliminaba el primero. ###
+                    # MARTA (30.09.2014 11:49): Añadido 'or' debido a que
+                    # si había dos registros con el código del mismo
+                    # trabajador antes de crear el segundo apunte eliminaba
+                    # el primero.
                     if (sh.row_values(line + n))[10]:
                         record["ss_company"] += float_format(
                             (sh.row_values(line + n))[10]
@@ -170,7 +161,6 @@ class DistributionCostsImport(models.TransientModel):
                             (sh.row_values(line + n))[16]
                         )
                     n = n + 1
-
                 if not month:
                     if len(record["month"]) == 1:
                         month = "0" + record["month"]
@@ -450,10 +440,11 @@ class DistributionCostsImport(models.TransientModel):
                                         )
                                         if distribution:
                                             distribution_obj = self.env[
-                                                "account.analytic.distribution"
+                                                "account.analytic.tag"
                                             ].browse(distribution)
                                             analytic_objs = (
-                                                distribution_obj.rule_ids
+                                                distribution_obj.
+                                                analytic_distribution_ids
                                             )
 
                                         valor = config[remuneration][
@@ -463,10 +454,10 @@ class DistributionCostsImport(models.TransientModel):
                                         for analytic_obj in analytic_objs:
                                             if distribution:
                                                 new_valor = (
-                                                    analytic_obj.percent
+                                                    analytic_obj.percentage
                                                     and valor
                                                     * (
-                                                        analytic_obj.percent
+                                                        analytic_obj.percentage
                                                         / 100
                                                     )
                                                     or analytic_obj.fix_amount
@@ -474,14 +465,12 @@ class DistributionCostsImport(models.TransientModel):
                                             else:
                                                 new_valor = valor
 
-                                            if (
-                                                not type
-                                                in (
-                                                    "with_contract",
-                                                    "with_ss_contract",
-                                                )
-                                                and new_valor
-                                            ):  # si no es con contrato y hay importe
+                                            if (type
+                                                    not in ("with_contract",
+                                                            "with_ss_contract")
+                                                    and new_valor):
+                                                # si no es con contrato y
+                                                # hay importe
                                                 ids_delete = self.env[
                                                     "account.analytic.line"
                                                 ].search(
@@ -495,19 +484,19 @@ class DistributionCostsImport(models.TransientModel):
                                                             "account_id",
                                                             "=",
                                                             analytic
-                                                            or analytic_obj.analytic_account_id.id,
+                                                            or analytic_obj.account_id.id,
                                                         ),
                                                         (
                                                             "name",
                                                             "=",
                                                             ustr(obj.name)
-                                                            + u"("
+                                                            + "("
                                                             + type
-                                                            + u")/ "
+                                                            + ")/ "
                                                             + month
-                                                            + u"/"
+                                                            + "/"
                                                             + year
-                                                            + u"/ "
+                                                            + "/ "
                                                             + hr_employee_obj.name,
                                                         ),
                                                         (
@@ -540,13 +529,13 @@ class DistributionCostsImport(models.TransientModel):
                                                 vals = {
                                                     "amount": -(new_valor),
                                                     "name": ustr(obj.name)
-                                                    + u"("
+                                                    + "("
                                                     + type
-                                                    + u")/ "
+                                                    + ")/ "
                                                     + month
-                                                    + u"/"
+                                                    + "/"
                                                     + year
-                                                    + u"/ "
+                                                    + "/ "
                                                     + hr_employee_obj.name,
                                                     "tag_ids": [
                                                         (4, journal_id[0].id)
@@ -555,7 +544,7 @@ class DistributionCostsImport(models.TransientModel):
                                                         remuneration
                                                     ),
                                                     "account_id": analytic
-                                                    or analytic_obj.analytic_account_id.id,
+                                                    or analytic_obj.account_id.id,
                                                     "general_account_id": general_account_id_suelsala[
                                                         0
                                                     ].id,
@@ -604,19 +593,19 @@ class DistributionCostsImport(models.TransientModel):
                                                             "account_id",
                                                             "=",
                                                             analytic
-                                                            or analytic_obj.analytic_account_id.id,
+                                                            or analytic_obj.account_id.id,
                                                         ),
                                                         (
                                                             "name",
                                                             "=",
                                                             ustr(obj.name)
-                                                            + u"("
+                                                            + "("
                                                             + type
-                                                            + u")/ "
+                                                            + ")/ "
                                                             + month
-                                                            + u"/"
+                                                            + "/"
                                                             + year
-                                                            + u"/ "
+                                                            + "/ "
                                                             + hr_employee_obj.name,
                                                         ),
                                                         (
@@ -656,19 +645,18 @@ class DistributionCostsImport(models.TransientModel):
                                                 remu_total_cost = (
                                                     cost_price_hour * new_valor
                                                 ) / with_contract  # ontenemos el número de horas de la remuneración sobre el total de horas que tb incluye las horas por parte
-                                                # cost_contract = (remu_total_cost*valor)/with_contract_contract # repartimos la proporción del coste del contrato según las horas
                                                 vals = {
                                                     "amount": -(
                                                         remu_total_cost
                                                     ),
                                                     "name": ustr(obj.name)
-                                                    + u"("
+                                                    + "("
                                                     + type
-                                                    + u")/ "
+                                                    + ")/ "
                                                     + month
-                                                    + u"/"
+                                                    + "/"
                                                     + year
-                                                    + u"/ "
+                                                    + "/ "
                                                     + hr_employee_obj.name,
                                                     "tag_ids": [
                                                         (4, journal_id[0].id)
@@ -677,7 +665,7 @@ class DistributionCostsImport(models.TransientModel):
                                                         remuneration
                                                     ),
                                                     "account_id": analytic
-                                                    or analytic_obj.analytic_account_id.id,
+                                                    or analytic_obj.account_id.id,
                                                     "general_account_id": general_account_id_suelsala[
                                                         0
                                                     ].id,
@@ -725,17 +713,17 @@ class DistributionCostsImport(models.TransientModel):
                                                             "account_id",
                                                             "=",
                                                             analytic
-                                                            or analytic_obj.analytic_account_id.id,
+                                                            or analytic_obj.account_id.id,
                                                         ),
                                                         (
                                                             "name",
                                                             "=",
                                                             ustr(obj.name)
-                                                            + u"/ "
+                                                            + "/ "
                                                             + month
-                                                            + u"/"
+                                                            + "/"
                                                             + year
-                                                            + u"/ "
+                                                            + "/ "
                                                             + hr_employee_obj.name,
                                                         ),
                                                         (
@@ -767,17 +755,16 @@ class DistributionCostsImport(models.TransientModel):
                                                 remu_total_cost_ss = (
                                                     ss_total * new_valor
                                                 ) / ss_total_hours  # obtenemos el número de horas de la remuneración respecto a las horas totales
-                                                # cost_contract_ss = (remu_total_cost_ss*valor)/with_ss_contract # repartimos la proporción del coste de ss según las horas
                                                 vals = {
                                                     "amount": -(
                                                         remu_total_cost_ss
                                                     ),
                                                     "name": ustr(obj.name)
-                                                    + u"/ "
+                                                    + "/ "
                                                     + month
-                                                    + u"/"
+                                                    + "/"
                                                     + year
-                                                    + u"/ "
+                                                    + "/ "
                                                     + hr_employee_obj.name,
                                                     "tag_ids": [
                                                         (
@@ -791,7 +778,7 @@ class DistributionCostsImport(models.TransientModel):
                                                         remuneration
                                                     ),
                                                     "account_id": analytic
-                                                    or analytic_obj.analytic_account_id.id,
+                                                    or analytic_obj.account_id.id,
                                                     "general_account_id": general_account_id_ss[
                                                         0
                                                     ].id,
@@ -862,13 +849,13 @@ class DistributionCostsImport(models.TransientModel):
                                                         "name",
                                                         "=",
                                                         ustr(obj.name)
-                                                        + u" ("
+                                                        + " ("
                                                         + type
-                                                        + u")/ "
+                                                        + ")/ "
                                                         + month
-                                                        + u"/"
+                                                        + "/"
                                                         + year
-                                                        + u"/ "
+                                                        + "/ "
                                                         + hr_employee_obj.name,
                                                     ),
                                                 ]
@@ -879,13 +866,13 @@ class DistributionCostsImport(models.TransientModel):
                                             vals = {
                                                 "amount": -(valor),
                                                 "name": ustr(obj.name)
-                                                + u" ("
+                                                + " ("
                                                 + type
-                                                + u")/ "
+                                                + ")/ "
                                                 + month
-                                                + u"/"
+                                                + "/"
                                                 + year
-                                                + u"/ "
+                                                + "/ "
                                                 + hr_employee_obj.name,
                                                 "tag_ids": [
                                                     (4, journal_id[0].id)
@@ -953,13 +940,13 @@ class DistributionCostsImport(models.TransientModel):
                                                         "name",
                                                         "=",
                                                         ustr(obj.name)
-                                                        + u" ("
+                                                        + " ("
                                                         + type
-                                                        + u")/ "
+                                                        + ")/ "
                                                         + month
-                                                        + u"/"
+                                                        + "/"
                                                         + year
-                                                        + u"/ "
+                                                        + "/ "
                                                         + hr_employee_obj.name,
                                                     ),
                                                 ]
@@ -976,19 +963,18 @@ class DistributionCostsImport(models.TransientModel):
                                             timesheet_total_cost = (
                                                 cost_price_hour * valor
                                             ) / with_contract  # calculamso la proporción a repartir según las horas de l parte sobre las totales
-                                            # cost_contract = (timesheet_total_cost*valor)/with_contract_timesheet
                                             vals = {
                                                 "amount": -(
                                                     timesheet_total_cost
                                                 ),
                                                 "name": ustr(obj.name)
-                                                + u" ("
+                                                + " ("
                                                 + type
-                                                + u")/ "
+                                                + ")/ "
                                                 + month
-                                                + u"/"
+                                                + "/"
                                                 + year
-                                                + u"/ "
+                                                + "/ "
                                                 + hr_employee_obj.name,
                                                 "tag_ids": [
                                                     (4, journal_id[0].id)
@@ -1059,11 +1045,11 @@ class DistributionCostsImport(models.TransientModel):
                                                         "name",
                                                         "=",
                                                         ustr(obj.name)
-                                                        + u"/ "
+                                                        + "/ "
                                                         + month
-                                                        + u"/"
+                                                        + "/"
                                                         + year
-                                                        + u"/ "
+                                                        + "/ "
                                                         + hr_employee_obj.name,
                                                     ),
                                                 ]
@@ -1074,17 +1060,16 @@ class DistributionCostsImport(models.TransientModel):
                                             timesheet_total_cost_ss = (
                                                 ss_total * valor
                                             ) / ss_total_hours  # obtenemos el coste respecto ala shoras del parte copntra las totales
-                                            # cost_contract_ss = (timesheet_total_cost_ss*valor)/ss_total_timesheet # calculamos el coste proporcionado a las horas
                                             vals = {
                                                 "amount": -(
                                                     timesheet_total_cost_ss
                                                 ),
                                                 "name": ustr(obj.name)
-                                                + u"/ "
+                                                + "/ "
                                                 + month
-                                                + u"/"
+                                                + "/"
                                                 + year
-                                                + u"/ "
+                                                + "/ "
                                                 + hr_employee_obj.name,
                                                 "tag_ids": [
                                                     (
