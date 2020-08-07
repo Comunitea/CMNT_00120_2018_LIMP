@@ -27,7 +27,9 @@ WARNING_MESSAGE = [
 
 
 WARNING_HELP = _(
-    'Selecting the "Warning" option will notify user with the message, Selecting "Blocking Message" will throw an exception with the message and block the flow. The Message has to be written in the next field.'
+    'Selecting the "Warning" option will notify user with the message, '
+    'Selecting "Blocking Message" will throw an exception with the message '
+    'and block the flow. The Message has to be written in the next field.'
 )
 
 
@@ -35,7 +37,8 @@ class ProductTemplate(models.Model):
 
     _inherit = "product.template"
 
-    department_id = fields.Many2one("hr.department", "Department")
+    department_id = fields.Many2one("hr.department", "Department",
+                                    index=True)
 
 
 class ProductProduct(models.Model):

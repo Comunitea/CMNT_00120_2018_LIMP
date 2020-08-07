@@ -62,11 +62,6 @@ class AccountInvoice(models.Model):
                 amount_taxes += line.price_subtotal
             invoice.amount_taxes = amount_taxes
 
-    def action_move_create(self):
-        return super(
-            AccountInvoice, self.with_context(inv_ref=True)
-        ).action_move_create()
-
 
 class AccountMove(models.Model):
 
@@ -74,11 +69,11 @@ class AccountMove(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get("ref", False) and self._context.get("inv_ref", False):
-            vals["ref"] = u"FACT. " + vals["ref"]
+        if vals.get("ref", False) and "FACT. " not in vals["ref"]:
+            vals["ref"] = "FACT. " + vals["ref"]
         return super(AccountMove, self).create(vals)
 
     def write(self, vals):
-        if vals.get("ref", False) and self._context.get("inv_ref", False):
-            vals["ref"] = u"FACT. " + vals["ref"]
+        if vals.get("ref", False) and "FACT. " not in vals["ref"]:
+            vals["ref"] = "FACT. " + vals["ref"]
         return super(AccountMove, self).write(vals)

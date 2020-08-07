@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-        <delete model="ir.rule" id="base.res_partner_rule"/>
-
         <record id="hr_employee_comp_rule" model="ir.rule">
             <field name="name">Employees</field>
             <field ref="hr.model_hr_employee" name="model_id"/>

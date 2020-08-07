@@ -6,7 +6,7 @@ class InvoiceLines(models.Model):
     _auto = False
     _rec_name = "ler_code_id"
 
-    date = fields.Date("Date")
+    date = fields.Datetime("Date")
     partner_id = fields.Many2one(
         "res.partner", "Custumer/Supplier", readonly=True
     )
@@ -34,13 +34,17 @@ class InvoiceLines(models.Model):
         self._cr.execute(
             """
             create or replace view invoice_lines as (
-            SELECT SM.id AS id,SP.date,SP.partner_id,SM.product_uos_qty AS quantity,P2.ler_code_id,SM.product_id,SM.product_uom_qty AS m3, AIL.price_unit*AIL.quantity AS subtotal, SP.company_id
+            SELECT SM.id AS id,SP.date,SP.partner_id,SM.product_uos_qty AS
+            quantity,P2.ler_code_id,SM.product_id,SM.product_uom_qty AS m3,
+            AIL.price_unit*AIL.quantity AS subtotal, SP.company_id
             FROM stock_move AS SM
                 INNER JOIN stock_picking AS SP  ON SM.picking_id = SP.id
                 INNER JOIN product_product AS P ON SM.product_id = P.id
                 INNER JOIN product_template AS P2 ON P.product_tmpl_id = P2.id
                 LEFT JOIN account_invoice_line as AIL on AIL.move_id = SM.id
-            WHERE P2.ler_code_id is not null and SP.state = 'done' and SP.memory_include = true
-            AND SP.picking_type_id in (select id from stock_picking_type where code='outgoing')
+            WHERE P2.ler_code_id is not null and SP.state = 'done'
+                and SP.memory_include = true
+            AND SP.picking_type_id in
+                (select id from stock_picking_type where code='outgoing')
             )"""
         )

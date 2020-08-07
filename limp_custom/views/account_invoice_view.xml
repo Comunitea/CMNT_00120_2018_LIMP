@@ -5,9 +5,8 @@
             <field name="name">account.invoice.form.add_info</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <button name="invoice_print" position="attributes">
+                <button name="preview_invoice" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </button>
                 <field name="journal_id" position="after">
@@ -20,7 +19,6 @@
             <field name="name">account.invoice.tree.add_info</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account_invoice_currency.invoice_tree"/>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
                     <field name="add_info" string="Add. info"/>
@@ -28,13 +26,8 @@
                 <field name="user_id" position="replace">
                     <field name="user_id" invisible="1"/>
                 </field>
-                <field name="amount_total_signed" position="before">
-                    <field name="amount_untaxed_signed" string="Base Imponible"/>
-                    <field name="amount_tax"/>
-                </field>
                 <field name="currency_id" position="replace">
                     <field name="currency_id" invisible="1"/>
-                    <field name="payment_mode_id"/>
                 </field>
                 <field name="name" position="attributes">
                     <attribute name="invisible">0</attribute>
@@ -48,7 +41,6 @@
             <field name="name">account.invoice.select.add_info</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.view_account_invoice_filter"/>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
                     <field name="add_info"/>
@@ -64,10 +56,6 @@
             <field name="arch" type="xml">
                 <field name="amount_total_company_signed" position="replace"/>
                 <field name="residual_company_signed" position="replace"/>
-                <field name="amount_total_signed" position="before">
-                    <field name="amount_untaxed_signed" string="Base Imponible"/>
-                    <field name="amount_tax"/>
-                </field>
             </field>
         </record>
 

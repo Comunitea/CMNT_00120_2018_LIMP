@@ -4,80 +4,55 @@
     <record id="view_partner_form_add_new_fields_limp_add_logo" model="ir.ui.view">
         <field name="name">res.partner.form.add_new_fields_limp_add_logo</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="limp_service_picking.view_partner_form_add_new_fields_limp"/>
-        <field name="type">form</field>
+        <field name="inherit_id" ref="limp_service_picking.view_partner_form_add_new_fields_limp" />
         <field name="arch" type="xml">
             <field name="nima_no" position="after">
-                <newline/>
-                <field name="picture" widget="image"/>
+                <newline />
+                <field name="picture" widget="image" />
             </field>
             <field name="title" position="after">
-                <field name="colege_num" attrs="{'invisible': [('company_type', '=', 'company')]}"/>
+                <field name="colege_num" attrs="{'invisible': [('is_company', '=', True)]}" placeholder="Colege num."/>
             </field>
             <xpath expr="//page[@name='internal_notes']//field[@name='comment']" position="before">
                 <group>
-                    <field name="add_info"/>
+                    <field name="add_info" />
                 </group>
             </xpath>
-                <label for="vat" position="before">
-                        <field name="attention_of"/>
-                </label>
-
-
-            <field name="phone" position="before">
-                <field name="ref"/>
+            <field name="vat" position="before">
+                <field name="attention_of" />
+            </field>
+            <field name="ref" position="replace"/>
+            <field name="website" position="before">
+                <field name="ref" placeholder="Ref."/>
             </field>
         </field>
     </record>
-
-     <record id="view_add_partner_warning_form" model="ir.ui.view">
-        <field name="name">res.add.partner.warning.form.inherit</field>
-        <field name="model">res.partner</field>
-        <field name="type">form</field>
-        <field name="inherit_id" ref="stock.view_partner_stock_warnings_form"/>
-        <field name="arch" type="xml">
-            <field name="picking_warn_msg" position="after">
-                <group colspan="2" col="2">
-                <separator string="Warning when Picking this Partner" colspan="4"/>
-                    <field name="picking_warn_type"  nolabel="1" />
-                    <field name="picking_warn_message" colspan="2" nolabel="1"
-                                attrs="{'required':[('picking_warn_type','!=','no-message')],'readonly':[('picking_warn_type','=','no-message')]}"/>
-                </group>
-            </field>
-        </field>
-    </record>
-
     <record id="view_res_partner_filter_add_company_id" model="ir.ui.view">
         <field name="name">res.partner.select.add_company_id</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_res_partner_filter"/>
-        <field name="type">search</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="company_id"/>
+                <field name="company_id" />
             </field>
             <search>
-                <field name="vat"/>
+                <field name="vat" />
             </search>
             <filter name="supplier" position="after">
-                <filter string="With Code" name="with_code" domain="[('ref','!=',False)]"/>
+                <filter string="With Code" name="with_code" domain="[('ref','!=',False)]" />
             </filter>
         </field>
     </record>
-
     <record id="view_partner_form_add_cif_label" model="ir.ui.view">
         <field name="name">res.partner.property.form.inherit.add_active</field>
         <field name="model">res.partner</field>
-        <field name="type">form</field>
-        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
-            <field name="name" position="before" >
+            <field name="name" position="before">
                 <group attrs="{'invisible': [('vat', '!=', False)]}">
-                    <label style="color:red; font-size: 20px" string="FALTA CIF"/>
+                    <span style="color:red; font-size: 20px">FALTA CIF</span>
                 </group>
             </field>
         </field>
     </record>
-
-
 </odoo>

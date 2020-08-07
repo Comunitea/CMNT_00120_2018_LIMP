@@ -25,5 +25,6 @@ class res_users(models.Model):
 
     work_address_id = fields.Many2one("res.partner", string="Work Address")
     context_responsible_id = fields.Many2one(
-        "hr.employee", "Resposible", domain=[("responsible", "=", True)]
+        "hr.employee", "Resposible", domain=[("responsible", "=", True)],
+        index=True
     )

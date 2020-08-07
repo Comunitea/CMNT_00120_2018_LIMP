@@ -5,12 +5,12 @@
         <field name="name">product.normal.form.add_department</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
                 <field name="department_id"/>
             </field>
-            <field name="warranty" position="after">
+            <field name="sale_ok" position="after">
+                <label for="tax_product"/>
                 <field name="tax_product"/>
             </field>
         </field>
@@ -19,7 +19,6 @@
     <record id="product_add_warning_form_view" model="ir.ui.view">
         <field name="name">product.add.warning.form.inherit</field>
             <field name="model">product.product</field>
-        <field name="type">form</field>
         <field name="inherit_id" ref="product.product_normal_form_view"/>
         <field name="arch" type="xml">
             <field name="description_sale" position="after">
@@ -37,7 +36,6 @@
         <field name="name">product.search.form.add_department_id</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_search_form_view"/>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
                 <field name="department_id" widget="selection"/>

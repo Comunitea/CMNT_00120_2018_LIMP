@@ -17,14 +17,13 @@
             <field name="name">account.analytic.line.select</field>
             <field name="model">account.analytic.line</field>
             <field name="inherit_id" ref="analytic.view_account_analytic_line_filter"/>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <field name="account_id" position="after">
                     <field name="privacy"/>
                     <field name="type_analytic"/>
                 </field>
                 <filter name="group_date" position="after">
-                  <filter string="Type" context="{'group_by':'type_analytic'}"/>
+                  <filter string="Type" name="type" context="{'group_by':'type_analytic'}"/>
                 </filter>
             </field>
         </record>

@@ -5,7 +5,6 @@
             <field name="name">hr.employee.form.add_delegation_field</field>
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="department_id" position="after">
                         <field name="colege_num"/>

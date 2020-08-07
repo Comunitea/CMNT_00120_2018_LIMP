@@ -5,7 +5,6 @@
         <field name="name">container.tree</field>
         <field name="model">container</field>
         <field name="inherit_id" ref="containers_management.container_tree"/>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
                 <field name="delegation_id"/>
@@ -18,7 +17,6 @@
         <field name="name">container.form</field>
         <field name="model">container</field>
         <field name="inherit_id" ref="containers_management.container_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="delegation_id"/>
@@ -31,15 +29,14 @@
         <field name="name">container.search</field>
         <field name="model">container</field>
         <field name="inherit_id" ref="containers_management.container_search"/>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
                 <field name="delegation_id"/>
                 <field name="delegation_owner_id"/>
             </field>
             <filter name="placement" position="after">
-                <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
-                <filter string="Owner" domain="[]" context="{'group_by':'delegation_owner_id'}"/>
+                <filter string="Delegation" name="delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
+                <filter string="Owner" name="owner" domain="[]" context="{'group_by':'delegation_owner_id'}"/>
             </filter>
         </field>
     </record>

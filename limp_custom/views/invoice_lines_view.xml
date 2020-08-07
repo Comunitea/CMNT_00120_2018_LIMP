@@ -3,7 +3,6 @@
     <record id="view_invoice_lines" model="ir.ui.view">
         <field name="name">View Invoice Lines</field>
         <field name="model">invoice.lines</field>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Invoice lines View">
                 <field name="date"/>
@@ -24,7 +23,6 @@
     <record id="view_invoice_lines_search" model="ir.ui.view">
         <field name="name">View Invoice Lines search</field>
         <field name="model">invoice.lines</field>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <search string="Filters">
                 <field name="ler_code_id"/>
@@ -33,9 +31,9 @@
                 <field name="date"/>
                 <newline/>
                 <group expand="1" string="Group By..." colspan="10" col="12">
-                    <filter string="LER" context="{'group_by':'ler_code_id'}"/>
-                    <filter string="Product" context="{'group_by':'product_id'}"/>
-                    <filter string="Customer/Supplier" context="{'group_by':'partner_id'}"/>
+                    <filter string="LER" name="ler" context="{'group_by':'ler_code_id'}"/>
+                    <filter string="Product" name="product" context="{'group_by':'product_id'}"/>
+                    <filter string="Customer/Supplier" name="partner" context="{'group_by':'partner_id'}"/>
                 </group>
             </search>
         </field>
