@@ -38,7 +38,6 @@ class PrintAcceptanceDocumentReport(models.TransientModel):
             ]
         )
         if acceptance_ids:
-            data = acceptance_ids[0].read()
             accept_ids = [acceptance_ids[0].id]
         else:
             admission_seq = self.env["ir.sequence"].next_by_code(
@@ -51,14 +50,8 @@ class PrintAcceptanceDocumentReport(models.TransientModel):
                     "number": admission_seq,
                 }
             )
-            data = new_waste.read()
             accept_ids = [new_waste.id]
 
-        datas = {"ids": accept_ids}
-        datas["model"] = "acceptance.document"
-        datas["form"] = data
-        return {
-            "type": "ir.actions.report",
-            "report_name": "acceptance_document",
-            "datas": datas,
-        }
+        report = self.env['ir.actions.report'].search(
+            [('report_name', '=', "acceptance_document")], limit=1)
+        return report.report_action(accept_ids, config=False)

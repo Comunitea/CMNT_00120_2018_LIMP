@@ -31,7 +31,7 @@
         <field name="inherit_id" ref="analytic.view_account_analytic_line_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//group[@name='groupby']" position="after">
-                <filter string="Journal" context="{'group_by':'journal_tag_id'}"/>
+                <filter string="Journal"  name="journal" context="{'group_by':'journal_tag_id'}"/>
             </xpath>
         </field>
     </record>

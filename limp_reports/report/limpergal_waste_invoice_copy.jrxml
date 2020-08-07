@@ -90,7 +90,7 @@
         <field name="id" class="java.lang.Integer">
             <fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Referencia_factura-invoice_id/id]]></fieldDescription>
         </field>
-        <field name="id2" class="java.lang.Integer">
+        <field name="id2" class="java.lang.Object">
             <fieldDescription><![CDATA[/data/record/Lineas_de_factura-invoice_line_ids/Obra-building_site_id/id]]></fieldDescription>
         </field>
         <field name="Nombre-name" class="java.lang.String">
@@ -456,7 +456,7 @@
             <band height="190">
                 <componentElement>
                     <reportElement key="table 1" style="table" x="8" y="8" width="333" height="43" forecolor="#000000">
-                        <property name="OPENERP_RELATIONS" value="tax_line_ids"/>
+                        <property name="ODOO_RELATIONS" value="tax_line_ids"/>
                     </reportElement>
                     <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                         <datasetRun subDataset="Dataset 2">
@@ -999,7 +999,7 @@
         <band height="142">
             <componentElement>
                 <reportElement key="table" style="table" x="0" y="5" width="555" height="133" forecolor="#000000">
-                    <property name="OPENERP_RELATIONS" value="invoice_line_ids"/>
+                    <property name="ODOO_RELATIONS" value="invoice_line_ids"/>
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                     <datasetRun subDataset="dataset1">

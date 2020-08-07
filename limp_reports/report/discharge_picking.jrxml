@@ -559,7 +559,7 @@
                         </textField>
                         <componentElement>
                                 <reportElement key="table" x="0" y="103" width="505" height="28">
-                                        <property name="OPENERP_RELATIONS" value="service_picking_valorization_ids"/>
+                                        <property name="ODOO_RELATIONS" value="service_picking_valorization_ids"/>
                                 </reportElement>
                                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                                         <datasetRun subDataset="Table Dataset 1">

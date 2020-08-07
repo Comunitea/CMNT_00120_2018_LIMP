@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
+
         <record id="seq_acceptance_doc" model="ir.sequence">
             <field name="name">Acceptance document.</field>
             <field name="code">acceptance_document</field>
@@ -10,5 +10,4 @@
             <field name="company_id" eval="0"/>
         </record>
 
-</data>
 </odoo>

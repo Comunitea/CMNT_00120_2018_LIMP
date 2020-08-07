@@ -10,10 +10,7 @@ class AccountAnalyticDetails(models.AbstractModel):
 
     def _get_domain(self, acc, data, force_add=False, with_tag_accounts=False):
         if with_tag_accounts:
-            contract_tag = acc.tag_ids.filtered("contract_tag")
-            account_ids = self.env["account.analytic.account"].search(
-                [("tag_ids", "in", [contract_tag.id])]
-            )
+            account_ids = acc.filtered("is_contract")
         else:
             account_ids = acc
         where = """date >= '{}' and date <= '{}'
@@ -244,23 +241,23 @@ class AccountAnalyticDetails(models.AbstractModel):
                 expenses += self.journals_sumarize[journal]
             else:
                 incomes += self.journals_sumarize[journal]
-            res.append((journal, self.journals_sumarize[journal], u"€"))
+            res.append((journal, self.journals_sumarize[journal], "€"))
 
         balance = incomes + expenses
         if balance:
             percent = (balance * 100.0) / (incomes or 1.0)
         else:
             percent = 0.0
-        res.append(("% Real", percent, u"%"))
+        res.append(("% Real", percent, "%"))
         return res
 
     @api.model
-    def render_html(self, docids, data=None):
+    def _get_report_values(self, docids, data=None):
         if not docids:
             docids = self.env.context.get("active_ids", False)
         docs = self.env["account.analytic.account"].browse(docids)
         self.journals_sumarize = {}
-        docargs = {
+        return {
             "data": data["form"],
             "doc_ids": docids,
             "doc_model": "account.analytic.account",
@@ -276,7 +273,3 @@ class AccountAnalyticDetails(models.AbstractModel):
             "get_analytic_type": self._get_analytic_type,
             "formatLang": formatLang,
         }
-
-        return self.env["report"].render(
-            "limp_reports.account_analytic_details", docargs
-        )

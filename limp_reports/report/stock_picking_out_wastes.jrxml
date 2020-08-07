@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stock_picking_out_wastes" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<property name="OPENERP_RELATIONS" value="[&quot;move_lines&quot;]"/>
-	<parameter name="PICKING_ID" class="java.lang.Integer"/>
-	<parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
-		<parameterDescription><![CDATA[]]></parameterDescription>
-		<defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
-	</parameter>
-	<queryString language="xPath">
-		<![CDATA[]]>
-	</queryString>
-	<field name="Codigo-code" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Producto-product_id/LER-ler_code_id/Codigo-code]]></fieldDescription>
-	</field>
-	<field name="Descripcion-description" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Descripcion-description]]></fieldDescription>
-	</field>
-	<field name="Cantidad__UdV-product_uos_qty" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Cantidad__UdV-product_uos_qty]]></fieldDescription>
-	</field>
-	<field name="Cantidad-product_qty" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Cantidad-product_qty]]></fieldDescription>
-	</field>
-	<field name="Nombre-name" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/UdV_del_producto-product_uos/Nombre-name]]></fieldDescription>
-	</field>
-	<field name="Nombre-name2" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Unidad_de_medida-product_uom/Nombre-name]]></fieldDescription>
-	</field>
-	<field name="id" class="java.lang.Integer">
-		<fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Referencia-picking_id/id]]></fieldDescription>
-	</field>
-	<filterExpression><![CDATA[$F{id} == $P{PICKING_ID}]]></filterExpression>
-	<detail>
-		<band height="70" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="98" y="10" width="93" height="16"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Codigo-code}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="23" y="10" width="75" height="16"/>
-				<textElement/>
-				<text><![CDATA[Código LER:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="216" y="10" width="75" height="16"/>
-				<textElement/>
-				<text><![CDATA[Descrición:]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" x="291" y="10" width="254" height="16"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Descripcion-description}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="23" y="50" width="522" height="16"/>
-				<textElement/>
-				<text><![CDATA[Número de rexistro da caracterización básica ou otra referencia]]></text>
-			</staticText>
-			<frame>
-				<reportElement positionType="Float" x="23" y="26" width="522" height="24"/>
-				<staticText>
-					<reportElement positionType="Float" x="0" y="4" width="65" height="16"/>
-					<textElement/>
-					<text><![CDATA[Cantidade:]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="true" pattern="#,##0.000;-#,##0.000" isBlankWhenNull="true">
-					<reportElement positionType="Float" x="65" y="4" width="113" height="16"/>
-					<box rightPadding="2"/>
-					<textElement textAlignment="Right"/>
-					<textFieldExpression class="java.lang.Double"><![CDATA[$F{Cantidad__UdV-product_uos_qty}.isEmpty() ? new java.lang.Double($F{Cantidad-product_qty}) : new java.lang.Double($F{Cantidad__UdV-product_uos_qty})]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement positionType="Float" x="178" y="4" width="344" height="16"/>
-					<box leftPadding="2"/>
-					<textElement/>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{Cantidad__UdV-product_uos_qty}.isEmpty() ? $F{Nombre-name2} : $F{Nombre-name}]]></textFieldExpression>
-				</textField>
-			</frame>
-		</band>
-	</detail>
+        <property name="ireport.zoom" value="1.0"/>
+        <property name="ireport.x" value="0"/>
+        <property name="ireport.y" value="0"/>
+        <property name="ODOO_RELATIONS" value="[&quot;move_lines&quot;]"/>
+        <parameter name="PICKING_ID" class="java.lang.Integer"/>
+        <parameter name="REWIND" class="java.lang.Object" isForPrompting="false">
+                <parameterDescription><![CDATA[]]></parameterDescription>
+                <defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}.moveFirst()]]></defaultValueExpression>
+        </parameter>
+        <queryString language="xPath">
+                <![CDATA[]]>
+        </queryString>
+        <field name="Codigo-code" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Producto-product_id/LER-ler_code_id/Codigo-code]]></fieldDescription>
+        </field>
+        <field name="Descripcion-description" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Descripcion-description]]></fieldDescription>
+        </field>
+        <field name="Cantidad__UdV-product_uos_qty" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Cantidad__UdV-product_uos_qty]]></fieldDescription>
+        </field>
+        <field name="Cantidad-product_qty" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Cantidad-product_qty]]></fieldDescription>
+        </field>
+        <field name="Nombre-name" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/UdV_del_producto-product_uos/Nombre-name]]></fieldDescription>
+        </field>
+        <field name="Nombre-name2" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Unidad_de_medida-product_uom/Nombre-name]]></fieldDescription>
+        </field>
+        <field name="id" class="java.lang.Integer">
+                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Referencia-picking_id/id]]></fieldDescription>
+        </field>
+        <filterExpression><![CDATA[$F{id} == $P{PICKING_ID}]]></filterExpression>
+        <detail>
+                <band height="70" splitType="Stretch">
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="98" y="10" width="93" height="16"/>
+                                <textElement/>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Codigo-code}]]></textFieldExpression>
+                        </textField>
+                        <staticText>
+                                <reportElement positionType="Float" x="23" y="10" width="75" height="16"/>
+                                <textElement/>
+                                <text><![CDATA[Código LER:]]></text>
+                        </staticText>
+                        <staticText>
+                                <reportElement positionType="Float" x="216" y="10" width="75" height="16"/>
+                                <textElement/>
+                                <text><![CDATA[Descrición:]]></text>
+                        </staticText>
+                        <textField isStretchWithOverflow="true">
+                                <reportElement positionType="Float" x="291" y="10" width="254" height="16"/>
+                                <textElement/>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Descripcion-description}]]></textFieldExpression>
+                        </textField>
+                        <staticText>
+                                <reportElement positionType="Float" x="23" y="50" width="522" height="16"/>
+                                <textElement/>
+                                <text><![CDATA[Número de rexistro da caracterización básica ou otra referencia]]></text>
+                        </staticText>
+                        <frame>
+                                <reportElement positionType="Float" x="23" y="26" width="522" height="24"/>
+                                <staticText>
+                                        <reportElement positionType="Float" x="0" y="4" width="65" height="16"/>
+                                        <textElement/>
+                                        <text><![CDATA[Cantidade:]]></text>
+                                </staticText>
+                                <textField isStretchWithOverflow="true" pattern="#,##0.000;-#,##0.000" isBlankWhenNull="true">
+                                        <reportElement positionType="Float" x="65" y="4" width="113" height="16"/>
+                                        <box rightPadding="2"/>
+                                        <textElement textAlignment="Right"/>
+                                        <textFieldExpression class="java.lang.Double"><![CDATA[$F{Cantidad__UdV-product_uos_qty}.isEmpty() ? new java.lang.Double($F{Cantidad-product_qty}) : new java.lang.Double($F{Cantidad__UdV-product_uos_qty})]]></textFieldExpression>
+                                </textField>
+                                <textField isStretchWithOverflow="true">
+                                        <reportElement positionType="Float" x="178" y="4" width="344" height="16"/>
+                                        <box leftPadding="2"/>
+                                        <textElement/>
+                                        <textFieldExpression class="java.lang.String"><![CDATA[$F{Cantidad__UdV-product_uos_qty}.isEmpty() ? $F{Nombre-name2} : $F{Nombre-name}]]></textFieldExpression>
+                                </textField>
+                        </frame>
+                </band>
+        </detail>
 </jasperReport>

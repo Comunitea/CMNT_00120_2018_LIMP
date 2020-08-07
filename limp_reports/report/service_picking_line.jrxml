@@ -3,7 +3,7 @@
         <property name="ireport.zoom" value="1.0"/>
         <property name="ireport.x" value="0"/>
         <property name="ireport.y" value="0"/>
-        <property name="OPENERP_RELATIONS" value="[&apos;print_service_ids&apos;]"/>
+        <property name="ODOO_RELATIONS" value="[&apos;print_service_ids&apos;]"/>
         <queryString language="xPath">
                 <![CDATA[/data/record]]>
         </queryString>

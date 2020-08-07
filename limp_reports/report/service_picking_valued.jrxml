@@ -529,7 +529,7 @@
                 <band height="71">
                         <componentElement>
                                 <reportElement key="table" x="0" y="26" width="555" height="43">
-                                        <property name="OPENERP_RELATIONS" value="[&apos;service_invoice_concept_ids&apos;]"/>
+                                        <property name="ODOO_RELATIONS" value="[&apos;service_invoice_concept_ids&apos;]"/>
                                 </reportElement>
                                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                                         <datasetRun subDataset="invoice_lines">

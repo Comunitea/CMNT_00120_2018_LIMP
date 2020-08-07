@@ -349,7 +349,7 @@
                 </textField>
                 <componentElement>
                     <reportElement key="table" x="0" y="125" width="555" height="39" forecolor="#000000">
-                        <property name="OPENERP_RELATIONS" value="invoice_line_ids"/>
+                        <property name="ODOO_RELATIONS" value="invoice_line_ids"/>
                     </reportElement>
                     <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                         <datasetRun subDataset="dataset1">

@@ -437,7 +437,7 @@
             <band height="191">
                 <componentElement>
                     <reportElement key="table 1" style="table 1" x="6" y="9" width="403" height="41">
-                        <property name="OPENERP_RELATIONS" value="tax_line_ids"/>
+                        <property name="ODOO_RELATIONS" value="tax_line_ids"/>
                     </reportElement>
                     <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                         <datasetRun subDataset="Dataset 2">
@@ -815,7 +815,7 @@
         <band height="144">
             <componentElement>
                 <reportElement key="table" style="table 1" x="0" y="5" width="555" height="133">
-                    <property name="OPENERP_RELATIONS" value="invoice_line_ids"/>
+                    <property name="ODOO_RELATIONS" value="invoice_line_ids"/>
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                     <datasetRun subDataset="dataset1">

@@ -26,15 +26,11 @@
     "website": "http://www.pexego.es",
     "category": "Reports",
     "depends": [
-        "base",
         "limp_service_picking",
         "limp_contract",
         "jasper_reports",
         "report_py3o",
         "limp_custom",
-        "analytic",
-        "stock",
-        "waste_management",
         "account_due_dates_str",
     ],
     "data": [

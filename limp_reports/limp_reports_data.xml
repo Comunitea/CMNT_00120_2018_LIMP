@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="service_picking" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Picking</field>
+        <field name="report_type">jasper</field>
         <field name="report_name">service_picking</field>
-        <field name="report_rml">limp_reports/report/service_picking.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/service_picking.jrxml</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -15,13 +14,12 @@
     </record>
 
     <record id="service_picking_valued" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Valued picking</field>
+        <field name="report_type">jasper</field>
         <field name="report_name">service_valued_picking</field>
-        <field name="report_rml">limp_reports/report/service_picking_valued.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/service_picking_valued.jrxml</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -29,13 +27,12 @@
     </record>
 
     <record id="cleaning_picking" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Cleaning picking</field>
+        <field name="report_type">jasper</field>
         <field name="report_name">service_picking_cleaning</field>
-        <field name="report_rml">limp_reports/report/service_picking_cleaning.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/service_picking_cleaning.jrxml</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -43,13 +40,12 @@
     </record>
 
     <record id="cleaning_picking_without_hours" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Cleaning picking without hours</field>
         <field name="report_name">service_picking_cleaning_without_hours</field>
-        <field name="report_rml">limp_reports/report/service_picking_cleaning_without_hours.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/service_picking_cleaning_without_hours.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -57,13 +53,12 @@
     </record>
 
     <record id="discharge_picking" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Discharge picking</field>
         <field name="report_name">discharge_picking</field>
-        <field name="report_rml">limp_reports/report/discharge_picking.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/discharge_picking.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -71,13 +66,12 @@
     </record>
 
     <record id="delivery_req_build_waste" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Delivery req. build waste</field>
         <field name="report_name">delivery_req_build_waste</field>
-        <field name="report_rml">limp_reports/report/delivery_req_build_waste.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/delivery_req_build_waste.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -85,13 +79,12 @@
     </record>
 
     <record id="build_picking" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Build picking</field>
         <field name="report_name">build_picking</field>
-        <field name="report_rml">limp_reports/report/picking.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/picking.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -99,13 +92,12 @@
     </record>
 
     <record id="valorization_picking" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Valorization build picking</field>
         <field name="report_name">valorization_picking</field>
-        <field name="report_rml">limp_reports/report/valorization_picking.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/valorization_picking.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -113,13 +105,12 @@
     </record>
 
     <record id="delivery_waste_check" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.service.picking</field>
-        <field name="jasper_model_id" ref="limp_service_picking.model_stock_service_picking"/>
+        <field name="model_id" ref="limp_service_picking.model_stock_service_picking"/>
         <field name="name">Delivery waste check</field>
         <field name="report_name">delivery_waste_check</field>
-        <field name="report_rml">limp_reports/report/delivery_waste_check.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/delivery_waste_check.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -127,13 +118,12 @@
     </record>
 
     <record id="limpergal_invoice" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Limpergal Invoice</field>
         <field name="report_name">limpergal_invoice</field>
-        <field name="report_rml">limp_reports/report/limpergal_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/limpergal_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -141,13 +131,12 @@
     </record>
 
     <record id="limpergal_waste_invoice" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Limpergal Waste Invoice</field>
         <field name="report_name">limpergal_waste_invoice</field>
-        <field name="report_rml">limp_reports/report/limpergal_waste_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/limpergal_waste_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -155,13 +144,12 @@
     </record>
 
     <record id="limpergal_waste_invoice_copy" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Limpergal Waste Invoice Copy</field>
         <field name="report_name">limpergal_waste_invoice_copy</field>
-        <field name="report_rml">limp_reports/report/limpergal_waste_invoice_copy.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/limpergal_waste_invoice_copy.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -171,11 +159,11 @@
     <record id="limpergal_invoice_copy" model="ir.actions.report">
         <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Limpergal Invoice Copy</field>
         <field name="report_name">limpergal_invoice_copy</field>
-        <field name="report_rml">limp_reports/report/limpergal_invoice_copy.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/limpergal_invoice_copy.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -183,13 +171,12 @@
     </record>
 
     <record id="limpergal_servital_invoice_copy" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Limpergal Servital Invoice Copy</field>
         <field name="report_name">limpergal_servital_invoice_copy</field>
-        <field name="report_rml">limp_reports/report/limpergal_servital_invoice_copy.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/limpergal_servital_invoice_copy.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -197,13 +184,12 @@
     </record>
 
     <record id="limpergal_servital_invoice" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Limpergal Servital Invoice</field>
         <field name="report_name">limpergal_servital_invoice</field>
-        <field name="report_rml">limp_reports/report/limpergal_servital_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/limpergal_servital_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -211,13 +197,12 @@
     </record>
 
     <record id="servital_invoice" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Servital Invoice</field>
         <field name="report_name">servital_invoice</field>
-        <field name="report_rml">limp_reports/report/servital_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/servital_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -225,13 +210,12 @@
     </record>
 
     <record id="servital_invoice_copy" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Servital Invoice Copy</field>
         <field name="report_name">servital_invoice_copy</field>
-        <field name="report_rml">limp_reports/report/servital_invoice_copy.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/servital_invoice_copy.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -239,13 +223,12 @@
     </record>
 
     <record id="cyrgal_invoice" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Cyrgal Invoice</field>
         <field name="report_name">cyrgal_invoice</field>
-        <field name="report_rml">limp_reports/report/cyrgal_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/cyrgal_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -253,13 +236,12 @@
     </record>
 
     <record id="cyrgal_invoice_copy" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Cyrgal Invoice Copy</field>
         <field name="report_name">cyrgal_invoice_copy</field>
-        <field name="report_rml">limp_reports/report/cyrgal_invoice_copy.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/cyrgal_invoice_copy.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -267,13 +249,12 @@
     </record>
 
     <record id="cissman_invoice" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Cissman Invoice</field>
         <field name="report_name">cissman_invoice</field>
-        <field name="report_rml">limp_reports/report/cissman_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/cissman_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -281,13 +262,12 @@
     </record>
 
     <record id="cissman_invoice_copy" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Cissman Invoice Copy</field>
         <field name="report_name">cissman_invoice_copy</field>
-        <field name="report_rml">limp_reports/report/cissman_invoice_copy.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/cissman_invoice_copy.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -295,13 +275,12 @@
     </record>
 
     <record id="scont_invoice" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">Scont Invoice</field>
         <field name="report_name">scont_invoice</field>
-        <field name="report_rml">limp_reports/report/scont_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/scont_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -309,13 +288,12 @@
     </record>
 
     <record id="ute_invoice" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">UTE Invoice</field>
         <field name="report_name">ute_invoice</field>
-        <field name="report_rml">limp_reports/report/ute_limpergal_cissman_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/ute_limpergal_cissman_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -323,13 +301,12 @@
     </record>
 
     <record id="ute_invoice_copy" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">account.invoice</field>
-        <field name="jasper_model_id" ref="account.model_account_invoice"/>
+        <field name="model_id" ref="account.model_account_invoice"/>
         <field name="name">UTE Invoice Copy</field>
         <field name="report_name">ute_invoice_copy</field>
-        <field name="report_rml">limp_reports/report/ute_limpergal_cissman_invoice.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/ute_limpergal_cissman_invoice.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="account.model_account_invoice" />
@@ -337,13 +314,12 @@
     </record>
 
     <record id="employee_task_report" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">limp.contract</field>
-        <field name="jasper_model_id" ref="limp_contract.model_limp_contract"/>
+        <field name="model_id" ref="limp_contract.model_limp_contract"/>
         <field name="name">Tasks Report</field>
         <field name="report_name">employee_task_report</field>
-        <field name="report_rml">limp_reports/report/employee_task.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/employee_task.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="limp_contract.model_limp_contract" />
@@ -351,13 +327,12 @@
     </record>
 
     <record id="outgoing_report" model="ir.actions.report">
-        <field name="auto">True</field>
         <field name="model">stock.picking</field>
-        <field name="jasper_model_id" ref="stock.model_stock_picking"/>
+        <field name="model_id" ref="stock.model_stock_picking"/>
         <field name="name">Outgoing report</field>
         <field name="report_name">outgoing_report</field>
-        <field name="report_rml">limp_reports/report/stock_picking_out.jrxml</field>
-        <field name="header">False</field>
+        <field name="report_file">limp_reports/report/stock_picking_out.jrxml</field>
+        <field name="report_type">jasper</field>
         <field name="jasper_report">True</field>
         <field name="jasper_output">pdf</field>
         <field name="binding_model_id" ref="stock.model_stock_picking" />

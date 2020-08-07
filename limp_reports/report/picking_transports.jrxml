@@ -3,7 +3,7 @@
         <property name="ireport.zoom" value="1.0"/>
         <property name="ireport.x" value="0"/>
         <property name="ireport.y" value="0"/>
-        <property name="OPENERP_RELATIONS" value="[&apos;print_service_ids&apos;]"/>
+        <property name="ODOO_RELATIONS" value="[&apos;print_service_ids&apos;]"/>
         <parameter name="PICKING_ID" class="java.lang.Integer">
                 <defaultValueExpression><![CDATA[]]></defaultValueExpression>
         </parameter>

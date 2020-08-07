@@ -3,7 +3,7 @@
         <property name="ireport.zoom" value="1.2100000000000002"/>
         <property name="ireport.x" value="0"/>
         <property name="ireport.y" value="209"/>
-        <property name="OPENERP_RELATIONS" value="[&apos;home_help_line_ids/employee_task_ids&apos;]"/>
+        <property name="ODOO_RELATIONS" value="[&apos;home_help_line_ids/employee_task_ids&apos;]"/>
         <style name="table">
                 <box>
                         <pen lineWidth="1.0" lineColor="#000000"/>
@@ -185,7 +185,7 @@
                 <band height="500">
                         <componentElement>
                                 <reportElement key="table 1" positionType="Float" x="9" y="56" width="389" height="440">
-                                        <property name="OPENERP_RELATIONS" value="[&apos;home_help_line_ids/employee_task_ids/task_ids&apos;]"/>
+                                        <property name="ODOO_RELATIONS" value="[&apos;home_help_line_ids/employee_task_ids/task_ids&apos;]"/>
                                 </reportElement>
                                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                                         <datasetRun subDataset="Task Dataset1">
