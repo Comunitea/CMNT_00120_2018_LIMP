@@ -37,7 +37,8 @@ class ServicePickingOtherConceptsRel(models.Model):
     )
 
     @api.onchange("product_id")
-    def onchange_product_id(self):
+    def onchange_product_id_warning(self):
+        res = super().onchange_product_id_warning()
         if self.service_picking_id:
             lines = self.service_picking_id.sale_line_ids
             use_line = lines.filtered(
@@ -46,3 +47,4 @@ class ServicePickingOtherConceptsRel(models.Model):
             if use_line:
                 self.price_unit = use_line[0].price_unit
                 self.name = use_line[0].name
+        return res

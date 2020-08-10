@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2020 Comunitea
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <template id="report_frequency_table_document">
+        <div class="header" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" style="text-align: center;">
+                    <h2>Tabla de frecuencias - <span t-field="o.partner_id.name"/><br/>Nº Presupuesto - <span t-field="o.name"/></h2>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <table class="table table-sm table-condensed" >
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid black">Tarea</th>
+                            <th style="border: 1px solid black">LU</th>
+                            <th style="border: 1px solid black">MA</th>
+                            <th style="border: 1px solid black">MI</th>
+                            <th style="border: 1px solid black">JU</th>
+                            <th style="border: 1px solid black">VI</th>
+                            <th style="border: 1px solid black">SA</th>
+                            <th style="border: 1px solid black">DO</th>
+                            <th style="border: 1px solid black">SM</th>
+                            <th style="border: 1px solid black">QC</th>
+                            <th style="border: 1px solid black">M</th>
+                            <th style="border: 1px solid black">BT</th>
+                            <th style="border: 1px solid black">TR</th>
+                            <th style="border: 1px solid black">CT</th>
+                            <th style="border: 1px solid black">ST</th>
+                            <th style="border: 1px solid black">AN</th>
+                            <th style="border: 1px solid black">S/N</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <t t-foreach="o.task_frequency_ids.filtered(lambda x: x.lu or x.ma or x.mi or x.ju or x.vi or x.sa or x.do or x.sm or x.qc or x.m or x.bt or x.tr or x.ct or x.st or x.an or x.s_n)" t-as="t">
+                            <tr>
+                                <td style="border: 1px solid black">
+                                  <span t-esc="t.description or t.task_id.name"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.lu and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.ma and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.mi and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.ju and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.vi and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.sa and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.do and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.sm and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.qc and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.m and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.bt and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.tr and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.ct and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.st and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.an and 'X' or ''"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="t.s_n and 'X' or ''"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <table class="table table-sm text-center">
+                     <tr>
+                        <td>LU - Lunes</td>
+                        <td>MA - Martes</td>
+                        <td>MI - Miércoles</td>
+                        <td>JU - Jueves</td>
+                    </tr>
+                    <tr>
+                        <td>VI - Viernes</td>
+                        <td>SA - Sábado</td>
+                        <td>DO - Domingo</td>
+                        <td>SM - Semanal</td>
+                    </tr>
+                    <tr>
+                        <td>QC - Quincenal</td>
+                        <td>M - Mensual</td>
+                        <td>BT - Bimestral</td>
+                        <td>TR - Trimestral</td>
+                    </tr>
+                    <tr>
+                        <td>CT - Cuatrimestral</td>
+                        <td>ST - Semestral</td>
+                        <td>AN - Anual</td>
+                        <td>S/N - Según necesidad</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_frequency_table">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                    <div class="page" style="font-size:12px;">
+                        <t t-call="limp_sale.report_frequency_table_document"/>
+                    </div>
+                    <p style="page-break-before:always;"> </p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -31,10 +31,10 @@ class LimpContract(models.Model):
         action = super(LimpContract, self).action_view_waste_lines()
         action["context"] = str(
             {
-                "default_parent_id": self.analytic_account_id.id,
                 "default_picking_type": "wastes",
                 "type": "wastes",
-                "form_view_ref": "limp_service_picking.stock_service_picking_form",
+                "form_view_ref":
+                "limp_service_picking.stock_service_picking_form",
                 "default_delegation_id": self.delegation_id.id,
                 "default_partner_id": self.partner_id.id,
                 "default_manager_id": self.manager_id.id,
@@ -57,10 +57,10 @@ class LimpContract(models.Model):
         ).action_view_sporadic_service_picking()
         action["context"] = str(
             {
-                "default_tag_ids": [(4, x.id) for x in self.tag_ids],
                 "default_picking_type": "sporadic",
                 "type": "sporadic",
-                "form_view_ref": "limp_service_picking.stock_service_picking_form",
+                "form_view_ref":
+                "limp_service_picking.stock_service_picking_form",
                 "default_delegation_id": self.delegation_id.id,
                 "default_partner_id": self.partner_id.id,
                 "default_manager_id": self.manager_id.id,

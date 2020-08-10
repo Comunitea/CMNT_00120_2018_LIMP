@@ -32,8 +32,8 @@ class SaleOrder(models.Model):
     def _get_amount_w_periodicity(self):
         for sale in self:
             if sale.periodicity_id:
-                untaxed = sale.amount_untaxed * sale.periodicity_id.multiplier
-                tax = sale.amount_tax * sale.periodicity_id.multiplier
+                untaxed = sale.amount_untaxed / sale.periodicity_id.multiplier
+                tax = sale.amount_tax / sale.periodicity_id.multiplier
                 if sale.periodicity_id.rounding:
                     untaxed = round(untaxed, 0)
                     tax = round(tax, 0)
@@ -44,7 +44,6 @@ class SaleOrder(models.Model):
             sale.amount_tax_periodicity = tax
             sale.amount_total_periodicity = untaxed + tax
 
-    #'freq_table = fields.Text('Frequency table'),
     periodicity_id = fields.Many2one(
         "sale.order.periodicity",
         "Periodicity",
@@ -56,6 +55,7 @@ class SaleOrder(models.Model):
         required=True,
         change_default=True,
         default=lambda r: r.env.user.context_delegation_id.id,
+        index=True
     )
     department_id = fields.Many2one(
         "hr.department",
@@ -63,6 +63,7 @@ class SaleOrder(models.Model):
         required=True,
         change_default=True,
         default=lambda r: r.env.user.context_department_id.id,
+        index=True
     )
     center_type_id = fields.Many2one(
         "limp.center.type", "Center type", change_default=True
@@ -77,16 +78,12 @@ class SaleOrder(models.Model):
     created_contract = fields.Boolean(
         "Created contract", readonly=True, copy=False
     )
-    created_service_order = fields.Boolean(
-        "Created Service order", readonly=True, copy=False
-    )
     created_service_pick = fields.Boolean(
         "Created Service pick", readonly=True, copy=False
     )
     task_frequency_ids = fields.One2many(
         "task.frequency", "sale_id", "Task Frequency"
     )
-    validity_Date = fields.Date("End of validity")
     very_important_text = fields.Text("Very important")
     header_notes = fields.Text("Header notes")
     show_total = fields.Boolean("Show total in report", default=True)
@@ -117,7 +114,7 @@ class SaleOrder(models.Model):
         readonly=True,
     )
 
-    user_id = fields.Many2one("res.users", "User", required=True)
+    user_id = fields.Many2one("res.users", "User", required=True, index=True)
 
     @api.multi
     def _compute_service_pickings_lines_count(self):
@@ -227,21 +224,6 @@ class SaleOrder(models.Model):
                 )
         return True
 
-    """def action_ship_create(self, cr, uid, ids, *args):
-        res = super(SaleOrder, self).action_ship_create(cr, uid, ids, args)
-
-        for order in self.browse(cr, uid, ids):
-            if order.order_policy != 'picking':
-                picking_ids = self.pool.get('stock.picking').search(cr, uid, [('sale_id', '=', order.id)])
-                if picking_ids:
-                    move_ids = self.pool.get('stock.move').search(cr, uid, [('picking_id', 'in', picking_ids)])
-                    self.pool.get('stock.picking').write(cr, uid, picking_ids, {'state': 'draft'})
-                    self.pool.get('stock.move').write(cr, uid, move_ids, {'state': 'draft', 'picking_id': False})
-                    self.pool.get('stock.move').unlink(cr, uid, move_ids)
-                    self.pool.get('stock.picking').unlink(cr, uid, picking_ids)
-
-        return res"""
-
     def create_contract(self):
 
         contract = self.env["limp.contract"].create(
@@ -252,7 +234,6 @@ class SaleOrder(models.Model):
                 "partner_id": self.partner_id.id,
                 "amount": self.amount_total,
                 "address_id": self.partner_shipping_id.id,
-                # 'bank_account_id': self.partner_bank and self.partner_bank.id or False,
                 "payment_term_id": self.payment_term_id
                 and self.payment_term_id.id
                 or False,
@@ -280,7 +261,8 @@ class SaleOrder(models.Model):
             "res_id": contract.id,
         }
 
-    # This method adds a description in the new contract based on the description provided by the order_line
+    # This method adds a description in the new contract based on the
+    # description provided by the order_line
     def add_description(self):
         line = self.order_line and self.order_line[0]
         if not line:
@@ -305,7 +287,6 @@ class SaleOrder(models.Model):
             "payment_mode": self.payment_mode_id
             and self.payment_mode_id.id
             or False,
-            #'partner_bank_id': self.partner_bank and self.partner_bank.id or False,
             "delegation_id": self.delegation_id.id,
             "department_id": self.department_id.id,
             "fiscal_position": self.fiscal_position_id
@@ -345,23 +326,6 @@ class SaleOrderLine(models.Model):
 
     price_unit = fields.Float(digits=(16, 2))
 
-    @api.multi
-    def _get_amount_tax(self):
-        for line in self:
-            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            taxes = line.tax_id.compute_all(
-                price,
-                line.order_id.currency_id,
-                line.product_uom_qty,
-                product=line.product_id,
-                partner=line.order_id.partner_shipping_id,
-            )
-            line.amount_tax = line.order_id.pricelist_id.currency_id.round(
-                sum(t.get("amount", 0.0) for t in taxes.get("taxes", []))
-            )
-
-    amount_tax = fields.Float("Amount tax", compute="_get_amount_tax")
-
     @api.onchange("product_uom", "product_uom_qty")
     def product_uom_change(self):
 
@@ -379,6 +343,4 @@ class SaleOrderLine(models.Model):
             and res["domain"].get("product_uom")
         ):
             res["domain"]["product_uom"] = []
-        return res
-
         return res

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!--TODO: Migrar<report auto="True" id="sale_frequencey_table" model="sale.order" name="sale.order.freq.table"
-            rml="limp_sale/report/limp_sale_frequency_table.rml" string="Frequency table" header="False"/>-->
+    <report
+            id="sale_frequencey_table"
+            model="sale.order"
+            string="Frequency table"
+            report_type="qweb-pdf"
+            name="limp_sale.report_frequency_table"
+            file="limp_sale.report_frequency_table"
+        />
+
 </odoo>

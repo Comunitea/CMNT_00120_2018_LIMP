@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2012 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2012 Comunitea Servicios Tecnológicos S.L.
 #    $Omar Castiñeira Saavedra$
 #    $Marta Vázquez Rodríguez$
 #
@@ -22,29 +22,28 @@
     "name": "Limpergal budgets",
     "description": "Add budget model for Limpergal.",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comunitea.com",
     "category": "Budgets",
     "depends": [
-        "base",
         "sale_stock",
-        "product",
-        "account",
         "limp_multi_delegations",
         "limp_service_picking",
         "limp_contract",
         "sale_margin",
+        "account_payment_sale"
     ],
     "data": [
         "wizard/create_service_picking_from_sale_view.xml",
         "views/sale_order_periodicity_view.xml",
         "views/sale_order_view.xml",
         "security/ir.model.access.csv",
-        "limp_sale_report.xml",
         "security/limp_sale_data.xml",
         "views/limp_service_picking_view.xml",
         "views/limp_contract_view.xml",
         "report/sale_report.xml",
+        "report/limp_sale_frequency_table.xml",
+        "limp_sale_report.xml"
     ],
     "installable": True,
 }

@@ -5,7 +5,6 @@
         <field name="name">sale.order.form.add.page</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Frequency table">
@@ -56,11 +55,8 @@
                          </form>
                     </field>
                 </page>
-                <page string="Contracts" groups="limp_contract.group_limp_administrative">
-                    <field name="contract_ids" nolabel="1" colspan="4" groups="limp_contract.group_limp_administrative"/>
-                </page>
             </notebook>
-            <field name="project_id" position="after">
+            <field name="analytic_account_id" position="after">
                 <field name="periodicity_id" widget="selection"/>
             </field>
             <field name="warehouse_id" position="replace"/>
@@ -83,29 +79,25 @@
             </field>
             <field name="fiscal_position_id" position="after">
                 <field name="created_contract" groups="limp_contract.group_limp_administrative"/>
-                <field name="created_service_order" groups="limp_service_picking.group_waste_manager"/>
                 <field name="created_service_pick" groups="limp_service_picking.group_cleaning_user"/>
                 <field name="show_total"/>
             </field>
             <button name="action_quotation_send" position="before">
                 <button name="create_contract" type="object" string="Create contract" attrs="{'invisible': ['|',('created_contract', '=', True),('state','!=','sale')]}" groups="limp_contract.group_limp_administrative"/>
-                <button name="create_service_order" type="object" string="Create Service order" groups="limp_service_picking.group_waste_manager" attrs="{'invisible': ['|',('created_service_order', '=', True),('state','!=','sale')]}"/>
                 <button name="%(action_view_create_service_pick_wzd)d" type="action" string="Create pick" attrs="{'invisible': ['|',('created_service_pick', '=', True),('state','!=','sale')]}" groups="limp_service_picking.group_waste_manager,limp_service_picking.group_cleaning_user"/>
             </button>
-            <group name="sale_total" position="after">
-                <group attrs="{'invisible': [('periodicity_id', '=', False)]}" colspan="2" class="oe_subtotal_footer oe_right">
-                    <label string="With periodicity" colspan="2"/>
-                    <field name="amount_total_periodicity" widget='monetary' string="Total" options="{'currency_field': 'currency_id'}"/>
-                </group>
-            </group>
+            <field name="amount_total" position="after">
+                <div class="oe_subtotal_footer" attrs="{'invisible': [('periodicity_id', '=', False)]}">
+                    <p><b>With periodicity:</b></p>
+                </div>
+                <field name="amount_total_periodicity" widget='monetary' nolabel="1" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('periodicity_id', '=', False)]}"/>
+            </field>
              <xpath expr="//field[@name='order_line']/form/group/group[2]/label[@for='customer_lead']" position="attributes">
                     <attribute name="invisible">True</attribute>
              </xpath>
              <xpath expr="//field[@name='order_line']/form/group/group[2]/div[1]" position="attributes">
                     <attribute name="invisible">True</attribute>
              </xpath>
-
-
         </field>
     </record>
 
@@ -113,7 +105,19 @@
         <field name="name">sale.order.tree.add_department_delegation</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_tree"/>
-        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="company_id" invisible="1"/>
+                <field name="delegation_id" invisible="1"/>
+                <field name="department_id" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_add_department_delegation" model="ir.ui.view">
+        <field name="name">sale.order.tree.add_department_delegation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
         <field name="arch" type="xml">
             <field name="state" position="after">
                 <field name="company_id" invisible="1"/>
@@ -126,14 +130,13 @@
     <record id="view_sales_order_filter_add_sec_filter_groups" model="ir.ui.view">
         <field name="name">sale.order.list.select.add_sec_filter_groups</field>
         <field name="model">sale.order</field>
-        <field name="type">search</field>
         <field name="inherit_id" ref="sale.view_sales_order_filter"/>
         <field name="arch" type="xml">
             <filter name="customer" position="after">
                 <separator orientation="vertical"/>
-                <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
-                <filter string="Delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
-                <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+                <filter string="Company" name="company" domain="[]" context="{'group_by':'company_id'}"/>
+                <filter string="Delegation" name="delegation" domain="[]" context="{'group_by':'delegation_id'}"/>
+                <filter string="Department" name="department" domain="[]" context="{'group_by':'department_id'}"/>
             </filter>
         </field>
     </record>
@@ -167,6 +170,5 @@
 
         </field>
     </record>
-
 
 </odoo>

@@ -5,7 +5,6 @@
         <field name="name">stock.service.picking.form.add_sale_id</field>
         <field name="model">stock.service.picking</field>
         <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="other_concepts_ids" position="after">
                 <separator string="Associated sale lines" colspan="4"/>
@@ -31,7 +30,6 @@
         <field name="name">stock.sporadic.service.picking.form.add_pricelist_changes</field>
         <field name="model">stock.service.picking</field>
         <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="picking_date" position="after">
                 <field name="sale_id"/>
