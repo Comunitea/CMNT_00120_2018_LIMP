@@ -4,7 +4,6 @@
         <record id="wizard_analytic_balance_by_department_form" model="ir.ui.view">
             <field name="name">analytic.balance.by.department.wzd.form</field>
             <field name="model">analytic.balance.by.department.wzd</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form>
                     <group>
@@ -29,6 +28,6 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem action="action_analytic_balance_by_department" id="analytic_balance_by_department_menu"  name="Analytic balance by department" parent="account.account_reports_business_intelligence_menu"/>
+        <menuitem action="action_analytic_balance_by_department" id="analytic_balance_by_department_menu"  name="Analytic balance by department" parent="menu_analytic_account_reports"/>
 
 </odoo>

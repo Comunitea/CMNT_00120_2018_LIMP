@@ -295,9 +295,6 @@ class LimpContract(models.Model):
                 contract.cleaning_line_ids.write(
                     {"date_start": vals["date_start"]}
                 )
-                contract.remuneration_ids.sudo().write(
-                    {"date": vals["date_start"]}
-                )
 
             if vals.get("privacy", False):
                 contract.home_help_line_ids.write({"privacy": vals["privacy"]})

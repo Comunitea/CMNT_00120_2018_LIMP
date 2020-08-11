@@ -589,13 +589,13 @@ class StockServicePicking(models.Model):
         if self.env.user.company_id.partner_id.id == part.id:
             self.intercompany = True
 
-        if part.picking_warn_type != "no-message":
+        if part.picking_warn != "no-message":
             warning = {}
             title = _("Warning for %s") % part.name
-            message = part.picking_warn_message
+            message = part.picking_warn_msg
             warning["title"] = title
             warning["message"] = message
-            if part.picking_warn_type == "block":
+            if part.picking_warn == "block":
                 self.partner_id = False
             return {"warning": warning}
 
@@ -651,6 +651,17 @@ class StockServicePicking(models.Model):
         vals["name"] = "/"
         vals["state"] = "draft"
         res = super(StockServicePicking, self).create(vals)
+        return res
+
+    @api.multi
+    def unlink(self):
+        """delete associated analytic account"""
+        account_to_delete = self.env['account.analytic.account']
+        for picking in self:
+            account_to_delete |= picking.analytic_acc_id
+
+        res = super(StockServicePicking, self).unlink()
+        account_to_delete.unlink()
         return res
 
     def action_active(self):

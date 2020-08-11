@@ -29,12 +29,14 @@ class AccountInvoice(models.Model):
         "Delegation",
         change_default=True,
         default=lambda r: r.env.user.context_delegation_id.id,
+        index=True
     )
     department_id = fields.Many2one(
         "hr.department",
         "Department",
         change_default=True,
         default=lambda r: r.env.user.context_department_id.id,
+        index=True
     )
     manager_id = fields.Many2one(
         "hr.employee",
@@ -44,6 +46,7 @@ class AccountInvoice(models.Model):
         default=lambda r: r.env.user.employee_ids
         and r.env.user.employee_ids[0].id
         or False,
+        index=True
     )
 
     @api.multi

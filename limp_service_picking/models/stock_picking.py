@@ -77,7 +77,7 @@ class StockPicking(models.Model):
                     grouped_pickings[picking.partner_id] = self.env[
                         "stock.picking"
                     ]
-                grouped_pickings[picking.partner_id] += picking
+                grouped_pickings[picking.partner_id] |= picking
             else:
                 grouped_pickings[picking] = picking
         invoices = self.env["account.invoice"]
@@ -200,7 +200,7 @@ class StockPicking(models.Model):
                                 "location_id": move.location_id.id,
                                 "location_dest_id": user.company_id.reserve_product_id.property_stock_production.id,
                             }
-                            reserve_moves1 += self.env["stock.move"].create(
+                            reserve_moves1 |= self.env["stock.move"].create(
                                 move_vals
                             )
                             # movimiento de creación del producto a enviar
@@ -212,7 +212,7 @@ class StockPicking(models.Model):
                                 "location_id": move.product_id.property_stock_production.id,
                                 "location_dest_id": move.location_id.id,
                             }
-                            reserve_moves2 += self.env["stock.move"].create(
+                            reserve_moves2 |= self.env["stock.move"].create(
                                 move_vals2
                             )
             if reserve_moves1:

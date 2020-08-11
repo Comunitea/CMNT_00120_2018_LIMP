@@ -35,8 +35,8 @@ class AnalyticBalanceByDepartment(models.TransientModel):
         data = self.read([])[0]
         data.update({"ids": self.ids})
 
-        return {
-            "type": "ir.actions.report",
-            "report_name": "analytic_balance_by_department_xls",
-            "datas": data,
-        }
+        report = self.env['ir.actions.report'].search(
+            [('report_name', '=',
+              "analytic_balance_by_department_xls")],
+            limit=1)
+        return report.report_action(self, data=data)

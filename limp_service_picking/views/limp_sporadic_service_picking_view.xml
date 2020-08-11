@@ -93,7 +93,7 @@
                             </field>
                         </page>
                         <page string="Employees">
-                            <field name="employee_ids" colspan="4" nolabel="1" context="{'default_delegation_id': delegation_id, 'default_responsible_id': manager_id, 'default_department_id': department_id}">
+                            <field name="employee_ids" colspan="4" nolabel="1" context="{'default_delegation_id': delegation_id, 'default_responsible_id': manager_id, 'default_department_id': department_id, 'default_contract': True}">
                                 <tree string="Timesheet" editable="top">
                                     <field name="date"/>
                                     <field name="employee_id"/>
@@ -103,6 +103,7 @@
                                     <field name="quantity" sum="Total qty." />
                                     <field name="pending_qty"/>
                                     <field name="pending_distribute_qty" sum="Total Pending"/>
+                                    <field name="contract"/>
                                     <field name="done" readonly="1"/>
                                     <field name="delegation_id"/>
                                     <field name="department_id"/>
@@ -119,6 +120,7 @@
                                         <field name="quantity"/>
                                         <field name="pending_qty"/>
                                         <field name="pending_distribute_qty"/>
+                                        <field name="contract"/>
                                         <field name="done" readonly="1"/>
                                         <field name="delegation_id"/>
                                         <field name="department_id"/>

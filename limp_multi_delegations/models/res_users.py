@@ -30,4 +30,5 @@ class ResUsers(models.Model):
         "delegation_id",
         "Delegations",
     )
-    context_delegation_id = fields.Many2one("res.delegation", "Delegation")
+    context_delegation_id = fields.Many2one("res.delegation", "Delegation",
+                                            index=True)

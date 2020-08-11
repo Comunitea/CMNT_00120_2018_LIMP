@@ -5,7 +5,6 @@
         <field name="name">timesheet.tree.add_scont</field>
         <field name="model">timesheet</field>
         <field name="inherit_id" ref="limp_distribution_costs.timesheet_tree"/>
-        <field name="type">tree</field>
         <field name="arch" type="xml">
             <field name="responsible_id" position="after">
                 <field name="scont" invisible="1"/>
@@ -17,7 +16,6 @@
         <field name="name">timesheet.search</field>
         <field name="model">timesheet</field>
         <field name="inherit_id" ref="limp_distribution_costs.timesheet_search"/>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <field name="analytic_id" position="after">
                 <field name="scont"/>

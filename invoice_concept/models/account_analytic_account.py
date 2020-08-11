@@ -51,7 +51,7 @@ class AccountAnalyticAccount(models.Model):
         """creates an invoice to an analytic account"""
         self.ensure_one()
         end_date = datetime.strptime(
-            end_date + " 23:59:59", "%Y-%m-%d %H:%M:%S"
+            fields.Date.to_string(end_date) + " 23:59:59", "%Y-%m-%d %H:%M:%S"
         )
         vals = {
             "name": self.name,
@@ -110,27 +110,32 @@ class AccountAnalyticAccount(models.Model):
         start_date = (
             concept.last_invoice_date
             and datetime.strptime(
-                concept.last_invoice_date + " 00:00:00", "%Y-%m-%d %H:%M:%S"
+                fields.Date.to_string(concept.last_invoice_date) +
+                " 00:00:00", "%Y-%m-%d %H:%M:%S"
             )
             + relativedelta(days=+1)
             or datetime.strptime(
-                self.date_start + " 00:00:00", "%Y-%m-%d %H:%M:%S"
+                fields.Date.to_string(self.date_start) + " 00:00:00",
+                "%Y-%m-%d %H:%M:%S"
             )
         )
         # fecha en la que se está facturando
         end_date = datetime.strptime(
-            end_date + " 23:59:59", "%Y-%m-%d %H:%M:%S"
+            fields.Date.to_string(end_date) + " 23:59:59",
+            "%Y-%m-%d %H:%M:%S"
         )
         # fecha de baja de la cuenta analítica o fecha de facturación
         end_date = (
             (
                 self.date
                 and datetime.strptime(
-                    self.date + " 23:59:59", "%Y-%m-%d %H:%M:%S"
+                    fields.Date.to_string(self.date) + " 23:59:59",
+                    "%Y-%m-%d %H:%M:%S"
                 )
                 < end_date
             )
-            and datetime.strptime(self.date + " 23:59:59", "%Y-%m-%d %H:%M:%S")
+            and datetime.strptime(fields.Date.to_string(self.date) +
+                                  " 23:59:59", "%Y-%m-%d %H:%M:%S")
             or end_date
         )
 
@@ -181,8 +186,8 @@ class AccountAnalyticAccount(models.Model):
         amount += (duration * concept.amount) / days
         if (
             self.date
-            and datetime.strptime(self.date.to_string() + " 23:59:59",
-                                  "%Y-%m-%d %H:%M:%S")
+            and datetime.strptime(fields.Date.to_string(self.date) +
+                                  " 23:59:59", "%Y-%m-%d %H:%M:%S")
             <= end_date
         ):
             self.close_analytic()
@@ -222,10 +227,10 @@ class AccountAnalyticAccount(models.Model):
     @api.model
     def __group_by_product_lines(self, ref_line, grouped_lines):
         subtotal = ref_line.price_unit
-        note = ref_line.name + u"\n"
+        note = ref_line.name + "\n"
         for line in grouped_lines:
             subtotal += line.price_unit
-            note += line.name + u"\n"
+            note += line.name + "\n"
         ref_line.write(
             {
                 "price_unit": round(subtotal, 2),
@@ -261,14 +266,14 @@ class AccountAnalyticAccount(models.Model):
             analytic_invoices = self.env["account.invoice"]
             child_ids = analytic_account.child_ids
             for child in child_ids:
-                child_concepts_ids += child.concept_ids
+                child_concepts_ids |= child.concept_ids
             if analytic_account not in analytic_ids:
                 if analytic_account.group_concepts and (
                     analytic_account.concept_ids or child_concepts_ids
                 ):
                     invoice = analytic_account._create_invoice(end_date)
-                    created_invoices += invoice
-                    analytic_invoices += invoice
+                    created_invoices |= invoice
+                    analytic_invoices |= invoice
                     for concept in analytic_account.concept_ids:
                         res = analytic_account.create_concept_invoice_line(
                             concept, invoice, end_date
@@ -276,7 +281,7 @@ class AccountAnalyticAccount(models.Model):
                         if res:
                             concept.write({"last_invoice_date": end_date})
 
-                    analytic_ids += (
+                    analytic_ids |= (
                         analytic_account  # visited analytic account
                     )
 
@@ -312,7 +317,7 @@ class AccountAnalyticAccount(models.Model):
                                 child_concept.write(
                                     {"last_invoice_date": end_date}
                                 )
-                        analytic_ids += (
+                        analytic_ids |= (
                             analytic_child_obj  # set account as visited
                         )
                 elif (
@@ -322,15 +327,15 @@ class AccountAnalyticAccount(models.Model):
                     invoice = analytic_account._create_invoice(
                         end_date
                     )  # invoice by concept
-                    created_invoices += invoice
-                    analytic_invoices += invoice
+                    created_invoices |= invoice
+                    analytic_invoices |= invoice
                     for concept in analytic_account.concept_ids:
                         res = analytic_account.create_concept_invoice_line(
                             concept, invoice, end_date
                         )  # invoice line by conept
                         if res:
                             concept.write({"last_invoice_date": end_date})
-                    analytic_ids += analytic_account
+                    analytic_ids |= analytic_account
 
                 if analytic_account.group_products:
                     for inv in analytic_invoices:
@@ -348,7 +353,7 @@ class AccountAnalyticAccount(models.Model):
                                 ref_line = dicc[key_id][0]
                                 for line in dicc[key_id]:
                                     if line.id != ref_line.id:
-                                        to_delete_line_ids += line
+                                        to_delete_line_ids |= line
 
                                 self.__group_by_product_lines(
                                     ref_line, to_delete_line_ids
@@ -376,14 +381,14 @@ class AccountAnalyticAccount(models.Model):
                                                 inv.date_invoice,
                                             }
                                         )
-                                        created_invoices += new_inv
+                                        created_invoices |= new_inv
                                         line.write({"invoice_id": new_inv.id})
 
             to_delete_invoices = self.env["account.invoice"]
 
             for invoice in created_invoices:
                 if not invoice.invoice_line_ids:
-                    to_delete_invoices += invoice
+                    to_delete_invoices |= invoice
                 else:
                     invoice.compute_taxes()
 

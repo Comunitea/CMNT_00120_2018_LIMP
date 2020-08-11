@@ -57,6 +57,7 @@ class FleetExpense(models.Model):
                 "department_id", r.env.user.context_department_id.id
             ),
         ),
+        index=True
     )
     consumption = fields.Float(
         "Consumption (l/100Km)",

@@ -147,7 +147,7 @@ class LimpContractLineCleaning(models.Model):
 
     def write(self, vals):
         res = super(LimpContractLineCleaning, self).write(vals)
-        if vals.get("date", False) or vals.get("date_start", False):
+        if vals.get("date", False):
             all_remuneration_ids = self.env["remuneration"]
             remuneration_ids_wo_dateto = self.env["remuneration"]
 
@@ -158,10 +158,6 @@ class LimpContractLineCleaning(models.Model):
                 )
 
             if all_remuneration_ids:
-                if vals.get("date_start", False):
-                    all_remuneration_ids.sudo().write(
-                        {"date": vals["date_start"]}
-                    )
                 if vals.get("date", False) and remuneration_ids_wo_dateto:
                     remuneration_ids_wo_dateto.sudo().write(
                         {"date_to": vals["date"]}

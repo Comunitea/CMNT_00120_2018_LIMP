@@ -4,36 +4,31 @@
     <record id="view_export_account_glasof_wizard" model="ir.ui.view">
         <field name="name">Export account moves to glasof</field>
         <field name="model">export.account.to.glasof</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Export Account moves to glasof">
                 <group attrs="{'invisible':[('state','=','export')]}">
-                    <label string="Do you want to export the selected account moves?" colspan="4" />
+                    <span colspan="4">Do you want to export the selected account moves?</span>
                     <group>
-                        <field name="account_length"/>
-                        <field name="no_department"/>
-                        <field name="state" invisible="1"/>
+                        <field name="account_length" />
+                        <field name="no_department" />
+                        <field name="state" invisible="1" />
                     </group>
                 </group>
                 <group colspan="4" attrs="{'invisible':[('state','=','no_export')]}">
-                    <field name="xdiario_name" invisible="1"/>
-                    <field name="file_xdiario" colspan="4" filename="xdiario_name"/>
-                    <field name="xsubcta_name" invisible="1"/>
-                    <field name="file_xsubcta" colspan="4" filename="xsubcta_name"/>
+                    <field name="xdiario_name" invisible="1" />
+                    <field name="file_xdiario" colspan="4" filename="xdiario_name" />
+                    <field name="xsubcta_name" invisible="1" />
+                    <field name="file_xsubcta" colspan="4" filename="xsubcta_name" />
                 </group>
                 <footer>
-                    <button name="export_account_moves" string="Export" colspan="4" type="object"  attrs="{'invisible':[('state','=','export')]}"/>
-                    <button string="Cancel" class="btn-default" special="cancel" attrs="{'invisible':[('state','=','export')]}"/>
-                    <button string="Close" class="btn-default" special="cancel" attrs="{'invisible':[('state','=','no_export')]}"/>
+                    <button name="export_account_moves" string="Export" colspan="4" type="object" attrs="{'invisible':[('state','=','export')]}" />
+                    <button string="Cancel" class="btn-default" special="cancel" attrs="{'invisible':[('state','=','export')]}" />
+                    <button string="Close" class="btn-default" special="cancel" attrs="{'invisible':[('state','=','no_export')]}" />
                 </footer>
             </form>
         </field>
     </record>
-    <act_window name="Export to Glasof"
-        res_model="export.account.to.glasof"
-        src_model="account.move"
-        view_mode="form"
-        target="new"
-        key2="client_action_multi"
-        id="act_export_to_glasof"/>
+
+    <act_window name="Export to Glasof" res_model="export.account.to.glasof" src_model="account.move" view_mode="form" target="new" key2="client_action_multi" id="act_export_to_glasof" />
+
 </odoo>

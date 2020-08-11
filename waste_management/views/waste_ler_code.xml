@@ -5,7 +5,7 @@
         <field name="name">ler.tree</field>
         <field name="model">waste.ler.code</field>
         <field name="arch" type="xml">
-            <tree string="LER" colors="red:dangerous == True">
+            <tree string="LER" decoration-danger="dangerous">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="dangerous"/>

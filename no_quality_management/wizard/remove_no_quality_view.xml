@@ -4,7 +4,6 @@
     <record id="view_remove_no_quality_form" model="ir.ui.view">
         <field name="name">view.remove.no.quality.form</field>
         <field name="model">remove.no.quality</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Remove Scont">
                 <group>

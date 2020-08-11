@@ -4,7 +4,6 @@
         <field name="name">stock.service.picking.form.add_no_quality</field>
         <field name="model">stock.service.picking</field>
         <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="amount_total" position="after">
                 <field name="no_quality"/>
@@ -16,7 +15,6 @@
         <field name="name">stock.sporadic.service.picking.form.add_no_quality</field>
         <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
         <field name="model">stock.service.picking</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="amount_total" position="after">
                 <field name="no_quality"/>
@@ -28,7 +26,6 @@
         <field name="name">stock.service.picking.search.add_no_quality</field>
         <field name="model">stock.service.picking</field>
         <field name="inherit_id" ref="limp_service_picking.stock_service_picking_search"/>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <field name="retired_date" position="after">
                 <field name="no_quality"/>

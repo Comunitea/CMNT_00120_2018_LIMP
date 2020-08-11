@@ -33,6 +33,7 @@ class AccountAnalyticAccount(models.Model):
         default=lambda r: r._context.get(
             "delegation_id", r.env.user.context_delegation_id.id
         ),
+        index=True
     )
     manager_id = fields.Many2one(
         "hr.employee",
@@ -42,6 +43,7 @@ class AccountAnalyticAccount(models.Model):
             "c_manager_id",
             r.env.user.employee_ids and r.env.user.employee_ids[0].id or False,
         ),
+        index=True
     )
     department_id = fields.Many2one(
         default=lambda r: r._context.get(
@@ -49,7 +51,8 @@ class AccountAnalyticAccount(models.Model):
             r._context.get(
                 "context_department_id", r.env.user.context_department_id.id
             ),
-        )
+        ),
+        index=True
     )
 
 
@@ -61,6 +64,7 @@ class AccountAnalyticLine(models.Model):
         "res.delegation",
         "Delegation",
         default=lambda r: r.env.user.context_delegation_id.id,
+        index=True
     )
     manager_id = fields.Many2one(
         "hr.employee",
@@ -70,6 +74,7 @@ class AccountAnalyticLine(models.Model):
             "c_manager_id",
             r.env.user.employee_ids and r.env.user.employee_ids[0].id or False,
         ),
+        index=True
     )
     department_id = fields.Many2one(
         default=lambda r: r._context.get(
@@ -77,6 +82,7 @@ class AccountAnalyticLine(models.Model):
             r._context.get(
                 "context_department_id", r.env.user.context_department_id.id
             ),
+            index=True
         )
     )
-    employee_id = fields.Many2one("hr.employee", "Employee")
+    employee_id = fields.Many2one("hr.employee", "Employee", index=True)

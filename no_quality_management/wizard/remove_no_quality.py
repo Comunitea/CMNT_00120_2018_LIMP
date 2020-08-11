@@ -37,21 +37,31 @@ class RemoveNoQuality(models.TransientModel):
                 ]
             )
         )
-        invoice_to_unlink = self.env["account.invoice"]
+        invoice_to_unlink = self.env["account.invoice"].sudo()
         for invoice in invoice_ids:
             if invoice.state in ("draft", "cancel"):
-                invoice_to_unlink += invoice
+                invoice_to_unlink |= invoice
             elif invoice.state in ("proforma", "proforma2", "open"):
                 if invoice.payment_ids:
                     invoice.payment_ids.cancel()
                     invoice.payment_ids.write({"move_name": ""})
                 invoice.action_cancel()
-                invoice_to_unlink += invoice
+                invoice_to_unlink |= invoice
             elif invoice.state == "paid":
                 invoice.payment_ids.cancel()
                 invoice.payment_ids.write({"move_name": ""})
                 invoice.payment_ids.unlink()
                 invoice.action_cancel()
-                invoice_to_unlink += invoice
+                invoice_to_unlink |= invoice
         invoice_to_unlink.unlink()
+
+        pickings_to_unlink = self.env['stock.service.picking'].sudo().\
+            search([('no_quality', '=', True),
+                    ('picking_date', '<=', self.to_date)])
+        lines_to_unlink = self.env['stock.service.picking.line'].sudo().\
+            search([('picking_id', 'in', pickings_to_unlink.ids)])
+        lines_to_unlink.write({'state': 'draft'})
+        lines_to_unlink.unlink()
+        pickings_to_unlink.unlink()
+
         return {"type": "ir.actions.act_window_close"}

@@ -25,12 +25,13 @@ class AccountInvoiceLine(models.Model):
     _inherit = "account.invoice.line"
 
     building_site_id = fields.Many2one(
-        "building.site.services", "Building Site"
+        "building.site.services", "Building Site", copy=False
     )
     service_picking_id = fields.Many2one(
-        "stock.service.picking", "Service picking", readonly=True
+        "stock.service.picking", "Service picking", readonly=True,
+        copy=False
     )
-    move_id = fields.Many2one("stock.move", "Move")
+    move_id = fields.Many2one("stock.move", "Move", copy=False)
     quantity = fields.Float("Quantity", digits=(12, 3), required=True)
 
 

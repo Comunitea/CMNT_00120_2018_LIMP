@@ -24,16 +24,18 @@
             <field name="model">limp.contract.line.task.rel</field>
             <field name="arch" type="xml">
                 <form string="Contract task">
-                    <field name="contract_task_id" colspan="4"/>
-                    <field name="monday"/>
-                    <field name="tuesday"/>
-                    <field name="wednesday"/>
-                    <field name="thursday"/>
-                    <field name="friday"/>
-                    <field name="saturday"/>
-                    <field name="sunday"/>
-                    <separator string="Observations" colspan="4"/>
-                    <field name="observations" colspan="4" nolabel="1"/>
+                    <group>
+                        <field name="contract_task_id" colspan="4"/>
+                        <field name="monday"/>
+                        <field name="tuesday"/>
+                        <field name="wednesday"/>
+                        <field name="thursday"/>
+                        <field name="friday"/>
+                        <field name="saturday"/>
+                        <field name="sunday"/>
+                        <separator string="Observations" colspan="4"/>
+                        <field name="observations" colspan="4" nolabel="1"/>
+                    </group>
                 </form>
             </field>
         </record>

@@ -61,7 +61,7 @@ class AccountBalanceByDepartmentXls(ReportXlsx):
         }
 
         domain = []
-        report_name = u""
+        report_name = ""
         if data.get("delegation_id", False):
             domain.append(("delegation_id", "=", data["delegation_id"][0]))
             report_name += (
@@ -72,11 +72,11 @@ class AccountBalanceByDepartmentXls(ReportXlsx):
         if data.get("privacy", False):
             domain.append(("account_id.privacy", "=", data["privacy"]))
             report_name += (
-                u" " + data["privacy"] == "public"
-                and u"Sector público"
-                or u"Sector Privado"
+                " " + data["privacy"] == "public"
+                and "Sector público"
+                or "Sector Privado"
             )
-        report_name += u" " + str(data["year"])
+        report_name += " " + str(data["year"])
 
         months = [
             ("01", "ENERO"),

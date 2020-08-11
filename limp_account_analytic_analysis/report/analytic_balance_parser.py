@@ -74,7 +74,7 @@ class AccountBalanceXls(ReportXlsx):
         }
 
         domain = []
-        report_name = u""
+        report_name = ""
         if data.get("delegation_id", False):
             domain.append(("delegation_id", "=", data["delegation_id"][0]))
             report_name += (
@@ -85,7 +85,7 @@ class AccountBalanceXls(ReportXlsx):
         if data.get("department_id", False):
             domain.append(("department_id", "=", data["department_id"][0]))
             report_name += (
-                u" "
+                " "
                 + self.env["hr.department"]
                 .browse(data["department_id"][0])
                 .name
@@ -93,17 +93,17 @@ class AccountBalanceXls(ReportXlsx):
         if data.get("manager_id", False):
             domain.append(("manager_id", "=", data["manager_id"][0]))
             report_name += (
-                u" "
+                " "
                 + self.env["hr.employee"].browse(data["manager_id"][0]).name
             )
         if data.get("privacy", False):
             domain.append(("account_id.privacy", "=", data["privacy"]))
             report_name += (
-                u" " + data["privacy"] == "public"
-                and u"Sector público"
-                or u"Sector Privado"
+                " " + data["privacy"] == "public"
+                and "Sector público"
+                or "Sector Privado"
             )
-        report_name += u" " + str(data["year"])
+        report_name += " " + str(data["year"])
 
         months = [
             ("01", "ENERO"),
@@ -156,7 +156,7 @@ class AccountBalanceXls(ReportXlsx):
                 cell_styles["journals_months"], cell_styles["bordered"]
             )
         )
-        sheet.merge_range(3, 0, 3, 1, u"Facturación", cell_format)
+        sheet.merge_range(3, 0, 3, 1, "Facturación", cell_format)
 
         year = str(data["year"])
         amount = 0.0
@@ -377,7 +377,7 @@ class AccountBalanceXls(ReportXlsx):
             )
         )
         sheet.write(row_pos, 0, "GANANCIAS", cell_format)
-        sheet.write(row_pos + 1, 0, u"PÉRDIDA", cell_format)
+        sheet.write(row_pos + 1, 0, "PÉRDIDA", cell_format)
 
         cell_format = workbook.add_format(
             merge_dicts(

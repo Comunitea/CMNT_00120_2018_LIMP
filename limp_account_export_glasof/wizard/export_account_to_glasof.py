@@ -23,7 +23,6 @@ import os
 from mako.template import Template
 from mako.lookup import TemplateLookup
 import base64
-from odoo.tools import config
 
 
 class ExportAccountToGlasof(models.TransientModel):
@@ -83,18 +82,18 @@ class ExportAccountToGlasof(models.TransientModel):
                     + account.code[parent_len:]
                 )
             if len(new_account_code) > total_len:
-                raise osv.except_osv(
-                    _("Error"),
+                raise UserError(
                     _(
-                        "New account code compound of departement and delegation code is bigger than selected account size."
+                        "New account code compound of departement and "
+                        "delegation code is bigger than selected account size."
                     ),
                 )
             return new_account_code
         else:
-            raise osv.except_osv(
-                _("Error"),
+            raise UserError(
                 _(
-                    "Selected account size smaller than the size of real accounts"
+                    "Selected account size smaller than the size of real "
+                    "accounts"
                 ),
             )
 
@@ -116,7 +115,8 @@ class ExportAccountToGlasof(models.TransientModel):
                     if not line.partner_id.ref:
                         errors_list.add(
                             _(
-                                "The partner %s has not field ref. Please fill this field and try again."
+                                "The partner %s has not field ref. Please "
+                                "fill this field and try again."
                             )
                             % line.partner_id.name
                         )
@@ -165,7 +165,8 @@ class ExportAccountToGlasof(models.TransientModel):
                     if not line.partner_id.ref:
                         raise UserError(
                             _(
-                                "The partner %s has not field ref. Please fill this field and try again."
+                                "The partner %s has not field ref. "
+                                "Please fill this field and try again."
                             )
                             % line.partner_id.name
                         )

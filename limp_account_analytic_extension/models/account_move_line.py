@@ -28,11 +28,13 @@ class AccountMoveLine(models.Model):
         "res.delegation",
         "Delegation",
         default=lambda r: r.env.user.context_delegation_id.id,
+        index=True
     )
     department_id = fields.Many2one(
         "hr.department",
         "Department",
         default=lambda r: r.env.user.context_department_id.id,
+        index=True
     )
     manager_id = fields.Many2one(
         "hr.employee",
@@ -41,6 +43,7 @@ class AccountMoveLine(models.Model):
         default=lambda r: r.env.user.employee_ids
         and r.env.user.employee_ids[0].id
         or False,
+        index=True
     )
 
     @api.multi

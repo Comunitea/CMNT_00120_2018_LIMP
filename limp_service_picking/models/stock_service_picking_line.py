@@ -295,7 +295,7 @@ class StockServicePickingLine(models.Model):
                               "container is not in %s.")
                             % line.dest_address_id.street
                         )
-                    moves_to_delete += move
+                    moves_to_delete |= move
                     if move.move_type == "in":
                         other_move = container_move_ids[1]
                         if (
@@ -306,7 +306,7 @@ class StockServicePickingLine(models.Model):
                             line.container_id.with_context(
                                 no_create_moves=True
                             ).write({"situation_id": other_move.address_id.id})
-                        moves_to_delete += other_move
+                        moves_to_delete = other_move
                     if moves_to_delete:
                         moves_to_delete.unlink()
             line.write({"state": "draft"})

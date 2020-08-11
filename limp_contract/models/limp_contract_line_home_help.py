@@ -158,17 +158,13 @@ class LimpContractLineHomeHelp(models.Model):
     def write(self, vals):
         res = super(LimpContractLineHomeHelp, self).write(vals)
 
-        if vals.get("date", False) or vals.get("date_start", False):
+        if vals.get("date", False):
             all_remuneration_ids = self.mapped("remuneration_ids")
             remuneration_ids_wo_dateto = self.mapped(
                 "remuneration_ids"
             ).filtered(lambda r: not r.date_to)
 
             if all_remuneration_ids:
-                if vals.get("date_start", False):
-                    all_remuneration_ids.sudo().write(
-                        {"date": vals["date_start"]}
-                    )
                 if vals.get("date", False) and remuneration_ids_wo_dateto:
                     remuneration_ids_wo_dateto.sudo().write(
                         {"date_to": vals["date"]}

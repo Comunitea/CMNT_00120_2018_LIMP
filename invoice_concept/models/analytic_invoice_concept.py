@@ -63,7 +63,7 @@ class AccountAnalyticInvoiceConcept(models.Model):
     @api.model
     def process_name(self, description=False, date=False):
         if not description and not self:
-            raise UserError(_(""))
+            raise UserError("")
         if not date:
             date = fields.Datetime.now()
         if not description:

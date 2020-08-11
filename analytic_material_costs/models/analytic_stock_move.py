@@ -88,7 +88,8 @@ class AccountAnalyticStockMove(models.Model):
         readonly=True,
         default="first",
     )
-    date = fields.Date("Date", required=True, default=fields.Date.today)
+    date = fields.Date("Date", required=True, default=fields.Date.today,
+                       states={'second': [('readonly', True)]})
 
     @api.onchange('employee_id')
     def onchange_employee_id(self):
@@ -124,7 +125,7 @@ class AccountAnalyticStockMove(models.Model):
                 "location_dest_id": user.company_id.
                 partner_id.property_stock_customer.id,
                 "name": res.analytic_account_id.name
-                + u": Out "
+                + _(": Out ")
                 + res.product_id.name,
                 "company_id": user.company_id.id,
                 "partner_id": user.company_id.partner_id.id,
@@ -155,7 +156,7 @@ class AccountAnalyticStockMove(models.Model):
                 )
                 line.move_id.product_uom = product.uom_id.id
                 line.move_id.name = (
-                    line.analytic_account_id.name + u": Out " + product.name,
+                    line.analytic_account_id.name + _(": Out ") + product.name,
                 )
             if (
                 vals.get("product_qty")
@@ -206,6 +207,10 @@ class AccountAnalyticStockMove(models.Model):
                 "tag_ids": [(4, material_tag.id)],
                 "account_id": self.analytic_account_id.id,
                 "general_account_id": account_id,
+                "date": self.date,
+                'delegation_id': self.analytic_account_id.delegation_id.id,
+                'department_id': self.analytic_account_id.department_id.id,
+                'manager_id': self.analytic_account_id.manager_id.id
             }
         )
         self.state = "second"

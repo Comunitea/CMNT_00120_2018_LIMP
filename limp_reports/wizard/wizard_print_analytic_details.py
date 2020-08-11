@@ -60,5 +60,4 @@ class accountnalyticAccountDetails(models.TransientModel):
         )
         report = self.env['ir.actions.report'].search(
             [('report_name', '=', "limp_reports.account_analytic_details")], limit=1)
-        print("REPORT {}".format(report))
         return report.report_action(records, data=datas)

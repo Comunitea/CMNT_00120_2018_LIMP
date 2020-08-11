@@ -64,7 +64,8 @@ class Container(models.Model):
         "container.move", "container_id", "History", readonly=True
     )
     company_id = fields.Many2one(
-        "res.company", "Company", default=lambda r: r.env.user.company_id.id
+        "res.company", "Company", default=lambda r: r.env.user.company_id.id,
+        index=True
     )
     last_move_date = fields.Datetime("Last move date", readonly=True)
     last_responsible_id = fields.Many2one(
@@ -77,7 +78,7 @@ class Container(models.Model):
         "in company addresses",
         default=lambda r: r.env.user.company_id.partner_id.address_get().get(
             "default", False
-        ),
+        ), index=True
     )
     partner_id = fields.Many2one(
         "res.partner",

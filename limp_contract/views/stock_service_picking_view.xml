@@ -17,6 +17,28 @@
         </field>
     </record>
 
+    <record id="stock_service_picking_search_to_invoice" model="ir.ui.view">
+        <field name="name">stock.service.picking.search.to_invoice</field>
+        <field name="model">stock.service.picking</field>
+        <field name="inherit_id" ref="limp_service_picking.stock_service_picking_search"/>
+        <field name="arch" type="xml">
+            <filter name="to_invoice" position="attributes">
+                <attribute name="domain">[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice'),'|',('contract_id', '=', False),('contract_id.include_pickings', '!=', True)]</attribute>
+            </filter>
+        </field>
+    </record>
+
+    <record id="stock_sporadic_service_picking_search_to_invoice" model="ir.ui.view">
+        <field name="name">stock.sporadic.service.picking.search.to_invoice</field>
+        <field name="model">stock.service.picking</field>
+        <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_search"/>
+        <field name="arch" type="xml">
+            <filter name="to_invoice" position="attributes">
+                <attribute name="domain">[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice'),'|',('contract_id', '=', False),('contract_id.include_pickings', '!=', True)]</attribute>
+            </filter>
+        </field>
+    </record>
+
     <record id="stock_sporadic_service_picking_form_add_manager" model="ir.ui.view">
         <field name="name">stock.sporadic.service.picking.form.add_manager</field>
         <field name="model">stock.service.picking</field>

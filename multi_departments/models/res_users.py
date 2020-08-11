@@ -31,4 +31,5 @@ class ResUsers(models.Model):
         "Departments",
     )
 
-    context_department_id = fields.Many2one("hr.department", "Department")
+    context_department_id = fields.Many2one("hr.department", "Department",
+                                            index=True)

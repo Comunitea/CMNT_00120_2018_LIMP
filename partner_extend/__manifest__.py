@@ -23,7 +23,7 @@
     "description": "Add some improvements in partners.",
     "version": "12.0.1.0.0",
     "author": "Comunitea",
-    "website": "http://www.pexego.es",
+    "website": "https://www.comunitea.com",
     "category": "Base/Partner",
     "depends": ["base_vat", "l10n_es_partner"],
     "data": ["views/res_partner.xml"],

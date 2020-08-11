@@ -1,6 +1,6 @@
 ##############################################################################
 #
-#    Copyright (C) 2004-2013 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2013 Comunitea Servicios Tecnológicos S.L.
 #    $Omar Castiñeira Saavedra$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,12 +21,10 @@
     "name": "Scont management",
     "description": "Scont management",
     "version": "12.0.1.0.0",
-    "author": "Pexego",
-    "website": "http://www.pexego.es",
+    "author": "Comunitea",
+    "website": "https://www.comunitea.com",
     "category": "Accounting",
     "depends": [
-        "base",
-        "account",
         "hr",
         "limp_contract",
         "limp_service_picking",

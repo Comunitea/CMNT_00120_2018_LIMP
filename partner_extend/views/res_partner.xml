@@ -9,12 +9,40 @@
             <field name="title" position="attributes">
                 <attribute name="widget">selection</attribute>
             </field>
+            <field name="email" position="attributes">
+                <attribute name="placeholder">Email...</attribute>
+            </field>
+            <field name="phone" position="attributes">
+                <attribute name="placeholder">Phone...</attribute>
+            </field>
+            <field name="mobile" position="attributes">
+                <attribute name="placeholder">Mobile...</attribute>
+            </field>
             <xpath expr="//field[@name='child_ids']/form//field[@name='title']" position="attributes">
                 <attribute name="widget">selection</attribute>
                 <attribute name="placeholder"></attribute>
             </xpath>
             <xpath expr="//field[@name='child_ids']" position="attributes">
                 <attribute name="mode">tree</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mail.res_partner_view_form_inherit_mail" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit.mail</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']//field[@name='user_id']" position="after">
+                <field name="message_bounce" groups="base.group_no_one"/>
+                <field name="is_blacklisted" invisible="1"/>
+            </xpath>
+            <xpath expr="//sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </xpath>
         </field>
     </record>

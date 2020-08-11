@@ -12,4 +12,5 @@ class HrEmployee(models.Model):
         "res.delegation",
         "Delegation",
         default=lambda r: r.env.user.context_delegation_id.id,
+        index=True
     )

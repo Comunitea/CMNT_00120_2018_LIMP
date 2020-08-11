@@ -35,7 +35,6 @@
         <field name="name">res.partner.form.avoid.facturae</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="l10n_es_facturae.view_partner_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='facturae']" position="replace">
             </xpath>
@@ -43,6 +42,7 @@
             </xpath>
             <xpath expr="//sheet/notebook/page/field[@name='child_ids']/form/sheet/group" position="after">
                 <group>
+                    <label for="facturae"/>
                     <field name="facturae"/>
                     <group  attrs="{'invisible': [('facturae', '=', False)]}">
                         <field name="dir3"/>
@@ -57,9 +57,9 @@
         <field name="name">res.partner.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="lang" position="after">
+                <label for="facturae"/>
                 <field name="facturae"/>
                 <group  attrs="{'invisible': [('facturae', '=', False)]}">
                     <field name="dir3"/>

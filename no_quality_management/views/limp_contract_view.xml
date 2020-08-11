@@ -4,7 +4,6 @@
         <field name="name">limp.contract.form.add_no_quality</field>
         <field name="model">limp.contract</field>
         <field name="inherit_id" ref="limp_contract.limp_contract_form"/>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="periodicity" position="after">
                 <field name="no_quality"/>
@@ -16,7 +15,6 @@
         <field name="name">limp.contract.search.add_no_quality</field>
         <field name="model">limp.contract</field>
         <field name="inherit_id" ref="limp_contract.limp_contract_search"/>
-        <field name="type">search</field>
         <field name="arch" type="xml">
             <field name="upamount_date" position="after">
                 <field name="no_quality"/>
