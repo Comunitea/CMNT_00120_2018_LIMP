@@ -17,11 +17,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo.addons.report_xlsx.report.report_xlsx import ReportXlsx
+from odoo import models
 import calendar
 
 
-class AccountBalanceXls(ReportXlsx):
+class AccountBalanceXls(models.AbstractModel):
+    _name = 'report.analytic_balance_xls'
+    _inherit = 'report.report_xlsx.abstract'
+
     def _get_value(self, value, positive=False, negative=False):
         if value and value < 100:
             if positive:
@@ -59,11 +62,6 @@ class AccountBalanceXls(ReportXlsx):
                 "font_size": 8,
             },
             "average_real": {"pattern": 1, "bg_color": "#CCCCFF"},
-            "average_real_font": {
-                "font_color": "#000080",
-                "bold": True,
-                "font_size": 8,
-            },
             "average_real_font": {
                 "font_color": "#000080",
                 "bold": True,
@@ -439,6 +437,3 @@ class AccountBalanceXls(ReportXlsx):
         )
         value = self._get_value(column_percent["real_percent"], negative=True)
         sheet.write(row_pos + 1, 15, value, cell_format)
-
-
-AccountBalanceXls("report.analytic_balance_xls", "analytic.balance")

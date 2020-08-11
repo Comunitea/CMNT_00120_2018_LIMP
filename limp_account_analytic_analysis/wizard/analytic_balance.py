@@ -110,8 +110,8 @@ class AnalyticBalance(models.TransientModel):
         data = self.read([])[0]
         data.update({"target_ids": selected_targets})
         data.update({"ids": self._ids})
-
         report = self.env['ir.actions.report'].search(
-            [('report_name', '=', "analytic_balance_xls")],
+            [('report_name', '=',
+              "analytic_balance_xls")],
             limit=1)
         return report.report_action(self, data=data)

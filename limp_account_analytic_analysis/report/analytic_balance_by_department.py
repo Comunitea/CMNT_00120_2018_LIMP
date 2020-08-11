@@ -17,11 +17,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo.addons.report_xlsx.report.report_xlsx import ReportXlsx
+from odoo import models
 import calendar
 
 
-class AccountBalanceByDepartmentXls(ReportXlsx):
+class AccountBalanceByDepartmentXls(models.AbstractModel):
+    _name = 'report.analytic_balance_by_department_xls'
+    _inherit = 'report.report_xlsx.abstract'
+
     def generate_xlsx_report(self, workbook, data, objs):
         def merge_dicts(*dict_args):
             result = {}
@@ -46,11 +49,6 @@ class AccountBalanceByDepartmentXls(ReportXlsx):
                 "font_size": 8,
             },
             "average_real": {"pattern": 1, "bg_color": "#CCCCFF"},
-            "average_real_font": {
-                "font_color": "#000080",
-                "bold": True,
-                "font_size": 8,
-            },
             "average_real_font": {
                 "font_color": "#000080",
                 "bold": True,
@@ -195,9 +193,3 @@ class AccountBalanceByDepartmentXls(ReportXlsx):
             )
             sheet.write(row_pos, 15, real_percent, cell_format)
             row_pos += 1
-
-
-AccountBalanceByDepartmentXls(
-    "report.analytic_balance_by_department_xls",
-    "analytic.balance.by.department.wzd",
-)

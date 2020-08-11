@@ -18,6 +18,5 @@
 #
 ##############################################################################
 
-# TODO: Migrar
-# ~ from . import analytic_balance_parser
-# ~ from . import analytic_balance_by_department
+from . import analytic_balance_parser
+from . import analytic_balance_by_department
