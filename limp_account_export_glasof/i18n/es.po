@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-03 16:29+0000\n"
-"PO-Revision-Date: 2018-06-03 16:29+0000\n"
+"POT-Creation-Date: 2020-08-11 21:23+0000\n"
+"PO-Revision-Date: 2020-08-11 21:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,26 +16,32 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: limp_account_export_glasof
+#: model_terms:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
+msgid "<span colspan=\"4\">Do you want to export the selected account moves?</span>"
+msgstr "<span colspan=\"4\">¿Quiere exportar los asientos seleccionados?</span>"
+
+#. module: limp_account_export_glasof
 #: model:ir.model,name:limp_account_export_glasof.model_account_account_type
 msgid "Account Type"
 msgstr "Tipo de cuenta"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_account_length
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__account_length
 msgid "Account length"
 msgstr "Tamaño de cuentas"
 
 #. module: limp_account_export_glasof
-#: model:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
+#: model_terms:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
 msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: limp_account_export_glasof
-#: model:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
+#: model_terms:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
 msgid "Close"
 msgstr "Cerrar"
 
 #. module: limp_account_export_glasof
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_account_account_type__code
 #: model:ir.model.fields,field_description:limp_account_export_glasof.field_res_company_code
 msgid "Code"
 msgstr "Código"
@@ -46,39 +52,27 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_create_uid
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_create_date
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Creado en"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_display_name
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nombre mostrado"
 
 #. module: limp_account_export_glasof
-#: model:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
-msgid "Do you want to export the selected account moves?"
-msgstr "¿Desea exportar los apuntes de los asientos contables selecionados?"
-
-#. module: limp_account_export_glasof
-#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:64
-#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:67
-#, python-format
-msgid "Error"
-msgstr "Error"
-
-#. module: limp_account_export_glasof
-#: model:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
+#: model_terms:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
 msgid "Export"
 msgstr "Exportar"
 
 #. module: limp_account_export_glasof
-#: model:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
+#: model_terms:ir.ui.view,arch_db:limp_account_export_glasof.view_export_account_glasof_wizard
 msgid "Export Account moves to glasof"
 msgstr "Exportar asientos contables a Glasof"
 
@@ -93,47 +87,42 @@ msgid "Exported"
 msgstr "Exportado"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_file_xdiario
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__file_xdiario
 msgid "File xDiario"
 msgstr "Fichero xDiario"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_file_xsubcta
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__file_xsubcta
 msgid "File xSubCta"
 msgstr "Fichero xSubCta"
 
 #. module: limp_account_export_glasof
 #: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_account_move_line_invoice_ref
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_account_move_line__invoice_ref
 msgid "Invoice ref"
 msgstr "Ref. factura"
 
 #. module: limp_account_export_glasof
-#: model:ir.model,name:limp_account_export_glasof.model_account_move_line
-msgid "Journal Item"
-msgstr "Apunte contable"
-
-#. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof___last_update
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última Modifiación en"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_write_uid
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última actualización de"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_write_date
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Última actualización en"
 
 #. module: limp_account_export_glasof
-#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:64
+#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:86
 #, python-format
 msgid "New account code compound of departement and delegation code is bigger than selected account size."
 msgstr "El nuevo código de cuenta compuesto por el departamento y la delegación es más grande que el tamaño seleccionado."
@@ -144,12 +133,12 @@ msgid "No Export"
 msgstr "No exportado"
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_no_department
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__no_department
 msgid "No department"
 msgstr "Sin departamento"
 
 #. module: limp_account_export_glasof
-#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:67
+#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:94
 #, python-format
 msgid "Selected account size smaller than the size of real accounts"
 msgstr "Ha seleccionado un tamaño menor al tamaño real de las cuentas."
@@ -160,23 +149,18 @@ msgid "State"
 msgstr "Estado"
 
 #. module: limp_account_export_glasof
-#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:79
-#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:101
+#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:117
+#: code:addons/limp_account_export_glasof/wizard/export_account_to_glasof.py:168
 #, python-format
 msgid "The partner %s has not field ref. Please fill this field and try again."
 msgstr "La empresa %s no tiene campo referencia. Por favor rellena este campo y prueba de nuevo."
 
 #. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_xdiario_name
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__xdiario_name
 msgid "Xdiario name"
 msgstr "Nombre Xdiario"
 
 #. module: limp_account_export_glasof
-#: model:ir.model,name:limp_account_export_glasof.model_export_account_to_glasof
-msgid "export.account.to.glasof"
-msgstr "export.account.to.glasof"
-
-#. module: limp_account_export_glasof
-#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof_xsubcta_name
+#: model:ir.model.fields,field_description:limp_account_export_glasof.field_export_account_to_glasof__xsubcta_name
 msgid "xSubCta name"
 msgstr "Nombre xSubCta"

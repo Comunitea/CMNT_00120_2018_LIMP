@@ -149,6 +149,7 @@ class ExportAccountToGlasof(models.TransientModel):
             objects=move_lines,
             acc_numbers=acc_numbers,
             env=self.env,
+            fields=fields,
             formatAccount=self.format_acc_number,
         ).encode("utf-8", "replace")
 
@@ -182,7 +183,8 @@ class ExportAccountToGlasof(models.TransientModel):
             default_filters=["decode.utf8"],
         )
         doc2 = tmp.render_unicode(
-            objects=partners, acc_numbers=acc_numbers, env=self.env
+            objects=partners, acc_numbers=acc_numbers, env=self.env,
+            fields=fields
         ).encode("utf-8", "replace")
 
         xdiario_base64 = base64.b64encode(doc)
@@ -197,4 +199,13 @@ class ExportAccountToGlasof(models.TransientModel):
             }
         )
 
-        return {"type": "ir.actions.do_nothing"}
+        return {
+            "name": "Export account moves to glasof",
+            "view_type": "form",
+            "view_mode": "form",
+            "res_model": "export.account.to.glasof",
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+            "target": "new",
+            "res_id": self.id,
+        }
