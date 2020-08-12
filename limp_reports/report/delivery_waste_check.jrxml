@@ -29,7 +29,7 @@
                 <field name="Memory_include-memory_include" class="java.lang.Boolean">
                         <fieldDescription><![CDATA[/data/record/Valorizacion-service_picking_valorization_ids/Memory_include-memory_include]]></fieldDescription>
                 </field>
-                <field name="id" class="java.lang.Integer">
+                <field name="id" class="java.lang.Object">
                         <fieldDescription><![CDATA[/data/record/Valorizacion-service_picking_valorization_ids/Albaran_de_servicio-service_picking_id/id]]></fieldDescription>
                 </field>
                 <field name="Sobrecarga-overload_qty" class="java.lang.String">
