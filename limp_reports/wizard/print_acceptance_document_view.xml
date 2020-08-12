@@ -4,7 +4,6 @@
     <record id="wizard_print_acceptance_doc" model="ir.ui.view">
         <field name="name">wizard_print_acceptance_docy</field>
         <field name="model">print.acceptance.document.report</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
                 <group>

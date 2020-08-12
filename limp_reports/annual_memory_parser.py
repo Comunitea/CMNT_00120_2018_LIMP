@@ -20,14 +20,14 @@
 from odoo.addons.report_py3o.models.py3o_report import py3o_report_extender
 
 
-def _get_valorization(self, data):
+def _get_valorization(self):
     dic = {}
     domain = [
-        ("date", "<=", str(data["year"]) + "-12-31"),
-        ("date", ">=", str(data["year"]) + "-01-01"),
+        ("date", "<=", str(self.year) + "-12-31"),
+        ("date", ">=", str(self.year) + "-01-01"),
         ("memory_include", "=", True),
         ("stock_picking_id", "!=", False),
-        ("company_id", "=", data["company_id"]),
+        ("company_id", "=", self.company_id.id),
     ]
     objs = self.env["valorization.lines"].search(domain)
 
@@ -43,12 +43,12 @@ def _get_valorization(self, data):
     return res
 
 
-def _get_invoice(self, cpa, data):
+def _get_invoice(self, cpa):
     dic = {}
     domain = [
-        ("date", "<=", str(data["year"]) + "-12-31"),
-        ("date", ">=", str(data["year"]) + "-01-01"),
-        ("company_id", "=", data["company_id"]),
+        ("date", "<=", str(self.year) + "-12-31"),
+        ("date", ">=", str(self.year) + "-01-01"),
+        ("company_id", "=", self.company_id.id),
     ]
 
     for obj in self.env["invoice.lines"].search(domain):
@@ -67,13 +67,13 @@ def _get_invoice(self, cpa, data):
     return res
 
 
-def _get_total_qty(self, data):
+def _get_total_qty(self):
     domain = [
-        ("date", "<=", str(data["year"]) + "-12-31"),
-        ("date", ">=", str(data["year"]) + "-01-01"),
+        ("date", "<=", str(self.year) + "-12-31"),
+        ("date", ">=", str(self.year) + "-01-01"),
         ("memory_include", "=", True),
         ("stock_picking_id", "!=", False),
-        ("company_id", "=", data["company_id"]),
+        ("company_id", "=", self.company_id.id),
     ]
     total_qty = 0.0
     for obj in self.env["valorization.lines"].search(domain):
@@ -82,11 +82,11 @@ def _get_total_qty(self, data):
     return total_qty
 
 
-def _get_total_qty2(self, data):
+def _get_total_qty2(self):
     domain = [
-        ("date", "<=", str(data["year"]) + "-12-31"),
-        ("date", ">=", str(data["year"]) + "-01-01"),
-        ("company_id", "=", data["company_id"]),
+        ("date", "<=", str(self.year) + "-12-31"),
+        ("date", ">=", str(self.year) + "-01-01"),
+        ("company_id", "=", self.company_id.id),
     ]
     total_qty = 0.0
     for obj in self.env["invoice.lines"].search(domain):
@@ -95,14 +95,14 @@ def _get_total_qty2(self, data):
     return total_qty
 
 
-def _get_ins(self, ler, data):
+def _get_ins(self, ler):
     res = []
     domain = [
-        ("date", "<=", str(data["year"]) + "-12-31"),
-        ("date", ">=", str(data["year"]) + "-01-01"),
+        ("date", "<=", str(self.year) + "-12-31"),
+        ("date", ">=", str(self.year) + "-01-01"),
         ("memory_include", "=", True),
         ("stock_picking_id", "!=", False),
-        ("company_id", "=", data["company_id"]),
+        ("company_id", "=", self.company_id.id),
     ]
     res = {}
     for obj in self.env["valorization.lines"].sudo().search(domain):
@@ -126,24 +126,19 @@ def _get_ins(self, ler, data):
                 res[obj.building_site_id][1] += obj.qty
             else:
                 res["X"] = [obj.building_site_id, obj.qty]
-
     res = [(res[x][0], res[x][1]) for x in res]
-    res.sort(
-        lambda x, y: cmp(
-            x[0].producer_promoter or "", y[0].producer_promoter or ""
-        )
-    )
+    res.sort(key=lambda x: x[0].producer_promoter or "")
     return res
 
 
-def _get_ins_total_qty(self, ler, data):
+def _get_ins_total_qty(self, ler):
     res = 0
     domain = [
-        ("date", "<=", str(data["year"]) + "-12-31"),
-        ("date", ">=", str(data["year"]) + "-01-01"),
+        ("date", "<=", str(self.year) + "-12-31"),
+        ("date", ">=", str(self.year) + "-01-01"),
         ("memory_include", "=", True),
         ("stock_picking_id", "!=", False),
-        ("company_id", "=", data["company_id"]),
+        ("company_id", "=", self.company_id.id),
     ]
     for obj in self.env["valorization.lines"].search(domain):
         if obj.ler_code_id.code == ler and not obj.ler_code_id.cpa:
@@ -151,12 +146,12 @@ def _get_ins_total_qty(self, ler, data):
     return res
 
 
-def _get_outs(self, cpa, ler, data):
+def _get_outs(self, cpa, ler):
     res = []
     domain = [
-        ("date", "<=", str(data["year"]) + "-12-31"),
-        ("date", ">=", str(data["year"]) + "-01-01"),
-        ("company_id", "=", data["company_id"]),
+        ("date", "<=", str(self.year) + "-12-31"),
+        ("date", ">=", str(self.year) + "-01-01"),
+        ("company_id", "=", self.company_id.id),
     ]
     res = {}
     for obj in self.env["invoice.lines"].search(domain):
@@ -173,16 +168,16 @@ def _get_outs(self, cpa, ler, data):
     res = [
         (x, res[x][0].city, res[x][0].state_id.name, res[x][1]) for x in res
     ]
-    res.sort(lambda x, y: cmp(x[0].name, y[0].name))
+    res.sort(key=lambda x: x[0].name)
     return res
 
 
-def _get_outs_total_qty(self, cpa, ler, data):
+def _get_outs_total_qty(self, cpa, ler):
     res = 0
     domain = [
-        ("date", "<=", str(data["year"]) + "-12-31"),
-        ("date", ">=", str(data["year"]) + "-01-01"),
-        ("company_id", "=", data["company_id"]),
+        ("date", "<=", str(self.year) + "-12-31"),
+        ("date", ">=", str(self.year) + "-01-01"),
+        ("company_id", "=", self.company_id.id),
     ]
     for obj in self.env["invoice.lines"].search(domain):
         if cpa:

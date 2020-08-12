@@ -17,8 +17,9 @@ class WizardPrintMemory(models.TransientModel):
     )
 
     def print_report(self):
-        data = {"year": self.year,
-                "company_id": self.company_id.id}
         report = self.env['ir.actions.report'].search(
             [('report_name', '=', "annual_memory")], limit=1)
-        return report.report_action([self.id], data=data)
+        data = {"year": self.year,
+                "company_id": self.company_id.id,
+                'doc_ids': report.ids}
+        return report.report_action(self)

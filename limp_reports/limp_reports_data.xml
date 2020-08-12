@@ -353,7 +353,7 @@
 
     <record id="aeroo_annual_memory_id" model="ir.actions.report">
         <field name="name">Annual Memory Report</field>
-        <field name="model">res.partner</field>
+        <field name="model">wizard.print.memory</field>
         <field name="report_name">annual_memory</field>
         <field name="report_type">py3o</field>
         <field name="py3o_filetype">odt</field>

@@ -3,11 +3,12 @@
     <record id="wizard_print_memory" model="ir.ui.view">
         <field name="name">wizard print annual memory</field>
         <field name="model">wizard.print.memory</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
-                <field name="year"/>
-                <field name="company_id"/>
+                <group>
+                    <field name="year"/>
+                    <field name="company_id"/>
+                </group>
                 <footer>
                     <button name="print_report" string="Print Annual Memory" type="object" default_focus="1"/>
                     <button string="Cancel" class="btn-default" special="cancel"/>
@@ -26,6 +27,5 @@
     </record>
 
     <menuitem action="action_print_memory" id="view_wizard_print_memory"  name="Print Annual Memory" parent="reports_folder_id"/>
-    <!--menuitem action="limp_service_picking.valorization_lines_action_tree" id="limp_service_picking.valorization_lines_view_open" parent="reports_folder_id" name="View Valorization lines"/>
-    <menuitem action="limp_service_picking.all_picking_wastes_action_tree" id="limp_service_picking.all_picking_wastes_view_open" parent="reports_folder_id" name="All picking wastes"/-->
+
 </odoo>
