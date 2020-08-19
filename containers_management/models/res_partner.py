@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class ResPartner(models.Model):
@@ -26,3 +26,8 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     containers_store = fields.Boolean("Containers store")
+
+    @api.model
+    def create(self, vals):
+        vals['active'] = True
+        return super().create(vals)

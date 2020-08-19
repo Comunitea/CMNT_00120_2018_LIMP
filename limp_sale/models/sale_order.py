@@ -244,7 +244,7 @@ class SaleOrder(models.Model):
                 "sale_id": self.id,
             }
         )
-        self.add_description()
+        self.add_description(contract)
         self.write({"created_contract": True})
 
         res = self.env.ref("limp_contract.limp_contract_form")
@@ -263,14 +263,11 @@ class SaleOrder(models.Model):
 
     # This method adds a description in the new contract based on the
     # description provided by the order_line
-    def add_description(self):
+    def add_description(self, obj):
         line = self.order_line and self.order_line[0]
         if not line:
             return
-        contract = self.contract_ids and self.contract_ids[0]
-        if not contract:
-            return
-        contract.description = line.name
+        obj.description = line.name
 
     def create_pick(self):
         vals = {
@@ -297,6 +294,7 @@ class SaleOrder(models.Model):
             vals["maintenance"] = True
             vals["picking_type"] = "sporadic"
         service_pick_id = self.env["stock.service.picking"].create(vals)
+        self.add_description(service_pick_id)
         self.write({"created_service_pick": True})
 
         if self._context["picking_type"] == "wastes":
