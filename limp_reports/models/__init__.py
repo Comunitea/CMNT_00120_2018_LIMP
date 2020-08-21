@@ -4,3 +4,4 @@ from . import res_company
 from . import res_users
 from . import acceptance_document
 from . import account_analytic_tag
+from . import account_invoice

@@ -25,7 +25,7 @@
     "author": "Comunitea",
     "website": "https://www.comunitea.com",
     "category": "Base/Partner",
-    "depends": ["base_vat", "l10n_es_partner"],
+    "depends": ["base_vat", "l10n_es_partner", "contacts"],
     "data": ["views/res_partner.xml"],
     "installable": True,
 }

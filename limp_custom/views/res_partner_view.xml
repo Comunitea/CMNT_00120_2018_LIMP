@@ -10,9 +10,6 @@
                 <newline />
                 <field name="picture" widget="image" />
             </field>
-            <field name="title" position="after">
-                <field name="colege_num" attrs="{'invisible': [('is_company', '=', True)]}" placeholder="Colege num."/>
-            </field>
             <xpath expr="//page[@name='internal_notes']//field[@name='comment']" position="before">
                 <group>
                     <field name="add_info" />

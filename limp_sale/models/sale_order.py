@@ -32,8 +32,8 @@ class SaleOrder(models.Model):
     def _get_amount_w_periodicity(self):
         for sale in self:
             if sale.periodicity_id:
-                untaxed = sale.amount_untaxed / sale.periodicity_id.multiplier
-                tax = sale.amount_tax / sale.periodicity_id.multiplier
+                untaxed = sale.amount_untaxed * sale.periodicity_id.multiplier
+                tax = sale.amount_tax * sale.periodicity_id.multiplier
                 if sale.periodicity_id.rounding:
                     untaxed = round(untaxed, 0)
                     tax = round(tax, 0)

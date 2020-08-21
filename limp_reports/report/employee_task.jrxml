@@ -120,9 +120,6 @@
         <field name="Name-name3" class="java.lang.String">
                 <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Social_worker-social_worker_id/Name-name]]></fieldDescription>
         </field>
-        <field name="No_colegiala-colege_num" class="java.lang.String">
-                <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Social_worker-social_worker_id/No_colegiala-colege_num]]></fieldDescription>
-        </field>
         <field name="Nombre-first_name2" class="java.lang.String">
                 <fieldDescription><![CDATA[/data/record/Lineas_ayuda_a_domicilio-home_help_line_ids/Trabajador_social_cliente-partner_social_worker_id/Nombre-first_name]]></fieldDescription>
         </field>
@@ -641,20 +638,6 @@ AUXILIAR DE CONVIVENCIA]]></text>
                                 </textElement>
                                 <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name}]]></textFieldExpression>
                         </textField>
-                        <textField>
-                                <reportElement positionType="Float" x="472" y="87" width="100" height="10"/>
-                                <textElement>
-                                        <font size="7"/>
-                                </textElement>
-                                <textFieldExpression class="java.lang.String"><![CDATA[$F{No_colegiala-colege_num}]]></textFieldExpression>
-                        </textField>
-                        <staticText>
-                                <reportElement positionType="Float" x="419" y="87" width="53" height="10"/>
-                                <textElement>
-                                        <font size="7" isBold="false"/>
-                                </textElement>
-                                <text><![CDATA[Nº Colegiada:]]></text>
-                        </staticText>
                         <textField isStretchWithOverflow="true">
                                 <reportElement positionType="Float" x="419" y="472" width="150" height="10">
                                         <printWhenExpression><![CDATA[!$F{Nombre-name}.isEmpty()]]></printWhenExpression>

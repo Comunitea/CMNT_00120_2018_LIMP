@@ -33,4 +33,3 @@ class ResPartner(models.Model):
             ("tramit", "Tramit"),
         ]
     )
-    colege_num = fields.Char("Colege number", size=64)
