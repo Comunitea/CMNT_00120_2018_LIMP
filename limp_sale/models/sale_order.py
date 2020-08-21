@@ -286,6 +286,7 @@ class SaleOrder(models.Model):
             or False,
             "delegation_id": self.delegation_id.id,
             "department_id": self.department_id.id,
+            "manager_id": False,
             "fiscal_position": self.fiscal_position_id
             and self.fiscal_position_id.id
             or False,

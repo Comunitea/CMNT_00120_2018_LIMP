@@ -140,7 +140,7 @@
                 <div class="col-5 col-offset-1" style="border: 1px solid black">
                     <p>Responsable:</p>
                     <div t-if="not doc.user_id.signature_image" style="min-height: 110px"/>
-                    <img t-if="doc.user_id.signature_image" t-att-src="'data:image/png;base64,%s' % doc.user_id.signature_image" style="max-height: 110px;"/>
+                    <img t-if="doc.user_id.signature_image" t-att-src="image_data_uri(doc.user_id.signature_image)" style="max-height: 110px;"/>
                 </div>
             </div>
         </xpath>
