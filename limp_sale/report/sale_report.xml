@@ -73,33 +73,29 @@
                                 <span>Total neto :</span>
                             </td>
                             <td class="text-right">
-                                 <span t-field="doc.amount_untaxed"
+                                 <span t-field="doc.amount_untaxed" t-if="not doc.periodicity_id"
+                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                <span t-field="doc.amount_untaxed_periodicity" t-if="doc.periodicity_id"
                                     t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
                             </td>
                             <td>
                                 <span>Impuestos :</span>
                             </td>
                             <td class="text-right">
-                                 <span t-field="doc.amount_tax"
+                                 <span t-field="doc.amount_tax" t-if="not doc.periodicity_id"
+                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                <span t-field="doc.amount_tax_periodicity" t-if="doc.periodicity_id"
                                     t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
                             </td>
                             <td>
                                 <strong>Total :</strong>
                             </td>
                             <td class="text-right">
-                                 <strong><span t-field="doc.amount_total"
+                                 <strong><span t-field="doc.amount_total" t-if="not doc.periodicity_id"
+                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                    <span t-field="doc.amount_total_periodicity" t-if="doc.periodicity_id"
                                     t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></strong>
-                            </td>
-                        </tr>
-                        <tr t-if="doc.periodicity_id">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><strong>Con periodicidad <span t-field="doc.periodicity_id.name"/>: </strong></td>
-                            <td class="text-right">
-                                <strong><span t-field="doc.amount_total_periodicity"
-                                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/></strong>
+
                             </td>
                         </tr>
                     </table>
