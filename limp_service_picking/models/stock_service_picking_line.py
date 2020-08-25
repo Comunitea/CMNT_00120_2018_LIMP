@@ -220,7 +220,7 @@ class StockServicePickingLine(models.Model):
             "cleaning",
         ]:
             res.picking_id.write(
-                {"retired_date": res.transport_date[:10]}
+                {"retired_date": res.transport_date}
             )
         return res
 
