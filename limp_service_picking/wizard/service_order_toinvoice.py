@@ -107,11 +107,6 @@ class ServiceOrderToinvoice(models.TransientModel):
             account_id = partner.property_account_receivable_id.id
             payment_term_id = service_picking.payment_term.id
             address_contact_id = service_picking.address_id.id
-            address_tramit_id = (
-                service_picking.address_tramit_id
-                and service_picking.address_tramit_id.id
-                or False
-            )
             comment = False
 
             if service_picking.ccc_account_id:
@@ -208,7 +203,6 @@ class ServiceOrderToinvoice(models.TransientModel):
                     "account_id": account_id,
                     "partner_id": partner.id,
                     "partner_shipping_id": address_contact_id,
-                    "address_tramit_id": address_tramit_id,
                     "comment": comment,
                     "payment_term_id": payment_term_id,
                     "payment_mode_id": service_picking.payment_mode.id,

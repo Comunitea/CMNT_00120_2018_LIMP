@@ -60,7 +60,6 @@ class AccountAnalyticAccount(models.Model):
     analytic_distribution_id = fields.Many2one(
         "account.analytic.tag", "Analytic Distribution"
     )
-    address_tramit_id = fields.Many2one("res.partner", "Tramit address")
     partner_name = fields.Char(
         "Partner name", related="partner_id.name", readonly=True, store=True
     )
@@ -273,13 +272,6 @@ class AccountAnalyticAccount(models.Model):
                 vals.update(
                     {"partner_shipping_id": line.contract_id.address_id.id}
                 )
-            if line.contract_id.address_tramit_id:
-                vals.update(
-                    {
-                        "address_tramit_id":
-                        line.contract_id.address_tramit_id.id
-                    }
-                )
 
             if line.contract_id.include_pickings:
                 picking_ids = self.env["stock.service.picking"].search(
@@ -330,10 +322,6 @@ class AccountAnalyticAccount(models.Model):
                 if contract.address_id:
                     vals.update(
                         {"partner_shipping_id": contract.address_id.id}
-                    )
-                if contract.address_tramit_id:
-                    vals.update(
-                        {"address_tramit_id": contract.address_tramit_id.id}
                     )
 
                 if contract.include_pickings:
