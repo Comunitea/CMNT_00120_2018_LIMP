@@ -52,6 +52,7 @@ msgstr "Activo"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_product_product__active_matter_percent
+#: model:ir.model.fields,field_description:limp_service_picking.field_product_template__active_matter_percent
 msgid "Active Mater (%)"
 msgstr "Materia activa (%)"
 
@@ -172,6 +173,7 @@ msgstr "Ningún diario de compras intercompañía encontrado."
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_product_product__application_method
+#: model:ir.model.fields,field_description:limp_service_picking.field_product_template__application_method
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used__application_method
 msgid "Application method"
 msgstr "Método de aplicación"
@@ -242,6 +244,7 @@ msgstr "Facturable"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_product_product__biocide_type
+#: model:ir.model.fields,field_description:limp_service_picking.field_product_template__biocide_type
 msgid "Biocide type"
 msgstr "Tipo de biocida"
 
@@ -897,6 +900,7 @@ msgstr "Dosis"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_product_product_dosis
+#: model:ir.model.fields,field_description:limp_service_picking.field_product_template_dosis
 msgid "Dosis (%)"
 msgstr ""
 
@@ -2310,6 +2314,7 @@ msgstr "Número de registro"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_product_product__registration_no
+#: model:ir.model.fields,field_description:limp_service_picking.field_product_template__registration_no
 msgid "Registration no."
 msgstr "Nº registro"
 
@@ -2387,6 +2392,7 @@ msgstr "Servicio arena"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_product_product__security_term
+#: model:ir.model.fields,field_description:limp_service_picking.field_product_template__security_term
 #: model:ir.model.fields,field_description:limp_service_picking.field_products_used__security_term
 msgid "Security term"
 msgstr "Plazo seguridad"

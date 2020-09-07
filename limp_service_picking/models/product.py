@@ -29,6 +29,23 @@ class ProductTemplate(models.Model):
     overload_price = fields.Float(
         "Overload price", digits=dp.get_precision("Sale Price")
     )
+    tax_product = fields.Boolean("Tax product", readonly=False,
+                                 related="product_variant_ids.tax_product")
+    biocide_type = fields.Char("Biocide type", size=150, readonly=False,
+                               related="product_variant_ids.biocide_type")
+    active_matter_percent = fields.\
+        Float("Active Mater (%)", digits=(16, 3), readonly=False,
+              related="product_variant_ids.active_matter_percent")
+    registration_no = fields.\
+        Char("Registration no.", size=150, readonly=False,
+             related="product_variant_ids.registration_no")
+    application_method = fields.\
+        Char("Application method", size=150, readonly=False,
+             related="product_variant_ids.application_method")
+    dosis = fields.Float("Dosis (%)", digits=(16, 3), readonly=False,
+                         related="product_variant_ids.dosis")
+    security_term = fields.Char("Security term", size=150, readonly=False,
+                                related="product_variant_ids.security_term")
 
 
 class ProductProduct(models.Model):

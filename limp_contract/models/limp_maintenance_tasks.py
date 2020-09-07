@@ -204,7 +204,6 @@ class MaintenanceTask(models.Model):
                         )
                     ]
                 for date in dates:
-                    next_execution_date = fields.Date.today()
                     contract = self.env["limp.contract"].search(
                         [("analytic_account_id", "=", task.contract_id.id)]
                     )[0]
@@ -214,7 +213,7 @@ class MaintenanceTask(models.Model):
                             "planified": True,
                             "maintenance": True,
                             "contract_id": contract.id,
-                            "picking_date": next_execution_date,
+                            "picking_date": date.strftime("%Y-%m-%d"),
                             "payment_type": contract.payment_type_id
                             and contract.payment_type_id.id
                             or False,
