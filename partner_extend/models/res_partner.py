@@ -37,7 +37,7 @@ class ResPartner(models.Model):
             "view_mode": "tree,form",
             "res_model": "limp.contract",
             "domain": "[('partner_id', 'child_of', [%s])]" % self.id,
-            "context": "{'default_worker': True}",
+            "context": "{'default_partner_id': %s}" % self.id,
             "view_id": tree_view_id.id,
             "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
             "type": "ir.actions.act_window",
@@ -61,7 +61,8 @@ class ResPartner(models.Model):
             "res_model": "stock.service.picking",
             "domain": "[('picking_type','=','wastes'),"
                       "('partner_id', 'child_of', [%s])]" % self.id,
-            "context": "{'default_worker': True, 'type': 'wastes'}",
+            "context":
+            "{'default_partner_id': %s, 'type': 'wastes'}" % self.id,
             "view_id": tree_view_id.id,
             "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
             "type": "ir.actions.act_window",
@@ -85,7 +86,8 @@ class ResPartner(models.Model):
             "res_model": "stock.service.picking",
             "domain": "[('picking_type','=','sporadic'),"
                       "('partner_id', 'child_of', [%s])]" % self.id,
-            "context": "{'default_worker': True, 'type': 'sporadic'}",
+            "context":
+            "{'default_partner_id': %s, 'type': 'sporadic'}" % self.id,
             "view_id": tree_view_id.id,
             "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
             "type": "ir.actions.act_window",

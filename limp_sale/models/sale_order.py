@@ -20,7 +20,6 @@
 ##############################################################################
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-from datetime import datetime, timedelta
 
 
 class SaleOrder(models.Model):
@@ -188,13 +187,6 @@ class SaleOrder(models.Model):
     def create(self, vals):
         if vals.get("name", False) == "/":
             vals["name"] = self.env["ir.sequence"].next_by_code("sale.order")
-        if not vals.get("validity_date", False):
-            formatted_date = datetime.strptime(
-                vals["date_order"], "%Y-%m-%d %H:%M:%S"
-            )
-            vals["validity_date"] = datetime.strftime(
-                formatted_date + timedelta(days=30), "%Y-%m-%d"
-            )
         return super(SaleOrder, self).create(vals)
 
     def get_all_tasks(self):
@@ -267,7 +259,7 @@ class SaleOrder(models.Model):
         line = self.order_line and self.order_line[0]
         if not line:
             return
-        obj.description = line.name
+        obj.description = line.name.split('\n')[0]
 
     def create_pick(self):
         vals = {
