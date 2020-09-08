@@ -72,6 +72,8 @@
                     <field name="distribute"/>
                     <field name="department_id"/>
                     <newline/>
+                    <filter string='To Distribute' name="to_distribute" domain="[('distribute', '=', True)]" context="{}" />
+                    <filter string='Not Distribute' name="not_distribute" domain="[('distribute', '!=', True)]" context="{}" />
                     <group  expand='0' string='Group by...'>
                        <filter string='Type' name="type" domain="[]" context="{'group_by' : 'expense_type'}" />
                        <filter string='Vehicle' name="vehicle" context="{'group_by' : 'fleet_id'}"/>
