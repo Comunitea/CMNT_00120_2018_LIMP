@@ -64,6 +64,9 @@
                 <p><b>- Observaciones:</b></p>
             </t>
         </xpath>
+        <xpath expr="//span[@t-field='line.product_uom_qty']" position="attributes">
+            <attribute name="t-options">{"widget": "float", "precision": 2}</attribute>
+        </xpath>
         <xpath expr="//div[@name='total']" position="replace">
             <div class="row" name="total">
                 <div class="col-11 pull-right" t-if="doc.show_total">
