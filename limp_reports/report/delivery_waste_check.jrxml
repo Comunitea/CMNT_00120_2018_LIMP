@@ -29,7 +29,7 @@
                 <field name="Memory_include-memory_include" class="java.lang.Boolean">
                         <fieldDescription><![CDATA[/data/record/Valorizacion-service_picking_valorization_ids/Memory_include-memory_include]]></fieldDescription>
                 </field>
-                <field name="id" class="java.lang.Object">
+                <field name="id" class="java.lang.Integer">
                         <fieldDescription><![CDATA[/data/record/Valorizacion-service_picking_valorization_ids/Albaran_de_servicio-service_picking_id/id]]></fieldDescription>
                 </field>
                 <field name="Sobrecarga-overload_qty" class="java.lang.String">
@@ -490,7 +490,7 @@
                                 </textField>
                                 <componentElement>
                                         <reportElement key="table" positionType="Float" x="0" y="366" width="525" height="20">
-                                                <property name="ODOO_RELATIONS" value="[&apos;service_picking_valorization_ids&apos;]"/>
+                                                <property name="ODOO_RELATIONS" value="service_picking_valorization_ids"/>
                                         </reportElement>
                                         <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
                                                 <datasetRun subDataset="valorization_lines">

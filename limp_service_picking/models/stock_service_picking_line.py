@@ -68,7 +68,7 @@ class StockServicePickingLine(models.Model):
         "Date",
         states={"done": [("readonly", True)]},
         required=True,
-        default=fields.Datetime.now(),
+        default=fields.Datetime.now,
     )
     transport_date_end = fields.Datetime(
         "Date End", states={"done": [("readonly", True)]}
