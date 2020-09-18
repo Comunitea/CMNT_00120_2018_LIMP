@@ -33,6 +33,8 @@ class FleetExpense(models.Model):
     )
     name = fields.Char("Description", required=True)
     fleet_id = fields.Many2one("fleet", "Vehicle", required=True)
+    fleet_owner_id = fields.Many2one("res.partner", "Owner",
+                                     related="fleet_id.owner_id")
     amount = fields.Float(digits=dp.get_precision("Account"), required=True)
     net_amount = fields.Float(
         digits=dp.get_precision("Account"), compute="_compute_net_amount"

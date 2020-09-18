@@ -152,7 +152,7 @@ class MaintenanceTask(models.Model):
     @api.multi
     def execute_maintenace(self):
         now = fields.Datetime.now()
-        to_compare = now + relativedelta(days=45)
+        to_compare = now + relativedelta(days=60)
         dates = [dt for dt in rrule(MONTHLY, dtstart=now, until=to_compare)]
         to_compare_months = [str(x.month).zfill(2) for x in dates]
         to_compare_range = self.env["months.interval"].search(

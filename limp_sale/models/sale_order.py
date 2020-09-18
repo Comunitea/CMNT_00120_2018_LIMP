@@ -183,6 +183,14 @@ class SaleOrder(models.Model):
             "domain": "[('sale_id', '=', " + str(self.id) + ")]",
         }
 
+    @api.multi
+    def _prepare_invoice(self):
+        invoice_vals = super()._prepare_invoice()
+        if invoice_vals.get('comment'):
+            del invoice_vals['comment']
+
+        return invoice_vals
+
     @api.model
     def create(self, vals):
         if vals.get("name", False) == "/":

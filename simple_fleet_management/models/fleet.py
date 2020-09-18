@@ -66,6 +66,7 @@ class Fleet(models.Model):
     )
     start_date = fields.Date(store=False)
     end_date = fields.Date(store=False)
+    owner_id = fields.Many2one("res.partner", "Owner")
 
     _sql_constraints = [
         (

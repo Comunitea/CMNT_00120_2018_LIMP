@@ -34,8 +34,8 @@ class ProductTemplate(models.Model):
     biocide_type = fields.Char("Biocide type", size=150, readonly=False,
                                related="product_variant_ids.biocide_type")
     active_matter_percent = fields.\
-        Float("Active Mater (%)", digits=(16, 3), readonly=False,
-              related="product_variant_ids.active_matter_percent")
+        Char("Active Mater (%)", readonly=False,
+             related="product_variant_ids.active_matter_percent")
     registration_no = fields.\
         Char("Registration no.", size=150, readonly=False,
              related="product_variant_ids.registration_no")
@@ -53,7 +53,7 @@ class ProductProduct(models.Model):
 
     tax_product = fields.Boolean("Tax product")
     biocide_type = fields.Char("Biocide type", size=150)
-    active_matter_percent = fields.Float("Active Mater (%)", digits=(16, 3))
+    active_matter_percent = fields.Char("Active Mater (%)")
     registration_no = fields.Char("Registration no.", size=150)
     application_method = fields.Char("Application method", size=150)
     dosis = fields.Float("Dosis (%)", digits=(16, 3))

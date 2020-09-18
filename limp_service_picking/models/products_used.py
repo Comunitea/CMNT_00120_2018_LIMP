@@ -11,7 +11,7 @@ class ProductsUsed(models.Model):
     type_of_biocide = fields.Char(
         "Type of Biocide", related="product_id.biocide_type", readonly=True
     )
-    active_matter = fields.Float(
+    active_matter = fields.Char(
         "Active matter",
         related="product_id.active_matter_percent",
         readonly=True,

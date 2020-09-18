@@ -10,6 +10,8 @@
                 <field name="type"/>
                 <field name="license_plate"/>
                 <field name="avg_consumption"/>
+                <field name="owner_id"/>
+                <field name="company_id"/>
             </tree>
         </field>
     </record>
@@ -29,6 +31,7 @@
                         <field name="avg_consumption"/>
                         <field name="active"/>
                         <field name="company_id"/>
+                        <field name="owner_id"/>
                     </group>
                 </group>
                 <notebook colspan="4">

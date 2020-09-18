@@ -86,6 +86,7 @@
             </field>
             <field name="email" position="after">
                 <field name="type"/>
+                <field name="function"/>
             </field>
             <tree position="attributes">
                 <attribute name="decoration-info">is_company == True</attribute>
