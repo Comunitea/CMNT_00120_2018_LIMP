@@ -36,9 +36,6 @@ class MaintenanceTask(models.Model):
     contract_id = fields.Many2one(
         "account.analytic.account", "Contract", required=True, readonly=True
     )
-    contract_accounts = fields.Many2many(
-        "account.analytic.account", compute="_compute_analytic_accounts"
-    )
     picking_ids = fields.One2many(
         "stock.service.picking",
         "maintenace_task_id",
@@ -118,11 +115,6 @@ class MaintenanceTask(models.Model):
                     ]
                 }
             }
-
-    @api.depends("contract_id")
-    def _compute_analytic_accounts(self):
-        for task in self.filtered("contract_id"):
-            task.contract_accounts = task.contract_id.child_ids
 
     def write(self, vals):
         for obj in self:

@@ -47,6 +47,11 @@ class AccountAnalyticAccount(models.Model):
         compute="_compute_is_contract",
         search="_search_is_contract",
     )
+    is_contract_line = fields.Boolean(
+        "Is contract line",
+        compute="_compute_is_contract_line",
+        search="_search_is_contract_line",
+    )
     is_picking = fields.Boolean(
         "Is picking",
         compute="_compute_is_picking",
@@ -113,14 +118,37 @@ class AccountAnalyticAccount(models.Model):
 
     def _search_is_contract(self, operator, operand):
         ids = []
-        all_contract_ids = self.env["limp.contract"].search([])
-        for data in all_contract_ids.read(["analytic_account_id"]):
-            if data["analytic_account_id"]:
-                ids.append(data["analytic_account_id"][0])
+        all_contracts = self.env["limp.contract"].search([]).\
+            mapped('analytic_account_id')
+        ids = all_contracts.ids
         if operand:
-            domain = [("id", "in", list(set(ids)))]
+            domain = [("id", "in", ids)]
         else:
-            domain = [("id", "not in", list(set(ids)))]
+            domain = [("id", "not in", ids)]
+        return domain
+
+    def _compute_is_contract_line(self):
+        for account in self:
+            cline_ids = self.env["limp.contract.line.cleaning"].search(
+                [("analytic_acc_id", "=", account.id)]
+            )
+            hline_ids = self.env["limp.contract.line.home.help"].search(
+                [("analytic_acc_id", "=", account.id)]
+            )
+            account.is_contract_line = \
+                (cline_ids or hline_ids) and True or False
+
+    def _search_is_contract_line(self, operator, operand):
+        ids = []
+        all_accs = self.env["limp.contract.line.cleaning"].search([]).\
+            mapped('analytic_acc_id')
+        all_accs |= self.env["limp.contract.line.home.help"].search([]).\
+            mapped('analytic_acc_id')
+        ids = all_accs.ids
+        if operand:
+            domain = [("id", "in", ids)]
+        else:
+            domain = [("id", "not in", ids)]
         return domain
 
     def _compute_is_picking_contract(self):

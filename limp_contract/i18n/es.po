@@ -550,11 +550,6 @@ msgid "Contract"
 msgstr "Contrato"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__contract_accounts
-msgid "Contract Accounts"
-msgstr "Cuentas contrato"
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__contract_duration
 msgid "Contract duration"
 msgstr "Duración contrato"
