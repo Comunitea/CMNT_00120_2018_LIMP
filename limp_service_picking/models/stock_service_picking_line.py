@@ -186,9 +186,9 @@ class StockServicePickingLine(models.Model):
     def on_change_type(self):
         no_print = False
         if self.type == "carry":
-            for addr in self.parent_company_id.partner_id.child_ids.filtered(
-                lambda r: r.type != "contact"
-            ):
+            addresses = self.parent_company_id.partner_id.child_ids
+            addresses |= self.parent_company_id.partner_id
+            for addr in addresses:
                 if addr.containers_store:
                     self.orig_address_id = addr.id
                     break

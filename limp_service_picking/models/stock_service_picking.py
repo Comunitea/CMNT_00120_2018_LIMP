@@ -557,7 +557,6 @@ class StockServicePicking(models.Model):
         if not part:
             self.address_id = False
             self.address_invoice_id = False
-            self.orig_address_id = False
             return
 
         addr = part.address_get(["contact", "invoice", "default"])
