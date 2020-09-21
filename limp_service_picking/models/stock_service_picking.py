@@ -531,6 +531,7 @@ class StockServicePicking(models.Model):
     )
     maintenance = fields.Boolean("Maintenance")
     sale_id = fields.Many2one("sale.order", string="Sale")
+    pricelist_id = fields.Many2one("product.pricelist", "Pricelist")
 
     def _amount_all(self):
         for picking in self:
@@ -585,6 +586,8 @@ class StockServicePicking(models.Model):
         )
         self.payment_mode = payment and payment.id or False
         self.intercompany = False
+        self.pricelist_id = part.commercial_partner_id.\
+            property_product_pricelist.id
 
         if self.env.user.company_id.partner_id.id == part.id:
             self.intercompany = True
@@ -635,6 +638,7 @@ class StockServicePicking(models.Model):
                 self.holder_address = self.building_site_id.address_holder
                 self.producer_partner = self.building_site_id.producer_promoter
                 self.producer_address = self.building_site_id.address_producer
+                self.pricelist_id = self.building_site_id.pricelist_id.id
 
         else:
             self.building_site_address_id = False
@@ -644,6 +648,7 @@ class StockServicePicking(models.Model):
             self.holder_address = False
             self.producer_partner = False
             self.producer_address = False
+            self.pricelist_id = False
 
     @api.model
     def create(self, vals):
@@ -699,13 +704,23 @@ class StockServicePicking(models.Model):
             for waste in order.service_picking_valorization_ids:
                 if waste.billable:
                     if waste.product_qty and waste.product_id:
+                        product_context = \
+                            dict(self.env.context,
+                                 partner_id=order.partner_id.id,
+                                 date=order.retired_date or order.picking_date,
+                                 uom=waste.product_id.uom_id.id)
+                        final_price, rule_id = order.pricelist_id.\
+                            with_context(product_context).\
+                            get_product_price_rule(waste.product_id,
+                                                   waste.product_qty,
+                                                   order.partner_id)
                         vals = {
                             "sequence": seq,
                             "product_id": waste.product_id.id,
                             "name": waste.name,
                             "product_qty": waste.product_qty,
                             "product_uom": waste.product_id.uom_id.id,
-                            "price": waste.product_id.list_price,
+                            "price": final_price,
                             "service_picking_id": order.id,
                             "tax_ids": [
                                 (

@@ -78,6 +78,7 @@
                         <field name="carrier_id" attrs="{'required':[('building_site','=',False)],'invisible':[('building_site','=',True)]}" />
                         <field name="manager_partner_id" domain="[('destination_manager', '=', True)]" widget="selection" />
                         <field name="picking_date" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" />
+                        <field name="pricelist_id" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" required="1"/>
                         <field name="manager_address_id" domain="[('id', 'child_of', [manager_partner_id])]" string="Manager address" />
                         <field name="producer_mark" invisible="1" />
                         <field name="retired_date" />

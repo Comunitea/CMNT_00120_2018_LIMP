@@ -2138,6 +2138,12 @@ msgid "Price unit"
 msgstr "Precio unidad"
 
 #. module: limp_service_picking
+#: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services__pricelist_id
+#: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__pricelist_id
+msgid "Pricelist"
+msgstr "Tarifa"
+
+#. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__producer_partner
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines__producer_promoter
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.view_valorization_lines_search

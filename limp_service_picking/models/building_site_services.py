@@ -80,6 +80,7 @@ class BuildingSiteServices(models.Model):
     city_holder = fields.Char("City", size=64)
     province_holder = fields.Char("Province", size=64)
     address_building_site = fields.Many2one("res.partner", "Address")
+    pricelist_id = fields.Many2one("product.pricelist", "Pricelist")
     contact_id = fields.Many2one("res.partner", "Contact")
     building_site_license = fields.Char("License nº", size=64)
     city_building_site = fields.Char("City", size=64)
