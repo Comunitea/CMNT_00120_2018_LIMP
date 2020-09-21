@@ -648,7 +648,6 @@ class StockServicePicking(models.Model):
             self.holder_address = False
             self.producer_partner = False
             self.producer_address = False
-            self.pricelist_id = False
 
     @api.model
     def create(self, vals):
