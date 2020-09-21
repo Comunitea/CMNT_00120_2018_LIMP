@@ -41,6 +41,11 @@ msgid "# of home_help_lines"
 msgstr "# Lin. ayuda dom."
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__maintenance_picking_lines_count
+msgid "# of maintenance"
+msgstr "# de mantenimientos"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__maintenance_task_count
 msgid "# of maintenance tasks"
 msgstr "# de tareas manten."
@@ -57,8 +62,8 @@ msgstr "# de remuneraciones"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__service_picking_lines_count
-msgid "# of serv. pickings"
-msgstr "# alb. Servicio"
+msgid "# of sporadic"
+msgstr "# de esporádicos"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__timesheet_count
@@ -1443,6 +1448,11 @@ msgstr "Tareas mantenimiento"
 
 #. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
+msgid "Maintenances"
+msgstr "Mantenimientos"
+
+#. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_tree
@@ -2051,6 +2061,11 @@ msgstr "Albaranes de servicio"
 #: model:ir.ui.menu,name:limp_contract.menu_sporadic_service_pickings_open
 msgid "Sporadic service pickings"
 msgstr "Albaranes de servicio esporádicos"
+
+#. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
+msgid "Sporadics"
+msgstr "Esporádicos"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__start_date

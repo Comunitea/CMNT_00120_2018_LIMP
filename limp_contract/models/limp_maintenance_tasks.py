@@ -180,7 +180,7 @@ class MaintenanceTask(models.Model):
                                 int(x.code) for x in task.months_interval
                             ),
                         )
-                        if dt != last
+                        if dt.date() != last
                     ]
                 else:
                     last = task.start_date

@@ -75,7 +75,13 @@
                                 type="object"
                                 class="oe_stat_button"
                                 icon="fa-pencil-square-o">
-                                <field name="service_picking_lines_count" widget="statinfo" string="Service Picking"/>
+                                <field name="service_picking_lines_count" widget="statinfo" string="Sporadics"/>
+                            </button>
+                            <button name="action_view_maintenance_service_picking"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o">
+                                <field name="maintenance_picking_lines_count" widget="statinfo" string="Maintenances"/>
                             </button>
                             <button name="action_view_active_remuneration"
                                 type="object"

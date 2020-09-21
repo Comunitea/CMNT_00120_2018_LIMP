@@ -121,7 +121,19 @@ class LimpContract(models.Model):
             "cancelled": [("readonly", True)],
             "close": [("readonly", True)],
         },
-        domain=[("picking_type", "=", "sporadic")],
+        domain=[("picking_type", "=", "sporadic"),
+                ('maintenance', '=', False)],
+    )
+    stock_maintenace_service_picking_ids = fields.One2many(
+        "stock.service.picking",
+        "contract_id",
+        "Maintenance picking lines",
+        states={
+            "cancelled": [("readonly", True)],
+            "close": [("readonly", True)],
+        },
+        domain=[("picking_type", "=", "sporadic"),
+                ('maintenance', '=', True)],
     )
     payment_term_id = fields.Many2one("account.payment.term", "Payment term")
     payment_type_id = fields.Many2one(
@@ -161,8 +173,13 @@ class LimpContract(models.Model):
         readonly=True,
     )
     service_picking_lines_count = fields.Integer(
-        string="# of serv. pickings",
+        string="# of sporadic",
         compute="_compute_service_picking_lines_count",
+        readonly=True,
+    )
+    maintenance_picking_lines_count = fields.Integer(
+        string="# of maintenance",
+        compute="_compute_maintenace_picking_lines_count",
         readonly=True,
     )
     active_remuneration_lines_count = fields.Integer(
@@ -555,6 +572,48 @@ class LimpContract(models.Model):
         action["domain"] = (
             "[('id','in', ["
             + ",".join(map(str, self.stock_sporadic_service_picking_ids._ids))
+            + "])]"
+        )
+        return action
+
+    def _compute_maintenace_picking_lines_count(self):
+        for contract in self:
+            contract.maintenance_picking_lines_count = len(
+                contract.stock_maintenace_service_picking_ids
+            )
+
+    def action_view_maintenance_service_picking(self):
+        action = self.env.ref(
+            "limp_service_picking.sporadic_service_pickings_action"
+        ).read()[0]
+        action["context"] = str(
+            {
+                "default_picking_type": "sporadic",
+                "type": "sporadic",
+                "default_maintenance": True,
+                "form_view_ref":
+                "limp_service_picking.stock_service_picking_form",
+                "default_delegation_id": self.delegation_id.id,
+                "default_partner_id": self.partner_id.id,
+                "default_manager_id": self.manager_id.id,
+                "default_address_invoice_id": self.address_invoice_id.id,
+                "default_address_id": self.address_id.id,
+                "default_ccc_account_id": self.bank_account_id.id,
+                "default_payment_type": self.payment_type_id.id,
+                "default_payment_term": self.payment_term_id.id,
+                "default_privacy": self.privacy,
+                "default_contract_id": self.id,
+                'default_invoice_type': 'noinvoice',
+                "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
+                "default_used_product_ids": [
+                    (6, 0, self.used_product_ids.ids)
+                ],
+            }
+        )
+        action["domain"] = (
+            "[('id','in', ["
+            + ",".join(map(str,
+                           self.stock_maintenace_service_picking_ids._ids))
             + "])]"
         )
         return action
