@@ -16,21 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: limp_service_picking
-#: selection:legionella.samples,type_product:0
-msgid "ACS accumulator"
-msgstr "Acumulador ACS"
-
-#. module: limp_service_picking
-#: selection:legionella.samples,type_product:0
-msgid "ACS far terminal"
-msgstr "Terminal de ACS"
-
-#. module: limp_service_picking
-#: selection:legionella.samples,type_product:0
-msgid "ACS intermediate terminal point"
-msgstr "Punto terminal intermedio ACS"
-
-#. module: limp_service_picking
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
 msgid "Accounting"
@@ -442,21 +427,6 @@ msgstr "Cerrado"
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd_code
 msgid "Code"
 msgstr "Código"
-
-#. module: limp_service_picking
-#: selection:legionella.samples,type_product:0
-msgid "Cold water cistern"
-msgstr "Cisterna de agua fría"
-
-#. module: limp_service_picking
-#: selection:legionella.samples,type_product:0
-msgid "Cold water distant terminal point"
-msgstr "ACS punto terminal lejano"
-
-#. module: limp_service_picking
-#: selection:legionella.samples,type_product:0
-msgid "Cold water intermediate terminal point"
-msgstr "ACS punto terminal intermedio"
 
 #. module: limp_service_picking
 #: selection:stock.service.picking.line,type:0
@@ -1641,11 +1611,6 @@ msgstr "Mensaje de error de entrega"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__message_ids
 msgid "Messages"
 msgstr "Mensajes"
-
-#. module: limp_service_picking
-#: selection:legionella.samples,type_product:0
-msgid "Microbiological analysis"
-msgstr "Análisis microbiológico"
 
 #. module: limp_service_picking
 #: selection:detected.species,name:0

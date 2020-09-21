@@ -26,7 +26,7 @@ class ProductsUsed(models.Model):
         related="product_id.application_method",
         readonly=True,
     )
-    dose = fields.Float("Dose", related="product_id.dosis", readonly=True)
+    dose = fields.Char("Dose", related="product_id.dosis", readonly=True)
     picking_id = fields.Many2one("stock.service.picking", "Picking")
     security_term = fields.Char(
         "Security term", related="product_id.security_term", readonly=True

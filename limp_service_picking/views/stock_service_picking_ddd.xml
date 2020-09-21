@@ -42,7 +42,7 @@
                                         <field name="product_id" domain="[('id', 'in', parent.used_product_ids)]"/>
                                         <field name="code"/>
                                         <field name="registration_number"/>
-                                        <field name="type_product"/>
+                                        <field name="type_product_id"/>
                                         <field name="pick_up_date"/>
                                     </tree>
                                 </field>

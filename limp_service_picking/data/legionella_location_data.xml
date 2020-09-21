@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+        <record model="legionella.location" id="acs_acu">
+            <field name="name">Acumulador ACS</field>
+        </record>
+
+        <record model="legionella.location" id="acs_inter_terminal">
+            <field name="name">Punto terminal intermedio ACS</field>
+        </record>
+
+        <record model="legionella.location" id="acs_far_term">
+            <field name="name">Punto terminal lejano ACS</field>
+        </record>
+
+        <record model="legionella.location" id="cold_w_cistern">
+            <field name="name">Cisterna de agua fría</field>
+        </record>
+
+        <record model="legionella.location" id="cold_w_inter_termpoint">
+            <field name="name">Punto terminal intermedio agua fría</field>
+        </record>
+
+        <record model="legionella.location" id="cold_w_dis_termpoint">
+            <field name="name">Punto terminal lejano agua fría</field>
+        </record>
+
+        <record model="legionella.location" id="micro_a">
+            <field name="name">Análisis microbiológico</field>
+        </record>
+
+</odoo>

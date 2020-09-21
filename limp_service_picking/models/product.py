@@ -42,8 +42,8 @@ class ProductTemplate(models.Model):
     application_method = fields.\
         Char("Application method", size=150, readonly=False,
              related="product_variant_ids.application_method")
-    dosis = fields.Float("Dosis (%)", digits=(16, 3), readonly=False,
-                         related="product_variant_ids.dosis")
+    dosis = fields.Char("Dosis (%)", readonly=False,
+                        related="product_variant_ids.dosis")
     security_term = fields.Char("Security term", size=150, readonly=False,
                                 related="product_variant_ids.security_term")
 
@@ -56,7 +56,7 @@ class ProductProduct(models.Model):
     active_matter_percent = fields.Char("Active Mater (%)")
     registration_no = fields.Char("Registration no.", size=150)
     application_method = fields.Char("Application method", size=150)
-    dosis = fields.Float("Dosis (%)", digits=(16, 3))
+    dosis = fields.Char("Dosis (%)")
     security_term = fields.Char("Security term", size=150)
 
     @api.model

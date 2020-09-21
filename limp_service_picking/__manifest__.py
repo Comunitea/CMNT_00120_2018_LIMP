@@ -69,6 +69,7 @@
         "views/products_used.xml",
         "data/ir_sequence_data.xml",
         "data/type_of_installation_legionella.xml",
+        "data/legionella_location_data.xml",
         "views/legionella_samples.xml",
         "views/types_ddd_view.xml",
         "limp_service_picking_report.xml",

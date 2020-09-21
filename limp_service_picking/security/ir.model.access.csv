@@ -20,6 +20,7 @@
 "access_detected_species","detected_species_all","model_detected_species","group_cleaning_user",1,1,1,1
 "access_products_used","products_used_all","model_products_used","group_cleaning_user",1,1,1,1
 "access_legionella_samples","legionella_samples_all","model_legionella_samples","group_cleaning_user",1,1,1,1
+"access_legionella_location","legionella_location_all","model_legionella_location","group_cleaning_user",1,1,1,1
 "access_type_of_installation_legionella","type_of_installation_legionella_all","model_type_of_installation_legionella","group_cleaning_user",1,1,1,1
 "access_machinery_to_employ","machinery_to_employ_all","model_machinery_to_employ","group_cleaning_user",1,1,1,1
 "access_equipment_to_be_used","equipment_to_be_used_all","model_equipment_to_be_used","group_cleaning_user",1,1,1,1
