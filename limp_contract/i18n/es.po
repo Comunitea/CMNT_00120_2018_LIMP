@@ -156,7 +156,7 @@ msgstr "Estado de actividad"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__address_id
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__address_id
 msgid "Address"
-msgstr "Dirección"
+msgstr "Dirección de envío"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account__address_invoice_id

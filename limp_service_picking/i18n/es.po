@@ -87,14 +87,18 @@ msgid "Add to invoice"
 msgstr "Añadir a factura"
 
 #. module: limp_service_picking
-#: model:ir.model.fields,field_description:limp_service_picking.field_account_analytic_account__address_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services__address_building_site
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services__address_holder
-#: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__address_id
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__holder_address
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__manager_address_id
 msgid "Address"
 msgstr "Dirección"
+
+#. module: limp_service_picking
+#: model:ir.model.fields,field_description:limp_service_picking.field_account_analytic_account__address_id
+#: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__address_id
+msgid "Address"
+msgstr "Dirección de envío"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_account_analytic_account__address_invoice_id
@@ -483,7 +487,7 @@ msgstr "Contacto"
 #. module: limp_service_picking
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
 msgid "Contact address"
-msgstr "Dirección de contacto"
+msgstr "Dirección de envío"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__container_id

@@ -708,7 +708,7 @@
                         <textElement>
                             <font size="9"/>
                         </textElement>
-                        <textFieldExpression class="java.lang.String"><![CDATA[($F{Tipo_de_direccion-type} == "contact" && $F{Nombre-name4} != "") ? $F{Nombre-name4} : $F{Nombre-name3}]]></textFieldExpression>
+                        <textFieldExpression class="java.lang.String"><![CDATA[($F{Tipo_de_direccion-type} == "delivery" && $F{Nombre-name4} != "") ? $F{Nombre-name4} : $F{Nombre-name3}]]></textFieldExpression>
                     </textField>
                     <textField isStretchWithOverflow="true" isBlankWhenNull="false">
                         <reportElement positionType="Float" x="39" y="18" width="209" height="14"/>
@@ -726,7 +726,7 @@
                     </staticText>
                     <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                         <reportElement positionType="Float" x="7" y="46" width="241" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
-                            <printWhenExpression><![CDATA[$F{Tipo_de_direccion-type} != "contact"]]></printWhenExpression>
+                            <printWhenExpression><![CDATA[$F{Tipo_de_direccion-type} != "delivery"]]></printWhenExpression>
                         </reportElement>
                         <textElement>
                             <font size="9"/>

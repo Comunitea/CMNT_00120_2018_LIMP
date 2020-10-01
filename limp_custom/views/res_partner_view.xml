@@ -22,6 +22,9 @@
             <field name="website" position="before">
                 <field name="ref" placeholder="Ref."/>
             </field>
+            <xpath expr="//sheet/notebook/page/field[@name='child_ids']/form/sheet//field[@name='title']" position="after">
+                <field name="attention_of" />
+            </xpath>
         </field>
     </record>
     <record id="view_res_partner_filter_add_company_id" model="ir.ui.view">
