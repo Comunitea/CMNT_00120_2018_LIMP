@@ -127,4 +127,11 @@
         <field name="act_window_id" ref="contacts.action_contacts"/>
     </record>
 
+    <record id="base.action_partner_vendor_form_view1" model="ir.actions.act_window.view">
+        <field eval="3" name="sequence"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="base.res_partner_kanban_view"/>
+        <field name="act_window_id" ref="base.action_partner_supplier_form"/>
+    </record>
+
 </odoo>

@@ -92,7 +92,7 @@ class DistributionCostsImport(models.TransientModel):
         remuneration_obj = self.env["remuneration"]
 
         journal_id = self.env["account.analytic.tag"].search(
-            [("name", "=", "Timesheet Journal")]
+            [("name", "=", "Nóminas")]
         )
         social_journal_id = self.env["account.analytic.tag"].search(
             [("name", "=", "Seguridad Social")]

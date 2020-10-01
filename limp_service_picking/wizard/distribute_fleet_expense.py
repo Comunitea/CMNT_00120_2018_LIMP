@@ -227,9 +227,9 @@ class DistributeFleetExpense(models.TransientModel):
                             "tag_ids": [
                                 (
                                     4,
-                                    self.env["account.analytic.tag"]
-                                    .search([("name", "=", "Gasoil")])[0]
-                                    .id,
+                                    self.env.ref(
+                                        "limp_service_picking.costs_tag"
+                                    ).id,
                                 )
                             ],
                             "ref": vehicle.license_plate,
