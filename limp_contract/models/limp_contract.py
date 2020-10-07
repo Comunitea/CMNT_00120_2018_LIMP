@@ -437,9 +437,11 @@ class LimpContract(models.Model):
 
     def _compute_upamount_history_count(self):
         for contract in self:
-            contract.upamount_history_count = len(
-                contract.upamount_history_ids
-            )
+            upamount_datas = self.env['limp.contract.upamount.history'].\
+                read_group([('contract_id', '=', contract.id)],
+                           ['date'], ['date'])
+            if upamount_datas:
+                contract.upamount_history_count = len(upamount_datas)
 
     def action_view_upamount_history(self):
         action = self.env.ref("limp_contract.upamount_history_action").read()[
