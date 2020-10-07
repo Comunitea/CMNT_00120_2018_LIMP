@@ -18,8 +18,157 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, _, api
+from odoo import models, fields, _, api, exceptions
 from odoo.exceptions import UserError
+from odoo.addons import decimal_precision as dp
+
+
+class StockMove(models.Model):
+
+    _inherit = "stock.move"
+
+    @api.multi
+    def force_set_qty_done(self, reset=False, field='product_uom_qty'):
+        visited_products = []
+        user = self.env.user
+        reserve_moves1 = self.env["stock.move"]
+        reserve_moves2 = self.env["stock.move"]
+        for move in self.\
+                filtered(lambda x: x.state in ('confirmed', 'assigned',
+                                               'partially_available')):
+            pick = move.picking_id
+            if move.product_id.ler_code_id and \
+                    pick.picking_type_id.code == "outgoing":
+                orig_qty = move.product_id.with_context(
+                    location=move.location_id.id
+                ).virtual_available
+                if (
+                    orig_qty < 0.0
+                    and move.product_id.id not in visited_products
+                ):
+                    visited_products.append(move.product_id.id)
+                    if not user.company_id.reserve_product_id:
+                        raise UserError(
+                            _("You have not enough quantity to serve the "
+                              "product %s. Then you have to set the reserve "
+                              "product in company for using it.")
+                            % (move.product_id.name,)
+                        )
+                    else:
+                        reserve_product_id = (
+                            user.company_id.reserve_product_id
+                        )
+                        if (
+                            reserve_product_id.uom_id.category_id.id
+                            == move.product_id.uom_id.category_id.id
+                        ):
+                            qty = move.product_id.uom_id._compute_quantity(
+                                -(orig_qty),
+                                user.company_id.reserve_product_id.uom_id,
+                            )
+                        else:
+                            qty = (
+                                -orig_qty
+                                / move.product_id.ler_code_id.density
+                            )
+
+                        # movimiento de consumo del producto resevado,
+                        # de Stock a producción
+                        move_vals = {
+                            "name": "Used to serve %s in picking %s"
+                            % (move.product_id.name, pick.name),
+                            "product_id":
+                            user.company_id.reserve_product_id.id,
+                            "product_uom_qty": qty,
+                            "product_uom":
+                            user.company_id.reserve_product_id.uom_id.id,
+                            "location_id": move.location_id.id,
+                            "location_dest_id":
+                            user.company_id.reserve_product_id.
+                            property_stock_production.id,
+                        }
+                        reserve_moves1 |= self.env["stock.move"].create(
+                            move_vals
+                        )
+                        # movimiento de creación del producto a enviar
+                        move_vals2 = {
+                            "name": "Created from reserve product",
+                            "product_id": move.product_id.id,
+                            "product_uom_qty": -(orig_qty),
+                            "product_uom": move.product_id.uom_id.id,
+                            "location_id":
+                            move.product_id.property_stock_production.id,
+                            "location_dest_id": move.location_id.id,
+                        }
+                        reserve_moves2 |= self.env["stock.move"].create(
+                            move_vals2
+                        )
+            if reserve_moves1:
+                pick_type_internal = self.env["stock.picking.type"].search(
+                    [
+                        ("code", "=", "internal"),
+                        "|",
+                        (
+                            "default_location_src_id",
+                            "=",
+                            reserve_moves1[0].location_id.id,
+                        ),
+                        (
+                            "default_location_dest_id",
+                            "=",
+                            reserve_moves1[0].location_id.id,
+                        ),
+                    ]
+                )
+
+                pick_1 = self.env["stock.picking"].create(
+                    {
+                        "picking_type_id": pick_type_internal.id,
+                        "location_id": reserve_moves1[0].location_id.id,
+                        "location_dest_id": reserve_moves1[
+                            0
+                        ].location_dest_id.id,
+                        "origin": pick.name,
+                    }
+                )
+                reserve_moves1.write({"picking_id": pick_1.id})
+                pick_1.action_confirm()
+                pick_1.force_set_qty_done()
+                pick_1.action_done()
+            if reserve_moves2:
+                pick_type_internal = self.env["stock.picking.type"].search(
+                    [
+                        ("code", "=", "internal"),
+                        "|",
+                        (
+                            "default_location_src_id",
+                            "=",
+                            reserve_moves2[0].location_dest_id.id,
+                        ),
+                        (
+                            "default_location_dest_id",
+                            "=",
+                            reserve_moves2[0].location_dest_id.id,
+                        ),
+                    ]
+                )
+
+                pick_2 = self.env["stock.picking"].create(
+                    {
+                        "picking_type_id": pick_type_internal.id,
+                        "location_id": reserve_moves2[0].location_id.id,
+                        "location_dest_id": reserve_moves2[
+                            0
+                        ].location_dest_id.id,
+                        "origin": pick.name,
+                    }
+                )
+                reserve_moves2.write({"picking_id": pick_2.id})
+                pick_2.action_confirm()
+                pick_2.force_set_qty_done()
+                pick_2.action_done()
+
+            move.quantity_done = not reset and move[field] or 0.0
 
 
 class StockPicking(models.Model):
@@ -62,6 +211,37 @@ class StockPicking(models.Model):
         required=True,
         default="none",
     )
+    reserved_availability = fields.Float(
+        'Quantity Reserved', compute='compute_picking_qties',
+        digits=dp.get_precision('Product Unit of Measure'))
+    quantity_done = fields.Float(
+        'Quantity Done', compute='compute_picking_qties',
+        digits=dp.get_precision('Product Unit of Measure'))
+    product_uom_qty = fields.Float(
+        'Quantity', compute='compute_picking_qties',
+        digits=dp.get_precision('Product Unit of Measure'))
+
+    @api.multi
+    def force_set_qty_done(self):
+        field = self._context.get('field', 'product_uom_qty')
+        reset = self._context.get('reset', False)
+        states = ('confirmed', 'assigned')
+        for picking in self:
+            picking.action_assign()
+            if picking.state not in states:
+                raise exceptions.\
+                    UserError(_('State {} incorrect for {}'.
+                                format(picking.state, picking.name)))
+            picking.move_lines.force_set_qty_done(reset, field)
+
+    @api.multi
+    def compute_picking_qties(self):
+        for pick in self:
+            pick.quantity_done = sum(x.quantity_done for x in pick.move_lines)
+            pick.reserved_availability = sum(x.reserved_availability
+                                             for x in pick.move_lines)
+            pick.product_uom_qty = sum(x.product_uom_qty
+                                       for x in pick.move_lines)
 
     def action_invoice_create(self, journal_id, group, date):
         grouped_pickings = {}
@@ -141,154 +321,3 @@ class StockPicking(models.Model):
                 invoices |= invoice
             grouped_pickings[key].write({"invoice_state": "invoiced"})
         return invoices
-
-    @api.multi
-    def force_assign(self):
-        visited_products = []
-        user = self.env.user
-        for pick in self:
-            reserve_moves1 = self.env["stock.move"]
-            reserve_moves2 = self.env["stock.move"]
-            moves = pick.move_lines.filtered(
-                lambda x: x.state in ["confirmed", "waiting"]
-            )
-            for move in moves:
-                if (
-                    move.product_id.ler_code_id
-                    and pick.picking_type_id.code == "outgoing"
-                ):
-                    orig_qty = move.product_id.with_context(
-                        location=move.location_id.id
-                    ).virtual_available
-                    if (
-                        orig_qty < 0.0
-                        and move.product_id.id not in visited_products
-                    ):
-                        visited_products.append(move.product_id.id)
-                        if not self.env.user.company_id.reserve_product_id:
-                            raise UserError(
-                                _(
-                                    "You have not enough quantity to serve the product %s. Then you have to set teh reserve product in company for using it."
-                                )
-                                % (move.product_id.name,)
-                            )
-                        else:
-                            reserve_product_id = (
-                                self.env.user.company_id.reserve_product_id
-                            )
-                            if (
-                                reserve_product_id.uom_id.category_id.id
-                                == move.product_id.uom_id.category_id.id
-                            ):
-                                qty = move.product_id.uom_id._compute_quantity(
-                                    -(orig_qty),
-                                    user.company_id.reserve_product_id.uom_id,
-                                )
-                            else:
-                                qty = (
-                                    -orig_qty
-                                    / move.product_id.ler_code_id.density
-                                )
-
-                            # movimiento de consumo del producto resevado, de Stock a producción
-                            move_vals = {
-                                "name": "Used to serve %s in picking %s"
-                                % (move.product_id.name, pick.name),
-                                "product_id": user.company_id.reserve_product_id.id,
-                                "product_uom_qty": qty,
-                                "product_uom": user.company_id.reserve_product_id.uom_id.id,
-                                "location_id": move.location_id.id,
-                                "location_dest_id": user.company_id.reserve_product_id.property_stock_production.id,
-                            }
-                            reserve_moves1 |= self.env["stock.move"].create(
-                                move_vals
-                            )
-                            # movimiento de creación del producto a enviar
-                            move_vals2 = {
-                                "name": "Created from reserve product",
-                                "product_id": move.product_id.id,
-                                "product_uom_qty": -(orig_qty),
-                                "product_uom": move.product_id.uom_id.id,
-                                "location_id": move.product_id.property_stock_production.id,
-                                "location_dest_id": move.location_id.id,
-                            }
-                            reserve_moves2 |= self.env["stock.move"].create(
-                                move_vals2
-                            )
-            if reserve_moves1:
-                pick_type_internal = self.env["stock.picking.type"].search(
-                    [
-                        ("code", "=", "internal"),
-                        "|",
-                        (
-                            "default_location_src_id",
-                            "=",
-                            reserve_moves1[0].location_id.id,
-                        ),
-                        (
-                            "default_location_dest_id",
-                            "=",
-                            reserve_moves1[0].location_id.id,
-                        ),
-                    ]
-                )
-
-                pick_1 = self.env["stock.picking"].create(
-                    {
-                        "picking_type_id": pick_type_internal.id,
-                        "location_id": reserve_moves1[0].location_id.id,
-                        "location_dest_id": reserve_moves1[
-                            0
-                        ].location_dest_id.id,
-                        "origin": pick.name,
-                    }
-                )
-                reserve_moves1.write({"picking_id": pick_1.id})
-                pick_1.action_confirm()
-                if pick_1.state != "assigned":
-                    pick_1.action_assign()
-                    if pick_1.state != "assigned":
-                        pick_1.force_assign()
-                self.env["stock.immediate.transfer"].create(
-                    {"pick_id": pick_1.id}
-                ).process()
-            if reserve_moves2:
-                pick_type_internal = self.env["stock.picking.type"].search(
-                    [
-                        ("code", "=", "internal"),
-                        "|",
-                        (
-                            "default_location_src_id",
-                            "=",
-                            reserve_moves2[0].location_dest_id.id,
-                        ),
-                        (
-                            "default_location_dest_id",
-                            "=",
-                            reserve_moves2[0].location_dest_id.id,
-                        ),
-                    ]
-                )
-
-                pick_2 = self.env["stock.picking"].create(
-                    {
-                        "picking_type_id": pick_type_internal.id,
-                        "location_id": reserve_moves2[0].location_id.id,
-                        "location_dest_id": reserve_moves2[
-                            0
-                        ].location_dest_id.id,
-                        "origin": pick.name,
-                    }
-                )
-                reserve_moves2.write({"picking_id": pick_2.id})
-                pick_2.action_confirm()
-                if pick_2.state != "assigned":
-                    pick_2.action_assign()
-                    if pick_2.state != "assigned":
-                        pick_2.force_assign()
-                self.env["stock.immediate.transfer"].create(
-                    {"pick_id": pick_2.id}
-                ).process()
-
-            pick.action_assign()
-        return super(StockPicking, self).force_assign()

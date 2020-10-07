@@ -39,7 +39,7 @@ class ServicePickingOtherConceptsRel(models.Model):
     @api.onchange("product_id")
     def onchange_product_id_warning(self):
         res = super().onchange_product_id_warning()
-        if self.service_picking_id:
+        if self.service_picking_id and self.product_id:
             lines = self.service_picking_id.sale_line_ids
             use_line = lines.filtered(
                 lambda r: r.product_id == self.product_id
@@ -47,4 +47,17 @@ class ServicePickingOtherConceptsRel(models.Model):
             if use_line:
                 self.price_unit = use_line[0].price_unit
                 self.name = use_line[0].name
+            else:
+                product_context = \
+                    dict(self.env.context,
+                         partner_id=self.service_picking_id.partner_id.id,
+                         date=self.service_picking_id.retired_date or
+                         self.service_picking_id.picking_date,
+                         uom=self.product_id.uom_id.id)
+                final_price, rule_id = self.service_picking_id.pricelist_id.\
+                    with_context(product_context).\
+                    get_product_price_rule(self.product_id,
+                                           self.product_qty,
+                                           self.service_picking_id.partner_id)
+                self.price_unit = final_price
         return res

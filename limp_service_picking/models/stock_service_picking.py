@@ -559,7 +559,7 @@ class StockServicePicking(models.Model):
             self.address_invoice_id = False
             return
 
-        addr = part.address_get(["contact", "invoice", "default"])
+        addr = part.address_get(["delivery", "invoice", "default"])
         payment = (
             part.customer_payment_mode_id
             and part.customer_payment_mode_id
@@ -567,7 +567,7 @@ class StockServicePicking(models.Model):
         )
 
         self.address_invoice_id = addr["invoice"]
-        self.address_id = addr["contact"]
+        self.address_id = addr["delivery"]
         self.ccc_account_id = (
             (payment and part.bank_ids)
             and part.bank_ids[0].id

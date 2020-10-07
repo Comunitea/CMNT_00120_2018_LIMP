@@ -27,6 +27,25 @@
                     <field name="arrival_hours" widget="float_time"/>
                 </group>
             </page>
+             <field name="package_level_ids" position="after">
+                    <group>
+                        <group>
+                            <field name="product_uom_qty" class ="oe_inline" />
+                            <field name="reserved_availability" class ="oe_inline" />
+                            <field name="quantity_done" class ="oe_inline" />
+                        </group>
+                    </group>
+                </field>
+            <field name="move_ids_without_package" position="before">
+                <div attrs="{'invisible':[('state','not in',('confirmed', 'assigned'))]}">
+
+                    <button class="oe_link oe_right"
+                            context="{'reset': False, 'field': 'product_uom_qty'}"
+                            name="force_set_qty_done"  type="object"
+                            string="↳Demanda a hecho"
+                            attrs="{'invisible':[('quantity_done', '!=', 0)]}"/>
+                </div>
+            </field>
         </field>
     </record>
 

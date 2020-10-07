@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-      <record id="view_account_analytic_line_form_add_type_analytic" model="ir.ui.view">
-          <field name="name">account.analytic.line.form.add_type_analytic</field>
-          <field name="model">account.analytic.line</field>
-          <field name="inherit_id" ref="limp_distribution_costs.view_account_analytic_line_tree_add_rem_time"/>
-          <field name="arch" type="xml">
-              <field name="name" position="after">
-                    <field name="privacy"/>
-                  <field name="type_analytic"/>
-              </field>
-          </field>
-      </record>
-
-      <record id="view_account_analytic_line_filter_add_privacy" model="ir.ui.view">
-            <field name="name">account.analytic.line.select</field>
-            <field name="model">account.analytic.line</field>
-            <field name="inherit_id" ref="analytic.view_account_analytic_line_filter"/>
-            <field name="arch" type="xml">
-                <field name="account_id" position="after">
-                    <field name="privacy"/>
-                    <field name="type_analytic"/>
-                </field>
-                <filter name="group_date" position="after">
-                  <filter string="Type" name="type" context="{'group_by':'type_analytic'}"/>
-                </filter>
+    <record id="view_account_analytic_line_form_add_type_analytic" model="ir.ui.view">
+        <field name="name">account.analytic.line.form.add_type_analytic</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="limp_distribution_costs.view_account_analytic_line_tree_add_rem_time" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="privacy" />
+                <field name="type_analytic" />
             </field>
-        </record>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_line_filter_add_privacy" model="ir.ui.view">
+        <field name="name">account.analytic.line.select</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_filter" />
+        <field name="arch" type="xml">
+            <field name="account_id" position="after">
+                <field name="privacy" />
+                <field name="type_analytic" />
+            </field>
+            <filter name="group_date" position="after">
+                <filter string="Type" name="type" context="{'group_by':'type_analytic'}" />
+            </filter>
+        </field>
+    </record>
 
 </odoo>

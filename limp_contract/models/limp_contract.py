@@ -371,7 +371,7 @@ class LimpContract(models.Model):
                 and partner_obj.property_payment_term_id.id
                 or False
             )
-            self.address_id = partner_obj.address_get(["contact"])["contact"]
+            self.address_id = partner_obj.address_get(["delivery"])["delivery"]
             self.address_invoice_id = partner_obj.address_get(["invoice"])[
                 "invoice"
             ]
