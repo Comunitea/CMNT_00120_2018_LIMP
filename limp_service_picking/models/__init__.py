@@ -14,7 +14,6 @@ from . import stock_picking
 from . import fleet
 from . import valorization_lines
 from . import res_company
-from . import stock_move
 from . import timesheet
 from . import other_expenses
 from . import stock_service_picking_ddd

@@ -16,7 +16,7 @@
                 <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Producto-product_id/LER-ler_code_id/Codigo-code]]></fieldDescription>
         </field>
         <field name="Descripcion-description" class="java.lang.String">
-                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Descripcion-description]]></fieldDescription>
+                <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Descripcion-name]]></fieldDescription>
         </field>
         <field name="Cantidad__UdV-product_uos_qty" class="java.lang.String">
                 <fieldDescription><![CDATA[/data/record/Albaranes_internos-move_lines/Cantidad__UdV-product_uos_qty]]></fieldDescription>
