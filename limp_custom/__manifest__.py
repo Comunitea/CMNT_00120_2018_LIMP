@@ -36,7 +36,8 @@
         "limp_contract",
         "l10n_es_facturae",
         "limp_distribution_costs",
-        "account_payment_mode"
+        "account_payment_mode",
+        "stock_secondary_unit"
     ],
     "data": [
         "views/stock_picking_view.xml",

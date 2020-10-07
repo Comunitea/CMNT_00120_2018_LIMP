@@ -34,7 +34,9 @@ class InvoiceLines(models.Model):
         self._cr.execute(
             """
             create or replace view invoice_lines as (
-            SELECT SM.id AS id,SP.date,SP.partner_id,SM.product_uos_qty AS
+            SELECT SM.id AS id,SP.date,SP.partner_id,
+            case when SM.secondary_uom_qty != 0.0 then SM.secondary_uom_qty
+            else SM.product_uom_qty end AS
             quantity,P2.ler_code_id,SM.product_id,SM.product_uom_qty AS m3,
             AIL.price_unit*AIL.quantity AS subtotal, SP.company_id
             FROM stock_move AS SM

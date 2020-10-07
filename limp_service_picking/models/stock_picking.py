@@ -21,11 +21,26 @@
 from odoo import models, fields, _, api, exceptions
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
+from odoo.tools.float_utils import float_round
 
 
 class StockMove(models.Model):
 
     _inherit = "stock.move"
+
+    @api.onchange('product_uom_qty', 'product_uom')
+    def onchange_product_uom_qty(self):
+        if self.product_id.stock_secondary_uom_id:
+            uom = self.product_uom
+            factor = self.product_id.stock_secondary_uom_id.factor * uom.factor
+            move_line_qty = self.product_uom_qty
+            qty = float_round(
+                move_line_qty / (factor or 1.0),
+                precision_rounding=self.product_id.
+                stock_secondary_uom_id.uom_id.rounding
+            )
+            self.secondary_uom_qty = qty
+            self.secondary_uom_id = self.product_id.stock_secondary_uom_id.id
 
     @api.multi
     def force_set_qty_done(self, reset=False, field='product_uom_qty'):

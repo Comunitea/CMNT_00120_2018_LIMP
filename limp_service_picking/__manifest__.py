@@ -37,6 +37,7 @@
         "limp_multi_delegations",
         "analytic_material_costs",
         "report_py3o",
+        'stock_secondary_unit'
     ],
     "data": [
         "security/groups.xml",
