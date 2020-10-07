@@ -53,10 +53,10 @@
                 <fieldDescription><![CDATA[Obra_Servicio-building_site_id/Poseedor_Constructor-holder_builder]]></fieldDescription>
         </field>
         <field name="Nombre-name2" class="java.lang.String">
-                <fieldDescription><![CDATA[Obra_Servicio-building_site_id/Nombre-name]]></fieldDescription>
+                <fieldDescription><![CDATA[Obra_Servicio-building_site_id/Address-address_building_site/Nombre-street]]></fieldDescription>
         </field>
         <field name="Nombre-name3" class="java.lang.String">
-                <fieldDescription><![CDATA[Empresa-partner_id/Nombre-name]]></fieldDescription>
+                <fieldDescription><![CDATA[Empresa-partner_id/Commercial-commercial_partner_id/Nombre-name]]></fieldDescription>
         </field>
         <field name="Code-code" class="java.lang.String">
                 <fieldDescription><![CDATA[Obra_Servicio-building_site_id/Code-code]]></fieldDescription>
@@ -152,8 +152,8 @@
                                         <textElement verticalAlignment="Bottom"/>
                                         <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name3}]]></textFieldExpression>
                                 </textField>
-                                <textField isBlankWhenNull="true">
-                                        <reportElement x="159" y="53" width="230" height="20"/>
+                                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                                        <reportElement positionType="Float" x="159" y="53" width="230" height="20"/>
                                         <box leftPadding="2">
                                                 <bottomPen lineWidth="0.25"/>
                                         </box>

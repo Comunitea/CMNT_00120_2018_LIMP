@@ -53,7 +53,7 @@
                 <fieldDescription><![CDATA[Obra_Servicio-building_site_id/Poseedor_Constructor-holder_builder]]></fieldDescription>
         </field>
         <field name="Nombre-name" class="java.lang.String">
-                <fieldDescription><![CDATA[Obra_Servicio-building_site_id/Nombre-name]]></fieldDescription>
+                <fieldDescription><![CDATA[Obra_Servicio-building_site_id/Address-address_building_site/Nombre-street]]></fieldDescription>
         </field>
         <field name="Logo-picture" class="java.lang.String">
                 <fieldDescription><![CDATA[Gestor_de_destino-manager_partner_id/Logo-picture]]></fieldDescription>
@@ -161,8 +161,8 @@
                                         <textElement verticalAlignment="Bottom"/>
                                         <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2}]]></textFieldExpression>
                                 </textField>
-                                <textField isBlankWhenNull="true">
-                                        <reportElement x="159" y="53" width="230" height="20"/>
+                                <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                                        <reportElement positionType="Float" x="159" y="53" width="230" height="20"/>
                                         <box leftPadding="2" rightPadding="3">
                                                 <bottomPen lineWidth="0.25"/>
                                         </box>
