@@ -31,8 +31,9 @@ class MaintenanceTask(models.Model):
     start_date = fields.Date("Start date", required=True)
     end_date = fields.Date("End date")
     contract_line_id = fields.Many2one(
-        "account.analytic.account", "Workcenter"
+        "account.analytic.account", "Contract Line"
     )
+    workcenter = fields.Char("Workcenter")
     contract_id = fields.Many2one(
         "account.analytic.account", "Contract", required=True, readonly=True
     )
@@ -91,6 +92,7 @@ class MaintenanceTask(models.Model):
                     "default_payment_term": contract.payment_term_id.id,
                     "default_privacy": contract.privacy,
                     "default_contract_id": contract.id,
+                    "default_workcenter": self.workcenter,
                     "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
                     "default_used_product_ids": [
                         (6, 0, self.products_used_ids.mapped("product_id").ids)
@@ -223,6 +225,7 @@ class MaintenanceTask(models.Model):
                             and task.contract_line_id.manager_id.id
                             or contract.analytic_account_id.manager_id.id,
                             "partner_id": contract.partner_id.id,
+                            "workcenter": task.workcenter,
                             "address_invoice_id":
                             contract.address_invoice_id.id,
                             "department_id": (

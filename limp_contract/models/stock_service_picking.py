@@ -24,6 +24,7 @@ class StockServicePicking(models.Model):
     _inherit = "stock.service.picking"
 
     contract_id = fields.Many2one("limp.contract", "Contract")
+    workcenter = fields.Char("Workcenter")
 
     @api.model
     def create(self, vals):

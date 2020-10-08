@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-06 23:06+0000\n"
-"PO-Revision-Date: 2020-08-06 23:06+0000\n"
+"POT-Creation-Date: 2020-10-08 00:04+0000\n"
+"PO-Revision-Date: 2020-10-08 00:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -375,7 +375,7 @@ msgid "Cancelled"
 msgstr "Cancelado"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:387
+#: code:addons/limp_contract/models/limp_contract.py:401
 #, python-format
 msgid "Cannot close the contract without a final date less or equal today."
 msgstr "No puede cerrar el contrato sin una fecha final menor o igual a hoy."
@@ -553,6 +553,11 @@ msgstr "Contiene incidencias"
 #: model_terms:ir.ui.view,arch_db:limp_contract.view_partner_form_add_button_contracts
 msgid "Contract"
 msgstr "Contrato"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__contract_line_id
+msgid "Contract Line"
+msgstr "Linea de contrato"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__contract_duration
@@ -962,13 +967,6 @@ msgid "Execute"
 msgstr "Ejecutar"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__failed_message_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__failed_message_ids
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__failed_message_ids
-msgid "Failed Messages"
-msgstr "Mensajes Fallidos"
-
-#. module: limp_contract
 #: model:months.interval,name:limp_contract.2
 msgid "February"
 msgstr "Febrero"
@@ -1255,6 +1253,15 @@ msgid "Is contract"
 msgstr "Es contrato"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account__is_contract_line
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__is_contract_line
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__is_contract_line
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__is_contract_line
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__is_contract_line
+msgid "Is contract line"
+msgstr "Es linea de contrato"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account__is_picking
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__is_picking
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__is_picking
@@ -1423,6 +1430,11 @@ msgstr "Adjunto principal"
 #: model:ir.actions.act_window,name:limp_contract.maintenance_task_action
 msgid "Maintenance Task"
 msgstr "Tarea mantenimiento"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__stock_maintenace_service_picking_ids
+msgid "Maintenance picking lines"
+msgstr "Lin. albaranes mantenimiento"
 
 #. module: limp_contract
 #: model:ir.ui.menu,name:limp_contract.menu_planified_service_pickings_open
@@ -1675,14 +1687,14 @@ msgid "One for invoice"
 msgstr "Uno por factura"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract_line_cleaning.py:182
-#: code:addons/limp_contract/models/limp_contract_line_home_help.py:189
+#: code:addons/limp_contract/models/limp_contract_line_cleaning.py:178
+#: code:addons/limp_contract/models/limp_contract_line_home_help.py:185
 #, python-format
 msgid "Only contract lines in draft or cancelled states can be deleted."
 msgstr "Sólo lineas de contratos en estado borrador o cancelados pueden ser borrados."
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:313
+#: code:addons/limp_contract/models/limp_contract.py:327
 #, python-format
 msgid "Only contracts in draft or cancelled states can be deleted."
 msgstr "Sólo contratos en estado borrador o cancelados pueden ser borrados."
@@ -2012,11 +2024,6 @@ msgid "Service"
 msgstr "Servicio"
 
 #. module: limp_contract
-#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
-msgid "Service Picking"
-msgstr "Albaranes de servicio"
-
-#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_stock_service_picking
 msgid "Service pickings"
 msgstr "Albaranes servicio"
@@ -2199,15 +2206,6 @@ msgid "Total qty."
 msgstr "Cant. total"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account__address_tramit_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__address_tramit_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__address_tramit_id
-#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__address_tramit_id
-#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__address_tramit_id
-msgid "Tramit address"
-msgstr "Unidad tramitadora"
-
-#. module: limp_contract
 #: selection:limp.contract,periodicity_desinfeccion:0
 #: selection:limp.contract,periodicity_desinsectacion:0
 #: selection:limp.contract,periodicity_desratizacion:0
@@ -2354,9 +2352,10 @@ msgid "Weekly"
 msgstr "Semanal"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__contract_line_id
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_tree
+#: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__workcenter
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__workcenter
 msgid "Workcenter"
 msgstr "Centro de trabajo"

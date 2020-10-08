@@ -11,15 +11,8 @@ class LegionellaLocation(models.Model):
 class LegionellaSamples(models.Model):
 
     _name = "legionella.samples"
-    _rec_name = "product_id"
+    _rec_name = "code"
 
-    product_id = fields.Many2one("product.product", "Product", required=True)
-    registration_number = fields.Char(
-        "Registration Number",
-        required=False,
-        readonly=True,
-        related="product_id.registration_no",
-    )
     type_product_id = fields.Many2one("legionella.location",
                                       "Punto de recogida", required=True)
 

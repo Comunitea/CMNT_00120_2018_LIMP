@@ -35,6 +35,9 @@
                 <field name="sale_id"/>
                 <field name="maintenance" invisible="1"/>
              </field>
+             <field name="description" position="after">
+                <field name="workcenter" attrs="{'invisible': [('maintenance', '!=', True)]}"/>
+             </field>
             <field name="other_concepts_ids" position="after">
                 <separator string="Associated sale lines" colspan="4"/>
                 <field name="sale_line_ids" nolabel="1" colspan="4">
