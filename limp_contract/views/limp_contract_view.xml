@@ -5,7 +5,7 @@
             <field name="name">limp.contract.tree</field>
             <field name="model">limp.contract</field>
             <field name="arch" type="xml">
-                <tree string="Contracts">
+                <tree string="Contracts" decoration-muted="state=='cancelled'" decoration-info="state in ('draft', 'wait_signature')" decoration-success="state == 'open'">
                     <field name="name" string="Name" required="0"/>
                     <field name="partner_id" string="Customer"/>
                     <field name="description"/>

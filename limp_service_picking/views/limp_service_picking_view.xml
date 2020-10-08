@@ -5,7 +5,7 @@
         <field name="name">stock.service.picking.tree</field>
         <field name="model">stock.service.picking</field>
         <field name="arch" type="xml">
-            <tree string="Service pickings" decoration-muted="invoice_type == 'noinvoice'" decoration-success="state == 'active'">
+            <tree string="Service pickings" decoration-muted="state=='cancelled'" decoration-info="state=='draft'" decoration-success="state == 'active'">
                 <field name="name" />
                 <field name="partner_id" />
                 <field name="building_site_address_id" />

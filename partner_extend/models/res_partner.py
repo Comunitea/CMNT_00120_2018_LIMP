@@ -19,6 +19,8 @@
 ##############################################################################
 
 from odoo import models, api
+from odoo.exceptions import ValidationError
+from odoo.addons.base_iban.models.res_partner_bank import validate_iban
 
 
 class ResPartner(models.Model):
@@ -123,3 +125,16 @@ class ResPartner(models.Model):
         if self._context.get('show_vat') and partner.vat:
             name = "%s ‒ %s" % (name, partner.vat)
         return name
+
+
+class ResPartnerBank(models.Model):
+
+    _inherit = "res.partner.bank"
+
+    @api.onchange('acc_number')
+    def _onchange_acc_number(self):
+        if self.acc_number:
+            try:
+                validate_iban(self.acc_number)
+            except ValidationError:
+                raise

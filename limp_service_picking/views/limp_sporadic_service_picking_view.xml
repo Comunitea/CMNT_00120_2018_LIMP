@@ -5,7 +5,7 @@
         <field name="name">stock.sporadic.service.picking.tree</field>
         <field name="model">stock.service.picking</field>
         <field name="arch" type="xml">
-            <tree string="Sporadic service pickings" decoration-muted="invoice_type == 'noinvoice'" decoration-info="planified and state=='draft'" decoration-success="state == 'active'">
+            <tree string="Sporadic service pickings" decoration-muted="state=='cancelled'" decoration-info="state=='draft'" decoration-success="state == 'active'">
                 <field name="name"/>
                 <field name="picking_date"/>
                 <field name="partner_id"/>

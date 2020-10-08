@@ -114,7 +114,10 @@ class BuildingSiteServices(models.Model):
     def _compute_address_name(self):
         for obj in self:
             if obj.address_building_site:
-                obj.name = obj.address_building_site.name_get()[0][1]
+                addr = obj.address_building_site
+                obj.name = (addr.street or '') + \
+                    (addr.zip and " " + addr.zip or '') + \
+                    (addr.state_id and " " + addr.state_id.name or '')
             elif obj.contact_id:
                 obj.name = obj.contact_id.name
             else:

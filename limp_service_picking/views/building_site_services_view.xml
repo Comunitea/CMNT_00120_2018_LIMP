@@ -82,7 +82,7 @@
                         </group>
                         <group>
                             <group>
-                                <field name="address_building_site" context="{'form_view_ref':'base.view_partner_address_form2','tree_view_ref':'base.view_partner_address_tree'}" attrs="{'required':[('show','!=','service')]}"/>
+                                <field name="address_building_site" context="{'form_view_ref':'base.view_partner_short_form','tree_view_ref':'base.view_partner_address_tree'}" attrs="{'required':[('show','!=','service')]}"/>
                                 <field name="building_site_license" attrs="{'invisible':[('show','=','service')]}" />
                                 <field name="city_building_site"/>
                             </group>
