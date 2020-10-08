@@ -7,7 +7,7 @@
         res_model="remuneration"
         view_mode="tree,form"
         domain="[('employee_id', '=', active_id)]"
-        context="{'search_default_actives':1}"
+        context="{'search_default_actives':1, 'default_employee_id': active_id}"
     />
 
     <record id="view_employee_form_add_incidences" model="ir.ui.view">

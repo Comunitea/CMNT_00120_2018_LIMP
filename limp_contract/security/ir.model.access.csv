@@ -34,3 +34,4 @@
 "access_maintenance_task_all","maintenance_task_cleaning_all","model_maintenance_task",,1,0,0,0
 "access_limp_center_type_administrative","limp_center_type_administrative","model_limp_center_type","group_limp_administrative",1,1,1,1
 "access_limp_months_interval","months_interval","model_months_interval","group_limp_administrative",1,1,1,1
+"access_types_ddd_administrative","types_ddd_administrative","limp_service_picking.model_types_ddd","group_limp_administrative",1,1,1,1
