@@ -130,14 +130,10 @@
                              </field>
                         </page>
                         <page string="Remunerations">
-                            <notebook colspan="4">
-                                <page string="Active remunerations">
-                                    <field name="active_remuneration_ids" nolabel="1" colspan="4"/>
-                                </page>
-                                <page string="Inactive remunerations">
-                                    <field name="inactive_remuneration_ids" nolabel="1" colspan="4"/>
-                                </page>
-                            </notebook>
+                            <separator string="Active remunerations"/>
+                            <field name="active_remuneration_ids" nolabel="1" colspan="4"/>
+                            <separator string="Inactive remunerations"/>
+                            <field name="inactive_remuneration_ids" nolabel="1" colspan="4"/>
                         </page>
                         <page string="Accounting">
                             <group col="4">
