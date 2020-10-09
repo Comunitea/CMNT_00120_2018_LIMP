@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, _
+from odoo import api, models, fields, _
 from odoo.exceptions import UserError
 
 
@@ -38,8 +38,6 @@ class LimpContractLineEmployeeTask(models.Model):
     department_id = fields.Many2one(
         "hr.department",
         string="Department",
-        related="contract_id.department_id",
-        readonly=True,
     )
     employee_ids = fields.Many2many(
         "hr.employee",
@@ -62,6 +60,7 @@ class LimpContractLineEmployeeTask(models.Model):
                 [x.name for x in task.employee_ids]
             )
 
+    @api.model
     def create(self, vals):
         res = super(LimpContractLineEmployeeTask, self).create(vals)
         if (

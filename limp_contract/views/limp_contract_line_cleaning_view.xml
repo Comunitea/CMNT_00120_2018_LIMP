@@ -64,7 +64,7 @@
                             <field name="active_remuneration_ids" nolabel="1" colspan="4" context="{'default_analytic_account_id': analytic_acc_id}"/>
                         </page>
                         <page string="Employees Tasks">
-                            <field name="employee_task_ids" nolabel="1" colspan="4"/>
+                            <field name="employee_task_ids" nolabel="1" colspan="4" context="{'default_department_id': department_id}"/>
                         </page>
                         <page string="Consumptions">
                            <field name="analytic_move_ids" nolabel="1" colspan="4" context="{'employee_id': manager_id}">
