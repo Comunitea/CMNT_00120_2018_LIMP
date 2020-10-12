@@ -28,6 +28,21 @@
         </field>
     </record>
 
+    <record id="view_partner_short_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_short_form"/>
+        <field name="arch" type="xml">
+            <field name="city" position="before">
+                <field name="zip_id"
+                       options="{'create_name_field': 'city', 'no_open': True, 'no_create': True}"
+                       placeholder="Location completion"
+                       class="oe_edit_only"
+                        attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
      <record id="view_partner_form_avoid_facturae" model="ir.ui.view">
         <field name="name">res.partner.form.avoid.facturae</field>
         <field name="model">res.partner</field>

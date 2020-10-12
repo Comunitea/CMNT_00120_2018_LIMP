@@ -111,13 +111,14 @@ class BuildingSiteServices(models.Model):
     )
     description = fields.Char("Description", size=128)
 
+    @api.depends('address_building_site', 'contact_id')
     def _compute_address_name(self):
         for obj in self:
             if obj.address_building_site:
                 addr = obj.address_building_site
                 obj.name = (addr.street or '') + \
                     (addr.zip and " " + addr.zip or '') + \
-                    (addr.state_id and " " + addr.state_id.name or '')
+                    (addr.city and " " + addr.city or '')
             elif obj.contact_id:
                 obj.name = obj.contact_id.name
             else:

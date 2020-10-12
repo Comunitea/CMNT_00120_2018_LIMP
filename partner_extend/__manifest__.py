@@ -26,7 +26,7 @@
     "website": "https://www.comunitea.com",
     "category": "Base/Partner",
     "depends": ["base_vat", "l10n_es_partner", "contacts", "l10n_es_facturae",
-                "base_iban", "account"],
+                "base_iban", "account", "base_location"],
     "data": ["views/res_partner.xml"],
     "installable": True,
 }
