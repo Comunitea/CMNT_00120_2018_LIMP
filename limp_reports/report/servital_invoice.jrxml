@@ -356,7 +356,7 @@
                                         <textElement textAlignment="Left" verticalAlignment="Middle">
                                                 <font size="8"/>
                                         </textElement>
-                                        <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2} + "\n" + $F{Plazo_de_pago-name} + "\n" + $F{IBAN-iban} + ($F{Expiration_dates-expiration_dates_str}.isEmpty() ? "" : "\nVencimiento: \n" + $F{Expiration_dates-expiration_dates_str})]]></textFieldExpression>
+                                        <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2} + "\n" + $F{Plazo_de_pago-name} + "\n" + $F{Numero_de_cuenta-acc_number} + ($F{Expiration_dates-expiration_dates_str}.isEmpty() ? "" : "\nVencimiento: \n" + $F{Expiration_dates-expiration_dates_str})]]></textFieldExpression>
                                 </textField>
                                 <frame>
                                         <reportElement x="302" y="6" width="255" height="113"/>
