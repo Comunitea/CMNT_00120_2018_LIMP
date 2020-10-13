@@ -169,6 +169,7 @@
                                             </group>
                                             <group>
                                                 <field name="address_invoice_id" domain="[('id', 'child_of', [partner_id])]" required="1"/>
+                                                <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]"/>
                                                 <field name="invoice_header"/>
                                                 <field name="analytic_distribution_id"/>
                                             </group>

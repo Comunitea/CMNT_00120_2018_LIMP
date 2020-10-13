@@ -174,7 +174,7 @@
         <fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Provincia-state_id/Nombre_provincia-name]]></fieldDescription>
     </field>
     <field name="Nombre-name" class="java.lang.String">
-        <fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Nombre_de_empresa-parent_id/Nombre-name]]></fieldDescription>
+        <fieldDescription><![CDATA[/data/record/Direccion_fiscal-partner_id/Nombre_de_empresa-commercial_partner_id/Nombre-name]]></fieldDescription>
     </field>
     <field name="Plazo_de_pago-name" class="java.lang.String">
         <fieldDescription><![CDATA[/data/record/Plazo_de_pago-payment_term_id/Plazo_de_pago-name]]></fieldDescription>
@@ -189,7 +189,7 @@
         <fieldDescription><![CDATA[/data/record/Informacion_adicional-comment]]></fieldDescription>
     </field>
     <field name="Nombre-name3" class="java.lang.String">
-        <fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/Nombre_de_empresa-parent_id/Nombre-name]]></fieldDescription>
+        <fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/Nombre_de_empresa-commercial_partner_id/Nombre-name]]></fieldDescription>
     </field>
     <field name="C.P.-zip2" class="java.lang.String">
         <fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_shipping_id/C.P.-zip]]></fieldDescription>
@@ -240,7 +240,7 @@
         <fieldDescription><![CDATA[/data/record/Cuenta_bancaria-partner_bank_id/IBAN-iban]]></fieldDescription>
     </field>
     <field name="Nombre_del_contacto-name" class="java.lang.String">
-        <fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_id/Nombre_del_contacto-name]]></fieldDescription>
+        <fieldDescription><![CDATA[/data/record/Direccion_de_factura-partner_id/Matriz-commercial_partner_id/Nombre_del_contacto-name]]></fieldDescription>
     </field>
     <field name="Tipo_de_direccion-type" class="java.lang.String">
         <fieldDescription><![CDATA[/data/record/Direccion_contacto-partner_shipping_id/Tipo_de_direccion-type]]></fieldDescription>
@@ -379,13 +379,6 @@
                 </textField>
                 <frame>
                     <reportElement x="300" y="6" width="255" height="113"/>
-                    <textField isStretchWithOverflow="true">
-                        <reportElement positionType="Float" x="7" y="2" width="241" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
-                        <textElement>
-                            <font size="9"/>
-                        </textElement>
-                        <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name}]]></textFieldExpression>
-                    </textField>
                     <textField isStretchWithOverflow="true">
                         <reportElement positionType="Float" x="7" y="38" width="241" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
                         <textElement>

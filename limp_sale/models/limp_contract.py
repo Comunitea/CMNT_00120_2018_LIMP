@@ -44,6 +44,7 @@ class LimpContract(models.Model):
                 "default_payment_type": self.payment_type_id.id,
                 "default_payment_term": self.payment_term_id.id,
                 "default_privacy": self.privacy,
+                "default_address_tramit_id": self.address_tramit_id.id,
                 "default_contract_id": self.id,
                 "default_sale_id": self.sale_id.id,
             }
@@ -69,6 +70,7 @@ class LimpContract(models.Model):
                 "default_payment_type": self.payment_type_id.id,
                 "default_payment_term": self.payment_term_id.id,
                 "default_privacy": self.privacy,
+                "default_address_tramit_id": self.address_tramit_id.id,
                 "default_contract_id": self.id,
                 "default_sale_id": self.sale_id.id,
             }

@@ -91,8 +91,9 @@ class ServiceOrderToinvoice(models.TransientModel):
                 + "/m:"
                 + str(service_picking.manager_id.id)
             )
-            partner = service_picking.partner_id
-            fpos = partner.property_account_position_id
+            partner = service_picking.address_invoice_id or \
+                service_picking.partner_id
+            fpos = partner.commercial_partner_id.property_account_position_id
             building_site = (
                 service_picking.building_site_id
                 and service_picking.building_site_id
@@ -104,9 +105,15 @@ class ServiceOrderToinvoice(models.TransientModel):
                       "you want to generate invoice.")
                 )
 
-            account_id = partner.property_account_receivable_id.id
+            account_id = partner.commercial_partner_id.\
+                property_account_receivable_id.id
             payment_term_id = service_picking.payment_term.id
             address_contact_id = service_picking.address_id.id
+            address_tramit_id = (
+                service_picking.address_tramit_id
+                and service_picking.address_tramit_id.id
+                or False
+            )
             comment = False
 
             if service_picking.ccc_account_id:
@@ -201,7 +208,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     "origin": (service_picking.name or ""),
                     "type": "out_invoice",
                     "account_id": account_id,
-                    "partner_id": partner.id,
+                    "partner_id": address_tramit_id or partner.id,
                     "partner_shipping_id": address_contact_id,
                     "comment": comment,
                     "payment_term_id": payment_term_id,
@@ -392,7 +399,8 @@ class ServiceOrderToinvoice(models.TransientModel):
                         "comment": False,
                         "journal_id": in_journal_ids[0].id,
                         "reference": service_picking.name,
-                        "account_id": partner.property_account_payable_id.id
+                        "account_id": partner.commercial_partner_id.
+                        property_account_payable_id.id
                     }
                 )
                 invoice.write({"intercompany_invoice_id": invoice_copied.id})

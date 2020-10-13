@@ -65,6 +65,7 @@ class AccountAnalyticAccount(models.Model):
     analytic_distribution_id = fields.Many2one(
         "account.analytic.tag", "Analytic Distribution"
     )
+    address_tramit_id = fields.Many2one("res.partner", "Tramit address")
     partner_name = fields.Char(
         "Partner name", related="partner_id.name", readonly=True, store=True
     )
@@ -288,7 +289,14 @@ class AccountAnalyticAccount(models.Model):
                 ),
                 "invoice_header": line.contract_id.invoice_header,
             }
-            if line.contract_id.address_invoice_id:
+            if line.contract_id.address_tramit_id:
+                vals.update(
+                    {
+                        "partner_id":
+                        line.contract_id.address_tramit_id.id
+                    }
+                )
+            elif line.contract_id.address_invoice_id:
                 vals.update(
                     {"partner_id": line.contract_id.address_invoice_id.id}
                 )
@@ -341,7 +349,11 @@ class AccountAnalyticAccount(models.Model):
                     "contract_id": contract.id,
                     "invoice_header": contract.invoice_header,
                 }
-                if contract.address_invoice_id:
+                if contract.address_tramit_id:
+                    vals.update(
+                        {"partner_id": contract.address_tramit_id.id}
+                    )
+                elif contract.address_invoice_id:
                     vals.update({"partner_id": contract.address_invoice_id.id})
                 if contract.address_id:
                     vals.update(

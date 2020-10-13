@@ -58,7 +58,8 @@ class AccountAnalyticAccount(models.Model):
             "origin": self.name,
             "type": "out_invoice",
             "account_id": self.partner_id.property_account_receivable_id.id,
-            "partner_id": self.partner_id.id,
+            "partner_id": self.address_tramit_id
+            and self.address_tramit_id.id or self.partner_id.id,
             "partner_shipping_id": self.address_id and self.address_id.id,
             "payment_term_id": self.partner_id.property_payment_term_id
             and self.partner_id.property_payment_term_id.id

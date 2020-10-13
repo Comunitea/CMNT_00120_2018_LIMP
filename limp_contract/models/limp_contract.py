@@ -529,6 +529,7 @@ class LimpContract(models.Model):
                 "default_payment_type": self.payment_type_id.id,
                 "default_payment_term": self.payment_term_id.id,
                 "default_privacy": self.privacy,
+                "default_address_tramit_id": self.address_tramit_id.id,
                 "default_contract_id": self.id,
             }
         )
@@ -564,6 +565,7 @@ class LimpContract(models.Model):
                 "default_payment_type": self.payment_type_id.id,
                 "default_payment_term": self.payment_term_id.id,
                 "default_privacy": self.privacy,
+                "default_address_tramit_id": self.address_tramit_id.id,
                 "default_contract_id": self.id,
                 "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
                 "default_used_product_ids": [
@@ -604,6 +606,7 @@ class LimpContract(models.Model):
                 "default_payment_type": self.payment_type_id.id,
                 "default_payment_term": self.payment_term_id.id,
                 "default_privacy": self.privacy,
+                "default_address_tramit_id": self.address_tramit_id.id,
                 "default_contract_id": self.id,
                 'default_invoice_type': 'noinvoice',
                 "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],

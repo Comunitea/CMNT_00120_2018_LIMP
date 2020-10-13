@@ -91,6 +91,7 @@ class MaintenanceTask(models.Model):
                     "default_payment_type": contract.payment_type_id.id,
                     "default_payment_term": contract.payment_term_id.id,
                     "default_privacy": contract.privacy,
+                    "default_address_tramit_id": contract.address_tramit_id.id,
                     "default_contract_id": contract.id,
                     "default_workcenter": self.workcenter,
                     "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
