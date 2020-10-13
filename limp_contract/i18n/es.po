@@ -2206,6 +2206,15 @@ msgid "Total qty."
 msgstr "Cant. total"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_account_analytic_account__address_tramit_id
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__address_tramit_id
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__address_tramit_id
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__address_tramit_id
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__address_tramit_id
+msgid "Tramit address"
+msgstr "Unidad tramitadora"
+
+#. module: limp_contract
 #: selection:limp.contract,periodicity_desinfeccion:0
 #: selection:limp.contract,periodicity_desinsectacion:0
 #: selection:limp.contract,periodicity_desratizacion:0
