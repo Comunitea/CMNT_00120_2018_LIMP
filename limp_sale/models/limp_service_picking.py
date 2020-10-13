@@ -47,7 +47,7 @@ class ServicePickingOtherConceptsRel(models.Model):
             if use_line:
                 self.price_unit = use_line[0].price_unit
                 self.name = use_line[0].name
-            else:
+            elif self.service_picking_id.pricelist_id:
                 product_context = \
                     dict(self.env.context,
                          partner_id=self.service_picking_id.partner_id.id,
@@ -60,4 +60,6 @@ class ServicePickingOtherConceptsRel(models.Model):
                                            self.product_qty,
                                            self.service_picking_id.partner_id)
                 self.price_unit = final_price
+            else:
+                self.price_unit = self.product_id.lst_price
         return res
