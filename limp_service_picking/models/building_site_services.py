@@ -128,6 +128,10 @@ class BuildingSiteServices(models.Model):
     def create(self, vals):
         if self._context.get("partner_id", False):
             vals["partner_ids"] = [(4, self._context["partner_id"])]
+        elif vals.get('address_building_site'):
+            part = self.env['res.partner'].\
+                browse(vals['address_building_site'])
+            vals["partner_ids"] = [(4, part.commercial_partner_id.id)]
         admission_seq = self.env["ir.sequence"].next_by_code(
             "waste.admission.number"
         )
