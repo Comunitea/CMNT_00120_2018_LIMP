@@ -12,6 +12,12 @@
                 <field name="journal_id" position="after">
                     <field name="add_info"/>
                 </field>
+                <xpath expr="//field[@name='tax_line_ids']/tree/field[@name='amount']" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='tax_line_ids']/tree/field[@name='amount_total']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
             </field>
         </record>
 
