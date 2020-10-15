@@ -687,13 +687,6 @@
                                                 </textElement>
                                                 <textFieldExpression class="java.lang.String"><![CDATA[$F{Calle-street2}]]></textFieldExpression>
                                         </textField>
-                                        <textField isStretchWithOverflow="true">
-                                                <reportElement positionType="Float" x="7" y="32" width="241" height="14" forecolor="#000000" backcolor="#FFFFFF"/>
-                                                <textElement>
-                                                        <font size="9"/>
-                                                </textElement>
-                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name3}]]></textFieldExpression>
-                                        </textField>
                                         <textField isStretchWithOverflow="true" isBlankWhenNull="false">
                                                 <reportElement positionType="Float" x="39" y="18" width="209" height="14"/>
                                                 <textElement>
@@ -710,12 +703,11 @@
                                         </staticText>
                                         <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                                                 <reportElement positionType="Float" x="7" y="46" width="241" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF">
-                                                        <printWhenExpression><![CDATA[$F{Nombre-name4} != "" && $F{Nombre-name4} != $F{Nombre-name3}]]></printWhenExpression>
                                                 </reportElement>
                                                 <textElement>
                                                         <font size="9"/>
                                                 </textElement>
-                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name4}]]></textFieldExpression>
+                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name4} != "" && $F{Nombre-name4} != $F{Calle2-street2} ? $F{Nombre-name4} : $F{Nombre-name3}]]></textFieldExpression>
                                         </textField>
                                         <staticText>
                                                 <reportElement x="46" y="2" width="135" height="16" forecolor="#00AD83"/>
