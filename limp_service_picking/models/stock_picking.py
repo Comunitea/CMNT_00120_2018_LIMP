@@ -235,6 +235,14 @@ class StockPicking(models.Model):
     product_uom_qty = fields.Float(
         'Quantity', compute='compute_picking_qties',
         digits=dp.get_precision('Product Unit of Measure'))
+    products = fields.Char("Products", compute="_get_pick_products",
+                           store=True)
+
+    @api.depends('move_lines')
+    def _get_pick_products(self):
+        for pick in self:
+            pick.products = ", ".\
+                join([x.name for x in pick.move_lines.mapped('product_id')])
 
     @api.multi
     def force_set_qty_done(self):

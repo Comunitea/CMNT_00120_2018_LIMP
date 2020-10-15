@@ -681,15 +681,16 @@ class StockServicePicking(models.Model):
                     picking.n_cert = self.env["ir.sequence"].next_by_code(
                         "treatment.certificate.legionella"
                     )
-            if not picking.maintenance:
-                seq = self.env["ir.sequence"].next_by_code(
-                    "stock.service.picking"
-                )
-            else:
-                seq = self.env["ir.sequence"].next_by_code(
-                    "service.picking.maintenance"
-                )
-            picking.name = seq
+            if picking.name == '/':
+                if not picking.maintenance:
+                    seq = self.env["ir.sequence"].next_by_code(
+                        "stock.service.picking"
+                    )
+                else:
+                    seq = self.env["ir.sequence"].next_by_code(
+                        "service.picking.maintenance"
+                    )
+                picking.name = seq
         self.write({"state": "active"})
         return
 

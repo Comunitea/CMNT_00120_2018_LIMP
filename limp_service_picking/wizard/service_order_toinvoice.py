@@ -222,6 +222,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     "manager_id": service_picking.manager_id.id,
                     "intercompany": intercompany,
                     "analytic_id": service_picking.analytic_acc_id.id,
+                    "partner_bank_id": service_picking.ccc_account_id.id
                 }
 
                 if journal_id:

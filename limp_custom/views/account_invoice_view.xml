@@ -26,6 +26,9 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account_invoice_currency.invoice_tree"/>
             <field name="arch" type="xml">
+                <field name="partner_id" position="before">
+                    <field name="commercial_partner_id"/>
+                </field>
                 <field name="partner_id" position="after">
                     <field name="add_info" string="Add. info"/>
                 </field>
@@ -81,5 +84,11 @@
                 <field name="residual_company_signed" position="replace"/>
             </field>
         </record>
+
+        <template id="entity_fix_buyer_type" inherit_id="l10n_es_facturae.entity">
+            <xpath expr="//t[@t-set='buyer_type']" position="attributes">
+                <attribute name="t-value">'J'</attribute>
+            </xpath>
+        </template>
 
 </odoo>

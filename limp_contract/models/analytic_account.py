@@ -349,6 +349,10 @@ class AccountAnalyticAccount(models.Model):
                     "contract_id": contract.id,
                     "invoice_header": contract.invoice_header,
                 }
+                if contract.bank_account_id:
+                    vals.update(
+                        {"partner_bank_id": contract.bank_account_id.id}
+                    )
                 if contract.address_tramit_id:
                     vals.update(
                         {"partner_id": contract.address_tramit_id.id}
