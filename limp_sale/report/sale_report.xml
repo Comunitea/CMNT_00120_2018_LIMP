@@ -134,7 +134,7 @@
         </xpath>
         <xpath expr="//td[hasclass('o_price_total')]" position="replace">
             <td class="text-right o_price_total">
-                <span t-field="line.price_total"/>
+                <span t-field="line.price_tax"/>
             </td>
         </xpath>
         <xpath expr="//p[@id='fiscal_position_remark']" position="after">
