@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AccountInvoiceLine(models.Model):
@@ -33,6 +33,14 @@ class AccountInvoiceLine(models.Model):
     )
     move_id = fields.Many2one("stock.move", "Move", copy=False)
     quantity = fields.Float("Quantity", digits=(12, 3), required=True)
+
+
+    @api.onchange('product_id')
+    def _onchange_product_id(self):
+        res = super()._onchange_product_id()
+        if res.get('domain'):
+            del res['domain']
+        return res
 
 
 class AccountInvoice(models.Model):
