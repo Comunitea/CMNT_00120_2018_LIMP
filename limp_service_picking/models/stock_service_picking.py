@@ -599,6 +599,7 @@ class StockServicePicking(models.Model):
             warning["message"] = message
             if part.picking_warn == "block":
                 self.partner_id = False
+            self.warning = message
             return {"warning": warning}
 
     @api.onchange("manager_partner_id")
