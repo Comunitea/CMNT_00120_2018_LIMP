@@ -113,8 +113,8 @@ class StockInvoiceOnshipping(models.TransientModel):
         action = {}
         if "out" in (len(invoices) > 1 and invoices[0].type or invoices.type):
             action = self.env.ref("account.action_invoice_tree1")
-        elif "in" in (len(invoices) > 1 and invoices[0].type or invoices.type):
-            action = self.env.ref("account.action_invoice_tree2")
+        else:
+            action = self.env.ref("account.action_vendor_bill_template")
 
         if action:
             action = action.read()[0]

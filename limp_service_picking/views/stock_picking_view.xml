@@ -9,6 +9,9 @@
                 <field name="invoice_state"/>
                 <field name="invoice_type"/>
             </field>
+            <button name="do_unreserve" position="after">
+                <button name="%(limp_service_picking.action_stock_invoice_onshipping)d" string="Crear factura" type="action" attrs="{'invisible': [('invoice_state', '!=', '2binvoiced')]}"/>
+            </button>
             <page name="extra" position="inside">
                 <group>
                     <field name="waste_or_arid"/>
