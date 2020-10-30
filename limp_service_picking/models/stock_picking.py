@@ -276,21 +276,25 @@ class StockPicking(models.Model):
                 continue
             type = picking.invoice_type or 'out_invoice'
             if group:
-                if picking.partner_id not in grouped_pickings:
-                    grouped_pickings[picking.partner_id] = self.env[
+                if picking.partner_id.commercial_partner_id \
+                        not in grouped_pickings:
+                    partner = picking.partner_id.commercial_partner_id
+                    grouped_pickings[partner] = self.env[
                         "stock.picking"
                     ]
-                grouped_pickings[picking.partner_id] |= picking
+                grouped_pickings[picking.partner_id.commercial_partner_id] |= \
+                    picking
             else:
                 grouped_pickings[picking] = picking
         invoices = self.env["account.invoice"]
         for key in grouped_pickings:
             if not group:
-                partner = key.partner_id
+                partner = key.partner_id.commercial_partner_id
                 origin = key.name
             else:
                 partner = key
                 origin = ", ".join([x.name for x in grouped_pickings[key]])
+            fpos = partner.property_account_position_id
             invoice_vals = {
                 "partner_id": partner.id,
                 "origin": origin,
@@ -316,26 +320,69 @@ class StockPicking(models.Model):
             for operation in grouped_pickings[key].mapped(
                 "move_lines"
             ):
+                if 'out' in type:
+                    account_id = operation.product_id.product_tmpl_id.\
+                        property_account_income_id
+                    taxes = operation.product_id.taxes_id
+                else:
+                    account_id = operation.product_id.product_tmpl_id.\
+                        property_account_expense_id
+                    taxes = operation.product_id.supplier_taxes_id
+                if not account_id:
+                    if 'out' in type:
+                        account_id = operation.product_id.categ_id.\
+                            property_account_income_categ_id
+                    else:
+                        account_id = operation.product_id.categ_id.\
+                            property_account_expense_categ_id
+                if not account_id:
+                    raise UserError(
+                        _("Income or Expense account in product %s is not set")
+                        % operation.product_id.name
+                    )
+
+                price_unit = operation.product_id.lst_price
+                if 'out' in type:
+                    pricelist = partner.property_product_pricelist
+
+                    product_context = \
+                        dict(self.env.context,
+                             partner_id=partner.id,
+                             date=operation.picking_id.date_done or
+                             operation.picking_id.schedule_date,
+                             uom=operation.product_id.uom_id.id)
+                    price_unit, rule_id = pricelist.\
+                        with_context(product_context).\
+                        get_product_price_rule(operation.product_id,
+                                               operation.quantity_done,
+                                               partner)
+                else:
+                    price_unit = operation.product_id.standard_price
+                    seller = operation.product_id._select_seller(
+                        partner_id=partner,
+                        quantity=operation.quantity_done,
+                        date=operation.picking_id.date_done or
+                        operation.picking_id.schedule_date,
+                        uom_id=operation.product_id.uom_id)
+                    if seller:
+                        price_unit = seller.price
+                tax_ids = fpos.map_tax(taxes)._ids
+
+                account_id = fpos.map_account(account_id).id
                 invoice_line_vals = {
                     "product_id": operation.product_id.id,
-                    "quantity": operation.quantity_done,
-                    "uom_id": operation.product_uom.id,
-                    "price_unit": False,
-                    "name": False,
-                    "invoice_line_tax_ids": False,
-                    "account_id": False,
-                    "account_analytic_id": False,
+                    "quantity": operation.secondary_uom_qty or
+                    operation.quantity_done,
+                    "uom_id": operation.secondary_uom_id and
+                    operation.secondary_uom_id.uom_id.id or
+                    operation.product_uom.id,
+                    "price_unit": price_unit,
+                    "name": operation.name,
+                    "invoice_line_tax_ids": [(6, 0, tax_ids)],
+                    "account_id": account_id,
                     "invoice_id": invoice.id,
                 }
-                specs = self.env["account.invoice.line"]._onchange_spec()
-                updates = self.env["account.invoice.line"].onchange(
-                    invoice_line_vals, ["product_id"], specs
-                )
-                value = updates.get("value", {})
-                for name, val in list(value.items()):
-                    if isinstance(val, tuple):
-                        value[name] = val[0]
-                invoice_line_vals.update(value)
+
                 self.env["account.invoice.line"].create(invoice_line_vals)
             if not invoice.invoice_line_ids:
                 invoice.unlink()
