@@ -20,6 +20,7 @@
                  <field name="date_due" position="before">
                     <field name="invoice_header"/>
                     <field name="contract_id" readonly="0"/>
+                    <field name="privacy"/>
                 </field>
             </field>
         </record>

@@ -39,6 +39,11 @@ class AccountInvoice(models.Model):
         res += ['contract_id']
         return res
 
+    @api.onchange('contract_id')
+    def onchange_contract_id(self):
+        if self.contract_id:
+            self.analytic_id = self.contract_id.analytic_account_id.id
+
 
 class AccountInvoiceLine(models.Model):
 
