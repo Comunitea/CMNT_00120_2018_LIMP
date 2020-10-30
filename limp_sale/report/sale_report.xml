@@ -8,6 +8,9 @@
         <field name="header_spacing">43</field>
     </record>
 
+    <template id="account_payment_sale.report_sale_payment_mode" inherit_id="sale.report_saleorder_document">
+    </template>
+
     <template id="external_layout_standard_custom" inherit_id="web.external_layout_standard">
         <xpath expr="//div[@name='company_address']" position="replace">
              <div class="col-6" name="company_address">
@@ -50,15 +53,19 @@
                 <span t-field="doc.name"/>
             </h2>
         </xpath>
-        <xpath expr="//p[@t-field='doc.date_order']" position="replace">
-            <p t-esc="doc.date_order" t-options='{"widget": "date"}'/>
+        <xpath expr="//p[@t-field='doc.confirmation_date']" position="replace">
+            <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>
         </xpath>
-        <xpath expr="//div[@t-if='doc.payment_term_id']" position="replace">
+        <xpath expr="//p[@t-field='doc.date_order']" position="replace">
+            <p class="m-0" t-field="doc.confirmation_date" t-options='{"widget": "date"}'/>
+        </xpath>
+        <xpath expr="//div[@t-if='doc.payment_term_id']" position="after">
             <div t-if="doc.payment_mode_id"  class="col-auto mw-100 mb-2">
                 <strong>Forma de pago:</strong>
                 <p class="m-0" t-field="doc.payment_mode_id"/>
             </div>
         </xpath>
+        <xpath expr="//p[@t-if='doc.payment_term_id.note']" position="replace"/>
         <xpath expr="//div[@t-if='doc.user_id.name']" position="replace"/>
         <xpath expr="//p[@t-field='doc.note']" position="before">
             <t t-if="doc.very_important_text">
@@ -139,23 +146,19 @@
         </xpath>
         <xpath expr="//p[@id='fiscal_position_remark']" position="after">
             <div class="row" style="page-break-inside:avoid;">
-                <div class="col-5" style="border: 1px solid black">
+                <div class="col-6" style="border: 1px solid black">
                     <p style="margin: 0;">Aceptación y conformidad de la oferta</p>
                     <p style="margin: 0;">Firma y Sello Responsable pedido:</p>
                     <div style="min-height: 80px"/>
                     <p style="margin: 0;">Nº cuenta _______________________________</p>
                 </div>
-                <div class="col-5 col-offset-1" style="border: 1px solid black">
+                <div class="col-6" style="border: 1px solid black">
                     <p>Responsable:</p>
                     <div t-if="not doc.user_id.signature_image" style="min-height: 110px"/>
                     <img t-if="doc.user_id.signature_image" t-att-src="image_data_uri(doc.user_id.signature_image)" style="max-height: 110px;"/>
                 </div>
             </div>
         </xpath>
-    </template>
-
-    <template id="report_sale_payment_mode" inherit_id="account_payment_sale.report_sale_payment_mode">
-        <xpath expr="//p[@t-if='doc.payment_mode_id.note']" position="replace"/>
     </template>
 
 </odoo>
