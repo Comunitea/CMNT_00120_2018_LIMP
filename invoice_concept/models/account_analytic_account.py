@@ -323,12 +323,12 @@ class AccountAnalyticAccount(models.Model):
                     analytic_account.concept_ids or child_concepts_ids
                 ):  # if exists concepts buy they don't group and
                     # it isn't visited
-                    invoice = analytic_account._create_invoice(
-                        end_date
-                    )  # invoice by concept
-                    created_invoices |= invoice
-                    analytic_invoices |= invoice
                     for concept in analytic_account.concept_ids:
+                        invoice = analytic_account._create_invoice(
+                            end_date
+                        )  # invoice by concept
+                        created_invoices |= invoice
+                        analytic_invoices |= invoice
                         res = analytic_account.create_concept_invoice_line(
                             concept, invoice, end_date
                         )  # invoice line by conept
