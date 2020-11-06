@@ -320,7 +320,9 @@ class AccountAnalyticAccount(models.Model):
                             analytic_child_obj  # set account as visited
                         )
                 elif (
-                    analytic_account.concept_ids or child_concepts_ids
+                    (analytic_account.concept_ids or child_concepts_ids)
+                    and not analytic_account.parent_id or
+                    not analytic_account.parent_id.group_concepts
                 ):  # if exists concepts buy they don't group and
                     # it isn't visited
                     for concept in analytic_account.concept_ids:
