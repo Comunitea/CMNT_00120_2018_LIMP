@@ -18,6 +18,7 @@
 #
 ##############################################################################
 from odoo import models, fields
+from odoo.exceptions import UserError
 
 
 class StockPicking(models.Model):
