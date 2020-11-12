@@ -889,7 +889,7 @@ class StockServicePicking(models.Model):
                                     "origin": order.name,
                                     "picking_type_id": pick_type.id,
                                     "state": "draft",
-                                    "address_id": addr,
+                                    "partner_id": addr,
                                     "no_quality": order.no_quality,
                                     "company_id": company.id,
                                     "stock_service_picking_id": order.id,
@@ -930,7 +930,7 @@ class StockServicePicking(models.Model):
                                     + valorization_line.overload_qty,
                                     "product_uom":
                                     valorization_line.product_id.uom_id.id,
-                                    "address_id": addr,
+                                    "partner_id": addr,
                                     "location_id": location_id,
                                     "location_dest_id": location_dest_id,
                                     "tracking_id": False,
