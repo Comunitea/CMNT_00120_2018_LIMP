@@ -18,14 +18,38 @@
 #
 ##############################################################################
 
-from odoo import models, api
+from odoo import models, api, fields, _
 from odoo.exceptions import ValidationError
 from odoo.addons.base_iban.models.res_partner_bank import validate_iban
+from odoo.tools import config
 
 
 class ResPartner(models.Model):
 
     _inherit = "res.partner"
+
+    vat = fields.Char(copy=False)
+
+    @api.constrains('vat')
+    def _check_vat_unique(self):
+        for record in self:
+            if record.parent_id or not record.vat:
+                continue
+            test_condition = (config['test_enable'] and
+                              not self.env.context.get('test_vat'))
+            if test_condition:
+                continue
+            if self.env['res.partner'].sudo().with_context(
+                active_test=False,
+            ).search_count([
+                ('parent_id', '=', False),
+                ('vat', '=', record.vat),
+                ('id', '!=', record.id),
+            ]):
+                raise ValidationError((_(
+                    "The VAT %s already exists in another "
+                    "partner."
+                )) % record.vat)
 
     @api.multi
     def open_contract_employees(self):
