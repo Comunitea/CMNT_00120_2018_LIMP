@@ -192,7 +192,7 @@ class Timesheet(models.Model):
 
     @api.multi
     def unlink(self):
-        if self.env.user.id != 1:
+        if self.env.user.id not in (1, 39):
             for tim in self:
                 if tim.create_uid.id != self.env.user.id:
                     raise UserError(
