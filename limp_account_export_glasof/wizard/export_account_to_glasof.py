@@ -60,7 +60,7 @@ class ExportAccountToGlasof(models.TransientModel):
     ):
         nd = self.no_department
         total_len = self.account_length
-        parent_len = 4
+        parent_len = 6
         rjust_len = (
             total_len
             - parent_len
@@ -112,17 +112,18 @@ class ExportAccountToGlasof(models.TransientModel):
                     or line.account_id.code.startswith("41")
                     or line.account_id.code.startswith("43")
                 ):
-                    if not line.partner_id.ref:
+                    if not line.partner_id.commercial_partner_id.ref:
                         errors_list.add(
                             _(
                                 "The partner %s has not field ref. Please "
                                 "fill this field and try again."
                             )
-                            % line.partner_id.name
+                            % line.partner_id.commercial_partner_id.name
                         )
                     else:
                         acc_numbers[line.id] = self.format_acc_number(
-                            line.account_id.code, line.partner_id.ref
+                            line.account_id.code,
+                            line.partner_id.commercial_partner_id.ref
                         )
                 else:
                     acc_numbers[line.id] = self.format_normal_account(
@@ -163,17 +164,17 @@ class ExportAccountToGlasof(models.TransientModel):
                 pay_acc = line.partner_id.property_account_payable_id.code
                 move_acc = line.account_id.code
                 if move_acc in [pay_acc, receiv_acc]:
-                    if not line.partner_id.ref:
+                    if not line.partner_id.commercial_partner_id.ref:
                         raise UserError(
                             _(
                                 "The partner %s has not field ref. "
                                 "Please fill this field and try again."
                             )
-                            % line.partner_id.name
+                            % line.partner_id.commercial_partner_id.name
                         )
 
                     acc_numbers[line.partner_id.id] = self.format_acc_number(
-                        move_acc, line.partner_id.ref
+                        move_acc, line.partner_id.commercial_partner_id.ref
                     )
                     partners.add(line.partner_id)
 
