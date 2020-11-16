@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields
+from odoo import models, fields,  api, _, exceptions
 
 
 class ResPartner(models.Model):
@@ -33,3 +33,17 @@ class ResPartner(models.Model):
             ("tramit", "Tramit"),
         ]
     )
+
+    @api.constrains('facturae', 'vat', 'state_id', 'country_id')
+    def check_facturae(self):
+        for record in self:
+            if record.facturae:
+                if not record.vat and not record.parent_id:
+                    raise exceptions.ValidationError(_('Vat must be defined'))
+                if not record.country_id:
+                    raise exceptions.ValidationError(
+                        _('Country must be defined'))
+                if record.country_id.code_alpha3 == 'ESP':
+                    if not record.state_id:
+                        raise exceptions.ValidationError(
+                            _('State must be defined'))
