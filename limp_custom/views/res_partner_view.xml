@@ -55,4 +55,67 @@
             </field>
         </field>
     </record>
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_es_facturae.view_partner_form"/>
+        <field name="arch" type="xml">
+            <page name="facturae" position="replace">
+                <page string='FACe' name="facturae" attrs="{'invisible': [('facturae', '=', False)]}">
+                    <group colspan="4" col="4">
+                        <field name="invoice_integration_method_ids" widget="many2many_checkboxes"/>
+                        <group colspan="2" col="2">
+                            <field name="organo_gestor" attrs="{'required': [('facturae', '=', True)]}"/>
+                            <field name="unidad_tramitadora" attrs="{'required': [('facturae', '=', True)]}" />
+                            <field name="oficina_contable" attrs="{'required': [('facturae', '=', True)]}"/>
+                            <field name="organo_proponente"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="organo_gestor_desc"/>
+                            <field name="unidad_tramitadora_desc"/>
+                            <field name="oficina_contable_desc"/>
+                            <field name="organo_proponente_desc"/>
+                        </group>
+                    </group>
+                  </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_partner_form_avoid_facturae" model="ir.ui.view">
+        <field name="name">res.partner.form.avoid.facturae</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_es_facturae.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='facturae']" position="replace">
+            </xpath>
+            <field name="lang" position="after">
+                <field name="facturae"/>
+            </field>
+            <xpath expr="//sheet/notebook/page/field[@name='child_ids']/form/sheet/group" position="after">
+                <group>
+                    <label for="facturae"/>
+                    <field name="facturae"/>
+                    <group  attrs="{'invisible': [('facturae', '=', False)]}" colspan="4" col="4">
+                        <field name="invoice_integration_method_ids" widget="many2many_checkboxes"/>
+                        <group colspan="2" col="2">
+                            <field name="organo_gestor" attrs="{'required': [('facturae', '=', True)]}"/>
+                            <field name="unidad_tramitadora" attrs="{'required': [('facturae', '=', True)]}"/>
+                            <field name="oficina_contable" attrs="{'required': [('facturae', '=', True)]}"/>
+                            <field name="organo_proponente"/>
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="organo_gestor_desc"/>
+                            <field name="unidad_tramitadora_desc"/>
+                            <field name="oficina_contable_desc"/>
+                            <field name="organo_proponente_desc"/>
+                        </group>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
 </odoo>

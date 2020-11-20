@@ -33,6 +33,10 @@ class ResPartner(models.Model):
             ("tramit", "Tramit"),
         ]
     )
+    organo_gestor_desc = fields.Char('Órgano gestor desc.')
+    unidad_tramitadora_desc = fields.Char('Unidad tramitadora desc.')
+    oficina_contable_desc = fields.Char('Oficina contable desc.')
+    organo_proponente_desc = fields.Char('Órgano proponente desc.',)
 
     @api.constrains('facturae', 'vat', 'state_id', 'country_id')
     def check_facturae(self):

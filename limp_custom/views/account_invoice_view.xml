@@ -92,6 +92,30 @@
             <xpath expr="//t[@t-set='buyer_type']" position="attributes">
                 <attribute name="t-value">'J'</attribute>
             </xpath>
+            <xpath expr="//LegalEntity/CorporateName" position="attributes">
+                <attribute name="t-esc">partner.commercial_partner_id.name</attribute>
+            </xpath>
+            <xpath expr="//LegalEntity/TradeName" position="attributes">
+                <attribute name="t-esc">partner.commercial_partner_id.name</attribute>
+            </xpath>
+            <xpath expr="//t[@t-value='partner.oficina_contable']" position="after">
+                <t t-set="centre_desc" t-value="partner.oficina_contable_desc"/>
+            </xpath>
+            <xpath expr="//t[@t-value='partner.organo_gestor']" position="after">
+                <t t-set="centre_desc" t-value="partner.organo_gestor_desc"/>
+            </xpath>
+            <xpath expr="//t[@t-value='partner.unidad_tramitadora']" position="after">
+                <t t-set="centre_desc" t-value="partner.unidad_tramitadora_desc"/>
+            </xpath>
+            <xpath expr="//t[@t-value='partner.organo_proponente']" position="after">
+                <t t-set="centre_desc" t-value="partner.organo_proponente_desc"/>
+            </xpath>
+        </template>
+
+        <template id="administrative_center_cust_desc" inherit_id="l10n_es_facturae.administrative_center">
+            <xpath expr="//CentreDescription" position="attributes">
+                <attribute name="t-esc">centre_desc or partner.name</attribute>
+            </xpath>
         </template>
 
 </odoo>
