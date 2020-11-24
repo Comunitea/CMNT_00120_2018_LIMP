@@ -44,6 +44,9 @@
                 <field name="name" position="attributes">
                     <attribute name="invisible">0</attribute>
                 </field>
+                <field name="amount_untaxed_invoice_signed" position="replace">
+                    <field name="amount_untaxed_signed" sum="Untaxed" string="Base Imponible"/>
+                </field>
                 <field name="amount_total_company_signed" position="replace"/>
                 <field name="residual_company_signed" position="replace"/>
                 <field name="amount_total_signed" position="attributes">

@@ -224,6 +224,14 @@ class ServiceOrderToinvoice(models.TransientModel):
                     "analytic_id": service_picking.analytic_acc_id.id,
                     "partner_bank_id": service_picking.ccc_account_id.id
                 }
+                if service_picking.ccc_account_id and \
+                        service_picking.payment_mode:
+                    if service_picking.payment_mode.payment_method_id.\
+                            code == "sepa_direct_debit":
+                        mandate_id = service_picking.ccc_account_id.\
+                            mandate_ids.filtered(lambda x: x.state == 'valid')
+                        invoice_vals.update({"mandate_id": mandate_id and
+                                             mandate_id.id or False})
 
                 if journal_id:
                     invoice_vals["journal_id"] = journal_id

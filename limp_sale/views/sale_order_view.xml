@@ -108,6 +108,10 @@
                 <field name="delegation_id" invisible="1"/>
                 <field name="department_id" invisible="1"/>
             </field>
+            <field name="user_id" position="after">
+                <field name="amount_untaxed" sum="Untaxed"/>
+                <field name="amount_tax" sum="Tax"/>
+            </field>
         </field>
     </record>
 
@@ -120,6 +124,10 @@
                 <field name="company_id" invisible="1"/>
                 <field name="delegation_id" invisible="1"/>
                 <field name="department_id" invisible="1"/>
+            </field>
+            <field name="user_id" position="after">
+                <field name="amount_untaxed" sum="Untaxed"/>
+                <field name="amount_tax" sum="Tax"/>
             </field>
         </field>
     </record>

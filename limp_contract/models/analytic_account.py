@@ -272,6 +272,8 @@ class AccountAnalyticAccount(models.Model):
             line = cleaning_lines[0]
 
         if line:
+            payment_mode = line.contract_id.payment_type_id \
+                or self.partner_id.customer_payment_mode_id
             vals = {
                 "payment_term_id": line.contract_id.payment_term_id
                 and line.contract_id.payment_term_id.id
@@ -280,15 +282,19 @@ class AccountAnalyticAccount(models.Model):
                     and self.partner_id.property_payment_term_id.id
                     or False
                 ),
-                "payment_mode_id": line.contract_id.payment_type_id
-                and line.contract_id.payment_type_id.id
-                or (
-                    self.partner_id.customer_payment_mode_id
-                    and self.partner_id.customer_payment_mode_id.id
-                    or False
-                ),
+                "payment_mode_id": payment_mode and payment_mode.id or False,
                 "invoice_header": line.contract_id.invoice_header,
             }
+            if line.contract_id.bank_account_id:
+                vals.update(
+                    {"partner_bank_id": line.contract_id.bank_account_id.id}
+                )
+                if payment_mode and payment_mode.payment_method_id.\
+                        code == "sepa_direct_debit":
+                    mandate_id = line.contract_id.bank_account_id.\
+                        mandate_ids.filtered(lambda x: x.state == 'valid')
+                    vals.update({"mandate_id": mandate_id and mandate_id.id or
+                                 False})
             if line.contract_id.address_tramit_id:
                 vals.update(
                     {
@@ -331,6 +337,8 @@ class AccountAnalyticAccount(models.Model):
             )
             if contracts:
                 contract = contracts[0]
+                payment_mode = contract.payment_type_id or \
+                    self.partner_id.customer_payment_mode_id
                 vals = {
                     "payment_term_id": contract.payment_term_id
                     and contract.payment_term_id.id
@@ -339,13 +347,8 @@ class AccountAnalyticAccount(models.Model):
                         and self.partner_id.property_payment_term_id.id
                         or False
                     ),
-                    "payment_mode_id": contract.payment_type_id
-                    and contract.payment_type_id.id
-                    or (
-                        self.partner_id.customer_payment_mode_id
-                        and self.partner_id.customer_payment_mode_id.id
-                        or False
-                    ),
+                    "payment_mode_id": payment_mode and payment_mode.id or
+                    False,
                     "contract_id": contract.id,
                     "invoice_header": contract.invoice_header,
                 }
@@ -353,6 +356,12 @@ class AccountAnalyticAccount(models.Model):
                     vals.update(
                         {"partner_bank_id": contract.bank_account_id.id}
                     )
+                    if payment_mode and payment_mode.payment_method_id.\
+                            code == "sepa_direct_debit":
+                        mandate_id = contract.bank_account_id.\
+                            mandate_ids.filtered(lambda x: x.state == 'valid')
+                        vals.update({"mandate_id": mandate_id and
+                                     mandate_id.id or False})
                 if contract.address_tramit_id:
                     vals.update(
                         {"partner_id": contract.address_tramit_id.id}
