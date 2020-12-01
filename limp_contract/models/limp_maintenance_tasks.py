@@ -128,7 +128,8 @@ class MaintenanceTask(models.Model):
                 if (
                     vals.get("end_date", False)
                     and vals.get(
-                        "last_execution_date", obj.last_execution_date
+                        "last_execution_date",
+                        obj.last_execution_date.strftime("%Y-%m-%d")
                     )
                     > vals["end_date"]
                 ):
