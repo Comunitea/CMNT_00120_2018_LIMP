@@ -27,23 +27,23 @@
         <t t-foreach="get_journals(account, data, not with_tag_accounts, with_tag_accounts=with_tag_accounts)" t-as="journal">
             <div class="row" t-att-style="'padding-left: %s mm' % str(10 + padding)">
                 <div class="col-4"><span t-esc="journal[0]"/></div>
-                <div class="col-2 col-offset-4">
+                <div class="col-2 offset-4">
                     <p t-esc="journal[1]"
                         t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/>
                 </div>
             </div>
-            <t t-foreach="get_employees(account, journal[2], data, with_tag_accounts=with_tag_accounts)" t-as="employee">
+            <t t-foreach="get_employees(account, journal[2], data, with_tag_accounts=with_tag_accounts)" t-as="employee" t-if="journal[1] &lt; 0">
                 <div class="row" t-att-style="'padding-left: %s mm' % str(20 + padding)">
-                <div class="col-4"><span t-esc="employee[0]"/></div>
-                <div class="col-2 col-offset-4">
+                <div class="col-4 ml-2"><span t-esc="employee[0]"/></div>
+                <div class="col-2 offset-4">
                     <p t-esc="employee[1]"
                         t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/>
                 </div>
                 </div>
                 <t t-foreach="get_analytic_type(account, journal[2], employee[2], data, with_tag_accounts=with_tag_accounts)" t-as="analytic_type">
                     <div class="row" t-att-style="'padding-left: %s mm' % str(30 + padding)">
-                    <div class="col-4"><span t-esc="analytic_type[0]"/></div>
-                    <div class="col-2 col-offset-4">
+                    <div class="col-4 ml-4"><span t-esc="analytic_type[0]"/></div>
+                    <div class="col-2 offset-4">
                         <p t-esc="analytic_type[1]"
                             t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/>
                     </div>

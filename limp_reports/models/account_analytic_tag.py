@@ -7,8 +7,10 @@ from odoo import models, fields, api
 class AccountAnalyticTag(models.Model):
 
     _inherit = "account.analytic.tag"
+    _order = "sequence asc"
 
     show_in_report = fields.Boolean()
+    sequence = fields.Integer()
 
 
 class AccountAnalyticLine(models.Model):

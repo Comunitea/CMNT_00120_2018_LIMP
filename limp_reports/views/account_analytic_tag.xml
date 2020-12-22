@@ -13,6 +13,17 @@
         </field>
     </record>
 
+    <record id="account_analytic_tag_tree_view" model="ir.ui.view">
+        <field name="name">account.analytic.tag</field>
+        <field name="model">account.analytic.tag</field>
+        <field name="inherit_id" ref="analytic.account_analytic_tag_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="sequence" widget="handle"/>
+            </field>
+        </field>
+    </record>
+
     <record id="view_account_analytic_line_tree_add_journal" model="ir.ui.view">
         <field name="name">account.analytic.line.tree.add_journal</field>
         <field name="model">account.analytic.line</field>

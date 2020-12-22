@@ -90,7 +90,7 @@
                     <notebook colspan="4">
                         <page string="Service">
                             <group string="Transports" col="4">
-                                <field name="container_id" domain="['|',('home','=',True),('partner_id', '=',partner_id)]" context="{'search_default_home': True}" />
+                                <field name="container_id" domain="[('home','=',True)]" context="{'search_default_home': True}" />
                                 <field name="container_situation_id" invisible="1" />
                                 <field name="service_ids" colspan="4" nolabel="1" context="{'parent_company_id':company_id,'parent_man_addr_id':manager_address_id,'parent_building_addr_id': building_site_address_id,'parent_name':description}" />
                             </group>
