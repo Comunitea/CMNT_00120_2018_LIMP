@@ -12,9 +12,6 @@
                 <field name="address_home_id" position="after">
                     <field name="private_address"/>
                 </field>
-                <field name="resource_calendar_id" position="attributes">
-                    <attribute name="required">0</attribute>
-                </field>
             </field>
         </record>
 
