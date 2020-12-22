@@ -406,10 +406,9 @@ class LimpContract(models.Model):
 
     def _compute_invoiced(self):
         for contract in self:
-            if contract.analytic_account_id and contract.state == "open":
+            if contract.analytic_account_id:
                 child_ids = self.env["account.analytic.account"].search(
                     [
-                        ("state", "=", "open"),
                         ("partner_id", "!=", False),
                         ("invoiceable", "=", True),
                         ("parent_id", "=", contract.analytic_account_id.id),
@@ -422,7 +421,6 @@ class LimpContract(models.Model):
         action = self.env.ref("account.action_invoice_tree1").read()[0]
         child_ids = self.env["account.analytic.account"].search(
             [
-                ("state", "=", "open"),
                 ("partner_id", "!=", False),
                 ("invoiceable", "=", True),
                 ("parent_id", "=", self.analytic_account_id.id),
