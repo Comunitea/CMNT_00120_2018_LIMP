@@ -66,14 +66,14 @@
                                     <field name="contract_hours"/>
                                     <field name="with_hour_price"/>
                                     <field name="price"/>
+                                    <field name="hour_price_hours"/>
                                 </group>
                                 <group>
-                                    <field name="hour_price_hours"/>
                                     <field name="with_fix_qty"/>
                                     <field name="quantity"/>
                                 </group>
                             </group>
-                            <group  col="5">
+                            <group colspan="4">
                               <field name="notes"/>
                             </group>
                          </page>
