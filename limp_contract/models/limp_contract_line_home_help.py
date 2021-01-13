@@ -55,7 +55,7 @@ class LimpContractLineHomeHelp(models.Model):
         "Analytic account",
         readonly=True,
         required=True,
-        ondelete="cascade",
+        ondelete="restrict",
     )
     social_worker_id = fields.Many2one("hr.employee", "Social worker")
 

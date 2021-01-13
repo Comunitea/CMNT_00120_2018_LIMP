@@ -356,7 +356,7 @@ class StockServicePicking(models.Model):
         },
         copy=False,
         required=True,
-        ondelete="cascade",
+        ondelete="restrict",
     )
     quality = fields.Boolean(
         "Quality",

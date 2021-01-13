@@ -41,7 +41,7 @@ class LimpContractLineCleaning(models.Model):
         "Analytic account",
         readonly=True,
         required=True,
-        ondelete="cascade",
+        ondelete="restrict",
     )
 
     def open_line(self):

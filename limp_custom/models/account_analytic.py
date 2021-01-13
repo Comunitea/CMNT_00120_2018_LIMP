@@ -32,7 +32,7 @@ class AccountAnalyticLine(models.Model):
         related="account_id.privacy",
         readonly=True,
     )
-    account_id = fields.Many2one(ondelete='cascade')
+    account_id = fields.Many2one(ondelete='restrict')
 
     @api.depends("remuneration_id", "timesheet_id")
     def _compute_type_analytic(self):

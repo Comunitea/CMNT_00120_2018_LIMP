@@ -69,7 +69,7 @@ class LimpContract(models.Model):
         "Account",
         readonly=True,
         required=True,
-        ondelete="cascade",
+        ondelete="restrict",
     )
     state = fields.Selection(
         [
