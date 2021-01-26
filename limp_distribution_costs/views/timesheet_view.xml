@@ -28,6 +28,7 @@
                 <field name="contract"/>
                 <field name="employee_delegation_id"/>
                 <field name="employee_department_id"/>
+                <field name="old"/>
             </tree>
         </field>
     </record>
@@ -80,6 +81,8 @@
                     <separator orientation="vertical"/>
                     <filter string="Paid" domain="[('paid','=',True)]" name="paid"/>
                     <filter string="No paid" domain="[('paid','=',False)]" name="not_paid"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Actives" domain="[('old','=',False)]" name="actives"/>
                     <field name="date"/>
                     <field name="employee_id"/>
                     <field name="analytic_id"/>

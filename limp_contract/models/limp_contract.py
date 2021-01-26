@@ -632,11 +632,12 @@ class LimpContract(models.Model):
             "analytic_incidences.action_remuneration"
         ).read()[0]
         action["context"] = str(
-            {"default_analytic_account_id": self.analytic_account_id.id}
+            {"default_analytic_account_id": self.analytic_account_id.id,
+             'search_default_actives': 1}
         )
         action["domain"] = (
-            "[('id','in', ["
-            + ",".join(map(str, self.active_remuneration_ids._ids))
+            "[('analytic_account_id','child_of', ["
+            + str(self.analytic_account_id.id)
             + "])]"
         )
         return action
@@ -711,11 +712,12 @@ class LimpContract(models.Model):
                 "default_delegation_id": self.delegation_id.id,
                 "default_department_id": self.department_id.id,
                 "default_analytic_id": self.analytic_account_id.id,
+                'search_default_actives': 1
             }
         )
         action["domain"] = (
-            "[('id','in', ["
-            + ",".join(map(str, self.active_employee_ids._ids))
+            "[('analytic_id','child_of', ["
+            + str(self.analytic_account_id.id)
             + "])]"
         )
         return action
