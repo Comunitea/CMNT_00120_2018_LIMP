@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Council city",
-    "version": "12.0.1.0.0",
+    "version": "12.0.2.0.0",
     "author": "Comunitea",
     "category": "Generic Modules/Base",
     "description": """Council to classify cities (zipcodes)""",
@@ -28,7 +28,9 @@
     "data": [
         "views/res_partner.xml",
         "views/council.xml",
+        "views/res_country_region_view.xml",
         "security/ir.model.access.csv",
+        "data/res_country_region_data.xml"
     ],
     "installable": True,
 }

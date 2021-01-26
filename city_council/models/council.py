@@ -24,9 +24,11 @@ from odoo import models, fields
 class CityCouncil(models.Model):
 
     _name = "city.council"
+    _description = "Councils"
 
     name = fields.Char("Council", required=True)
     zip_ids = fields.One2many("res.city", "council_id", "Zipcodes")
+    ine_code = fields.Char("INE Code", size=6)
 
 
 class ResCity(models.Model):

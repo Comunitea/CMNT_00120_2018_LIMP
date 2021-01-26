@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree string="Councils">
                 <field name="name"/>
+                <field name="ine_code"/>
             </tree>
         </field>
     </record>
@@ -19,9 +20,10 @@
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <separator string="Cities" colspan="4"/>
-                        <field name="zip_ids" colspan="4" nolabel="1"/>
+                        <field name="ine_code"/>
                     </group>
+                    <separator string="Cities" colspan="4"/>
+                    <field name="zip_ids" colspan="4" nolabel="1"/>
                 </sheet>
             </form>
         </field>

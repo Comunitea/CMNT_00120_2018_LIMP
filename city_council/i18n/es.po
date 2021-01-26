@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-04 23:59+0000\n"
-"PO-Revision-Date: 2020-08-04 23:59+0000\n"
+"POT-Creation-Date: 2021-01-26 18:49+0000\n"
+"PO-Revision-Date: 2021-01-26 18:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,35 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: city_council
+#: model:ir.model,name:city_council.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: city_council
 #: model_terms:ir.ui.view,arch_db:city_council.view_city_council_form
 msgid "Cities"
 msgstr "Ciudades"
+
+#. module: city_council
+#: model:ir.model,name:city_council.model_city_city
+#: model:ir.model,name:city_council.model_res_city
+msgid "City"
+msgstr "Ciudad"
+
+#. module: city_council
+#: model:ir.model,name:city_council.model_res_better_zip
+msgid "City/locations completion object"
+msgstr "Autocompletado de objetos a partir de ciudades/ubicaciones"
+
+#. module: city_council
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__code
+msgid "Code"
+msgstr "Código"
+
+#. module: city_council
+#: model:ir.model,name:city_council.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
 
 #. module: city_council
 #: model:ir.actions.act_window,name:city_council.action_city_council
@@ -29,49 +55,101 @@ msgstr "Ciudades"
 #: model:ir.model.fields,field_description:city_council.field_res_users__council_id
 #: model_terms:ir.ui.view,arch_db:city_council.res_partner_add_council
 #: model_terms:ir.ui.view,arch_db:city_council.view_city_council_form
+#: model_terms:ir.ui.view,arch_db:city_council.view_partner_short_form
 msgid "Council"
 msgstr "Ayuntamiento"
 
 #. module: city_council
+#: model:ir.model,name:city_council.model_city_council
 #: model:ir.ui.menu,name:city_council.menu_city_council_partner
 #: model_terms:ir.ui.view,arch_db:city_council.view_city_council_tree
 msgid "Councils"
 msgstr "Ayuntamientos"
 
 #. module: city_council
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__country_id
+msgid "Country"
+msgstr "País"
+
+#. module: city_council
+#: model:ir.model,name:city_council.model_res_country_state
+msgid "Country state"
+msgstr "Provincia"
+
+#. module: city_council
 #: model:ir.model.fields,field_description:city_council.field_city_council__create_uid
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: city_council
 #: model:ir.model.fields,field_description:city_council.field_city_council__create_date
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: city_council
 #: model:ir.model.fields,field_description:city_council.field_city_council__display_name
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: city_council
 #: model:ir.model.fields,field_description:city_council.field_city_council_id
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
+
+#. module: city_council
+#: model:ir.model.fields,field_description:city_council.field_city_council__ine_code
+msgid "INE Code"
+msgstr "Código INE"
 
 #. module: city_council
 #: model:ir.model.fields,field_description:city_council.field_city_council____last_update
+#: model:ir.model.fields,field_description:city_council.field_res_country_region____last_update
 msgid "Last Modified on"
-msgstr "Última Modifiación en"
+msgstr "Última modificación en"
 
 #. module: city_council
 #: model:ir.model.fields,field_description:city_council.field_city_council__write_uid
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: city_council
 #: model:ir.model.fields,field_description:city_council.field_city_council__write_date
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
+
+#. module: city_council
+#: model:ir.model.fields,field_description:city_council.field_res_country_region__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: city_council
+#: model:ir.model,name:city_council.model_res_partner_address
+msgid "Partner Addresses"
+msgstr "Direcciones de empresa"
+
+#. module: city_council
+#: model:ir.actions.act_window,name:city_council.action_country_region
+#: model:ir.model,name:city_council.model_res_country_region
+#: model:ir.model.fields,field_description:city_council.field_res_country_state__region_id
+#: model:ir.model.fields,field_description:city_council.field_res_partner__region_id
+#: model:ir.model.fields,field_description:city_council.field_res_users__region_id
+#: model_terms:ir.ui.view,arch_db:city_council.res_partner_add_council
+#: model_terms:ir.ui.view,arch_db:city_council.view_country_region_form
+#: model_terms:ir.ui.view,arch_db:city_council.view_country_region_tree
+#: model_terms:ir.ui.view,arch_db:city_council.view_partner_short_form
+msgid "Region"
+msgstr "Región"
+
+#. module: city_council
+#: model:ir.ui.menu,name:city_council.menu_country_region
+msgid "Regions"
+msgstr "Regiones"
 
 #. module: city_council
 #: model:ir.model.fields,field_description:city_council.field_city_council__zip_ids

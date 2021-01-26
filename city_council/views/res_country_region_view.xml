@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_country_region_tree">
+        <field name="name">res.country.region.tree</field>
+        <field name="model">res.country.region</field>
+            <field name="arch" type="xml">
+                <tree string="Region">
+                    <field name="country_id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_country_region_form">
+            <field name="name">res.country.region.form</field>
+            <field name="model">res.country.region</field>
+            <field name="arch" type="xml">
+                <form string="Region">
+                    <group>
+                        <field name="country_id"/>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_country_region">
+            <field name="name">Region</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.country.region</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_country_region_tree"/>
+        </record>
+
+        <menuitem name="Regions"
+            parent="contacts.menu_localisation"
+            action="action_country_region"
+            id="menu_country_region"/>
+
+        <record id="view_country_state_form_add_region" model="ir.ui.view">
+            <field name="name">res.country.state.form.add_region</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_form"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="region_id"/>
+                </field>
+            </field>
+        </record>
+
+</odoo>
