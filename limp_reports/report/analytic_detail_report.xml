@@ -18,7 +18,7 @@
                     t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/></strong>
             </div>
             <div class="col-2">
-                <strong><p t-if="account_balance &gt; 0" style="color:blue"><span t-esc="formatLang(account.env, get_real_percent(account, data, with_tag_accounts=with_tag_accounts))"/><p t-if="account_balance &lt;= 0" style="color:red"><span t-esc="formatLang(account.env, get_real_percent(account, data, with_tag_accounts=with_tag_accounts))"/> %</p></strong>
+                <strong><p t-if="account_balance &gt; 0" style="color:blue"><span t-esc="formatLang(account.env, get_real_percent(account, data, with_tag_accounts=with_tag_accounts))"/> %</p><p t-if="account_balance &lt;= 0" style="color:red"><span t-esc="formatLang(account.env, get_real_percent(account, data, with_tag_accounts=with_tag_accounts))"/> %</p></strong>
             </div>
         </div>
         <div class="row" t-att-style="'padding-left: %s mm' % str(padding)">
