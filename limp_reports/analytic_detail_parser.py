@@ -1,7 +1,7 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import time
-from odoo import models, api, _
+from odoo import models, api
 from odoo.tools.misc import formatLang
 
 
@@ -11,6 +11,7 @@ class AccountAnalyticDetails(models.AbstractModel):
     def _get_domain(self, acc, data, force_add=False, with_tag_accounts=False):
         if with_tag_accounts:
             account_ids = acc.filtered("is_contract")
+            account_ids |= account_ids.mapped('child_ids')
         else:
             account_ids = acc
         where = """date >= '{}' and date <= '{}'
