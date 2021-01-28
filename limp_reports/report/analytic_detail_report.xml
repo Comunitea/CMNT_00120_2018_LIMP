@@ -5,23 +5,25 @@
 
     <template id="account_analytic_details_account">
         <div class="row" t-att-style="'padding-left: %s mm' % str(padding)">
+            <t t-set="account_balance" t-value="get_balance(account, data, with_tag_accounts=with_tag_accounts)[0]"/>
             <div class="col-2">
-                <strong><p style="color:blue" t-field="account.name"/></strong>
+                <strong><p t-if="account_balance &gt; 0" style="color:blue" t-field="account.name"/><p t-if="account_balance &lt;= 0" style="color:red" t-field="account.name"/></strong>
             </div>
             <div class="col-6">
-                <strong><p style="color:blue" t-field="account.partner_id.name"/></strong>
+                <strong><p t-if="account_balance &gt; 0" style="color:blue" t-field="account.partner_id.name"/><p t-if="account_balance &lt;= 0" style="color:red" t-field="account.partner_id.name"/></strong>
             </div>
             <div class="col-2">
-                <strong><p style="color:blue"  t-esc="get_balance(account, data, with_tag_accounts=with_tag_accounts)[0]"
+                <strong><p t-if="account_balance &gt; 0" style="color:blue"  t-esc="account_balance"
+                    t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/><p t-if="account_balance &lt;= 0" style="color:red"  t-esc="account_balance"
                     t-options='{"widget": "monetary", "display_currency": account.company_id.currency_id}'/></strong>
             </div>
             <div class="col-2">
-                <strong><p style="color:blue"><span t-esc="formatLang(account.env, get_real_percent(account, data, with_tag_accounts=with_tag_accounts))"/> %</p></strong>
+                <strong><p t-if="account_balance &gt; 0" style="color:blue"><span t-esc="formatLang(account.env, get_real_percent(account, data, with_tag_accounts=with_tag_accounts))"/><p t-if="account_balance &lt;= 0" style="color:red"><span t-esc="formatLang(account.env, get_real_percent(account, data, with_tag_accounts=with_tag_accounts))"/> %</p></strong>
             </div>
         </div>
         <div class="row" t-att-style="'padding-left: %s mm' % str(padding)">
             <div class="col-12">
-                <strong><p style="color:blue" t-field="account.description"/></strong>
+                <strong><p t-if="account_balance &gt; 0" style="color:blue" t-field="account.description"/><p t-if="account_balance &lt;= 0" style="color:red" t-field="account.description"/></strong>
             </div>
         </div>
         <t t-foreach="get_journals(account, data, not with_tag_accounts, with_tag_accounts=with_tag_accounts)" t-as="journal">
