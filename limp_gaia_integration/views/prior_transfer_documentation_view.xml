@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="prior_transfer_documentation_form" model="ir.ui.view">
+        <field name="name">prior.transfer.documentation.form</field>
+        <field name="model">prior.transfer.documentation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="producer_promoter_id"/>
+                        <field name="operator_partner_id"/>
+                        <field name="manager_partner_id"/>
+                        <field name="freq"/>
+                    </group>
+                     <separator string="Wastes" colspan="4"/>
+                    <field name="line_ids" nolabel="1" colspan="4">
+                        <tree editable="bottom">
+                            <field name="waste_id"/>
+                            <field name="waste_qty"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="prior_transfer_documentation_tree" model="ir.ui.view">
+        <field name="name">prior.transfer.documentation.tree</field>
+        <field name="model">prior.transfer.documentation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="producer_promoter_id"/>
+                <field name="operator_partner_id"/>
+                <field name="manager_partner_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_prior_transfer_documentation_open" model="ir.actions.act_window">
+        <field name="name">Prior Transfer Documentations (NT)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">prior.transfer.documentation</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="prior_transfer_documentation_tree"/>
+    </record>
+
+    <menuitem action="action_prior_transfer_documentation_open" id="menu_prior_transfer_documentation"  name="Prior Transfer Documentations (NT)" parent="limp_reports.reports_folder_id" groups="limp_service_picking.group_waste_manager"/>
+
+</odoo>

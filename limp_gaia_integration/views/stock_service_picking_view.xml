@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="stock_service_picking_form_add_operator" model="ir.ui.view">
+        <field name="name">stock.service.picking.form.add_operator</field>
+        <field name="model">stock.service.picking</field>
+        <field name="inherit_id" ref="limp_service_picking.stock_service_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="holder_partner" position="before">
+                <field name="holder_builder_id"/>
+            </field>
+            <field name="producer_partner" position="before">
+                <field name="producer_promoter_id"/>
+            </field>
+            <field name="container_placement" position="after">
+                <field name="operator_partner_id"/>
+                <field name="nt_doc_id" domain="[('producer_promoter_id', '=', producer_promoter_id),('operator_partner_id', '=', operator_partner_id),('manager_partner_id', '=', manager_partner_id)]"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

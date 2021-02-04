@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_picking_out_add_operator" model="ir.ui.view">
+        <field name="name">stock.picking.out.form.add_operator</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="limp_service_picking.view_picking_out_form_rep_buttons"/>
+        <field name="arch" type="xml">
+            <field name="manager_or_productor" position="after">
+                <field name="operator_partner_id"/>
+                <field name="nt_doc_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
