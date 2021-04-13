@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report id="report_waste_identification_output"
+            name="limp_gaia_integration.template_waste_identification_output_di"
+            string="Waste identification doc."
+            report_type="qweb-pdf"
+            model="stock.picking"/>
+
+    <template id="template_waste_identification_output_di">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 11px;">
+                        <h3>DOCUMENTO DE IDENTIFICACIÓN DE RESIDUOS</h3>
+                        <p style="font-size: 7px;">(Artículo 6 del R.D. 180/2015, de 13 de marzo, por el que se regula el traslado de residuos en el interior del territorio del Estado. B.O.E. nº 83 del 07/04/2015)</p>
+                        <div class="col-12"><span class="col-8">Documento de Identificación nº: <u><span t-field="o.dcs_no"/></u></span><span class="col-4">Versión: <u>3.0</u></span></div>
+                        <table class="table mt8 table-bordered table-sm">
+                            <thead>
+                                <tr style="background-color: lightgrey; padding: 4px">
+                                    <th colspan="12">DATOS GENERALES DOCUMENTO DE IDENTIFICACIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3">Notificación Previa(NT) nº:</td>
+                                    <td colspan="9"><b><span t-if="o.nt_doc_id" t-field="o.nt_doc_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Fecha inicio de traslado:</td>
+                                    <td colspan="9"><b><span t-field="o.date"/></b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table mt16 table-bordered table-sm">
+                            <thead>
+                                <tr style="background-color: lightgrey; padding: 4px">
+                                    <th colspan="12">INFORMACIÓN RELATIVA AL OPERADOR DEL TRASLADO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="1">NIF:</td>
+                                    <td colspan="2"><b><span t-field="o.operator_partner_id.commercial_partner_id.vat"/></b></td>
+                                    <td colspan="2">Razón social/Nombre:</td>
+                                    <td colspan="7"><b><span t-field="o.operator_partner_id.commercial_partner_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">NIMA:</td>
+                                    <td colspan="2"><b><span t-field="o.operator_partner_id.nima_no"/></b></td>
+                                    <td colspan="2">Nº Inscripción:</td>
+                                    <td colspan="3"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['N']).name"/></b></td>
+                                    <td colspan="3">Tipo Operador Traslado</td>
+                                    <td colspan="1"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['N']).authorization_type"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Dirección:</td>
+                                    <td colspan="9"><b><span t-field="o.operator_partner_id.street"/></b></td>
+                                    <td colspan="1">C.P.</td>
+                                    <td colspan="1"><b><span t-field="o.operator_partner_id.zip"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Municipio:</td>
+                                    <td colspan="5"><b><span t-field="o.operator_partner_id.council_id.name"/></b></td>
+                                    <td colspan="1">Provincia:</td>
+                                    <td colspan="5"><b><span t-field="o.operator_partner_id.state_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Teléfono:</td>
+                                    <td colspan="2"><b><span t-field="o.operator_partner_id.phone"/></b></td>
+                                    <td colspan="2">Correo electrónico:</td>
+                                    <td colspan="7"><b><span t-field="o.operator_partner_id.email"/></b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table mt16 table-bordered table-sm">
+                            <thead>
+                                <tr style="background-color: lightgrey; padding: 4px">
+                                    <th colspan="12">INFORMACIÓN RELATIVA AL ORIGEN DEL TRASLADO</th>
+                                </tr>
+                                <tr style="background-color: lightgrey;">
+                                    <th colspan="12">Información del centro productor o poseedor de residuos o de la instalación origen del traslado:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="1">NIF:</td>
+                                    <td colspan="2"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.commercial_partner_id.vat"/></b></td>
+                                    <td colspan="2">Razón social/Nombre:</td>
+                                    <td colspan="7"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.commercial_partner_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">NIMA:</td>
+                                    <td colspan="2"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.nima_no"/></b></td>
+                                    <td colspan="2">Nº Inscripción:</td>
+                                    <td colspan="3"><b><span t-esc="o.picking_type_id.warehouse_id.partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['P', 'G']).name"/></b></td>
+                                    <td colspan="3">Tipo Operador Productor:</td>
+                                    <td colspan="1"><b><span t-esc="o.picking_type_id.warehouse_id.partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['P', 'G']).authorization_type"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Actividad económica:</td>
+                                    <td colspan="10"><b><span t-esc="o.picking_type_id.warehouse_id.partner_id.commercial_partner_id.nace_id and o.picking_type_id.warehouse_id.partner_id.commercial_partner_id.nace_id.code or ''"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Dirección:</td>
+                                    <td colspan="9"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.street"/></b></td>
+                                    <td colspan="1">C.P.</td>
+                                    <td colspan="1"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.zip"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Municipio:</td>
+                                    <td colspan="5"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.council_id.name"/></b></td>
+                                    <td colspan="1">Provincia:</td>
+                                    <td colspan="5"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.state_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Teléfono:</td>
+                                    <td colspan="2"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.phone"/></b></td>
+                                    <td colspan="2">Correo electrónico:</td>
+                                    <td colspan="7"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.email"/></b></td>
+                                </tr>
+                                <t t-if="o.picking_type_id.warehouse_id.partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['P', 'G']).authorization_type[0] == 'G'">
+                                    <tr style="background-color: lightgrey">
+                                        <td colspan="12">Información de la empresa autorizada para realizar operaciones de tratamiento de residuos, incluido el almacenamiento, en caso de que el origen del traslado sea una instalación de tratamiento de residuos</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="1">NIF:</td>
+                                        <td colspan="2"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.commercial_partner_id.vat"/></b></td>
+                                        <td colspan="2">Razón social/Nombre:</td>
+                                        <td colspan="7"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.commercial_partner_id.name"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="1">NIMA:</td>
+                                        <td colspan="2"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.nima_no"/></b></td>
+                                        <td colspan="2">Nº Inscripción:</td>
+                                        <td colspan="7"><b><span t-esc="o.picking_type_id.warehouse_id.partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['E']).name"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="1">Dirección:</td>
+                                        <td colspan="9"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.street"/></b></td>
+                                        <td colspan="1">C.P.</td>
+                                        <td colspan="1"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.zip"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="1">Municipio:</td>
+                                        <td colspan="5"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.council_id.name"/></b></td>
+                                        <td colspan="1">Provincia:</td>
+                                        <td colspan="5"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.state_id.name"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="1">Teléfono:</td>
+                                        <td colspan="2"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.phone"/></b></td>
+                                        <td colspan="2">Correo electrónico:</td>
+                                        <td colspan="7"><b><span t-field="o.picking_type_id.warehouse_id.partner_id.email"/></b></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <table class="table mt16 table-bordered table-sm">
+                            <thead>
+                                <tr style="background-color: lightgrey; padding: 4px">
+                                    <th colspan="12">INFORMACIÓN RELATIVA AL DESTINO DEL TRASLADO</th>
+                                </tr>
+                                <tr style="background-color: lightgrey;">
+                                    <th colspan="12">Información de la instalación de destino</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="1">NIF:</td>
+                                    <td colspan="2"><b><span t-field="o.partner_id.commercial_partner_id.vat"/></b></td>
+                                    <td colspan="2">Razón social/Nombre:</td>
+                                    <td colspan="7"><b><span t-field="o.partner_id.commercial_partner_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">NIMA:</td>
+                                    <td colspan="2"><b><span t-field="o.partner_id.nima_no"/></b></td>
+                                    <td colspan="2">Nº Inscripción:</td>
+                                    <td colspan="3"><b><span t-esc="o.partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['G']).name"/></b></td>
+                                    <td colspan="3">Tipo Operador Gestor:</td>
+                                    <td colspan="1"><b><span t-esc="o.partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['G']).authorization_type"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Dirección:</td>
+                                    <td colspan="9"><b><span t-field="o.partner_id.street"/></b></td>
+                                    <td colspan="1">C.P.</td>
+                                    <td colspan="1"><b><span t-field="o.partner_id.zip"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Municipio:</td>
+                                    <td colspan="5"><b><span t-field="o.partner_id.council_id.name"/></b></td>
+                                    <td colspan="1">Provincia:</td>
+                                    <td colspan="5"><b><span t-field="o.partner_id.state_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Teléfono:</td>
+                                    <td colspan="2"><b><span t-field="o.partner_id.phone"/></b></td>
+                                    <td colspan="2">Correo electrónico:</td>
+                                    <td colspan="7"><b><span t-field="o.partner_id.email"/></b></td>
+                                </tr>
+                                <tr style="background-color: lightgrey">
+                                    <td colspan="12">Información de la empresa autorizada para realizar operaciones de tratamiento de residuos, incluido el almacenamiento, en la instalación de destino</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">NIF:</td>
+                                    <td colspan="2"><b><span t-field="o.partner_id.commercial_partner_id.vat"/></b></td>
+                                    <td colspan="2">Razón social/Nombre:</td>
+                                    <td colspan="7"><b><span t-field="o.partner_id.commercial_partner_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">NIMA:</td>
+                                    <td colspan="2"><b><span t-field="o.partner_id.nima_no"/></b></td>
+                                    <td colspan="2">Nº Inscripción:</td>
+                                    <td colspan="7"><b><span t-esc="o.partner_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['E']).name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Dirección:</td>
+                                    <td colspan="9"><b><span t-field="o.partner_id.street"/></b></td>
+                                    <td colspan="1">C.P.</td>
+                                    <td colspan="1"><b><span t-field="o.partner_id.zip"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Municipio:</td>
+                                    <td colspan="5"><b><span t-field="o.partner_id.council_id.name"/></b></td>
+                                    <td colspan="1">Provincia:</td>
+                                    <td colspan="5"><b><span t-field="o.partner_id.state_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Teléfono:</td>
+                                    <td colspan="2"><b><span t-field="o.partner_id.phone"/></b></td>
+                                    <td colspan="2">Correo electrónico:</td>
+                                    <td colspan="7"><b><span t-field="o.partner_id.email"/></b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <t t-foreach="o.move_lines" t-as="waste">
+                            <table class="table mt16 table-bordered table-sm">
+                                <thead>
+                                    <tr style="background-color: lightgrey; padding: 4px">
+                                        <th colspan="12">INFORMACIÓN SOBRE EL RESIDUO QUE SE TRASLADA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="7">Código LER/LER-RAEE (Lista Europea de Residuos, según Decisión 2000/532/CE)</td>
+                                        <td colspan="2"><b><span t-field="waste.product_id.ler_code_id.code"/></b></td>
+                                        <td colspan="3">(seis dígitos/ocho dígitos RAEE)</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Descripción del Residuo:</td>
+                                        <td colspan="9"><b><span t-field="waste.product_id.name"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Operación de Tratamiento (R/D):</td>
+                                        <td colspan="1"><b><span t-esc="waste.product_id.ler_code_id.operation_type"/></b></td>
+                                        <td colspan="3">Código de Peligrosidad (HP):</td>
+                                        <td colspan="1"><b><span t-field="waste.product_id.ler_code_id.dangerous_motive"/></b></td>
+                                        <td colspan="3">Código operación-proceso:</td>
+                                        <td colspan="1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">Cantidad (kg netos):</td>
+                                        <td colspan="9"><b><span t-esc="waste.secondary_uom_qty * 1000"/></b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                        <table class="table mt16 table-bordered table-sm">
+                            <thead>
+                                <tr style="background-color: lightgrey; padding: 4px">
+                                    <th colspan="12">INFORMACIÓN RELATIVA AL TRANSPORTISTA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="1">NIF:</td>
+                                    <td colspan="2"><b><span t-field="o.carrier_id.commercial_partner_id.vat"/></b></td>
+                                    <td colspan="2">Razón social/Nombre:</td>
+                                    <td colspan="7"><b><span t-field="o.carrier_id.commercial_partner_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">NIMA:</td>
+                                    <td colspan="2"><b><span t-field="o.carrier_id.nima_no"/></b></td>
+                                    <td colspan="2">Nº Inscripción:</td>
+                                    <td colspan="7"><b><span t-esc="o.carrier_id.get_authorization_id(o.move_lines.mapped('product_id.ler_code_id'), ['T']).name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Dirección:</td>
+                                    <td colspan="9"><b><span t-field="o.carrier_id.street"/></b></td>
+                                    <td colspan="1">C.P.</td>
+                                    <td colspan="1"><b><span t-field="o.carrier_id.zip"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Municipio:</td>
+                                    <td colspan="5"><b><span t-field="o.carrier_id.council_id.name"/></b></td>
+                                    <td colspan="1">Provincia:</td>
+                                    <td colspan="5"><b><span t-field="o.carrier_id.state_id.name"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">Teléfono:</td>
+                                    <td colspan="2"><b><span t-field="o.carrier_id.phone"/></b></td>
+                                    <td colspan="2">Correo electrónico:</td>
+                                    <td colspan="7"><b><span t-field="o.carrier_id.email"/></b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table mt16 table-bordered table-sm">
+                            <thead>
+                                <tr style="background-color: lightgrey; padding: 4px">
+                                    <th colspan="12">OTRAS INFORMACIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3">Fecha entrega:</td>
+                                    <td colspan="2"><b><span t-field="o.date"/></b></td>
+                                    <td colspan="3">Kg. netos recibidos:</td>
+                                    <td colspan="2"><b><span t-esc="sum([waste.secondary_uom_qty * 1000 for waste in o.move_lines])"/></b></td>
+                                    <td colspan="1">Aceptación:</td>
+                                    <td colspan="1"><b>Sí</b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Fecha aceptación/rechazo</td>
+                                    <td colspan="9"><b><span t-field="o.date"/></b></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Acción en caso de rechazo</td>
+                                    <td colspan="9"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Fecha de devolución/reenvio</td>
+                                    <td colspan="9"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <br/>
+                        <p class="text-center">Firma persona responsable envío:</p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

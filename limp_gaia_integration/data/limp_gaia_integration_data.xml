@@ -6,7 +6,7 @@
             <field name="code">nt_document</field>
             <field name="padding">7</field>
             <field name="number_next">1</field>
-            <field name="prefix">NT129999999999%%(year)d</field>
+            <field name="prefix">NT129999999999%(year)s</field>
             <field name="company_id" eval="0"/>
         </record>
 

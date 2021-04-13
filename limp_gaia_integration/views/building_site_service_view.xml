@@ -6,9 +6,6 @@
         <field name="model">building.site.services</field>
         <field name="inherit_id" ref="limp_service_picking.building_site_services_tree"/>
         <field name="arch" type="xml">
-            <field name="holder_builder" position="before">
-                <field name="holder_builder_id"/>
-            </field>
             <field name="producer_promoter" position="before">
                 <field name="producer_promoter_id"/>
             </field>
@@ -20,9 +17,6 @@
         <field name="model">building.site.services</field>
         <field name="inherit_id" ref="limp_service_picking.building_site_services_form"/>
         <field name="arch" type="xml">
-            <field name="holder_builder" position="before">
-                <field name="holder_builder_id"/>
-            </field>
             <field name="producer_promoter" position="before">
                 <field name="producer_promoter_id"/>
             </field>

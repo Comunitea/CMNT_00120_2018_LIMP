@@ -6,19 +6,28 @@
         <field name="model">prior.transfer.documentation</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="check_NT_data" type="object" string="Check data"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name" readonly="1"/>
                         <field name="producer_promoter_id"/>
                         <field name="operator_partner_id"/>
                         <field name="manager_partner_id"/>
+                        <field name="notification_date"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
                         <field name="freq"/>
                     </group>
                      <separator string="Wastes" colspan="4"/>
                     <field name="line_ids" nolabel="1" colspan="4">
                         <tree editable="bottom">
                             <field name="waste_id"/>
-                            <field name="waste_qty"/>
+                            <field name="name"/>
+                            <field name="no_compute"/>
+                            <field name="net_weight"/>
+                            <field name="volume"/>
                         </tree>
                     </field>
                 </sheet>
@@ -35,6 +44,9 @@
                 <field name="producer_promoter_id"/>
                 <field name="operator_partner_id"/>
                 <field name="manager_partner_id"/>
+                <field name="notification_date"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
             </tree>
         </field>
     </record>

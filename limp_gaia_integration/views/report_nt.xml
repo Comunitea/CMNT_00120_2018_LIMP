@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report id="report_gaia_nt"
+            name="limp_gaia_integration.template_gaia_nt"
+            string="NT (Gaia)"
+            report_type="qweb-xml"
+            model="prior.transfer.documentation"/>
+
+    <template id="nt_header">
+        &lt;ns2:e3l schemaVersion="3.0" xmlns:ns2="e3l://eterproject.org/3.0/e3l"&gt;
+        <header>
+            <test t-esc="company.gaia_test and 'S' or 'N'"/>
+            <prepared t-esc="time.strftime('%Y-%m-%dT%H:%M:%S')"/>
+            <sender>
+                <NIF t-esc="doc.producer_promoter_id.vat.replace('ES', '')"/>
+                <center t-att-centerCode="doc.producer_promoter_id.nima_no" t-att-centerDenomination="doc.producer_promoter_id.name"/>
+            </sender>
+        </header>
+        <t t-raw="0"/>
+        &lt;/ns2:e3l&gt;
+    </template>
+
+    <template id="entity_dataNT">
+        <entityId>
+            <nationalId t-esc="partner.commercial_partner_id.vat.replace('ES', '')"/>
+        </entityId>
+        <entityFJ t-att-entityFJCode="'J' if partner.commercial_partner_id.vat and partner.commercial_partner_id.is_company else 'F'"/>
+        <entityName>
+            <reason>
+                <reasonName t-esc="partner.commercial_partner_id.name"/>
+                <reasonAssociation t-att-associationCode="partner.commercial_partner_id.association_type"/>
+            </reason>
+        </entityName>
+        <entityCommercialName t-if="partner.commercial_partner_id.comercial" t-esc="partner.commercial_partner_id.comercial"/>
+        <entityCenter>
+            <centerID t-att-centerCode="partner.nima_no" t-att-centerDenomination="partner.name"/>
+            <centerEconomicActivity t-esc="partner.commercial_partner_id.nace_id and partner.commercial_partner_id.nace_id.code or 'N/A'"/>
+            <centerAddress>
+                <spanishAddress>
+                    <vial t-if="partner.vialType" t-att-vialCode="partner.vialType"/>
+                    <address t-esc="partner.street"/>
+                    <CP t-esc="partner.zip"/>
+                    <municipality t-att-municipalityCode="partner.council_id.ine_code" t-att-municipalityName="partner.council_id.name"/>
+                    <province t-att-provinceCode="partner.state_id.code" t-att-provinceName="partner.state_id.name"/>
+                    <CA t-if="partner.region_id" t-att-CACode="partner.region_id.code" t-att-CAName="partner.region_id.name"/>
+                    <country t-if="partner.country_id" t-att-countryCode="partner.country_id.code_numeric" t-att-countryName="partner.country_id.name"/>
+                </spanishAddress>
+            </centerAddress>
+            <centerContact>
+                <phone t-esc="partner.phone"/>
+                <phone t-if="partner.mobile" t-esc="partner.mobile"/>
+                <fax t-if="partner.fax" t-esc="partner.fax"/>
+                <mail t-esc="partner.email"/>
+            </centerContact>
+            <wasteCenterAuthorization>
+                <authorizationId>
+                    <authorizationIdFree t-esc="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).name"/>
+                    <authorizationIdEffects t-esc="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).other_state"/>
+                </authorizationId>
+                <authorizationCode t-esc="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).authorization_type"/>
+            </wasteCenterAuthorization>
+        </entityCenter>
+    </template>
+
+    <template id="nt_waste">
+        <waste>
+            <wasteNT t-att-NTCode="doc.name" t-att-NTYear="doc.start_date.strftime('%Y+01:00')" t-att-NTDate="doc.notification_date.strftime('%Y-%m-%d+01:00')" t-att-NTStartDate="doc.start_date.strftime('%Y-%m-%d+01:00')" t-att-NTEndDate="doc.end_date.strftime('%Y-%m-%d+01:00')" t-att-NTFrequency="doc.freq" NTRegional="S" NTSendtoOriginOrDestinationAuthority="N">
+                <NTTransferOperatorData>
+                    <t t-set="partner" t-value="doc.operator_partner_id"/>
+                    <t t-set="auth_types" t-value="['N']"/>
+                    <t t-call="limp_gaia_integration.entity_dataNT"/>
+                    <wasteTransferOperatorType t-att-operatorTypeCode="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).authorization_type"/>
+                </NTTransferOperatorData>
+                <NTProducerData>
+                    <t t-set="partner" t-value="doc.producer_promoter_id"/>
+                    <t t-set="auth_types" t-value="['P', 'G']"/>
+                    <t t-call="limp_gaia_integration.entity_dataNT"/>
+                    <wasteProducerType t-att-producerTypeCode="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).authorization_type"/>
+                    <operator t-if="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).authorization_type[0] == 'G'">
+                        <t t-set="partner" t-value="doc.producer_promoter_id"/>
+                        <t t-set="auth_types" t-value="['E']"/>
+                        <t t-call="limp_gaia_integration.entity_dataNT"/>
+                        <wasteOperatorType t-att-operatorTypeCode="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).authorization_type"/>
+                    </operator>
+                </NTProducerData>
+                <NTAdresseeData>
+                    <t t-set="partner" t-value="doc.manager_partner_id"/>
+                    <t t-set="auth_types" t-value="['G']"/>
+                    <t t-call="limp_gaia_integration.entity_dataNT"/>
+                    <wasteManagerType t-att-managerTypeCode="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).authorization_type"/>
+                    <operator>
+                        <t t-set="partner" t-value="doc.manager_partner_id"/>
+                        <t t-set="auth_types" t-value="['E']"/>
+                        <t t-call="limp_gaia_integration.entity_dataNT"/>
+                        <wasteOperatorType t-att-operatorTypeCode="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).authorization_type"/>
+                    </operator>
+                </NTAdresseeData>
+                <NTTransportedResidues>
+                <t t-foreach="doc.line_ids" t-as="waste">
+                    <t t-if="waste.waste_id.dangerous">
+                        <NTResidueIdentification xsi:type="ns4:dangerousResidueType" t-att-LERCode="waste.waste_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <residueBag>
+                                <bagProcess internalIdProcessCode="99"/>
+                                <bagResidueId residueCode="999" t-att-residueDescription="waste.name"/>
+                            </residueBag>
+                            <residueTables xsi:type="ns4:tablesDangerousType">
+                                <table2 t-esc="waste.waste_id.operation_type"/>
+                                <table5 t-esc="waste.waste_id.dangerous_motive"/>
+                                <process operationIdProcessCode="R1301"/>
+                            </residueTables>
+                        </NTResidueIdentification>
+                    </t>
+                    <t t-if="not waste.waste_id.dangerous">
+                        <NTResidueIdentification xsi:type="ns4:noDangerousResidueType" t-att-LERCode="waste.waste_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <residueBag>
+                                <bagProcess internalIdProcessCode="99"/>
+                                <bagResidueId residueCode="999" t-att-residueDescription="waste.name"/>
+                            </residueBag>
+                            <residueTables xsi:type="ns4:tablesNoDangerousType">
+                                <table2 t-esc="waste.waste_id.operation_type"/>
+                            </residueTables>
+                        </NTResidueIdentification>
+                    </t>
+                    <NTOtherResidueData>
+                        <NTDA>DA99999999999999999999999</NTDA>
+                        <NTResidueQuantity t-esc="waste.net_weight * 1000"/>
+                        <NTResidueVolume t-esc="waste.volume"/>
+                    </NTOtherResidueData>
+                </t>
+                </NTTransportedResidues>
+            </wasteNT>
+        </waste>
+    </template>
+
+    <template id="template_gaia_nt">
+        <t t-call="limp_gaia_integration.nt_header">
+            <t t-set="doc" t-value="docs[0]"/>
+            <t t-set="company" t-value="doc.company_id"/>
+            <t t-call="limp_gaia_integration.nt_waste"/>
+        </t>
+    </template>
+
+</odoo>

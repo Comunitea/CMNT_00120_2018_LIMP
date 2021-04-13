@@ -248,7 +248,7 @@ class StockServicePicking(models.Model):
     )
     dcs_no = fields.Char(
         "DCS no.",
-        size=24,
+        size=26,
         states={
             "closed": [("readonly", True)],
             "cancelled": [("readonly", True)],

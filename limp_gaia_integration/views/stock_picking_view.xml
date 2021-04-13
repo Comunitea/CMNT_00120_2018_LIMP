@@ -8,7 +8,11 @@
         <field name="arch" type="xml">
             <field name="manager_or_productor" position="after">
                 <field name="operator_partner_id"/>
-                <field name="nt_doc_id"/>
+                <field name="nt_doc_id" domain="[('operator_partner_id', '=', operator_partner_id),('manager_partner_id', '=', partner_id)]"/>
+                <field name="dcs_no"/>
+            </field>
+            <field name="state" position="before">
+                <button name="check_DI_data" type="object" string="Check data"/>
             </field>
         </field>
     </record>
