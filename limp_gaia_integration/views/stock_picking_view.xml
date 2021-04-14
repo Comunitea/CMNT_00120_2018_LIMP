@@ -7,6 +7,7 @@
         <field name="inherit_id" ref="limp_service_picking.view_picking_out_form_rep_buttons"/>
         <field name="arch" type="xml">
             <field name="manager_or_productor" position="after">
+                <field name="manager_id"/>
                 <field name="operator_partner_id"/>
                 <field name="nt_doc_id" domain="[('operator_partner_id', '=', operator_partner_id),('manager_partner_id', '=', partner_id)]"/>
                 <field name="dcs_no"/>

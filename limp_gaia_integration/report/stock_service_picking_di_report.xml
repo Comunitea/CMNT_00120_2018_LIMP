@@ -336,6 +336,7 @@
                         <br/>
                         <br/>
                         <p class="text-center">Firma persona responsable envío:</p>
+                        <center><img t-if="o.manager_id.user_id.signature_image" t-att-src="image_data_uri(o.manager_id.user_id.signature_image)" style="max-height: 110px;"/></center>
                     </div>
                 </t>
             </t>

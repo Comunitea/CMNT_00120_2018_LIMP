@@ -1241,6 +1241,11 @@ msgid "Related LERs"
 msgstr "LERs asociados"
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_picking__manager_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: limp_gaia_integration
 #: selection:res.partner,vialType:0
 msgid "Rinconada"
 msgstr ""

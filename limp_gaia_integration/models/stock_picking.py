@@ -13,6 +13,16 @@ class StockPicking(models.Model):
                                           company_id.partner_id.id)
     nt_doc_id = fields.Many2one("prior.transfer.documentation", "NT")
     dcs_no = fields.Char("DCS no.", size=26, copy=False, readonly=True)
+    manager_id = fields.Many2one(
+        "hr.employee",
+        "Responsible",
+        domain=[("responsible", "=", True)],
+        default=lambda r: r._context.get(
+            "c_manager_id",
+            r.env.user.employee_ids and r.env.user.employee_ids[0].id or False,
+        ),
+        index=True
+    )
 
     @api.multi
     def check_DI_data(self):

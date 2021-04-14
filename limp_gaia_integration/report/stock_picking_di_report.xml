@@ -28,7 +28,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3">Fecha inicio de traslado:</td>
-                                    <td colspan="9"><b><span t-field="o.date"/></b></td>
+                                    <td colspan="9"><b><span t-field="o.date" t-options='{"widget": "date"}'/></b></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -313,7 +313,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="3">Fecha entrega:</td>
-                                    <td colspan="2"><b><span t-field="o.date"/></b></td>
+                                    <td colspan="2"><b><span t-field="o.date" t-options='{"widget": "date"}'/></b></td>
                                     <td colspan="3">Kg. netos recibidos:</td>
                                     <td colspan="2"><b><span t-esc="sum([waste.secondary_uom_qty * 1000 for waste in o.move_lines])"/></b></td>
                                     <td colspan="1">Aceptación:</td>
@@ -321,7 +321,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3">Fecha aceptación/rechazo</td>
-                                    <td colspan="9"><b><span t-field="o.date"/></b></td>
+                                    <td colspan="9"><b><span t-field="o.date" t-options='{"widget": "date"}'/></b></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">Acción en caso de rechazo</td>
@@ -336,6 +336,7 @@
                         <br/>
                         <br/>
                         <p class="text-center">Firma persona responsable envío:</p>
+                        <center><img t-if="o.manager_id.user_id.signature_image" t-att-src="image_data_uri(o.manager_id.user_id.signature_image)" style="max-height: 110px;"/></center>
                     </div>
                 </t>
             </t>
