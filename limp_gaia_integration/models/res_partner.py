@@ -53,7 +53,29 @@ class ResPartner(models.Model):
                           'residentes en España'), ('99', 'Otros')],
                   "Association type")
 
+    @api.multi
+    def open_prior_transfer_docs(self):
+        self.ensure_one()
+        form_view_id = self.env.\
+            ref("limp_gaia_integration.prior_transfer_documentation_form")
+        tree_view_id = self.env.\
+            ref("limp_gaia_integration.prior_transfer_documentation_tree")
 
+        return {
+            "name": "NTs",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "prior.transfer.documentation",
+            "domain": "['|', '|', ('producer_promoter_id', 'child_of', [{0}]),"
+                      "('operator_partner_id', 'child_of', [{0}]),"
+                      "('manager_partner_id', 'child_of', [{0}])]".
+            format(self.id),
+            "context": "{'default_producer_promoter_id': %s}" % self.id,
+            "view_id": tree_view_id.id,
+            "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+        }
 
     @api.multi
     def get_authorization_id(self, lers, auth_types):

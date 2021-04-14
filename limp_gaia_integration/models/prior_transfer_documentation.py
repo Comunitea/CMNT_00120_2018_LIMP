@@ -71,7 +71,7 @@ class PriorTransferDocumentation(models.Model):
                 seq_id = seq_id[0]
 
             seq = seq_id.next_by_id()
-            pick.name = seq
+            res.name = seq
         return res
 
     @api.multi
