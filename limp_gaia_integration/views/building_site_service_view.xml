@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="building_site_services_tree_add_fks" model="ir.ui.view">
+        <field name="name">building.site.services.tree.add_fks</field>
+        <field name="model">building.site.services</field>
+        <field name="inherit_id" ref="limp_service_picking.building_site_services_tree"/>
+        <field name="arch" type="xml">
+            <field name="producer_promoter" position="before">
+                <field name="producer_promoter_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="building_site_services_form" model="ir.ui.view">
+        <field name="name">building.site.services.form</field>
+        <field name="model">building.site.services</field>
+        <field name="inherit_id" ref="limp_service_picking.building_site_services_form"/>
+        <field name="arch" type="xml">
+            <field name="producer_promoter" position="before">
+                <field name="producer_promoter_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

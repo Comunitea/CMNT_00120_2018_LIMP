@@ -117,6 +117,7 @@ class StockServicePickingLine(models.Model):
             ("cleaning", "Cleaning"),
             ("inplant", "Come into plant"),
             ("move_to_plant", "Move to plant"),
+            ("move_to_plant_di", "Move to plant DI"),
             ("pest_control", "Pest Control"),
             ("legionella", "Legionella"),
         ],
@@ -195,7 +196,8 @@ class StockServicePickingLine(models.Model):
                 else:
                     self.orig_address_id = self.env.user.work_address_id.id
             self.dest_address_id = self.parent_building_addr_id
-        elif self.type in ("remove", "inplant", "move_to_plant"):
+        elif self.type in ("remove", "inplant", "move_to_plant",
+                           "move_to_plant_di"):
             self.orig_address_id = (
                 self.parent_building_addr_id
                 or self.env.user.work_address_id.id
@@ -215,6 +217,7 @@ class StockServicePickingLine(models.Model):
             "remove",
             "inplant",
             "move_to_plant",
+            "move_to_plant_di",
             "outstanding",
             "aspirating",
             "cleaning",
@@ -241,42 +244,46 @@ class StockServicePickingLine(models.Model):
                 )
             if (
                 line.picking_id.manager_partner_id
-                and line.type in ("remove", "inplant")
-                and not line.picking_id.delivery_proof_no
+                and line.type in ("remove", "inplant", "move_to_plant_di")
+                and not line.picking_id.delivery_proof_no and not line.
+                picking_id.dcs_no
             ):
                 if not line.picking_id.manager_partner_id.nima_no:
                     raise UserError(_("Manager selected has not NIMA number."))
-                if line.picking_id.manager_partner_id.create_nima_number:
-                    seq_id = self.env["ir.sequence"].search(
-                        [
-                            (
-                                "prefix",
-                                "=",
-                                "TNP30"
-                                + line.picking_id.manager_partner_id.nima_no
-                                + time.strftime("%Y"),
-                            ),
-                            ("code", "=", "waste_delivery_proof"),
-                        ]
-                    )
-                    if not seq_id:
-                        seq_id = self.env["ir.sequence"].create(
-                            {
-                                "prefix": "TNP30"
-                                + line.picking_id.manager_partner_id.nima_no
-                                + time.strftime("%Y"),
-                                "code": "waste_delivery_proof",
-                                "padding": 7,
-                                "name": "Waste delivery proof "
-                                + line.picking_id.manager_partner_id.name,
-                                "company_id": False,
-                            }
-                        )
-                    else:
-                        seq_id = seq_id[0]
 
-                    seq = seq_id.next_by_id()
-                    line.picking_id.write({"delivery_proof_no": seq})
+                seq_id = self.env["ir.sequence"].search(
+                    [
+                        (
+                            "prefix",
+                            "=",
+                            "DCS30"
+                            + line.picking_id.operator_partner_id.nima_no
+                            + time.strftime("%Y"),
+                        ),
+                        ("code", "=", "waste_delivery_proof"),
+                    ]
+                )
+                if not seq_id:
+                    seq_id = self.env["ir.sequence"].create(
+                        {
+                            "prefix": "DCS30"
+                            + line.picking_id.operator_partner_id.nima_no
+                            + time.strftime("%Y"),
+                            "code": "waste_delivery_proof",
+                            "padding": 7,
+                            "name": "Waste delivery proof "
+                            + line.picking_id.operator_partner_id.name,
+                            "company_id": False,
+                        }
+                    )
+                else:
+                    seq_id = seq_id[0]
+
+                seq = seq_id.next_by_id()
+                vals = {'dcs_no': seq}
+                if line.picking_id.manager_partner_id.create_nima_number:
+                    vals['delivery_proof_no'] = seq
+                line.picking_id.write(vals)
         return self.write({"state": "done"})
 
     @api.multi
