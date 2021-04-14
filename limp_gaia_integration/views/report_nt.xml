@@ -107,7 +107,6 @@
                             <residueTables xsi:type="ns4:tablesDangerousType">
                                 <table2 t-esc="waste.waste_id.operation_type"/>
                                 <table5 t-esc="waste.waste_id.dangerous_motive"/>
-                                <process operationIdProcessCode="R1301"/>
                             </residueTables>
                         </NTResidueIdentification>
                     </t>

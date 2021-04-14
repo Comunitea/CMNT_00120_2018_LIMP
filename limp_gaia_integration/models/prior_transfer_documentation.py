@@ -1,6 +1,7 @@
 # Copyright 2021 Comunitea Servicios Tecnológicos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields, exceptions
+import time
 
 
 class PriorTransferDocumentation(models.Model):
@@ -39,9 +40,39 @@ class PriorTransferDocumentation(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get('name') == "/":
-            vals['name'] = self.env["ir.sequence"].next_by_code("nt_document")
-        return super().create(vals)
+        res = super().create(vals)
+        if res.name == "/":
+            seq_id = self.env["ir.sequence"].search(
+                [
+                    (
+                        "prefix",
+                        "=",
+                        "NT30"
+                        + res.operator_partner_id.nima_no
+                        + time.strftime("%Y"),
+                    ),
+                    ("code", "=", "nt_document"),
+                ]
+            )
+            if not seq_id:
+                seq_id = self.env["ir.sequence"].create(
+                    {
+                        "prefix": "NT30"
+                        + res.operator_partner_id.nima_no
+                        + time.strftime("%Y"),
+                        "code": "nt_document",
+                        "padding": 7,
+                        "name": "Prior transfer documentation seq. "
+                        + res.company_id.name,
+                        "company_id": False,
+                    }
+                )
+            else:
+                seq_id = seq_id[0]
+
+            seq = seq_id.next_by_id()
+            pick.name = seq
+        return res
 
     @api.multi
     def check_NT_data(self):
@@ -55,14 +86,29 @@ class PriorTransferDocumentation(models.Model):
                                      mapped('waste_id'), ['N'])
 
             pick.producer_promoter_id.check_gaia("productor")
-            pick.producer_promoter_id.\
+            code = pick.producer_promoter_id.\
                 get_authorization_id(pick.line_ids.
                                      mapped('waste_id'), ['P', 'G'])
+            if code.authorization_type[0] == 'G':
+                pick.producer_promoter_id.\
+                    get_authorization_id(pick.line_ids.
+                                         mapped('waste_id'), ['E'])
 
             pick.manager_partner_id.check_gaia("gestor")
             pick.manager_partner_id.\
                 get_authorization_id(pick.line_ids.
-                                     mapped('waste_id'), ['E', 'G'])
+                                     mapped('waste_id'), ['G'])
+            pick.manager_partner_id.\
+                get_authorization_id(pick.line_ids.
+                                     mapped('waste_id'), ['E'])
+            for waste in pick.line_ids.mapped('waste_id'):
+                if not waste.operation_type:
+                    raise exceptions.UserError("No se ha establecido el tipo"
+                                               " de operación en el residuo")
+                if waste.dangerous and not waste.dangerous_motive:
+                    raise exceptions.\
+                        UserError("No se ha establecido el motivo de "
+                                  "peligrosidad en el residuo")
 
 
 class PriorTransferDocumentationLine(models.Model):

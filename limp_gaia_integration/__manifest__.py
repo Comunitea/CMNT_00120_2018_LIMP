@@ -16,8 +16,7 @@
         "limp_reports",
         "report_xml"
     ],
-    "data": ["data/limp_gaia_integration_data.xml",
-             "security/ir.model.access.csv",
+    "data": ["security/ir.model.access.csv",
              "views/stock_service_picking_view.xml",
              "views/stock_picking_view.xml",
              "views/res_partner_view.xml",

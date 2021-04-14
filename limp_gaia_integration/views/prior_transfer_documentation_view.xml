@@ -11,7 +11,7 @@
                 </header>
                 <sheet>
                     <group>
-                        <field name="name" readonly="1"/>
+                        <field name="name"/>
                         <field name="producer_promoter_id"/>
                         <field name="operator_partner_id"/>
                         <field name="manager_partner_id"/>

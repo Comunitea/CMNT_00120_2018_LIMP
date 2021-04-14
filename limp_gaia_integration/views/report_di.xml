@@ -130,7 +130,6 @@
                                 <residueTables xsi:type="ns4:tablesDangerousType">
                                     <table2 t-esc="waste.operation_type or waste.product_id.ler_code_id.operation_type"/>
                                     <table5 t-esc="waste.product_id.ler_code_id.dangerous_motive"/>
-                                    <process operationIdProcessCode="R1301"/>
                                 </residueTables>
                             </DCSProducerResidueIdentification>
                             <DCSAdresseeResidueIdentification xsi:type="ns4:dangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -166,7 +165,7 @@
                         </t>
                         <DCSOtherResidueData>
                             <DCSDA>DA99999999999999999999999</DCSDA>
-                            <DCSNT t-if="picking.nt_doc_id" t-esc="picking.nt_doc_id.name"/>
+                            <DCSNT t-esc="picking.nt_doc_id.name or 'NT99999999999999999999999'"/>
                             <DCSClearWeight t-esc="waste.net_weight * 1000"/>
                             <DCSVolume t-esc="waste.volume"/>
                         </DCSOtherResidueData>
@@ -233,7 +232,6 @@
                                 <residueTables xsi:type="ns4:tablesDangerousType">
                                     <table2 t-esc="waste.product_id.ler_code_id.operation_type"/>
                                     <table5 t-esc="waste.product_id.ler_code_id.dangerous_motive"/>
-                                    <process operationIdProcessCode="R1301"/>
                                 </residueTables>
                             </DCSProducerResidueIdentification>
                             <DCSAdresseeResidueIdentification xsi:type="ns4:dangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -269,7 +267,7 @@
                         </t>
                         <DCSOtherResidueData>
                             <DCSDA>DA99999999999999999999999</DCSDA>
-                            <DCSNT t-if="picking.nt_doc_id" t-esc="picking.nt_doc_id.name"/>
+                            <DCSNT t-esc="picking.nt_doc_id.name or 'NT99999999999999999999999'"/>
                             <DCSClearWeight t-esc="waste.secondary_uom_qty * 1000"/>
                             <DCSVolume t-esc="waste.product_uom_qty"/>
                         </DCSOtherResidueData>

@@ -27,10 +27,15 @@ class StockPicking(models.Model):
 
             pick.picking_type_id.warehouse_id.partner_id.\
                 check_gaia("productor")
-            pick.picking_type_id.warehouse_id.partner_id.\
+            code = pick.picking_type_id.warehouse_id.partner_id.\
                 get_authorization_id(pick.move_lines.
                                      mapped('product_id.ler_code_id'),
                                      ['P', 'G'])
+            if code.authorization_type[0] == 'G':
+                pick.picking_type_id.warehouse_id.partner_id.\
+                    get_authorization_id(pick.move_lines.
+                                         mapped('product_id.ler_code_id'),
+                                         ['E'])
 
             pick.carrier_id.check_gaia("transportista")
             pick.carrier_id.\
@@ -42,7 +47,19 @@ class StockPicking(models.Model):
             pick.company_id.partner_id.\
                 get_authorization_id(pick.move_lines.
                                      mapped('product_id.ler_code_id'),
-                                     ['E', 'G'])
+                                     ['G'])
+            pick.company_id.partner_id.\
+                get_authorization_id(pick.move_lines.
+                                     mapped('product_id.ler_code_id'),
+                                     ['E'])
+            for waste in pick.move_lines.mapped('product_id.ler_code_id'):
+                if not waste.operation_type:
+                    raise exceptions.UserError("No se ha establecido el tipo"
+                                               " de operación en el residuo")
+                if waste.dangerous and not waste.dangerous_motive:
+                    raise exceptions.\
+                        UserError("No se ha establecido el motivo de "
+                                  "peligrosidad en el residuo")
 
     @api.multi
     def action_done(self):
