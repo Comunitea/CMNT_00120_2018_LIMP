@@ -168,7 +168,7 @@ def _get_outs(self, cpa, ler):
     res = [
         (x, res[x][0].city, res[x][0].state_id.name, res[x][1]) for x in res
     ]
-    res.sort(key=lambda x: x[0].name)
+    res.sort(key=lambda x: x[0].commercial_partner_id.name)
     return res
 
 
