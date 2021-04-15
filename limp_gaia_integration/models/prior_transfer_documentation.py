@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields, exceptions
 import time
+from dateutil.relativedelta import relativedelta
 
 
 class PriorTransferDocumentation(models.Model):
@@ -37,6 +38,12 @@ class PriorTransferDocumentation(models.Model):
     end_date = fields.Date("End date", required=True)
     notification_date = fields.Date("Notification date", required=True,
                                     default=fields.Date.today)
+    active = fields.Boolean("Activo", default=True)
+
+    @api.onchange('start_date')
+    def onchange_start_date(self):
+        if self.start_date:
+            self.end_date = self.start_date + relativedelta(years=3)
 
     @api.model
     def create(self, vals):
@@ -83,7 +90,7 @@ class PriorTransferDocumentation(models.Model):
             pick.operator_partner_id.check_gaia("operador")
             pick.operator_partner_id.\
                 get_authorization_id(pick.line_ids.
-                                     mapped('waste_id'), ['N'])
+                                     mapped('waste_id'), ['N', 'G'])
 
             pick.producer_promoter_id.check_gaia("productor")
             code = pick.producer_promoter_id.\
@@ -116,12 +123,19 @@ class PriorTransferDocumentationLine(models.Model):
     _name = "prior.transfer.documentation.line"
     _description = "(NT) Prior transfer documentation line"
 
+    product_id = fields.Many2one("product.product", "Producto", required=True)
     waste_id = fields.Many2one("waste.ler.code", "LER", required=True)
     name = fields.Char("Waste name", required=True)
     nt_id = fields.Many2one("prior.transfer.documentation", "NT")
     net_weight = fields.Float("Net (T.)", required=True, digits=(12, 3))
     volume = fields.Float("Volume (m³)", required=True, digits=(12, 3))
     no_compute = fields.Boolean("No compute")
+
+    @api.onchange('product_id')
+    def onchange_product_id(self):
+        if self.product_id:
+            self.waste_id = self.product_id.ler_code_id
+            self.name = self.product_id.name
 
     @api.onchange("net_weight")
     def onchange_net_weight(self):

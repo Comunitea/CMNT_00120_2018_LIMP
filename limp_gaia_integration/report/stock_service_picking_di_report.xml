@@ -8,6 +8,7 @@
             model="stock.service.picking"/>
 
     <template id="template_waste_identification_input_di">
+        <t t-set="company" t-value="docs.env['res.company'].sudo().browse(1)"/> <!-- Limpergal -->
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
@@ -49,9 +50,9 @@
                                     <td colspan="1">NIMA:</td>
                                     <td colspan="2"><b><span t-field="o.operator_partner_id.nima_no"/></b></td>
                                     <td colspan="2">Nº Inscripción:</td>
-                                    <td colspan="3"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.service_picking_valorization_ids.mapped('product_id.ler_code_id'), ['N']).name"/></b></td>
+                                    <td colspan="3"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.service_picking_valorization_ids.mapped('product_id.ler_code_id'), ['N', 'G']).name"/></b></td>
                                     <td colspan="3">Tipo Operador Traslado</td>
-                                    <td colspan="1"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.service_picking_valorization_ids.mapped('product_id.ler_code_id'), ['N']).authorization_type"/></b></td>
+                                    <td colspan="1"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.service_picking_valorization_ids.mapped('product_id.ler_code_id'), ['N', 'G']).authorization_type"/></b></td>
                                 </tr>
                                 <tr>
                                     <td colspan="1">Dirección:</td>
@@ -336,7 +337,7 @@
                         <br/>
                         <br/>
                         <p class="text-center">Firma persona responsable envío:</p>
-                        <center><img t-if="o.manager_id.user_id.signature_image" t-att-src="image_data_uri(o.manager_id.user_id.signature_image)" style="max-height: 110px;"/></center>
+                        <center><img t-if="o.sudo().manager_id.user_id.signature_image" t-att-src="image_data_uri(o.sudo().manager_id.user_id.signature_image)" style="max-height: 150px;"/></center>
                     </div>
                 </t>
             </t>

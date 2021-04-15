@@ -55,9 +55,9 @@
                                     <td colspan="1">NIMA:</td>
                                     <td colspan="2"><b><span t-field="o.operator_partner_id.nima_no"/></b></td>
                                     <td colspan="2">Nº Inscripción:</td>
-                                    <td colspan="3"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.line_ids.mapped('waste_id'), ['N']).name"/></b></td>
+                                    <td colspan="3"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.line_ids.mapped('waste_id'), ['N', 'G']).name"/></b></td>
                                     <td colspan="3">Tipo Operador Traslado</td>
-                                    <td colspan="1"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.line_ids.mapped('waste_id'), ['N']).authorization_type"/></b></td>
+                                    <td colspan="1"><b><span t-esc="o.operator_partner_id.get_authorization_id(o.line_ids.mapped('waste_id'), ['N', 'G']).authorization_type"/></b></td>
                                 </tr>
                                 <tr>
                                     <td colspan="1">Dirección:</td>

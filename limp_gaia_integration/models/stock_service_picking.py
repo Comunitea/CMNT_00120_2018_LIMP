@@ -30,7 +30,8 @@ class StockServicePicking(models.Model):
             pick.operator_partner_id.check_gaia("operador")
             pick.operator_partner_id.\
                 get_authorization_id(pick.service_picking_valorization_ids.
-                                     mapped('product_id.ler_code_id'), ['N'])
+                                     mapped('product_id.ler_code_id'),
+                                     ['N', 'G'])
 
             pick.producer_promoter_id.check_gaia("productor")
             code = pick.producer_promoter_id.\

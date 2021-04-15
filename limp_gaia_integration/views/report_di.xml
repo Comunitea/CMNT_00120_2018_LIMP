@@ -91,7 +91,7 @@
             <wasteDCS t-att-DCSCode="picking.dcs_no" t-att-DCSPhase="picking.dcs_phase" t-att-DCSYear="picking.retired_date.strftime('%Y+01:00')" t-att-DCSDate="picking.retired_date.strftime('%Y-%m-%d+01:00')" t-att-DCSStartDate="min(picking.service_ids.mapped('transport_date')).strftime('%Y-%m-%d+01:00')" t-att-DCSEndDate="max(picking.service_ids.mapped('transport_date')).strftime('%Y-%m-%d+01:00')" DCSRegional="S" DCSSendtoOriginOrDestinationAuthority="N">
                 <DCSTransferOperatorData>
                     <t t-set="partner" t-value="picking.operator_partner_id"/>
-                    <t t-set="auth_types" t-value="['N']"/>
+                    <t t-set="auth_types" t-value="['N', 'G']"/>
                     <t t-call="limp_gaia_integration.entity_data"/>
                     <wasteTransferOperatorType t-att-operatorTypeCode="partner.get_authorization_id(picking.service_picking_valorization_ids.mapped('product_id.ler_code_id'), auth_types).authorization_type"/>
                 </DCSTransferOperatorData>
@@ -176,7 +176,7 @@
                             <wasteTransporterType t-att-trasporterTypeCode="partner.get_authorization_id(picking.service_picking_valorization_ids.mapped('product_id.ler_code_id'), auth_types).authorization_type"/>
                             <DCSTransportWay transportWayCode="03"/>
                         </DCSTransporterData>
-                        <DCSAcceptanceData t-if="picking.manager_partner_id.commercial_partner_id == company.partner_id">
+                        <DCSAcceptanceData>
                             <DCSRealQuantity t-esc="waste.net_weight * 1000"/>
                             <DCSAcceptance>03</DCSAcceptance>
                             <DCSAcceptanceDate t-esc="picking.retired_date.strftime('%Y-%m-%d+01:00')"/>
@@ -193,7 +193,7 @@
             <wasteDCS t-att-DCSCode="picking.dcs_no" DCSPhase="D" t-att-DCSYear="picking.date.strftime('%Y+01:00')" t-att-DCSDate="picking.date.strftime('%Y-%m-%d+01:00')" t-att-DCSStartDate="picking.date.strftime('%Y-%m-%d+01:00')" t-att-DCSEndDate="picking.date.strftime('%Y-%m-%d+01:00')" DCSRegional="S" DCSSendtoOriginOrDestinationAuthority="N">
                 <DCSTransferOperatorData>
                     <t t-set="partner" t-value="picking.operator_partner_id"/>
-                    <t t-set="auth_types" t-value="['N']"/>
+                    <t t-set="auth_types" t-value="['N', 'G']"/>
                     <t t-call="limp_gaia_integration.entity_data"/>
                     <wasteTransferOperatorType t-att-operatorTypeCode="partner.get_authorization_id(picking.move_lines.mapped('product_id.ler_code_id'), auth_types).authorization_type"/>
                 </DCSTransferOperatorData>

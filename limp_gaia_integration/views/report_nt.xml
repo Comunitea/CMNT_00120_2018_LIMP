@@ -68,7 +68,7 @@
             <wasteNT t-att-NTCode="doc.name" t-att-NTYear="doc.start_date.strftime('%Y+01:00')" t-att-NTDate="doc.notification_date.strftime('%Y-%m-%d+01:00')" t-att-NTStartDate="doc.start_date.strftime('%Y-%m-%d+01:00')" t-att-NTEndDate="doc.end_date.strftime('%Y-%m-%d+01:00')" t-att-NTFrequency="doc.freq" NTRegional="S" NTSendtoOriginOrDestinationAuthority="N">
                 <NTTransferOperatorData>
                     <t t-set="partner" t-value="doc.operator_partner_id"/>
-                    <t t-set="auth_types" t-value="['N']"/>
+                    <t t-set="auth_types" t-value="['N', 'G']"/>
                     <t t-call="limp_gaia_integration.entity_dataNT"/>
                     <wasteTransferOperatorType t-att-operatorTypeCode="partner.get_authorization_id(doc.line_ids.mapped('waste_id'), auth_types).authorization_type"/>
                 </NTTransferOperatorData>
@@ -135,7 +135,7 @@
     <template id="template_gaia_nt">
         <t t-call="limp_gaia_integration.nt_header">
             <t t-set="doc" t-value="docs[0]"/>
-            <t t-set="company" t-value="doc.company_id"/>
+            <t t-set="company" t-value="doc.env.user.company_id"/>
             <t t-call="limp_gaia_integration.nt_waste"/>
         </t>
     </template>

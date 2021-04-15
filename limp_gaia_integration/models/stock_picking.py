@@ -33,7 +33,8 @@ class StockPicking(models.Model):
             pick.operator_partner_id.check_gaia("operador")
             pick.operator_partner_id.\
                 get_authorization_id(pick.move_lines.
-                                     mapped('product_id.ler_code_id'), ['N'])
+                                     mapped('product_id.ler_code_id'),
+                                     ['N', 'G'])
 
             pick.picking_type_id.warehouse_id.partner_id.\
                 check_gaia("productor")

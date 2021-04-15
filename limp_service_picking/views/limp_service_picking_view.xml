@@ -75,7 +75,7 @@
                     <group col="4">
                         <field name="description" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" string="Description" />
                         <field name="service_type" string="Service hours" attrs="{'invisible': [('older', '=', False)]}" />
-                        <field name="carrier_id" attrs="{'required':[('building_site','=',False)],'invisible':[('building_site','=',True)]}" />
+                        <field name="carrier_id" attrs="{'required':[('building_site','=',False)]}" />
                         <field name="manager_partner_id" domain="[('destination_manager', '=', True)]" widget="selection" />
                         <field name="picking_date" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" />
                         <field name="pricelist_id" attrs="{'readonly':[('state','in',['cancelled','closed'])]}" required="1"/>
