@@ -117,12 +117,31 @@ class ServicePickingValorizationRel(models.Model):
                    ('R10', 'R10'), ('R11', 'R11'), ('R12', 'R12'),
                    ('R13', 'R13'), ('R14', 'R14'), ('R15', 'R15')],
                   "Operation type")
+    dangerous_motive = fields.\
+        Selection([('HP1', 'HP1 Explosivo'), ('HP2', 'HP2 Comburente'),
+                   ('HP3', 'HP3 Inflamable'),
+                   ('HP4', 'HP4 Irritante-Irritación cutánea y lesiones '
+                    'oculares'), ('HP5', 'HP5 Toxicidad especifica en '
+                    'determinados órganos (STOT en su sigla ingles) - '
+                    'Toxicidad por aspiración'),
+                   ('HP6', 'HP6 Tóxicidad aguda'), ('HP7', 'HP7 Carcinógeno'),
+                   ('HP8', 'HP8 Corrosivo'), ('HP9', 'HP9 Infeccioso'),
+                   ('HP10', 'HP10 Tóxico para la reproducción'),
+                   ('HP11', 'HP11 Mutágeno'),
+                   ('HP12', 'HP12 Liberación de un gas de toxicidad aguda'),
+                   ('HP13', 'HP13 Sensibilizante'), ('HP14', 'HP14 Ecotóxico'),
+                   ('HP15', 'HP15 Residuos que pueden presentar una de las '
+                    'caractarísticas de peligrosidad antes mencionadas que el '
+                    'residuo original no presentaba directamente')],
+                  "Dangerous Motive")
 
     @api.onchange("product_id")
     def onchange_product_id_warning(self):
         res = super().onchange_product_id_warning()
         if self.product_id and self.product_id.ler_code_id:
             self.operation_type = self.product_id.ler_code_id.operation_type
+            self.dangerous_motive = self.product_id.ler_code_id.\
+                dangerous_motive
         return res
 
 

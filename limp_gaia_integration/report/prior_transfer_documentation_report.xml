@@ -258,9 +258,9 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">Operación de Tratamiento (R/D):</td>
-                                        <td colspan="1"><b><span t-esc="waste.waste_id.operation_type"/></b></td>
+                                        <td colspan="1"><b><span t-esc="waste.operation_type or waste.waste_id.operation_type"/></b></td>
                                         <td colspan="3">Código de Peligrosidad (HP):</td>
-                                        <td colspan="1"><b><span t-field="waste.waste_id.dangerous_motive"/></b></td>
+                                        <td colspan="1"><b><span t-esc="waste.dangerous_motive or waste.waste_id.dangerous_motive"/></b></td>
                                         <td colspan="3">Código operación-proceso:</td>
                                         <td colspan="1"></td>
                                     </tr>

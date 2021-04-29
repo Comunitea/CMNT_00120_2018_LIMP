@@ -14,7 +14,12 @@
             </field>
             <field name="state" position="before">
                 <button name="check_DI_data" type="object" string="Check data"/>
+                <button name="action_create_di" type="object" string="Create DI" attrs="{'invisible': ['|','|',('dcs_no', '!=', False),('picking_type_code', '!=', 'outgoing'),('memory_include', '=', False)]}"/>
             </field>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
+                <field name="operation_type"/>
+                <field name="dangerous_motive"/>
+            </xpath>
         </field>
     </record>
 

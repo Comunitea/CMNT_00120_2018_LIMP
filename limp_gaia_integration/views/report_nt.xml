@@ -105,8 +105,8 @@
                                 <bagResidueId residueCode="999" t-att-residueDescription="waste.name"/>
                             </residueBag>
                             <residueTables xsi:type="ns4:tablesDangerousType">
-                                <table2 t-esc="waste.waste_id.operation_type"/>
-                                <table5 t-esc="waste.waste_id.dangerous_motive"/>
+                                <table2 t-esc="waste.operation_type or waste.waste_id.operation_type"/>
+                                <table5 t-esc="waste.dangerous_motive or waste.waste_id.dangerous_motive"/>
                             </residueTables>
                         </NTResidueIdentification>
                     </t>
@@ -117,7 +117,7 @@
                                 <bagResidueId residueCode="999" t-att-residueDescription="waste.name"/>
                             </residueBag>
                             <residueTables xsi:type="ns4:tablesNoDangerousType">
-                                <table2 t-esc="waste.waste_id.operation_type"/>
+                                <table2 t-esc="waste.operation_type or waste.waste_id.operation_type"/>
                             </residueTables>
                         </NTResidueIdentification>
                     </t>

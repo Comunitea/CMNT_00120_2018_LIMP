@@ -33,6 +33,8 @@
                             <field name="product_id"/>
                             <field name="waste_id"/>
                             <field name="name"/>
+                            <field name="operation_type"/>
+                            <field name="dangerous_motive"/>
                             <field name="no_compute"/>
                             <field name="net_weight"/>
                             <field name="volume"/>

@@ -13,6 +13,7 @@
             </field>
             <xpath expr="//field[@name='service_picking_valorization_ids']/tree/field[@name='ler_code']" position="after">
                 <field name="operation_type"/>
+                <field name="dangerous_motive"/>
             </xpath>
             <field name="state" position="before">
                 <button name="check_DI_data" type="object" string="Check data"/>
