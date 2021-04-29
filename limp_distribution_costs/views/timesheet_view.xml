@@ -15,7 +15,7 @@
                 <field name="pending_distribute_qty" sum="Total Pending"/>
                 <field name="fix_qty" sum="Total fixed"/>
                 <field name="effective" sum="Total effective"/>
-                <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="base.group_hr_manager"/>
+                <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="hr.group_hr_manager"/>
                 <field name="paid"/>
                 <field name="paid_date"/>
                 <field name="ss_hours" sum="Total ss hours"/>
@@ -58,7 +58,7 @@
                 <field name="ss_hours"/>
                 <field name="ss_no_hours"/>
                 <separator string="Process" colspan="4"/>
-                <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="base.group_hr_manager"/>
+                <field name="done" attrs="{'invisible':[('extra_hours','=',0.0)]}" groups="hr.group_hr_manager"/>
                 <field name="paid"/>
                 <field name="paid_date"/>
                 <separator string="Employee Data" colspan="4"/>
