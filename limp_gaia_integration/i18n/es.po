@@ -326,6 +326,11 @@ msgid "Costanilla"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.view_picking_out_add_operator
+msgid "Create DI"
+msgstr "Crear DI"
+
+#. module: limp_gaia_integration
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation__create_uid
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation_line__create_uid
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_res_partner_ler_authorization__create_uid
@@ -496,6 +501,9 @@ msgid "DOCUMENTO DE IDENTIFICACIÓN DE RESIDUOS"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation_line__dangerous_motive
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_service_picking_valorization_rel__dangerous_motive
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_move__dangerous_motive
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_waste_ler_code__dangerous_motive
 msgid "Dangerous Motive"
 msgstr "Motivo de peligrosidad"
@@ -985,7 +993,9 @@ msgid "Operación de Tratamiento (R/D):"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation_line__operation_type
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_service_picking_valorization_rel__operation_type
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_move__operation_type
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_waste_ler_code__operation_type
 msgid "Operation type"
 msgstr "Tipo de operación"

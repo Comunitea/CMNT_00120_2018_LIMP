@@ -167,7 +167,7 @@ class PriorTransferDocumentationLine(models.Model):
             self.name = self.product_id.name
 
     @api.onchange('waste_id')
-    def onchange_product_id(self):
+    def onchange_waste_id(self):
         if self.waste_id:
             self.operation_type = self.waste_id.operation_type
             self.dangerous_motive = self.waste_id.dangerous_motive
