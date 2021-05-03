@@ -9,6 +9,7 @@ class PriorTransferDocumentation(models.Model):
 
     _name = "prior.transfer.documentation"
     _description = "(NT) Prior transfer documentation"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     producer_promoter_id = fields.Many2one("res.partner", "Producer/Promoter",
                                            required=True)
