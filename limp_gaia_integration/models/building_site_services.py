@@ -17,3 +17,22 @@ class BuildingSiteServices(models.Model):
             self.vat_producer = self.producer_promoter_id.vat
             self.city_producer = self.producer_promoter_id.city
             self.province_producer = self.producer_promoter_id.state_id.name
+
+    @api.multi
+    def open_treatment_contract_docs(self):
+        self.ensure_one()
+        form_view_id = self.env.ref("limp_reports.acceptance_doc_form")
+        tree_view_id = self.env.ref("limp_reports.acceptance_doc_tree")
+
+        return {
+            "name": "CTs",
+            "view_type": "form",
+            "view_mode": "tree,form",
+            "res_model": "acceptance.document",
+            "domain": "[('building_site_id', '=', [{0}])]".format(self.id),
+            "context": "{'default_building_site_id': %s}" % self.id,
+            "view_id": tree_view_id.id,
+            "views": [(tree_view_id.id, "tree"), (form_view_id.id, "form")],
+            "type": "ir.actions.act_window",
+            "nodestroy": True,
+        }

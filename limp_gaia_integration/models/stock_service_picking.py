@@ -65,7 +65,8 @@ class StockServicePicking(models.Model):
                     raise exceptions.UserError("No se ha establecido el tipo"
                                                " de operación en el residuo")
                 if waste.product_id.ler_code_id.dangerous and not waste.\
-                        product_id.ler_code_id.dangerous_motive:
+                        product_id.ler_code_id.dangerous_motive and not \
+                        waste.dangerous_motive:
                     raise exceptions.\
                         UserError("No se ha establecido el motivo de "
                                   "peligrosidad en el residuo")

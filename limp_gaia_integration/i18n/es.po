@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-14 16:38+0000\n"
-"PO-Revision-Date: 2021-04-14 16:38+0000\n"
+"POT-Creation-Date: 2021-05-03 11:34+0000\n"
+"PO-Revision-Date: 2021-05-03 11:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.di_output_header
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.nt_header
 msgid "&lt;ns2:e3l schemaVersion=\"3.0\" xmlns:ns2=\"e3l://eterproject.org/3.0/e3l\"&gt;"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "(Artículo 5 del RD 180/2015, BOE 07/04/2015  )"
 msgstr ""
 
 #. module: limp_gaia_integration
@@ -71,6 +76,26 @@ msgid "<b>Sí</b>"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "<i>Centro productor o poseedor de residuos o de la instalación de origen del traslado</i>"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "<i>Empresa autorizada a realizar el tratamiento del residuo</i>"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "<i>Empresa autorizada para realizar las operaciones de tratamiento de residuos</i>"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "<i>Instalación de destino</i>"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
@@ -109,6 +134,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
 msgid "Actividad económica:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation__active
+msgid "Activo"
 msgstr ""
 
 #. module: limp_gaia_integration
@@ -185,6 +215,21 @@ msgid "C.P."
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "CARACTERÍSTICAS DEL RESIDUO QUE SE TRASLADA"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "CIF/NIF:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "CP:"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: selection:res.partner,vialType:0
 msgid "Calle"
 msgstr ""
@@ -227,6 +272,16 @@ msgid "Cantidad (kg netos):"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Cantidad:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Características de peligrosidad:"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: selection:res.partner,vialType:0
 msgid "Carrera"
 msgstr ""
@@ -247,6 +302,7 @@ msgid "Cañada"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.acceptance_doc_form_rep
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.prior_transfer_documentation_form
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.stock_service_picking_form_add_operator
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.view_picking_out_add_operator
@@ -299,6 +355,16 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Contacto:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Contrato de tratamiento"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: selection:res.partner,association_type:0
 msgid "Corporaciones Locales"
 msgstr ""
@@ -318,6 +384,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
 msgid "Correo electrónico:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Correo-e:"
 msgstr ""
 
 #. module: limp_gaia_integration
@@ -357,6 +428,11 @@ msgid "Código LER/LER-RAEE (Lista Europea de Residuos, según Decisión 2000/53
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Código LER:"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
@@ -371,91 +447,136 @@ msgid "Código operación-proceso:"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D01"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D02"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D03"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D04"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D05"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D06"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D07"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D08"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D09"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D10"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D11"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D12"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D13"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D14"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "D15"
 msgstr ""
@@ -489,6 +610,11 @@ msgid "DCS no."
 msgstr "Nº DCS"
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "DESTINO DEL TRASLADO"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: model:ir.actions.report,name:limp_gaia_integration.report_gaia_di_input
 #: model:ir.actions.report,name:limp_gaia_integration.report_gaia_di_output
 msgid "DI (Gaia)"
@@ -501,6 +627,7 @@ msgid "DOCUMENTO DE IDENTIFICACIÓN DE RESIDUOS"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__dangerous_motive
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation_line__dangerous_motive
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_service_picking_valorization_rel__dangerous_motive
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_move__dangerous_motive
@@ -509,10 +636,20 @@ msgid "Dangerous Motive"
 msgstr "Motivo de peligrosidad"
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__doc_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: limp_gaia_integration
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
 msgid "Descripción del Residuo:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Descripción:"
 msgstr ""
 
 #. module: limp_gaia_integration
@@ -524,6 +661,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
 msgid "Dirección:"
 msgstr ""
 
@@ -625,9 +763,24 @@ msgid "Fecha inicio de traslado:"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Fecha:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Firma operador:"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
 msgid "Firma persona responsable envío:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Firma responsable destino:"
 msgstr ""
 
 #. module: limp_gaia_integration
@@ -686,76 +839,136 @@ msgid "Glorieta"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP1 Explosivo"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP10 Tóxico para la reproducción"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP11 Mutágeno"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP12 Liberación de un gas de toxicidad aguda"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP13 Sensibilizante"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP14 Ecotóxico"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP15 Residuos que pueden presentar una de las caractarísticas de peligrosidad antes mencionadas que el residuo original no presentaba directamente"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP2 Comburente"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP3 Inflamable"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP4 Irritante-Irritación cutánea y lesiones oculares"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP5 Toxicidad especifica en determinados órganos (STOT en su sigla ingles) - Toxicidad por aspiración"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP6 Tóxicidad aguda"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP7 Carcinógeno"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP8 Corrosivo"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,dangerous_motive:0
+#: selection:prior.transfer.documentation.line,dangerous_motive:0
+#: selection:service.picking.valorization.rel,dangerous_motive:0
+#: selection:stock.move,dangerous_motive:0
 #: selection:waste.ler.code,dangerous_motive:0
 msgid "HP9 Infeccioso"
 msgstr ""
@@ -878,6 +1091,7 @@ msgid "Lines"
 msgstr "Líneas"
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__manager_partner_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation__manager_partner_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_res_partner_ler_authorization__partner_id
 msgid "Manager"
@@ -892,6 +1106,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
 msgid "Municipio:"
 msgstr ""
 
@@ -916,6 +1131,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
 msgid "NIMA:"
 msgstr ""
 
@@ -937,6 +1153,7 @@ msgid "NT (Gaia)"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__net_weight
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation_line__net_weight
 msgid "Net (T.)"
 msgstr "Neto (T.)"
@@ -949,6 +1166,11 @@ msgstr "No calcular"
 #. module: limp_gaia_integration
 #: selection:res.partner.ler.authorization,other_state:0
 msgid "No disponible"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Nombre del centro:"
 msgstr ""
 
 #. module: limp_gaia_integration
@@ -973,10 +1195,35 @@ msgid "Number"
 msgstr "Número"
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Nº CT:"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
 msgid "Nº Inscripción:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Nº inscripción Registro de PyGR:"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "OBLIGACIONES DE LAS PARTES EN CASO DE RECHAZO DEL RESIDUO"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "OPERADOR"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "ORIGEN DEL TRASLADO"
 msgstr ""
 
 #. module: limp_gaia_integration
@@ -993,6 +1240,7 @@ msgid "Operación de Tratamiento (R/D):"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__operation_type
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation_line__operation_type
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_service_picking_valorization_rel__operation_type
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_move__operation_type
@@ -1001,6 +1249,7 @@ msgid "Operation type"
 msgstr "Tipo de operación"
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__operator_partner_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation__operator_partner_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_picking__operator_partner_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_service_picking__operator_partner_id
@@ -1110,11 +1359,18 @@ msgid "Prior transfer notification"
 msgstr "Notificación previa de traslado"
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__producer_promoter_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_building_site_services__producer_promoter_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation__producer_promoter_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_service_picking__producer_promoter_id
 msgid "Producer/Promoter"
 msgstr "Productor/Promotor"
+
+#. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__product_id
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation_line__product_id
+msgid "Producto"
+msgstr ""
 
 #. module: limp_gaia_integration
 #: selection:res.partner,vialType:0
@@ -1125,6 +1381,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
 msgid "Provincia:"
 msgstr ""
 
@@ -1144,91 +1401,136 @@ msgid "Quincenal"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R01"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R02"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R03"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R04"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R05"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R06"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R07"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R08"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R09"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R10"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R11"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R12"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R13"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R14"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: selection:acceptance.document,operation_type:0
+#: selection:prior.transfer.documentation.line,operation_type:0
 #: selection:service.picking.valorization.rel,operation_type:0
+#: selection:stock.move,operation_type:0
 #: selection:waste.ler.code,operation_type:0
 msgid "R15"
 msgstr ""
@@ -1236,6 +1538,11 @@ msgstr ""
 #. module: limp_gaia_integration
 #: selection:res.partner,vialType:0
 msgid "Ramal"
+msgstr ""
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Razón Social:"
 msgstr ""
 
 #. module: limp_gaia_integration
@@ -1251,6 +1558,7 @@ msgid "Related LERs"
 msgstr "LERs asociados"
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__manager_id
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_stock_picking__manager_id
 msgid "Responsible"
 msgstr "Responsable"
@@ -1316,6 +1624,19 @@ msgid "Service pickings"
 msgstr "Albaranes servicio"
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Si los residuos no son aceptados por el destinatario, éste enviará al operador del traslado, así como a la administración competente, el documento de identificación señalando la no aceptación de los residuos y en este supuesto el destinatario podrá optar por:\n"
+"                                    a) Devolver el residuo al lugar de origen acompañado del documento de identificación con la indicación de la devolución del residuo.\n"
+"                                    En el caso de que, en el plazo máximo de 5 días hábiles a contar desde el rechazo, el operador del traslado no proceda a la retirada de los residuos de las instalaciones del destinatario, este enviará dichos residuos con cargo de los costes al operador de traslado.\n"
+"                                    b) Enviar los residuos a otra instalación de tratamiento. Este traslado deberá ir acompañado de un nuevo documento de identificación. El operador de este nuevo traslado será el operador del traslado inicial.\n"
+"                                    En el caso de que, en el plazo máximo de 5 días hábiles a contar desde el rechazo, el operador del traslado no inicie el nuevo traslado, el destinatario devolverá el residuo al operador del traslado, con cargo de los costes al operador del traslado.\n"
+"                                    En caso de devolución o del envío del residuo a otra instalación, el operador del traslado seguirá siendo el titular de los residuos.\n"
+"                                    En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la protección de datos de las personas físicas y a la libre circulación de estos (RGPD) y de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPD GDD), le informamos de que sus datos personales son incluidos en ficheros titularidad de LIMPERGAL S.L. cuyos fines son el mantenimiento de la relación contractual, el control y gestión de las ventas y sus correspondientes cobros. Asimismo, informamos que sus datos serán conservados en los ficheros de nuestra empresa con el fin de realizar el servicio contratado. Podrán ejercitar sus derechos de acceso, rectificación, cancelación y oposición previstos en la Ley, enviando un correo ordinario a la dirección de la empresa.\n"
+"                                    Las partes contratantes, declaran conocer y aceptar las condiciones generales de contratación de LIMPERGAL S.L., que se encuentran disponibles en sus oficinas con domicilio en Calle A - Parcela O4.3 del Parque Empresarial As Gándaras, 27004 (Lugo), y de manera expresa acuerdan someter a la ley española todo litigio, discrepancia o reclamación resultate de la contratación efectuada y al arbitraje del Tribunal de la Asociación para el Arbitraje Mercantil \"TAM\", en el marco de sus Reglamentos, al cual se encomienda la administración del arbitraje y la designación del árbitro o tribunal arbitral, obligándose desde ahora al cumplimiento de la decisión arbitral. Los domicilios y medios electrónicos reseñados en el contrato se designan expresamente como medios de notificación a todos los efectos, incluidos los del procedimiento arbitral.\n"
+"                                    Las partes acuerdan que un correo electrónico firmado, fax o cualquier otra copia facsímil de este acuerdo tendrán la misma fuerza y efectos que el original de este documento."
+msgstr ""
+
+#. module: limp_gaia_integration
 #: selection:res.partner,association_type:0
 msgid "Sociedades anónimas"
 msgstr ""
@@ -1351,6 +1672,11 @@ msgid "Start date"
 msgstr "Fecha de inicio"
 
 #. module: limp_gaia_integration
+#: model:ir.model,name:limp_gaia_integration.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
+#. module: limp_gaia_integration
 #: selection:res.partner,vialType:0
 msgid "Subida"
 msgstr ""
@@ -1369,6 +1695,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_prior_transfer_documentation_nt
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_input_di
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_identification_output_di
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
 msgid "Teléfono:"
 msgstr ""
 
@@ -1399,14 +1726,29 @@ msgid "Tipo de notificación:"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Tipo de operador:"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: model:ir.model,name:limp_gaia_integration.model_stock_picking
 msgid "Transfer"
 msgstr "Albarán"
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "Tratamiento:"
+msgstr ""
+
+#. module: limp_gaia_integration
 #: selection:res.partner,vialType:0
 msgid "Travesía"
 msgstr ""
+
+#. module: limp_gaia_integration
+#: model:ir.actions.report,name:limp_gaia_integration.report_waste_treatment_contract
+msgid "Treatment Contract"
+msgstr "Contrato de tratamiento"
 
 #. module: limp_gaia_integration
 #: selection:prior.transfer.documentation,freq:0
@@ -1450,12 +1792,18 @@ msgid "Vía pública"
 msgstr ""
 
 #. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.acceptance_doc_form_rep
+msgid "Waste Data"
+msgstr "Datos del residuo"
+
+#. module: limp_gaia_integration
 #: model:ir.actions.report,name:limp_gaia_integration.report_waste_identification_input
 #: model:ir.actions.report,name:limp_gaia_integration.report_waste_identification_output
 msgid "Waste identification doc."
 msgstr "Doc. identificación residuos"
 
 #. module: limp_gaia_integration
+#: model:ir.model.fields,field_description:limp_gaia_integration.field_acceptance_document__waste_name
 #: model:ir.model.fields,field_description:limp_gaia_integration.field_prior_transfer_documentation_line__name
 msgid "Waste name"
 msgstr "Nombre residuo"
@@ -1464,6 +1812,16 @@ msgstr "Nombre residuo"
 #: model_terms:ir.ui.view,arch_db:limp_gaia_integration.prior_transfer_documentation_form
 msgid "Wastes"
 msgstr "Residuos"
+
+#. module: limp_gaia_integration
+#: model:ir.model,name:limp_gaia_integration.model_acceptance_document
+msgid "acceptance.document"
+msgstr "Documento de aceptación"
+
+#. module: limp_gaia_integration
+#: model_terms:ir.ui.view,arch_db:limp_gaia_integration.template_waste_treatment_contract
+msgid "kg"
+msgstr ""
 
 #. module: limp_gaia_integration
 #: model:ir.model,name:limp_gaia_integration.model_service_picking_valorization_rel

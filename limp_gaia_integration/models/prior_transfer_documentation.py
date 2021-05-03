@@ -108,11 +108,13 @@ class PriorTransferDocumentation(models.Model):
             pick.manager_partner_id.\
                 get_authorization_id(pick.line_ids.
                                      mapped('waste_id'), ['E'])
-            for waste in pick.line_ids.mapped('waste_id'):
-                if not waste.operation_type:
+            for waste in pick.line_ids:
+                if not waste.operation_type and not waste.\
+                        waste_id.operation_type:
                     raise exceptions.UserError("No se ha establecido el tipo"
                                                " de operación en el residuo")
-                if waste.dangerous and not waste.dangerous_motive:
+                if waste.dangerous and not waste.dangerous_motive \
+                        and not waste.waste_id.dangerous_motive:
                     raise exceptions.\
                         UserError("No se ha establecido el motivo de "
                                   "peligrosidad en el residuo")

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="acceptance_doc_form_rep" model="ir.ui.view">
+        <field name="name">acceptance.document.form</field>
+        <field name="model">acceptance.document</field>
+        <field name="inherit_id" ref="limp_reports.acceptance_doc_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="replace">
+                 <form>
+                    <header>
+                        <button name="check_NT_data" type="object" string="Check data"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="number"/>
+                                <field name="operator_partner_id" required="True"/>
+                                <field name="manager_partner_id" required="True"/>
+                                <field name="manager_id"/>
+                            </group>
+                            <group>
+                                <field name="building_site_id" domain="[('show', '=', 'building')]"/>
+                                <field name="producer_promoter_id" required="True"/>
+                                <field name="doc_date" required="True"/>
+                            </group>
+                            <separator string="Waste Data" colspan="4"/>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="waste_id" required="True"/>
+                                <field name="operation_type"/>
+                            </group>
+                            <group>
+                                <field name="waste_name" required="True"/>
+                                <field name="dangerous_motive"/>
+                                <field name="net_weight"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="acceptance_doc_tree" model="ir.ui.view">
+        <field name="name">acceptance.document.tree</field>
+        <field name="model">acceptance.document</field>
+        <field name="inherit_id" ref="limp_reports.acceptance_doc_tree"/>
+        <field name="arch" type="xml">
+            <field name="number" position="after">
+                <field name="producer_promoter_id"/>
+                <field name="operator_partner_id"/>
+                <field name="manager_partner_id"/>
+                <field name="doc_date"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

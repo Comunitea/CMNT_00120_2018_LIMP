@@ -25,8 +25,10 @@
              "views/report_di.xml",
              "views/waste_ler_code_view.xml",
              "views/report_nt.xml",
+             "views/acceptance_document_view.xml",
              "report/stock_service_picking_di_report.xml",
              "report/stock_picking_di_report.xml",
-             "report/prior_transfer_documentation_report.xml"],
+             "report/prior_transfer_documentation_report.xml",
+             "report/waste_treatment_contract.xml"],
     "installable": True,
 }

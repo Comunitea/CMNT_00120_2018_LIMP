@@ -63,11 +63,14 @@ class StockPicking(models.Model):
                 get_authorization_id(pick.move_lines.
                                      mapped('product_id.ler_code_id'),
                                      ['E'])
-            for waste in pick.move_lines.mapped('product_id.ler_code_id'):
-                if not waste.operation_type:
+            for waste in pick.move_lines:
+                if not waste.operation_type and not waste.product_id.\
+                        ler_code_id.operation_type:
                     raise exceptions.UserError("No se ha establecido el tipo"
                                                " de operación en el residuo")
-                if waste.dangerous and not waste.dangerous_motive:
+                if waste.product_id.operation_type.dangerous and not waste.\
+                        dangerous_motive and not waste.product_id.\
+                        operation_type.dangerous_motive:
                     raise exceptions.\
                         UserError("No se ha establecido el motivo de "
                                   "peligrosidad en el residuo")

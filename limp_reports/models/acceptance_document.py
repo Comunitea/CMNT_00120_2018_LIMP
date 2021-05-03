@@ -25,7 +25,8 @@ class AcceptanceDocument(models.Model):
     _name = "acceptance.document"
     _rec_name = "number"
 
-    number = fields.Char("Number", size=30, required=True)
+    number = fields.Char("Number", size=30, required=True,
+                         default="/")
     building_site_id = fields.Many2one(
         "building.site.services", "Building site", required=True
     )

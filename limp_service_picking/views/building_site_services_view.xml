@@ -34,10 +34,16 @@
         <record id="building_site_services_form" model="ir.ui.view">
             <field name="name">building.site.services.form</field>
             <field name="model">building.site.services</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Building sites/Services">
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                    options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
                         <group>
                             <group>
                                 <field name="name"/>
@@ -47,7 +53,6 @@
                             <group>
                                 <field name="code"/>
                                 <field name="serial"/>
-                                <field name="active"/>
                             </group>
                         </group>
                         <separator string="Producer/Promoter" colspan="4"/>

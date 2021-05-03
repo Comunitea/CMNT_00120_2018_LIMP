@@ -4,3 +4,4 @@ from . import res_partner
 from . import stock_service_picking
 from . import stock_picking
 from . import building_site_services
+from . import acceptance_document

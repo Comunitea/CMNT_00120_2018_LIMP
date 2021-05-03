@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report id="report_waste_treatment_contract"
+            name="limp_gaia_integration.template_waste_treatment_contract"
+            string="Treatment Contract"
+            report_type="qweb-pdf"
+            model="acceptance.document"/>
+
+     <template id="template_waste_treatment_contract">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 10px;">
+                        <h3>Contrato de tratamiento</h3>
+                        <p style="font-size: 7px;">(Artículo 5 del RD 180/2015, BOE 07/04/2015  )</p>
+                        <div class="col-12"><span class="col-4">Nº CT: <u><span t-field="o.number"/></u></span></div>
+                        <div class="col-12"><span class="col-4">Fecha: <u><span t-field="o.doc_date"/></u></span></div>
+                        <table class="table table-sm table-borderless mb-0" style="table-layout: fixed">
+                            <thead>
+                                <tr class="text-center" style="background-color: lightgrey;">
+                                    <th colspan="12">OPERADOR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Razón Social: <span t-field="o.operator_partner_id.commercial_partner_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">CIF/NIF: <span t-field="o.operator_partner_id.commercial_partner_id.vat"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Nombre del centro: <span t-field="o.operator_partner_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">CP: <span t-field="o.operator_partner_id.zip"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Dirección: <span t-field="o.operator_partner_id.street"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Provincia: <span t-field="o.operator_partner_id.state_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Municipio: <span t-field="o.operator_partner_id.council_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Contacto:</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Teléfono: <span t-field="o.operator_partner_id.phone"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.operator_partner_id.email"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Tipo de operador: <span t-esc="o.operator_partner_id.get_authorization_id(o.waste_id, ['N', 'G']).authorization_type"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.operator_partner_id.nima_no"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="12" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.operator_partner_id.get_authorization_id(o.waste_id, ['N', 'G']).name"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-sm table-borderless mb-0" style="table-layout: fixed">
+                            <thead>
+                                <tr class="text-center" style="background-color: lightgrey;">
+                                    <th colspan="12">ORIGEN DEL TRASLADO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="12" style="color: lightgrey;"><i>Centro productor o poseedor de residuos o de la instalación de origen del traslado</i></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Razón Social: <span t-field="o.producer_promoter_id.commercial_partner_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">CIF/NIF: <span t-field="o.producer_promoter_id.commercial_partner_id.vat"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Nombre del centro: <span t-field="o.producer_promoter_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">CP: <span t-field="o.producer_promoter_id.zip"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Dirección: <span t-field="o.producer_promoter_id.street"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Provincia: <span t-field="o.producer_promoter_id.state_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Municipio: <span t-field="o.producer_promoter_id.council_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Contacto:</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Teléfono: <span t-field="o.producer_promoter_id.phone"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.producer_promoter_id.email"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.producer_promoter_id.get_authorization_id(o.waste_id, ['P', 'G']).name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.producer_promoter_id.nima_no"/></td>
+                                </tr>
+                                <t t-if="o.producer_promoter_id.get_authorization_id(o.waste_id, ['P', 'G']).authorization_type[0] == 'G'">
+                                    <tr>
+                                        <td colspan="12" style="padding: 0.1rem;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="12" style="color: lightgrey;"><i>Empresa autorizada para realizar las operaciones de tratamiento de residuos</i></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="padding: 0.1rem;">Razón Social: <span t-field="o.producer_promoter_id.commercial_partner_id.name"/></td>
+                                        <td colspan="4" style="padding: 0.1rem;">CIF/NIF: <span t-field="o.producer_promoter_id.commercial_partner_id.vat"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="padding: 0.1rem;">Nombre del centro: <span t-field="o.producer_promoter_id.name"/></td>
+                                        <td colspan="4" style="padding: 0.1rem;">CP: <span t-field="o.producer_promoter_id.zip"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="padding: 0.1rem;">Dirección: <span t-field="o.producer_promoter_id.street"/></td>
+                                        <td colspan="4" style="padding: 0.1rem;">Provincia: <span t-field="o.producer_promoter_id.state_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="padding: 0.1rem;">Municipio: <span t-field="o.producer_promoter_id.council_id.name"/></td>
+                                        <td colspan="4" style="padding: 0.1rem;">Contacto:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="padding: 0.1rem;">Teléfono: <span t-field="o.producer_promoter_id.phone"/></td>
+                                        <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.producer_promoter_id.email"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.producer_promoter_id.get_authorization_id(o.waste_id, ['E']).name"/></td>
+                                        <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.producer_promoter_id.nima_no"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <table class="table table-sm table-borderless mb-0" style="table-layout: fixed">
+                            <thead>
+                                <tr class="text-center" style="background-color: lightgrey;">
+                                    <th colspan="12">DESTINO DEL TRASLADO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="12" style="color: lightgrey;"><i>Instalación de destino</i></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Razón Social: <span t-field="o.manager_partner_id.commercial_partner_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">CIF/NIF: <span t-field="o.manager_partner_id.commercial_partner_id.vat"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Nombre del centro: <span t-field="o.manager_partner_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">CP: <span t-field="o.manager_partner_id.zip"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Dirección: <span t-field="o.manager_partner_id.street"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Provincia: <span t-field="o.manager_partner_id.state_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Municipio: <span t-field="o.manager_partner_id.council_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Contacto:</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Teléfono: <span t-field="o.manager_partner_id.phone"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.manager_partner_id.email"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.manager_partner_id.get_authorization_id(o.waste_id, ['G']).name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.manager_partner_id.nima_no"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="12"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="12" style="color: lightgrey;"><i>Empresa autorizada a realizar el tratamiento del residuo</i></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Razón Social: <span t-field="o.manager_partner_id.commercial_partner_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">CIF/NIF: <span t-field="o.manager_partner_id.commercial_partner_id.vat"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Nombre del centro: <span t-field="o.manager_partner_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">CP: <span t-field="o.manager_partner_id.zip"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Dirección: <span t-field="o.manager_partner_id.street"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Provincia: <span t-field="o.manager_partner_id.state_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Municipio: <span t-field="o.manager_partner_id.council_id.name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Contacto:</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Teléfono: <span t-field="o.manager_partner_id.phone"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.manager_partner_id.email"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.manager_partner_id.get_authorization_id(o.waste_id, ['E']).name"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.manager_partner_id.nima_no"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-sm table-borderless mb-0" style="table-layout: fixed">
+                            <thead>
+                                <tr class="text-center" style="background-color: lightgrey;">
+                                    <th colspan="12">CARACTERÍSTICAS DEL RESIDUO QUE SE TRASLADA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="12" style="padding: 0.1rem;">Código LER: <span t-field="o.waste_id.code"/> - <span t-field="o.waste_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="12" style="padding: 0.1rem;">Descripción: <span t-field="o.waste_name"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="padding: 0.1rem;">Características de peligrosidad: <span t-esc="o.dangerous_motive or o.waste_id.dangerous_motive"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Tratamiento: <span t-esc="o.operation_type or o.waste_id.operation_type"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Cantidad: <span t-esc="o.net_weight * 1000"/> kg</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-sm table-borderless mb-0" style="table-layout: fixed">
+                            <thead>
+                                <tr class="text-center" style="background-color: lightgrey;">
+                                    <th colspan="12">OBLIGACIONES DE LAS PARTES EN CASO DE RECHAZO DEL RESIDUO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="12" style="padding: 0.1rem;"><p style="font-size: 7px;">
+                                    Si los residuos no son aceptados por el destinatario, éste enviará al operador del traslado, así como a la administración competente, el documento de identificación señalando la no aceptación de los residuos y en este supuesto el destinatario podrá optar por:
+                                    a) Devolver el residuo al lugar de origen acompañado del documento de identificación con la indicación de la devolución del residuo.
+                                    En el caso de que, en el plazo máximo de 5 días hábiles a contar desde el rechazo, el operador del traslado no proceda a la retirada de los residuos de las instalaciones del destinatario, este enviará dichos residuos con cargo de los costes al operador de traslado.
+                                    b) Enviar los residuos a otra instalación de tratamiento. Este traslado deberá ir acompañado de un nuevo documento de identificación. El operador de este nuevo traslado será el operador del traslado inicial.
+                                    En el caso de que, en el plazo máximo de 5 días hábiles a contar desde el rechazo, el operador del traslado no inicie el nuevo traslado, el destinatario devolverá el residuo al operador del traslado, con cargo de los costes al operador del traslado.
+                                    En caso de devolución o del envío del residuo a otra instalación, el operador del traslado seguirá siendo el titular de los residuos.
+                                    En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016 relativo a la protección de datos de las personas físicas y a la libre circulación de estos (RGPD) y de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPD GDD), le informamos de que sus datos personales son incluidos en ficheros titularidad de LIMPERGAL S.L. cuyos fines son el mantenimiento de la relación contractual, el control y gestión de las ventas y sus correspondientes cobros. Asimismo, informamos que sus datos serán conservados en los ficheros de nuestra empresa con el fin de realizar el servicio contratado. Podrán ejercitar sus derechos de acceso, rectificación, cancelación y oposición previstos en la Ley, enviando un correo ordinario a la dirección de la empresa.
+                                    Las partes contratantes, declaran conocer y aceptar las condiciones generales de contratación de LIMPERGAL S.L., que se encuentran disponibles en sus oficinas con domicilio en Calle A - Parcela O4.3 del Parque Empresarial As Gándaras, 27004 (Lugo), y de manera expresa acuerdan someter a la ley española todo litigio, discrepancia o reclamación resultate de la contratación efectuada y al arbitraje del Tribunal de la Asociación para el Arbitraje Mercantil "TAM", en el marco de sus Reglamentos, al cual se encomienda la administración del arbitraje y la designación del árbitro o tribunal arbitral, obligándose desde ahora al cumplimiento de la decisión arbitral. Los domicilios y medios electrónicos reseñados en el contrato se designan expresamente como medios de notificación a todos los efectos, incluidos los del procedimiento arbitral.
+                                    Las partes acuerdan que un correo electrónico firmado, fax o cualquier otra copia facsímil de este acuerdo tendrán la misma fuerza y efectos que el original de este documento.
+                                    </p></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" style="padding: 0.1rem;"></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Firma operador:</td>
+                                    <td colspan="3" style="padding: 0.1rem;"></td>
+                                    <td colspan="4" style="padding: 0.1rem;">Firma responsable destino:</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1" style="padding: 0.1rem;"></td>
+                                    <td colspan="4" style="padding: 0.1rem;"><img t-if="o.manager_id.user_id.signature_image" t-att-src="image_data_uri(o.manager_id.user_id.signature_image)" style="max-height: 80px;"/></td>
+                                    <td colspan="7" style="padding: 0.1rem;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

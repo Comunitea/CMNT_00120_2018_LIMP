@@ -20,6 +20,12 @@
             <field name="producer_promoter" position="before">
                 <field name="producer_promoter_id"/>
             </field>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button" type="object"
+                    name="open_treatment_contract_docs" icon="fa-folder-open" string="CTs"/>
+                </div>
+            </xpath>
         </field>
     </record>
 
