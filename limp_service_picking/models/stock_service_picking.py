@@ -830,7 +830,8 @@ class StockServicePicking(models.Model):
             company = (
                 self.env["res.company"]
                 .sudo()
-                .search([("partner_id", "=", order.manager_partner_id.id)])
+                .search([("partner_id", "=",
+                          order.manager_partner_id.commercial_partner_id.id)])
             )
             if company:
                 current_company = self.env.user.company_id

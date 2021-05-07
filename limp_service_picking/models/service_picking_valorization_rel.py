@@ -72,6 +72,7 @@ class ServicePickingValorizationRel(models.Model):
             partner_ids = (
                 self.env["res.company"].sudo().search([]).mapped("partner_id")
             )
+            partner_ids |= partner_ids.mapped('child_ids')
             if self.service_picking_id.manager_partner_id not in partner_ids:
                 self.memory_include = False
             else:
