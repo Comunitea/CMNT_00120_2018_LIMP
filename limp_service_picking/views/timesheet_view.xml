@@ -7,6 +7,7 @@
         <field name="inherit_id" ref="limp_distribution_costs.timesheet_tree"/>
         <field name="arch" type="xml">
             <field name="employee_id" position="after">
+                <field name="task"/>
                 <field name="description"/>
             </field>
             <field name="employee_department_id" position="attributes">
@@ -18,10 +19,6 @@
             <field name="pending_qty" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
-            <field name="pending_distribute_qty" position="after">
-                <field name="task"/>
-            </field>
-
         </field>
     </record>
 
@@ -31,6 +28,7 @@
         <field name="inherit_id" ref="limp_distribution_costs.timesheet_form"/>
         <field name="arch" type="xml">
             <field name="pending_distribute_qty" position="after">
+                <field name="task"/>
                 <field name="description"/>
             </field>
             <field name="effective" position="after">
@@ -46,6 +44,8 @@
         <field name="arch" type="xml">
             <field name="analytic_id" position="after">
                 <field name="building_site_id"/>
+                <field name="task"/>
+                <field name="description"/>
             </field>
 
             <filter name="analytic_account" position="after">
