@@ -27,6 +27,7 @@ def _get_valorization(self):
         ("date", ">=", str(self.year) + "-01-01"),
         ("memory_include", "=", True),
         ("stock_picking_id", "!=", False),
+        ("manager_partner_id", 'in', self.manager_partner_ids.ids),
         ("company_id", "=", self.company_id.id),
     ]
     objs = self.env["valorization.lines"].search(domain)
@@ -48,6 +49,7 @@ def _get_invoice(self, cpa):
     domain = [
         ("date", "<=", str(self.year) + "-12-31"),
         ("date", ">=", str(self.year) + "-01-01"),
+        ("manager_partner_id", 'in', self.manager_partner_ids.ids),
         ("company_id", "=", self.company_id.id),
     ]
 
@@ -73,6 +75,7 @@ def _get_total_qty(self):
         ("date", ">=", str(self.year) + "-01-01"),
         ("memory_include", "=", True),
         ("stock_picking_id", "!=", False),
+        ("manager_partner_id", 'in', self.manager_partner_ids.ids),
         ("company_id", "=", self.company_id.id),
     ]
     total_qty = 0.0
@@ -86,6 +89,7 @@ def _get_total_qty2(self):
     domain = [
         ("date", "<=", str(self.year) + "-12-31"),
         ("date", ">=", str(self.year) + "-01-01"),
+        ("manager_partner_id", 'in', self.manager_partner_ids.ids),
         ("company_id", "=", self.company_id.id),
     ]
     total_qty = 0.0
@@ -102,6 +106,7 @@ def _get_ins(self, ler):
         ("date", ">=", str(self.year) + "-01-01"),
         ("memory_include", "=", True),
         ("stock_picking_id", "!=", False),
+        ("manager_partner_id", 'in', self.manager_partner_ids.ids),
         ("company_id", "=", self.company_id.id),
     ]
     res = {}
@@ -137,6 +142,7 @@ def _get_ins_total_qty(self, ler):
         ("date", "<=", str(self.year) + "-12-31"),
         ("date", ">=", str(self.year) + "-01-01"),
         ("memory_include", "=", True),
+        ("manager_partner_id", 'in', self.manager_partner_ids.ids),
         ("stock_picking_id", "!=", False),
         ("company_id", "=", self.company_id.id),
     ]
@@ -151,6 +157,7 @@ def _get_outs(self, cpa, ler):
     domain = [
         ("date", "<=", str(self.year) + "-12-31"),
         ("date", ">=", str(self.year) + "-01-01"),
+        ("manager_partner_id", 'in', self.manager_partner_ids.ids),
         ("company_id", "=", self.company_id.id),
     ]
     res = {}
@@ -177,6 +184,7 @@ def _get_outs_total_qty(self, cpa, ler):
     domain = [
         ("date", "<=", str(self.year) + "-12-31"),
         ("date", ">=", str(self.year) + "-01-01"),
+        ("manager_partner_id", 'in', self.manager_partner_ids.ids),
         ("company_id", "=", self.company_id.id),
     ]
     for obj in self.env["invoice.lines"].search(domain):

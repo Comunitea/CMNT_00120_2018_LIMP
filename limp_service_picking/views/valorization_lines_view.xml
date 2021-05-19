@@ -22,7 +22,7 @@
                 <field name="vat_holder"/>
                 <field name="building_city"/>
                 <field name="building_province"/>
-                <field name="manager_partner_id" invisible="1"/>
+                <field name="manager_partner_id"/>
                 <field name="company_id" invisible="1"/>
             </tree>
         </field>

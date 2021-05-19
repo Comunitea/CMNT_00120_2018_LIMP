@@ -24,18 +24,32 @@
                                 <field name="producer_promoter_id" required="True"/>
                                 <field name="doc_date" required="True"/>
                             </group>
-                            <separator string="Waste Data" colspan="4"/>
-                            <group>
+                        </group>
+                        <separator string="Waste Data" colspan="4"/>
+                        <field name="line_ids" colspan="4">
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="product_id"/>
+                                        <field name="waste_id" required="True"/>
+                                        <field name="operation_type"/>
+                                    </group>
+                                    <group>
+                                        <field name="waste_name" required="True"/>
+                                        <field name="dangerous_motive"/>
+                                        <field name="net_weight"/>
+                                    </group>
+                                </group>
+                            </form>
+                            <tree editable="bottom">
                                 <field name="product_id"/>
                                 <field name="waste_id" required="True"/>
-                                <field name="operation_type"/>
-                            </group>
-                            <group>
                                 <field name="waste_name" required="True"/>
-                                <field name="dangerous_motive"/>
                                 <field name="net_weight"/>
-                            </group>
-                        </group>
+                                <field name="operation_type"/>
+                                <field name="dangerous_motive"/>
+                            </tree>
+                        </field>
                     </sheet>
                 </form>
             </xpath>
@@ -47,6 +61,7 @@
         <field name="model">acceptance.document</field>
         <field name="inherit_id" ref="limp_reports.acceptance_doc_tree"/>
         <field name="arch" type="xml">
+            <field name="waste_id" position="replace"/>
             <field name="number" position="after">
                 <field name="producer_promoter_id"/>
                 <field name="operator_partner_id"/>

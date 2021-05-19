@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-07 00:45+0000\n"
-"PO-Revision-Date: 2020-08-07 00:45+0000\n"
+"POT-Creation-Date: 2021-05-19 18:15+0000\n"
+"PO-Revision-Date: 2021-05-19 18:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -54,9 +54,19 @@ msgid "Aditional Info"
 msgstr "Info. adicional"
 
 #. module: limp_custom
+#: model:ir.model.fields,field_description:limp_custom.field_account_analytic_line__account_id
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: limp_custom
 #: model:ir.model,name:limp_custom.model_res_partner_bank
 msgid "Bank Accounts"
 msgstr "Cuentas bancarias"
+
+#. module: limp_custom
+#: model_terms:ir.ui.view,arch_db:limp_custom.invoice_tree_add_info
+msgid "Base Imponible"
+msgstr ""
 
 #. module: limp_custom
 #: selection:product.product,picking_warn:0
@@ -69,14 +79,7 @@ msgid "City"
 msgstr "Ciudad"
 
 #. module: limp_custom
-#: model_terms:ir.ui.view,arch_db:limp_custom.view_partner_form_add_new_fields_limp_add_logo
-msgid "Colege num."
-msgstr "Nº colegiada"
-
-#. module: limp_custom
 #: model:ir.model.fields,field_description:limp_custom.field_hr_employee__colege_num
-#: model:ir.model.fields,field_description:limp_custom.field_res_partner__colege_num
-#: model:ir.model.fields,field_description:limp_custom.field_res_users__colege_num
 msgid "Colege number"
 msgstr "Nº colegiada"
 
@@ -96,6 +99,12 @@ msgstr "Contacto"
 #: model:ir.model,name:limp_custom.model_container
 msgid "Containers"
 msgstr "Contenedores"
+
+#. module: limp_custom
+#: code:addons/limp_custom/models/res_partner.py:49
+#, python-format
+msgid "Country must be defined"
+msgstr "El país debe de estar definido"
 
 #. module: limp_custom
 #: model_terms:ir.ui.view,arch_db:limp_custom.view_invoice_lines_search
@@ -130,6 +139,11 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: limp_custom
+#: model_terms:ir.ui.view,arch_db:limp_custom.view_partner_form
+msgid "FACe"
+msgstr ""
+
+#. module: limp_custom
 #: model_terms:ir.ui.view,arch_db:limp_custom.view_invoice_lines_search
 msgid "Filters"
 msgstr "Filtros"
@@ -145,14 +159,9 @@ msgid "ID"
 msgstr ""
 
 #. module: limp_custom
-#: model:ir.model,name:limp_custom.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Línea de factura"
-
-#. module: limp_custom
 #: selection:res.partner,type:0
 msgid "Invoice address"
-msgstr "Dirección de facturació:"
+msgstr "Dirección de facturación"
 
 #. module: limp_custom
 #: model:ir.actions.act_window,name:limp_custom.invoice_lines_action_tree
@@ -173,7 +182,7 @@ msgstr ""
 #. module: limp_custom
 #: model:ir.model.fields,field_description:limp_custom.field_invoice_lines____last_update
 msgid "Last Modified on"
-msgstr "Última Modifiación en"
+msgstr "Última modificación en"
 
 #. module: limp_custom
 #: model:ir.model.fields,field_description:limp_custom.field_res_partner_picture
@@ -185,6 +194,12 @@ msgstr ""
 #: selection:res.partner,type:0
 msgid "Management plant"
 msgstr "Planta de gestión"
+
+#. module: limp_custom
+#: model:ir.model.fields,field_description:limp_custom.field_invoice_lines__manager_partner_id
+#: model_terms:ir.ui.view,arch_db:limp_custom.view_invoice_lines_search
+msgid "Manager"
+msgstr "Gestor de destino"
 
 #. module: limp_custom
 #: model:ir.model.fields,field_description:limp_custom.field_product_product__picking_warn_msg
@@ -199,7 +214,13 @@ msgstr ""
 #. module: limp_custom
 #: selection:product.product,picking_warn:0
 msgid "No Message"
-msgstr "Ningun mensaje"
+msgstr "Ningún mensaje"
+
+#. module: limp_custom
+#: model:ir.model.fields,field_description:limp_custom.field_res_partner__oficina_contable_desc
+#: model:ir.model.fields,field_description:limp_custom.field_res_users__oficina_contable_desc
+msgid "Oficina contable desc."
+msgstr ""
 
 #. module: limp_custom
 #: selection:res.partner,type:0
@@ -296,6 +317,12 @@ msgid "State"
 msgstr "Estado"
 
 #. module: limp_custom
+#: code:addons/limp_custom/models/res_partner.py:53
+#, python-format
+msgid "State must be defined"
+msgstr "La provincia debe de estar definida"
+
+#. module: limp_custom
 #: model:ir.model.fields,field_description:limp_custom.field_account_bank_statement_import_journal_creation__analytic_tag_id
 #: model:ir.model.fields,field_description:limp_custom.field_account_journal__analytic_tag_id
 msgid "Tag"
@@ -312,15 +339,30 @@ msgid "Tax product"
 msgstr "Producto taxa"
 
 #. module: limp_custom
-#: code:addons/limp_custom/models/account_analytic.py:42
+#: model:ir.model.fields,help:limp_custom.field_invoice_lines_nif
+msgid "The Tax Identification Number. Complete it if the contact is subjected to government taxes. Used in some legal statements."
+msgstr "El número de identificación de impuesto. Complételo si el contacto está sujeto a los impuestos del gobierno. Utilizado en algunas declaraciones legales."
+
+#. module: limp_custom
+#: code:addons/limp_custom/models/account_analytic.py:43
 #, python-format
 msgid "Timesheet"
 msgstr "Parte de horas"
 
 #. module: limp_custom
+#: model_terms:ir.ui.view,arch_db:limp_custom.invoice_tree_add_info
+msgid "Total"
+msgstr ""
+
+#. module: limp_custom
 #: selection:res.partner,type:0
 msgid "Tramit"
 msgstr "Ud. tramitadora"
+
+#. module: limp_custom
+#: model:ir.model,name:limp_custom.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
 
 #. module: limp_custom
 #: model:ir.model.fields,field_description:limp_custom.field_account_analytic_line__type_analytic
@@ -329,15 +371,27 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: limp_custom
+#: model:ir.model.fields,field_description:limp_custom.field_res_partner__unidad_tramitadora_desc
+#: model:ir.model.fields,field_description:limp_custom.field_res_users__unidad_tramitadora_desc
+msgid "Unidad tramitadora desc."
+msgstr ""
+
+#. module: limp_custom
+#: model_terms:ir.ui.view,arch_db:limp_custom.invoice_tree_add_info
+msgid "Untaxed"
+msgstr "Base imponible"
+
+#. module: limp_custom
 #: model:ir.model.fields,help:limp_custom.field_res_partner__type
 #: model:ir.model.fields,help:limp_custom.field_res_users__type
 msgid "Used by Sales and Purchase Apps to select the relevant address depending on the context."
 msgstr "Usado por las apps de compras y ventas, para seleccionar las direcciones apropiadas dependiendo del contexto."
 
 #. module: limp_custom
-#: model:ir.model,name:limp_custom.model_res_users
-msgid "Users"
-msgstr "Usuarios"
+#: code:addons/limp_custom/models/res_partner.py:46
+#, python-format
+msgid "Vat must be defined"
+msgstr "El Nif debe de estar definido"
 
 #. module: limp_custom
 #: model:ir.ui.menu,name:limp_custom.invoice_lines_view_open
@@ -372,4 +426,16 @@ msgstr ""
 #. module: limp_custom
 #: model:ir.model.fields,field_description:limp_custom.field_invoice_lines_subtotal
 msgid "subtotal"
-msgstr "subtotal"
+msgstr ""
+
+#. module: limp_custom
+#: model:ir.model.fields,field_description:limp_custom.field_res_partner__organo_gestor_desc
+#: model:ir.model.fields,field_description:limp_custom.field_res_users__organo_gestor_desc
+msgid "Órgano gestor desc."
+msgstr ""
+
+#. module: limp_custom
+#: model:ir.model.fields,field_description:limp_custom.field_res_partner__organo_proponente_desc
+#: model:ir.model.fields,field_description:limp_custom.field_res_users__organo_proponente_desc
+msgid "Órgano proponente desc."
+msgstr ""

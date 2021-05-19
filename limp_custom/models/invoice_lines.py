@@ -28,6 +28,8 @@ class InvoiceLines(models.Model):
         string="State",
         readonly=True,
     )
+    manager_partner_id = fields.Many2one("res.partner", "Manager",
+                                         readonly=True)
 
     def init(self):
         tools.drop_view_if_exists(self._cr, "invoice_lines")
@@ -38,15 +40,17 @@ class InvoiceLines(models.Model):
             case when SM.secondary_uom_qty != 0.0 then SM.secondary_uom_qty
             else SM.product_uom_qty end AS
             quantity,P2.ler_code_id,SM.product_id,SM.product_uom_qty AS m3,
-            AIL.price_unit*AIL.quantity AS subtotal, SP.company_id
+            AIL.price_unit*AIL.quantity AS subtotal, SP.company_id,
+            SW.partner_id as manager_partner_id
             FROM stock_move AS SM
                 INNER JOIN stock_picking AS SP  ON SM.picking_id = SP.id
+                INNER JOIN stock_picking_type as SPT on SP.picking_type_id =
+                SPT.id
+                INNER JOIN stock_warehouse SW on SW.id = SPT.warehouse_id
                 INNER JOIN product_product AS P ON SM.product_id = P.id
                 INNER JOIN product_template AS P2 ON P.product_tmpl_id = P2.id
                 LEFT JOIN account_invoice_line as AIL on AIL.move_id = SM.id
             WHERE P2.ler_code_id is not null and SP.state = 'done'
-                and SP.memory_include = true
-            AND SP.picking_type_id in
-                (select id from stock_picking_type where code='outgoing')
+                and SP.memory_include = true AND SPT.code = 'outgoing'
             )"""
         )

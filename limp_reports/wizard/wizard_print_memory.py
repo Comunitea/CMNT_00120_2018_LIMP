@@ -15,11 +15,15 @@ class WizardPrintMemory(models.TransientModel):
         required=True,
         default=lambda r: r.env.user.company_id.id,
     )
+    manager_partner_ids = fields.\
+        Many2many("res.partner", string="Managers", required=True,
+                  domain=[('destination_manager', '=', True)])
 
     def print_report(self):
         report = self.env['ir.actions.report'].search(
             [('report_name', '=', "annual_memory")], limit=1)
         data = {"year": self.year,
                 "company_id": self.company_id.id,
+                "manager_partner_ids": self.manager_partner_ids.ids,
                 'doc_ids': report.ids}
         return report.report_action(self)

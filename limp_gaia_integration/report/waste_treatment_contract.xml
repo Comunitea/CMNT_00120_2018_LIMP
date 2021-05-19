@@ -44,11 +44,11 @@
                                     <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.operator_partner_id.email"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8" style="padding: 0.1rem;">Tipo de operador: <span t-esc="o.operator_partner_id.get_authorization_id(o.waste_id, ['N', 'G']).authorization_type"/></td>
+                                    <td colspan="8" style="padding: 0.1rem;">Tipo de operador: <span t-esc="o.operator_partner_id.get_authorization_id(o.line_ids[0].waste_id, ['N', 'G']).authorization_type"/></td>
                                     <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.operator_partner_id.nima_no"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="12" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.operator_partner_id.get_authorization_id(o.waste_id, ['N', 'G']).name"/></td>
+                                    <td colspan="12" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.operator_partner_id.get_authorization_id(o.line_ids[0].waste_id, ['N', 'G']).name"/></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -83,10 +83,10 @@
                                     <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.producer_promoter_id.email"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.producer_promoter_id.get_authorization_id(o.waste_id, ['P', 'G']).name"/></td>
+                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.producer_promoter_id.get_authorization_id(o.line_ids[0].waste_id, ['P', 'G']).name"/></td>
                                     <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.producer_promoter_id.nima_no"/></td>
                                 </tr>
-                                <t t-if="o.producer_promoter_id.get_authorization_id(o.waste_id, ['P', 'G']).authorization_type[0] == 'G'">
+                                <t t-if="o.producer_promoter_id.get_authorization_id(o.line_ids[0].waste_id, ['P', 'G']).authorization_type[0] == 'G'">
                                     <tr>
                                         <td colspan="12" style="padding: 0.1rem;"></td>
                                     </tr>
@@ -114,7 +114,7 @@
                                         <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.producer_promoter_id.email"/></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.producer_promoter_id.get_authorization_id(o.waste_id, ['E']).name"/></td>
+                                        <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.producer_promoter_id.get_authorization_id(o.line_ids[0].waste_id, ['E']).name"/></td>
                                         <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.producer_promoter_id.nima_no"/></td>
                                     </tr>
                                 </t>
@@ -151,7 +151,7 @@
                                     <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.manager_partner_id.email"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.manager_partner_id.get_authorization_id(o.waste_id, ['G']).name"/></td>
+                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.manager_partner_id.get_authorization_id(o.line_ids[0].waste_id, ['G']).name"/></td>
                                     <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.manager_partner_id.nima_no"/></td>
                                 </tr>
                                 <tr>
@@ -181,7 +181,7 @@
                                     <td colspan="4" style="padding: 0.1rem;">Correo-e: <span t-field="o.manager_partner_id.email"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.manager_partner_id.get_authorization_id(o.waste_id, ['E']).name"/></td>
+                                    <td colspan="8" style="padding: 0.1rem;">Nº inscripción Registro de PyGR: <span t-esc="o.manager_partner_id.get_authorization_id(o.line_ids[0].waste_id, ['E']).name"/></td>
                                     <td colspan="4" style="padding: 0.1rem;">NIMA: <span t-field="o.manager_partner_id.nima_no"/></td>
                                 </tr>
                             </tbody>
@@ -189,21 +189,23 @@
                         <table class="table table-sm table-borderless mb-0" style="table-layout: fixed">
                             <thead>
                                 <tr class="text-center" style="background-color: lightgrey;">
-                                    <th colspan="12">CARACTERÍSTICAS DEL RESIDUO QUE SE TRASLADA</th>
+                                    <th colspan="12">CARACTERÍSTICAS DE LOS RESIDUOS QUE SE TRASLADAN</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td colspan="12" style="padding: 0.1rem;">Código LER: <span t-field="o.waste_id.code"/> - <span t-field="o.waste_id.name"/></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="12" style="padding: 0.1rem;">Descripción: <span t-field="o.waste_name"/></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" style="padding: 0.1rem;">Características de peligrosidad: <span t-esc="o.dangerous_motive or o.waste_id.dangerous_motive"/></td>
-                                    <td colspan="4" style="padding: 0.1rem;">Tratamiento: <span t-esc="o.operation_type or o.waste_id.operation_type"/></td>
-                                    <td colspan="4" style="padding: 0.1rem;">Cantidad: <span t-esc="o.net_weight * 1000"/> kg</td>
-                                </tr>
+                                <t t-foreach="o.line_ids" t-as="l">
+                                    <tr>
+                                        <td colspan="12" style="padding: 0.1rem;">Código LER: <span t-field="l.waste_id.code"/> - <span t-field="l.waste_id.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="12" style="padding: 0.1rem;">Descripción: <span t-field="l.waste_name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="padding: 0.1rem;">Características de peligrosidad: <span t-esc="l.dangerous_motive or l.waste_id.dangerous_motive"/></td>
+                                        <td colspan="4" style="padding: 0.1rem;">Tratamiento: <span t-esc="l.operation_type or l.waste_id.operation_type"/></td>
+                                        <td colspan="4" style="padding: 0.1rem;">Cantidad: <span t-esc="l.net_weight * 1000"/> kg</td>
+                                    </tr>
+                                </t>
                             </tbody>
                         </table>
                         <table class="table table-sm table-borderless mb-0" style="table-layout: fixed">
@@ -227,6 +229,9 @@
                                     </p></td>
                                 </tr>
                                 <tr>
+                                    <td colspan="12" style="padding: 0.1rem;"><input type="checkbox"/> Autorizo a Limpergal a actuar como operador</td>
+                                </tr>
+                                <tr>
                                     <td colspan="1" style="padding: 0.1rem;"></td>
                                     <td colspan="4" style="padding: 0.1rem;">Firma operador:</td>
                                     <td colspan="3" style="padding: 0.1rem;"></td>
@@ -234,7 +239,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="1" style="padding: 0.1rem;"></td>
-                                    <td colspan="4" style="padding: 0.1rem;"><img t-if="o.manager_id.user_id.signature_image" t-att-src="image_data_uri(o.manager_id.user_id.signature_image)" style="max-height: 80px;"/></td>
+                                    <td colspan="4" style="padding: 0.1rem;"><img t-if="o.manager_id.user_id.signature_image" t-att-src="image_data_uri(o.manager_id.user_id.signature_image)" style="max-height: 70px;"/></td>
                                     <td colspan="7" style="padding: 0.1rem;"></td>
                                 </tr>
                             </tbody>

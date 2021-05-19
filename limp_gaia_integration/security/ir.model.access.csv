@@ -3,3 +3,4 @@
 "access_res_partner_ler_authorization_manager","res_partner_ler_authorization manager","model_res_partner_ler_authorization","stock.group_stock_manager",1,1,1,1
 "access_prior_transfer_documentation","prior_transfer_documentation_waste_grp","model_prior_transfer_documentation","limp_service_picking.group_waste_manager",1,1,1,1
 "access_prior_transfer_documentation_line","prior_transfer_documentation_line_waste_grp","model_prior_transfer_documentation_line","limp_service_picking.group_waste_manager",1,1,1,1
+"access_acceptance_document_line","acceptance_document_line_waste_grp","model_acceptance_document_line","limp_service_picking.group_waste_manager",1,1,1,1

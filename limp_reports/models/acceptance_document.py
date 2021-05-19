@@ -30,4 +30,4 @@ class AcceptanceDocument(models.Model):
     building_site_id = fields.Many2one(
         "building.site.services", "Building site", required=True
     )
-    waste_id = fields.Many2one("waste.ler.code", "LER", required=True)
+    waste_id = fields.Many2one("waste.ler.code", "LER", required=False)

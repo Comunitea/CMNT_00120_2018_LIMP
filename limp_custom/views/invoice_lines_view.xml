@@ -16,6 +16,7 @@
                 <field name="company_id"/>
                 <field name="city"/>
                 <field name="state_id"/>
+                <field name="manager_partner_id"/>
             </tree>
         </field>
     </record>
@@ -29,11 +30,13 @@
                 <field name="partner_id"/>
                 <field name="product_id"/>
                 <field name="date"/>
+                <field name="manager_partner_id"/>
                 <newline/>
                 <group expand="1" string="Group By..." colspan="10" col="12">
                     <filter string="LER" name="ler" context="{'group_by':'ler_code_id'}"/>
                     <filter string="Product" name="product" context="{'group_by':'product_id'}"/>
                     <filter string="Customer/Supplier" name="partner" context="{'group_by':'partner_id'}"/>
+                    <filter string="Manager" name="manager_partner" context="{'group_by':'manager_partner_id'}"/>
                 </group>
             </search>
         </field>

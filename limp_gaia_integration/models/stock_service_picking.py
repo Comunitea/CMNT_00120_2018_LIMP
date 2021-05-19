@@ -19,10 +19,13 @@ class StockServicePicking(models.Model):
     nt_doc_id = fields.Many2one("prior.transfer.documentation", "NT")
     producer_promoter_id = fields.Many2one("res.partner", "Producer/Promoter")
     dcs_phase = fields.Char("DCS Phase", compute="_get_dcs_phase")
+    not_check_data = fields.Boolean("Not check data")
 
     @api.multi
     def check_DI_data(self):
         for pick in self:
+            if pick.not_check_data:
+                continue
             if not pick.service_picking_valorization_ids.\
                     mapped('product_id.ler_code_id'):
                 raise exceptions.UserError("Los residuos a transladar no "

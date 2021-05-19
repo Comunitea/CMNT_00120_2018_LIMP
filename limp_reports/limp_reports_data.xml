@@ -339,18 +339,6 @@
         <field name="binding_type">report</field>
     </record>
 
-    <record id="aeroo_acceptance_doc_report" model="ir.actions.report">
-        <field name="name">Acceptance document</field>
-        <field name="model">acceptance.document</field>
-        <field name="report_name">acceptance_document</field>
-        <field name="report_type">py3o</field>
-        <field name="py3o_filetype">odt</field>
-        <field name="module">limp_reports</field>
-        <field name="py3o_template_fallback">report/acceptance_document.odt</field>
-        <field name="binding_model_id" ref="limp_reports.model_acceptance_document" />
-        <field name="binding_type">report</field>
-    </record>
-
     <record id="aeroo_annual_memory_id" model="ir.actions.report">
         <field name="name">Annual Memory Report</field>
         <field name="model">wizard.print.memory</field>

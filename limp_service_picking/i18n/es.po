@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 00:08+0000\n"
-"PO-Revision-Date: 2020-10-08 00:08+0000\n"
+"POT-Creation-Date: 2021-05-19 18:38+0000\n"
+"PO-Revision-Date: 2021-05-19 18:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr "Añadir a factura"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__holder_address
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__manager_address_id
 msgid "Address"
-msgstr "Dirección"
+msgstr "Dirección de envío"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_account_analytic_account__address_invoice_id
@@ -151,7 +151,7 @@ msgid "Analytic distribution"
 msgstr "Distribución analítica"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:382
+#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:398
 #, python-format
 msgid "Any income intercompany account journal found."
 msgstr "Ningún diario de compras intercompañía encontrado."
@@ -313,13 +313,13 @@ msgid "Cancelled"
 msgstr "Cancelar"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:796
+#: code:addons/limp_service_picking/models/stock_service_picking.py:794
 #, python-format
 msgid "Cannot close because you have checked intercompany and you have not checked scont."
 msgstr "No puede cerrar porque tiene marcado intercompañía y no tiene marcado scont."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:786
+#: code:addons/limp_service_picking/models/stock_service_picking.py:784
 #, python-format
 msgid "Cannot close because you have transports in draft state."
 msgstr "No puede cerrar porque tiene transportes en estado borrador."
@@ -509,6 +509,11 @@ msgid "Council"
 msgstr "Ayuntamiento"
 
 #. module: limp_service_picking
+#: model_terms:ir.ui.view,arch_db:limp_service_picking.view_picking_out_form_rep_buttons
+msgid "Crear factura"
+msgstr ""
+
+#. module: limp_service_picking
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.view_service_order_toinvoice
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.view_stock_invoice_onshipping
 msgid "Create"
@@ -602,7 +607,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd__create_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_credit
@@ -932,7 +937,7 @@ msgid "Equipment to employ"
 msgstr "Equipo para emplear"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:413
+#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:430
 #, python-format
 msgid "Expense account in product %s is not set"
 msgstr "La cuenta de gastos no está establecida en el producto %s"
@@ -1165,7 +1170,7 @@ msgstr ""
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
+msgstr "Si está marcado, hay mensajes que requieren su atención."
 
 #. module: limp_service_picking
 #: model:ir.model.fields,help:limp_service_picking.field_stock_service_picking__message_needaction
@@ -1202,12 +1207,18 @@ msgstr "Incluir en memoria anual"
 #: code:addons/limp_service_picking/wizard/add_to_invoice.py:98
 #: code:addons/limp_service_picking/wizard/add_to_invoice.py:143
 #: code:addons/limp_service_picking/wizard/add_to_invoice.py:185
-#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:254
-#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:303
-#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:348
+#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:270
+#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:319
+#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:364
 #, python-format
 msgid "Income account in product %s is not set"
 msgstr "La cuenta de ingresos en el producto %s no está asignada"
+
+#. module: limp_service_picking
+#: code:addons/limp_service_picking/models/stock_picking.py:340
+#, python-format
+msgid "Income or Expense account in product %s is not set"
+msgstr "La cuenta de ingreso o gasto no está establecida en el producto %s"
 
 #. module: limp_service_picking
 #: selection:detected.species,name:0
@@ -1252,7 +1263,7 @@ msgstr "Fecha factura"
 #. module: limp_service_picking
 #: model:ir.model,name:limp_service_picking.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Línea de factura"
+msgstr "Linea de Factura"
 
 #. module: limp_service_picking
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.view_picking_out_search_add_memory_field
@@ -1405,7 +1416,7 @@ msgstr "Nombre LER"
 #: model:ir.model.fields,field_description:limp_service_picking.field_valorization_lines____last_update
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping____last_update
 msgid "Last Modified on"
-msgstr "Última Modifiación en"
+msgstr "Última modificación en"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_add_to_invoice__write_uid
@@ -1430,7 +1441,7 @@ msgstr "Última Modifiación en"
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd__write_uid
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_add_to_invoice__write_date
@@ -1455,7 +1466,7 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:limp_service_picking.field_types_ddd__write_date
 #: model:ir.model.fields,field_description:limp_service_picking.field_wizard_stock_invoice_onshipping__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: limp_service_picking
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form_ddd
@@ -1543,7 +1554,7 @@ msgstr "Albaranes de mantenimiento"
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.view_valorization_lines_search
 #: selection:stock.picking,manager_or_productor:0
 msgid "Manager"
-msgstr "Encargado"
+msgstr "Gestor de destino"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking_line__parent_man_addr_id
@@ -1562,7 +1573,7 @@ msgid "Manager authorization no."
 msgstr "Nº autorización gestor"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking_line.py:248
+#: code:addons/limp_service_picking/models/stock_service_picking_line.py:254
 #, python-format
 msgid "Manager selected has not NIMA number."
 msgstr "El gestor seleccionado no tiene número NIMA."
@@ -1644,6 +1655,11 @@ msgstr "Asiento"
 #: selection:stock.service.picking.line,type:0
 msgid "Move to plant"
 msgstr "Traslado a planta"
+
+#. module: limp_service_picking
+#: selection:stock.service.picking.line,type:0
+msgid "Move to plant DI"
+msgstr "Traslado a planta DI"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__move_service_ids
@@ -1892,7 +1908,7 @@ msgid "One for invoice"
 msgstr "Uno por factura"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking_line.py:320
+#: code:addons/limp_service_picking/models/stock_service_picking_line.py:339
 #, python-format
 msgid "Only can delete lines in draft state. Please reopen the line."
 msgstr "Sólo puede borrar lineas en estado borrador. Por favor reabra la linea."
@@ -1979,7 +1995,7 @@ msgid "Overload price"
 msgstr "Precio sobrecarga"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:742
+#: code:addons/limp_service_picking/models/stock_service_picking.py:740
 #, python-format
 msgid "Overload/"
 msgstr "Sobrecarga/"
@@ -2002,7 +2018,7 @@ msgstr "Ruta padre"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_account_analytic_distribution_tag_id
 msgid "Parent tag"
-msgstr "Etiqueta padre"
+msgstr "Etiqueta principal"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_building_site_services__partner_ids
@@ -2084,7 +2100,7 @@ msgid "Planned"
 msgstr "Planificado"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:103
+#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:104
 #, python-format
 msgid "Please put a partner on the service order list if you want to generate invoice."
 msgstr "Por favor ponga un cliente en el albarán de servicio si quiere crear uan factura."
@@ -2109,6 +2125,11 @@ msgstr "Precio unidad"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__pricelist_id
 msgid "Pricelist"
 msgstr "Tarifa"
+
+#. module: limp_service_picking
+#: selection:stock.service.picking.line,type:0
+msgid "Private Delivery"
+msgstr "Entrada particulares"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__producer_partner
@@ -2154,7 +2175,7 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:945
+#: code:addons/limp_service_picking/models/stock_service_picking.py:943
 #, python-format
 msgid "Product %s must be shared inter companies for proceeding"
 msgstr "El producto %s debe estar compartido entre compañías para continuar"
@@ -2171,7 +2192,7 @@ msgstr "Plantilla de producto"
 
 #. module: limp_service_picking
 #: code:addons/limp_service_picking/wizard/add_to_invoice.py:172
-#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:333
+#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:349
 #, python-format
 msgid "Product sand treatment is not set in picking %s"
 msgstr "El producto servicio arena no esta puesto en el albarán %s"
@@ -2183,7 +2204,7 @@ msgstr "Producto taxa"
 
 #. module: limp_service_picking
 #: code:addons/limp_service_picking/wizard/add_to_invoice.py:130
-#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:287
+#: code:addons/limp_service_picking/wizard/service_order_toinvoice.py:303
 #, python-format
 msgid "Product tax is not set in picking %s"
 msgstr "El producto taxa no está puesto en el albarán %s"
@@ -2197,6 +2218,11 @@ msgstr "Udm."
 #: selection:stock.picking,manager_or_productor:0
 msgid "Productor"
 msgstr ""
+
+#. module: limp_service_picking
+#: model:ir.model.fields,field_description:limp_service_picking.field_stock_picking__products
+msgid "Products"
+msgstr "Productos"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__products_used_id
@@ -2272,7 +2298,7 @@ msgstr "Trimestral"
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__rd_code
 msgid "R.D. 952/97"
-msgstr "R.D. 952/97"
+msgstr ""
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_legionella_samples__lab_recept_date
@@ -2524,7 +2550,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_picking.py:249
+#: code:addons/limp_service_picking/models/stock_picking.py:257
 #, python-format
 msgid "State {} incorrect for {}"
 msgstr "El estado {} es incorrecto para {}"
@@ -2549,7 +2575,7 @@ msgstr "Factura de Stock en el envío"
 #. module: limp_service_picking
 #: model:ir.model,name:limp_service_picking.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento stock"
+msgstr "Movimiento de existencias"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__stock_picking_id
@@ -2578,7 +2604,7 @@ msgstr "Sustituciones"
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_picking_invoice_concept_subtotal
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_other_expenses__price_subtotal
 msgid "Subtotal"
-msgstr "Subtotal"
+msgstr ""
 
 #. module: limp_service_picking
 #: model:ir.actions.act_window,name:limp_service_picking.action_intercompany_invoice_tree2
@@ -2615,7 +2641,7 @@ msgstr "Tarea"
 #: model:ir.model.fields,field_description:limp_service_picking.field_product_product__tax_product
 #: model:ir.model.fields,field_description:limp_service_picking.field_product_template__tax_product
 msgid "Tax product"
-msgstr "Producto Taxa"
+msgstr "Producto taxa"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_service_picking_invoice_concept__tax_ids
@@ -2655,7 +2681,7 @@ msgid "The total amount."
 msgstr "El importe total."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:852
+#: code:addons/limp_service_picking/models/stock_service_picking.py:851
 #, python-format
 msgid "There is no warehouse to the order company"
 msgstr "No hay almacenes en la compañía ordenante"
@@ -2966,8 +2992,8 @@ msgstr "Aviso"
 #. module: limp_service_picking
 #: code:addons/limp_service_picking/models/service_picking_invoice_concept.py:75
 #: code:addons/limp_service_picking/models/service_picking_other_concepts_rel.py:46
-#: code:addons/limp_service_picking/models/service_picking_valorization_rel.py:82
-#: code:addons/limp_service_picking/models/stock_service_picking.py:596
+#: code:addons/limp_service_picking/models/service_picking_valorization_rel.py:83
+#: code:addons/limp_service_picking/models/stock_service_picking.py:592
 #, python-format
 msgid "Warning for %s"
 msgstr "Aviso para %s"
@@ -3059,26 +3085,26 @@ msgid "Year"
 msgstr "Año"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:864
+#: code:addons/limp_service_picking/models/stock_service_picking.py:863
 #, python-format
 msgid "You are trying to close a service picking with overload quantity but the product has not the overload price. Please fill it!"
 msgstr "Está intentando cerrar un albarán de servicio con sobrecarga pero el producto no tiene precio de sobrecarga. ¡Por favor rellénelo!"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:821
-#: code:addons/limp_service_picking/models/stock_service_picking.py:826
+#: code:addons/limp_service_picking/models/stock_service_picking.py:819
+#: code:addons/limp_service_picking/models/stock_service_picking.py:824
 #, python-format
 msgid "You are trying to close a service picking with wrong retired date."
 msgstr "Está intentando cerrar un albarán de servicio con una fecha de retirada incorrecta."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:813
+#: code:addons/limp_service_picking/models/stock_service_picking.py:811
 #, python-format
 msgid "You are trying to close a service picking without retired date."
 msgstr "Está intentando cerrar un albarán de servicio sin fecha de retirada."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking_line.py:294
+#: code:addons/limp_service_picking/models/stock_service_picking_line.py:313
 #, python-format
 msgid "You cannot reopen this line because container is not in %s."
 msgstr "No puede reabrir esta linea porque el contenedor no está en %s."

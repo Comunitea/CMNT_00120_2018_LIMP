@@ -289,6 +289,11 @@ msgid "Limpergal Waste Invoice Copy"
 msgstr "Factura Limpergal Residuos (Copia)"
 
 #. module: limp_reports
+#: model:ir.model.fields,field_description:limp_reports.field_wizard_print_memory__manager_partner_ids
+msgid "Managers"
+msgstr "Gestores"
+
+#. module: limp_reports
 #: model:ir.model.fields,field_description:limp_reports.field_acceptance_document_number
 msgid "Number"
 msgstr "Número"

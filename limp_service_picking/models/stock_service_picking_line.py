@@ -118,6 +118,7 @@ class StockServicePickingLine(models.Model):
             ("inplant", "Come into plant"),
             ("move_to_plant", "Move to plant"),
             ("move_to_plant_di", "Move to plant DI"),
+            ("private_delivery", "Private Delivery"),
             ("pest_control", "Pest Control"),
             ("legionella", "Legionella"),
         ],
@@ -197,7 +198,7 @@ class StockServicePickingLine(models.Model):
                     self.orig_address_id = self.env.user.work_address_id.id
             self.dest_address_id = self.parent_building_addr_id
         elif self.type in ("remove", "inplant", "move_to_plant",
-                           "move_to_plant_di"):
+                           "move_to_plant_di", "private_delivery"):
             self.orig_address_id = (
                 self.parent_building_addr_id
                 or self.env.user.work_address_id.id
@@ -221,6 +222,7 @@ class StockServicePickingLine(models.Model):
             "outstanding",
             "aspirating",
             "cleaning",
+            "private_delivery"
         ]:
             res.picking_id.write(
                 {"retired_date": res.transport_date}
@@ -283,6 +285,16 @@ class StockServicePickingLine(models.Model):
                 vals = {'dcs_no': seq}
                 if line.picking_id.manager_partner_id.create_nima_number:
                     vals['delivery_proof_no'] = seq
+                line.picking_id.write(vals)
+            elif (
+                line.picking_id.manager_partner_id
+                and line.type == "private_delivery"
+                and not line.picking_id.delivery_proof_no
+                and line.picking_id.manager_partner_id.create_nima_number
+            ):
+                seq = self.env["ir.sequence"].\
+                    next_by_code("waste.private.delivery")
+                vals = {'delivery_proof_no': seq}
                 line.picking_id.write(vals)
         return self.write({"state": "done"})
 

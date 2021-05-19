@@ -25,4 +25,12 @@
             <field name="prefix">DAR</field>
         </record>
 
+        <record id="seq_private_delivery" model="ir.sequence">
+            <field name="name">Private Delivery seq.</field>
+            <field name="code">waste.private.delivery</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="prefix">EP</field>
+        </record>
+
 </odoo>

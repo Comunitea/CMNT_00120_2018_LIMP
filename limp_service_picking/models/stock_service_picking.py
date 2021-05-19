@@ -930,7 +930,6 @@ class StockServicePicking(models.Model):
                                     "partner_id": addr,
                                     "location_id": location_id,
                                     "location_dest_id": location_dest_id,
-                                    "tracking_id": False,
                                     "date": order.retired_date
                                     or order.picking_date,
                                     "date_expected": order.retired_date
