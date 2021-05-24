@@ -24,8 +24,8 @@
                 <initialValueExpression><![CDATA[$P{REPORT_LOCALE}]]></initialValueExpression>
         </variable>
         <variable name="hours" class="java.lang.String">
-                <variableExpression><![CDATA[Double.toString(($F{Extra_hours-extra_hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Extra_hours-extra_hours})) + ($F{Hours-hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Hours-hours})))]]></variableExpression>
-                <initialValueExpression><![CDATA[Double.toString(($F{Extra_hours-extra_hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Extra_hours-extra_hours})) + ($F{Hours-hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Hours-hours})))]]></initialValueExpression>
+                <variableExpression><![CDATA[String.format("%.2f", ($F{Extra_hours-extra_hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Extra_hours-extra_hours})) + ($F{Hours-hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Hours-hours})))]]></variableExpression>
+                <initialValueExpression><![CDATA[String.format("%.2f", ($F{Extra_hours-extra_hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Extra_hours-extra_hours})) + ($F{Hours-hours}.isEmpty() ? 0.0 : Float.parseFloat($F{Hours-hours})))]]></initialValueExpression>
         </variable>
         <detail>
                 <band height="20" splitType="Prevent">
@@ -93,7 +93,7 @@
                                         <rightPen lineWidth="0.25" lineStyle="Solid"/>
                                 </box>
                                 <textElement verticalAlignment="Middle" markup="none"/>
-                                <textFieldExpression class="java.lang.String"><![CDATA[$V{hours}.length() != 0 ? $V{hours}.substring(0,$V{hours}.indexOf(".")) + ":" + String.format("%-2s",Integer.toString(((Integer.parseInt($V{hours}.substring($V{hours}.indexOf(".")+1))/100)*60).intValue())).replace(' ', '0') : "0:00"]]></textFieldExpression>
+			        <textFieldExpression class="java.lang.String"><![CDATA[$V{hours}.length() != 0 ? $V{hours}.substring(0,$V{hours}.indexOf(",")) + ":" + String.format("%02d",(int) ((Integer.parseInt($V{hours}.substring($V{hours}.indexOf(",")+1))/100.0)*60.0)) : "0:00"]]></textFieldExpression>
                         </textField>
                 </band>
         </detail>
