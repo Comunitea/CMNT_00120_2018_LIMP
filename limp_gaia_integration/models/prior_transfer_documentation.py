@@ -114,7 +114,7 @@ class PriorTransferDocumentation(models.Model):
                         waste_id.operation_type:
                     raise exceptions.UserError("No se ha establecido el tipo"
                                                " de operación en el residuo")
-                if waste.dangerous and not waste.dangerous_motive \
+                if waste.waste_id.dangerous and not waste.dangerous_motive \
                         and not waste.waste_id.dangerous_motive:
                     raise exceptions.\
                         UserError("No se ha establecido el motivo de "

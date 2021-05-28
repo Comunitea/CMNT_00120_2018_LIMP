@@ -8,13 +8,14 @@
             model="stock.picking"/>
 
     <template id="template_waste_identification_output_di">
+        <t t-set="company" t-value="docs.env['res.company'].sudo().browse(1)"/> <!-- Limpergal -->
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page" style="font-size: 11px;">
                         <h3>DOCUMENTO DE IDENTIFICACIÓN DE RESIDUOS</h3>
                         <p style="font-size: 7px;">(Artículo 6 del R.D. 180/2015, de 13 de marzo, por el que se regula el traslado de residuos en el interior del territorio del Estado. B.O.E. nº 83 del 07/04/2015)</p>
-                        <div class="col-12"><span class="col-8">Documento de Identificación nº: <u><span t-field="o.dcs_no"/></u></span><span class="col-4">Versión: <u>3.0</u></span></div>
+                        <div class="col-12"><span class="col-6">Documento de Identificación nº: <u><span t-field="o.dcs_no"/></u></span><span class="col-2">Versión: <u>3.0</u></span><span class="col-4">Albarán: <u><span t-field="o.name"/></u></span></div>
                         <table class="table mt8 table-bordered table-sm">
                             <thead>
                                 <tr style="background-color: lightgrey; padding: 4px">
@@ -301,35 +302,6 @@
                                     <td colspan="2"><b><span t-field="o.carrier_id.phone"/></b></td>
                                     <td colspan="2">Correo electrónico:</td>
                                     <td colspan="7"><b><span t-field="o.carrier_id.email"/></b></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="table mt16 table-bordered table-sm">
-                            <thead>
-                                <tr style="background-color: lightgrey; padding: 4px">
-                                    <th colspan="12">OTRAS INFORMACIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="3">Fecha entrega:</td>
-                                    <td colspan="2"><b><span t-field="o.date" t-options='{"widget": "date"}'/></b></td>
-                                    <td colspan="3">Kg. netos recibidos:</td>
-                                    <td colspan="2"><b><span t-esc="sum([waste.secondary_uom_qty * 1000 for waste in o.move_lines])"/></b></td>
-                                    <td colspan="1">Aceptación:</td>
-                                    <td colspan="1"><b>Sí</b></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">Fecha aceptación/rechazo</td>
-                                    <td colspan="9"><b><span t-field="o.date" t-options='{"widget": "date"}'/></b></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">Acción en caso de rechazo</td>
-                                    <td colspan="9"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">Fecha de devolución/reenvio</td>
-                                    <td colspan="9"></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -77,10 +77,7 @@ class StockServicePicking(models.Model):
     @api.multi
     def _get_dcs_phase(self):
         for pick in self:
-            partners = pick.producer_promoter_id.commercial_partner_id.\
-                child_ids
-            partners |= pick.producer_promoter_id.commercial_partner_id
-            partners |= pick.manager_partner_id.commercial_partner_id.child_ids
+            partners = pick.manager_partner_id.commercial_partner_id.child_ids
             partners |= pick.manager_partner_id.commercial_partner_id
             if partners.filtered('create_nima_number'):
                 pick.dcs_phase = 'D'
