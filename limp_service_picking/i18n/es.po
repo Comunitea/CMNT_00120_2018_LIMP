@@ -1344,6 +1344,7 @@ msgstr "Es seguidor"
 
 #. module: limp_service_picking
 #: model_terms:ir.ui.view,arch_db:limp_service_picking.stock_service_picking_form
+#: model_terms:ir.ui.view,arch_db:limp_service_picking.stock_sporadic_service_picking_form
 msgid "It is all right?"
 msgstr "¿Está todo correcto?"
 

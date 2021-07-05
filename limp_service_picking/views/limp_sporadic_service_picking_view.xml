@@ -35,7 +35,7 @@
             <form string="Sporadic service picking">
                 <header>
                     <button name="action_active" type="object" string="Active" states="draft" class="oe_highlight"/>
-                    <button name="action_close" type="object" string="Close" states="active" class="oe_highlight"/>
+                    <button name="action_close" type="object" string="Close" states="active" class="oe_highlight" confirm="It is all right?"/>
                     <button name="action_cancel" type="object" string="Cancel" states="active"/>
                     <button name="action_draft" type="object" string="Set to draft" states="cancelled" class="oe_highlight"/>
                     <button name="%(action_service_order_toinvoice)d" string="Create Invoice"  type="action" attrs="{'invisible':['|',('state', 'in', ['draft','active','cancelled']),('invoice_type','=','invoiced')]}" class="oe_highlight"/>
