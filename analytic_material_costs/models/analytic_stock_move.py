@@ -114,23 +114,28 @@ class AccountAnalyticStockMove(models.Model):
                     "partner form !"
                 )
             )
-        move = self.env["stock.move"].create(
-            {
-                "date": res.date,
-                "product_id": res.product_id.id,
-                "product_uom_qty": res.product_qty,
-                "product_uom": res.product_id.uom_id.id,
-                "origin": res.analytic_account_id.name,
-                "location_id": res.location_id.id,
-                "location_dest_id": user.company_id.
-                partner_id.property_stock_customer.id,
-                "name": res.analytic_account_id.name
-                + _(": Out ")
-                + res.product_id.name,
-                "company_id": user.company_id.id,
-                "partner_id": user.company_id.partner_id.id,
-            }
-        )
+        move_vals = {
+            "date": res.date,
+            "product_id": res.product_id.id,
+            "product_uom_qty": abs(res.product_qty),
+            "product_uom": res.product_id.uom_id.id,
+            "origin": res.analytic_account_id.name,
+            "location_id": res.location_id.id,
+            "location_dest_id": user.company_id.
+            partner_id.property_stock_customer.id,
+            "name": res.analytic_account_id.name
+            + _(": Out ")
+            + res.product_id.name,
+            "company_id": user.company_id.id,
+            "partner_id": user.company_id.partner_id.id,
+        }
+        if res.product_qty < 0:
+            move_vals['location_id'] = user.company_id.\
+                partner_id.property_stock_customer.id
+            move_vals['location_dest_id'] = res.location_id.id
+            move_vals['name'] = res.analytic_account_id.name + \
+                _(": Out ") + res.product_id.name
+        move = self.env["stock.move"].create(move_vals)
 
         move._action_confirm()
 
@@ -145,7 +150,11 @@ class AccountAnalyticStockMove(models.Model):
                 vals.get("location_id")
                 and vals["location_id"] != line.location_id.id
             ):
-                line.move_id.location_id = vals["location_id"]
+                if (vals.get("product_qty") and vals["product_qty"] < 0) or \
+                        (not vals.get("product_qty") and line.product_qty < 0):
+                    line.move_id.location_dest_id = vals["location_id"]
+                else:
+                    line.move_id.location_id = vals["location_id"]
             if (
                 vals.get("product_id")
                 and vals["product_id"] != line.product_id.id
@@ -155,14 +164,22 @@ class AccountAnalyticStockMove(models.Model):
                     vals["product_id"]
                 )
                 line.move_id.product_uom = product.uom_id.id
-                line.move_id.name = (
-                    line.analytic_account_id.name + _(": Out ") + product.name,
-                )
+                if (vals.get("product_qty") and vals["product_qty"] < 0) or \
+                        (not vals.get("product_qty") and line.product_qty < 0):
+                    line.move_id.name = (
+                        line.analytic_account_id.name + _(": IN ") +
+                        product.name,
+                    )
+                else:
+                    line.move_id.name = (
+                        line.analytic_account_id.name + _(": Out ") +
+                        product.name,
+                    )
             if (
                 vals.get("product_qty")
                 and vals["product_qty"] != line.product_qty
             ):
-                line.move_id.product_uom_qty = vals["product_qty"]
+                line.move_id.product_uom_qty = abs(vals["product_qty"])
         return super(AccountAnalyticStockMove, self).write(vals)
 
     @api.multi
@@ -196,23 +213,25 @@ class AccountAnalyticStockMove(models.Model):
                     )
                 )
 
-        self.env["account.analytic.line"].create(
-            {
-                "amount": -(self.product_id.standard_price * self.product_qty),
-                "name": self.analytic_account_id.name
-                + _(": Out ")
-                + self.product_id.name,
-                "company_id": user.company_id.id,
-                "product_id": self.product_id.id,
-                "tag_ids": [(4, material_tag.id)],
-                "account_id": self.analytic_account_id.id,
-                "general_account_id": account_id,
-                "date": self.date,
-                'delegation_id': self.analytic_account_id.delegation_id.id,
-                'department_id': self.analytic_account_id.department_id.id,
-                'manager_id': self.analytic_account_id.manager_id.id
-            }
-        )
+        line_vals = {
+            "amount": -(self.product_id.standard_price * self.product_qty),
+            "name": self.analytic_account_id.name
+            + _(": Out ")
+            + self.product_id.name,
+            "company_id": user.company_id.id,
+            "product_id": self.product_id.id,
+            "tag_ids": [(4, material_tag.id)],
+            "account_id": self.analytic_account_id.id,
+            "general_account_id": account_id,
+            "date": self.date,
+            'delegation_id': self.analytic_account_id.delegation_id.id,
+            'department_id': self.analytic_account_id.department_id.id,
+            'manager_id': self.analytic_account_id.manager_id.id
+        }
+        if self.move_id.location_id.usage != 'internal':
+            line_vals['name'] = self.analytic_account_id.name + \
+                _(": IN ") + self.product_id.name
+        self.env["account.analytic.line"].create(line_vals)
         self.state = "second"
 
     @api.multi
