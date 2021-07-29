@@ -86,9 +86,9 @@
                             <tbody>
                                 <tr>
                                     <td colspan="1">NIF:</td>
-                                    <td colspan="2"><b><span t-field="o.producer_promoter_id.commercial_partner_id.vat"/></b></td>
+                                    <td colspan="2"><b><span t-esc="o.building_site_id.vat_producer or o.producer_promoter_id.commercial_partner_id.vat"/></b></td>
                                     <td colspan="2">Razón social/Nombre:</td>
-                                    <td colspan="7"><b><span t-field="o.producer_promoter_id.commercial_partner_id.name"/></b></td>
+                                    <td colspan="7"><b><span t-esc="o.building_site_id.producer_promoter or o.producer_promoter_id.commercial_partner_id.name"/></b></td>
                                 </tr>
                                 <tr>
                                     <td colspan="1">NIMA:</td>
@@ -104,15 +104,15 @@
                                 </tr>
                                 <tr>
                                     <td colspan="1">Dirección:</td>
-                                    <td colspan="9"><b><span t-field="o.producer_promoter_id.street"/></b></td>
+                                    <td colspan="9"><b><span t-esc="o.building_site_id.address_producer or o.producer_promoter_id.street"/></b></td>
                                     <td colspan="1">C.P.</td>
                                     <td colspan="1"><b><span t-field="o.producer_promoter_id.zip"/></b></td>
                                 </tr>
                                 <tr>
                                     <td colspan="1">Municipio:</td>
-                                    <td colspan="5"><b><span t-field="o.producer_promoter_id.council_id.name"/></b></td>
+                                    <td colspan="5"><b><span t-esc="o.building_site_id.city_producer or o.producer_promoter_id.council_id.name"/></b></td>
                                     <td colspan="1">Provincia:</td>
-                                    <td colspan="5"><b><span t-field="o.producer_promoter_id.state_id.name"/></b></td>
+                                    <td colspan="5"><b><span t-esc="o.building_site_id.province_producer or o.producer_promoter_id.state_id.name"/></b></td>
                                 </tr>
                                 <tr>
                                     <td colspan="1">Teléfono:</td>
@@ -126,9 +126,9 @@
                                     </tr>
                                     <tr>
                                         <td colspan="1">NIF:</td>
-                                        <td colspan="2"><b><span t-field="o.producer_promoter_id.commercial_partner_id.vat"/></b></td>
+                                        <td colspan="2"><b><span t-esc="o.building_site_id.vat_producer or o.producer_promoter_id.commercial_partner_id.vat"/></b></td>
                                         <td colspan="2">Razón social/Nombre:</td>
-                                        <td colspan="7"><b><span t-field="o.producer_promoter_id.commercial_partner_id.name"/></b></td>
+                                        <td colspan="7"><b><span t-esc="o.building_site_id.producer_promoter or o.producer_promoter_id.commercial_partner_id.name"/></b></td>
                                     </tr>
                                     <tr>
                                         <td colspan="1">NIMA:</td>
@@ -138,15 +138,15 @@
                                     </tr>
                                     <tr>
                                         <td colspan="1">Dirección:</td>
-                                        <td colspan="9"><b><span t-field="o.producer_promoter_id.street"/></b></td>
+                                        <td colspan="9"><b><span t-esc="o.building_site_id.address_producer or o.producer_promoter_id.street"/></b></td>
                                         <td colspan="1">C.P.</td>
                                         <td colspan="1"><b><span t-field="o.producer_promoter_id.zip"/></b></td>
                                     </tr>
                                     <tr>
                                         <td colspan="1">Municipio:</td>
-                                        <td colspan="5"><b><span t-field="o.producer_promoter_id.council_id.name"/></b></td>
+                                        <td colspan="5"><b><span t-esc="o.building_site_id.city_producer or o.producer_promoter_id.council_id.name"/></b></td>
                                         <td colspan="1">Provincia:</td>
-                                        <td colspan="5"><b><span t-field="o.producer_promoter_id.state_id.name"/></b></td>
+                                        <td colspan="5"><b><span t-esc="o.building_site_id.province_producer or o.producer_promoter_id.state_id.name"/></b></td>
                                     </tr>
                                     <tr>
                                         <td colspan="1">Teléfono:</td>
