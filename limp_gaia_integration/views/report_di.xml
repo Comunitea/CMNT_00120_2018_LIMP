@@ -88,7 +88,7 @@
 
     <template id="di_input_waste">
         <waste>
-            <wasteDCS t-att-DCSCode="picking.dcs_no" t-att-DCSPhase="picking.dcs_phase" t-att-DCSYear="picking.retired_date.strftime('%Y+01:00')" t-att-DCSDate="picking.retired_date.strftime('%Y-%m-%d+01:00')" t-att-DCSStartDate="min(picking.service_ids.mapped('transport_date')).strftime('%Y-%m-%d+01:00')" t-att-DCSEndDate="max(picking.service_ids.mapped('transport_date')).strftime('%Y-%m-%d+01:00')" DCSRegional="S" DCSSendtoOriginOrDestinationAuthority="N">
+            <wasteDCS t-att-DCSCode="picking.dcs_no" t-att-DCSPhase="picking.dcs_phase" t-att-DCSYear="picking.retired_date.strftime('%Y+01:00')" t-att-DCSDate="picking.retired_date.strftime('%Y-%m-%d+01:00')" t-att-DCSStartDate="picking.retired_date.strftime('%Y-%m-%d+01:00')" t-att-DCSEndDate="picking.retired_date.strftime('%Y-%m-%d+01:00')" DCSRegional="S" DCSSendtoOriginOrDestinationAuthority="N">
                 <DCSTransferOperatorData>
                     <t t-set="partner" t-value="picking.operator_partner_id"/>
                     <t t-set="auth_types" t-value="['N', 'G']"/>
