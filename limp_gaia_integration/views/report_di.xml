@@ -125,7 +125,7 @@
                             <DCSProducerResidueIdentification xsi:type="ns4:dangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                 <residueBag>
                                     <bagProcess internalIdProcessCode="99"/>
-                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.name"/>
+                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.ler_code_id.name"/>
                                 </residueBag>
                                 <residueTables xsi:type="ns4:tablesDangerousType">
                                     <table2 t-esc="waste.operation_type or waste.product_id.ler_code_id.operation_type"/>
@@ -135,7 +135,7 @@
                             <DCSAdresseeResidueIdentification xsi:type="ns4:dangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                 <residueBag>
                                     <bagProcess internalIdProcessCode="99"/>
-                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.name"/>
+                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.ler_code_id.name"/>
                                 </residueBag>
                                 <residueTables xsi:type="ns4:tablesDangerousType">
                                     <table2 t-esc="waste.operation_type or waste.product_id.ler_code_id.operation_type"/>
@@ -147,7 +147,7 @@
                             <DCSProducerResidueIdentification xsi:type="ns4:noDangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                 <residueBag>
                                     <bagProcess internalIdProcessCode="99"/>
-                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.name"/>
+                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.ler_code_id.name"/>
                                 </residueBag>
                                 <residueTables xsi:type="ns4:tablesNoDangerousType">
                                     <table2 t-esc="waste.operation_type or waste.product_id.ler_code_id.operation_type"/>
@@ -156,7 +156,7 @@
                             <DCSAdresseeResidueIdentification xsi:type="ns4:noDangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                 <residueBag>
                                     <bagProcess internalIdProcessCode="99"/>
-                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.name"/>
+                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.ler_code_id.name"/>
                                 </residueBag>
                                 <residueTables xsi:type="ns4:tablesNoDangerousType">
                                     <table2 t-esc="waste.operation_type or waste.product_id.ler_code_id.operation_type"/>
@@ -227,7 +227,7 @@
                             <DCSProducerResidueIdentification xsi:type="ns4:dangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                 <residueBag>
                                     <bagProcess internalIdProcessCode="99"/>
-                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.name"/>
+                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.ler_code_id.name"/>
                                 </residueBag>
                                 <residueTables xsi:type="ns4:tablesDangerousType">
                                     <table2 t-esc="waste.operation_type or waste.product_id.ler_code_id.operation_type"/>
@@ -249,7 +249,7 @@
                             <DCSProducerResidueIdentification xsi:type="ns4:noDangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                 <residueBag>
                                     <bagProcess internalIdProcessCode="99"/>
-                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.name"/>
+                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.ler_code_id.name"/>
                                 </residueBag>
                                 <residueTables xsi:type="ns4:tablesNoDangerousType">
                                     <table2 t-esc="waste.operation_type or waste.product_id.ler_code_id.operation_type"/>
@@ -258,7 +258,7 @@
                             <DCSAdresseeResidueIdentification xsi:type="ns4:noDangerousResidueType" t-att-LERCode="waste.product_id.ler_code_id.code" xmlns:ns4="e3l://eterproject.org/3.0/wasteSupport" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                 <residueBag>
                                     <bagProcess internalIdProcessCode="99"/>
-                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.name"/>
+                                    <bagResidueId residueCode="999" t-att-residueDescription="waste.product_id.ler_code_id.name"/>
                                 </residueBag>
                                 <residueTables xsi:type="ns4:tablesNoDangerousType">
                                     <table2 t-esc="waste.operation_type or waste.product_id.ler_code_id.operation_type"/>
