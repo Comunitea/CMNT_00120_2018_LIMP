@@ -26,7 +26,6 @@
     "website": "https://www.comunitea.com",
     "category": "Custom",
     "depends": [
-        "account_invoice_currency",
         "multi_departments",
         "limp_service_picking",
         "purchase",

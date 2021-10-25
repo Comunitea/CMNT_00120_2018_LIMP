@@ -27,7 +27,7 @@
         <record id="invoice_tree_add_info" model="ir.ui.view">
             <field name="name">account.invoice.tree.add_info</field>
             <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account_invoice_currency.invoice_tree"/>
+            <field name="inherit_id" ref="account.invoice_tree"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="before">
                     <field name="commercial_partner_id"/>
@@ -43,14 +43,6 @@
                 </field>
                 <field name="name" position="attributes">
                     <attribute name="invisible">0</attribute>
-                </field>
-                <field name="amount_untaxed_invoice_signed" position="replace">
-                    <field name="amount_untaxed_signed" sum="Untaxed" string="Base Imponible"/>
-                </field>
-                <field name="amount_total_company_signed" position="replace"/>
-                <field name="residual_company_signed" position="replace"/>
-                <field name="amount_total_signed" position="attributes">
-                    <attribute name="sum">Total</attribute>
                 </field>
                 <tree position="attributes">
                     <attribute name="decoration-success">state == 'open'</attribute>
@@ -78,16 +70,6 @@
                     <field name="add_info"/>
                     <field name="date_invoice"/>
                 </field>
-            </field>
-        </record>
-
-        <record id="invoice_supplier_tree_rep_cur_amounts" model="ir.ui.view">
-            <field name="name">account.invoice.supplier.currency.tree</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account_invoice_currency.invoice_supplier_tree"/>
-            <field name="arch" type="xml">
-                <field name="amount_total_company_signed" position="replace"/>
-                <field name="residual_company_signed" position="replace"/>
             </field>
         </record>
 
