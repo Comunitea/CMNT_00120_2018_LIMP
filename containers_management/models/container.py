@@ -93,6 +93,7 @@ class Container(models.Model):
         [("on_street", "On street"), ("on_building", "On building")],
         string="Container placement",
     )
+    day_price_product_id = fields.Many2one("product.product", "Day Price")
 
     @api.multi
     def write(self, vals):

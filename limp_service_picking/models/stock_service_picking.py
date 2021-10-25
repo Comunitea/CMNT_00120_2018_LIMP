@@ -528,6 +528,21 @@ class StockServicePicking(models.Model):
     maintenance = fields.Boolean("Maintenance")
     sale_id = fields.Many2one("sale.order", string="Sale")
     pricelist_id = fields.Many2one("product.pricelist", "Pricelist")
+    container_rent_days = fields.Integer("Container rent days", readonly=True,
+                                         compute="_get_container_rent_days")
+
+    def _get_container_rent_days(self):
+        for pick in self:
+            if pick.container_id and pick.carry_service_ids:
+                start_date = pick.carry_service_ids[0].transport_date.date()
+                if pick.retired_date:
+                    pick.container_rent_days = (pick.retired_date -
+                                                start_date).days
+                else:
+                    pick.container_rent_days = (fields.Date.today() -
+                                                start_date).days
+            else:
+                pick.container_rent_days = 0
 
     def _amount_all(self):
         for picking in self:
@@ -775,6 +790,28 @@ class StockServicePicking(models.Model):
 
                     self.env["service.picking.invoice.concept"].create(vals)
                     seq += 1
+            if order.container_rent_days > 30:
+                days_qty = order.container_rent_days - 30
+                vals = {
+                        "sequence": seq,
+                        "product_id": order.container_id.
+                        day_price_product_id.id,
+                        "name": order.container_id.day_price_product_id.name,
+                        "product_qty": days_qty,
+                        "product_uom":  order.container_id.
+                        day_price_product_id.uom_id.id,
+                        "price":  order.container_id.
+                        day_price_product_id.list_price,
+                        "service_picking_id": order.id,
+                        "tax_ids": [
+                            (6, 0,
+                             [x.id for x in order.container_id.
+                              day_price_product_id.taxes_id],)
+                        ],
+                    }
+
+                self.env["service.picking.invoice.concept"].create(vals)
+                seq += 1
         return True
 
     def action_close(self):

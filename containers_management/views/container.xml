@@ -11,6 +11,7 @@
                 <field name="shape"/>
                 <field name="dimensions"/>
                 <field name="capacity"/>
+                <field name="day_price_product_id"/>
                 <field name="situation_id"/>
                 <field name="container_placement"/>
                 <field name="partner_id"/>
@@ -31,6 +32,7 @@
                         <field name="shape"/>
                         <field name="dimensions"/>
                         <field name="capacity"/>
+                        <field name="day_price_product_id"/>
                     </group>
                     <group>
                         <field name="container_placement"/>

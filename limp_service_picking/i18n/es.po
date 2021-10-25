@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-19 18:38+0000\n"
-"PO-Revision-Date: 2021-05-19 18:38+0000\n"
+"POT-Creation-Date: 2021-10-25 17:48+0000\n"
+"PO-Revision-Date: 2021-10-25 17:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -313,13 +313,13 @@ msgid "Cancelled"
 msgstr "Cancelar"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:794
+#: code:addons/limp_service_picking/models/stock_service_picking.py:831
 #, python-format
 msgid "Cannot close because you have checked intercompany and you have not checked scont."
 msgstr "No puede cerrar porque tiene marcado intercompañía y no tiene marcado scont."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:784
+#: code:addons/limp_service_picking/models/stock_service_picking.py:821
 #, python-format
 msgid "Cannot close because you have transports in draft state."
 msgstr "No puede cerrar porque tiene transportes en estado borrador."
@@ -496,6 +496,11 @@ msgstr "Contenedor"
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__container_placement
 msgid "Container placement"
 msgstr "Colocación contenedor"
+
+#. module: limp_service_picking
+#: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__container_rent_days
+msgid "Container rent days"
+msgstr "Días alquiler contenedor"
 
 #. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__container_situation_id
@@ -1996,7 +2001,7 @@ msgid "Overload price"
 msgstr "Precio sobrecarga"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:740
+#: code:addons/limp_service_picking/models/stock_service_picking.py:755
 #, python-format
 msgid "Overload/"
 msgstr "Sobrecarga/"
@@ -2176,7 +2181,7 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:943
+#: code:addons/limp_service_picking/models/stock_service_picking.py:980
 #, python-format
 msgid "Product %s must be shared inter companies for proceeding"
 msgstr "El producto %s debe estar compartido entre compañías para continuar"
@@ -2682,7 +2687,7 @@ msgid "The total amount."
 msgstr "El importe total."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:851
+#: code:addons/limp_service_picking/models/stock_service_picking.py:888
 #, python-format
 msgid "There is no warehouse to the order company"
 msgstr "No hay almacenes en la compañía ordenante"
@@ -2994,7 +2999,7 @@ msgstr "Aviso"
 #: code:addons/limp_service_picking/models/service_picking_invoice_concept.py:75
 #: code:addons/limp_service_picking/models/service_picking_other_concepts_rel.py:46
 #: code:addons/limp_service_picking/models/service_picking_valorization_rel.py:83
-#: code:addons/limp_service_picking/models/stock_service_picking.py:592
+#: code:addons/limp_service_picking/models/stock_service_picking.py:607
 #, python-format
 msgid "Warning for %s"
 msgstr "Aviso para %s"
@@ -3086,20 +3091,20 @@ msgid "Year"
 msgstr "Año"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:863
+#: code:addons/limp_service_picking/models/stock_service_picking.py:900
 #, python-format
 msgid "You are trying to close a service picking with overload quantity but the product has not the overload price. Please fill it!"
 msgstr "Está intentando cerrar un albarán de servicio con sobrecarga pero el producto no tiene precio de sobrecarga. ¡Por favor rellénelo!"
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:819
-#: code:addons/limp_service_picking/models/stock_service_picking.py:824
+#: code:addons/limp_service_picking/models/stock_service_picking.py:856
+#: code:addons/limp_service_picking/models/stock_service_picking.py:861
 #, python-format
 msgid "You are trying to close a service picking with wrong retired date."
 msgstr "Está intentando cerrar un albarán de servicio con una fecha de retirada incorrecta."
 
 #. module: limp_service_picking
-#: code:addons/limp_service_picking/models/stock_service_picking.py:811
+#: code:addons/limp_service_picking/models/stock_service_picking.py:848
 #, python-format
 msgid "You are trying to close a service picking without retired date."
 msgstr "Está intentando cerrar un albarán de servicio sin fecha de retirada."

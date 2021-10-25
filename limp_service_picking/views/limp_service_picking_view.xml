@@ -290,6 +290,7 @@
                                 <group>
                                     <field name="product_tax_id" context="{'search_default_department_id': department_id}" domain="[('tax_product', '=', True)]" />
                                     <field name="product_sand_id" context="{'search_default_department_id': department_id}" />
+                                    <field name="container_rent_days"/>
                                 </group>
                                 <group>
                                     <field name="taxes" />
