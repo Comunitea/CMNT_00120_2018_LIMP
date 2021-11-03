@@ -9,6 +9,7 @@
             <field name="company_id" position="after">
                 <field name="ler_code_id"/>
                 <field name="overload_price"/>
+                <field name="include_rent_days"/>
             </field>
             <notebook position="inside">
                 <page string="DDD">

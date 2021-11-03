@@ -790,8 +790,11 @@ class StockServicePicking(models.Model):
 
                     self.env["service.picking.invoice.concept"].create(vals)
                     seq += 1
-            if order.container_rent_days > 30:
-                days_qty = order.container_rent_days - 30
+            if order.container_id.day_price_product_id and order.\
+                    container_rent_days > order.container_id.\
+                    day_price_product_id.include_rent_days:
+                days_qty = order.container_rent_days - order.container_id.\
+                    day_price_product_id.include_rent_days
                 vals = {
                         "sequence": seq,
                         "product_id": order.container_id.

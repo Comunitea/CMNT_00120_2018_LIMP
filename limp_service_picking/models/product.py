@@ -46,6 +46,12 @@ class ProductTemplate(models.Model):
                         related="product_variant_ids.dosis")
     security_term = fields.Char("Security term", size=150, readonly=False,
                                 related="product_variant_ids.security_term")
+    include_rent_days = fields.\
+        Integer("Días de alquiler incluido", readonly=False,
+                related="product_variant_ids.include_rent_days",
+                help="Días a partir de los cuales se va a cobrar"
+                     " el alquiler del contendor si el producto"
+                     " representa su precio día.", default=30)
 
 
 class ProductProduct(models.Model):
@@ -58,6 +64,11 @@ class ProductProduct(models.Model):
     application_method = fields.Char("Application method", size=150)
     dosis = fields.Char("Dosis (%)")
     security_term = fields.Char("Security term", size=150)
+    include_rent_days = fields.\
+        Integer("Días de alquiler incluido",
+                help="Días a partir de los cuales se va a cobrar"
+                     " el alquiler del contendor si el producto"
+                     " representa su precio día.", default=30)
 
     @api.model
     def name_search(self, name="", args=None, operator="ilike", limit=100):
