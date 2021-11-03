@@ -45,10 +45,10 @@
                     <attribute name="invisible">0</attribute>
                 </field>
                 <field name="amount_untaxed_invoice_signed" position="attributes">
-                    <attribute name="name">amount_untaxed</atribute>
+                    <attribute name="name">amount_untaxed</attribute>
                 </field>
                 <field name="amount_tax_signed" position="attributes">
-                    <attribute name="name">amount_tax</atribute>
+                    <attribute name="name">amount_tax</attribute>
                 </field>
                 <tree position="attributes">
                     <attribute name="decoration-success">state == 'open'</attribute>
