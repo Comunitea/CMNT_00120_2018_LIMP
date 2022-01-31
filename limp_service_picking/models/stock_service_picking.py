@@ -532,9 +532,16 @@ class StockServicePicking(models.Model):
                                          compute="_get_container_rent_days")
 
     def _get_container_rent_days(self):
+        first_start_date = fields.Date.from_string("2022-01-01")
         for pick in self:
             if pick.container_id and pick.carry_service_ids:
                 start_date = pick.carry_service_ids[0].transport_date.date()
+                if (start_date < first_start_date and (
+                        not pick.retired_date or
+                        (pick.retired_date and pick.
+                         retired_date > first_start_date)
+                        )):
+                    start_date = first_start_date
                 if pick.retired_date:
                     pick.container_rent_days = (pick.retired_date -
                                                 start_date).days
