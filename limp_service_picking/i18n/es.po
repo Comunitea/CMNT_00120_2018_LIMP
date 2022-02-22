@@ -1790,6 +1790,11 @@ msgid "Not Applicable"
 msgstr "No aplicable"
 
 #. module: limp_service_picking
+#: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__no_invoice_rent
+msgid "Not invoice container rental"
+msgstr "No facturar el alquiler del contenedor"
+
+#. module: limp_service_picking
 #: model:ir.model.fields,field_description:limp_service_picking.field_stock_service_picking__not_print_acceptation
 msgid "Not print acceptation"
 msgstr "No imprimir aceptación"

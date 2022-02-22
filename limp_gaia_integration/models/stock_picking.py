@@ -1,7 +1,6 @@
 # Copyright 2021 Comunitea Servicios Tecnológicos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields, exceptions
-import time
 
 
 class StockPicking(models.Model):
@@ -88,7 +87,7 @@ class StockPicking(models.Model):
                             "=",
                             "DCS30"
                             + pick.operator_partner_id.nima_no
-                            + time.strftime("%Y"),
+                            + str(pick.date.year),
                         ),
                         ("code", "=", "waste_delivery_proof"),
                     ]
@@ -98,7 +97,7 @@ class StockPicking(models.Model):
                         {
                             "prefix": "DCS30"
                             + pick.operator_partner_id.nima_no
-                            + time.strftime("%Y"),
+                            + str(pick.date.year),
                             "code": "waste_delivery_proof",
                             "padding": 7,
                             "name": "Waste delivery proof "

@@ -1,7 +1,6 @@
 # Copyright 2021 Comunitea Servicios Tecnológicos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields, exceptions
-import time
 
 
 class AcceptanceDocument(models.Model):
@@ -32,7 +31,7 @@ class AcceptanceDocument(models.Model):
                         "=",
                         "DA30"
                         + res.operator_partner_id.nima_no
-                        + time.strftime("%Y"),
+                        + str(res.doc_date.year),
                     ),
                     ("code", "=", "da_document"),
                 ]
@@ -42,7 +41,7 @@ class AcceptanceDocument(models.Model):
                     {
                         "prefix": "DA30"
                         + res.operator_partner_id.nima_no
-                        + time.strftime("%Y"),
+                        + str(res.doc_date.year),
                         "code": "da_document",
                         "padding": 7,
                         "name": "Treatment contract seq. "

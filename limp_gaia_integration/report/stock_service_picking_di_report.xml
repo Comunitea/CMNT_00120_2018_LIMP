@@ -15,7 +15,7 @@
                     <div class="page" style="font-size: 11px;">
                         <h3>DOCUMENTO DE IDENTIFICACIÓN DE RESIDUOS</h3>
                         <p style="font-size: 7px;">(Artículo 6 del R.D. 180/2015, de 13 de marzo, por el que se regula el traslado de residuos en el interior del territorio del Estado. B.O.E. nº 83 del 07/04/2015)</p>
-                        <div class="col-12"><span class="col-6">Documento de Identificación nº: <u><span t-field="o.dcs_no"/></u></span><span class="col-2">Versión: <u>3.0</u></span><span class="col-4">Albarán: <u><span t-field="o.name"/></u></span></div>
+                        <div class="col-12"><span class="col-6">Documento de Identificación nº: <u><span t-esc="o.dcs_no or o.delivery_proof_no"/></u></span><span class="col-2">Versión: <u>3.0</u></span><span class="col-4">Albarán: <u><span t-field="o.name"/></u></span></div>
                         <table class="table mt8 table-bordered table-sm">
                             <thead>
                                 <tr style="background-color: lightgrey; padding: 4px">

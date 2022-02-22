@@ -295,6 +295,7 @@
                                 <group>
                                     <field name="taxes" />
                                     <field name="sand_amount" />
+                                    <field name="no_invoice_rent"/>
                                 </group>
                             </group>
                             <field name="service_invoice_concept_ids" nolabel="1" colspan="4">

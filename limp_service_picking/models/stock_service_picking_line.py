@@ -19,7 +19,6 @@
 ##############################################################################
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-import time
 
 
 class StockServicePickingLine(models.Model):
@@ -260,7 +259,7 @@ class StockServicePickingLine(models.Model):
                             "=",
                             "DCS30"
                             + line.picking_id.operator_partner_id.nima_no
-                            + time.strftime("%Y"),
+                            + str(line.transport_date.year),
                         ),
                         ("code", "=", "waste_delivery_proof"),
                     ]
@@ -270,7 +269,7 @@ class StockServicePickingLine(models.Model):
                         {
                             "prefix": "DCS30"
                             + line.picking_id.operator_partner_id.nima_no
-                            + time.strftime("%Y"),
+                            + str(line.transport_date.year),
                             "code": "waste_delivery_proof",
                             "padding": 7,
                             "name": "Waste delivery proof "

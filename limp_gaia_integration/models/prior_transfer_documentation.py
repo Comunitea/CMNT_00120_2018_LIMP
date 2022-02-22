@@ -57,7 +57,7 @@ class PriorTransferDocumentation(models.Model):
                         "=",
                         "NT30"
                         + res.operator_partner_id.nima_no
-                        + time.strftime("%Y"),
+                        + str(res.notification_date.year),
                     ),
                     ("code", "=", "nt_document"),
                 ]
@@ -67,7 +67,7 @@ class PriorTransferDocumentation(models.Model):
                     {
                         "prefix": "NT30"
                         + res.operator_partner_id.nima_no
-                        + time.strftime("%Y"),
+                        + str(res.notification_date.year),
                         "code": "nt_document",
                         "padding": 7,
                         "name": "Prior transfer documentation seq. "

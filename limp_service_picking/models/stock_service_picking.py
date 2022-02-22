@@ -530,6 +530,7 @@ class StockServicePicking(models.Model):
     pricelist_id = fields.Many2one("product.pricelist", "Pricelist")
     container_rent_days = fields.Integer("Container rent days", readonly=True,
                                          compute="_get_container_rent_days")
+    no_invoice_rent = fields.Boolean("Not invoice container rental")
 
     def _get_container_rent_days(self):
         first_start_date = fields.Date.from_string("2022-01-01")
@@ -799,7 +800,8 @@ class StockServicePicking(models.Model):
                     seq += 1
             if order.container_id.day_price_product_id and order.\
                     container_rent_days > order.container_id.\
-                    day_price_product_id.include_rent_days:
+                    day_price_product_id.include_rent_days and not order.\
+                    no_invoice_rent:
                 days_qty = order.container_rent_days - order.container_id.\
                     day_price_product_id.include_rent_days
                 vals = {
