@@ -127,6 +127,7 @@
                                     <field name="name" />
                                     <field name="ler_code" />
                                     <field name="product_qty" />
+                                    <field name="product_uom_id"/>
                                     <field name="volume" />
                                     <field name="gross_weight" />
                                     <field name="tare" />

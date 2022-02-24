@@ -29,17 +29,19 @@ class ServicePickingValorizationRel(models.Model):
     product_qty = fields.Float(
         "Qty.", digits=dp.get_precision("Sale Price"), required=True
     )
+    product_uom_id = fields.Many2one("uom.uom", "UoM", readonly=True,
+                                     related="product_id.uom_id")
     service_picking_id = fields.Many2one(
         "stock.service.picking", "Service picking"
     )
     billable = fields.Boolean("Billable")
     memory_include = fields.Boolean("Memory include")
     gross_weight = fields.Float(
-        "Gross (T.)", digits=(12, 3), help="Gross weight in T"
+        "Gross (T.)", digits=(12, 5), help="Gross weight in T"
     )
-    tare = fields.Float("Tare (T.)", digits=(12, 3), help="Tare in T.")
+    tare = fields.Float("Tare (T.)", digits=(12, 5), help="Tare in T.")
     net_weight = fields.Float(
-        "Net (T.)", digits=(12, 3), help="Net weight in T."
+        "Net (T.)", digits=(12, 5), help="Net weight in T."
     )
     overload_qty = fields.Float(
         "Overload", digits=(12, 2), help="Overload in m³"
