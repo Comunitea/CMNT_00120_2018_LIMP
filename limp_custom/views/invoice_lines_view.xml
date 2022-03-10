@@ -17,6 +17,7 @@
                 <field name="city"/>
                 <field name="state_id"/>
                 <field name="manager_partner_id"/>
+                <field name="picking_id"/>
             </tree>
         </field>
     </record>

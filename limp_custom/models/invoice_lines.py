@@ -30,6 +30,7 @@ class InvoiceLines(models.Model):
     )
     manager_partner_id = fields.Many2one("res.partner", "Manager",
                                          readonly=True)
+    picking_id = fields.Many2one("stock.picking", "Picking", readonly=True)
 
     def init(self):
         tools.drop_view_if_exists(self._cr, "invoice_lines")
@@ -41,7 +42,7 @@ class InvoiceLines(models.Model):
             else SM.product_uom_qty end AS
             quantity,P2.ler_code_id,SM.product_id,SM.product_uom_qty AS m3,
             AIL.price_unit*AIL.quantity AS subtotal, SP.company_id,
-            SW.partner_id as manager_partner_id
+            SW.partner_id as manager_partner_id, SP.id as picking_id
             FROM stock_move AS SM
                 INNER JOIN stock_picking AS SP  ON SM.picking_id = SP.id
                 INNER JOIN stock_picking_type as SPT on SP.picking_type_id =
