@@ -169,7 +169,7 @@ def _get_outs(self, cpa, ler):
         if check:
             if obj.ler_code_id.code == ler:
                 if res.get(obj.partner_id.commercial_partner_id, False):
-                    res[obj.partner_id][1] += obj.quantity
+                    res[obj.partner_id.commercial_partner_id][1] += obj.quantity
                 else:
                     res[obj.partner_id.commercial_partner_id] = [obj,
                                                                  obj.quantity]
