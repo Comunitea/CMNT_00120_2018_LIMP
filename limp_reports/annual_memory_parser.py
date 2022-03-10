@@ -168,10 +168,11 @@ def _get_outs(self, cpa, ler):
             check = obj.ler_code_id and not obj.ler_code_id.cpa
         if check:
             if obj.ler_code_id.code == ler:
-                if res.get(obj.partner_id, False):
+                if res.get(obj.partner_id.commercial_partner_id, False):
                     res[obj.partner_id][1] += obj.quantity
                 else:
-                    res[obj.partner_id] = [obj, obj.quantity]
+                    res[obj.partner_id.commercial_partner_id] = [obj,
+                                                                 obj.quantity]
     res = [
         (x, res[x][0].city, res[x][0].state_id.name, res[x][1]) for x in res
     ]
