@@ -36,7 +36,7 @@ class InvoiceLines(models.Model):
         self._cr.execute(
             """
             create or replace view invoice_lines as (
-            SELECT SM.id AS id,SP.date,SP.partner_id,
+            SELECT SM.id AS id,SP.date,RP.commercial_partner_id as partner_id,
             case when SM.secondary_uom_qty != 0.0 then SM.secondary_uom_qty
             else SM.product_uom_qty end AS
             quantity,P2.ler_code_id,SM.product_id,SM.product_uom_qty AS m3,
@@ -49,6 +49,7 @@ class InvoiceLines(models.Model):
                 INNER JOIN stock_warehouse SW on SW.id = SPT.warehouse_id
                 INNER JOIN product_product AS P ON SM.product_id = P.id
                 INNER JOIN product_template AS P2 ON P.product_tmpl_id = P2.id
+                INNER JOIN res_partner RP on RP.id = SP.partner_id
                 LEFT JOIN account_invoice_line as AIL on AIL.move_id = SM.id
             WHERE P2.ler_code_id is not null and SP.state = 'done'
                 and SP.memory_include = true AND SPT.code = 'outgoing'
