@@ -10,6 +10,7 @@
                 <field name="partner_id" />
                 <field name="building_site_address_id" />
                 <field name="delivery_proof_no" />
+                <field name="dcs_no" />
                 <field name="description" />
                 <field name="department_id" invisible="1" />
                 <field name="delegation_id" invisible="1" />
