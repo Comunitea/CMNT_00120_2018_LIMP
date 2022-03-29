@@ -85,167 +85,176 @@ class DistributeFleetExpense(models.TransientModel):
             amount_totals = {}
             for expense in expense_ids:
                 if amount_totals.get(expense.expense_type, False):
-                    amount_totals[expense.expense_type] += (
-                        expense.net_amount or 0.0
-                    )
+                    if amount_totals[expense.expense_type].\
+                        get(expense.partner_id):
+                            amount_totals[expense.expense_type][expense.partner_id] += (
+                                expense.net_amount or 0.0
+                            )
+                    else:
+                        amount_totals[expense.expense_type][expense.partner_id] = (
+                            expense.net_amount or 0.0
+                        )
                 else:
-                    amount_totals[expense.expense_type] = (
-                        expense.net_amount or 0.0
-                    )
+                    amount_totals[expense.expense_type] = {
+                        expense.partner_id: expense.net_amount or 0.0
+                    }
 
             for expense_type in amount_totals:
-                if vehicle.analytic_plan_id:
-                    a = (
-                        expense_type.product_id.product_tmpl_id.
-                        property_account_expense_id.id
-                    )
-                    if not a:
+                for expense_type_partner in amount_totals[expense_type]:
+                    if vehicle.analytic_plan_id:
                         a = (
-                            expense_type.product_id.categ_id.
-                            property_account_expense_categ_id.id
-                        )
-                        if not a:
-                            raise exceptions.UserError(
-                                _(
-                                    "No product and product category expense property account defined on the related product.\nFill these on product form."
-                                ),
-                            )
-                    for line in vehicle.analytic_plan_id.\
-                            analytic_distribution_ids:
-                        amt = (
-                            line.percentage
-                            and amount_totals[expense_type]
-                            * (line.percentage / 100)
-                            or line.fix_amount
-                        )
-
-                        al_vals = {
-                            "name": self.name
-                            + ", "
-                            + expense_type.name
-                            + ": "
-                            + vehicle.name,
-                            "date": str(self.year)
-                            + "-"
-                            + self.month
-                            + "-"
-                            + str(last_day),
-                            "account_id": line.account_id.id,
-                            "unit_amount": 1,
-                            "product_id": expense_type.product_id.id,
-                            "product_uom_id":
-                            expense_type.product_id.uom_id.id,
-                            "amount": -(amt),
-                            "company_id": user.company_id.id,
-                            "general_account_id": a,
-                            "tag_ids": [
-                                (
-                                    4,
-                                    self.env.ref(
-                                        "limp_service_picking.costs_tag"
-                                    ).id,
-                                )
-                            ],
-                            "ref": vehicle.license_plate,
-                            "department_id": line.department_id
-                            and line.department_id.id
-                            or False,
-                            "delegation_id": line.delegation_id
-                            and line.delegation_id.id
-                            or False,
-                            "manager_id": line.manager_id
-                            and line.manager_id.id
-                            or False,
-                        }
-                        self.env["account.analytic.line"].create(al_vals)
-                else:
-                    moves = (
-                        self.env["stock.service.picking.line"]
-                        .sudo()
-                        .search(
-                            [
-                                (
-                                    "transport_date",
-                                    ">=",
-                                    str(self.year) + "-" + self.month + "-01",
-                                ),
-                                (
-                                    "transport_date",
-                                    "<=",
-                                    str(self.year)
-                                    + "-"
-                                    + self.month
-                                    + "-"
-                                    + str(last_day),
-                                ),
-                                ("vehicle_id", "=", vehicle.id),
-                            ]
-                        )
-                    )
-                    total_hours = sum(moves.mapped("total_hours"))
-                    for move in moves:
-                        expense = (
-                            self.env["fleet.expense.type"]
-                            .sudo()
-                            .with_context(
-                                company_id=move.picking_id.analytic_acc_id.company_id.id
-                            )
-                            .browse(expense_type.id)
-                        )
-                        a = (
-                            expense.product_id.product_tmpl_id.property_account_expense_id.id
+                            expense_type.product_id.product_tmpl_id.
+                            property_account_expense_id.id
                         )
                         if not a:
                             a = (
-                                expense.product_id.categ_id.property_account_expense_categ_id.id
+                                expense_type.product_id.categ_id.
+                                property_account_expense_categ_id.id
                             )
                             if not a:
-                                raise UserError(
+                                raise exceptions.UserError(
                                     _(
                                         "No product and product category expense property account defined on the related product.\nFill these on product form."
-                                    )
+                                    ),
                                 )
+                        for line in vehicle.analytic_plan_id.\
+                                analytic_distribution_ids:
+                            amt = (
+                                line.percentage
+                                and amount_totals[expense_type][expense_type_partner]
+                                * (line.percentage / 100)
+                                or line.fix_amount
+                            )
 
-                        amt = (
-                            amount_totals[expense] * move.total_hours
-                        ) / total_hours
-                        al_vals = {
-                            "name": self.name
-                            + ", "
-                            + expense.name
-                            + ": "
-                            + vehicle.name,
-                            "date": str(self.year)
-                            + "-"
-                            + self.month
-                            + "-"
-                            + str(last_day),
-                            "account_id": move.picking_id.analytic_acc_id.id,
-                            "unit_amount": move.total_hours,
-                            "amount": -(amt),
-                            "general_account_id": a,
-                            "tag_ids": [
-                                (
-                                    4,
-                                    self.env.ref(
-                                        "limp_service_picking.costs_tag"
-                                    ).id,
-                                )
-                            ],
-                            "ref": vehicle.license_plate,
-                            "company_id": move.picking_id.analytic_acc_id.company_id.id,
-                            "department_id": move.picking_id.analytic_acc_id.department_id
-                            and move.picking_id.analytic_acc_id.department_id.id
-                            or False,
-                            "delegation_id": move.picking_id.analytic_acc_id.delegation_id
-                            and move.picking_id.analytic_acc_id.delegation_id.id
-                            or False,
-                            "manager_id": move.picking_id.analytic_acc_id.manager_id
-                            and move.picking_id.analytic_acc_id.manager_id.id
-                            or False,
-                        }
-                        self.env["account.analytic.line"].sudo().create(
-                            al_vals
+                            al_vals = {
+                                "name": self.name
+                                + ", "
+                                + expense_type.name
+                                + ": "
+                                + vehicle.name,
+                                "date": str(self.year)
+                                + "-"
+                                + self.month
+                                + "-"
+                                + str(last_day),
+                                "account_id": line.account_id.id,
+                                "unit_amount": 1,
+                                "partner_id": expense_type_partner.id,
+                                "product_id": expense_type.product_id.id,
+                                "product_uom_id":
+                                expense_type.product_id.uom_id.id,
+                                "amount": -(amt),
+                                "company_id": user.company_id.id,
+                                "general_account_id": a,
+                                "tag_ids": [
+                                    (
+                                        4,
+                                        self.env.ref(
+                                            "limp_service_picking.costs_tag"
+                                        ).id,
+                                    )
+                                ],
+                                "ref": vehicle.license_plate,
+                                "department_id": line.department_id
+                                and line.department_id.id
+                                or False,
+                                "delegation_id": line.delegation_id
+                                and line.delegation_id.id
+                                or False,
+                                "manager_id": line.manager_id
+                                and line.manager_id.id
+                                or False,
+                            }
+                            self.env["account.analytic.line"].create(al_vals)
+                    else:
+                        moves = (
+                            self.env["stock.service.picking.line"]
+                            .sudo()
+                            .search(
+                                [
+                                    (
+                                        "transport_date",
+                                        ">=",
+                                        str(self.year) + "-" + self.month + "-01",
+                                    ),
+                                    (
+                                        "transport_date",
+                                        "<=",
+                                        str(self.year)
+                                        + "-"
+                                        + self.month
+                                        + "-"
+                                        + str(last_day),
+                                    ),
+                                    ("vehicle_id", "=", vehicle.id),
+                                ]
+                            )
                         )
+                        total_hours = sum(moves.mapped("total_hours"))
+                        for move in moves:
+                            expense = (
+                                self.env["fleet.expense.type"]
+                                .sudo()
+                                .with_context(
+                                    company_id=move.picking_id.analytic_acc_id.company_id.id
+                                )
+                                .browse(expense_type.id)
+                            )
+                            a = (
+                                expense.product_id.product_tmpl_id.property_account_expense_id.id
+                            )
+                            if not a:
+                                a = (
+                                    expense.product_id.categ_id.property_account_expense_categ_id.id
+                                )
+                                if not a:
+                                    raise UserError(
+                                        _(
+                                            "No product and product category expense property account defined on the related product.\nFill these on product form."
+                                        )
+                                    )
+
+                            amt = (
+                                amount_totals[expense] * move.total_hours
+                            ) / total_hours
+                            al_vals = {
+                                "name": self.name
+                                + ", "
+                                + expense.name
+                                + ": "
+                                + vehicle.name,
+                                "date": str(self.year)
+                                + "-"
+                                + self.month
+                                + "-"
+                                + str(last_day),
+                                "account_id": move.picking_id.analytic_acc_id.id,
+                                "unit_amount": move.total_hours,
+                                "amount": -(amt),
+                                "general_account_id": a,
+                                "tag_ids": [
+                                    (
+                                        4,
+                                        self.env.ref(
+                                            "limp_service_picking.costs_tag"
+                                        ).id,
+                                    )
+                                ],
+                                "ref": vehicle.license_plate,
+                                "partner_id": expense_type_partner.id,
+                                "company_id": move.picking_id.analytic_acc_id.company_id.id,
+                                "department_id": move.picking_id.analytic_acc_id.department_id
+                                and move.picking_id.analytic_acc_id.department_id.id
+                                or False,
+                                "delegation_id": move.picking_id.analytic_acc_id.delegation_id
+                                and move.picking_id.analytic_acc_id.delegation_id.id
+                                or False,
+                                "manager_id": move.picking_id.analytic_acc_id.manager_id
+                                and move.picking_id.analytic_acc_id.manager_id.id
+                                or False,
+                            }
+                            self.env["account.analytic.line"].sudo().create(
+                                al_vals
+                            )
 
         return {"type": "ir.actions.act_window_close"}
