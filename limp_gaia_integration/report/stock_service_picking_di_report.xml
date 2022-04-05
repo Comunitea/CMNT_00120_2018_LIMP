@@ -261,7 +261,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">Cantidad (kg netos):</td>
-                                        <td colspan="9"><b><span t-esc="waste.net_weight * 1000"/></b></td>
+                                        <td colspan="9"><b><span t-esc="round(waste.net_weight * 1000, 3)"/></b></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -316,7 +316,7 @@
                                     <td colspan="3">Fecha entrega:</td>
                                     <td colspan="2"><b><span t-field="o.retired_date"/></b></td>
                                     <td colspan="3">Kg. netos recibidos:</td>
-                                    <td colspan="2"><b><span t-esc="sum([waste.net_weight * 1000 for waste in o.service_picking_valorization_ids])"/></b></td>
+                                    <td colspan="2"><b><span t-esc="sum([round(waste.net_weight * 1000, 3) for waste in o.service_picking_valorization_ids])"/></b></td>
                                     <td colspan="1">Aceptación:</td>
                                     <td colspan="1"><b>Sí</b></td>
                                 </tr>

@@ -166,7 +166,7 @@
                         <DCSOtherResidueData>
                             <DCSDA>DA99999999999999999999999</DCSDA>
                             <DCSNT t-esc="picking.nt_doc_id.name or 'NT99999999999999999999999'"/>
-                            <DCSClearWeight t-esc="waste.net_weight * 1000"/>
+                            <DCSClearWeight t-esc="round(waste.net_weight * 1000, 3)"/>
                             <DCSVolume t-esc="waste.volume"/>
                         </DCSOtherResidueData>
                         <DCSTransporterData>
@@ -177,7 +177,7 @@
                             <DCSTransportWay transportWayCode="03"/>
                         </DCSTransporterData>
                         <DCSAcceptanceData t-if="picking.dcs_phase == 'D'">
-                            <DCSRealQuantity t-esc="waste.net_weight * 1000"/>
+                            <DCSRealQuantity t-esc="round(waste.net_weight * 1000, 3)"/>
                             <DCSAcceptance>03</DCSAcceptance>
                             <DCSAcceptanceDate t-esc="picking.retired_date.strftime('%Y-%m-%d+01:00')"/>
                             <DCSDeliveryDate t-esc="picking.retired_date.strftime('%Y-%m-%d+01:00')"/>
