@@ -62,6 +62,10 @@ class RemoveNoQuality(models.TransientModel):
             search([('picking_id', 'in', pickings_to_unlink.ids)])
         lines_to_unlink.write({'state': 'draft'})
         lines_to_unlink.unlink()
+        analytic_lines_to_unlink = self.env['account.analytic.line'].sudo().\
+            search([('account_id', 'in',
+                     pickings_to_unlink.mapped('analytic_acc_id').ids)])
+        analytic_lines_to_unlink.unlink()
         pickings_to_unlink.unlink()
 
         return {"type": "ir.actions.act_window_close"}
