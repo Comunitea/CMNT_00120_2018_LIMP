@@ -323,7 +323,7 @@ class SaleOrderLine(models.Model):
 
     _inherit = "sale.order.line"
 
-    price_unit = fields.Float(digits=(16, 2))
+    price_unit = fields.Float(digits=(16, 3))
     price_tax = fields.Monetary()
 
     @api.onchange("product_uom", "product_uom_qty")
