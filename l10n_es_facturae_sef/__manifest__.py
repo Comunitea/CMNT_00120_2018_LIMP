@@ -21,8 +21,7 @@
     ],
     "external_dependencies": {
         "python": [
-            "zeep",
-            "xmlsec"
+            "zeep"
         ]
     },
     "installable": True,
