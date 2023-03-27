@@ -225,6 +225,7 @@ class StockPicking(models.Model):
         string="Invoice Control",
         required=True,
         default="none",
+        copy=False
     )
     reserved_availability = fields.Float(
         'Quantity Reserved', compute='compute_picking_qties',
