@@ -68,7 +68,7 @@
                                     <td colspan="4" style="padding: 0.1rem;">CIF/NIF: <span t-field="o.producer_promoter_id.commercial_partner_id.vat"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8" style="padding: 0.1rem;">Nombre del centro: <span t-field="o.producer_promoter_id.name"/></td>
+                                    <td colspan="8" style="padding: 0.1rem;">Nombre del centro: <span t-field="o.building_site_id.address_producer"/></td>
                                     <td colspan="4" style="padding: 0.1rem;">CP: <span t-field="o.producer_promoter_id.zip"/></td>
                                 </tr>
                                 <tr>
