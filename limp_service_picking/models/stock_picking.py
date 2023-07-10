@@ -291,10 +291,12 @@ class StockPicking(models.Model):
         for key in grouped_pickings:
             if not group:
                 partner = key.partner_id.commercial_partner_id
-                origin = key.name
+                origin = grouped_pickings[key].name
+                company = grouped_pickings[key].company_id
             else:
                 partner = key
                 origin = ", ".join([x.name for x in grouped_pickings[key]])
+                company = grouped_pickings[key][0].company_id
             fpos = partner.property_account_position_id
             invoice_vals = {
                 "partner_id": partner.id,
@@ -307,6 +309,7 @@ class StockPicking(models.Model):
                 "date_due": False,
                 "fiscal_position_id": False,
                 "partner_bank_id": False,
+                "company_id": company.id
             }
             specs = self.env["account.invoice"]._onchange_spec()
             updates = self.env["account.invoice"].onchange(
