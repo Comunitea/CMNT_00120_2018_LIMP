@@ -766,7 +766,7 @@
                 <textElement textAlignment="Left" verticalAlignment="Middle">
                     <font size="8"/>
                 </textElement>
-                <text><![CDATA[Administración Central - Lugo]]></text>
+                <text><![CDATA[Administración Central Lugo]]></text>
             </staticText>
             <staticText>
                 <reportElement x="120" y="106" width="171" height="12" forecolor="#001D77" backcolor="#FFFFFF">
