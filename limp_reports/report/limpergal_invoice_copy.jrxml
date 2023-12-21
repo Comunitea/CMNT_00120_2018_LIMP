@@ -727,7 +727,7 @@
                 <textElement textAlignment="Left" verticalAlignment="Middle">
                     <font size="8"/>
                 </textElement>
-                <text><![CDATA[Administración Central]]></text>
+                <text><![CDATA[Administración Central - Lugo]]></text>
             </staticText>
             <staticText>
                 <reportElement x="119" y="90" width="171" height="12" forecolor="#001D77" backcolor="#FFFFFF">
@@ -766,7 +766,7 @@
                 <textElement>
                     <font size="8"/>
                 </textElement>
-                <text><![CDATA[A Coruña - Lugo - Ourense - Vigo]]></text>
+                <text><![CDATA[A Coruña - Lugo - Ourense]]></text>
             </staticText>
             <staticText>
                 <reportElement x="377" y="76" width="161" height="12" forecolor="#001D77" backcolor="#FFFFFF">
@@ -782,23 +782,7 @@
                 <textElement textAlignment="Left" verticalAlignment="Middle">
                     <font size="8"/>
                 </textElement>
-                <text><![CDATA[Telf. 982 201 960 / Fax 982 201 992]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="290" y="104" width="87" height="12" forecolor="#001D77" backcolor="#FFFFFF">
-                    <printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-                </reportElement>
-                <box leftPadding="3">
-                    <pen lineWidth="0.25"/>
-                    <topPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <leftPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <bottomPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <rightPen lineWidth="0.25" lineColor="#66CC00"/>
-                </box>
-                <textElement textAlignment="Left" verticalAlignment="Middle">
-                    <font size="8"/>
-                </textElement>
-                <text><![CDATA[Vigo]]></text>
+                <text><![CDATA[Telf. 881 980 994 / Fax 881 980 995]]></text>
             </staticText>
             <image hAlign="Center" vAlign="Middle">
                 <reportElement x="0" y="6" width="211" height="53">
@@ -840,22 +824,6 @@
                 </textElement>
                 <text><![CDATA[Telf.  982 201 960 / Fax 982 201 992]]></text>
             </staticText>
-            <staticText>
-                <reportElement x="377" y="104" width="161" height="12" forecolor="#001D77" backcolor="#FFFFFF">
-                    <printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-                </reportElement>
-                <box leftPadding="3">
-                    <pen lineWidth="0.25"/>
-                    <topPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <leftPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <bottomPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <rightPen lineWidth="0.25" lineColor="#66CC00"/>
-                </box>
-                <textElement textAlignment="Left" verticalAlignment="Middle">
-                    <font size="8"/>
-                </textElement>
-                <text><![CDATA[Telf. y Fax 986 292 328]]></text>
-            </staticText>
             <image hAlign="Center" vAlign="Middle">
                 <reportElement x="438" y="22" width="117" height="34">
                     <printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
@@ -864,22 +832,6 @@
             </image>
             <staticText>
                 <reportElement x="290" y="76" width="87" height="12" forecolor="#001D77" backcolor="#FFFFFF">
-                    <printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-                </reportElement>
-                <box leftPadding="3">
-                    <pen lineWidth="0.25"/>
-                    <topPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <leftPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <bottomPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <rightPen lineWidth="0.25" lineColor="#66CC00"/>
-                </box>
-                <textElement textAlignment="Left" verticalAlignment="Middle">
-                    <font size="8"/>
-                </textElement>
-                <text><![CDATA[Lugo]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="0" y="104" width="119" height="12" forecolor="#001D77" backcolor="#FFFFFF">
                     <printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
                 </reportElement>
                 <box leftPadding="3">
@@ -908,22 +860,6 @@
                     <font size="8"/>
                 </textElement>
                 <text><![CDATA[Ourense]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="119" y="104" width="171" height="12" forecolor="#001D77" backcolor="#FFFFFF">
-                    <printWhenExpression><![CDATA[!$F{No_calidad-no_quality}]]></printWhenExpression>
-                </reportElement>
-                <box leftPadding="3">
-                    <pen lineWidth="0.25"/>
-                    <topPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <leftPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <bottomPen lineWidth="0.25" lineColor="#66CC00"/>
-                    <rightPen lineWidth="0.25" lineColor="#66CC00"/>
-                </box>
-                <textElement textAlignment="Left" verticalAlignment="Middle">
-                    <font size="8"/>
-                </textElement>
-                <text><![CDATA[Telf. 881 980 994 / Fax 881 980 995]]></text>
             </staticText>
             <staticText>
                 <reportElement x="336" y="24" width="79" height="28"/>
