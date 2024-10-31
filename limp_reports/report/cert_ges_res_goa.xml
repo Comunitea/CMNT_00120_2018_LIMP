@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="cer_ges_res_goa">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 10pt;">
+                        <div class="oe_structure"/>
+                        <div id="fecha" style="text-align: right;">
+                            <p>Lugo, <span t-esc="o._translate_date()"/></p>
+                        </div>
+                        <div id="main" style="text-align: justify;">
+                            <p>
+                                Muy Sres. nuestros:
+                            </p>
+                            <p>
+                                Con la publicación del Decreto 553/2020, de 2 de junio, por el que se regula la trazabilidad de los residuos (publicado en el D.O.G. del 19 de junio de 2020), mediante la presente entregamos el justificante de entrega que los gestores de residuos no peligrosos están obligados a documentar.
+                            </p>
+                            <p>
+                                Por este motivo le enviamos el presente certificado con los residuos que hemos recibido para su valorización en nuestras instalaciones, provenientes de su empresa desde el día <span t-field="o.date_init" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/> hasta el día <span t-field="o.date_end" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>.
+                            </p>
+                            <p>
+                                El destino final de estos residuos ha sido LIMPERGAL SL con n° de Autorización SC-I-NP-XV-00074 y Operación de Tratamiento final R5, según anexo ll de la Ley 7/2022.
+                            </p>
+                        </div>
+                        <div id="table" style="text-align: center;">
+                            <table class="table mt8 table-bordered table-sm" style="font-size: 9pt; font-weight: bold;">
+                                <thead>
+                                    <tr>
+                                        <td>CLIENTE</td>
+                                        <td colspan="2"><t t-esc="o.partner_id.name"/></td>
+                                        <td colspan="2">OBRA</td>
+                                        <td colspan="3"><t t-esc="o.building_site_id.name"/></td>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table class="table mt8 table-bordered table-sm" style="font-size: 8pt;">
+                                <thead>
+                                    <tr>
+                                        <td>Fecha</td>
+                                        <td>Nº Documento Identificación</td>
+                                        <td>Productor</td>
+                                        <td>CIF</td>
+                                        <td>LER</td>
+                                        <td>Descripción Residuo</td>
+                                        <td>Peso Kg</td>
+                                        <td>% Valorización</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.line_ids" t-as="r">
+                                        <tr>
+                                            <td><t t-esc="r.date"/></td>
+                                            <td><t t-esc="r.dcs_no"/></td>
+                                            <td><t t-esc="r.producer_id.display_name"/></td>
+                                            <td><t t-esc="r.nif"/></td>
+                                            <td><t t-esc="r.ler"/></td>
+                                            <td><t t-esc="r.description"/></td>
+                                            <td><t t-esc="r.weight"/></td>
+                                            <td><t t-esc="r.percentage * 100"/>%</td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br/>
+                        <div class="container">
+                            <div id="end" class="row">
+                                <div class="col-8">
+                                    <p>
+                                        Sin otro particular, reciban un cordial saludo
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                    <div>
+                                        <img src="/limp_reports/static/src/img/sello_limp.png" alt="sello"/>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <p>LIMPERGAL SL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

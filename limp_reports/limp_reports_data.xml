@@ -358,4 +358,13 @@
         name="limp_reports.account_analytic_details"
         file="limp_reports.account_analytic_details"
     />
+
+    <report
+        string="GOA Certificate"
+        id="cer_ges_res_goa_report"
+        model="limp.cert.res.goa"
+        report_type="qweb-pdf"
+        name="limp_reports.cer_ges_res_goa"
+        file="limp_reports.cer_ges_res_goa"
+    />
 </odoo>

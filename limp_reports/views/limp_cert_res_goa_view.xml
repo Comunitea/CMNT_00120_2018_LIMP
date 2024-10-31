@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="limp_cert_goa_form" model="ir.ui.view">
+        <field name="name">limp.cert.res.goa.form</field>
+        <field name="model">limp.cert.res.goa</field>
+        <field name="arch" type="xml">
+            <form string="Certificado de Gestor de Residuos">
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <field name="saved" invisible="1"/>
+                        <field name="date" attrs="{'readonly': [('saved', '=', True)]}"/>
+                        <field name="date_init" attrs="{'readonly': [('saved', '=', True)]}"/>
+                        <field name="date_end" attrs="{'readonly': [('saved', '=', True)]}"/>
+                    </group>
+                    <group>
+                        <field name="partner_id" attrs="{'readonly': [('saved', '=', True)]}"/>
+                        <field name="building_site_id" domain="[('partner_ids', 'in', partner_id)]" attrs="{'readonly': [('saved', '=', True)]}"/>
+                    </group>
+                    <notebook>
+                        <page string="Residuos">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="date"/>
+                                    <field name="dcs_no"/>
+                                    <field name="producer_id"/>
+                                    <field name="nif"/>
+                                    <field name="ler"/>
+                                    <field name="description"/>
+                                    <field name="weight"/>
+                                    <field name="percentage" widget="percentage"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="limp_cert_goa_tree" model="ir.ui.view">
+        <field name="name">limp.cert.res.goa.tree</field>
+        <field name="model">limp.cert.res.goa</field>
+        <field name="arch" type="xml">
+            <tree string="Certificado de Gestor de Residuos">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="date_init"/>
+                <field name="date_end"/>
+                <field name="partner_id"/>
+                <field name="building_site_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_limp_cert_goa" model="ir.actions.act_window">
+        <field name="name">Cert GOA Documents</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">limp.cert.res.goa</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="limp_cert_goa_tree"/>
+    </record>
+</odoo>
