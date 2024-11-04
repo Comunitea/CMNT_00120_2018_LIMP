@@ -6,4 +6,4 @@ from . import acceptance_document
 from . import account_analytic_tag
 from . import account_invoice
 from . import limp_cert_res_goa
-from . import waste_ler_code
+from . import product_template

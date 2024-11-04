@@ -69,9 +69,8 @@ class LimpCertResGoa(models.Model):
                         'description': service_picking.service_picking_valorization_ids[0].name,
                         'weight': service_picking.service_picking_valorization_ids[0].net_weight,
                         'dcs_no': service_picking.dcs_no,
-                        'percentage': self.env['waste.ler.code'].search([
-                            ('code', '=', service_picking.service_picking_valorization_ids[0].ler_code)
-                        ]).valorization_percentage,
+                        'percentage':
+                            service_picking.service_picking_valorization_ids[0].product_id.valorization_percentage,
                     }) for service_picking in service_picking_ids]
             else:
                 cert.line_ids = [(5,)]
@@ -87,7 +86,7 @@ class LimpCertResGoaLine(models.Model):
     date = fields.Date('Date')
     producer_id = fields.Many2one('res.partner', 'Producer')
     nif = fields.Char('NIF', related='producer_id.vat')
-    dcs_no = fields.Char('DCS Nº')
+    dcs_no = fields.Char('DCS Nº', size=26)
     ler = fields.Char('LER', size=20)
     description = fields.Char('Description')
     weight = fields.Float('Weight')

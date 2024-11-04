@@ -1,7 +1,7 @@
 from odoo import models, fields
 
 
-class WasteLerCode(models.Model):
-    _inherit = 'waste.ler.code'
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
 
     valorization_percentage = fields.Float('Valorization percentage')
