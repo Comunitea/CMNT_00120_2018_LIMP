@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 09:03+0000\n"
-"PO-Revision-Date: 2024-10-31 09:03+0000\n"
+"POT-Creation-Date: 2024-11-04 16:41+0000\n"
+"PO-Revision-Date: 2024-11-04 16:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,7 @@ msgstr "Cancelar"
 #. module: limp_reports
 #: model:ir.actions.act_window,name:limp_reports.action_limp_cert_goa
 msgid "Cert GOA Documents"
-msgstr ""
+msgstr "Documentos de certificación GOA"
 
 #. module: limp_reports
 #: model_terms:ir.ui.view,arch_db:limp_reports.limp_cert_goa_form
@@ -259,6 +259,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:limp_reports.field_account_analytic_account_details__date2
 msgid "End of period"
 msgstr "Fin del periodo"
+
+#. module: limp_reports
+#: model:ir.model,name:limp_reports.model_waste_ler_code
+msgid "European list of waste"
+msgstr "Lista europea de residuos"
 
 #. module: limp_reports
 #: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
@@ -481,9 +486,19 @@ msgid "Producer"
 msgstr "Productor"
 
 #. module: limp_reports
+#: model:ir.model,name:limp_reports.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: limp_reports
+#: model:ir.model,name:limp_reports.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: limp_reports
 #: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
 msgid "Productor"
-msgstr ""
+msgstr "Productor"
 
 #. module: limp_reports
 #: model:ir.ui.menu,name:limp_reports.reports_folder_id
@@ -511,7 +526,7 @@ msgid "Scont Invoice"
 msgstr "Factura Scont"
 
 #. module: limp_reports
-#: model:ir.ui.view,arch_db:limp_reports.account_analytic_account_details_view
+#: model_terms:ir.ui.view,arch_db:limp_reports.account_analytic_account_details_view
 msgid "Select Period"
 msgstr "Seleccione el periodo"
 
@@ -606,6 +621,12 @@ msgstr "Usuarios"
 #: model:ir.actions.report,name:limp_reports.valorization_picking
 msgid "Valorization build picking"
 msgstr "Albarán de obra"
+
+#. module: limp_reports
+#: model:ir.model.fields,field_description:limp_reports.field_product_product__valorization_percentage
+#: model:ir.model.fields,field_description:limp_reports.field_product_template__valorization_percentage
+msgid "Valorization percentage"
+msgstr "% de valorización"
 
 #. module: limp_reports
 #: model:ir.actions.report,name:limp_reports.service_picking_valued
