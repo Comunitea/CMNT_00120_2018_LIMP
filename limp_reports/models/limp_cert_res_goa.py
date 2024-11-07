@@ -4,7 +4,7 @@ import locale
 
 class LimpCertResGoa(models.Model):
     _name = 'limp.cert.res.goa'
-    _description = 'Certificado de gestión de residuos GOA'
+    _description = 'Certificado de gestión de residuos'
 
     name = fields.Char(
         'Name',
@@ -63,6 +63,7 @@ class LimpCertResGoa(models.Model):
                         'description': service_picking.service_picking_valorization_ids[0].name,
                         'weight': service_picking.service_picking_valorization_ids[0].net_weight,
                         'dcs_no': service_picking.dcs_no,
+                        'service_picking_id': service_picking.id,
                         'percentage':
                             service_picking.service_picking_valorization_ids[0].product_id.valorization_percentage,
                     }) for service_picking in service_picking_ids]
@@ -75,7 +76,7 @@ class LimpCertResGoaLine(models.Model):
     _description = 'Línea de certificado de residencia en Goa'
     _order = 'date asc'
 
-    cert_res_goa_id = fields.Many2one('limp.cert.res.goa', 'Certificado de residencia en Goa')
+    cert_res_goa_id = fields.Many2one('limp.cert.res.goa', 'Certificado de residuos')
 
     date = fields.Date('Date')
     producer_id = fields.Many2one('res.partner', 'Producer')
@@ -85,3 +86,4 @@ class LimpCertResGoaLine(models.Model):
     description = fields.Char('Description')
     weight = fields.Float('Weight')
     percentage = fields.Float('Percentage')
+    service_picking_id = fields.Many2one('stock.service.picking', 'Service', readonly=True)
