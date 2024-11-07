@@ -22,7 +22,7 @@ class LimpCertResGoa(models.Model):
         'limp.cert.res.goa.line',
         'cert_res_goa_id',
         'Lines',
-        readonly=True,
+        readonly=False,
         compute='_compute_service_pickings',
         store=True,
         ondelete='cascade'
