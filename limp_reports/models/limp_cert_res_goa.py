@@ -53,8 +53,7 @@ class LimpCertResGoa(models.Model):
                     ('partner_id', '=', cert.partner_id.id),
                     ('building_site_id', '=', cert.building_site_id.id),
                     ('state', '=', 'closed'),
-                    ('service_picking_valorization_ids', '!=', [])
-                ])
+                ]).filtered('service_picking_valorization_ids')
                 cert.line_ids = [(5,)]
                 if service_picking_ids:
                     cert.line_ids = [(0, 0, {
