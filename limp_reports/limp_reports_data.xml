@@ -360,7 +360,7 @@
     />
 
     <report
-        string="GOA Certificate"
+        string="Certificado de residuos"
         id="cer_ges_res_goa_report"
         model="limp.cert.res.goa"
         report_type="qweb-pdf"

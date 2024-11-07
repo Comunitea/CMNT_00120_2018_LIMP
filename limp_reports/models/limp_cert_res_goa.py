@@ -27,16 +27,10 @@ class LimpCertResGoa(models.Model):
         store=True,
         ondelete='cascade'
     )
-    saved = fields.Boolean('Saved', default=False)
 
     def _translate_date(self):
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         return self.date.strftime('%d de %B de %Y')
-
-    @api.model
-    def create(self, vals):
-        vals['saved'] = True
-        return super(LimpCertResGoa, self).create(vals)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):

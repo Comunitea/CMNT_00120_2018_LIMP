@@ -10,14 +10,13 @@
                         <field name="name"/>
                     </h1>
                     <group>
-                        <field name="saved" invisible="1"/>
-                        <field name="date" attrs="{'readonly': [('saved', '=', True)]}"/>
-                        <field name="date_init" attrs="{'readonly': [('saved', '=', True)]}"/>
-                        <field name="date_end" attrs="{'readonly': [('saved', '=', True)]}"/>
+                        <field name="date"/>
+                        <field name="date_init"/>
+                        <field name="date_end"/>
                     </group>
                     <group>
-                        <field name="partner_id" attrs="{'readonly': [('saved', '=', True)]}"/>
-                        <field name="building_site_id" domain="[('partner_ids', 'in', partner_id)]" attrs="{'readonly': [('saved', '=', True)]}"/>
+                        <field name="partner_id" />
+                        <field name="building_site_id" domain="[('partner_ids', 'in', partner_id)]"/>
                     </group>
                     <notebook>
                         <page string="Residuos">
@@ -54,7 +53,7 @@
         </field>
     </record>
     <record id="action_limp_cert_goa" model="ir.actions.act_window">
-        <field name="name">Cert GOA Documents</field>
+        <field name="name">Certificados de residuos</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">limp.cert.res.goa</field>
         <field name="view_type">form</field>
