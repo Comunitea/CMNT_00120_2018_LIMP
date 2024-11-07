@@ -45,15 +45,21 @@ class LimpCertResGoa(models.Model):
 
     @api.depends('date_init', 'date_end', 'partner_id', 'building_site_id')
     def _compute_service_pickings(self):
+        partner_ids = (
+            self.env["res.company"].sudo().search([]).mapped("partner_id")
+        )
+        partner_ids |= partner_ids.mapped('child_ids')
         for cert in self:
             if cert.date_init and cert.date_end and cert.partner_id and cert.building_site_id:
-                service_picking_ids = self.env['stock.service.picking'].search([
+                service_picking_ids = self.env['stock.service.picking'].sudo().search([
                     ('retired_date', '>=', cert.date_init),
                     ('retired_date', '<=', cert.date_end),
                     ('partner_id', '=', cert.partner_id.id),
                     ('building_site_id', '=', cert.building_site_id.id),
                     ('state', '=', 'closed'),
-                ]).filtered('service_picking_valorization_ids')
+                    ('dcs_no', '!=', False),
+                    ('manager_partner_id', 'child_of', partner_ids.ids)
+                ]).filtered('service_picking_valorization_ids.memory_include')
                 cert.line_ids = [(5,)]
                 if service_picking_ids:
                     cert.line_ids = [(0, 0, {
