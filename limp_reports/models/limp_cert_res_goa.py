@@ -67,11 +67,11 @@ class LimpCertResGoa(models.Model):
                         'producer_id': service_picking.producer_promoter_id.id,
                         'ler': service_picking.service_picking_valorization_ids[0].ler_code,
                         'description': service_picking.service_picking_valorization_ids[0].name,
-                        'weight': service_picking.service_picking_valorization_ids[0].net_weight,
+                        'weight': int(service_picking.service_picking_valorization_ids[0].net_weight * 1000),
                         'dcs_no': service_picking.dcs_no,
                         'service_picking_id': service_picking.id,
                         'percentage':
-                            service_picking.service_picking_valorization_ids[0].product_id.valorization_percentage,
+                            service_picking.service_picking_valorization_ids[0].product_id.valorization_percentage * 100,
                     }) for service_picking in service_picking_ids]
             else:
                 cert.line_ids = [(5,)]
@@ -90,6 +90,6 @@ class LimpCertResGoaLine(models.Model):
     dcs_no = fields.Char('DCS Nº', size=26)
     ler = fields.Char('LER', size=20)
     description = fields.Char('Description')
-    weight = fields.Float('Weight')
-    percentage = fields.Float('Percentage')
+    weight = fields.Integer('Weight')
+    percentage = fields.Float('Percentage', digits=(16,2))
     service_picking_id = fields.Many2one('stock.service.picking', 'Service', readonly=True)

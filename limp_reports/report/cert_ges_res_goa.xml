@@ -57,7 +57,7 @@
                                             <td><span t-field="r.ler"/></td>
                                             <td><span t-field="r.description"/></td>
                                             <td><span t-field="r.weight"/></td>
-                                            <td><span t-esc="r.percentage * 100" t-options="{'widget': 'float', 'precision': 2}"/>%</td>
+                                            <td><span t-field="r.percentage"/>%</td>
                                         </tr>
                                     </t>
                                 </tbody>
