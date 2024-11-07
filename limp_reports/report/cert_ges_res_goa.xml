@@ -50,14 +50,14 @@
                                 <tbody>
                                     <t t-foreach="o.line_ids" t-as="r">
                                         <tr>
-                                            <td><t t-field="r.date"/></td>
-                                            <td><t t-field="r.dcs_no"/></td>
-                                            <td><t t-field="r.producer_id.commercial_partner_id.name"/></td>
-                                            <td><t t-field="r.nif"/></td>
-                                            <td><t t-field="r.ler"/></td>
-                                            <td><t t-field="r.description"/></td>
-                                            <td><t t-field="r.weight"/></td>
-                                            <td><t t-esc="r.percentage * 100" t-options="{'widget': 'float'}"/>%</td>
+                                            <td><span t-field="r.date"/></td>
+                                            <td><span t-field="r.dcs_no"/></td>
+                                            <td><span t-field="r.producer_id.commercial_partner_id.name"/></td>
+                                            <td><span t-field="r.nif"/></td>
+                                            <td><span t-field="r.ler"/></td>
+                                            <td><span t-field="r.description"/></td>
+                                            <td><span t-field="r.weight"/></td>
+                                            <td><span t-esc="r.percentage * 100" t-options="{'widget': 'float'}"/>%</td>
                                         </tr>
                                     </t>
                                 </tbody>
