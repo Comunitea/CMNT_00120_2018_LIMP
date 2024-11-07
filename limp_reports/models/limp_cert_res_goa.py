@@ -71,7 +71,7 @@ class LimpCertResGoa(models.Model):
                         'dcs_no': service_picking.dcs_no,
                         'service_picking_id': service_picking.id,
                         'percentage':
-                            service_picking.service_picking_valorization_ids[0].product_id.valorization_percentage * 100,
+                            service_picking.service_picking_valorization_ids[0].product_id.valorization_percentage,
                     }) for service_picking in service_picking_ids]
             else:
                 cert.line_ids = [(5,)]
