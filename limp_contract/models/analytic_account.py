@@ -67,7 +67,8 @@ class AccountAnalyticAccount(models.Model):
     )
     address_tramit_id = fields.Many2one("res.partner", "Tramit address")
     partner_name = fields.Char(
-        "Partner name", related="partner_id.name", readonly=True, store=True
+        "Partner name", related="partner_id.name", readonly=True, store=True,
+        related_sudo=True, compute_sudo=True
     )
     state = fields.Selection(
         [
