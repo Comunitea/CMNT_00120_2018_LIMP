@@ -207,14 +207,14 @@ class AccountAnalyticAccount(models.Model):
         for obj in self:
             name = obj.name
             if obj.partner_id:
-                name += " " + obj.partner_id.name
+                name += " " + (obj.partner_id.name or "")
                 home_help_lines = self.env[
                     "limp.contract.line.home.help"
                 ].search([("analytic_acc_id", "=", obj.id)])
                 if home_help_lines:
                     line = home_help_lines[0]
                     if line.customer_contact_id:
-                        name += " " + line.customer_contact_id.name
+                        name += " " + (line.customer_contact_id.name or "")
                 else:
                     name += " " + (obj.address_id.name or "")
                 name += " " + (obj.description or "")
