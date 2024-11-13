@@ -208,6 +208,32 @@ class LimpContract(models.Model):
         readonly=True,
     )
 
+    building_site_id = fields.Many2one(
+        'building.site.services',
+        'Building site',
+        domain="[('partner_ids', 'in', partner_id)]",
+    )
+
+    has_extinguishers_revision = fields.Boolean(
+        'Has extinguishers revision',
+    )
+
+    extinguisher_and_signal_ids = fields.One2many(
+        'extinguisher.and.signal',
+        'contract_id',
+        'Extinguisher and signal'
+    )
+
+    has_bie_revision = fields.Boolean(
+        'Has BIE revision',
+    )
+
+    bie_and_signal_ids = fields.One2many(
+        'bie.and.signal',
+        'contract_id',
+        'Extinguisher and signal'
+    )
+
     def _compute_contract_total_amount(self):
         for contract in self:
             amount = 0.0
@@ -611,6 +637,9 @@ class LimpContract(models.Model):
                 "default_used_product_ids": [
                     (6, 0, self.used_product_ids.ids)
                 ],
+                "default_has_extinguisher_revision": self.has_extinguishers_revision,
+                "default_building_site_id": self.building_site_id.id,
+                "default_has_bie_revision": self.has_bie_revision,
             }
         )
         action["domain"] = (

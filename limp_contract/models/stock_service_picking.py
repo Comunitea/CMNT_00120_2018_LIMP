@@ -26,6 +26,44 @@ class StockServicePicking(models.Model):
     contract_id = fields.Many2one("limp.contract", "Contract")
     workcenter = fields.Char("Workcenter")
 
+    has_extinguisher_revision = fields.Boolean('Has extinguisher revision')
+    extinguisher_revision_ids = fields.One2many(
+        'extinguisher.revision',
+        'stock_service_picking_id',
+        'Extinguisher revision'
+    )
+
+    has_bie_revision = fields.Boolean('Has BIE revision')
+    bie_revision_ids = fields.One2many(
+        'bie.revision',
+        'stock_service_picking_id',
+        'Extinguisher revision'
+    )
+
+    @api.onchange('has_extinguisher_revision')
+    def _onchange_has_extinguisher_revision(self):
+        self.ensure_one()
+        if not self.has_extinguisher_revision:
+            self.extinguisher_revision_ids = [(5,)]
+        else:
+            values = []
+            for extinguisher in self.contract_id.extinguisher_and_signal_ids:
+                values.append((0, 0, {'extinguisher_and_signal_id': extinguisher.id}))
+
+            self.extinguisher_revision_ids = values
+
+    @api.onchange('has_bie_revision')
+    def _onchange_has_bie_revision(self):
+        self.ensure_one()
+        if not self.has_bie_revision:
+            self.bie_revision_ids = [(5,)]
+        else:
+            values = []
+            for bie in self.contract_id.bie_and_signal_ids:
+                values.append((0, 0, {'bie_and_signal_id': bie.id}))
+
+            self.bie_revision_ids = values
+
     @api.model
     def create(self, vals):
         if vals.get("contract_id", False):

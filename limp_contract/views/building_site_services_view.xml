@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="building_site_services_form" model="ir.ui.view">
+        <field name="name">building.site.services.form</field>
+        <field name="model">building.site.services</field>
+        <field name="inherit_id" ref="limp_service_picking.building_site_services_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[last()]" position="after">
+                <separator string="Locations"/>
+                <group>
+                    <field name="location_ids" widget="one2many_list" nolabel="1">
+                        <tree string="Locations" editable="bottom">
+                            <field name="name"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

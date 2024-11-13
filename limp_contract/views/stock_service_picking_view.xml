@@ -51,11 +51,227 @@
                  <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
                 <field name="privacy" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
             </field>
+            <field name="type_ddd_ids" position="after">
+                <field name="has_extinguisher_revision"/>
+                <field name="has_bie_revision"/>
+                <field name="building_site_id" string="Service Site" attrs="{'invisible': [('has_extinguisher_revision', '=', False)]}"/>
+            </field>
+            <notebook position="inside">
+                <page
+                    string="Extinguisers Revision"
+                    attrs="{'invisible': [('has_extinguisher_revision', '=', False)], 'readonly': [('building_site_id', '=', False)]}"
+                >
+                    <field name="extinguisher_revision_ids" widget="one2many_list" nolabel="1">
+                        <tree string="Extinguisers Revision" editable="bottom" create="0">
+                            <field name="sequence" widget="handle"/>
+                            <field name="plate_num"/>
+                            <field name="location_id"/>
+                            <field name="test_type"/>
+                            <field name="extinguisher_is_visible" string="1.1"/>
+                            <field name="extinguisher_is_accesible" string="1.2"/>
+                            <field name="extinguisher_situacion_correct" string="1.3"/>
+                            <field name="extinguisher_adecuate_signaling" string="1.4"/>
+                            <field name="extinguisher_correct_support" string="1.5"/>
+                            <field name="extinguisher_correct_height" string="1.6"/>
+                            <field name="extinguisher_correct_aspect" string="1.7"/>
+                            <field name="extinguisher_correct_precint_seal" string="1.8"/>
+                            <field name="extinguisher_available_aperture_indicative" string="1.9"/>
+                            <field name="extinguisher_correct_identification_tag" string="1.10"/>
+                            <field name="extinguisher_correct_identification_mantainance_tag" string="1.11"/>
+                            <field name="extinguisher_3kg_has_hose" string="1.12"/>
+                            <field name="extinguisher_correct_hose" string="1.13"/>
+                            <field name="extinguisher_correct_valve" string="1.14"/>
+                            <field name="extinguisher_correct_charge_weight" string="1.15"/>
+                            <field name="extinguisher_correct_agent_state" string="1.16"/>
+                            <field name="extinguisher_correct_normative_mark" string="1.17"/>
+                            <field name="extinguisher_correct_re_embossed_normative_pressure_devices" string="1.18"/>
+                            <field name="extinguisher_correct_charge_weight_attached_pressure" string="1.19"/>
+                            <field name="extinguisher_correct_re_embossed_normative_pressure" string="1.20"/>
+                            <field name="extinguisher_correct_interior_pressure" string="1.21"/>
+                            <field name="substitution_stinguisher_correct" string="E.S."/>
+                            <field name="extinguisher_workshop_retirement" string="R.T."/>
+                            <field name="revision_result" string="Result"/>
+                        </tree>
+                    </field>
+                    <p>
+                        E.S. = EXTINTOR DE SUSTITUCIÓN    R.T. = RETIRADA A TALLER
+                    </p>
+                    <p>
+                        En caso de imcumplimiento de algún punto se marcará:
+                    </p>
+                    <p>
+                        1.1 (T/A) El extintor es visible
+                    </p>
+                    <p>
+                        1.2 (T/A) El extintor es accesible
+                    </p>
+                    <p>
+                        1.3 (T/A) Su situación es correcta
+                    </p>
+                    <p>
+                        1.4 (T/A) Su señalización es adecuada
+                    </p>
+                    <p>
+                        1.5 (T/A) El soporte y anclaje son correctos
+                    </p>
+                    <p>
+                        1.6 (T/A) La altura desde el suelo es correcta
+                    </p>
+                    <p>
+                        1.7 (T/A) Aspecto externo: exento de corrosión y abolladuras
+                    </p>
+                    <p>
+                        1.8 (T/A) Los precintos y/o seguros están intactos
+                    </p>
+                    <p>
+                        1.9 (T/A) En caso de apertura, dispone de sistema indicativo de apertura
+                    </p>
+                    <p>
+                        1.10 (T/A) La identificación y etiqueta son correctas
+                    </p>
+                    <p>
+                        1.11 (T/A) La identificación y etiqueta de mantenimiento anteriores son correctas
+                    </p>
+                    <p>
+                        1.12 (T/A) Los extintores de más de 3 Kg tienen manguera
+                    </p>
+                    <p>
+                        1.13 (T/A) Identificación visual de la manguera, está en buen estado
+                    </p>
+                    <p>
+                        1.14 (T/A) Inspección visual de la válvula, está en buen estado
+                    </p>
+                    <p>
+                        1.15 (A) Comprobación del estado de carga mediante pesada, es correcto
+                    </p>
+                    <p>
+                        1.16 (A) Comprobación del estado del agente, sin anomalías aparentes
+                    </p>
+                    <p>
+                        1.17 (A) Tiene marca de conformidad a normas
+                    </p>
+                    <p>
+                        1.18 (A) Está retimbrado conforme a Reglamento Aparatos a Presión ITC.MIE.AP5
+                    </p>
+                    <p>
+                        1.19 (A) Desmontaje botellin y pesaje, es correcto el peso de la carga (En presión adosada)
+                    </p>
+                    <p>
+                        1.20 (A) Está retimbrado el botellín confore a Reglamento a Presión
+                    </p>
+                    <p>
+                        1.21 (T/A) Comprobación de la presión interior (pesada CO2 y manómetro en resto, es correcta)
+                    </p>
+                </page>
+                <page
+                    string="BIEs Revision"
+                    attrs="{'invisible': [('has_bie_revision', '=', False)], 'readonly': [('building_site_id', '=', False)]}"
+                >
+                    <field name="bie_revision_ids" widget="one2many_list" nolabel="1">
+                        <tree string="BIE Revision" editable="bottom" create="0">
+                            <field name="sequence" widget="handle"/>
+                            <field name="plate_num"/>
+                            <field name="location_id"/>
+                            <field name="test_type"/>
+                            <field name="bie_is_visible" string="1.1"/>
+                            <field name="bie_is_accesible" string="1.2"/>
+                            <field name="bie_is_less_50" string="1.3"/>
+                            <field name="bie_valve_1_5_ground" string="1.4"/>
+                            <field name="bie_corrossion_free" string="1.5"/>
+                            <field name="bie_precint_glass_intact" string="1.6"/>
+                            <field name="bie_correct_certification" string="1.7"/>
+                            <field name="bie_correct_pressure_gauge" string="1.8"/>
+                            <field name="bie_correct_hose" string="1.9"/>
+                            <field name="bie_is_clean" string="1.10"/>
+                            <field name="bie_correct_hinge_locking" string="1.11"/>
+                            <field name="bie_25_mm_correct_extraction_orientation" string="1.12"/>
+                            <field name="bie_45mm_couplings_are_certified" string="1.13"/>
+                            <field name="bie_45mm_couplings_joints_correct" string="1.14"/>
+                            <field name="bie_correct_nozzle" string="1.15"/>
+                            <field name="bie_45mm_has_pressure_gauge" string="1.16"/>
+                            <field name="bie_correct_normative_mark" string="1.17"/>
+                            <field name="bie_25mm_has_correct_pressure_gauge" string="1.18"/>
+                            <field name="bie_25mm_has_correct_couplings_joints" string="1.19"/>
+                            <field name="bie_25mm_intake_45_certified_couplings" string="1.20"/>
+                            <field name="bie_correct_pressure_test" string="1.21"/>
+                            <field name="substitution_stinguisher_correct" string="E.S."/>
+                            <field name="bie_workshop_retirement" string="R.T."/>
+                            <field name="revision_result" string="Result"/>
+                        </tree>
+                    </field>
+                    <p>
+                        En caso de imcumplimiento de algún punto se marcará:
+                    </p>
+                    <p>
+                        1.1 (T/A) Está en lugar visible (BIE o su señalización)
+                    </p>
+                    <p>
+                        1.2 (T/A) Es accesible
+                    </p>
+                    <p>
+                        1.3 (T/A) Está a menos de 50 metros de la BIE más próxima
+                    </p>
+                    <p>
+                        1.4 (T/A)Están la válvula y la boquilla como máximo a 1,5 metros sobre el nivel del suelo
+                    </p>
+                    <p>
+                        1.5 (T/A) Están los elementos metálicos libres de corrosiones visibles que puedan afectar a su funcionamiento
+                    </p>
+                    <p>
+                        1.6 (T/A) Están los precintos o cristales de la BIE intactos
+                    </p>
+                    <p>
+                        1.7 (T/A) Están las BIE's debidamente marcadas conforme a certificación de conformidad a normas por O.A.
+                    </p>
+                    <p>
+                        1.8 (T/A) El manómetro de la BIE está marcando presión
+                    </p>
+                    <p>
+                        1.9 (T/A) Una vez desenrrollada la manguera está en buen estado de funcionamiento
+                    </p>
+                    <p>
+                        1.10 (T/A) Está el conjunto limpio para un manejo adecuado
+                    </p>
+                    <p>
+                        1.11 (T/A) Están las bisagras y cierre del armario convenientemente engrasados
+                    </p>
+                    <p>
+                        1.12 (T/A) En BIE de 25mm al desenrollar la manguera, se extrae y oriente facilmente en cualquier dirección
+                    </p>
+                    <p>
+                        1.13 (A) En BIE de 45mm los acoples tipo UNE 23400 (racores, tapas) están certificados
+                    </p>
+                    <p>
+                        1.14 (A) En BIE de 45mm los acoples estancos y el estado de las juntas es correcto
+                    </p>
+                    <p>
+                        1.15 (A) La boquilla es estanca a la presión de servicio y funciona correctamente en todas sus posiciones
+                    </p>
+                    <p>
+                        1.16 (A) La BIE de 45mm disponen de manómetro
+                    </p>
+                    <p>
+                        1.17 (A) Tiene marca de conformidad a normas
+                    </p>
+                    <p>
+                        1.18 (A) Las BIE's de 25mm en caso de disponer de manómetro este marca correctamente al comtrastarlo con manómetro patrón
+                    </p>
+                    <p>
+                        1.19 (A) Si la BIE de 25mm dispone de acoples, estos son estancos y el estado de las juntas es correcto
+                    </p>
+                    <p>
+                        1.20 (A) En caso de BIE de 25mm con toma adicional de 45, dispone de acoples certificados UNE 23400 para uso normal
+                    </p>
+                    <p>
+                        1.21 (5A) Al someter la manguera a una presión de 15 kg/cm2, la manguera y el resto de la BIE está exenta de fugas y deterioros
+                    </p>
+                </page>
+            </notebook>
         </field>
     </record>
 
-            <menuitem id="menu_limp_sporadic_contract" parent="menu_limp_contract" name="Sporadic service picking"/>
-        <menuitem action="limp_service_picking.sporadic_service_pickings_action" id="menu_sporadic_service_pickings_open" parent="menu_limp_sporadic_contract" name="Sporadic service pickings"/>
-        <menuitem action="limp_service_picking.planified_service_pickings_action" id="menu_planified_service_pickings_open" parent="menu_limp_sporadic_contract" name="Maintenance service pickings"/>
+    <menuitem id="menu_limp_sporadic_contract" parent="menu_limp_contract" name="Sporadic service picking"/>
+    <menuitem action="limp_service_picking.sporadic_service_pickings_action" id="menu_sporadic_service_pickings_open" parent="menu_limp_sporadic_contract" name="Sporadic service pickings"/>
+    <menuitem action="limp_service_picking.planified_service_pickings_action" id="menu_planified_service_pickings_open" parent="menu_limp_sporadic_contract" name="Maintenance service pickings"/>
 
 </odoo>

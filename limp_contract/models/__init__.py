@@ -22,3 +22,6 @@ from . import limp_contract_notes
 from . import limp_maintenance_tasks
 from . import limp_contract_manual_ddd
 from . import months_interval
+from . import building_site_services_location
+from . import extinguisher_and_signal
+from . import bie_and_signal

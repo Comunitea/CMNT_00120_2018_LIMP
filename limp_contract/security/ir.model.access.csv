@@ -35,3 +35,8 @@
 "access_limp_center_type_administrative","limp_center_type_administrative","model_limp_center_type","group_limp_administrative",1,1,1,1
 "access_limp_months_interval","months_interval","model_months_interval","group_limp_administrative",1,1,1,1
 "access_types_ddd_administrative","types_ddd_administrative","limp_service_picking.model_types_ddd","group_limp_administrative",1,1,1,1
+"access_extinguisher_and_signal","extinguisher_and_signal","model_extinguisher_and_signal","group_limp_administrative",1,1,1,1
+"access_extinguisher_revision","extinguisher_revision","model_extinguisher_revision","group_limp_administrative",1,1,1,1
+"access_bie_and_signal","bie_and_signal","model_bie_and_signal","group_limp_administrative",1,1,1,1
+"access_bie_revision","bie_revision","model_bie_revision","group_limp_administrative",1,1,1,1
+"access_building_site_services_location","building_site_services_location","model_building_site_services_location","group_limp_administrative",1,1,1,1
