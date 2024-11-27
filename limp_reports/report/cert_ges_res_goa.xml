@@ -19,9 +19,9 @@
                             <p>
                                 Por este motivo le enviamos el presente certificado con los residuos que hemos recibido para su valorización en nuestras instalaciones, provenientes de su empresa desde el día <span t-field="o.date_init" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/> hasta el día <span t-field="o.date_end" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>.
                             </p>
-                            <p>
+                            <!-- <p>
                                 El destino final de estos residuos ha sido LIMPERGAL SL con n° de Autorización SC-I-NP-XV-00074 y Operación de Tratamiento final R5, según anexo ll de la Ley 7/2022.
-                            </p>
+                            </p> -->
                         </div>
                         <div id="table" style="text-align: center;">
                             <table class="table mt8 table-bordered table-sm" style="font-size: 9pt; font-weight: bold;">
@@ -43,6 +43,9 @@
                                         <td>CIF</td>
                                         <td>LER</td>
                                         <td>Descripción Residuo</td>
+                                        <td>Tipo de operación</td>
+                                        <td>Operador</td>
+                                        <td>Nº Autorización</td>
                                         <td>Peso Kg</td>
                                         <td>% Valorización</td>
                                     </tr>
@@ -56,6 +59,9 @@
                                             <td><span t-field="r.nif"/></td>
                                             <td><span t-field="r.ler"/></td>
                                             <td><span t-field="r.description"/></td>
+                                            <td><span t-field="r.operation_type"/></td>
+                                            <td><span t-field="r.operator_id.name"/></td>
+                                            <td><span t-field="r.authorization_no"/></td>
                                             <td><span t-field="r.weight"/></td>
                                             <td><span t-field="r.percentage"/>%</td>
                                         </tr>

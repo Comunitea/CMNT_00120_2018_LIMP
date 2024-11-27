@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-04 16:41+0000\n"
-"PO-Revision-Date: 2024-11-04 16:41+0000\n"
+"POT-Creation-Date: 2024-11-27 13:17+0000\n"
+"PO-Revision-Date: 2024-11-27 13:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -74,6 +74,11 @@ msgid "Annual Memory Report"
 msgstr "Informe memoria anual"
 
 #. module: limp_reports
+#: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__authorization_no
+msgid "Authorization Nº"
+msgstr "Nº Autorización"
+
+#. module: limp_reports
 #: model:ir.actions.report,name:limp_reports.build_picking
 msgid "Build picking"
 msgstr "Albarán de obra"
@@ -101,11 +106,6 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: limp_reports
-#: model:ir.actions.act_window,name:limp_reports.action_limp_cert_goa
-msgid "Cert GOA Documents"
-msgstr "Documentos de certificación GOA"
-
-#. module: limp_reports
 #: model_terms:ir.ui.view,arch_db:limp_reports.limp_cert_goa_form
 #: model_terms:ir.ui.view,arch_db:limp_reports.limp_cert_goa_tree
 msgid "Certificado de Gestor de Residuos"
@@ -117,8 +117,15 @@ msgid "Certificado de gestión de residuos GOA"
 msgstr ""
 
 #. module: limp_reports
+#: model:ir.actions.report,name:limp_reports.cer_ges_res_goa_report
 #: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__cert_res_goa_id
-msgid "Certificado de residencia en Goa"
+msgid "Certificado de residuos"
+msgstr ""
+
+#. module: limp_reports
+#: model:ir.actions.act_window,name:limp_reports.action_limp_cert_goa
+#: model:ir.ui.menu,name:limp_reports.menu_limp_cert_goa
+msgid "Certificados de residuos"
 msgstr ""
 
 #. module: limp_reports
@@ -183,6 +190,81 @@ msgstr "Factura Cyrgal"
 #: model:ir.actions.report,name:limp_reports.cyrgal_invoice_copy
 msgid "Cyrgal Invoice Copy"
 msgstr "Factura Cyrgal (Copia)"
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D01"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D02"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D03"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D04"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D05"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D06"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D07"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D08"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D09"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D10"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D11"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D12"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D13"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D14"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "D15"
+msgstr ""
 
 #. module: limp_reports
 #: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__dcs_no
@@ -251,11 +333,6 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: limp_reports
-#: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
-msgid "El destino final de estos residuos ha sido LIMPERGAL SL con n° de Autorización SC-I-NP-XV-00074 y Operación de Tratamiento final R5, según anexo ll de la Ley 7/2022."
-msgstr ""
-
-#. module: limp_reports
 #: model:ir.model.fields,field_description:limp_reports.field_account_analytic_account_details__date2
 msgid "End of period"
 msgstr "Fin del periodo"
@@ -267,13 +344,8 @@ msgstr "Lista europea de residuos"
 
 #. module: limp_reports
 #: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
-msgid "Expiration dates"
-msgstr "Fechas de vencimiento"
-
-#. module: limp_reports
-#: model:ir.actions.report,name:limp_reports.cer_ges_res_goa_report
-msgid "GOA Certificate"
-msgstr "Certificado GOA"
+msgid "Fecha"
+msgstr ""
 
 #. module: limp_reports
 #: model:ir.model.fields,field_description:limp_reports.field_acceptance_document__id
@@ -426,6 +498,11 @@ msgstr "Número"
 
 #. module: limp_reports
 #: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
+msgid "Nº Autorización"
+msgstr ""
+
+#. module: limp_reports
+#: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
 msgid "Nº Documento Identificación"
 msgstr ""
 
@@ -433,6 +510,21 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
 msgid "OBRA"
 msgstr ""
+
+#. module: limp_reports
+#: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
+msgid "Operador"
+msgstr ""
+
+#. module: limp_reports
+#: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__operation_type
+msgid "Operation type"
+msgstr "Tipo de operación"
+
+#. module: limp_reports
+#: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__operator_id
+msgid "Operator"
+msgstr "Operador"
 
 #. module: limp_reports
 #: model:ir.actions.report,name:limp_reports.outgoing_report
@@ -501,6 +593,81 @@ msgid "Productor"
 msgstr "Productor"
 
 #. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R01"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R02"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R03"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R04"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R05"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R06"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R07"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R08"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R09"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R10"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R11"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R12"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R13"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R14"
+msgstr ""
+
+#. module: limp_reports
+#: selection:limp.cert.res.goa.line,operation_type:0
+msgid "R15"
+msgstr ""
+
+#. module: limp_reports
 #: model:ir.ui.menu,name:limp_reports.reports_folder_id
 msgid "Reports"
 msgstr "Informes"
@@ -516,11 +683,6 @@ msgid "Responsible"
 msgstr "Responsable"
 
 #. module: limp_reports
-#: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa__saved
-msgid "Saved"
-msgstr "Guardado"
-
-#. module: limp_reports
 #: model:ir.actions.report,name:limp_reports.scont_invoice
 msgid "Scont Invoice"
 msgstr "Factura Scont"
@@ -534,6 +696,11 @@ msgstr "Seleccione el periodo"
 #: model:ir.model.fields,field_description:limp_reports.field_account_analytic_tag__sequence
 msgid "Sequence"
 msgstr "Secuencia"
+
+#. module: limp_reports
+#: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__service_picking_id
+msgid "Service"
+msgstr "Servicio"
 
 #. module: limp_reports
 #: model:ir.actions.report,name:limp_reports.servital_invoice
@@ -598,6 +765,11 @@ msgid "The Tax Identification Number. Complete it if the contact is subjected to
 msgstr "El Número de Identificación Fiscal. Compártalo si el contacto está sujeto a impuestos gubernamentales. Utilizado en algunas declaraciones legales."
 
 #. module: limp_reports
+#: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
+msgid "Tipo de operación"
+msgstr ""
+
+#. module: limp_reports
 #: model:ir.model.fields,field_description:limp_reports.field_account_analytic_account_details__header
 msgid "Title of report"
 msgstr "Título del informe"
@@ -632,11 +804,6 @@ msgstr "% de valorización"
 #: model:ir.actions.report,name:limp_reports.service_picking_valued
 msgid "Valued picking"
 msgstr "Albarán valorado"
-
-#. module: limp_reports
-#: model:ir.ui.menu,name:limp_reports.menu_limp_cert_goa
-msgid "View Cert GOA"
-msgstr "Ver certificados GOA"
 
 #. module: limp_reports
 #: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__weight
