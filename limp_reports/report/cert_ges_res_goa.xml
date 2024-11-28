@@ -61,7 +61,7 @@
                                             <td><span t-field="r.operation_type"/></td>
                                             <td><span t-field="r.authorization_no"/></td>
                                             <td><span t-field="r.weight"/></td>
-                                            <td><span t-field="r.percentage"/>%</td>
+                                            <td><span t-esc="r.percentage * 100"/>%</td>
                                         </tr>
                                     </t>
                                 </tbody>
