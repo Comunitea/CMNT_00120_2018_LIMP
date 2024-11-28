@@ -30,7 +30,6 @@
                                     <field name="ler"/>
                                     <field name="operation_type"/>
                                     <field name="description"/>
-                                    <field name="operator_id"/>
                                     <field name="authorization_no"/>
                                     <field name="weight"/>
                                     <field name="percentage" widget="percentage"/>

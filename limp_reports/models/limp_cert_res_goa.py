@@ -66,24 +66,18 @@ class LimpCertResGoa(models.Model):
                     for service_picking in service_picking_ids:
                         ler_code = service_picking.service_picking_valorization_ids[0].ler_code
                         ler_code_id = self.env['waste.ler.code'].search([('code', '=', ler_code)], limit=1)
-                        authorization_no = service_picking.operator_partner_id.ler_authorization_ids.filtered(
-                            lambda x: ler_code_id in x.ler_code_ids and re.match('[EGTA].*', str(x.authorization_type))
+                        authorization_no = service_picking.manager_partner_id.ler_authorization_ids.filtered(
+                            lambda x: ler_code_id in x.ler_code_ids and re.match('[E].*', str(x.authorization_type))
                         )
-                        if not authorization_no:
-                            authorization_no = service_picking.operator_partner_id.ler_authorization_ids.filtered(
-                                lambda x: ler_code_id in x.ler_code_ids
-                            )
-                        authorization_no = authorization_no[0].name if authorization_no else ''
                         cert.line_ids = [(0, 0, {
                             'date': service_picking.retired_date,
                             'producer_id': service_picking.producer_promoter_id.id,
                             'ler': ler_code,
                             'description': service_picking.service_picking_valorization_ids[0].name,
                             'operation_type': service_picking.service_picking_valorization_ids[0].operation_type,
-                            'authorization_no': authorization_no,
+                            'authorization_no': authorization_no[0].name if authorization_no else '',
                             'weight': int(service_picking.service_picking_valorization_ids[0].net_weight * 1000),
                             'dcs_no': service_picking.dcs_no,
-                            'operator_id': service_picking.operator_partner_id.id,
                             'service_picking_id': service_picking.id,
                             'percentage':
                                 service_picking.service_picking_valorization_ids[0].product_id.valorization_percentage,
@@ -106,7 +100,6 @@ class LimpCertResGoaLine(models.Model):
     ler = fields.Char('LER', size=20)
     description = fields.Char('Description')
     weight = fields.Integer('Weight')
-    operator_id = fields.Many2one('res.partner', 'Operator')
     percentage = fields.Float('Percentage', digits=(16, 2))
     authorization_no = fields.Char('Authorization Nº')
     operation_type = fields.Selection([

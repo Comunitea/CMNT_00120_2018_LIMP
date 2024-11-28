@@ -44,7 +44,6 @@
                                         <td>LER</td>
                                         <td>Descripción Residuo</td>
                                         <td>Tipo de operación</td>
-                                        <td>Operador</td>
                                         <td>Nº Autorización</td>
                                         <td>Peso Kg</td>
                                         <td>% Valorización</td>
@@ -60,7 +59,6 @@
                                             <td><span t-field="r.ler"/></td>
                                             <td><span t-field="r.description"/></td>
                                             <td><span t-field="r.operation_type"/></td>
-                                            <td><span t-field="r.operator_id.name"/></td>
                                             <td><span t-field="r.authorization_no"/></td>
                                             <td><span t-field="r.weight"/></td>
                                             <td><span t-field="r.percentage"/>%</td>
