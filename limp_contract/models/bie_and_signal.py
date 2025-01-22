@@ -13,7 +13,12 @@ class BIEAndSignal(models.Model):
         'Manufacturing date',
         required=True,
     )
+    weight = fields.Float('Weight')
+    bie_type = fields.Char(
+        'BIE Type'
+    )
     re_embossed_date = fields.Date('Re-embossed date',)
+    bie_extinguisher_agent = fields.Char('Extinguisher agent')
     revision_date = fields.Date('Revision date')
     preasure_ok = fields.Boolean('Preasure OK')
     pressure = fields.Float('Pressure')
@@ -88,3 +93,4 @@ class BIERevision(models.Model):
     substitution_stinguisher_correct = fields.Boolean('Substitution BIE correct')  # E.S.
     bie_workshop_retirement = fields.Boolean('BIE workshop retirement')  # R.T.
     revision_result = fields.Text('Revision result')
+    revision_date = fields.Date('Revision date')

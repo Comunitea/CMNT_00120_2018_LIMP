@@ -120,3 +120,4 @@ class ExtinguisherRevision(models.Model):
     substitution_stinguisher_correct = fields.Boolean('Substitution stinguisher correct')  # E.S.
     extinguisher_workshop_retirement = fields.Boolean('Extinguisher workshop retirement')  # R.T.
     revision_result = fields.Text('Revision result')
+    revision_date = fields.Date('Revision date')

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-13 10:42+0000\n"
-"PO-Revision-Date: 2024-11-13 10:42+0000\n"
+"POT-Creation-Date: 2025-01-22 15:24+0000\n"
+"PO-Revision-Date: 2025-01-22 15:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -439,6 +439,16 @@ msgid "Accreditation for controlling and preventing of Legionella"
 msgstr "Acreditación para controlar y prevenir la legionella"
 
 #. module: limp_contract
+#: model:ir.actions.report,name:limp_contract.py3o_Acta_revisión_BIE_report
+msgid "Acta revisión BIE"
+msgstr ""
+
+#. module: limp_contract
+#: model:ir.actions.report,name:limp_contract.py3o_Acta_revisión_extintores_report
+msgid "Acta revisión extintores"
+msgstr ""
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__message_needaction
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__message_needaction
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__message_needaction
@@ -659,9 +669,19 @@ msgid "BIE Revision"
 msgstr "BIE Revisión"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__bie_type
+msgid "BIE Type"
+msgstr "Tipo de BIE"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_revision__bie_and_signal_id
 msgid "BIE and signal"
 msgstr "BIE y señal"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__bie_certification_notes
+msgid "BIE certification notes"
+msgstr "Notas de certificado de BIE"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_revision__bie_correct_certification
@@ -732,6 +752,16 @@ msgstr "BIE de 25mm correcta extracción y orientación"
 #: model:ir.model.fields,field_description:limp_contract.field_bie_revision__bie_precint_glass_intact
 msgid "BIE precint glass"
 msgstr "BIE cristal de precinto"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__bie_revision_correct
+msgid "BIE revision is correct"
+msgstr "La revisión de BIE es correcta"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__bie_revision_observation
+msgid "BIE revision observation"
+msgstr "Observaciones de revisión de BIE"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_revision__bie_valve_1_5_ground
@@ -872,7 +902,7 @@ msgid "Cancelled"
 msgstr "Cancelado"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:401
+#: code:addons/limp_contract/models/limp_contract.py:427
 #, python-format
 msgid "Cannot close the contract without a final date less or equal today."
 msgstr "No puede cerrar el contrato sin una fecha final menor o igual a hoy."
@@ -894,8 +924,23 @@ msgid "Center types"
 msgstr "Tipos centro"
 
 #. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
+msgid "Cerification notes"
+msgstr "Notas del certificado"
+
+#. module: limp_contract
+#: model:ir.actions.report,name:limp_contract.py3o_Certificado_BIES_report
+msgid "Certificado BIES"
+msgstr ""
+
+#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_limp_cert_res_goa
 msgid "Certificado de gestión de residuos"
+msgstr ""
+
+#. module: limp_contract
+#: model:ir.actions.report,name:limp_contract.py3o_Certificado_extintores_report
+msgid "Certificado extintores"
 msgstr ""
 
 #. module: limp_contract
@@ -1163,6 +1208,12 @@ msgstr ""
 #: model:ir.actions.report,name:limp_contract.py3o_CONTROL_MANTENIMIENTO_TORRES_report
 msgid "Control registros mantenimiento torres"
 msgstr ""
+
+#. module: limp_contract
+#: selection:stock.service.picking,bie_revision_correct:0
+#: selection:stock.service.picking,extinguisher_revision_correct:0
+msgid "Correct"
+msgstr "Correcto"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__location_id
@@ -1529,6 +1580,7 @@ msgid "Extinguisher adecuate signaling"
 msgstr "Extintor señalizado adecuadamente"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__bie_extinguisher_agent
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__extinguisher_agent
 msgid "Extinguisher agent"
 msgstr "Agente extintor"
@@ -1544,6 +1596,11 @@ msgstr "Extintor y señal"
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__extinguisher_available_aperture_indicative
 msgid "Extinguisher available aperture indicative"
 msgstr "Extintor disponible apertura indicativa"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__extinguisher_certification_notes
+msgid "Extinguisher certification notes"
+msgstr "Notas de certificado de extintores"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__extinguisher_correct_agent_state
@@ -1641,6 +1698,16 @@ msgstr "Extintor visible"
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__extinguisher_revision_ids
 msgid "Extinguisher revision"
 msgstr "Revisión de extintor"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__extinguisher_revision_correct
+msgid "Extinguisher revision is correct"
+msgstr "La revisión del extintor es correcta"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__extinguisher_revision_observation
+msgid "Extinguisher revision observation"
+msgstr "Observaciones de la revisión del extintores"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_extinguisher_revision_result
@@ -1758,6 +1825,12 @@ msgstr "Agrupar productos, uno por factura"
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__has_bie_revision
 msgid "Has BIE revision"
 msgstr "Tiene revisión de BIE"
+
+#. module: limp_contract
+#: selection:stock.service.picking,bie_revision_correct:0
+#: selection:stock.service.picking,extinguisher_revision_correct:0
+msgid "Has anomalies"
+msgstr "Tiene anomalías"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__has_extinguisher_revision
@@ -2442,6 +2515,7 @@ msgstr "Objetivos"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel__observations
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__monitoring_situation
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_task_rel_form
+#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
 msgid "Observations"
 msgstr "Observaciones"
 
@@ -2815,16 +2889,33 @@ msgid "Revision"
 msgstr "Revisión"
 
 #. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
+msgid "Revision Date"
+msgstr "Fecha de la revisión"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__revision_date
+#: model:ir.model.fields,field_description:limp_contract.field_bie_revision__revision_date
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__revision_date
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__revision_date
 msgid "Revision date"
 msgstr "Fecha revisión"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__revision_end_date
+msgid "Revision end date"
+msgstr "Fecha de fin de revisión"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_revision__revision_result
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__revision_result
 msgid "Revision result"
 msgstr "Resultado revisión"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__revision_start_date
+msgid "Revision start date"
+msgstr "Fecha de inicio de revisión"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel__saturday
@@ -3264,6 +3355,7 @@ msgid "Weekly"
 msgstr "Semanal"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__weight
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__weight
 msgid "Weight"
 msgstr "Peso"

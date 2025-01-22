@@ -47,6 +47,10 @@
             <field name="sale_id" position="after">
                 <field name="contract_id"/>
             </field>
+            <field name="start_time" position="before">
+                <field name="revision_start_date"/>
+                <field name="revision_end_date"/>
+            </field>
             <field name="address_invoice_id" position="after">
                  <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
                 <field name="privacy" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
@@ -62,8 +66,9 @@
                     attrs="{'invisible': [('has_extinguisher_revision', '=', False)], 'readonly': [('building_site_id', '=', False)]}"
                 >
                     <field name="extinguisher_revision_ids" widget="one2many_list" nolabel="1">
-                        <tree string="Extinguisers Revision" editable="bottom" create="0">
+                        <tree string="Extinguisers Revision" editable="bottom" create="0" delete="0">
                             <field name="sequence" widget="handle"/>
+                            <field name="extinguisher_and_signal_id" invisible="1"/>
                             <field name="plate_num"/>
                             <field name="location_id"/>
                             <field name="test_type"/>
@@ -91,8 +96,16 @@
                             <field name="substitution_stinguisher_correct" string="E.S."/>
                             <field name="extinguisher_workshop_retirement" string="R.T."/>
                             <field name="revision_result" string="Result"/>
+                            <field name="revision_date" string="Revision Date"/>
                         </tree>
                     </field>
+                    <separator string="Observations"/>
+                    <group col="6">
+                        <field name="extinguisher_revision_correct" widget="radio" colspan="2"/>
+                        <field name="extinguisher_revision_observation" nolabel="1" colspan="6" attrs="{'invisible': [('extinguisher_revision_correct', '!=', 'has_anomalies')]}"/>
+                    </group>
+                    <separator string="Cerification notes"/>
+                    <field name="extinguisher_certification_notes"/>
                     <p>
                         E.S. = EXTINTOR DE SUSTITUCIÓN    R.T. = RETIRADA A TALLER
                     </p>
@@ -168,8 +181,9 @@
                     attrs="{'invisible': [('has_bie_revision', '=', False)], 'readonly': [('building_site_id', '=', False)]}"
                 >
                     <field name="bie_revision_ids" widget="one2many_list" nolabel="1">
-                        <tree string="BIE Revision" editable="bottom" create="0">
+                        <tree string="BIE Revision" editable="bottom" create="0" delete="0">
                             <field name="sequence" widget="handle"/>
+                            <field name="bie_and_signal_id" invisible="1"/>
                             <field name="plate_num"/>
                             <field name="location_id"/>
                             <field name="test_type"/>
@@ -197,8 +211,16 @@
                             <field name="substitution_stinguisher_correct" string="E.S."/>
                             <field name="bie_workshop_retirement" string="R.T."/>
                             <field name="revision_result" string="Result"/>
+                            <field name="revision_date" string="Revision Date"/>
                         </tree>
                     </field>
+                    <separator string="Observations"/>
+                    <group col="6">
+                        <field name="bie_revision_correct" widget="radio" colspan="2"/>
+                        <field name="bie_revision_observation" nolabel="1" colspan="6" attrs="{'invisible': [('bie_revision_correct', '!=', 'has_anomalies')]}"/>
+                    </group>
+                    <separator string="Cerification notes"/>
+                    <field name="extinguisher_certification_notes"/>
                     <p>
                         En caso de imcumplimiento de algún punto se marcará:
                     </p>

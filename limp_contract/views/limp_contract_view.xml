@@ -243,7 +243,10 @@
                                         <field name="location_id"/>
                                         <field name="brand"/>
                                         <field name="model"/>
+                                        <field name="bie_type"/>
+                                        <field name="weight"/>
                                         <field name="plate_num"/>
+                                        <field name="bie_extinguisher_agent"/>
                                         <field name="manufacturing_date"/>
                                         <field name="re_embossed_date"/>
                                         <field name="revision_date"/>

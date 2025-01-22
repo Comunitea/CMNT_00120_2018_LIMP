@@ -26,12 +26,21 @@ class StockServicePicking(models.Model):
     contract_id = fields.Many2one("limp.contract", "Contract")
     workcenter = fields.Char("Workcenter")
 
+    revision_start_date = fields.Date("Revision start date")
+    revision_end_date = fields.Date("Revision end date")
+
     has_extinguisher_revision = fields.Boolean('Has extinguisher revision')
     extinguisher_revision_ids = fields.One2many(
         'extinguisher.revision',
         'stock_service_picking_id',
         'Extinguisher revision'
     )
+    extinguisher_revision_correct = fields.Selection([
+        ('correct', 'Correct'),
+        ('has_anomalies', 'Has anomalies')
+    ], 'Extinguisher revision is correct')
+    extinguisher_revision_observation = fields.Text('Extinguisher revision observation')
+    extinguisher_certification_notes = fields.Text('Extinguisher certification notes')
 
     has_bie_revision = fields.Boolean('Has BIE revision')
     bie_revision_ids = fields.One2many(
@@ -39,6 +48,12 @@ class StockServicePicking(models.Model):
         'stock_service_picking_id',
         'Extinguisher revision'
     )
+    bie_revision_correct = fields.Selection([
+        ('correct', 'Correct'),
+        ('has_anomalies', 'Has anomalies')
+    ], 'BIE revision is correct')
+    bie_revision_observation = fields.Text('BIE revision observation')
+    bie_certification_notes = fields.Text('BIE certification notes')
 
     @api.onchange('has_extinguisher_revision')
     def _onchange_has_extinguisher_revision(self):
@@ -97,3 +112,8 @@ class StockServicePicking(models.Model):
             self.type_ddd_ids = [(6, 0, contract.type_ddd_ids.ids)]
             self.parent_id = contract.analytic_account_id.id
             self.used_product_ids = [(6, 0, contract.used_product_ids.ids)]
+
+    def format_date(self, date, date_format):
+        import locale
+        locale.setlocale(locale.LC_ALL, 'es_ES.UTF-8')
+        return date.strftime(date_format)
