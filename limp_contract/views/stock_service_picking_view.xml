@@ -58,7 +58,6 @@
             <field name="type_ddd_ids" position="after">
                 <field name="has_extinguisher_revision"/>
                 <field name="has_bie_revision"/>
-                <field name="building_site_id" string="Service Site" attrs="{'invisible': [('has_extinguisher_revision', '=', False)]}"/>
             </field>
             <notebook position="inside">
                 <page
