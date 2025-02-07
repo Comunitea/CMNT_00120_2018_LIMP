@@ -102,7 +102,7 @@
                                         <imageExpression class="java.lang.String"><![CDATA[$F{Logo-logo}]]></imageExpression>
                                 </image>
                                 <textField>
-                                        <reportElement x="0" y="76" width="99" height="48">
+                                        <reportElement x="0" y="56" width="119" height="68">
                                                 <printWhenExpression><![CDATA[!$F{Scont-no_quality}]]></printWhenExpression>
                                         </reportElement>
                                         <textElement textAlignment="Center" verticalAlignment="Middle">
@@ -326,11 +326,11 @@
                                         <textElement verticalAlignment="Middle"/>
                                         <text><![CDATA[TOTAL]]></text>
                                 </staticText>
-                                <textField isBlankWhenNull="true">
+                                <!-- <textField isBlankWhenNull="true">
                                         <reportElement x="209" y="102" width="336" height="20"/>
                                         <textElement/>
                                         <textFieldExpression class="java.lang.String"><![CDATA[$F{No_autorizacion_transporte-transport_authorization_no}]]></textFieldExpression>
-                                </textField>
+                                </textField> -->
                                 <staticText>
                                         <reportElement x="236" y="122" width="153" height="20"/>
                                         <textElement textAlignment="Center"/>
@@ -369,11 +369,11 @@
                                         <textElement verticalAlignment="Middle"/>
                                         <text><![CDATA[IMPORTE]]></text>
                                 </staticText>
-                                <staticText>
+                                <!-- <staticText>
                                         <reportElement x="0" y="102" width="209" height="20"/>
                                         <textElement/>
                                         <text><![CDATA[EMPRESA GESTORA DE RESIDUOS, Nº ]]></text>
-                                </staticText>
+                                </staticText> -->
                                 <rectangle>
                                         <reportElement mode="Transparent" x="0" y="71" width="545" height="26"/>
                                 </rectangle>
