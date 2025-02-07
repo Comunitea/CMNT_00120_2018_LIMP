@@ -111,7 +111,7 @@
                                         <imageExpression class="java.lang.String"><![CDATA[$F{Logo-logo}]]></imageExpression>
                                 </image>
                                 <textField>
-                                        <reportElement x="0" y="76" width="99" height="48">
+                                        <reportElement x="0" y="56" width="119" height="68">
                                                 <printWhenExpression><![CDATA[!$F{Scont-no_quality}]]></printWhenExpression>
                                         </reportElement>
                                         <textElement textAlignment="Center" verticalAlignment="Middle">
