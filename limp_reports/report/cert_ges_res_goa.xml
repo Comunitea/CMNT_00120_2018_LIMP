@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-2">
                                     <div>
-                                        <img src="/limp_reports/static/src/img/sello_limp.png" alt="sello"/>
+                                        <img src="/limp_reports/static/src/img/sello_limp.png" style="width: 200px" alt="sello"/>
                                     </div>
                                     <br/>
                                     <div>
