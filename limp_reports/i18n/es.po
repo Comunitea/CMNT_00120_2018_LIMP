@@ -512,19 +512,9 @@ msgid "OBRA"
 msgstr ""
 
 #. module: limp_reports
-#: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
-msgid "Operador"
-msgstr ""
-
-#. module: limp_reports
 #: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__operation_type
 msgid "Operation type"
 msgstr "Tipo de operación"
-
-#. module: limp_reports
-#: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__operator_id
-msgid "Operator"
-msgstr "Operador"
 
 #. module: limp_reports
 #: model:ir.actions.report,name:limp_reports.outgoing_report
@@ -792,7 +782,7 @@ msgstr "Usuarios"
 #. module: limp_reports
 #: model:ir.actions.report,name:limp_reports.valorization_picking
 msgid "Valorization build picking"
-msgstr "Albarán de obra"
+msgstr "Valoración albarán de obra"
 
 #. module: limp_reports
 #: model:ir.model.fields,field_description:limp_reports.field_product_product__valorization_percentage

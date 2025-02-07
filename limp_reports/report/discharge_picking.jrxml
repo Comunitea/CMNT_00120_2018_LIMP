@@ -348,7 +348,7 @@
                                         <leftPen lineWidth="0.25" lineStyle="Solid"/>
                                 </box>
                                 <textElement/>
-                                <textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"VAT")]]></textFieldExpression>
+                                <textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"NIF")]]></textFieldExpression>
                         </textField>
                         <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                                 <reportElement positionType="Float" x="333" y="18" width="172" height="20"/>
