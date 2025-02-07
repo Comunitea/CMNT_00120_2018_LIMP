@@ -92,6 +92,9 @@
         <field name="Nombre-name2" class="java.lang.String">
                 <fieldDescription><![CDATA[Cliente___Transportista-partner_id/Nombre-name]]></fieldDescription>
         </field>
+        <field name="NIF-vat2" class="java.lang.String">
+                <fieldDescription><![CDATA[Cliente___Transportista-partner_id/NIF-vat]]></fieldDescription>
+        </field>
         <field name="Ciudad-city" class="java.lang.String">
                 <fieldDescription><![CDATA[Transportes_de_retirada-remove_service_ids/Direccion_origen-orig_address_id/Ciudad-city]]></fieldDescription>
         </field>
@@ -309,6 +312,15 @@
                                 <textElement/>
                                 <textFieldExpression class="java.lang.String"><![CDATA[$F{Nombre-name2}]]></textFieldExpression>
                         </textField>
+                        <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                                <reportElement positionType="Float" x="263" y="18" width="70" height="20"/>
+                                <box leftPadding="4">
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.0" lineStyle="Solid"/>
+                                </box>
+                                <textElement/>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{NIF-vat2}]]></textFieldExpression>
+                        </textField>
                         <textField>
                                 <reportElement x="333" y="3" width="172" height="15"/>
                                 <box leftPadding="4">
@@ -328,6 +340,15 @@
                                 </box>
                                 <textElement/>
                                 <textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Client")]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                                <reportElement x="263" y="3" width="70" height="15"/>
+                                <box leftPadding="4">
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement/>
+                                <textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"VAT")]]></textFieldExpression>
                         </textField>
                         <textField isStretchWithOverflow="true" isBlankWhenNull="true">
                                 <reportElement positionType="Float" x="333" y="18" width="172" height="20"/>
