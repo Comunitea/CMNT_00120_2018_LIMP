@@ -33,7 +33,8 @@ class ServicePickingOtherConceptsRel(models.Model):
     _inherit = "service.picking.other.concepts.rel"
 
     price_unit = fields.Float(
-        "Price Unit", digits=dp.get_precision("Sale Price")
+        # "Price Unit", digits=dp.get_precision("Sale Price")
+        "Price Unit", digits=(16, 3)
     )
 
     @api.onchange("product_id")

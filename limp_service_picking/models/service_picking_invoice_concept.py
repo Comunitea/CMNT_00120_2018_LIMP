@@ -29,14 +29,14 @@ class ServicePickingInvoiceConcept(models.Model):
 
     product_id = fields.Many2one("product.product", "Product", required=True)
     name = fields.Char("Name", size=256, required=True)
-    price = fields.Float("Price", digits=(12, 2))
+    price = fields.Float("Price", digits=(16, 3))
     notes = fields.Text("Notes")
     product_qty = fields.Float("Qty.", digits=(12, 3))
     product_uom = fields.Many2one("uom.uom", "Product uom")
     service_picking_id = fields.Many2one(
         "stock.service.picking", "Service picking"
     )
-    subtotal = fields.Float("Subtotal", compute="_compute_subtotal")
+    subtotal = fields.Float("Subtotal", compute="_compute_subtotal", digits=(16, 3))
     tax_ids = fields.Many2many(
         "account.tax",
         "invoice_concept_tax_rel",
