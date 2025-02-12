@@ -71,35 +71,30 @@ class MaintenanceTask(models.Model):
         action = self.env.ref(
             "limp_service_picking.planified_service_pickings_action"
         ).read()[0]
-        contract = self.env["limp.contract"].search(
-            [("analytic_account_id", "=", self.contract_id.id)]
-        )
+        contract = self.env["limp.contract"].search([
+            ("analytic_account_id", "=", self.contract_id.id)
+        ])
         if contract:
-            action["context"] = str(
-                {
-                    "default_picking_type": "sporadic",
-                    "type": "sporadic",
-                    "form_view_ref":
-                    "limp_service_picking.stock_service_picking_form",
-                    "default_delegation_id": contract.delegation_id.id,
-                    "default_partner_id": contract.partner_id.id,
-                    "default_manager_id": contract.manager_id.id,
-                    "default_address_invoice_id":
-                    contract.address_invoice_id.id,
-                    "default_address_id": contract.address_id.id,
-                    "default_ccc_account_id": contract.bank_account_id.id,
-                    "default_payment_type": contract.payment_type_id.id,
-                    "default_payment_term": contract.payment_term_id.id,
-                    "default_privacy": contract.privacy,
-                    "default_address_tramit_id": contract.address_tramit_id.id,
-                    "default_contract_id": contract.id,
-                    "default_workcenter": self.workcenter,
-                    "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
-                    "default_used_product_ids": [
-                        (6, 0, self.products_used_ids.mapped("product_id").ids)
-                    ],
-                }
-            )
+            action["context"] = str({
+                "default_picking_type": "sporadic",
+                "type": "sporadic",
+                "form_view_ref":
+                "limp_service_picking.stock_service_picking_form",
+                "default_delegation_id": contract.delegation_id.id,
+                "default_partner_id": contract.partner_id.id,
+                "default_manager_id": contract.manager_id.id,
+                "default_address_invoice_id": contract.address_invoice_id.id,
+                "default_address_id": contract.address_id.id,
+                "default_ccc_account_id": contract.bank_account_id.id,
+                "default_payment_type": contract.payment_type_id.id,
+                "default_payment_term": contract.payment_term_id.id,
+                "default_privacy": contract.privacy,
+                "default_address_tramit_id": contract.address_tramit_id.id,
+                "default_contract_id": contract.id,
+                "default_workcenter": self.workcenter,
+                "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
+                "default_used_product_ids": [(6, 0, self.products_used_ids.mapped("product_id").ids)],
+            })
         action["domain"] = (
             "[('id','in', [" + ",".join(map(str, self.picking_ids.ids)) + "])]"
         )
@@ -200,83 +195,56 @@ class MaintenanceTask(models.Model):
                         )
                     ]
                 for date in dates:
-                    contract = self.env["limp.contract"].search(
-                        [("analytic_account_id", "=", task.contract_id.id)]
-                    )[0]
-                    pick = self.env["stock.service.picking"].create(
-                        {
-                            "picking_type": "sporadic",
-                            "planified": True,
-                            "maintenance": True,
-                            "contract_id": contract.id,
-                            "picking_date": date.strftime("%Y-%m-%d"),
-                            "payment_type": contract.payment_type_id
-                            and contract.payment_type_id.id
-                            or False,
-                            "payment_term": contract.payment_term_id
-                            and contract.payment_term_id.id
-                            or False,
-                            "invoice_type": "noinvoice",
-                            "ccc_account_id": contract.bank_account_id
-                            and contract.bank_account_id.id
-                            or False,
-                            "manager_id": (
-                                task.contract_line_id
-                                and task.contract_line_id.manager_id
-                            )
-                            and task.contract_line_id.manager_id.id
-                            or contract.analytic_account_id.manager_id.id,
-                            "partner_id": contract.partner_id.id,
-                            "workcenter": task.workcenter,
-                            "address_invoice_id":
-                            contract.address_invoice_id.id,
-                            "department_id": (
-                                task.contract_line_id
-                                and task.contract_line_id.department_id
-                            )
-                            and task.contract_line_id.department_id.id
-                            or contract.analytic_account_id.department_id.id,
-                            "delegation_id": (
-                                task.contract_line_id
-                                and task.contract_line_id.delegation_id
-                            )
-                            and task.contract_line_id.delegation_id.id
-                            or contract.analytic_account_id.delegation_id.id,
-                            "description": task.name,
-                            "address_id": contract.address_id.id,
-                            "no_quality": contract.no_quality,
-                            "maintenace_task_id": task.id,
-                            "parent_id": task.contract_line_id
-                            and task.contract_line_id.id
-                            or contract.analytic_account_id.id,
-                            "monitoring_situation": task.monitoring_situation,
-                            "type_ddd_ids": [(6, 0, task.type_ddd_ids.ids)],
-                            "type_of_installation_id": [
-                                (6, 0, task.type_of_installation_ids.ids)
-                            ],
-                            "used_product_ids": [
-                                (6, 0, contract.used_product_ids.ids)
-                            ],
-                        }
-                    )
+                    contract = self.env["limp.contract"].search([
+                        ("analytic_account_id", "=", task.contract_id.id)
+                    ])[0]
+                    pick = self.env["stock.service.picking"].create({
+                        "picking_type": "sporadic",
+                        "planified": True,
+                        "maintenance": True,
+                        "contract_id": contract.id,
+                        "picking_date": date.strftime("%Y-%m-%d"),
+                        "payment_type": contract.payment_type_id and contract.payment_type_id.id or False,
+                        "payment_term": contract.payment_term_id and contract.payment_term_id.id or False,
+                        "invoice_type": "noinvoice",
+                        "ccc_account_id": contract.bank_account_id and contract.bank_account_id.id or False,
+                        "manager_id":
+                            (task.contract_line_id and task.contract_line_id.manager_id)
+                            and task.contract_line_id.manager_id.id or contract.analytic_account_id.manager_id.id,
+                        "partner_id": contract.partner_id.id,
+                        "workcenter": task.workcenter,
+                        "address_invoice_id": contract.address_invoice_id.id,
+                        "department_id":
+                            (task.contract_line_id and task.contract_line_id.department_id)
+                            and task.contract_line_id.department_id.id or contract.analytic_account_id.department_id.id,
+                        "delegation_id":
+                            (task.contract_line_id and task.contract_line_id.delegation_id)
+                            and task.contract_line_id.delegation_id.id or contract.analytic_account_id.delegation_id.id,
+                        "description": task.name,
+                        "address_id": contract.address_id.id,
+                        "no_quality": contract.no_quality,
+                        "maintenace_task_id": task.id,
+                        "parent_id":
+                            task.contract_line_id and task.contract_line_id.id or contract.analytic_account_id.id,
+                        "monitoring_situation": task.monitoring_situation,
+                        "type_ddd_ids": [(6, 0, task.type_ddd_ids.ids)],
+                        "type_of_installation_id": [(6, 0, task.type_of_installation_ids.ids)],
+                        "used_product_ids": [(6, 0, contract.used_product_ids.ids)],
+                    })
                     for specie in task.detected_species_ids:
-                        specie.copy(
-                            {
-                                "maintenace_task_id": False,
-                                "picking_id": pick.id,
-                            }
-                        )
+                        specie.copy({
+                            "maintenace_task_id": False,
+                            "picking_id": pick.id,
+                        })
                     for prod in task.products_used_ids:
-                        prod.copy(
-                            {
-                                "maintenace_task_id": False,
-                                "picking_id": pick.id,
-                            }
-                        )
+                        prod.copy({
+                            "maintenace_task_id": False,
+                            "picking_id": pick.id,
+                        })
                 if dates:
-                    task.write(
-                        {"last_execution_date": dates[-1].strftime("%Y-%m-%d")}
-                    )
+                    task.write({
+                        "last_execution_date": dates[-1].strftime("%Y-%m-%d")
+                    })
                 end_tasks.append(task.id)
 
             domain2 = list(domain)
