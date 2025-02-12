@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-22 15:24+0000\n"
-"PO-Revision-Date: 2025-01-22 15:24+0000\n"
+"POT-Creation-Date: 2025-02-12 17:30+0000\n"
+"PO-Revision-Date: 2025-02-12 17:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__bies_count
+msgid "# of BIEs"
+msgstr "# de BIEs"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__invoice_count
@@ -34,6 +39,11 @@ msgstr "# Lin. limpieza"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__analytic_moves_count
 msgid "# of consummtions"
 msgstr "# de consumos"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__extinguishers_count
+msgid "# of extinguishers"
+msgstr "# de extintores"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__home_help_lines_count
@@ -81,19 +91,19 @@ msgid "# of waste"
 msgstr "# Residuos"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:59
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:115
 #, python-format
 msgid "%s Kg AFFF"
 msgstr ""
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:55
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:111
 #, python-format
 msgid "%s Kg CO2"
 msgstr ""
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:57
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:113
 #, python-format
 msgid "%s Kg Dust ABC"
 msgstr ""
@@ -593,6 +603,7 @@ msgstr "Anual"
 #: selection:limp.contract,periodicity_desinsectacion:0
 #: selection:limp.contract,periodicity_desratizacion:0
 #: selection:limp.contract,periodicity_legionella:0
+#: selection:limp.contract,revision_period:0
 msgid "Anual"
 msgstr ""
 
@@ -774,15 +785,21 @@ msgid "BIE workshop retirement"
 msgstr "BIE retirada de taller"
 
 #. module: limp_contract
-#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
 msgid "BIEs Revision"
 msgstr "Revisión de BIEs"
 
 #. module: limp_contract
-#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
+#: model_terms:ir.ui.view,arch_db:limp_contract.bie_and_signal_form
+#: model_terms:ir.ui.view,arch_db:limp_contract.bie_and_signal_tree
 msgid "BIEs and Signals Inventory"
 msgstr "Inventario de BIEs y señales"
+
+#. module: limp_contract
+#: code:addons/limp_contract/models/limp_contract.py:287
+#, python-format
+msgid "BIEs and signals"
+msgstr "BIEs y señales"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_bie_revision
@@ -824,6 +841,11 @@ msgstr "Semestral"
 #: model:ir.model,name:limp_contract.model_bie_and_signal
 msgid "Bie and signal"
 msgstr "BIE y señal"
+
+#. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
+msgid "Bies"
+msgstr ""
 
 #. module: limp_contract
 #: selection:limp.contract,periodicity_desinfeccion:0
@@ -902,7 +924,7 @@ msgid "Cancelled"
 msgstr "Cancelado"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:427
+#: code:addons/limp_contract/models/limp_contract.py:634
 #, python-format
 msgid "Cannot close the contract without a final date less or equal today."
 msgstr "No puede cerrar el contrato sin una fecha final menor o igual a hoy."
@@ -1560,7 +1582,8 @@ msgid "Extinguisers Revision"
 msgstr "Revisión de extintores"
 
 #. module: limp_contract
-#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
+#: model_terms:ir.ui.view,arch_db:limp_contract.extinguisher_and_signal_form
+#: model_terms:ir.ui.view,arch_db:limp_contract.extinguisher_and_signal_tree
 msgid "Extinguisers and Signals Inventory"
 msgstr "Inventario de extintores y señales"
 
@@ -1568,6 +1591,25 @@ msgstr "Inventario de extintores y señales"
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__extinguisher_3kg_has_hose
 msgid "Extinguisher 3kg has hose"
 msgstr "Extintor de 3kg tiene manguera"
+
+#. module: limp_contract
+#: model:ir.actions.server,name:limp_contract.ir_cron_extinguisher_bie_revision_ir_actions_server
+#: model:ir.cron,cron_name:limp_contract.ir_cron_extinguisher_bie_revision
+#: model:ir.cron,name:limp_contract.ir_cron_extinguisher_bie_revision
+msgid "Extinguisher Bie Cron Revision"
+msgstr "Cron de revisión de extintores Bie"
+
+#. module: limp_contract
+#: model:ir.actions.server,name:limp_contract.ir_cron_extinguisher_ir_actions_server
+msgid "Extinguisher Bies Cron"
+msgstr "Cron de extintores Bie"
+
+#. module: limp_contract
+#: model:ir.actions.server,name:limp_contract.ir_cron_extinguisher_bie_re_embossed_ir_actions_server
+#: model:ir.cron,cron_name:limp_contract.ir_cron_extinguisher_bie_re_embossed
+#: model:ir.cron,name:limp_contract.ir_cron_extinguisher_bie_re_embossed
+msgid "Extinguisher Bies Cron Re-Embossed"
+msgstr "Cron de retimbrado de extintores Bie"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__extinguisher_type
@@ -1710,6 +1752,11 @@ msgid "Extinguisher revision observation"
 msgstr "Observaciones de la revisión del extintores"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__revision_period
+msgid "Extinguisher revision period"
+msgstr "Periodo de revisión de extintores"
+
+#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_extinguisher_revision_result
 msgid "Extinguisher revision result"
 msgstr "Resultado de revisión de extintor"
@@ -1726,13 +1773,14 @@ msgstr "Retirada de extintor a taller"
 
 #. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
-msgid "Extinguishers Revision"
-msgstr "Revisión de extintores"
+msgid "Extinguishers"
+msgstr "Extintores"
 
 #. module: limp_contract
-#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
-msgid "Extinguishers and Signals Inventory"
-msgstr "Inventario de extintores y señales"
+#: code:addons/limp_contract/models/limp_contract.py:273
+#, python-format
+msgid "Extinguishers and signals"
+msgstr "Extintores y señales"
 
 #. module: limp_contract
 #: model:months.interval,name:limp_contract.2
@@ -2331,9 +2379,7 @@ msgid "Manual Legionella Torres Sin Parada"
 msgstr ""
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__bie_signal_manufacturing_date
 #: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__manufacturing_date
-#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__extinguisher_signal_manufacturing_date
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__manufacturing_date
 msgid "Manufacturing date"
 msgstr "Fecha de fabricación"
@@ -2398,6 +2444,8 @@ msgid "Monthy"
 msgstr "Mensual"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__name
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type__name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel__name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives__name
@@ -2406,6 +2454,20 @@ msgstr "Mensual"
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_tree
 msgid "Name"
 msgstr "Nombre"
+
+#. module: limp_contract
+#: code:addons/limp_contract/models/bie_and_signal.py:13
+#: code:addons/limp_contract/models/bie_and_signal.py:90
+#, python-format
+msgid "New BIE and signal"
+msgstr "Nuevo BIE y señal"
+
+#. module: limp_contract
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:13
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:73
+#, python-format
+msgid "New Extinguisher and signal"
+msgstr "Nuevo Extintor y señal"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history__new_amount
@@ -2539,7 +2601,7 @@ msgid "Only contract lines in draft or cancelled states can be deleted."
 msgstr "Sólo lineas de contratos en estado borrador o cancelados pueden ser borrados."
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:353
+#: code:addons/limp_contract/models/limp_contract.py:560
 #, python-format
 msgid "Only contracts in draft or cancelled states can be deleted."
 msgstr "Sólo contratos en estado borrador o cancelados pueden ser borrados."
@@ -2808,6 +2870,12 @@ msgid "R.T."
 msgstr ""
 
 #. module: limp_contract
+#: selection:bie.revision,test_type:0
+#: selection:extinguisher.revision,test_type:0
+msgid "Re-embossed"
+msgstr "Retimbrado"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__re_embossed_date
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__re_embossed_date
 msgid "Re-embossed date"
@@ -2952,11 +3020,6 @@ msgid "Service"
 msgstr "Servicio"
 
 #. module: limp_contract
-#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
-msgid "Service Site"
-msgstr "Sitio de servicio"
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_bie_revision__stock_service_picking_id
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location__building_site_services_id
@@ -2990,6 +3053,12 @@ msgstr "Firmar"
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
 msgid "Sign contract"
 msgstr "Firmar contrato"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__bie_signal_manufacturing_date
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__extinguisher_signal_manufacturing_date
+msgid "Signal Manufacturing date"
+msgstr "Fecha de fabricación de señal"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_extinguisher_and_signal
