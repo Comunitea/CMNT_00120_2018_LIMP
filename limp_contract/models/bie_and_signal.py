@@ -1,9 +1,18 @@
-from odoo import models, fields
+from odoo import models, fields, api, _
 
 
 class BIEAndSignal(models.Model):
     _name = 'bie.and.signal'
     _description = 'Bie and signal'
+
+    name = fields.Char(
+        'Name',
+        compute='_compute_name',
+        store=True,
+        readonly=True,
+        default=_("New BIE and signal"),
+        force_save=True
+    )
 
     sequence = fields.Integer('Sequence', required=True)
     brand = fields.Char('Brand', required=True)
@@ -19,10 +28,15 @@ class BIEAndSignal(models.Model):
     )
     re_embossed_date = fields.Date('Re-embossed date',)
     bie_extinguisher_agent = fields.Char('Extinguisher agent')
-    revision_date = fields.Date('Revision date')
+    revision_date = fields.Date(
+        'Revision date',
+        compute='_compute_bie_dates',
+        store=True,
+        readonly=False,
+    )
     preasure_ok = fields.Boolean('Preasure OK')
     pressure = fields.Float('Pressure')
-    bie_signal_manufacturing_date = fields.Date('Manufacturing date', required=True)
+    bie_signal_manufacturing_date = fields.Date('Signal Manufacturing date', required=True)
     signal_observation_ok = fields.Boolean('Signal observation OK')
     signal_observation = fields.Text('Signal observation')
     signal_test_type = fields.Selection([
@@ -38,6 +52,43 @@ class BIEAndSignal(models.Model):
         domain="[('building_site_services_id', '=', building_site_id)]"
     )
     contract_id = fields.Many2one('limp.contract', 'Service picking', required=True)
+
+    def _get_date(self, test_type):
+        self.ensure_one()
+        picking_ids = self.contract_id.stock_maintenace_service_picking_ids.filtered(
+            lambda x: x.has_bie_revision is True
+        ).mapped('bie_revision_ids').filtered(
+            lambda x: x.bie_and_signal_id.id == self.id
+            and x.test_type == test_type
+        ).mapped('stock_service_picking_id').sorted(key='picking_date', reverse=True)
+        if picking_ids:
+            return picking_ids[0].picking_date
+        else:
+            return False
+
+    @api.depends('contract_id', 'contract_id.stock_maintenace_service_picking_ids')
+    def _compute_bie_dates(self):
+        for record in self:
+            re_embossed_date = record._get_date('re-embozed')
+            if re_embossed_date or not record.re_embossed_date:
+                record.re_embossed_date = re_embossed_date
+            else:
+                record.re_embossed_date = record.re_embossed_date
+
+            revision_date = record._get_date('revision')
+            if revision_date is not False or record.revision_date is False:
+                record.revision_date = revision_date
+            else:
+                record.revision_date = record.revision_date
+
+    @api.depends('brand', 'model', 'plate_num')
+    def _compute_name(self):
+        for record in self:
+            if record.brand and record.model and record.plate_num and record.contract_id:
+                name = record.brand + " " + record.model + " " + record.plate_num
+            else:
+                name = _("New BIE and signal")
+            record.name = name
 
 
 class BIERevision(models.Model):
@@ -66,6 +117,7 @@ class BIERevision(models.Model):
     test_type = fields.Selection([
         ('revision', 'Revision'),
         ('retire', 'Retire'),
+        ('re_embossed', 'Re-embossed'),
     ], 'Test type')
 
     # CAMPOS DE LA REVISIÓN

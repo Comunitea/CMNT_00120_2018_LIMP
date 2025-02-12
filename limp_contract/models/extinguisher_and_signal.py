@@ -5,6 +5,15 @@ class ExtinguisherAndSignal(models.Model):
     _name = 'extinguisher.and.signal'
     _description = 'Signal and extinguisher information'
 
+    name = fields.Char(
+        'Name',
+        compute='_compute_name',
+        store=True,
+        readonly=True,
+        default=_("New Extinguisher and signal"),
+        force_save=True
+    )
+
     sequence = fields.Integer('Sequence', required=True)
     brand = fields.Char('Brand', required=True)
     model = fields.Text('Model',)
@@ -13,8 +22,17 @@ class ExtinguisherAndSignal(models.Model):
         'Manufacturing date',
         required=True,
     )
-    re_embossed_date = fields.Date('Re-embossed date',)
-    revision_date = fields.Date('Revision date')
+    re_embossed_date = fields.Date(
+        'Re-embossed date',
+        compute='_compute_extiguisher_dates',
+        store=True,
+        readonly=False,
+    )
+    revision_date = fields.Date(
+        'Revision date',
+        compute='_compute_extiguisher_dates',
+        store=True,
+        readonly=False,)
     extinguisher_type = fields.Char(
         'Extinguisher Type',
         readonly=True,
@@ -29,7 +47,7 @@ class ExtinguisherAndSignal(models.Model):
     weight = fields.Float('Weight', required=True)
     preasure_ok = fields.Boolean('Preasure OK')
     pressure = fields.Float('Pressure')
-    extinguisher_signal_manufacturing_date = fields.Date('Manufacturing date', required=True)
+    extinguisher_signal_manufacturing_date = fields.Date('Signal Manufacturing date', required=True)
     signal_observation_ok = fields.Boolean('Signal observation OK')
     signal_observation = fields.Text('Signal observation')
     signal_test_type = fields.Selection([
@@ -45,6 +63,44 @@ class ExtinguisherAndSignal(models.Model):
         domain="[('building_site_services_id', '=', building_site_id)]"
     )
     contract_id = fields.Many2one('limp.contract', 'Service picking', required=True)
+
+    @api.depends('brand', 'model', 'plate_num', 'contract_id')
+    def _compute_name(self):
+        for record in self:
+            if record.brand and record.model and record.plate_num:
+                name = record.brand + " " + record.model + " " + record.plate_num
+            else:
+                name = _("New Extinguisher and signal")
+            record.name = name
+
+    def _get_date(self, test_type):
+        self.ensure_one()
+        self_id = self.id
+        picking_ids = self.contract_id.stock_maintenace_service_picking_ids.filtered(
+            lambda x: x.has_extinguisher_revision is True
+        ).mapped('extinguisher_revision_ids').filtered(
+            lambda x: x.extinguisher_and_signal_id.id == self_id
+            and x.test_type == test_type
+        ).mapped('stock_service_picking_id').sorted(key='picking_date', reverse=True)
+        if picking_ids:
+            return picking_ids[0].picking_date
+        else:
+            return False
+
+    @api.depends('contract_id', 'contract_id.stock_maintenace_service_picking_ids')
+    def _compute_extiguisher_dates(self):
+        for record in self:
+            re_embossed_date = record._get_date('re-embozed')
+            if re_embossed_date or not record.re_embossed_date:
+                record.re_embossed_date = re_embossed_date
+            else:
+                record.re_embossed_date = record.re_embossed_date
+
+            revision_date = record._get_date('revision')
+            if revision_date is not False or record.revision_date is False:
+                record.revision_date = revision_date
+            else:
+                record.revision_date = record.revision_date
 
     @api.depends('weight', 'extinguisher_type')
     def _compute_extinguisher_type(self):
@@ -85,6 +141,7 @@ class ExtinguisherRevision(models.Model):
     test_type = fields.Selection([
         ('revision', 'Revision'),
         ('retire', 'Retire'),
+        ('re_embossed', 'Re-embossed'),
     ], 'Test type')
 
     # CAMPOS DE LA REVISIÓN
