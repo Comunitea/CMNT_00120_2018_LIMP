@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="bie_and_signal_tree" model="ir.ui.view">
+        <field name="name">bie.and.signal.tree</field>
+        <field name="model">bie.and.signal</field>
+        <field name="arch" type="xml">
+            <tree string="BIEs and Signals Inventory" default_order="sequence">
+                <field name="sequence" widget="handle"/>
+                <field name="building_site_id" invisible="True"/>
+                <field name="location_id"/>
+                <field name="brand"/>
+                <field name="model"/>
+                <field name="bie_type"/>
+                <field name="weight"/>
+                <field name="plate_num"/>
+                <field name="bie_extinguisher_agent"/>
+                <field name="manufacturing_date"/>
+                <field name="re_embossed_date"/>
+                <field name="revision_date"/>
+                <field name="preasure_ok"/>
+                <field name="pressure"/>
+                <field name="bie_signal_manufacturing_date"/>
+                <field name="signal_observation_ok"/>
+                <field name="signal_observation"/>
+                <field name="signal_test_type"/>
+            </tree>
+        </field>
+    </record>
+    <record id="bie_and_signal_form" model="ir.ui.view">
+        <field name="name">bie.and.signal.form</field>
+        <field name="model">bie.and.signal</field>
+        <field name="arch" type="xml">
+            <form string="BIEs and Signals Inventory">
+                <div>
+                    <h1><field name="name"/></h1>
+                    <h2><field name="contract_id"/></h2>
+                    <field name="building_site_id" invisible="True"/>
+                </div>
+                <group>
+                    <group>
+                        <field name="sequence"/>
+                        <field name="location_id"/>
+                        <field name="brand"/>
+                        <field name="model"/>
+                        <field name="bie_type"/>
+                        <field name="bie_extinguisher_agent"/>
+                        <field name="manufacturing_date"/>
+                        <field name="re_embossed_date"/>
+                        <field name="revision_date"/>
+                    </group>
+                    <group>
+                        <field name="weight"/>
+                        <field name="plate_num"/>
+                        <field name="preasure_ok"/>
+                        <field name="pressure"/>
+                        <field name="bie_signal_manufacturing_date"/>
+                        <field name="signal_observation_ok"/>
+                        <field name="signal_observation"/>
+                        <field name="signal_test_type"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

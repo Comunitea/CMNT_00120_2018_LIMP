@@ -69,6 +69,8 @@
         "views/maintenance_task.xml",
         "views/limp_contract_manual_ddd_view.xml",
         "views/building_site_services_view.xml",
+        "views/bie_and_signal_view.xml",
+        "views/extinguisher_and_signal_view.xml",
         "limp_manual_ddd_report.xml",
         "data/months_interval.xml",
     ],
