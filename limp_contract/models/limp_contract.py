@@ -19,6 +19,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class LimpContract(models.Model):
@@ -228,6 +230,11 @@ class LimpContract(models.Model):
         'Has BIE revision',
     )
 
+    revision_period = fields.Selection([
+        ('anual', 'Anual'),
+        ('quarterly', 'Quarterly'),
+    ], 'Extinguisher revision period', default='anual')
+
     bie_and_signal_ids = fields.One2many(
         'bie.and.signal',
         'contract_id',
@@ -305,6 +312,152 @@ class LimpContract(models.Model):
                 amount += sum(cleaning_line.concept_ids.mapped("total_amount"))
             contract.amount = amount
             contract.monthly_amount = round(amount / 12.0, 2)
+
+    def _get_values(self, contract_id, today, extinguishers, bies):
+        return {
+            "picking_type": "sporadic",
+            "planified": True,
+            "maintenance": True,
+            "contract_id": contract_id.id,
+            "picking_date": today.strftime("%Y-%m-%d"),
+            "payment_type": contract_id.payment_type_id and contract_id.payment_type_id.id or False,
+            "payment_term": contract_id.payment_term_id and contract_id.payment_term_id.id or False,
+            "invoice_type": "noinvoice",
+            "ccc_account_id": contract_id.bank_account_id and contract_id.bank_account_id.id or False,
+            "manager_id": contract_id.analytic_account_id.manager_id.id,
+            "partner_id": contract_id.partner_id.id,
+            "address_invoice_id": contract_id.address_invoice_id.id,
+            "department_id": contract_id.analytic_account_id.department_id.id,
+            "delegation_id": contract_id.analytic_account_id.delegation_id.id,
+            "description": contract_id.description,
+            "address_id": contract_id.address_id.id,
+            "no_quality": contract_id.no_quality,
+            "parent_id": contract_id.analytic_account_id.id,
+            'has_extinguisher_revision': True if extinguishers != [] else False,
+            'has_bie_revision': True if bies != [] else False,
+            'extinguisher_revision_ids': extinguishers,
+            'bie_revision_ids': bies,
+        }
+
+    def _get_contracts(self):
+        return self.env['limp.contract'].search([
+            ('state', '=', 'open'),
+            '|',
+            ('has_extinguishers_revision', '=', True),
+            ('has_bie_revision', '=', True),
+        ])
+
+    def _cron_check_re_embosed_extinguisher_bies(self):
+        contract_ids = self._get_contracts()
+        for contract_id in contract_ids:
+            today = datetime.now().date() + relativedelta(months=1)
+            extinguishers = []
+            bies = []
+
+            if contract_id.has_extinguishers_revision:
+                for extinguisher_and_signal_id in contract_id.extinguisher_and_signal_ids:
+                    if not extinguisher_and_signal_id.re_embossed_date:
+                        extinguishers.append((0, 0, {
+                            'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
+                            'test_type': 're_embossed'
+                        }))
+                    else:
+                        delta = relativedelta(
+                            today,
+                            extinguisher_and_signal_id.re_embossed_date
+                        )
+                        if delta.years >= 5:
+                            extinguishers.append((0, 0, {
+                                'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
+                                'test_type': 're_embossed'
+                            }))
+
+            if contract_id.has_bie_revision:
+                for bie_and_signal_id in contract_id.bie_and_signal_ids:
+                    if not bie_and_signal_id.re_embossed_date:
+                        bies.append((0, 0, {
+                            'bie_and_signal_id': bie_and_signal_id.id,
+                            'test_type': 're_embossed'
+                        }))
+                    else:
+                        delta = relativedelta(
+                            today,
+                            bie_and_signal_id.re_embossed_date
+                        )
+                        if delta.years >= 5:
+                            bies.append((0, 0, {
+                                'bie_and_signal_id': bie_and_signal_id.id,
+                                'test_type': 're_embossed'
+                            }))
+
+            if extinguishers != [] or bies != []:
+                self.env['stock.service.picking'].create(self._get_values(contract_id, today, extinguishers, bies))
+
+    def _cron_check_revision_extinguisher_bies(self):
+        contract_ids = self._get_contracts()
+        for contract_id in contract_ids:
+            today = datetime.now().date() + relativedelta(months=1)
+            extinguishers = []
+            bies = []
+
+            if contract_id.has_extinguishers_revision:
+                for extinguisher_and_signal_id in contract_id.extinguisher_and_signal_ids:
+                    if not extinguisher_and_signal_id.revision_date:
+                        extinguishers.append((0, 0, {
+                            'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
+                            'test_type': 'revision'
+                        }))
+                    elif contract_id.revision_period == 'anual':
+                        delta = relativedelta(
+                            today,
+                            extinguisher_and_signal_id.revision_date
+                        )
+                        if delta.years >= 1:
+                            extinguishers.append((0, 0, {
+                                'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
+                                'test_type': 'revision'
+                            }))
+                    elif contract_id.revision_period == 'quarterly':
+                        delta = relativedelta(
+                            today,
+                            extinguisher_and_signal_id.revision_date
+                        )
+                        if delta.years >= 1 or (delta.months >= 3 and delta.years == 0):
+                            extinguishers.append((0, 0, {
+                                'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
+                                'test_type': 'revision'
+                            }))
+
+            if contract_id.has_bie_revision:
+                for bie_and_signal_id in contract_id.bie_and_signal_ids:
+                    if not bie_and_signal_id.revision_date:
+                        bies.append((0, 0, {
+                            'bie_and_signal_id': bie_and_signal_id.id,
+                            'test_type': 'revision'
+                        }))
+                    elif contract_id.revision_period == 'anual':
+                        delta = relativedelta(
+                            today,
+                            bie_and_signal_id.revision_date
+                        )
+                        if delta.years >= 1:
+                            bies.append((0, 0, {
+                                'bie_and_signal_id': bie_and_signal_id.id,
+                                'test_type': 'revision'
+                            }))
+                    elif contract_id.revision_period == 'quarterly':
+                        delta = relativedelta(
+                            today,
+                            bie_and_signal_id.revision_date
+                        )
+                        if delta.years >= 1 or (delta.months >= 3 and delta.years == 0):
+                            bies.append((0, 0, {
+                                'bie_and_signal_id': bie_and_signal_id.id,
+                                'test_type': 'revision'
+                            }))
+
+            if extinguishers != [] or bies != []:
+                self.env['stock.service.picking'].create(self._get_values(contract_id, today, extinguishers, bies))
 
     def invoice_run(self):
         invoice_ids = self.env["account.invoice"]

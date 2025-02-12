@@ -73,6 +73,7 @@
         "views/extinguisher_and_signal_view.xml",
         "limp_manual_ddd_report.xml",
         "data/months_interval.xml",
+        "data/extinguisher_cron.xml",
     ],
     "installable": True,
 }
