@@ -113,6 +113,22 @@
                                 icon="fa-pencil-square-o">
                                 <field name="timesheet_count" widget="statinfo" string="Active timesheets"/>
                             </button>
+                            <button name="action_view_extinguishers"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                attrs="{'invisible': [('has_extinguishers_revision', '=', False)]}"
+                            >
+                                <field name="extinguishers_count" widget="statinfo" string="Extinguishers"/>
+                            </button>
+                            <button name="action_view_bies"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                attrs="{'invisible': [('has_bie_revision', '=', False)]}"
+                            >
+                                <field name="bies_count" widget="statinfo" string="Bies"/>
+                            </button>
                         </div>
                         <div class="oe_title">
                             <h1>

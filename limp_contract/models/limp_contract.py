@@ -234,6 +234,60 @@ class LimpContract(models.Model):
         'Extinguisher and signal'
     )
 
+    extinguishers_count = fields.Integer(
+        string="# of extinguishers",
+        compute="_compute_extinguishers_count",
+        readonly=True,
+        store=True,
+    )
+
+    bies_count = fields.Integer(
+        string="# of BIEs",
+        compute="_compute_bies_count",
+        readonly=True,
+        store=True,
+    )
+
+    @api.depends('bie_and_signal_ids')
+    def _compute_bies_count(self):
+        for contract in self:
+            contract.bies_count = len(contract.bie_and_signal_ids)
+
+    @api.depends('extinguisher_and_signal_ids')
+    def _compute_extinguishers_count(self):
+        for contract in self:
+            contract.extinguishers_count = len(
+                contract.extinguisher_and_signal_ids
+            )
+
+    def action_view_extinguishers(self):
+        self.ensure_one()
+        return {
+            'name': _('Extinguishers and signals'),
+            'type': 'ir.actions.act_window',
+            'view_mode': 'tree,form',
+            'res_model': 'extinguisher.and.signal',
+            'domain': [('contract_id', '=', self.id)],
+            'context': {
+                'default_contract_id': self.id,
+                'default_building_site_id': self.building_site_id.id,
+            },
+        }
+
+    def action_view_bies(self):
+        self.ensure_one()
+        return {
+            'name': _('BIEs and signals'),
+            'type': 'ir.actions.act_window',
+            'view_mode': 'tree,form',
+            'res_model': 'bie.and.signal',
+            'domain': [('contract_id', '=', self.id)],
+            'context': {
+                'default_contract_id': self.id,
+                'default_building_site_id': self.building_site_id.id,
+            },
+        }
+
     def _compute_contract_total_amount(self):
         for contract in self:
             amount = 0.0
