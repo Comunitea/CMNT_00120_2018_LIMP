@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 17:30+0000\n"
-"PO-Revision-Date: 2025-02-12 17:30+0000\n"
+"POT-Creation-Date: 2025-02-20 14:01+0000\n"
+"PO-Revision-Date: 2025-02-20 14:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -437,6 +437,12 @@ msgstr "<span colspan=\"2\">Centro de trabajo relacionado: %(center)s</span>\n"
 #: selection:extinguisher.and.signal,extinguisher_agent:0
 msgid "AFFF"
 msgstr ""
+
+#. module: limp_contract
+#: code:addons/limp_contract/models/stock_service_picking.py:80
+#, python-format
+msgid "ANUAL REVISION"
+msgstr "ANUAL REVISION"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__analytic_account_id
@@ -901,6 +907,7 @@ msgstr "Evento de calendario"
 #. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.contract_toinvoice_wzd_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
+#: model_terms:ir.ui.view,arch_db:limp_contract.service_picking_signature_wzd_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.upamount_contract_wzd_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.update_last_invoice_date_wzd_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.view_limp_contract_signature
@@ -1272,6 +1279,7 @@ msgstr "Crear factura"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__create_uid
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__create_uid
 msgid "Created by"
@@ -1298,6 +1306,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__create_date
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__create_date
 msgid "Created on"
@@ -1343,6 +1352,7 @@ msgstr "Contratos actuales"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__partner_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__partner_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__partner_id
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__partner_id
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_home_help_search
@@ -1473,6 +1483,7 @@ msgstr "Diaria"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__display_name
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__display_name
 msgid "Display Name"
@@ -1939,6 +1950,7 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history__id
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__id
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__id
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__id
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__id
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__id
 msgid "ID"
@@ -2160,6 +2172,7 @@ msgstr "Junio"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval____last_update
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date____last_update
 msgid "Last Modified on"
@@ -2186,6 +2199,7 @@ msgstr "Última Modifiación en"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__write_uid
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__write_uid
 msgid "Last Updated by"
@@ -2212,6 +2226,7 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__write_date
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__write_date
 msgid "Last Updated on"
@@ -2451,6 +2466,7 @@ msgstr "Mensual"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives__name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task__name
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__name
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__name
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_tree
 msgid "Name"
 msgstr "Nombre"
@@ -2748,6 +2764,11 @@ msgid "Picking lines"
 msgstr "Lineas de servicio"
 
 #. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.service_picking_signature_wzd_form
+msgid "Picking signature wizard"
+msgstr "Asistente de firma de albaranes"
+
+#. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.maintenance_task_view_form
 msgid "Pickings"
 msgstr "Albaranes"
@@ -2859,7 +2880,14 @@ msgid "Public"
 msgstr "Público"
 
 #. module: limp_contract
+#: code:addons/limp_contract/models/stock_service_picking.py:82
+#, python-format
+msgid "QUARTERLY REVISION"
+msgstr "REVISIÓN TRIMESTRAL"
+
+#. module: limp_contract
 #: selection:limp.contract,periodicity:0
+#: selection:limp.contract,revision_period:0
 #: selection:limp.contract.line.task.rel,freq:0
 msgid "Quarterly"
 msgstr "Trimestral"
@@ -3025,6 +3053,7 @@ msgstr "Servicio"
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location__building_site_services_id
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__stock_service_picking_id
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__picking_id
 msgid "Service picking"
 msgstr "Albarán de servicio"
 
@@ -3033,6 +3062,11 @@ msgstr "Albarán de servicio"
 #: model:ir.model,name:limp_contract.model_stock_service_picking_location
 msgid "Service picking location"
 msgstr "Localización de albarán de servicio"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_service_picking_signature_wzd
+msgid "Service picking signature wizard"
+msgstr "Asistente de firma de albaranes de servicio"
 
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_stock_service_picking
@@ -3084,10 +3118,49 @@ msgid "Signal test type"
 msgstr "Tipo de prueba señal"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_hr_employee__signature_image
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__signature_image
+#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
+#: model_terms:ir.ui.view,arch_db:limp_contract.view_employee_form_add_fields
+msgid "Signature"
+msgstr "Firma"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__signature_vat
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__signature_vat
+msgid "Signature VAT"
+msgstr "DNI firma"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__signature_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_signature__contract_date
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__signature_date
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__signature_date
 msgid "Signature date"
 msgstr "Fecha firma"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__signature_image
+msgid "Signature image"
+msgstr "Firma"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__signature_job
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__signature_job
+msgid "Signature job"
+msgstr "Cargo firma"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__signature_name
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__signature_name
+msgid "Signature name"
+msgstr "Nombre firma"
+
+#. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.service_picking_signature_wzd_form
+#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
+msgid "Sing"
+msgstr "Firmar"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__social_worker_id

@@ -569,22 +569,20 @@ class LimpContract(models.Model):
     def copy(self, default=None):
         if default is None:
             default = {}
-        default.update(
-            {
-                "state": "draft",
-                "date": False,
-                "child_ids": [],
-                "line_ids": [],
-                "contract_note_ids": [],
-                "stock_sporadic_service_picking_ids": [],
-                "stock_service_picking_ids": [],
-                "analytic_move_ids": [],
-                "employee_ids": [],
-                "active_employee_ids": [],
-                "inactive_employee_ids": [],
-                "report_employee_ids": [],
-            }
-        )
+        default.update({
+            "state": "draft",
+            "date": False,
+            "child_ids": [],
+            "line_ids": [],
+            "contract_note_ids": [],
+            "stock_sporadic_service_picking_ids": [],
+            "stock_service_picking_ids": [],
+            "analytic_move_ids": [],
+            "employee_ids": [],
+            "active_employee_ids": [],
+            "inactive_employee_ids": [],
+            "report_employee_ids": [],
+        })
         return super(
             LimpContract, self.sudo().with_context(is_contract=True)
         ).copy(default)
@@ -640,13 +638,11 @@ class LimpContract(models.Model):
     def _compute_invoiced(self):
         for contract in self:
             if contract.analytic_account_id:
-                child_ids = self.env["account.analytic.account"].search(
-                    [
-                        ("partner_id", "!=", False),
-                        ("invoiceable", "=", True),
-                        ("parent_id", "=", contract.analytic_account_id.id),
-                    ]
-                )
+                child_ids = self.env["account.analytic.account"].search([
+                    ("partner_id", "!=", False),
+                    ("invoiceable", "=", True),
+                    ("parent_id", "=", contract.analytic_account_id.id),
+                ])
                 child_ids |= contract.analytic_account_id
                 contract.invoice_count = len(child_ids.mapped("invoice_ids"))
 
@@ -693,16 +689,14 @@ class LimpContract(models.Model):
         action = self.env.ref(
             "limp_contract.action_limp_contract_home_help_line"
         ).read()[0]
-        action["context"] = str(
-            {
-                "c_manager_id": self.manager_id.id,
-                "default_partner_id": self.partner_id.id,
-                "c_delegation_id": self.delegation_id.id,
-                "default_company_id": self.company_id.id,
-                "c_department_id": self.department_id.id,
-                "default_contract_id": self.id,
-            }
-        )
+        action["context"] = str({
+            "c_manager_id": self.manager_id.id,
+            "default_partner_id": self.partner_id.id,
+            "c_delegation_id": self.delegation_id.id,
+            "default_company_id": self.company_id.id,
+            "c_department_id": self.department_id.id,
+            "default_contract_id": self.id,
+        })
         action["domain"] = (
             "[('id','in', ["
             + ",".join(map(str, self.home_help_line_ids._ids))
@@ -718,16 +712,14 @@ class LimpContract(models.Model):
         action = self.env.ref(
             "limp_contract.action_limp_contract_cleaning_line"
         ).read()[0]
-        action["context"] = str(
-            {
-                "c_manager_id": self.manager_id.id,
-                "default_partner_id": self.partner_id.id,
-                "c_delegation_id": self.delegation_id.id,
-                "default_company_id": self.company_id.id,
-                "c_department_id": self.department_id.id,
-                "default_contract_id": self.id,
-            }
-        )
+        action["context"] = str({
+            "c_manager_id": self.manager_id.id,
+            "default_partner_id": self.partner_id.id,
+            "c_delegation_id": self.delegation_id.id,
+            "default_company_id": self.company_id.id,
+            "c_department_id": self.department_id.id,
+            "default_contract_id": self.id,
+        })
         action["domain"] = (
             "[('id','in', ["
             + ",".join(map(str, self.cleaning_line_ids._ids))
@@ -745,25 +737,23 @@ class LimpContract(models.Model):
         action = self.env.ref(
             "limp_service_picking.service_pickings_action"
         ).read()[0]
-        action["context"] = str(
-            {
-                "default_picking_type": "wastes",
-                "type": "wastes",
-                "form_view_ref":
-                "limp_service_picking.stock_service_picking_form",
-                "default_delegation_id": self.delegation_id.id,
-                "default_partner_id": self.partner_id.id,
-                "default_manager_id": self.manager_id.id,
-                "default_address_invoice_id": self.address_invoice_id.id,
-                "default_address_id": self.address_id.id,
-                "default_ccc_account_id": self.bank_account_id.id,
-                "default_payment_type": self.payment_type_id.id,
-                "default_payment_term": self.payment_term_id.id,
-                "default_privacy": self.privacy,
-                "default_address_tramit_id": self.address_tramit_id.id,
-                "default_contract_id": self.id,
-            }
-        )
+        action["context"] = str({
+            "default_picking_type": "wastes",
+            "type": "wastes",
+            "form_view_ref":
+            "limp_service_picking.stock_service_picking_form",
+            "default_delegation_id": self.delegation_id.id,
+            "default_partner_id": self.partner_id.id,
+            "default_manager_id": self.manager_id.id,
+            "default_address_invoice_id": self.address_invoice_id.id,
+            "default_address_id": self.address_id.id,
+            "default_ccc_account_id": self.bank_account_id.id,
+            "default_payment_type": self.payment_type_id.id,
+            "default_payment_term": self.payment_term_id.id,
+            "default_privacy": self.privacy,
+            "default_address_tramit_id": self.address_tramit_id.id,
+            "default_contract_id": self.id,
+        })
         action["domain"] = (
             "[('id','in', ["
             + ",".join(map(str, self.stock_service_picking_ids._ids))
@@ -781,29 +771,27 @@ class LimpContract(models.Model):
         action = self.env.ref(
             "limp_service_picking.sporadic_service_pickings_action"
         ).read()[0]
-        action["context"] = str(
-            {
-                "default_picking_type": "sporadic",
-                "type": "sporadic",
-                "form_view_ref":
-                "limp_service_picking.stock_service_picking_form",
-                "default_delegation_id": self.delegation_id.id,
-                "default_partner_id": self.partner_id.id,
-                "default_manager_id": self.manager_id.id,
-                "default_address_invoice_id": self.address_invoice_id.id,
-                "default_address_id": self.address_id.id,
-                "default_ccc_account_id": self.bank_account_id.id,
-                "default_payment_type": self.payment_type_id.id,
-                "default_payment_term": self.payment_term_id.id,
-                "default_privacy": self.privacy,
-                "default_address_tramit_id": self.address_tramit_id.id,
-                "default_contract_id": self.id,
-                "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
-                "default_used_product_ids": [
-                    (6, 0, self.used_product_ids.ids)
-                ],
-            }
-        )
+        action["context"] = str({
+            "default_picking_type": "sporadic",
+            "type": "sporadic",
+            "form_view_ref":
+            "limp_service_picking.stock_service_picking_form",
+            "default_delegation_id": self.delegation_id.id,
+            "default_partner_id": self.partner_id.id,
+            "default_manager_id": self.manager_id.id,
+            "default_address_invoice_id": self.address_invoice_id.id,
+            "default_address_id": self.address_id.id,
+            "default_ccc_account_id": self.bank_account_id.id,
+            "default_payment_type": self.payment_type_id.id,
+            "default_payment_term": self.payment_term_id.id,
+            "default_privacy": self.privacy,
+            "default_address_tramit_id": self.address_tramit_id.id,
+            "default_contract_id": self.id,
+            "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
+            "default_used_product_ids": [
+                (6, 0, self.used_product_ids.ids)
+            ],
+        })
         action["domain"] = (
             "[('id','in', ["
             + ",".join(map(str, self.stock_sporadic_service_picking_ids._ids))
@@ -821,34 +809,32 @@ class LimpContract(models.Model):
         action = self.env.ref(
             "limp_service_picking.sporadic_service_pickings_action"
         ).read()[0]
-        action["context"] = str(
-            {
-                "default_picking_type": "sporadic",
-                "type": "sporadic",
-                "default_maintenance": True,
-                "form_view_ref":
-                "limp_service_picking.stock_service_picking_form",
-                "default_delegation_id": self.delegation_id.id,
-                "default_partner_id": self.partner_id.id,
-                "default_manager_id": self.manager_id.id,
-                "default_address_invoice_id": self.address_invoice_id.id,
-                "default_address_id": self.address_id.id,
-                "default_ccc_account_id": self.bank_account_id.id,
-                "default_payment_type": self.payment_type_id.id,
-                "default_payment_term": self.payment_term_id.id,
-                "default_privacy": self.privacy,
-                "default_address_tramit_id": self.address_tramit_id.id,
-                "default_contract_id": self.id,
-                'default_invoice_type': 'noinvoice',
-                "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
-                "default_used_product_ids": [
-                    (6, 0, self.used_product_ids.ids)
-                ],
-                "default_has_extinguisher_revision": self.has_extinguishers_revision,
-                "default_building_site_id": self.building_site_id.id,
-                "default_has_bie_revision": self.has_bie_revision,
-            }
-        )
+        action["context"] = str({
+            "default_picking_type": "sporadic",
+            "type": "sporadic",
+            "default_maintenance": True,
+            "form_view_ref":
+            "limp_service_picking.stock_service_picking_form",
+            "default_delegation_id": self.delegation_id.id,
+            "default_partner_id": self.partner_id.id,
+            "default_manager_id": self.manager_id.id,
+            "default_address_invoice_id": self.address_invoice_id.id,
+            "default_address_id": self.address_id.id,
+            "default_ccc_account_id": self.bank_account_id.id,
+            "default_payment_type": self.payment_type_id.id,
+            "default_payment_term": self.payment_term_id.id,
+            "default_privacy": self.privacy,
+            "default_address_tramit_id": self.address_tramit_id.id,
+            "default_contract_id": self.id,
+            'default_invoice_type': 'noinvoice',
+            "default_type_ddd_ids": [(6, 0, self.type_ddd_ids.ids)],
+            "default_used_product_ids": [
+                (6, 0, self.used_product_ids.ids)
+            ],
+            "default_has_extinguisher_revision": self.has_extinguishers_revision,
+            "default_building_site_id": self.building_site_id.id,
+            "default_has_bie_revision": self.has_bie_revision,
+        })
         action["domain"] = (
             "[('id','in', ["
             + ",".join(map(str,

@@ -9,7 +9,11 @@
                 <field name="contract_id"/>
             </field>
             <field name="address_id" position="after">
-                <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
+                <field
+                    name="address_tramit_id"
+                    domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]"
+                    attrs="{'readonly':[('state','in',['cancelled'])]}"
+                />
             </field>
             <field name="building_site" position="before">
                 <field name="privacy" attrs="{'readonly':[('state','in',['cancelled'])]}" colspan="4"/>
@@ -23,7 +27,14 @@
         <field name="inherit_id" ref="limp_service_picking.stock_service_picking_search"/>
         <field name="arch" type="xml">
             <filter name="to_invoice" position="attributes">
-                <attribute name="domain">[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice'),'|',('contract_id', '=', False),('contract_id.include_pickings', '!=', True)]</attribute>
+                <attribute name="domain">[
+                    ('invoice_line_ids', '=', False),
+                    ('state','=','closed'),
+                    ('invoice_type','!=', 'noinvoice'),
+                    '|',
+                    ('contract_id', '=', False),
+                    ('contract_id.include_pickings', '!=', True)
+                ]</attribute>
             </filter>
         </field>
     </record>
@@ -34,7 +45,14 @@
         <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_search"/>
         <field name="arch" type="xml">
             <filter name="to_invoice" position="attributes">
-                <attribute name="domain">[('invoice_line_ids', '=', False),('state','=','closed'),('invoice_type','!=', 'noinvoice'),'|',('contract_id', '=', False),('contract_id.include_pickings', '!=', True)]</attribute>
+                <attribute name="domain">[
+                    ('invoice_line_ids', '=', False),
+                    ('state','=','closed'),
+                    ('invoice_type','!=', 'noinvoice'),
+                    '|',
+                    ('contract_id', '=', False),
+                    ('contract_id.include_pickings', '!=', True)
+                ]</attribute>
             </filter>
         </field>
     </record>
@@ -44,6 +62,15 @@
         <field name="model">stock.service.picking</field>
         <field name="inherit_id" ref="limp_service_picking.stock_sporadic_service_picking_form"/>
         <field name="arch" type="xml">
+            <button name="action_draft" position="after">
+                <button
+                    name="action_sing"
+                    string="Sing"
+                    type="object"
+                    class="oe_highlight"
+                    attrs="{'invisible': [('signature_date', '!=', False)]}"
+                />
+            </button>
             <field name="sale_id" position="after">
                 <field name="contract_id"/>
             </field>
@@ -52,7 +79,11 @@
                 <field name="revision_end_date"/>
             </field>
             <field name="address_invoice_id" position="after">
-                 <field name="address_tramit_id" domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
+                <field
+                    name="address_tramit_id"
+                    domain="[('id', 'child_of', [partner_id]),('type','=','tramit')]"
+                    attrs="{'readonly':[('state','in',['cancelled'])]}"
+                />
                 <field name="privacy" attrs="{'readonly':[('state','in',['cancelled'])]}"/>
             </field>
             <field name="type_ddd_ids" position="after">
@@ -101,7 +132,12 @@
                     <separator string="Observations"/>
                     <group col="6">
                         <field name="extinguisher_revision_correct" widget="radio" colspan="2"/>
-                        <field name="extinguisher_revision_observation" nolabel="1" colspan="6" attrs="{'invisible': [('extinguisher_revision_correct', '!=', 'has_anomalies')]}"/>
+                        <field
+                            name="extinguisher_revision_observation"
+                            nolabel="1"
+                            colspan="6"
+                            attrs="{'invisible': [('extinguisher_revision_correct', '!=', 'has_anomalies')]}"
+                        />
                     </group>
                     <separator string="Cerification notes"/>
                     <field name="extinguisher_certification_notes"/>
@@ -216,7 +252,12 @@
                     <separator string="Observations"/>
                     <group col="6">
                         <field name="bie_revision_correct" widget="radio" colspan="2"/>
-                        <field name="bie_revision_observation" nolabel="1" colspan="6" attrs="{'invisible': [('bie_revision_correct', '!=', 'has_anomalies')]}"/>
+                        <field
+                            name="bie_revision_observation"
+                            nolabel="1"
+                            colspan="6"
+                            attrs="{'invisible': [('bie_revision_correct', '!=', 'has_anomalies')]}"
+                        />
                     </group>
                     <separator string="Cerification notes"/>
                     <field name="extinguisher_certification_notes"/>
@@ -286,6 +327,15 @@
                     <p>
                         1.21 (5A) Al someter la manguera a una presión de 15 kg/cm2, la manguera y el resto de la BIE está exenta de fugas y deterioros
                     </p>
+                </page>
+                <page string="Signature">
+                    <group>
+                        <field name="signature_date"/>
+                        <field name="signature_name"/>
+                        <field name="signature_job"/>
+                        <field name="signature_vat"/>
+                        <field name="signature_image" widget="image"/>
+                    </group>
                 </page>
             </notebook>
         </field>

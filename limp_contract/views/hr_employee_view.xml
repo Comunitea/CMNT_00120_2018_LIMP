@@ -20,6 +20,10 @@
                     </group>
                 </page>
             </notebook>
+            <field name="notes" position="after">
+                <separator string="Signature"/>
+                <field name="signature_image" widget="image" nolabel="1"/>
+            </field>
         </field>
     </record>
 

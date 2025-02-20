@@ -43,3 +43,5 @@ class HrEmployee(models.Model):
     )
 
     others = fields.Char(string="Others")
+
+    signature_image = fields.Binary('Signature')

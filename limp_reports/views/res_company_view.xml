@@ -18,6 +18,8 @@
                 <group col="2" colspan="2">
                     <separator string="Signature" colspan="2"/>
                     <field name="signature_image" colspan="2" nolabel="1" widget="image"/>
+                    <separator string="Signature representitive" colspan="2"/>
+                    <field name="signature_representitive" colspan="2" nolabel="1" widget="image"/>
                 </group>
             </xpath>
         </field>

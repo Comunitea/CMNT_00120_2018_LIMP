@@ -23,5 +23,6 @@
 from . import upamount_contract_wzd
 from . import contract_to_invoice
 from . import update_last_invoice_date
+from . import service_picking_signature_wzd
 
 # import service_order_toinvoice

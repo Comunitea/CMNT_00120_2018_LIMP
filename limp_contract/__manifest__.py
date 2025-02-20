@@ -38,6 +38,7 @@
         "limp_account_analytic_extension",
         "l10n_es_facturae",
         "report_py3o",
+        "web_widget_digitized_signature",  # Dependencia solo necesaria para odoo 12 e inferior
     ],
     "data": [
         "security/groups.xml",
@@ -74,6 +75,7 @@
         "limp_manual_ddd_report.xml",
         "data/months_interval.xml",
         "data/extinguisher_cron.xml",
+        "wizard/service_picking_signature_wzd.xml",
     ],
     "installable": True,
 }

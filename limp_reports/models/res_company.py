@@ -35,3 +35,4 @@ class ResCompany(models.Model):
         translate=True,
     )
     signature_image = fields.Binary("Signature")
+    signature_representitive = fields.Binary('Signature from representitive')

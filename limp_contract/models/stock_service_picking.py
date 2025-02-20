@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class StockServicePicking(models.Model):
@@ -54,6 +54,32 @@ class StockServicePicking(models.Model):
     ], 'BIE revision is correct')
     bie_revision_observation = fields.Text('BIE revision observation')
     bie_certification_notes = fields.Text('BIE certification notes')
+
+    signature_date = fields.Date('Signature date', readonly=False)
+    signature_name = fields.Char('Signature name', readonly=True)
+    signature_job = fields.Char('Signature job', readonly=True)
+    signature_vat = fields.Char('Signature VAT', readonly=True)
+    signature_image = fields.Binary('Signature image', readonly=True)
+
+    def action_sing(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Signature',
+            'res_model': 'service.picking.signature.wzd',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_picking_id': self.id,
+            }
+        }
+
+    def get_period(self):
+        self.ensure_one()
+        if self.contract_id.revision_period == "anual":
+            return _("ANUAL REVISION")
+        else:
+            return _("QUARTERLY REVISION")
 
     @api.onchange('has_extinguisher_revision')
     def _onchange_has_extinguisher_revision(self):
