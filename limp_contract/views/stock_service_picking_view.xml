@@ -64,11 +64,11 @@
         <field name="arch" type="xml">
             <button name="action_draft" position="after">
                 <button
-                    name="action_sing"
-                    string="Sing"
+                    name="action_sign"
+                    string="Sign"
                     type="object"
                     class="oe_highlight"
-                    attrs="{'invisible': [('signature_date', '!=', False)]}"
+                    attrs="{'invisible': [('signature_date', '!=', False),('has_bie_revision', '=', False),('has_extinguisher_revision', '=', False)]}"
                 />
             </button>
             <field name="sale_id" position="after">

@@ -24,7 +24,7 @@
                     </group>
                 </sheet>
                 <footer>
-                    <button name="action_sign" string="Sing" class="btn-primary" type="object"/>
+                    <button name="action_sign" string="Sign" class="btn-primary" type="object"/>
                     <button string="Cancel" class="btn-default" special="cancel"/>
                 </footer>
             </form>

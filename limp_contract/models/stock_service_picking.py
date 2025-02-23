@@ -61,7 +61,7 @@ class StockServicePicking(models.Model):
     signature_vat = fields.Char('Signature VAT', readonly=True)
     signature_image = fields.Binary('Signature image', readonly=True)
 
-    def action_sing(self):
+    def action_sign(self):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',

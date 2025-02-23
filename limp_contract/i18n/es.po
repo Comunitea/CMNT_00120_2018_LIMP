@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* limp_contract
+#       * limp_contract
 #
 msgid ""
 msgstr ""
@@ -3159,7 +3159,7 @@ msgstr "Nombre firma"
 #. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.service_picking_signature_wzd_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
-msgid "Sing"
+msgid "Sign"
 msgstr "Firmar"
 
 #. module: limp_contract
