@@ -313,7 +313,7 @@ class LimpContract(models.Model):
             contract.amount = amount
             contract.monthly_amount = round(amount / 12.0, 2)
 
-    def _get_values(self, contract_id, today, extinguishers, bies):
+    def _get_values(self, contract_id, today, building_site_id, extinguishers, bies):
         return {
             "picking_type": "sporadic",
             "planified": True,
@@ -337,6 +337,7 @@ class LimpContract(models.Model):
             'has_bie_revision': True if bies != [] else False,
             'extinguisher_revision_ids': extinguishers,
             'bie_revision_ids': bies,
+            'building_site_id': building_site_id.id,
         }
 
     def _get_contracts(self):
@@ -464,7 +465,7 @@ class LimpContract(models.Model):
 
                 if extinguishers != [] or bies != []:
                     self.env['stock.service.picking'].create(
-                        self._get_values(contract_id, today, extinguishers=extinguishers, bies=bies)
+                        self._get_values(contract_id, today, building_site_id, extinguishers=extinguishers, bies=bies)
                     )
 
     def invoice_run(self):
