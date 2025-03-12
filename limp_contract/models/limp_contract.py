@@ -347,117 +347,125 @@ class LimpContract(models.Model):
             ('has_bie_revision', '=', True),
         ])
 
-    def _cron_check_re_embosed_extinguisher_bies(self):
-        contract_ids = self._get_contracts()
-        for contract_id in contract_ids:
-            today = datetime.now().date() + relativedelta(months=1)
-            extinguishers = []
-            bies = []
+    def _get_signal_test_type(self, today, date):
+        delta = relativedelta(today, date)
+        if delta.years >= 10:
+            return 'retire'
+        else:
+            return 'revision'
 
-            if contract_id.has_extinguishers_revision:
-                for extinguisher_and_signal_id in contract_id.extinguisher_and_signal_ids:
-                    if not extinguisher_and_signal_id.re_embossed_date:
-                        extinguishers.append((0, 0, {
-                            'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
-                            'test_type': 're_embossed'
-                        }))
-                    else:
-                        delta = relativedelta(
-                            today,
-                            extinguisher_and_signal_id.re_embossed_date
-                        )
-                        if delta.years >= 5:
-                            extinguishers.append((0, 0, {
-                                'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
-                                'test_type': 're_embossed'
-                            }))
-
-            if contract_id.has_bie_revision:
-                for bie_and_signal_id in contract_id.bie_and_signal_ids:
-                    if not bie_and_signal_id.re_embossed_date:
-                        bies.append((0, 0, {
-                            'bie_and_signal_id': bie_and_signal_id.id,
-                            'test_type': 're_embossed'
-                        }))
-                    else:
-                        delta = relativedelta(
-                            today,
-                            bie_and_signal_id.re_embossed_date
-                        )
-                        if delta.years >= 5:
-                            bies.append((0, 0, {
-                                'bie_and_signal_id': bie_and_signal_id.id,
-                                'test_type': 're_embossed'
-                            }))
-
-            if extinguishers != [] or bies != []:
-                self.env['stock.service.picking'].create(self._get_values(contract_id, today, extinguishers, bies))
+    def _get_test_type(self, today, object):
+        age = relativedelta(today, object.manufacturing_date)
+        if age.years >= 20:
+            return 'retire'
+        elif (not object.re_embossed_date and age.years >= 5):
+            return 're_embossed'
+        elif object.re_embossed_date:
+            delta = relativedelta(
+                today,
+                object.re_embossed_date
+            )
+            if delta.years >= 5:
+                return 're_embossed'
+        return 'revision'
 
     def _cron_check_revision_extinguisher_bies(self):
         contract_ids = self._get_contracts()
         for contract_id in contract_ids:
             today = datetime.now().date() + relativedelta(months=1)
-            extinguishers = []
-            bies = []
+            building_site_ids = contract_id.extinguisher_and_signal_ids.mapped("building_site_id") \
+                | contract_id.bie_and_signal_ids.mapped("building_site_id")
 
-            if contract_id.has_extinguishers_revision:
-                for extinguisher_and_signal_id in contract_id.extinguisher_and_signal_ids:
-                    if not extinguisher_and_signal_id.revision_date:
-                        extinguishers.append((0, 0, {
-                            'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
-                            'test_type': 'revision'
-                        }))
-                    elif contract_id.revision_period == 'anual':
-                        delta = relativedelta(
-                            today,
-                            extinguisher_and_signal_id.revision_date
-                        )
-                        if delta.years >= 1:
+            for building_site_id in building_site_ids:
+                extinguishers = []
+                bies = []
+
+                if contract_id.has_extinguishers_revision:
+
+                    for extinguisher_and_signal_id in contract_id.extinguisher_and_signal_ids.filtered(
+                        lambda e: e.building_site_id == building_site_id
+                    ):
+                        test_type = self._get_test_type(today, extinguisher_and_signal_id)
+
+                        if extinguisher_and_signal_id.extinguisher_signal_manufacturing_date:
+                            extinguisher_and_signal_id.write({
+                                'signal_test_type': self._get_signal_test_type(
+                                    today,
+                                    extinguisher_and_signal_id.extinguisher_signal_manufacturing_date
+                                )
+                            })
+
+                        if not extinguisher_and_signal_id.revision_date:
                             extinguishers.append((0, 0, {
                                 'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
-                                'test_type': 'revision'
-                            }))
-                    elif contract_id.revision_period == 'quarterly':
-                        delta = relativedelta(
-                            today,
-                            extinguisher_and_signal_id.revision_date
-                        )
-                        if delta.years >= 1 or (delta.months >= 3 and delta.years == 0):
-                            extinguishers.append((0, 0, {
-                                'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
-                                'test_type': 'revision'
-                            }))
+                                'test_type': test_type,
 
-            if contract_id.has_bie_revision:
-                for bie_and_signal_id in contract_id.bie_and_signal_ids:
-                    if not bie_and_signal_id.revision_date:
-                        bies.append((0, 0, {
-                            'bie_and_signal_id': bie_and_signal_id.id,
-                            'test_type': 'revision'
-                        }))
-                    elif contract_id.revision_period == 'anual':
-                        delta = relativedelta(
-                            today,
-                            bie_and_signal_id.revision_date
-                        )
-                        if delta.years >= 1:
+                            }))
+                        elif contract_id.revision_period == 'anual':
+                            delta = relativedelta(
+                                today,
+                                extinguisher_and_signal_id.revision_date
+                            )
+                            if delta.years >= 1:
+                                extinguishers.append((0, 0, {
+                                    'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
+                                    'test_type': test_type,
+                                }))
+                        elif contract_id.revision_period == 'quarterly':
+                            delta = relativedelta(
+                                today,
+                                extinguisher_and_signal_id.revision_date
+                            )
+                            if delta.years >= 1 or (delta.months >= 3 and delta.years == 0):
+                                extinguishers.append((0, 0, {
+                                    'extinguisher_and_signal_id': extinguisher_and_signal_id.id,
+                                    'test_type': test_type,
+                                }))
+
+                if contract_id.has_bie_revision:
+                    for bie_and_signal_id in contract_id.bie_and_signal_ids.filtered(
+                        lambda e: e.building_site_id == building_site_id
+                    ):
+                        test_type = self._get_test_type(today, bie_and_signal_id)
+
+                        if bie_and_signal_id.bie_signal_manufacturing_date:
+                            bie_and_signal_id.write({
+                                'signal_test_type': self._get_signal_test_type(
+                                    today,
+                                    bie_and_signal_id.bie_signal_manufacturing_date
+                                )
+                            })
+
+                        if not bie_and_signal_id.revision_date:
                             bies.append((0, 0, {
                                 'bie_and_signal_id': bie_and_signal_id.id,
-                                'test_type': 'revision'
+                                'test_type': test_type
                             }))
-                    elif contract_id.revision_period == 'quarterly':
-                        delta = relativedelta(
-                            today,
-                            bie_and_signal_id.revision_date
-                        )
-                        if delta.years >= 1 or (delta.months >= 3 and delta.years == 0):
-                            bies.append((0, 0, {
-                                'bie_and_signal_id': bie_and_signal_id.id,
-                                'test_type': 'revision'
-                            }))
+                        elif contract_id.revision_period == 'anual':
+                            delta = relativedelta(
+                                today,
+                                bie_and_signal_id.revision_date
+                            )
+                            if delta.years >= 1:
+                                bies.append((0, 0, {
+                                    'bie_and_signal_id': bie_and_signal_id.id,
+                                    'test_type': test_type
+                                }))
+                        elif contract_id.revision_period == 'quarterly':
+                            delta = relativedelta(
+                                today,
+                                bie_and_signal_id.revision_date
+                            )
+                            if delta.years >= 1 or (delta.months >= 3 and delta.years == 0):
+                                bies.append((0, 0, {
+                                    'bie_and_signal_id': bie_and_signal_id.id,
+                                    'test_type': test_type
+                                }))
 
-            if extinguishers != [] or bies != []:
-                self.env['stock.service.picking'].create(self._get_values(contract_id, today, extinguishers, bies))
+                if extinguishers != [] or bies != []:
+                    self.env['stock.service.picking'].create(
+                        self._get_values(contract_id, today, extinguishers=extinguishers, bies=bies)
+                    )
 
     def invoice_run(self):
         invoice_ids = self.env["account.invoice"]

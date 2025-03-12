@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#       * limp_contract
+#	* limp_contract
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-20 14:01+0000\n"
-"PO-Revision-Date: 2025-02-20 14:01+0000\n"
+"POT-Creation-Date: 2025-03-12 12:53+0000\n"
+"PO-Revision-Date: 2025-03-12 12:53+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -91,22 +91,22 @@ msgid "# of waste"
 msgstr "# Residuos"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:115
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:131
 #, python-format
 msgid "%s Kg AFFF"
 msgstr ""
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:111
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:127
 #, python-format
 msgid "%s Kg CO2"
 msgstr ""
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:113
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:129
 #, python-format
 msgid "%s Kg Dust ABC"
-msgstr ""
+msgstr "%s Kg Polvo ABC"
 
 #. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
@@ -883,8 +883,6 @@ msgid "Brand"
 msgstr "Marca"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__building_site_id
-#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__building_site_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__building_site_id
 msgid "Building site"
 msgstr "Sitio de construcción"
@@ -931,7 +929,7 @@ msgid "Cancelled"
 msgstr "Cancelado"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:634
+#: code:addons/limp_contract/models/limp_contract.py:640
 #, python-format
 msgid "Cannot close the contract without a final date less or equal today."
 msgstr "No puede cerrar el contrato sin una fecha final menor o igual a hoy."
@@ -1006,6 +1004,12 @@ msgstr "Líneas de contrato limpiezas"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__cleaning_line_ids
 msgid "Cleaning lines"
 msgstr "Líneas limpiezas"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__partner_id
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__partner_id
+msgid "Client"
+msgstr "Cliente"
 
 #. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
@@ -1617,8 +1621,6 @@ msgstr "Cron de extintores Bie"
 
 #. module: limp_contract
 #: model:ir.actions.server,name:limp_contract.ir_cron_extinguisher_bie_re_embossed_ir_actions_server
-#: model:ir.cron,cron_name:limp_contract.ir_cron_extinguisher_bie_re_embossed
-#: model:ir.cron,name:limp_contract.ir_cron_extinguisher_bie_re_embossed
 msgid "Extinguisher Bies Cron Re-Embossed"
 msgstr "Cron de retimbrado de extintores Bie"
 
@@ -2472,15 +2474,15 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/bie_and_signal.py:13
-#: code:addons/limp_contract/models/bie_and_signal.py:90
+#: code:addons/limp_contract/models/bie_and_signal.py:14
+#: code:addons/limp_contract/models/bie_and_signal.py:105
 #, python-format
 msgid "New BIE and signal"
 msgstr "Nuevo BIE y señal"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:13
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:73
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:14
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:78
 #, python-format
 msgid "New Extinguisher and signal"
 msgstr "Nuevo Extintor y señal"
@@ -2617,7 +2619,7 @@ msgid "Only contract lines in draft or cancelled states can be deleted."
 msgstr "Sólo lineas de contratos en estado borrador o cancelados pueden ser borrados."
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:560
+#: code:addons/limp_contract/models/limp_contract.py:568
 #, python-format
 msgid "Only contracts in draft or cancelled states can be deleted."
 msgstr "Sólo contratos en estado borrador o cancelados pueden ser borrados."
@@ -2971,7 +2973,9 @@ msgid "Result"
 msgstr "Resultado"
 
 #. module: limp_contract
+#: selection:bie.and.signal,signal_test_type:0
 #: selection:bie.revision,test_type:0
+#: selection:extinguisher.and.signal,signal_test_type:0
 #: selection:extinguisher.revision,test_type:0
 msgid "Retire"
 msgstr "Retirar"
@@ -3074,11 +3078,19 @@ msgid "Service pickings"
 msgstr "Albaranes servicio"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__building_site_id
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__building_site_id
+msgid "Service site"
+msgstr "Lugar de servicio"
+
+#. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
 msgid "Set to draft"
 msgstr "Volver a borrador"
 
 #. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.service_picking_signature_wzd_form
+#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
 #: model_terms:ir.ui.view,arch_db:limp_contract.view_limp_contract_signature
 msgid "Sign"
 msgstr "Firmar"
@@ -3155,12 +3167,6 @@ msgstr "Cargo firma"
 #: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__signature_name
 msgid "Signature name"
 msgstr "Nombre firma"
-
-#. module: limp_contract
-#: model_terms:ir.ui.view,arch_db:limp_contract.service_picking_signature_wzd_form
-#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
-msgid "Sign"
-msgstr "Firmar"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__social_worker_id

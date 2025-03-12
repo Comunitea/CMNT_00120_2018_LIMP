@@ -74,7 +74,7 @@
         "views/extinguisher_and_signal_view.xml",
         "limp_manual_ddd_report.xml",
         "data/months_interval.xml",
-        "data/extinguisher_cron.xml",
+        "data/extinguisher_bie_cron.xml",
         "wizard/service_picking_signature_wzd.xml",
     ],
     "installable": True,

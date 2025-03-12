@@ -5,8 +5,9 @@
         <field name="model">bie.and.signal</field>
         <field name="arch" type="xml">
             <tree string="BIEs and Signals Inventory" default_order="sequence">
-                <field name="sequence" widget="handle"/>
-                <field name="building_site_id" invisible="True"/>
+                <field name="sequence"/>
+                <field name="building_site_id"/>
+                <field name="partner_id" invisible="True"/>
                 <field name="location_id"/>
                 <field name="brand"/>
                 <field name="model"/>
@@ -34,14 +35,14 @@
                 <div>
                     <h1><field name="name"/></h1>
                     <h2><field name="contract_id"/></h2>
-                    <field name="building_site_id" invisible="True"/>
+                    <field name="partner_id" invisible="True"/>
                 </div>
                 <group>
                     <group>
                         <field name="sequence"/>
-                        <field name="location_id"/>
+                        <field name="building_site_id"/>
+                        <field name="location_id" attrs="{'readonly': [('building_site_id', '=', False)]}"/>
                         <field name="brand"/>
-                        <field name="model"/>
                         <field name="bie_type"/>
                         <field name="bie_extinguisher_agent"/>
                         <field name="manufacturing_date"/>
@@ -49,6 +50,7 @@
                         <field name="revision_date"/>
                     </group>
                     <group>
+                        <field name="model"/>
                         <field name="weight"/>
                         <field name="plate_num"/>
                         <field name="preasure_ok"/>

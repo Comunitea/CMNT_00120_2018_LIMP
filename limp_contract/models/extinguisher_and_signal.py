@@ -1,4 +1,5 @@
 from odoo import models, fields, _, api
+from dateutil.relativedelta import relativedelta
 
 
 class ExtinguisherAndSignal(models.Model):
@@ -15,7 +16,7 @@ class ExtinguisherAndSignal(models.Model):
     )
 
     sequence = fields.Integer('Sequence', required=True)
-    brand = fields.Char('Brand', required=True)
+    brand = fields.Char('Brand')
     model = fields.Text('Model',)
     plate_num = fields.Char('Plate num', required=True)
     manufacturing_date = fields.Date(
@@ -32,7 +33,8 @@ class ExtinguisherAndSignal(models.Model):
         'Revision date',
         compute='_compute_extiguisher_dates',
         store=True,
-        readonly=False,)
+        readonly=False,
+    )
     extinguisher_type = fields.Char(
         'Extinguisher Type',
         readonly=True,
@@ -44,18 +46,20 @@ class ExtinguisherAndSignal(models.Model):
         ('dust_abc', 'Dust ABC'),
         ('afff', 'AFFF'),
     ], 'Extinguisher agent')
-    weight = fields.Float('Weight', required=True)
+    weight = fields.Float('Weight', required=True, digits=(6, 1))
     preasure_ok = fields.Boolean('Preasure OK')
     pressure = fields.Float('Pressure')
-    extinguisher_signal_manufacturing_date = fields.Date('Signal Manufacturing date', required=True)
+    extinguisher_signal_manufacturing_date = fields.Date('Signal Manufacturing date')
     signal_observation_ok = fields.Boolean('Signal observation OK')
     signal_observation = fields.Text('Signal observation')
     signal_test_type = fields.Selection([
         ('revision', 'Revision'),
+        ('retire', 'Retire'),
     ], 'Signal test type')
     building_site_id = fields.Many2one(
         'building.site.services',
-        'Building site',
+        'Service site',
+        domain="['|', ('producer_promoter_id', '=', partner_id), ('producer_promoter_id.parent_id', '=', partner_id)]"
     )
     location_id = fields.Many2one(
         'building.site.services.location',
@@ -63,6 +67,7 @@ class ExtinguisherAndSignal(models.Model):
         domain="[('building_site_services_id', '=', building_site_id)]"
     )
     contract_id = fields.Many2one('limp.contract', 'Service picking', required=True)
+    partner_id = fields.Many2one('res.partner', 'Client', related='contract_id.partner_id', readonly=True, store=True)
 
     @api.depends('brand', 'model', 'plate_num', 'contract_id')
     def _compute_name(self):
@@ -86,6 +91,17 @@ class ExtinguisherAndSignal(models.Model):
             return picking_ids[0].picking_date
         else:
             return False
+
+    @api.onchange('extinguisher_signal_manufacturing_date')
+    def _onchange_signal_manufacturing_date(self):
+        for record in self:
+            if record.extinguisher_signal_manufacturing_date:
+                today = fields.Date.today()
+                delta = relativedelta(today, record.extinguisher_signal_manufacturing_date)
+                if delta.years >= 10:
+                    record.signal_test_type = 'retire'
+                else:
+                    record.signal_test_type = 'revision'
 
     @api.depends('contract_id', 'contract_id.stock_maintenace_service_picking_ids')
     def _compute_extiguisher_dates(self):

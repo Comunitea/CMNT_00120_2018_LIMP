@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from dateutil.relativedelta import relativedelta
 
 
 class BIEAndSignal(models.Model):
@@ -15,14 +16,14 @@ class BIEAndSignal(models.Model):
     )
 
     sequence = fields.Integer('Sequence', required=True)
-    brand = fields.Char('Brand', required=True)
+    brand = fields.Char('Brand')
     model = fields.Text('Model',)
     plate_num = fields.Char('Plate num', required=True)
     manufacturing_date = fields.Date(
         'Manufacturing date',
         required=True,
     )
-    weight = fields.Float('Weight')
+    weight = fields.Float('Weight', digits=(6, 2))
     bie_type = fields.Char(
         'BIE Type'
     )
@@ -36,15 +37,17 @@ class BIEAndSignal(models.Model):
     )
     preasure_ok = fields.Boolean('Preasure OK')
     pressure = fields.Float('Pressure')
-    bie_signal_manufacturing_date = fields.Date('Signal Manufacturing date', required=True)
+    bie_signal_manufacturing_date = fields.Date('Signal Manufacturing date')
     signal_observation_ok = fields.Boolean('Signal observation OK')
     signal_observation = fields.Text('Signal observation')
     signal_test_type = fields.Selection([
         ('revision', 'Revision'),
+        ('retire', 'Retire'),
     ], 'Signal test type')
     building_site_id = fields.Many2one(
         'building.site.services',
-        'Building site',
+        'Service site',
+        domain="['|', ('producer_promoter_id', '=', partner_id), ('producer_promoter_id.parent_id', '=', partner_id)]"
     )
     location_id = fields.Many2one(
         'building.site.services.location',
@@ -52,6 +55,7 @@ class BIEAndSignal(models.Model):
         domain="[('building_site_services_id', '=', building_site_id)]"
     )
     contract_id = fields.Many2one('limp.contract', 'Service picking', required=True)
+    partner_id = fields.Many2one('res.partner', 'Client', related='contract_id.partner_id', readonly=True, store=True)
 
     def _get_date(self, test_type):
         self.ensure_one()
@@ -65,6 +69,17 @@ class BIEAndSignal(models.Model):
             return picking_ids[0].picking_date
         else:
             return False
+
+    @api.onchange('bie_signal_manufacturing_date')
+    def _onchange_signal_manufacturing_date(self):
+        for record in self:
+            if record._bie_signal_manufacturing_date:
+                today = fields.Date.today()
+                delta = relativedelta(today, record.bie_signal_manufacturing_date)
+                if delta.years >= 10:
+                    record.signal_test_type = 'retire'
+                else:
+                    record.signal_test_type = 'revision'
 
     @api.depends('contract_id', 'contract_id.stock_maintenace_service_picking_ids')
     def _compute_bie_dates(self):
