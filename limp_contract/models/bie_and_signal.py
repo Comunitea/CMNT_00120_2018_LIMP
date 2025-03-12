@@ -91,8 +91,11 @@ class BIEAndSignal(models.Model):
                 record.re_embossed_date = record.re_embossed_date
 
             revision_date = record._get_date('revision')
-            if revision_date is not False or record.revision_date is False:
-                record.revision_date = revision_date
+            if revision_date is not False or record.revision_date is False or record.re_embossed_date is not False:
+                if revision_date < re_embossed_date:
+                    record.revision_date = re_embossed_date
+                else:
+                    record.revision_date = revision_date
             else:
                 record.revision_date = record.revision_date
 
