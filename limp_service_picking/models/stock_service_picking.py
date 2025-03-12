@@ -20,6 +20,29 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
+from datetime import datetime
+
+
+class StockServicePickingSecuence(models.Model):
+    _name = "stock.service.picking.sequence"
+
+    secuence = fields.Integer("Secuence", readonly=True, required=True, default=0)
+    year = fields.Char("Year", required=True, default=str(datetime.now().year))
+    zip_code = fields.Char("Zip code", required=True)
+
+    _sql_constraints = [(
+        "unique_year_zip_code",
+        "unique(year, zip_code)",
+        "The combination of year and zip code must be unique",
+    )]
+
+    def get_next_secuence(self):
+        self.ensure_one()
+        self.write({"secuence": self.secuence + 1})
+        output = str(self.secuence)
+        while len(output) < 4:
+            output = "0" + output
+        return output
 
 
 class StockServicePicking(models.Model):
@@ -120,20 +143,16 @@ class StockServicePicking(models.Model):
         "picking_id",
         "Remove transports",
         readonly=True,
-        domain=[
-            (
-                "type",
-                "in",
-                [
-                    "remove",
-                    "inplant",
-                    "move_to_plant",
-                    "outstanding",
-                    "aspirating",
-                    "cleaning",
-                ],
-            )
-        ],
+        domain=[(
+            "type", "in", [
+                "remove",
+                "inplant",
+                "move_to_plant",
+                "outstanding",
+                "aspirating",
+                "cleaning",
+            ],
+        )],
         copy=False,
     )
     carry_service_ids = fields.One2many(
@@ -305,6 +324,66 @@ class StockServicePicking(models.Model):
     building_site_license = fields.Char(
         "License", size=64, states={"cancelled": [("readonly", True)]}
     )
+    build_address_id = fields.Many2one(
+        "res.partner",
+        "Building address",
+        related="building_site_id.address_building_site",
+        readonly=True,
+        store=True,
+    )
+    state_id = fields.Many2one(
+        "res.country.state",
+        "State",
+        related="build_address_id.state_id",
+        readonly=True,
+        store=True,
+    )
+
+    picking_code = fields.Char(
+        "Picking code",
+        store=True,
+        compute="_compute_picking_code"
+    )
+
+    @api.depends("state", "build_address_id", "build_address_id.zip_id")
+    def _compute_picking_code(self):
+        # ## CUANDO ESTE LISTO BORRAR DESDE AQUÍ
+        offset = 0
+        batch_size = 100
+        while True:
+            records = self.env["stock.service.picking"].search([], limit=batch_size, offset=offset)
+
+            if not records:
+                break
+            self.env.cr.commit()
+            records._get_picking_code()
+            offset += batch_size
+
+    def _get_picking_code(self):
+        # ## HASTA AQUÍ
+        for record in self:
+            if record.state == "closed" and record.build_address_id and record.build_address_id.zip_id:
+                secuence = self.env["stock.service.picking.sequence"].sudo().search([
+                    ("year", "=", record.picking_date.year),
+                    ("zip_code", "=", record.build_address_id.zip_id.id)
+                ])
+                if not secuence:
+                    secuence = self.env["stock.service.picking.sequence"].sudo().create({
+                        "year": record.picking_date.year,
+                        "zip_code": record.build_address_id.zip_id.id,
+                        "secuence": 0
+                    })
+
+                picking_code = str(record.state_id.code) + str(record.picking_date.year)[1:3] \
+                    + secuence.get_next_secuence() + "-" + record.name.split("-")[1]
+            else:
+                picking_code = "-"
+
+            record.picking_code = picking_code
+
+    def custom_format_date(self, date):
+        return date.strftime("%m/%Y")
+
     building_site_id = fields.Many2one(
         "building.site.services",
         "Building site/Service",
@@ -537,18 +616,17 @@ class StockServicePicking(models.Model):
         for pick in self:
             if pick.container_id and pick.carry_service_ids:
                 start_date = pick.carry_service_ids[0].transport_date.date()
-                if (start_date < first_start_date and (
+                if (
+                    start_date < first_start_date and (
                         not pick.retired_date or
-                        (pick.retired_date and pick.
-                         retired_date > first_start_date)
-                        )):
+                        (pick.retired_date and pick.retired_date > first_start_date)
+                    )
+                ):
                     start_date = first_start_date
                 if pick.retired_date:
-                    pick.container_rent_days = (pick.retired_date -
-                                                start_date).days
+                    pick.container_rent_days = (pick.retired_date - start_date).days
                 else:
-                    pick.container_rent_days = (fields.Date.today() -
-                                                start_date).days
+                    pick.container_rent_days = (fields.Date.today() - start_date).days
             else:
                 pick.container_rent_days = 0
 
@@ -644,15 +722,9 @@ class StockServicePicking(models.Model):
     def onchange_building_site_id(self):
         if self.building_site_id:
             if self.building_site_id:
-                self.building_site_address_id = (
-                    self.building_site_id.address_building_site.id
-                )
-                self.building_site_city = (
-                    self.building_site_id.city_building_site
-                )
-                self.building_site_license = (
-                    self.building_site_id.building_site_license
-                )
+                self.building_site_address_id = self.building_site_id.address_building_site.id
+                self.building_site_city = self.building_site_id.city_building_site
+                self.building_site_license = self.building_site_id.building_site_license
                 self.holder_partner = self.building_site_id.holder_builder
                 self.holder_address = self.building_site_id.address_holder
                 self.producer_partner = self.building_site_id.producer_promoter
@@ -723,16 +795,17 @@ class StockServicePicking(models.Model):
             for waste in order.service_picking_valorization_ids:
                 if waste.billable:
                     if waste.product_qty and waste.product_id:
-                        product_context = \
-                            dict(self.env.context,
-                                 partner_id=order.partner_id.id,
-                                 date=order.retired_date or order.picking_date,
-                                 uom=waste.product_id.uom_id.id)
-                        final_price, rule_id = order.pricelist_id.\
-                            with_context(product_context).\
-                            get_product_price_rule(waste.product_id,
-                                                   waste.product_qty,
-                                                   order.partner_id)
+                        product_context = dict(
+                            self.env.context,
+                            partner_id=order.partner_id.id,
+                            date=order.retired_date or order.picking_date,
+                            uom=waste.product_id.uom_id.id
+                        )
+                        final_price, rule_id = order.pricelist_id.with_context(product_context). get_product_price_rule(
+                            waste.product_id,
+                            waste.product_qty,
+                            order.partner_id
+                        )
                         vals = {
                             "sequence": seq,
                             "product_id": waste.product_id.id,
@@ -741,13 +814,9 @@ class StockServicePicking(models.Model):
                             "product_uom": waste.product_id.uom_id.id,
                             "price": final_price,
                             "service_picking_id": order.id,
-                            "tax_ids": [
-                                (
-                                    6,
-                                    0,
-                                    [x.id for x in waste.product_id.taxes_id],
-                                )
-                            ],
+                            "tax_ids": [(
+                                6, 0, [x.id for x in waste.product_id.taxes_id],
+                            )],
                         }
                         self.env["service.picking.invoice.concept"].create(
                             vals
@@ -760,8 +829,7 @@ class StockServicePicking(models.Model):
                     vals = {
                         "product_id": waste.product_id.id,
                         "sequence": seq,
-                        "name": _("Overload/")
-                        + waste.product_id.name_get()[0][1],
+                        "name": _("Overload/") + waste.product_id.name_get()[0][1],
                         "product_qty": waste.overload_qty,
                         "product_uom": waste.product_id.uom_id.id,
                         "price": waste.product_id.overload_price,
@@ -784,43 +852,36 @@ class StockServicePicking(models.Model):
                         "product_uom": other_concept.product_id.uom_id.id,
                         "price": other_concept.price_unit,
                         "service_picking_id": order.id,
-                        "tax_ids": [
-                            (
-                                6,
-                                0,
-                                [
-                                    x.id
-                                    for x in other_concept.product_id.taxes_id
-                                ],
-                            )
-                        ],
+                        "tax_ids": [(
+                            6, 0, [x.id for x in other_concept.product_id.taxes_id],
+                        )],
                     }
 
                     self.env["service.picking.invoice.concept"].create(vals)
                     seq += 1
-            if order.container_id.day_price_product_id and order.\
-                    container_rent_days > order.container_id.\
-                    day_price_product_id.include_rent_days and not order.\
-                    no_invoice_rent:
-                days_qty = order.container_rent_days - order.container_id.\
-                    day_price_product_id.include_rent_days
+            if (
+                order.container_id.day_price_product_id
+                and order.container_rent_days > order.container_id.day_price_product_id.include_rent_days
+                and not order.no_invoice_rent
+            ):
+                days_qty = order.container_rent_days - order.container_id.day_price_product_id.include_rent_days
                 vals = {
-                        "sequence": seq,
-                        "product_id": order.container_id.
-                        day_price_product_id.id,
-                        "name": order.container_id.day_price_product_id.name,
-                        "product_qty": days_qty,
-                        "product_uom":  order.container_id.
-                        day_price_product_id.uom_id.id,
-                        "price":  order.container_id.
-                        day_price_product_id.list_price,
-                        "service_picking_id": order.id,
-                        "tax_ids": [
-                            (6, 0,
-                             [x.id for x in order.container_id.
-                              day_price_product_id.taxes_id],)
-                        ],
-                    }
+                    "sequence": seq,
+                    "product_id": order.container_id.
+                    day_price_product_id.id,
+                    "name": order.container_id.day_price_product_id.name,
+                    "product_qty": days_qty,
+                    "product_uom":  order.container_id.
+                    day_price_product_id.uom_id.id,
+                    "price":  order.container_id.
+                    day_price_product_id.list_price,
+                    "service_picking_id": order.id,
+                    "tax_ids": [
+                        (6, 0,
+                         [x.id for x in order.container_id.
+                          day_price_product_id.taxes_id],)
+                    ],
+                }
 
                 self.env["service.picking.invoice.concept"].create(vals)
                 seq += 1
@@ -876,12 +937,9 @@ class StockServicePicking(models.Model):
             elif order.picking_type == "sporadic":
                 order.write({"retired_date": order.picking_date})
 
-            company = (
-                self.env["res.company"]
-                .sudo()
-                .search([("partner_id", "=",
-                          order.manager_partner_id.commercial_partner_id.id)])
-            )
+            company = self.env["res.company"].sudo().search([
+                ("partner_id", "=", order.manager_partner_id.commercial_partner_id.id)
+            ])
             if company:
                 current_company = self.env.user.company_id
                 if current_company.id == company.id:
@@ -890,20 +948,14 @@ class StockServicePicking(models.Model):
                     addr = current_company.partner_id.id
 
                 location_id = self.env.ref("stock.stock_location_customers").id
-                warehouse_ids = (
-                    self.env["stock.warehouse"]
-                    .sudo()
-                    .search([("company_id", "=", company.id)])
-                )
+                warehouse_ids = self.env["stock.warehouse"].sudo().search([("company_id", "=", company.id)])
                 if not warehouse_ids:
                     raise UserError(
                         _("There is no warehouse to the order company")
                     )
                 location_dest_id = warehouse_ids[0].lot_stock_id.id
 
-                for (
-                    valorization_line
-                ) in order.service_picking_valorization_ids:
+                for valorization_line in order.service_picking_valorization_ids:
                     if valorization_line.overload_qty and (
                         valorization_line.product_id
                         and not valorization_line.product_id.overload_price
@@ -915,78 +967,48 @@ class StockServicePicking(models.Model):
                         )
 
                     if not picking_id:
-                        pick_type = (
-                            self.env["stock.picking.type"]
-                            .sudo()
-                            .search(
-                                [
-                                    ("warehouse_id", "=", warehouse_ids[0].id),
-                                    ("code", "=", "incoming"),
-                                ]
-                            )
-                        )
+                        pick_type = self.env["stock.picking.type"].sudo().search([
+                            ("warehouse_id", "=", warehouse_ids[0].id),
+                            ("code", "=", "incoming"),
+                        ])
                         pick_name = pick_type.sequence_id.next_by_id()
-                        picking_id = (
-                            self.env["stock.picking"]
-                            .sudo()
-                            .create(
-                                {
-                                    "name": "S" + pick_name,
-                                    "origin": order.name,
-                                    "picking_type_id": pick_type.id,
-                                    "state": "draft",
-                                    "partner_id": addr,
-                                    "no_quality": order.no_quality,
-                                    "company_id": company.id,
-                                    "stock_service_picking_id": order.id,
-                                    "from_spicking": True,
-                                    "date": order.retired_date
-                                    or order.picking_date,
-                                    "location_id": location_id,
-                                    "location_dest_id": location_dest_id,
-                                    "invoice_type": "out_invoice",
-                                    "invoice_state": current_company.id
-                                    == company.id
-                                    and "none"
-                                    or "2binvoiced",
-                                }
-                            )
-                        )
+                        picking_id = self.env["stock.picking"].sudo().create({
+                            "name": "S" + pick_name,
+                            "origin": order.name,
+                            "picking_type_id": pick_type.id,
+                            "state": "draft",
+                            "partner_id": addr,
+                            "no_quality": order.no_quality,
+                            "company_id": company.id,
+                            "stock_service_picking_id": order.id,
+                            "from_spicking": True,
+                            "date": order.retired_date or order.picking_date,
+                            "location_id": location_id,
+                            "location_dest_id": location_dest_id,
+                            "invoice_type": "out_invoice",
+                            "invoice_state": current_company.id == company.id and "none" or "2binvoiced",
+                        })
 
                     if (
-                        (
-                            valorization_line.product_id.company_id.id
-                            == company.parent_id.id
-                        )
-                        or (not valorization_line.product_id.company_id)
-                        or (
-                            valorization_line.product_id.company_id.id
-                            == company.id
-                        )
+                        valorization_line.product_id.company_id.id == company.parent_id.id
+                        or not valorization_line.product_id.company_id
+                        or valorization_line.product_id.company_id.id == company.id
                     ):
-                        self.env["stock.move"].sudo().\
-                            create(
-                                {
-                                    "name": order.name,
-                                    "picking_id": picking_id.id,
-                                    "product_id":
-                                    valorization_line.product_id.id,
-                                    "product_uom_qty":
-                                    valorization_line.product_qty
-                                    + valorization_line.overload_qty,
-                                    "product_uom":
-                                    valorization_line.product_id.uom_id.id,
-                                    "partner_id": addr,
-                                    "location_id": location_id,
-                                    "location_dest_id": location_dest_id,
-                                    "date": order.retired_date
-                                    or order.picking_date,
-                                    "date_expected": order.retired_date
-                                    or order.picking_date,
-                                    "state": "draft",
-                                    "company_id": company.id,
-                                }
-                            )
+                        self.env["stock.move"].sudo().create({
+                            "name": order.name,
+                            "picking_id": picking_id.id,
+                            "product_id": valorization_line.product_id.id,
+                            "product_uom_qty": valorization_line.product_qty + valorization_line.overload_qty,
+                            "product_uom": valorization_line.product_id.uom_id.id,
+                            "partner_id": addr,
+                            "location_id": location_id,
+                            "location_dest_id": location_dest_id,
+                            "date": order.retired_date or order.picking_date,
+                            "date_expected": order.retired_date or order.picking_date,
+                            "state": "draft",
+                            "company_id": company.id,
+                        })
+
                     else:
                         raise UserError(
                             _("Product %s must be shared inter companies "
@@ -998,12 +1020,10 @@ class StockServicePicking(models.Model):
                     self.env["stock.immediate.transfer"].sudo().create(
                         {"pick_ids": [(4, picking_id.id)]}
                     ).process()
-            order.analytic_acc_id.write(
-                {
-                    "state": "close",
-                    "date": order.retired_date or order.picking_date,
-                }
-            )
+            order.analytic_acc_id.write({
+                "state": "close",
+                "date": order.retired_date or order.picking_date,
+            })
 
         self.create_concept_lines()
         return self.write({"state": "closed"})
