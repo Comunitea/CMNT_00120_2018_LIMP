@@ -5,7 +5,7 @@ class ServicePickingSignatureWzd(models.TransientModel):
     _name = "service.picking.signature.wzd"
     _description = "Service picking signature wizard"
 
-    picking_id = fields.Many2one('stock.service.picking', 'Service picking', required=True)
+    picking_id = fields.Many2one('stock.service.picking', 'Service picking', required=True, ondelete='cascade')
     partner_id = fields.Many2one(related='picking_id.partner_id', readonly=True)
     name = fields.Char(string="Name", readonly=True, compute='_compute_name')
 
