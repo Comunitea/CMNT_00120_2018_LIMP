@@ -65,6 +65,11 @@ class StockServicePicking(models.Model):
         store=True,
     )
 
+    def custom_format_date(self, date):
+        if date:
+            return date.strftime("%m/%Y")
+        return ""
+
     def _compute_picking_code(self):
         for record in self:
             if record.state == "closed" and record.build_address_id and record.build_address_id.zip_id and (

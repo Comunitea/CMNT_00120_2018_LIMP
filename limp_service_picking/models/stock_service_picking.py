@@ -316,9 +316,6 @@ class StockServicePicking(models.Model):
         store=True,
     )
 
-    def custom_format_date(self, date):
-        return date.strftime("%m/%Y")
-
     building_site_id = fields.Many2one(
         "building.site.services",
         "Building site/Service",
