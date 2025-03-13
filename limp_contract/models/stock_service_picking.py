@@ -17,6 +17,7 @@
 #
 ##############################################################################
 from odoo import models, fields, api, _
+from datetime import datetime
 
 
 class StockServicePicking(models.Model):
@@ -60,6 +61,39 @@ class StockServicePicking(models.Model):
     signature_job = fields.Char('Signature job', readonly=True)
     signature_vat = fields.Char('Signature VAT', readonly=True)
     signature_image = fields.Binary('Signature image', readonly=True)
+
+    picking_code = fields.Char(
+        "Picking code",
+        store=True,
+    )
+
+    def _compute_picking_code(self):
+        for record in self:
+            if record.state == "closed" and record.build_address_id and record.build_address_id.zip_id and (
+                record.has_bie_revision or record.has_extinguisher_revision
+            ):
+                secuence = self.env["stock.service.picking.sequence"].sudo().search([
+                    ("year", "=", record.picking_date.year),
+                    ("zip_code", "=", record.build_address_id.zip_id.id)
+                ])
+                if not secuence:
+                    secuence = self.env["stock.service.picking.sequence"].sudo().create({
+                        "year": record.picking_date.year,
+                        "zip_code": record.build_address_id.zip_id.id,
+                        "secuence": 0
+                    })
+
+                picking_code = str(record.state_id.code) + str(record.picking_date.year)[1:3] \
+                    + secuence.get_next_secuence() + "-" + record.name.split("-")[1]
+            else:
+                picking_code = False
+
+            record.picking_code = picking_code
+
+    def action_close(self):
+        res = super(StockServicePicking, self).action_close()
+        self._compute_picking_code()
+        return res
 
     def action_sign(self):
         self.ensure_one()
@@ -143,3 +177,25 @@ class StockServicePicking(models.Model):
         import locale
         locale.setlocale(locale.LC_ALL, 'es_ES.UTF-8')
         return date.strftime(date_format)
+
+
+class StockServicePickingSecuence(models.Model):
+    _name = "stock.service.picking.sequence"
+
+    secuence = fields.Integer("Secuence", readonly=True, required=True, default=0)
+    year = fields.Char("Year", required=True, default=str(datetime.now().year))
+    zip_code = fields.Char("Zip code", required=True)
+
+    _sql_constraints = [(
+        "unique_year_zip_code",
+        "unique(year, zip_code)",
+        "The combination of year and zip code must be unique",
+    )]
+
+    def get_next_secuence(self):
+        self.ensure_one()
+        self.write({"secuence": self.secuence + 1})
+        output = str(self.secuence)
+        while len(output) < 4:
+            output = "0" + output
+        return output
