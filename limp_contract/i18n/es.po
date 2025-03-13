@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 12:53+0000\n"
-"PO-Revision-Date: 2025-03-12 12:53+0000\n"
+"POT-Creation-Date: 2025-03-13 12:18+0000\n"
+"PO-Revision-Date: 2025-03-13 12:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,11 @@ msgstr "# de Facturas"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__picking_count
 msgid "# of Pickings"
 msgstr "# de Albaranes"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__anomalies_count
+msgid "# of anomalies"
+msgstr "# de anomalías"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__cleaning_lines_count
@@ -91,19 +96,19 @@ msgid "# of waste"
 msgstr "# Residuos"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:131
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:134
 #, python-format
 msgid "%s Kg AFFF"
 msgstr ""
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:127
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:130
 #, python-format
 msgid "%s Kg CO2"
 msgstr ""
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/extinguisher_and_signal.py:129
+#: code:addons/limp_contract/models/extinguisher_and_signal.py:132
 #, python-format
 msgid "%s Kg Dust ABC"
 msgstr "%s Kg Polvo ABC"
@@ -460,8 +465,18 @@ msgid "Acta revisión BIE"
 msgstr ""
 
 #. module: limp_contract
+#: model:ir.actions.report,name:limp_contract.py3o_Acta_revisión_BIE_report_pdf
+msgid "Acta revisión BIE (PDF)"
+msgstr ""
+
+#. module: limp_contract
 #: model:ir.actions.report,name:limp_contract.py3o_Acta_revisión_extintores_report
 msgid "Acta revisión extintores"
+msgstr ""
+
+#. module: limp_contract
+#: model:ir.actions.report,name:limp_contract.py3o_Acta_revisión_extintores_report_pdf
+msgid "Acta revisión extintores (PDF)"
 msgstr ""
 
 #. module: limp_contract
@@ -605,13 +620,27 @@ msgid "Annual"
 msgstr "Anual"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_revision__anomalie_created
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__anomalie_created
+msgid "Anomalie created"
+msgstr "Creación de anomalía"
+
+#. module: limp_contract
+#: code:addons/limp_contract/models/limp_contract.py:319
+#: model:ir.model.fields,field_description:limp_contract.field_limp_contract__anomaly_ids
+#: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_form
+#, python-format
+msgid "Anomalies"
+msgstr "Anomalías"
+
+#. module: limp_contract
 #: selection:limp.contract,periodicity_desinfeccion:0
 #: selection:limp.contract,periodicity_desinsectacion:0
 #: selection:limp.contract,periodicity_desratizacion:0
 #: selection:limp.contract,periodicity_legionella:0
 #: selection:limp.contract,revision_period:0
 msgid "Anual"
-msgstr ""
+msgstr "Anual"
 
 #. module: limp_contract
 #: model_terms:ir.ui.view,arch_db:limp_contract.upamount_contract_wzd_form
@@ -776,11 +805,6 @@ msgid "BIE revision is correct"
 msgstr "La revisión de BIE es correcta"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__bie_revision_observation
-msgid "BIE revision observation"
-msgstr "Observaciones de revisión de BIE"
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_revision__bie_valve_1_5_ground
 msgid "BIE valve is at max 1.5 m from ground"
 msgstr "BIE válvula está a max 1.5m del suelo"
@@ -802,7 +826,7 @@ msgid "BIEs and Signals Inventory"
 msgstr "Inventario de BIEs y señales"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:287
+#: code:addons/limp_contract/models/limp_contract.py:305
 #, python-format
 msgid "BIEs and signals"
 msgstr "BIEs y señales"
@@ -961,6 +985,11 @@ msgid "Certificado BIES"
 msgstr ""
 
 #. module: limp_contract
+#: model:ir.actions.report,name:limp_contract.py3o_Certificado_BIES_report_pdf
+msgid "Certificado BIES (PDF)"
+msgstr ""
+
+#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_limp_cert_res_goa
 msgid "Certificado de gestión de residuos"
 msgstr ""
@@ -968,6 +997,11 @@ msgstr ""
 #. module: limp_contract
 #: model:ir.actions.report,name:limp_contract.py3o_Certificado_extintores_report
 msgid "Certificado extintores"
+msgstr ""
+
+#. module: limp_contract
+#: model:ir.actions.report,name:limp_contract.py3o_Certificado_extintores_report_pdf
+msgid "Certificado extintores (PDF)"
 msgstr ""
 
 #. module: limp_contract
@@ -1121,6 +1155,7 @@ msgstr "Contiene incidencias"
 
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_account_invoice__contract_id
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line__contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__contract_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_employee_task__contract_id
@@ -1268,6 +1303,7 @@ msgstr "Crear factura"
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_contract_to_invoice__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__create_uid
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__create_uid
@@ -1284,6 +1320,7 @@ msgstr "Crear factura"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__create_uid
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__create_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__create_uid
 msgid "Created by"
@@ -1295,6 +1332,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_contract_to_invoice__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__create_date
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__create_date
@@ -1311,6 +1349,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__create_date
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__create_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__create_date
 msgid "Created on"
@@ -1371,8 +1410,10 @@ msgid "DDD y Legionella Information"
 msgstr "DDD y Legionella Información"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_note__date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_upamount_history__date
+#: model_terms:ir.ui.view,arch_db:limp_contract.anomalies_search
 msgid "Date"
 msgstr "Fecha"
 
@@ -1472,6 +1513,7 @@ msgstr "Diaria"
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_contract_to_invoice__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__display_name
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__display_name
@@ -1488,6 +1530,7 @@ msgstr "Diaria"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__display_name
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__display_name
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__display_name
 msgid "Display Name"
@@ -1613,6 +1656,18 @@ msgstr "Extintor de 3kg tiene manguera"
 #: model:ir.cron,name:limp_contract.ir_cron_extinguisher_bie_revision
 msgid "Extinguisher Bie Cron Revision"
 msgstr "Cron de revisión de extintores Bie"
+
+#. module: limp_contract
+#: model:ir.actions.server,name:limp_contract.ir_cron_extinguisher_bie_anomalies_ir_actions_server
+#: model:ir.cron,cron_name:limp_contract.ir_cron_extinguisher_bie_anomalies
+#: model:ir.cron,name:limp_contract.ir_cron_extinguisher_bie_anomalies
+msgid "Extinguisher Bie Search for anomalies"
+msgstr "Extintores Bie buscar anomalías"
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_extinguisher_bies_anomalies
+msgid "Extinguisher Bies Anomalies"
+msgstr "Extintores Bies anomalías"
 
 #. module: limp_contract
 #: model:ir.actions.server,name:limp_contract.ir_cron_extinguisher_ir_actions_server
@@ -1760,11 +1815,6 @@ msgid "Extinguisher revision is correct"
 msgstr "La revisión del extintor es correcta"
 
 #. module: limp_contract
-#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__extinguisher_revision_observation
-msgid "Extinguisher revision observation"
-msgstr "Observaciones de la revisión del extintores"
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__revision_period
 msgid "Extinguisher revision period"
 msgstr "Periodo de revisión de extintores"
@@ -1790,7 +1840,7 @@ msgid "Extinguishers"
 msgstr "Extintores"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:273
+#: code:addons/limp_contract/models/limp_contract.py:291
 #, python-format
 msgid "Extinguishers and signals"
 msgstr "Extintores y señales"
@@ -1937,6 +1987,7 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location__id
 #: model:ir.model.fields,field_description:limp_contract.field_contract_to_invoice__id
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__id
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__id
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type__id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__id
@@ -1953,6 +2004,7 @@ msgstr "Horas"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__id
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__id
 #: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__id
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__id
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__id
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__id
 msgid "ID"
@@ -2159,6 +2211,7 @@ msgstr "Junio"
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_contract_to_invoice____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal____last_update
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract____last_update
@@ -2175,6 +2228,7 @@ msgstr "Junio"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd____last_update
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd____last_update
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date____last_update
 msgid "Last Modified on"
@@ -2186,6 +2240,7 @@ msgstr "Última Modifiación en"
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_contract_to_invoice__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__write_uid
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__write_uid
@@ -2202,6 +2257,7 @@ msgstr "Última Modifiación en"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__write_uid
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__write_uid
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__write_uid
 msgid "Last Updated by"
@@ -2213,6 +2269,7 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:limp_contract.field_building_site_services_location__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_contract_to_invoice__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__write_date
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__write_date
@@ -2229,6 +2286,7 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__write_date
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_upamount_contract_wzd__write_date
 #: model:ir.model.fields,field_description:limp_contract.field_update_last_invoice_date__write_date
 msgid "Last Updated on"
@@ -2463,12 +2521,14 @@ msgstr "Mensual"
 #. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__name
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__name
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_center_type__name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_task_rel__name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_objectives__name
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_task__name
 #: model:ir.model.fields,field_description:limp_contract.field_months_interval__name
 #: model:ir.model.fields,field_description:limp_contract.field_service_picking_signature_wzd__name
+#: model_terms:ir.ui.view,arch_db:limp_contract.anomalies_search
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_tree
 msgid "Name"
 msgstr "Nombre"
@@ -2619,7 +2679,7 @@ msgid "Only contract lines in draft or cancelled states can be deleted."
 msgstr "Sólo lineas de contratos en estado borrador o cancelados pueden ser borrados."
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/limp_contract.py:568
+#: code:addons/limp_contract/models/limp_contract.py:683
 #, python-format
 msgid "Only contracts in draft or cancelled states can be deleted."
 msgstr "Sólo contratos en estado borrador o cancelados pueden ser borrados."
@@ -2756,6 +2816,23 @@ msgid "Periodicity legionella"
 msgstr "Periodicidad y legionella"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_bies_anomalies__picking_id
+#: model_terms:ir.ui.view,arch_db:limp_contract.anomalies_search
+msgid "Picking"
+msgstr "Albarán"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__picking_code
+msgid "Picking code"
+msgstr "Código albarán"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_bie_revision__picking_date
+#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__picking_date
+msgid "Picking date"
+msgstr "Fecha albarán"
+
+#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_maintenance_task__picking_ids
 msgid "Picking history"
 msgstr "Historial albaranes"
@@ -2865,7 +2942,6 @@ msgstr "Fin prórroga"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__state_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__state_id
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__state_id
-#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking__state_id
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_form
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_search
 #: model_terms:ir.ui.view,arch_db:limp_contract.limp_contract_line_cleaning_tree
@@ -2882,7 +2958,7 @@ msgid "Public"
 msgstr "Público"
 
 #. module: limp_contract
-#: code:addons/limp_contract/models/stock_service_picking.py:82
+#: code:addons/limp_contract/models/stock_service_picking.py:119
 #, python-format
 msgid "QUARTERLY REVISION"
 msgstr "REVISIÓN TRIMESTRAL"
@@ -2989,15 +3065,8 @@ msgid "Revision"
 msgstr "Revisión"
 
 #. module: limp_contract
-#: model_terms:ir.ui.view,arch_db:limp_contract.stock_sporadic_service_picking_form_add_manager
-msgid "Revision Date"
-msgstr "Fecha de la revisión"
-
-#. module: limp_contract
 #: model:ir.model.fields,field_description:limp_contract.field_bie_and_signal__revision_date
-#: model:ir.model.fields,field_description:limp_contract.field_bie_revision__revision_date
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_and_signal__revision_date
-#: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__revision_date
 msgid "Revision date"
 msgstr "Fecha revisión"
 
@@ -3026,6 +3095,16 @@ msgstr "Sábado"
 #: model:ir.model.fields,field_description:limp_contract.field_account_invoice_report__no_quality
 msgid "Scont"
 msgstr ""
+
+#. module: limp_contract
+#: model_terms:ir.ui.view,arch_db:limp_contract.anomalies_search
+msgid "Search Anomalies"
+msgstr "Buscar Anomalías"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__secuence
+msgid "Secuence"
+msgstr "Secuencia"
 
 #. module: limp_contract
 #: model:months.interval,name:limp_contract.9
@@ -3203,6 +3282,7 @@ msgstr "Fecha de inicio"
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract__state
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_cleaning__state
 #: model:ir.model.fields,field_description:limp_contract.field_limp_contract_line_home_help__state
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_state_id
 msgid "State"
 msgstr "Estado"
 
@@ -3252,6 +3332,11 @@ msgstr "Plantilla"
 #: model:ir.model.fields,field_description:limp_contract.field_extinguisher_revision__test_type
 msgid "Test type"
 msgstr "Tipo de prueba"
+
+#. module: limp_contract
+#: sql_constraint:stock.service.picking.sequence:0
+msgid "The combination of year and zip code must be unique"
+msgstr "La combinación de año y código postal debe ser única"
 
 #. module: limp_contract
 #: code:addons/limp_contract/models/building_site_services_location.py:12
@@ -3518,6 +3603,16 @@ msgid "Workcenter"
 msgstr "Centro de trabajo"
 
 #. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__year
+msgid "Year"
+msgstr "Año"
+
+#. module: limp_contract
+#: model:ir.model.fields,field_description:limp_contract.field_stock_service_picking_sequence__zip_code
+msgid "Zip code"
+msgstr "Código postal"
+
+#. module: limp_contract
 #: model:ir.model,name:limp_contract.model_account_analytic_occupation_name
 msgid "account.analytic.occupation.name"
 msgstr ""
@@ -3565,6 +3660,11 @@ msgstr ""
 #. module: limp_contract
 #: model:ir.model,name:limp_contract.model_service_order_toinvoice
 msgid "service.order.toinvoice"
+msgstr ""
+
+#. module: limp_contract
+#: model:ir.model,name:limp_contract.model_stock_service_picking_sequence
+msgid "stock.service.picking.sequence"
 msgstr ""
 
 #. module: limp_contract
