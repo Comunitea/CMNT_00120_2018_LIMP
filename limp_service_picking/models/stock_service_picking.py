@@ -20,29 +20,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from odoo.addons import decimal_precision as dp
-from datetime import datetime
-
-
-class StockServicePickingSecuence(models.Model):
-    _name = "stock.service.picking.sequence"
-
-    secuence = fields.Integer("Secuence", readonly=True, required=True, default=0)
-    year = fields.Char("Year", required=True, default=str(datetime.now().year))
-    zip_code = fields.Char("Zip code", required=True)
-
-    _sql_constraints = [(
-        "unique_year_zip_code",
-        "unique(year, zip_code)",
-        "The combination of year and zip code must be unique",
-    )]
-
-    def get_next_secuence(self):
-        self.ensure_one()
-        self.write({"secuence": self.secuence + 1})
-        output = str(self.secuence)
-        while len(output) < 4:
-            output = "0" + output
-        return output
 
 
 class StockServicePicking(models.Model):
@@ -338,48 +315,6 @@ class StockServicePicking(models.Model):
         readonly=True,
         store=True,
     )
-
-    picking_code = fields.Char(
-        "Picking code",
-        store=True,
-        compute="_compute_picking_code"
-    )
-
-    @api.depends("state", "build_address_id", "build_address_id.zip_id")
-    def _compute_picking_code(self):
-        # ## CUANDO ESTE LISTO BORRAR DESDE AQUÍ
-        offset = 0
-        batch_size = 100
-        while True:
-            records = self.env["stock.service.picking"].search([], limit=batch_size, offset=offset)
-
-            if not records:
-                break
-            self.env.cr.commit()
-            records._get_picking_code()
-            offset += batch_size
-
-    def _get_picking_code(self):
-        # ## HASTA AQUÍ
-        for record in self:
-            if record.state == "closed" and record.build_address_id and record.build_address_id.zip_id:
-                secuence = self.env["stock.service.picking.sequence"].sudo().search([
-                    ("year", "=", record.picking_date.year),
-                    ("zip_code", "=", record.build_address_id.zip_id.id)
-                ])
-                if not secuence:
-                    secuence = self.env["stock.service.picking.sequence"].sudo().create({
-                        "year": record.picking_date.year,
-                        "zip_code": record.build_address_id.zip_id.id,
-                        "secuence": 0
-                    })
-
-                picking_code = str(record.state_id.code) + str(record.picking_date.year)[1:3] \
-                    + secuence.get_next_secuence() + "-" + record.name.split("-")[1]
-            else:
-                picking_code = "-"
-
-            record.picking_code = picking_code
 
     def custom_format_date(self, date):
         return date.strftime("%m/%Y")

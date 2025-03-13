@@ -1,6 +1,5 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
 "access_stock_service_picking","stock_service_picking_waste_grp","model_stock_service_picking","group_waste_manager",1,1,1,1
-"access_stock_service_picking_sequence","stock_service_picking_sequence_waste_grp","model_stock_service_picking_sequence","group_waste_manager",1,1,1,1
 "access_stock_service_line_picking","stock_service_picking_line_waste_grp","model_stock_service_picking_line","group_waste_manager",1,1,1,1
 "access_building_site_services","building_site_services_grp","model_building_site_services","group_building_site_services_manager",1,1,1,1
 "access_service_picking_invoice_concept","service_picking_invoice_concept_grp","model_service_picking_invoice_concept","group_waste_manager",1,1,1,1
@@ -9,7 +8,6 @@
 "access_valorization_lines_all","valorization_lines_all","model_valorization_lines",,1,0,0,0
 "access_service_picking_other_expenses","service_picking_other_expenses_waste_grp","model_stock_service_other_expenses","group_waste_manager",1,1,1,1
 "access_stock_service_picking_clean","stock_service_picking_clean_grp","model_stock_service_picking","group_cleaning_user",1,1,1,1
-"access_stock_service_picking_sequence_clean","stock_service_picking_sequence_clean_grp","model_stock_service_picking_sequence","group_cleaning_user",1,1,1,1
 "access_stock_service_line_picking_clean","stock_service_picking_line_clean_grp","model_stock_service_picking_line","group_cleaning_user",1,1,1,1
 "access_service_picking_invoice_concept_clean","service_picking_invoice_concept_clean_grp","model_service_picking_invoice_concept","group_cleaning_user",1,1,1,1
 "access_service_picking_other_concepts_rel_clean","service_picking_other_concepts_rel_clean_grp","model_service_picking_other_concepts_rel","group_cleaning_user",1,1,1,1

@@ -40,3 +40,5 @@
 "access_bie_and_signal","bie_and_signal","model_bie_and_signal","group_limp_administrative",1,1,1,1
 "access_bie_revision","bie_revision","model_bie_revision","group_limp_administrative",1,1,1,1
 "access_building_site_services_location","building_site_services_location","model_building_site_services_location","group_limp_administrative",1,1,1,1
+"access_stock_service_picking_sequence","stock_service_picking_sequence_waste_grp","model_stock_service_picking_sequence","limp_service_picking.group_waste_manager",1,1,1,1
+"access_stock_service_picking_sequence_clean","stock_service_picking_sequence_clean_grp","model_stock_service_picking_sequence","limp_service_picking.group_cleaning_user",1,1,1,1
