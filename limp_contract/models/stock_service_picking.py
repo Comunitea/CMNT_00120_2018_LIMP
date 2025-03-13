@@ -40,7 +40,6 @@ class StockServicePicking(models.Model):
         ('correct', 'Correct'),
         ('has_anomalies', 'Has anomalies')
     ], 'Extinguisher revision is correct')
-    extinguisher_revision_observation = fields.Text('Extinguisher revision observation')
     extinguisher_certification_notes = fields.Text('Extinguisher certification notes')
 
     has_bie_revision = fields.Boolean('Has BIE revision')
@@ -53,7 +52,6 @@ class StockServicePicking(models.Model):
         ('correct', 'Correct'),
         ('has_anomalies', 'Has anomalies')
     ], 'BIE revision is correct')
-    bie_revision_observation = fields.Text('BIE revision observation')
     bie_certification_notes = fields.Text('BIE certification notes')
 
     signature_date = fields.Date('Signature date', readonly=False)

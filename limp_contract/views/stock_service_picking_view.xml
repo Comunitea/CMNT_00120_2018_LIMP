@@ -132,12 +132,6 @@
                     <separator string="Observations"/>
                     <group col="6">
                         <field name="extinguisher_revision_correct" widget="radio" colspan="2"/>
-                        <field
-                            name="extinguisher_revision_observation"
-                            nolabel="1"
-                            colspan="6"
-                            attrs="{'invisible': [('extinguisher_revision_correct', '!=', 'has_anomalies')]}"
-                        />
                     </group>
                     <separator string="Cerification notes"/>
                     <field name="extinguisher_certification_notes"/>
@@ -252,12 +246,6 @@
                     <separator string="Observations"/>
                     <group col="6">
                         <field name="bie_revision_correct" widget="radio" colspan="2"/>
-                        <field
-                            name="bie_revision_observation"
-                            nolabel="1"
-                            colspan="6"
-                            attrs="{'invisible': [('bie_revision_correct', '!=', 'has_anomalies')]}"
-                        />
                     </group>
                     <separator string="Cerification notes"/>
                     <field name="extinguisher_certification_notes"/>
