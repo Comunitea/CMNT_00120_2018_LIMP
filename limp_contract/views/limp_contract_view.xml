@@ -129,6 +129,14 @@
                             >
                                 <field name="bies_count" widget="statinfo" string="Bies"/>
                             </button>
+                            <button name="action_view_anomalies"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                attrs="{'invisible': [('has_bie_revision', '=', False), ('has_extinguishers_revision', '=', False)]}"
+                            >
+                                <field name="anomalies_count" widget="statinfo" string="Anomalies"/>
+                            </button>
                         </div>
                         <div class="oe_title">
                             <h1>

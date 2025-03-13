@@ -114,7 +114,7 @@ class ExtinguisherAndSignal(models.Model):
 
             revision_date = record._get_date('revision')
             if revision_date is not False or record.revision_date is False or record.re_embossed_date is not False:
-                if revision_date < re_embossed_date:
+                if re_embossed_date and revision_date < re_embossed_date:
                     record.revision_date = re_embossed_date
                 else:
                     record.revision_date = revision_date
@@ -220,4 +220,4 @@ class ExtinguisherRevision(models.Model):
     substitution_stinguisher_correct = fields.Boolean('Substitution stinguisher correct')  # E.S.
     extinguisher_workshop_retirement = fields.Boolean('Extinguisher workshop retirement')  # R.T.
     revision_result = fields.Text('Revision result')
-    revision_date = fields.Date('Revision date')
+    anomalie_created = fields.Boolean('Anomalie created', default=False)

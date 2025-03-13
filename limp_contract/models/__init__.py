@@ -25,3 +25,4 @@ from . import months_interval
 from . import building_site_services_location
 from . import extinguisher_and_signal
 from . import bie_and_signal
+from . import extinguisher_bies_anomalies

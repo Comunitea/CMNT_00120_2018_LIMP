@@ -76,6 +76,7 @@
         "data/months_interval.xml",
         "data/extinguisher_bie_cron.xml",
         "wizard/service_picking_signature_wzd.xml",
+        "views/anomalies.xml",
     ],
     "installable": True,
 }

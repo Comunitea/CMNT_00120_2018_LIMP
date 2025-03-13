@@ -241,6 +241,12 @@ class LimpContract(models.Model):
         'Extinguisher and signal'
     )
 
+    anomaly_ids = fields.One2many(
+        'extinguisher.bies.anomalies',
+        'contract_id',
+        'Anomalies',
+    )
+
     extinguishers_count = fields.Integer(
         string="# of extinguishers",
         compute="_compute_extinguishers_count",
@@ -251,6 +257,13 @@ class LimpContract(models.Model):
     bies_count = fields.Integer(
         string="# of BIEs",
         compute="_compute_bies_count",
+        readonly=True,
+        store=True,
+    )
+
+    anomalies_count = fields.Integer(
+        string="# of anomalies",
+        compute="_compute_anomalies_count",
         readonly=True,
         store=True,
     )
@@ -266,6 +279,11 @@ class LimpContract(models.Model):
             contract.extinguishers_count = len(
                 contract.extinguisher_and_signal_ids
             )
+
+    @api.depends('anomaly_ids')
+    def _compute_anomalies_count(self):
+        for contract in self:
+            contract.anomalies_count = len(contract.anomaly_ids)
 
     def action_view_extinguishers(self):
         self.ensure_one()
@@ -292,6 +310,19 @@ class LimpContract(models.Model):
             'context': {
                 'default_contract_id': self.id,
                 'default_building_site_id': self.building_site_id.id,
+            },
+        }
+
+    def action_view_anomalies(self):
+        self.ensure_one()
+        return {
+            'name': _('Anomalies'),
+            'type': 'ir.actions.act_window',
+            'view_mode': 'tree',
+            'res_model': 'extinguisher.bies.anomalies',
+            'domain': [('contract_id', '=', self.id)],
+            'context': {
+                'default_contract_id': self.id,
             },
         }
 
@@ -467,6 +498,89 @@ class LimpContract(models.Model):
                     self.env['stock.service.picking'].create(
                         self._get_values(contract_id, today, building_site_id, extinguishers=extinguishers, bies=bies)
                     )
+
+    def _get_extiguisher_bies_with_anomalies(self):
+        anomalies = []
+        extinguisher_revision_ids = self.env['extinguisher.revision'].search([
+            '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|',
+            '|', '|', '|', '|', '|', '|', '|', '|', '|', '|',
+            ('extinguisher_is_visible', '=', True),
+            ('extinguisher_is_accesible', '=', True),
+            ('extinguisher_situacion_correct', '=', True),
+            ('extinguisher_adecuate_signaling', '=', True),
+            ('extinguisher_correct_support', '=', True),
+            ('extinguisher_correct_height', '=', True),
+            ('extinguisher_correct_aspect', '=', True),
+            ('extinguisher_correct_precint_seal', '=', True),
+            ('extinguisher_available_aperture_indicative', '=', True),
+            ('extinguisher_correct_identification_tag', '=', True),
+            ('extinguisher_correct_identification_mantainance_tag', '=', True),
+            ('extinguisher_3kg_has_hose', '=', True),
+            ('extinguisher_correct_hose', '=', True),
+            ('extinguisher_correct_valve', '=', True),
+            ('extinguisher_correct_charge_weight', '=', True),
+            ('extinguisher_correct_agent_state', '=', True),
+            ('extinguisher_correct_normative_mark', '=', True),
+            ('extinguisher_correct_re_embossed_normative_pressure_devices', '=', True),
+            ('extinguisher_correct_charge_weight_attached_pressure', '=', True),
+            ('extinguisher_correct_re_embossed_normative_pressure', '=', True),
+            ('extinguisher_correct_interior_pressure', '=', True),
+            ('substitution_stinguisher_correct', '=', True),
+            ('extinguisher_workshop_retirement', '=', True),
+        ]).filtered(lambda e: e.anomalie_created is False)
+
+        for extinguisher_revision_id in extinguisher_revision_ids:
+            anomalies.append({
+                'picking_id': extinguisher_revision_id.stock_service_picking_id.id,
+                'date': extinguisher_revision_id.picking_date,
+                'name': "%s - %s" % (
+                    extinguisher_revision_id.extinguisher_and_signal_id.name,
+                    extinguisher_revision_id.stock_service_picking_id.name
+                ),
+                'contract_id': extinguisher_revision_id.stock_service_picking_id.contract_id.id,
+            })
+
+        bie_revision_ids = self.env['bie.revision'].search([
+            '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|', '|',
+            '|', '|', '|', '|', '|', '|', '|', '|', '|', '|',
+            ('bie_is_visible', '=', True),
+            ('bie_is_accesible', '=', True),
+            ('bie_is_less_50', '=', True),
+            ('bie_valve_1_5_ground', '=', True),
+            ('bie_corrossion_free', '=', True),
+            ('bie_precint_glass_intact', '=', True),
+            ('bie_correct_certification', '=', True),
+            ('bie_correct_pressure_gauge', '=', True),
+            ('bie_correct_hose', '=', True),
+            ('bie_is_clean', '=', True),
+            ('bie_correct_hinge_locking', '=', True),
+            ('bie_25_mm_correct_extraction_orientation', '=', True),
+            ('bie_45mm_couplings_are_certified', '=', True),
+            ('bie_45mm_couplings_joints_correct', '=', True),
+            ('bie_correct_nozzle', '=', True),
+            ('bie_45mm_has_pressure_gauge', '=', True),
+            ('bie_correct_normative_mark', '=', True),
+            ('bie_25mm_has_correct_pressure_gauge', '=', True),
+            ('bie_25mm_has_correct_couplings_joints', '=', True),
+            ('bie_25mm_intake_45_certified_couplings', '=', True),
+            ('bie_correct_pressure_test', '=', True),
+            ('substitution_stinguisher_correct', '=', True),
+            ('bie_workshop_retirement', '=', True),
+        ]).filtered(lambda e: e.anomalie_created is False)
+
+        for bie_revision_id in bie_revision_ids:
+            anomalies.append({
+                'picking_id': bie_revision_id.stock_service_picking_id.id,
+                'date': bie_revision_id.picking_date,
+                'name': "%s - %s" % (
+                    bie_revision_id.bie_and_signal_id.name,
+                    bie_revision_id.stock_service_picking_id.name
+                ),
+                'contract_id': bie_revision_id.stock_service_picking_id.contract_id.id,
+            })
+        self.env['extinguisher.bies.anomalies'].create(anomalies)
+        bie_revision_ids.write({'anomalie_created': True})
+        extinguisher_revision_ids.write({'anomalie_created': True})
 
     def invoice_run(self):
         invoice_ids = self.env["account.invoice"]

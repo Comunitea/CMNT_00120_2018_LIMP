@@ -126,7 +126,6 @@
                             <field name="substitution_stinguisher_correct" string="E.S."/>
                             <field name="extinguisher_workshop_retirement" string="R.T."/>
                             <field name="revision_result" string="Result"/>
-                            <field name="revision_date" string="Revision Date"/>
                         </tree>
                     </field>
                     <separator string="Observations"/>
@@ -240,7 +239,6 @@
                             <field name="substitution_stinguisher_correct" string="E.S."/>
                             <field name="bie_workshop_retirement" string="R.T."/>
                             <field name="revision_result" string="Result"/>
-                            <field name="revision_date" string="Revision Date"/>
                         </tree>
                     </field>
                     <separator string="Observations"/>
