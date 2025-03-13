@@ -182,12 +182,36 @@
             <field name="binding_type">report</field>
         </record>
 
+        <record id="py3o_Acta_revisión_extintores_report_pdf" model="ir.actions.report">
+            <field name="report_type">py3o</field>
+            <field name="name">Acta revisión extintores (PDF)</field>
+            <field name="py3o_filetype">pdf</field>
+            <field name="model">stock.service.picking</field>
+            <field name="report_name">Acta_revisión_extintores_report_pdf</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/Acta revisión extintores.odt</field>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
+        </record>
+
         <record id="py3o_Certificado_extintores_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Certificado extintores</field>
             <field name="py3o_filetype">odt</field>
             <field name="model">stock.service.picking</field>
             <field name="report_name">Certificado_extintores_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/Certificado extintores.odt</field>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="py3o_Certificado_extintores_report_pdf" model="ir.actions.report">
+            <field name="report_type">py3o</field>
+            <field name="name">Certificado extintores (PDF)</field>
+            <field name="py3o_filetype">pdf</field>
+            <field name="model">stock.service.picking</field>
+            <field name="report_name">Certificado_extintores_report_pdf</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/Certificado extintores.odt</field>
             <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
@@ -206,12 +230,36 @@
             <field name="binding_type">report</field>
         </record>
 
+        <record id="py3o_Acta_revisión_BIE_report_pdf" model="ir.actions.report">
+            <field name="report_type">py3o</field>
+            <field name="name">Acta revisión BIE (PDF)</field>
+            <field name="py3o_filetype">pdf</field>
+            <field name="model">stock.service.picking</field>
+            <field name="report_name">Acta_revisión_BIE_report_pdf</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/Acta revisión BIE.odt</field>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
+        </record>
+
         <record id="py3o_Certificado_BIES_report" model="ir.actions.report">
             <field name="report_type">py3o</field>
             <field name="name">Certificado BIES</field>
             <field name="py3o_filetype">odt</field>
             <field name="model">stock.service.picking</field>
             <field name="report_name">Certificado_BIES_report</field>
+            <field name="module">limp_contract</field>
+            <field name="py3o_template_fallback">report/Certificado BIES.odt</field>
+            <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="py3o_Certificado_BIES_report_pdf" model="ir.actions.report">
+            <field name="report_type">py3o</field>
+            <field name="name">Certificado BIES (PDF)</field>
+            <field name="py3o_filetype">pdf</field>
+            <field name="model">stock.service.picking</field>
+            <field name="report_name">Certificado_BIES_report_pdf</field>
             <field name="module">limp_contract</field>
             <field name="py3o_template_fallback">report/Certificado BIES.odt</field>
             <field name="binding_model_id" ref="limp_service_picking.model_stock_service_picking" />
