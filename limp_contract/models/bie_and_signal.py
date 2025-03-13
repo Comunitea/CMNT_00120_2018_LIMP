@@ -126,6 +126,30 @@ class BIERevision(models.Model):
         'Service picking',
         readonly=True
     )
+    picking_date = fields.Date(
+        'Picking date',
+        related='stock_service_picking_id.picking_date',
+        readonly=True,
+        store=True
+    )
+
+    def get_before_revision_date(self, re_embossed=False):
+        self.ensure_one()
+
+        search_domain = [
+            ('bie_and_signal_id', '=', self.bie_and_signal_id.id),
+            ('id', '!=', self.id)
+        ]
+
+        if re_embossed:
+            search_domain.append(('test_type', '=', 're_embossed'))
+
+        revision_id = self.env[self._name].search(search_domain, order='picking_date desc', limit=1)
+
+        if revision_id and revision_id.picking_date:
+            return self.stock_service_picking_id.custom_format_date(revision_id.picking_date)
+        return ""
+
     location_id = fields.Many2one(
         'building.site.services.location',
         'Location',
