@@ -186,7 +186,8 @@ class StockServicePickingSecuence(models.Model):
     _name = "stock.service.picking.sequence"
 
     secuence = fields.Integer("Secuence", readonly=True, required=True, default=0)
-    year = fields.Char("Year", required=True, default=str(datetime.now().year))
+    year = fields.Char("Year", required=True,
+                       default=lambda x: str(datetime.now().year))
     zip_code = fields.Char("Zip code", required=True)
 
     _sql_constraints = [(

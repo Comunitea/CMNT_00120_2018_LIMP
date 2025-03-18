@@ -16,7 +16,7 @@ class BIEAndSignal(models.Model):
     )
 
     sequence = fields.Integer('Sequence', required=True)
-    brand = fields.Char('Brand')
+    brand = fields.Char('Brand', required=False)
     model = fields.Text('Model',)
     plate_num = fields.Char('Plate num', required=True)
     manufacturing_date = fields.Date(
@@ -37,7 +37,8 @@ class BIEAndSignal(models.Model):
     )
     preasure_ok = fields.Boolean('Preasure OK')
     pressure = fields.Float('Pressure')
-    bie_signal_manufacturing_date = fields.Date('Signal Manufacturing date')
+    bie_signal_manufacturing_date = fields.Date('Signal Manufacturing date',
+                                                required=False)
     signal_observation_ok = fields.Boolean('Signal observation OK')
     signal_observation = fields.Text('Signal observation')
     signal_test_type = fields.Selection([
