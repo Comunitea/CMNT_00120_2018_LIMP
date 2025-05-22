@@ -137,7 +137,7 @@
                                 </line>
                                 <image>
                                         <reportElement positionType="Float" x="83" y="67" width="152" height="80"/>
-                                        <imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "../static/src/img/sello_limp.png"]]></imageExpression>
+                                        <imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + ($F{Waste_Arid-waste_or_arid} == "waste" ? "../static/src/img/sello_limp.png" : "../static/src/img/LIMP_SELLO_ARIDO.png")]]></imageExpression>
                                 </image>
                         </band>
                 </groupFooter>
