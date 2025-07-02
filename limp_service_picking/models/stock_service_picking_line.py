@@ -120,6 +120,7 @@ class StockServicePickingLine(models.Model):
             ("private_delivery", "Private Delivery"),
             ("pest_control", "Pest Control"),
             ("legionella", "Legionella"),
+            ("travel_transfers", "Travel and Transfers"),
         ],
         "Type",
         required=True,
