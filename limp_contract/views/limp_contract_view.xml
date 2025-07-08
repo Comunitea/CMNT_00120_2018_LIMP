@@ -246,6 +246,9 @@
                         <filter string="Closed" name="closed" help="Closed Contracts" domain="[('state', '=', 'close')]"/>
                         <filter string="Canceled" name="cancelled" help="Canceled Contracts" domain="[('state', '=', 'cancelled')]"/>
                         <separator orientation="vertical"/>
+                        <filter string="Has Extinguisher Revisions" name="extinguisher" help="Canceled Contracts" domain="[('has_extinguishers_revision', '=', True)]"/>
+                        <filter string="Has Bie Revisions" name="bie" help="Canceled Contracts" domain="[('has_bie_revision', '=', True)]"/>
+                        <separator orientation="vertical"/>
                         <field name="name"/>
                         <field name="partner_id" string="Customer"/>
                         <field name="description"/>

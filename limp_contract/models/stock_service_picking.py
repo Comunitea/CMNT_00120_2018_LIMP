@@ -65,9 +65,9 @@ class StockServicePicking(models.Model):
         store=True,
     )
 
-    def custom_format_date(self, date):
+    def custom_format_date(self, date, date_format="%m/%Y"):
         if date:
-            return date.strftime("%m/%Y")
+            return date.strftime(date_format)
         return ""
 
     def _compute_picking_code(self):
@@ -117,6 +117,34 @@ class StockServicePicking(models.Model):
             return _("ANUAL REVISION")
         else:
             return _("QUARTERLY REVISION")
+
+    def get_last_revision_date(self, extiguishers=False):
+        self.ensure_one()
+
+        search_domain = [
+            ('id', '!=', self.id),
+            ('state', '=', 'closed'),
+        ]
+
+        if extiguishers:
+            search_domain.append(('has_extinguisher_revision', '=', True))
+        else:
+            search_domain.append(('has_bie_revision', '=', True))
+
+        revision_id = self.env[self._name].search(search_domain, order='picking_date desc', limit=1)
+
+        if revision_id and revision_id.picking_date:
+            return self.custom_format_date(revision_id.picking_date, "%d/%m/%Y")
+        else:
+            if extiguishers:
+                extinguisher_and_signal_ids = self.extinguisher_revision_ids.mapped("extinguisher_and_signal_id")
+                if extinguisher_and_signal_ids:
+                    return self.custom_format_date(extinguisher_and_signal_ids[0].revision_date, "%d/%m/%Y")
+            else:
+                bie_and_signal_ids = self.bie_revision_ids.mapped("bie_and_signal_id")
+                if bie_and_signal_ids:
+                    return self.custom_format_date(bie_and_signal_ids[0].revision_date, "%d/%m/%Y")
+        return False
 
     @api.onchange('has_extinguisher_revision')
     def _onchange_has_extinguisher_revision(self):

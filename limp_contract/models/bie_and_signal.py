@@ -47,8 +47,8 @@ class BIEAndSignal(models.Model):
     ], 'Signal test type')
     building_site_id = fields.Many2one(
         'building.site.services',
-        'Service site',
-        domain="['|', ('producer_promoter_id', '=', partner_id), ('producer_promoter_id.parent_id', '=', partner_id)]"
+        string='Service Site',
+        domain="[('partner_ids', 'in', partner_id), ('show', '=', 'service')]",
     )
     location_id = fields.Many2one(
         'building.site.services.location',

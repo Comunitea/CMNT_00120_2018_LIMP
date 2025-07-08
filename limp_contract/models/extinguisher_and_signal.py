@@ -59,8 +59,8 @@ class ExtinguisherAndSignal(models.Model):
     ], 'Signal test type')
     building_site_id = fields.Many2one(
         'building.site.services',
-        'Service site',
-        domain="['|', ('producer_promoter_id', '=', partner_id), ('producer_promoter_id.parent_id', '=', partner_id)]"
+        string='Service Site',
+        domain="[('partner_ids', 'in', partner_id), ('show', '=', 'service')]",
     )
     location_id = fields.Many2one(
         'building.site.services.location',
@@ -122,7 +122,7 @@ class ExtinguisherAndSignal(models.Model):
             else:
                 record.revision_date = record.revision_date
 
-    @api.depends('weight', 'extinguisher_type')
+    @api.depends('weight', 'extinguisher_agent')
     def _compute_extinguisher_type(self):
         for record in self:
             if not record.weight:
