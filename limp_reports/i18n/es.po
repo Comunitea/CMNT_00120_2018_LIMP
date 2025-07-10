@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 13:17+0000\n"
-"PO-Revision-Date: 2024-11-27 13:17+0000\n"
+"POT-Creation-Date: 2025-07-10 16:18+0000\n"
+"PO-Revision-Date: 2025-07-10 16:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -338,11 +338,6 @@ msgid "End of period"
 msgstr "Fin del periodo"
 
 #. module: limp_reports
-#: model:ir.model,name:limp_reports.model_waste_ler_code
-msgid "European list of waste"
-msgstr "Lista europea de residuos"
-
-#. module: limp_reports
 #: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
 msgid "Fecha"
 msgstr ""
@@ -486,7 +481,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: limp_reports
-#: code:addons/limp_reports/models/limp_cert_res_goa.py:13
+#: code:addons/limp_reports/models/limp_cert_res_goa.py:14
 #, python-format
 msgid "New"
 msgstr "Nuevo"
@@ -566,11 +561,6 @@ msgstr "Imprimir memoria anual"
 #: model:ir.model.fields,field_description:limp_reports.field_limp_cert_res_goa_line__producer_id
 msgid "Producer"
 msgstr "Productor"
-
-#. module: limp_reports
-#: model:ir.model,name:limp_reports.model_product_product
-msgid "Product"
-msgstr "Producto"
 
 #. module: limp_reports
 #: model:ir.model,name:limp_reports.model_product_template
@@ -720,6 +710,16 @@ msgid "Signature"
 msgstr "Firma"
 
 #. module: limp_reports
+#: model:ir.model.fields,field_description:limp_reports.field_res_company__signature_representitive
+msgid "Signature from representitive"
+msgstr "Firma del representante"
+
+#. module: limp_reports
+#: model_terms:ir.ui.view,arch_db:limp_reports.view_company_form_add_jasper_report_header
+msgid "Signature representitive"
+msgstr "Firma del representante"
+
+#. module: limp_reports
 #: model_terms:ir.ui.view,arch_db:limp_reports.cer_ges_res_goa
 msgid "Sin otro particular, reciban un cordial saludo"
 msgstr ""
@@ -809,6 +809,12 @@ msgstr "Sin albaranes en contrato"
 #: model:ir.model.fields,field_description:limp_reports.field_wizard_print_memory__year
 msgid "Year"
 msgstr "Año"
+
+#. module: limp_reports
+#: code:addons/limp_reports/models/account_invoice.py:13
+#, python-format
+msgid "You must select a tax for each invoice line."
+msgstr "Debe seleccionar un impuesto para cada línea de factura."
 
 #. module: limp_reports
 #: model:ir.model,name:limp_reports.model_acceptance_document

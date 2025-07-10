@@ -1,10 +1,17 @@
-from odoo import models
+from odoo import models, _
 from odoo.tools import format_date
+from odoo.exceptions import UserError
 
 
 class AccountInvoice(models.Model):
 
     _inherit = "account.invoice"
+
+    def action_invoice_open(self):
+        for line in self.invoice_line_ids:
+            if not line.invoice_line_tax_ids:
+                raise UserError(_("You must select a tax for each invoice line."))
+        return super(AccountInvoice, self).action_invoice_open()
 
     def get_expiration_dates_list(self, padding, signed):
         self.ensure_one()
