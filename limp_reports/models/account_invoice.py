@@ -8,7 +8,7 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     def action_invoice_open(self):
-        if 'Scont' not in self.journal_id.name:
+        if self.journal_id and 'Scont' not in self.journal_id.name:
             for line in self.invoice_line_ids:
                 if not line.invoice_line_tax_ids:
                     raise UserError(_("You must select a tax for each invoice line."))
