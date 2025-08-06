@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="template_facturae_limp" inherit_id="l10n_es_facturae.template_facturae">
+        <xpath expr="//t[@t-set='company_partner']" position="replace">
+            <t t-set="company_partner" t-value="invoice.grupo_limp_partner_id"/>
+        </xpath>
+    </template>
+</odoo>

@@ -32,6 +32,7 @@
         "report_py3o",
         "limp_custom",
         "account_due_dates_str",
+        "l10n_es_facturae",
     ],
     "data": [
         "views/limp_cert_res_goa_view.xml",
@@ -45,6 +46,7 @@
         "views/acceptance_document_view.xml",
         "report/analytic_detail_report.xml",
         "report/cert_ges_res_goa.xml",
+        "report/report_facturae.xml",
         "limp_reports_data.xml",
         "security/ir.model.access.csv",
     ],

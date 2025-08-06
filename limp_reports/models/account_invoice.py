@@ -1,4 +1,4 @@
-from odoo import models, _
+from odoo import models, _, fields
 from odoo.tools import format_date
 from odoo.exceptions import UserError
 
@@ -6,6 +6,8 @@ from odoo.exceptions import UserError
 class AccountInvoice(models.Model):
 
     _inherit = "account.invoice"
+
+    grupo_limp_partner_id = fields.Many2one("res.partner", string="Grupo Limp", default=4)
 
     def action_invoice_open(self):
         if self.journal_id and 'Scont' not in self.journal_id.name:
@@ -18,12 +20,11 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         expiration_dates = []
         if self.move_id:
-            move_lines = self.env["account.move.line"].\
-                search([('move_id', '=', self.move_id.id),
-                        ('account_id.internal_type', 'in',
-                            ['payable', 'receivable']),
-                        ('date_maturity', "!=", False)],
-                       order="date_maturity asc")
+            move_lines = self.env["account.move.line"].search([
+                ('move_id', '=', self.move_id.id),
+                ('account_id.internal_type', 'in', ['payable', 'receivable']),
+                ('date_maturity', "!=", False)
+            ], order="date_maturity asc")
             for line in move_lines:
                 expiration_dates.append('{}'.format(
                     format_date(self.env, line.date_maturity)))
