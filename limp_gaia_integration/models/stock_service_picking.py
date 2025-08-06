@@ -30,11 +30,20 @@ class StockServicePicking(models.Model):
                     mapped('product_id.ler_code_id'):
                 raise exceptions.UserError("Los residuos a transladar no "
                                            "están definidos")
+            if not pick.operator_partner_id:
+                raise exceptions.UserError(
+                    "No se ha definido el operador del servicio"
+                )
             pick.operator_partner_id.check_gaia("operador")
             pick.operator_partner_id.\
                 get_authorization_id(pick.service_picking_valorization_ids.
                                      mapped('product_id.ler_code_id'),
                                      ['N', 'G'])
+
+            if not pick.producer_promoter_id:
+                raise exceptions.UserError(
+                    "No se ha definido el productor o promotor del servicio"
+                )
 
             pick.producer_promoter_id.check_gaia("productor")
             code = pick.producer_promoter_id.\
@@ -47,11 +56,21 @@ class StockServicePicking(models.Model):
                                          mapped('product_id.ler_code_id'),
                                          ['E'])
 
+            if not pick.carrier_id:
+                raise exceptions.UserError(
+                    "No se ha definido el transportista del servicio"
+                )
+
             pick.carrier_id.check_gaia("transportista")
             pick.carrier_id.\
                 get_authorization_id(pick.service_picking_valorization_ids.
                                      mapped('product_id.ler_code_id'),
                                      ['T'])
+
+            if not pick.manager_partner_id:
+                raise exceptions.UserError(
+                    "No se ha definido el gestor del servicio"
+                )
 
             pick.manager_partner_id.check_gaia("gestor")
             pick.manager_partner_id.\
@@ -98,7 +117,7 @@ class StockServicePicking(models.Model):
         for order in self:
             if order.dcs_no:
                 order.check_DI_data()
-                #TODO: Crear envío a Gaia
+                # TODO: Crear envío a Gaia
 
         return res
 
@@ -121,10 +140,9 @@ class ServicePickingValorizationRel(models.Model):
     dangerous_motive = fields.\
         Selection([('HP1', 'HP1 Explosivo'), ('HP2', 'HP2 Comburente'),
                    ('HP3', 'HP3 Inflamable'),
-                   ('HP4', 'HP4 Irritante-Irritación cutánea y lesiones '
-                    'oculares'), ('HP5', 'HP5 Toxicidad especifica en '
-                    'determinados órganos (STOT en su sigla ingles) - '
-                    'Toxicidad por aspiración'),
+                   ('HP4', 'HP4 Irritante-Irritación cutánea y lesiones oculares'),
+                   ('HP5', 'HP5 Toxicidad especifica en determinados órganos (STOT en su sigla ingles) - '
+                   'Toxicidad por aspiración'),
                    ('HP6', 'HP6 Tóxicidad aguda'), ('HP7', 'HP7 Carcinógeno'),
                    ('HP8', 'HP8 Corrosivo'), ('HP9', 'HP9 Infeccioso'),
                    ('HP10', 'HP10 Tóxico para la reproducción'),
@@ -165,10 +183,9 @@ class WasteLerCode(models.Model):
     dangerous_motive = fields.\
         Selection([('HP1', 'HP1 Explosivo'), ('HP2', 'HP2 Comburente'),
                    ('HP3', 'HP3 Inflamable'),
-                   ('HP4', 'HP4 Irritante-Irritación cutánea y lesiones '
-                    'oculares'), ('HP5', 'HP5 Toxicidad especifica en '
-                    'determinados órganos (STOT en su sigla ingles) - '
-                    'Toxicidad por aspiración'),
+                   ('HP4', 'HP4 Irritante-Irritación cutánea y lesiones oculares'),
+                   ('HP5', 'HP5 Toxicidad especifica en determinados órganos (STOT en su sigla ingles) - '
+                   'Toxicidad por aspiración'),
                    ('HP6', 'HP6 Tóxicidad aguda'), ('HP7', 'HP7 Carcinógeno'),
                    ('HP8', 'HP8 Corrosivo'), ('HP9', 'HP9 Infeccioso'),
                    ('HP10', 'HP10 Tóxico para la reproducción'),
