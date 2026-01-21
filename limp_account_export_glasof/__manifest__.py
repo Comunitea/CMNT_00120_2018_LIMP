@@ -25,7 +25,10 @@
     "author": "Comunitea",
     "website": "https://www.comunitea.com",
     "category": "Account/Export",
-    "depends": ["account"],
+    "depends": [
+        "account",
+        "limp_reports",
+    ],
     "data": [
         "views/res_company_view.xml",
         "wizard/export_account_to_glasof_view.xml",

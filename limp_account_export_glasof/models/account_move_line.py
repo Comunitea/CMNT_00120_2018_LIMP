@@ -21,10 +21,15 @@ from odoo import models, fields
 
 
 class AccountMoveLine(models.Model):
-
     _inherit = "account.move.line"
 
     invoice_ref = fields.Char("Invoice ref", compute="_compute_invoice_ref")
+
+    invoice_date_expedition = fields.Date(
+        string="Fecha de expedición",
+        help="Fecha de expedición del documento.",
+        related="invoice_id.date_expedition",
+    )
 
     def _compute_invoice_ref(self):
         for line in self:
@@ -41,7 +46,6 @@ class AccountMoveLine(models.Model):
 
 
 class AccountAccountType(models.Model):
-
     _inherit = "account.account.type"
 
     code = fields.Char()
