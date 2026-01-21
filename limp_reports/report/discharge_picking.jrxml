@@ -137,6 +137,12 @@
         <field name="Scont-no_quality" class="java.lang.Boolean">
                 <fieldDescription><![CDATA[Scont-no_quality]]></fieldDescription>
         </field>
+        <field name="No_DCS-dcs_no" class="java.lang.String">
+                <fieldDescription><![CDATA[No_DCS-dcs_no]]></fieldDescription>
+        </field>
+        <field name="Entrega-delivery_proof_no" class="java.lang.String">
+                <fieldDescription><![CDATA[Entrega-delivery_proof_no]]></fieldDescription>
+        </field>
         <variable name="L" class="java.util.Locale">
                 <variableExpression><![CDATA[$P{REPORT_LOCALE}]]></variableExpression>
                 <initialValueExpression><![CDATA[$P{REPORT_LOCALE}]]></initialValueExpression>
@@ -145,7 +151,7 @@
                 <band splitType="Stretch"/>
         </background>
         <pageHeader>
-                <band height="136" splitType="Stretch">
+                <band height="156" splitType="Stretch">
                         <image onErrorType="Blank">
                                 <reportElement x="0" y="0" width="135" height="69">
                                         <printWhenExpression><![CDATA[!$F{Scont-no_quality}]]></printWhenExpression>
@@ -264,6 +270,50 @@
                                 </box>
                                 <textElement textAlignment="Center"/>
                                 <textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Admission document no.")]]></textFieldExpression>
+                        </textField>
+                        <textField pattern="" isBlankWhenNull="true">
+                                <reportElement x="118" y="131" width="171" height="20"/>
+                                <box leftPadding="0">
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Entrega-delivery_proof_no}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                                <reportElement x="0" y="131" width="118" height="20"/>
+                                <box leftPadding="0">
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                                <textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Nº comprobante entrega:")]]></textFieldExpression>
+                        </textField>
+                        <textField pattern="" isBlankWhenNull="true">
+                                <reportElement x="333" y="131" width="172" height="20"/>
+                                <box leftPadding="0">
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                                <textFieldExpression class="java.lang.String"><![CDATA[$F{No_DCS-dcs_no}]]></textFieldExpression>
+                        </textField>
+                        <textField>
+                                <reportElement x="289" y="131" width="44" height="20"/>
+                                <box leftPadding="0">
+                                        <topPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <leftPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <bottomPen lineWidth="0.25" lineStyle="Solid"/>
+                                        <rightPen lineWidth="0.25" lineStyle="Solid"/>
+                                </box>
+                                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                                <textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Nº DCS:")]]></textFieldExpression>
                         </textField>
                 </band>
         </pageHeader>
