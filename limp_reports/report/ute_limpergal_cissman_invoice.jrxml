@@ -131,8 +131,8 @@
     <field name="Fecha_factura-date_invoice" class="java.util.Date">
         <fieldDescription><![CDATA[/data/record/Fecha_factura-date_invoice]]></fieldDescription>
     </field>
-    <field name="Fecha_expedicion-date_expedition" class="java.util.Date">
-        <fieldDescription><![CDATA[/data/record/Fecha_expedicion-date_expedition]]></fieldDescription>
+    <field name="Fecha_operacion-date_expedition" class="java.util.Date">
+        <fieldDescription><![CDATA[/data/record/Fecha_operacion-date_expedition]]></fieldDescription>
     </field>
     <field name="id" class="java.lang.Integer">
         <fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
@@ -263,7 +263,33 @@
                     <textElement textAlignment="Center" verticalAlignment="Middle">
                         <font size="9"/>
                     </textElement>
-                    <textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha_expedicion-date_expedition}]]></textFieldExpression>
+                    <textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha_factura-date_invoice}]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement mode="Opaque" x="0" y="34" width="100" height="12" forecolor="#FFFFFF" backcolor="#87004F"/>
+                    <box>
+                        <topPen lineWidth="0.25" lineColor="#87004F"/>
+                        <leftPen lineWidth="0.25" lineColor="#87004F"/>
+                        <bottomPen lineWidth="0.25" lineColor="#87004F"/>
+                        <rightPen lineWidth="0.25" lineColor="#87004F"/>
+                    </box>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font size="8"/>
+                    </textElement>
+                    <text><![CDATA[FECHA OPERACIÓN]]></text>
+                </staticText>
+                <textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+                    <reportElement x="0" y="46" width="100" height="19"/>
+                    <box>
+                        <topPen lineWidth="0.25" lineColor="#87004F"/>
+                        <leftPen lineWidth="0.25" lineColor="#87004F"/>
+                        <bottomPen lineWidth="0.25" lineColor="#87004F"/>
+                        <rightPen lineWidth="0.25" lineColor="#87004F"/>
+                    </box>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font size="9"/>
+                    </textElement>
+                    <textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha_operacion-date_expedition}]]></textFieldExpression>
                 </textField>
                 <staticText>
                     <reportElement mode="Opaque" x="0" y="3" width="90" height="12" forecolor="#FFFFFF" backcolor="#87004F"/>
