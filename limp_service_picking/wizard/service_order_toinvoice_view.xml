@@ -12,6 +12,7 @@
                 <field name="group_partner"/>
                 <field name="group_building_site"/>
                 <field name="invoice_date" />
+                <field name="operation_date" />
             </group>
             <footer>
                 <button name="open_invoice" string="Create" type="object" class="oe_highlight"/>

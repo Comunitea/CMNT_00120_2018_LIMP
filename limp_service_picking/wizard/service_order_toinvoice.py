@@ -34,6 +34,7 @@ class ServiceOrderToinvoice(models.TransientModel):
     group_partner = fields.Boolean("Group by partner")
     group_building_site = fields.Boolean("Group by building site")
     invoice_date = fields.Date("Invoiced date")
+    operation_date = fields.Date("Operation date")
 
     def view_init(self, fields_list):
         res = super(ServiceOrderToinvoice, self).view_init(fields_list)
@@ -65,6 +66,7 @@ class ServiceOrderToinvoice(models.TransientModel):
 
     def create_invoice(self):
         date_inv = self.invoice_date or fields.Date.today()
+        operation_date = self.operation_date or fields.Date.today()
         journal_id = self.journal_id.id
         group_partner = self.group_partner
         group_building_site = self.group_building_site
@@ -172,6 +174,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     )
                     or (invoice.comment and invoice.comment or ""),
                     "date_invoice": date_inv or False,
+                    "date_operation": operation_date or False,
                     "user_id": self.env.user.id,
                     "intercompany": intercompany,
                 }
@@ -198,6 +201,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     )
                     or (invoice.comment and invoice.comment or ""),
                     "date_invoice": date_inv or False,
+                    "date_operation": operation_date or False,
                     "user_id": self.env.user.id,
                     "intercompany": intercompany,
                 }
@@ -215,6 +219,7 @@ class ServiceOrderToinvoice(models.TransientModel):
                     "payment_mode_id": service_picking.payment_mode.id,
                     "fiscal_position_id": service_picking.fiscal_position.id,
                     "date_invoice": date_inv or False,
+                    "date_operation": operation_date or False,
                     "company_id": service_picking.company_id.id,
                     "user_id": self.env.user.id,
                     "delegation_id": service_picking.delegation_id.id,
