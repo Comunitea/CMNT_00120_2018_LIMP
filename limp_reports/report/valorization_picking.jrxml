@@ -100,10 +100,16 @@
         <field name="Scont-no_quality" class="java.lang.Boolean">
                 <fieldDescription><![CDATA[Scont-no_quality]]></fieldDescription>
         </field>
+        <field name="No_DCS-dcs_no" class="java.lang.String">
+                <fieldDescription><![CDATA[No_DCS-dcs_no]]></fieldDescription>
+        </field>
+        <field name="Entrega-delivery_proof_no" class="java.lang.String">
+                <fieldDescription><![CDATA[Entrega-delivery_proof_no]]></fieldDescription>
+        </field>
         <group name="PICKING" isStartNewPage="true" footerPosition="ForceAtBottom">
                 <groupExpression><![CDATA[$F{id}]]></groupExpression>
                 <groupHeader>
-                        <band height="216">
+                        <band height="236">
                                 <image onErrorType="Blank">
                                         <reportElement x="5" y="0" width="94" height="76">
                                                 <printWhenExpression><![CDATA[!$F{Scont-no_quality}]]></printWhenExpression>
@@ -301,6 +307,32 @@
                                                         <font size="12"/>
                                                 </textElement>
                                                 <textFieldExpression class="java.lang.String"><![CDATA[$F{Container_placement-container_placement} == "on_street" ? "X" : ""]]></textFieldExpression>
+                                        </textField>
+                                        <staticText>
+                                                <reportElement x="1" y="85" width="87" height="20" isPrintWhenDetailOverflows="true"/>
+                                                <textElement/>
+                                                <text><![CDATA[Nº Comprobante]]></text>
+                                        </staticText>
+                                        <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                                                <reportElement positionType="Float" x="88" y="75" width="170" height="20" isPrintWhenDetailOverflows="true"/>
+                                                <box leftPadding="2" rightPadding="3">
+                                                        <bottomPen lineWidth="0.25"/>
+                                                </box>
+                                                <textElement verticalAlignment="Bottom"/>
+                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{Entrega-delivery_proof_no}]]></textFieldExpression>
+                                        </textField>
+                                        <staticText>
+                                                <reportElement x="1" y="105" width="87" height="20" isPrintWhenDetailOverflows="true"/>
+                                                <textElement/>
+                                                <text><![CDATA[Nº DCS]]></text>
+                                        </staticText>
+                                        <textField isStretchWithOverflow="true" isBlankWhenNull="true">
+                                                <reportElement positionType="Float" x="88" y="95" width="170" height="20" isPrintWhenDetailOverflows="true"/>
+                                                <box leftPadding="2" rightPadding="3">
+                                                        <bottomPen lineWidth="0.25"/>
+                                                </box>
+                                                <textElement verticalAlignment="Bottom"/>
+                                                <textFieldExpression class="java.lang.String"><![CDATA[$F{No_DCS-dcs_no}]]></textFieldExpression>
                                         </textField>
                                 </frame>
                         </band>
