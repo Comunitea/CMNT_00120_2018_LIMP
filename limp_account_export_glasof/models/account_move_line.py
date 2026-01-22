@@ -25,10 +25,10 @@ class AccountMoveLine(models.Model):
 
     invoice_ref = fields.Char("Invoice ref", compute="_compute_invoice_ref")
 
-    invoice_date_expedition = fields.Date(
-        string="Fecha de expedición",
+    invoice_date_production = fields.Date(
+        string="Fecha de producción",
         help="Fecha de expedición del documento.",
-        related="invoice_id.date_expedition",
+        related="invoice_id.date_operation",
     )
 
     def _compute_invoice_ref(self):

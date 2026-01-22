@@ -4,13 +4,12 @@ from odoo.exceptions import UserError
 
 
 class AccountInvoice(models.Model):
-
     _inherit = "account.invoice"
 
     grupo_limp_partner_id = fields.Many2one("res.partner", string="Grupo Limp", default=24613)
-    date_expedition = fields.Date(
-        string="Fecha de expedición",
-        help="Fecha de expedición del documento."
+    date_operation = fields.Date(
+        string="Fecha de Operación",
+        help="Fecha de operación del documento."
     )
 
     # def action_invoice_open(self):

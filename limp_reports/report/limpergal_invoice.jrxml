@@ -131,8 +131,8 @@
         <field name="Fecha_factura-date_invoice" class="java.util.Date">
                 <fieldDescription><![CDATA[/data/record/Fecha_factura-date_invoice]]></fieldDescription>
         </field>
-        <field name="Fecha_operacion-date_expedition" class="java.util.Date">
-                <fieldDescription><![CDATA[/data/record/Fecha_operacion-date_expedition]]></fieldDescription>
+        <field name="Fecha_operacion-date_operation" class="java.util.Date">
+                <fieldDescription><![CDATA[/data/record/Fecha_operacion-date_operation]]></fieldDescription>
         </field>
         <field name="id" class="java.lang.Integer">
                 <fieldDescription><![CDATA[/data/record/id]]></fieldDescription>
@@ -287,7 +287,7 @@
                                     <textElement textAlignment="Center" verticalAlignment="Middle">
                                         <font size="9"/>
                                     </textElement>
-                                    <textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha_operacion-date_expedition}]]></textFieldExpression>
+                                    <textFieldExpression class="java.util.Date"><![CDATA[$F{Fecha_operacion-date_operation}]]></textFieldExpression>
                                 </textField>
                                 <staticText>
                                         <reportElement mode="Opaque" x="0" y="3" width="90" height="12" forecolor="#FFFFFF" backcolor="#001D77"/>
