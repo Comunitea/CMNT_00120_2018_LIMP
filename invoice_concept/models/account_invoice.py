@@ -26,6 +26,10 @@ class AccountInvoice(models.Model):
     analytic_id = fields.Many2one(
         "account.analytic.account", "Analytic account"
     )
+    date_operation = fields.Date(
+        string="Fecha de Operación",
+        help="Fecha de operación del documento."
+    )
 
     @api.model
     def _get_refund_copy_fields(self):

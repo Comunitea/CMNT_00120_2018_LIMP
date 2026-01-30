@@ -44,7 +44,6 @@
         "wizard/wizard_print_memory.xml",
         "wizard/wizard_print_analytic_details_view.xml",
         "views/acceptance_document_view.xml",
-        "views/account_invoice_view.xml",
         "report/analytic_detail_report.xml",
         "report/cert_ges_res_goa.xml",
         "report/report_facturae.xml",

@@ -71,6 +71,7 @@ class AccountAnalyticAccount(models.Model):
             "company_id": self.company_id.id,
             "analytic_id": self.id,
             "date_invoice": self._context.get("invoice_date", False),
+            "date_operation": self._context.get("invoice_date", False),
             "department_id": self.department_id
             and self.department_id.id
             or False,
@@ -378,8 +379,8 @@ class AccountAnalyticAccount(models.Model):
                                         new_inv = inv.copy(
                                             default={
                                                 "invoice_line_ids": False,
-                                                "date_invoice":
-                                                inv.date_invoice,
+                                                "date_invoice": inv.date_invoice,
+                                                "date_operation": inv.date_invoice,
                                             }
                                         )
                                         created_invoices |= new_inv

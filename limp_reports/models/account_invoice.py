@@ -7,10 +7,6 @@ class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
     grupo_limp_partner_id = fields.Many2one("res.partner", string="Grupo Limp", default=24613)
-    date_operation = fields.Date(
-        string="Fecha de Operación",
-        help="Fecha de operación del documento."
-    )
 
     # def action_invoice_open(self):
     #     if self.journal_id and 'Scont' not in self.journal_id.name:
