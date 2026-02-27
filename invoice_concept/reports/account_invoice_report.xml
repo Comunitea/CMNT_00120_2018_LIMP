@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_invoice_report_search" model="ir.ui.view">
+        <field name="name">account.invoice.report.search</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='creditnote']" position="after">
+                <separator/>
+                <filter name="invoice_date" string="Fecha de factura" date="date"/>
+                <filter name="invoice_date_operation" string="Fecha de operación" date="date_operation"/>
+            </xpath>
+            <xpath expr="//filter[@name='duemonth']" position="after">
+                <filter string="Fecha de operación" name="date_operation" context="{'group_by':'date_operation'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

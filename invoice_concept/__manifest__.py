@@ -36,6 +36,7 @@
         "views/account_invoice.xml",
         "views/analytic_invoice_concept.xml",
         "views/product.xml",
+        "reports/account_invoice_report.xml",
     ],
     "installable": True,
 }
