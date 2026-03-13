@@ -44,11 +44,30 @@ class LimpContractLineCleaning(models.Model):
         ondelete="restrict",
     )
 
+    can_close = fields.Boolean("Se puede cerrar", compute="_compute_can_close")
+
+    @api.depends("date", "contract_id")
+    def _compute_can_close(self):
+        for line in self:
+            if line.state == 'open' and line.date:
+                invoice_id = self.env["account.invoice"].search([
+                    ("origin", "=", line.name),
+                ], limit=1, order="date desc")
+                if invoice_id and invoice_id.date >= line.date:
+                    line.can_close = True
+                else:
+                    line.can_close = False
+            else:
+                line.can_close = False
+
     def open_line(self):
         return self.write({"state": "open"})
 
     def reopen_line(self):
         return self.write({"state": "open"})
+
+    def close_line(self):
+        return self.write({"state": "close"})
 
     def get_all_tasks(self):
         for line in self:

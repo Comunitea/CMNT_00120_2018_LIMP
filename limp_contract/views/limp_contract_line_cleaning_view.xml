@@ -34,6 +34,8 @@
                 <header>
                     <button name="open_line" type="object" string="Open line" states="draft" class="oe_highlight"/>
                     <button name="reopen_line" type="object" string="Reopen" states="close"/>
+                    <field name="can_close" invisible="1"/>
+                    <button name="close_line" type="object" string="Cerrar línea" class="oe_highlight" attrs="{ 'invisible': [('can_close', '=', False)] }"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
