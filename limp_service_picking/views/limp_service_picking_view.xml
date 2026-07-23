@@ -18,6 +18,7 @@
                 <field name="picking_date" />
                 <field name="retired_date" />
                 <field name="amount_untaxed" sum="Total untaxed" />
+                <field name="amount_total" sum="Total"/>
                 <field name="building_site" invisible="1" />
                 <field name="storage" invisible="1" />
                 <field name="state" />

@@ -14,6 +14,7 @@
                 <field name="department_id"/>
                 <field name="parent_id"/>
                 <field name="amount_untaxed" sum="Total untaxed"/>
+                <field name="amount_total" sum="Total"/>
                 <field name="state"/>
                 <field name="sale_id"/>
                 <field name="invoice_id"/>
