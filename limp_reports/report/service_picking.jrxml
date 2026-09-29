@@ -108,6 +108,9 @@
         <field name="Telefono-phone2" class="java.lang.String">
                 <fieldDescription><![CDATA[Obra_Servicio-building_site_id/Direccion-address_building_site/Telefono-phone]]></fieldDescription>
         </field>
+        <field name="QR-qr_download_image" class="java.lang.String">
+                <fieldDescription><![CDATA[QR-qr_download_image]]></fieldDescription>
+        </field>
         <variable name="L" class="java.util.Locale">
                 <variableExpression><![CDATA[$P{REPORT_LOCALE}]]></variableExpression>
                 <initialValueExpression><![CDATA[$P{REPORT_LOCALE}]]></initialValueExpression>
@@ -122,6 +125,17 @@
                                         <printWhenExpression><![CDATA[!$F{Scont-no_quality}]]></printWhenExpression>
                                 </reportElement>
                                 <imageExpression class="java.lang.String"><![CDATA[$F{Logo-logo}]]></imageExpression>
+                        </image>
+                        <staticText>
+                                <reportElement x="234" y="0" width="139" height="9"/>
+                                <textElement textAlignment="Center" markup="none">
+                                        <font size="6"/>
+                                </textElement>
+                                <text><![CDATA[Escanee para descargar el albarán en PDF]]></text>
+                        </staticText>
+                        <image onErrorType="Blank">
+                                <reportElement x="240" y="10" width="64" height="62"/>
+                                <imageExpression class="java.lang.String"><![CDATA[$F{QR-qr_download_image}]]></imageExpression>
                         </image>
                         <textField>
                                 <reportElement x="373" y="3" width="76" height="20"/>

@@ -82,6 +82,9 @@
         <field name="No_autorizacion_gestor-manager_authorization_no2" class="java.lang.String">
                 <fieldDescription><![CDATA[/data/record/Direccion-partner_id/Nombre_de_empresa-commercial_partner_id/No_autorizacion_gestor-manager_authorization_no]]></fieldDescription>
         </field>
+        <field name="QR-outgoing_report_qr_image" class="java.lang.String">
+                <fieldDescription><![CDATA[/data/record/QR-outgoing_report_qr_image]]></fieldDescription>
+        </field>
         <group name="PICKING" isStartNewPage="true" isResetPageNumber="true" footerPosition="ForceAtBottom">
                 <groupExpression><![CDATA[$F{id}]]></groupExpression>
                 <groupHeader>
@@ -132,9 +135,6 @@
                                 <line>
                                         <reportElement x="278" y="45" width="1" height="64"/>
                                 </line>
-                                <line>
-                                        <reportElement x="0" y="108" width="555" height="1"/>
-                                </line>
                                 <image>
                                         <reportElement positionType="Float" x="83" y="67" width="152" height="80"/>
                                         <imageExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + ($F{Waste_Arid-waste_or_arid} == "waste" ? "../static/src/img/sello_limp.png" : "../static/src/img/LIMP_SELLO_ARIDO.png")]]></imageExpression>
@@ -150,7 +150,7 @@
                 </band>
         </background>
         <detail>
-                <band height="536" splitType="Stretch">
+                <band height="556" splitType="Stretch">
                         <textField>
                                 <reportElement x="0" y="0" width="555" height="20"/>
                                 <textElement textAlignment="Center">
@@ -413,10 +413,24 @@
                                 <text><![CDATA[E. - INCIDENCIAS]]></text>
                         </staticText>
                         <textField isStretchWithOverflow="true">
-                                <reportElement positionType="Float" x="23" y="491" width="532" height="43"/>
+                                <reportElement positionType="Float" x="23" y="491" width="370" height="43"/>
                                 <textElement/>
                                 <textFieldExpression class="java.lang.String"><![CDATA[$F{Notas-note}]]></textFieldExpression>
                         </textField>
+                        <staticText>
+                                <reportElement positionType="Float" x="400" y="472" width="155" height="11"/>
+                                <textElement>
+                                        <font size="7"/>
+                                </textElement>
+                                <text><![CDATA[Escanee para descargar o xustificante en PDF]]></text>
+                        </staticText>
+                        <line>
+                                <reportElement positionType="Float" x="396" y="465" width="1" height="91" forecolor="#000000"/>
+                        </line>
+                        <image onErrorType="Blank">
+                                <reportElement positionType="Float" x="400" y="486" width="64" height="64"/>
+                                <imageExpression class="java.lang.String"><![CDATA[$F{QR-outgoing_report_qr_image}]]></imageExpression>
+                        </image>
                         <frame>
                                 <reportElement positionType="Float" x="23" y="138" width="532" height="22"/>
                                 <staticText>

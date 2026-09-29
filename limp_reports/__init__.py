@@ -19,5 +19,6 @@
 ##############################################################################
 from . import wizard
 from . import models
+from . import controllers
 from . import annual_memory_parser
 from . import analytic_detail_parser

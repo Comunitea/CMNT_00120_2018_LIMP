@@ -7,3 +7,5 @@ from . import account_analytic_tag
 from . import account_invoice
 from . import limp_cert_res_goa
 from . import product_template
+from . import stock_service_picking
+from . import stock_picking
