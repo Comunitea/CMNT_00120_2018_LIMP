@@ -46,6 +46,8 @@
         "views/acceptance_document_view.xml",
         "report/analytic_detail_report.xml",
         "report/cert_ges_res_goa.xml",
+        "report/cert_envio_gestor_externo.xml",
+        "report/cert_recepcion.xml",
         "report/report_facturae.xml",
         "limp_reports_data.xml",
         "security/ir.model.access.csv",
