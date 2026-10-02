@@ -35,7 +35,7 @@
                             <span t-esc="dated_docs and min(dated_docs.mapped('retired_date')).strftime('%d/%m/%Y') or ''"/>
                             hasta el día
                             <span t-esc="dated_docs and max(dated_docs.mapped('retired_date')).strftime('%d/%m/%Y') or ''"/>,
-                            al gestor <span t-esc="o.manager_partner_id.name"/>, con domicilio en
+                            al gestor <span t-esc="o.manager_partner_id.display_name"/>, con domicilio en
                             <span t-esc="o._cert_envio_gestor_externo_partner_address(o.manager_partner_id)"/> y autorizado por la Xunta de Galicia con el número de
                             inscripción <span t-esc="o.manager_partner_id.authorization_no"/> y NIMA número
                             <span t-esc="o.manager_partner_id.nima_no"/> para su tratamiento según legislación vigente.
