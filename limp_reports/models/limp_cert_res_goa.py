@@ -33,6 +33,14 @@ class LimpCertResGoa(models.Model):
         locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
         return self.date.strftime('%d de %B de %Y')
 
+    def _partner_address(self, partner):
+        """Plain 'street, zip city' address, without the partner name (unlike contact_address)."""
+        parts = [part for part in (partner.street, partner.street2) if part]
+        city_parts = [part for part in (partner.zip, partner.city) if part]
+        if city_parts:
+            parts.append(" ".join(city_parts))
+        return ", ".join(parts)
+
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
         if self.partner_id:

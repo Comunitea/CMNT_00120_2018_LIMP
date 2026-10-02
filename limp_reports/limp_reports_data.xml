@@ -388,7 +388,7 @@
     <report
         string="Certificado de envío a gestor externo"
         id="cert_envio_gestor_externo_report"
-        model="stock.service.picking"
+        model="limp.cert.res.goa"
         report_type="qweb-pdf"
         name="limp_reports.cert_envio_gestor_externo"
         file="limp_reports.cert_envio_gestor_externo"
@@ -398,7 +398,7 @@
     <report
         string="Certificado de recepción"
         id="cert_recepcion_report"
-        model="stock.picking"
+        model="limp.cert.res.goa"
         report_type="qweb-pdf"
         name="limp_reports.cert_recepcion"
         file="limp_reports.cert_recepcion"

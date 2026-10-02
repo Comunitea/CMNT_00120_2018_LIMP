@@ -2,110 +2,109 @@
 <odoo>
     <template id="cert_envio_gestor_externo">
         <t t-call="web.html_container">
-            <t t-set="o" t-value="docs[0]"/>
-            <t t-set="dated_docs" t-value="docs.filtered('retired_date')"/>
-            <t t-call="web.external_layout">
-                <div class="page" style="font-size: 10pt; font-family: 'Arial MT', Arial, sans-serif;">
-                    <style>
-                        .cert_table, .cert_table > thead > tr > td, .cert_table > tbody > tr > td {
-                            border: 1px solid #000;
-                            border-collapse: collapse;
-                            padding: 3px;
-                            font-family: 'Arial MT', Arial, sans-serif;
-                        }
-                    </style>
-                    <div class="oe_structure"/>
-                    <div id="fecha" style="text-align: right; margin-bottom: 20px;">
-                        <p>Lugo, <span t-esc="o._cert_envio_gestor_externo_today()"/></p>
-                    </div>
-                    <h4 style="text-align: center; font-size: 12pt; font-family: 'Arial MT', Arial, sans-serif; margin-bottom: 20px;">
-                        CERTIFICADO DE GESTIÓN DE RESIDUOS ENTREGADOS A GESTOR EXTERNO AUTORIZADO
-                    </h4>
-                    <div id="main" style="text-align: justify; margin-top: 20px;">
-                        <p>
-                            La empresa <span t-esc="o.company_id.name"/> con CIF <span t-esc="o.company_id.vat"/> y domicilio social en
-                            <span t-esc="o._cert_envio_gestor_externo_partner_address(o.company_id.partner_id)"/>, autorizada por la Xunta de Galicia para el transporte de
-                            residuos no peligrosos con el número de inscripción <span t-esc="o.company_id.partner_id.transport_authorization_no"/>
-                            y como Operador y Negociante de Residuos con inscripción número <span t-esc="o.company_id.partner_id.authorization_no"/>.
-                            NIMA número <span t-esc="o.company_id.partner_id.nima_no"/>.
-                        </p>
-                        <p>CERTIFICA:</p>
-                        <p>
-                            La entrega, de los residuos que figuran en el cuadro inferior desde el día
-                            <span t-esc="dated_docs and min(dated_docs.mapped('retired_date')).strftime('%d/%m/%Y') or ''"/>
-                            hasta el día
-                            <span t-esc="dated_docs and max(dated_docs.mapped('retired_date')).strftime('%d/%m/%Y') or ''"/>,
-                            al gestor <span t-esc="o.manager_partner_id.display_name"/>, con domicilio en
-                            <span t-esc="o._cert_envio_gestor_externo_partner_address(o.manager_partner_id)"/> y autorizado por la Xunta de Galicia con el número de
-                            inscripción <span t-esc="o.manager_partner_id.authorization_no"/> y NIMA número
-                            <span t-esc="o.manager_partner_id.nima_no"/> para su tratamiento según legislación vigente.
-                        </p>
-                    </div>
-                    <div id="table" style="text-align: center;">
-                        <table class="cert_table table mt8 table-sm" style="font-size: 9pt; font-weight: bold; width: 100%;">
-                            <thead>
-                                <tr>
-                                    <td>CLIENTE</td>
-                                    <td colspan="2"><t t-esc="o.partner_id.name"/></td>
-                                    <td colspan="2">OBRA</td>
-                                    <td colspan="3"><t t-esc="o.building_site_id.name"/></td>
-                                </tr>
-                            </thead>
-                        </table>
-                        <table class="cert_table table mt8 table-sm" style="font-size: 8pt; width: 80%; margin: 0 auto;">
-                            <thead>
-                                <tr>
-                                    <td>Fecha</td>
-                                    <td>Nº Documento Identificación</td>
-                                    <td>Productor</td>
-                                    <td>NIF</td>
-                                    <td>LER</td>
-                                    <td>Descripción Residuo</td>
-                                    <td>Tipo de operación</td>
-                                    <td>Peso Kg</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <t t-foreach="docs" t-as="pick">
-                                    <t t-foreach="pick.service_picking_valorization_ids" t-as="v">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="manager_partner" t-value="o.line_ids[:1].service_picking_id.manager_partner_id"/>
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-size: 10pt; font-family: 'Arial MT', Arial, sans-serif;">
+                        <style>
+                            .cert_table, .cert_table > thead > tr > td, .cert_table > tbody > tr > td {
+                                border: 1px solid #000;
+                                border-collapse: collapse;
+                                padding: 3px;
+                                font-family: 'Arial MT', Arial, sans-serif;
+                            }
+                        </style>
+                        <div class="oe_structure"/>
+                        <div id="fecha" style="text-align: right; margin-bottom: 20px;">
+                            <p>Lugo, <span t-esc="o._translate_date()"/></p>
+                        </div>
+                        <h4 style="text-align: center; font-size: 12pt; font-family: 'Arial MT', Arial, sans-serif; margin-bottom: 20px;">
+                            CERTIFICADO DE GESTIÓN DE RESIDUOS ENTREGADOS A GESTOR EXTERNO AUTORIZADO
+                        </h4>
+                        <div id="main" style="text-align: justify; margin-top: 20px;">
+                            <p>
+                                La empresa <span t-esc="res_company.name"/> con CIF <span t-esc="res_company.vat"/> y domicilio social en
+                                <span t-esc="o._partner_address(res_company.partner_id)"/>, autorizada por la Xunta de Galicia para el transporte de
+                                residuos no peligrosos con el número de inscripción <span t-esc="res_company.partner_id.transport_authorization_no"/>
+                                y como Operador y Negociante de Residuos con inscripción número <span t-esc="res_company.partner_id.authorization_no"/>.
+                                NIMA número <span t-esc="res_company.partner_id.nima_no"/>.
+                            </p>
+                            <p>CERTIFICA:</p>
+                            <p>
+                                La entrega, de los residuos que figuran en el cuadro inferior desde el día
+                                <span t-field="o.date_init" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>
+                                hasta el día
+                                <span t-field="o.date_end" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/>,
+                                al gestor <span t-esc="manager_partner.display_name"/>, con domicilio en
+                                <span t-esc="o._partner_address(manager_partner)"/> y autorizado por la Xunta de Galicia con el número de
+                                inscripción <span t-esc="manager_partner.authorization_no"/> y NIMA número
+                                <span t-esc="manager_partner.nima_no"/> para su tratamiento según legislación vigente.
+                            </p>
+                        </div>
+                        <div id="table" style="text-align: center;">
+                            <table class="cert_table table mt8 table-sm" style="font-size: 9pt; font-weight: bold; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <td>CLIENTE</td>
+                                        <td colspan="2"><t t-esc="o.partner_id.name"/></td>
+                                        <td colspan="2">OBRA</td>
+                                        <td colspan="3"><t t-esc="o.building_site_id.name"/></td>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <table class="cert_table table mt8 table-sm" style="font-size: 8pt; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <td>Fecha</td>
+                                        <td>Nº Documento Identificación</td>
+                                        <td>Productor</td>
+                                        <td>NIF</td>
+                                        <td>LER</td>
+                                        <td>Descripción Residuo</td>
+                                        <td>Tipo de operación</td>
+                                        <td>Peso Kg</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.line_ids" t-as="line">
                                         <tr>
-                                            <td><span t-field="pick.retired_date" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/></td>
-                                            <td><span t-esc="pick.dcs_no"/></td>
-                                            <td><span t-esc="pick.producer_promoter_id.commercial_partner_id.name"/></td>
-                                            <td><span t-esc="pick.producer_promoter_id.commercial_partner_id.vat"/></td>
-                                            <td><span t-esc="v.ler_code"/></td>
-                                            <td><span t-esc="v.name"/></td>
-                                            <td><span t-esc="v.operation_type"/></td>
-                                            <td><span t-esc="'{:,.0f}'.format(v.net_weight * 1000).replace(',', '.')"/></td>
+                                            <td><span t-field="line.date" t-options='{"widget": "date", "format": "dd/MM/yyyy"}'/></td>
+                                            <td><span t-field="line.dcs_no"/></td>
+                                            <td><span t-field="line.producer_id.commercial_partner_id.name"/></td>
+                                            <td><span t-field="line.nif"/></td>
+                                            <td><span t-field="line.ler"/></td>
+                                            <td><span t-field="line.description"/></td>
+                                            <td><span t-field="line.operation_type"/></td>
+                                            <td><span t-field="line.weight"/></td>
                                         </tr>
                                     </t>
-                                </t>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br/>
-                    <div class="container" style="page-break-inside: avoid;">
-                        <div id="end" class="row">
-                            <div class="col-8">
-                                <p>
-                                    Y para que así conste y por petición del interesado se firma el presente.
-                                </p>
-                                <p>
-                                    Sin otro particular, reciban un cordial saludo
-                                </p>
-                            </div>
-                            <div class="col-2">
-                                <div>
-                                    <img src="/limp_reports/static/src/img/sello_limp.png" style="width: 200px" alt="sello"/>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br/>
+                        <div class="container" style="page-break-inside: avoid;">
+                            <div id="end" class="row">
+                                <div class="col-8">
+                                    <p>
+                                        Y para que así conste y por petición del interesado se firma el presente.
+                                    </p>
+                                    <p>
+                                        Sin otro particular, reciban un cordial saludo
+                                    </p>
                                 </div>
-                                <br/>
-                                <div>
-                                    <p>LIMPERGAL SL</p>
+                                <div class="col-2">
+                                    <div>
+                                        <img src="/limp_reports/static/src/img/sello_limp.png" style="width: 200px" alt="sello"/>
+                                    </div>
+                                    <br/>
+                                    <div>
+                                        <p>LIMPERGAL SL</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </t>
             </t>
         </t>
     </template>
